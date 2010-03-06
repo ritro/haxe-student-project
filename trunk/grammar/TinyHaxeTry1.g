@@ -3,6 +3,7 @@ grammar TinyHaxeTry1;
 options {
     backtrack=true;
     memoize=true;
+    output=AST;
 }
 
 
@@ -39,7 +40,7 @@ declAttrList      : (declAttr)+
 !           "Argument":  Used in function calls.
 */
 paramListOpt      : paramList
-        //            |
+                    |
 	;
 paramList         : param (',' param)*
 	;
@@ -93,7 +94,7 @@ ppError           : '#error'
 typeTag           : ':' funcType
 	;
 typeTagOpt        : typeTag
-         //           |
+                    |
 	;
 typeList          : funcType (',' funcType)*
                     |   typeConstraint (',' typeConstraint )*
@@ -114,6 +115,7 @@ type              : (anonType | dotIdent) (typeParam)*
 typeParam         : '<' typeList '>'
 	;
 typeParamOpt      : typeParam
+	|	
          //           |
 	;
 typeConstraint    :IDENTIFIER ':' '(' typeList ')'
@@ -208,7 +210,7 @@ catchStmt         : 'catch' '(' param ')' block
 //! -------- Expressions
 
 exprListOpt       : exprList
-  //                  |
+                    |
 	;
 exprList          : (expr) (',' expr)*
 	;
@@ -266,8 +268,12 @@ multExpr          : (prefixExpr) ('*' prefixExpr | '/' prefixExpr | '%' prefixEx
 prefixExpr        : ('-'|'--'|'++'|'!'|'~') prefixExpr
                     |   newExpr
                     |   cast
-                    |   suffixExpr 
+                    |   suffixExpr
+                    |	funcCallExpr
 	;
+	
+funcCallExpr	:IDENTIFIER '('exprListOpt ')';
+
 suffixExpr        : (value) ('(' exprListOpt ')' | '.'IDENTIFIER | '[' expr ']' | '++' | '--')*
 	;
 value        :/* DecLit
@@ -280,6 +286,7 @@ value        :/* DecLit
                     |   objLit
                     |   'null'
                     |  IDENTIFIER
+                    |STRINGLITERAL
         //            |   '(' (expr|stmt) ')'
                     |   '(' (expr|statement) ')'
         
@@ -353,6 +360,7 @@ interfaceBody     : varDecl interfaceBody
          //           |
 ;
 inheritListOpt    : inheritList
+	|	
                     //|
 	;
 inheritList       : (inherit) (',' inherit)*

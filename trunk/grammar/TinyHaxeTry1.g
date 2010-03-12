@@ -6,8 +6,25 @@ options {
     output=AST;
 }
 
+tokens {
+    UNARY_MINUS;
+    UNARY_PLUS;
+	PREFIX_EXPR;
+	PROPERTY_DECL;
+	MODULE;
+	SUFFIX_EXPR;
+	STAtEMENT;
+	BLOCK_SCOPE;
+	PARAM_LIST;
+	TYPE_TAG;
+	TYPE_PARAM_OPT;
+	INHERIT_LIST_OPT;
+	VAR_DECLARATION;
+	DECL_ATTR_LIST;
+	VAR_INIT;
+} 
 
-module            : myPackage topLevelList
+module            : myPackage topLevelList ->^(MODULE myPackage topLevelList)
                     |   topLevelList
 	;
 topLevelList      :  (topLevel)*
@@ -16,38 +33,35 @@ topLevel          : myImport
                     |   pp
                     |   topLevelDecl
 	;
-myPackage           : 'package' dotIdent ';'
+myPackage           : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent)
 	;
-myImport            : 'import' dotIdent ';'
+	
+qualifiedIdentifier
+    :   (  a= IDENTIFIER  ->  $a)   (   DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
+    ;
+	
+myImport            : IMPORT^ dotIdent SEMI!
 	;
 // -------- Basics
                     
-access            : 'public'
-                    |   'private'
+access            : PUBLIC
+                    |   PRIVATE
 	;
-declAttr          : 'static'
-                    |   'inline'
-                    |   'dynamic'
-                    |   'override'
+declAttr          : STATIC
+                    |  INLINE
+                    |   DYNAMIC
+                    |   OVERRIDE
                     |   access
 	;
-declAttrList      : (declAttr)+ 
+declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST declAttr+)
          ;
-	/*
-! NOTE: Though these terms are often used interchangeably,
-!        their technical meanings are:
-!           "Parameter": Used in function declarations.
-!           "Argument":  Used in function calls.
-*/
-paramListOpt      : paramList
-                    |
+
+paramList         : param (COMMA param)* -> ^(PARAM_LIST param+)
+	|	->^(PARAM_LIST)
 	;
-paramList         : param (',' param)*
+param             :QUES? IDENTIFIER typeTagOpt varInitOpt -> ^($param IDENTIFIER typeTagOpt varInitOpt)
 	;
-param             :IDENTIFIER typeTagOpt varInitOpt
-                    |   '?'IDENTIFIER typeTagOpt varInitOpt
-	;
-dotIdent          : (IDENTIFIER) ('.'IDENTIFIER)*
+dotIdent          : (IDENTIFIER -> IDENTIFIER) (DOT ident=IDENTIFIER ->^(DOT $dotIdent $ident))*
 	;
 assignOp          : '='
                     |   '+='
@@ -62,9 +76,9 @@ assignOp          : '='
                     |   '>>='
                     |   '>>>='
 	;
-funcLit           : 'function' '(' paramListOpt ')' typeTagOpt block
+funcLit           : FUNCTION LPAREN paramList RPAREN typeTagOpt block -> ^(FUNCTION paramList typeTagOpt block)
 	;
-arrayLit         : '[' exprListOpt ']'
+arrayLit         : LBRACKET! exprListOpt RBRACKET!
 	;
 	/*
 ! -------- Preprocessor
@@ -77,27 +91,28 @@ pp                : ppIf
                     |   ppEnd
                     |   ppError
 	;
-ppIf              : '#if'IDENTIFIER
-                    |   '#if' '!'IDENTIFIER
+ppIf              : PP_IF IDENTIFIER
+                    |   PP_IF BANG IDENTIFIER
 	;
-ppElseIf          : '#elseif'IDENTIFIER
-                    |   '#elseif' '!'IDENTIFIER
+ppElseIf          : PP_ELSEIF IDENTIFIER
+                    |  PP_ELSEIF BANG IDENTIFIER
 	;
-ppElse            : '#else'
+ppElse            : PP_ELSE
 	;
-ppEnd             : '#end'
+ppEnd             : PP_END
 	;
-ppError           : '#error'
+ppError           : PP_ERROR
 	;
+	
 //! -------- Types
 
-typeTag           : ':' funcType
+typeTag           : COLON! funcType
 	;
-typeTagOpt        : typeTag
-                    |
+typeTagOpt        : typeTag -> ^(TYPE_TAG typeTag)
+                    | -> ^(TYPE_TAG)
 	;
-typeList          : funcType (',' funcType)*
-                    |   typeConstraint (',' typeConstraint )*
+typeList          : funcType (COMMA! funcType)*
+                    |   typeConstraint (COMMA! typeConstraint )* 
                  ;
 
 
@@ -108,193 +123,138 @@ typeList          : funcType (',' typeList)
                     |   typeConstraint
 	;
 	*/
-funcType          : (type) ('->' type)*
+funcType          : (type) (MINUS_BIGGER! type)*
 	;
 type              : (anonType | dotIdent) (typeParam)*
 	;
-typeParam         : '<' typeList '>'
+typeParam         : GT! typeList LT!
 	;
-typeParamOpt      : typeParam
-	|	
-         //           |
+typeParamOpt      : typeParam->^(TYPE_PARAM_OPT typeParam)
+	|	->^(TYPE_PARAM_OPT)
+       ;
+typeConstraint    : IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER typeList)
 	;
-typeConstraint    :IDENTIFIER ':' '(' typeList ')'
-	;
-//! -------- Statements
-
-//stmt              : ('untyped')?( thenNotOkStmt
-  //                  |   thenOkStmt)
-//	;
 	
 statement 
     :   block
-    |   'if' parExpression statement ('else' statement)?          
+    |   IF parExpression st1=statement (ELSE st2=statement)? -> ^(IF parExpression $st1 ^(ELSE $st2)?)          
     |   forStmt
-    |   'while' parExpression statement
-    |   'do' statement 'while' parExpression ';'
+    |   WHILE parExpression statement -> ^(WHILE parExpression statement)
+    |   DO statement WHILE parExpression SEMI -> ^(DO statement WHILE parExpression)
     |   tryStmt
   //  |   'switch' parExpression '{' switchBlockStatementGroups '}'
    | switchStmt
-    |   'return' (expr)? ';'
-    |   'throw' expr ';'
-    |   'break' (IDENTIFIER)? ';'
-    |   'continue' (IDENTIFIER)? ';'
-    |   expr  ';'     
-    |   IDENTIFIER ':' statement
-    |   ';'
+    |   RETURN (expr)? SEMI -> ^(RETURN expr?)
+    |   THROW expr SEMI -> ^(THROW expr)
+    |   BREAK (IDENTIFIER)? SEMI -> ^(BREAK IDENTIFIER?)
+    |   CONTINUE (IDENTIFIER)? SEMI -> ^(CONTINUE IDENTIFIER?)
+    |   expr  SEMI! 
+    |   IDENTIFIER COLON statement -> ^(COLON IDENTIFIER statement)
+    |   SEMI!
     ;
     
 parExpression 
-    :   '(' expr ')'
+    :   RPAREN! expr LPAREN!
     ;
 
-/*thenNotOkStmt     : varDecl
-                    |   ifStmt
-                    |   forStmt
-       //             |   whileStmt
+block         : LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE blockStmt*) 
 	;
-thenOkStmt        :  block ';'
-                    |   expr ';'
-		//    |   returnStmt
-		    |   breakStmt
-		    |   continueStmt
-		    |   caseStmt
-		    |   defaultStmt
-		    |   switchStmt
-	//	    |   throwStmt
-		    |   tryStmt
-		    |   pp
-	;*/
-block         : '{' (blockStmt)* '}'
-	;
+	
 blockStmt
 	:	varDecl
 	|	classDecl
 	|	statement
 	;
-//stmtList          : stmt  (';' stmt)*
-                    //|   stmt ';' stmtList
-  //     ;
-//ifStmt            : 'if' '(' expr ')' statement ('else' stmt)? 
-//	;
-//thenStmt          : 'if' '(' expr ')' (thenStmt|thenOkStmt)   'else' (thenStmt|thenOkStmt)
-  //                  ;
-                    
-forStmt           : 'for' '(' expr 'in' expr ')' statement
+	           
+forStmt           : FOR LPAREN exp1=expr IN exp2=expr RPAREN statement -> ^(FOR ^(IN $exp1 $exp2) statement)
 	;
-//whileStmt         : 'while' '(' expr ')' stmt
-  //                  |   'do' stmt 'while' '(' expr ')'
-//	;
-//returnStmt        : 'return' ';'
-  //                  |   'return' expr ';'
-//	;
-breakStmt         : 'break' ';'
+	
+breakStmt         : BREAK SEMI!
 	;
-continueStmt      : 'continue' ';'
+continueStmt      : CONTINUE SEMI!
 	;
-caseStmt          : 'case' exprList ':'
+caseStmt          : CASE exprList COLON!
 	;
-defaultStmt       : 'default' ':'
+defaultStmt       : DEFAULT COLON!
 	;
-switchStmt        : 'switch' '(' expr ')' block
+switchStmt        : SWITCH LPAREN expr RPAREN block -> ^(SWITCH expr block)
 	;
-//throwStmt         : 'throw' expr ';'
-//	;
-tryStmt           : 'try' block catchStmtList
+tryStmt           : TRY block catchStmtList -> ^(TRY block catchStmtList)
 	;
 catchStmtList     : catchStmt catchStmtList
-         //           |
+                    |
 	;
-catchStmt         : 'catch' '(' param ')' block
+catchStmt         : CATCH LPAREN param RPAREN block -> ^(CATCH param block)
 	;
 //! -------- Expressions
 
 exprListOpt       : exprList
                     |
 	;
-exprList          : (expr) (',' expr)*
+exprList          : expr (COMMA! expr)*
 	;
 expr              : assignExpr
 	;
-assignExpr        : iterExpr (assignOp iterExpr)*
+assignExpr        : iterExpr (assignOp^ iterExpr)* 
 	;
-iterExpr          : ternaryExpr ('...' ternaryExpr)?
+iterExpr          : ternaryExpr (ELLIPSIS^ ternaryExpr)*
        ;
-ternaryExpr       : logicOrExpr ('?' expr ':' logicOrExpr)*
-//(logicOrExpr '?' expr ':')*
-//	|	 logicOrExpr
+ternaryExpr       : logicOrExpr (QUES^ expr COLON! logicOrExpr)*
+	;
+logicOrExpr       : (logicAndExpr) (BARBAR^ logicAndExpr)*
+	;
+logicAndExpr      : (cmpExpr) (AMPAMP^ cmpExpr)*
+	;
+cmpExpr           : (bitExpr) (EQEQ^ bitExpr | BANGEQ^ bitExpr | GTEQ^ bitExpr | LTEQ^ bitExpr | GT^  bitExpr | LT^  bitExpr)*
+	;
+bitExpr           : (shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*
+	;
+shiftExpr         : (addExpr) (LTLT^  addExpr | GTGT^  addExpr | GTGTGT^ addExpr)*
+	;
 
-	//|	logicOrExpr '?' expr ':' ternaryExpr
-          //          |   logicOrExpr
+addExpr           : (multExpr) ((PLUS^ | SUB^) multExpr )*
 	;
-logicOrExpr       : (logicAndExpr) ('||' logicAndExpr)*
+multExpr          : (prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
 	;
-logicAndExpr      : (cmpExpr) ('&&' cmpExpr)*
-	;
-cmpExpr           : (bitExpr) ('==' bitExpr | '!=' bitExpr | '>=' bitExpr | '<=' bitExpr | '>'  bitExpr | '<'  bitExpr)*
-	;
-bitExpr           : (shiftExpr) ('|' shiftExpr | '&' shiftExpr | '^' shiftExpr)*
-	;
-shiftExpr         : (addExpr) ('<<'  addExpr | '>>'  addExpr | '>>>' addExpr)*
-	;
-	/*
-!******************************************************************
-!UNSAFE ALTERNATE CMP/BIT/SHIFT
-!See the documentation at the top for myImportant notes relating to this:
-
-logicAndExpr      : logicAndExpr '&&' cmpBitShiftExpr
-                    |   cmpBitShiftExpr
-	;
-cmpBitShiftExpr   : cmpBitShiftExpr '==' addExpr
-                    |   cmpBitShiftExpr '!=' addExpr
-                    |   cmpBitShiftExpr '>=' addExpr
-                    |   cmpBitShiftExpr '<=' addExpr
-                    |   cmpBitShiftExpr '>'  addExpr
-                    |   cmpBitShiftExpr '<'  addExpr
-                    |   cmpBitShiftExpr '|'  addExpr
-                    |   cmpBitShiftExpr '&'  addExpr
-                    |   cmpBitShiftExpr '^'  addExpr
-                    |   cmpBitShiftExpr '<<'        addExpr
-                    |   cmpBitShiftExpr '>' '>'     addExpr
-                    |   cmpBitShiftExpr '>' '>' '>' addExpr
-                    |   addExpr
-	;
-******************************************************************!
-*/
-addExpr           : (multExpr) ('+' multExpr | '-' multExpr)*
-	;
-multExpr          : (prefixExpr) ('*' prefixExpr | '/' prefixExpr | '%' prefixExpr)*
-	;
-prefixExpr        : ('-'|'--'|'++'|'!'|'~') prefixExpr
+prefixExpr        : (SUB|SUBSUB|PLUSPLUS|BANG|TILDE) prefixExpr
                     |   newExpr
                     |   cast
                     |   suffixExpr
-                    |	funcCallExpr
-	;
+        ;
 	
-funcCallExpr	:IDENTIFIER '('exprListOpt ')';
-
-suffixExpr        : (value) ('(' exprListOpt ')' | '.'IDENTIFIER | '[' expr ']' | '++' | '--')*
+/*suffixExpr
+	:	value  (	LPAREN exprListOpt RPAREN 
+			| 	DOT IDENTIFIER 
+			|	LBRACKET expr RBRACKET
+			| 	PLUSPLUS 
+			| 	SUBSUB
+)* -> ^(SUFFIX_EXPR value (exprListOpt| DOT IDENTIFIER | expr | PLUSPLUS|SUBSUB)*)
 	;
-value        :/* DecLit
-                    |   HexLit
-                    |   BoolLit
-                    |   StrLit
-                    |   RegexLit*/
-                       funcLit 
+*/
+suffixExpr
+	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR value exprListOpt)
+	|	value DOT IDENTIFIER 
+	|	value LBRACKET expr RBRACKET
+	|	value PLUSPLUS 
+	|	value SUBSUB
+	|	value
+	
+;
+
+value	:	funcLit 
                     |   arrayLit
                     |   objLit
-                    |   'null'
-                    |  IDENTIFIER
-                    |STRINGLITERAL
-        //            |   '(' (expr|stmt) ')'
-                    |   '(' (expr|statement) ')'
+                    |   NULL
+                    |   IDENTIFIER
+                    |   elementarySymbol
+                    |   LPAREN! (expr|statement) RPAREN!
+                    |
         
         ;
-newExpr           : 'new' type '(' exprListOpt ')'
+newExpr           : NEW type LPAREN exprListOpt RPAREN ->^(NEW type exprListOpt)
 	;
-cast              : 'cast' '(' expr (',' funcType)? ')'
-//                    |   'cast' '(' expr ')'
+cast              : CAST LPAREN expr (COMMA funcType)? RPAREN -> ^(CAST expr funcType?)
+	|	CAST LPAREN expr RPAREN ->^(CAST expr)
 	;
 //! -------- Declarations
 
@@ -303,94 +263,105 @@ topLevelDecl      : classDecl
                     |   enumDecl
                     |   typedefDecl
 	;
-enumDecl          : 'enum'IDENTIFIER typeParamOpt '{' enumBody '}'
+enumDecl          : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER typeParamOpt enumBody)
 	;
 enumBody          : (enumValueDecl)+
 	;
-enumValueDecl     :IDENTIFIER '(' paramListOpt ')' ';'
-                    |  IDENTIFIER ';'
+enumValueDecl     :IDENTIFIER LPAREN! paramList RPAREN! SEMI!
+                    |  IDENTIFIER SEMI!
                     |   pp
 	;
 varDeclList       : varDecl varDeclList
 	;
-varDecl           : declAttrList 'var' varDeclPartList ';'
-                    |   'var' varDeclPartList ';'
+	
+varDecl           : (declAttrList)? VAR varDeclPartList SEMI ->^(VAR_DECLARATION declAttrList? varDeclPartList )
 	;
-varDeclPartList   : (varDeclPart) (',' varDeclPart)*
+	
+varDeclPartList   : varDeclPart (COMMA! varDeclPart)*
 	;
 varDeclPart       :IDENTIFIER propDeclOpt typeTagOpt varInitOpt
 	;
-propDecl          : '(' propAccessor ',' propAccessor ')'
+propDecl          : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL $a1 $a2)
 	;
 propAccessor      :IDENTIFIER
-                    |   'null'
-                    |   'default'
-                    |   'dynamic'
+                    |   NULL
+                    |   DEFAULT
+                    |   DYNAMIC
 	;
 propDeclOpt       : propDecl
-         //           |
+                    |
 	;
 varInitOpt        : varInit
-         //           |
+                    |
 	;
-varInit           : '=' expr
+varInit           : EQ expr ->^(VAR_INIT expr)
 	;
-funcDecl          : declAttrList 'function' 'new' '(' paramListOpt ')' typeTagOpt block
-                    |   declAttrList 'function'IDENTIFIER typeParamOpt '(' paramListOpt ')' typeTagOpt block
-                    |   'function' 'new' '(' paramListOpt ')' typeTagOpt block
-                    |   'function'IDENTIFIER typeParamOpt '(' paramListOpt ')' typeTagOpt block
+funcDecl          : declAttrList FUNCTION NEW RPAREN paramList LPAREN typeTagOpt block -> ^(FUNCTION NEW paramList typeTagOpt block declAttrList)
+                    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION IDENTIFIER paramList typeTagOpt block typeParamOpt)
+                    |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION NEW paramList typeTagOpt block)
+                    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION IDENTIFIER paramList typeTagOpt block typeParamOpt)
 	;
-funcProtoDecl     : declAttrList 'function' 'new' '(' paramListOpt ')' typeTagOpt ';'
-                    |   declAttrList 'function'IDENTIFIER typeParamOpt '(' paramListOpt ')' typeTagOpt ';'
-                    |   'function' 'new' '(' paramListOpt ')' typeTagOpt ';'
-                    |   'function'IDENTIFIER typeParamOpt '(' paramListOpt ')' typeTagOpt ';'
+funcProtoDecl     : declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt declAttrList)
+                    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt)
+                    |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt)
+                    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt)
 	;
-classDecl         : 'class'IDENTIFIER typeParamOpt inheritListOpt '{' classBody '}'
+classDecl         : CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBody RBRACE ->^(CLASS IDENTIFIER typeParamOpt inheritListOpt classBody)
 	;
 classBody         : varDecl classBody
                     |   funcDecl classBody
                     |   pp classBody
-         //           |
+                    |
 	;
-interfaceDecl     : 'interface' type inheritListOpt '{' interfaceBody '}'
+interfaceDecl     : INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
 	;
 interfaceBody     : varDecl interfaceBody
                     |   funcProtoDecl interfaceBody
                     |   pp interfaceBody
-         //           |
+                    |
 ;
-inheritListOpt    : inheritList
-	|	
-                    //|
+
+inheritList       : inherit (COMMA! inherit)*
 	;
-inheritList       : (inherit) (',' inherit)*
+inheritListOpt    : inheritList ->^(INHERIT_LIST_OPT inheritList)
+	|	->^(INHERIT_LIST_OPT)
+    	;
+inherit           : EXTENDS type
+                    |   IMPLEMENTS type
 	;
-inherit           : 'extends' type
-                    |   'implements' type
+typedefDecl       : TYPEDEF IDENTIFIER EQ funcType
 	;
-typedefDecl       : 'typedef'IDENTIFIER '=' funcType
+typeExtend        : GT funcType COMMA!
 	;
-typeExtend        : '>' funcType ','
-	;
-anonType          : '{'( 
-                    |    anonTypeFieldList 
-                    |    varDeclList 
-                    |    typeExtend (
+anonType          : LBRACE!
+			( 
+                    	|    anonTypeFieldList 
+                   	|    varDeclList 
+                    	|    typeExtend (
                     			|anonTypeFieldList
                     			|varDeclList) 
-                    ) '}'
+                    	) 
+                    RBRACE!
 	;
-anonTypeFieldList : (anonTypeField) (',' anonTypeField)*
+anonTypeFieldList : anonTypeField (COMMA! anonTypeField)*
 	;
-anonTypeField     :IDENTIFIER ':' funcType
-	;
-objLit            : '{' objLitElemList '}'
+
+objLit            : '{'! objLitElemList '}'!
 ;
-objLitElemList    : (objLitElem) (',' objLitElem)*
+anonTypeField     :IDENTIFIER COLON! funcType
 	;
-objLitElem        :IDENTIFIER ':' expr
+objLitElemList    : objLitElem (COMMA! objLitElem)*
 	;
-    
+objLitElem        :IDENTIFIER COLON! expr
+	;
+	
+elementarySymbol
+	:	LONGLITERAL
+	|	INTLITERAL
+	|	STRINGLITERAL
+	|	CHARLITERAL
+	|	FLOATNUM
+	;    
 
 WS  :   ( ' '
         | '\t'
@@ -439,22 +410,6 @@ Exponent
     :   ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ 
     ; 
 
-fragment
-NonIntegerNumber
-    :   ('0' .. '9')+ '.' ('0' .. '9')* Exponent?  
-    |   '.' ( '0' .. '9' )+ Exponent?  
-    |   ('0' .. '9')+ Exponent  
-    |   ('0' .. '9')+ 
-    |   
-        HexPrefix (HexDigit )* 
-        (    () 
-        |    ('.' (HexDigit )* ) 
-        ) 
-        ( 'p' | 'P' ) 
-        ( '+' | '-' )? 
-        ( '0' .. '9' )+
-        ;
-
 CHARLITERAL
     :   '\'' 
         (   EscapeSequence 
@@ -463,13 +418,6 @@ CHARLITERAL
         '\''
     ; 
 
-STRINGLITERAL
-    :   '"' 
-        (   EscapeSequence
-        |   ~( '\\' | '"' | '\r' | '\n' )        
-        )* 
-        '"' 
-    ;
 
 fragment
 EscapeSequence 
@@ -639,6 +587,18 @@ STATIC
     :   'static'
     ;
 
+INLINE
+	: 'inline'
+	;
+
+DYNAMIC
+	:'dynamic'
+	;
+	
+OVERRIDE
+	:'override'
+	;
+	
 STRICTFP
     :   'strictfp'
     ;
@@ -694,6 +654,19 @@ FALSE
 NULL
     :   'null'
     ;
+CAST	:	'cast'
+	;
+    
+FUNCTION
+	: 'function'
+	;
+	
+IN	:	'in'
+	;
+VAR	:	'var'
+	;
+TYPEDEF	:	'typedef'
+	;
 
 LPAREN
     :   '('
@@ -867,6 +840,9 @@ MONKEYS_AT
 BANGEQ
     :   '!='
     ;
+MINUS_BIGGER
+	:	'->'
+	;
 
 PERCENTLL
 	:'%%<<%%'
@@ -880,6 +856,17 @@ PERCENTBBB
 GT
     :   '>'
     ;
+GTGT	:	'>>'
+	;
+LTLT	:	'<<'
+	;
+GTGTGT	:	'>>>'
+	;
+
+GTEQ	:	'>='
+	;
+LTEQ	:	'<='
+	;
 
 LT
     :   '<'
@@ -888,7 +875,8 @@ LT
 IDENTIFIER
     :  ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
- INTNUM :	'0'..'9'+
+    
+INTNUM	:	'0'..'9'+
     ;
 
 FLOATNUM
@@ -901,10 +889,28 @@ COMMENT
     :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
+    
 
-STRING
-    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+STRINGLITERAL
+    :   '"' 
+        (   EscapeSequence
+        |   ~( '\\' | '"' | '\r' | '\n' )        
+        )* 
+        '"' 
     ;
+    
+//For Prepoccecor
+PP_IF	:	'#if'
+	;
+PP_ELSEIF
+	:	'#elseif'
+	;
+PP_ELSE	:	'#else'
+	;
+PP_END	:	'#end'
+	;
+PP_ERROR:	'#error'
+	;
 
 fragment
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;

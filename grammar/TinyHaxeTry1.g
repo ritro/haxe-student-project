@@ -24,8 +24,226 @@ tokens {
 	VAR_INIT;
 } 
 
+@members{
+       class FunctionNode extends CommonTree {
+        public FunctionNode() {
+            super();
+        }
+
+        /**
+         * @param node
+         */
+        public FunctionNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public FunctionNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+
+    }
+
+    class ForNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public ForNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public ForNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public ForNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+
+    }
+
+    class WhileNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public WhileNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public WhileNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public WhileNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+
+    }
+
+    class ClassNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public ClassNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public ClassNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public ClassNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+
+    }
+
+    class IfNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public IfNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public IfNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public IfNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+
+    }
+
+    class DoWhileNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public DoWhileNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public DoWhileNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public DoWhileNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+    }
+
+    class TryNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public TryNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public TryNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public TryNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+    }
+
+    class SwitchNode extends CommonTree {
+
+        /**
+         * 
+         */
+        public SwitchNode() {
+            super();
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param node
+         */
+        public SwitchNode(CommonTree node) {
+            super(node);
+            // TODO Auto-generated constructor stub
+        }
+
+        /**
+         * @param t
+         */
+        public SwitchNode(Token t) {
+            super(t);
+            // TODO Auto-generated constructor stub
+        }
+    }
+}
+
 module            : myPackage topLevelList ->^(MODULE myPackage topLevelList)
-                    |   topLevelList
+                    |   topLevelList ->^(MODULE topLevelList)
 	;
 topLevelList      :  (topLevel)*
 ;
@@ -59,7 +277,7 @@ declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST declAttr+)
 paramList         : param (COMMA param)* -> ^(PARAM_LIST param+)
 	|	->^(PARAM_LIST)
 	;
-param             :QUES? IDENTIFIER typeTagOpt varInitOpt -> ^($param IDENTIFIER typeTagOpt varInitOpt)
+param             :QUES? IDENTIFIER typeTagOpt varInitOpt -> ^(IDENTIFIER typeTagOpt varInitOpt QUES?)
 	;
 dotIdent          : (IDENTIFIER -> IDENTIFIER) (DOT ident=IDENTIFIER ->^(DOT $dotIdent $ident))*
 	;
@@ -158,6 +376,7 @@ parExpression
     ;
 
 block         : LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE blockStmt*) 
+	|	SEMI ->^(BLOCK_SCOPE)
 	;
 	
 blockStmt
@@ -291,22 +510,22 @@ propAccessor      :IDENTIFIER
 propDeclOpt       : propDecl
                     |
 	;
-varInitOpt        : varInit
-                    |
+varInitOpt        : varInit 
+                    | ->^(VAR_INIT)
 	;
 varInit           : EQ expr ->^(VAR_INIT expr)
 	;
-funcDecl          : declAttrList FUNCTION NEW RPAREN paramList LPAREN typeTagOpt block -> ^(FUNCTION NEW paramList typeTagOpt block declAttrList)
-                    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION IDENTIFIER paramList typeTagOpt block typeParamOpt)
-                    |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION NEW paramList typeTagOpt block)
-                    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION IDENTIFIER paramList typeTagOpt block typeParamOpt)
+funcDecl          : declAttrList FUNCTION NEW RPAREN paramList LPAREN typeTagOpt block -> ^(FUNCTION<FunctionNode> NEW paramList typeTagOpt block declAttrList)
+                    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION<FunctionNode> IDENTIFIER paramList typeTagOpt block typeParamOpt)
+                    |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION<FunctionNode> NEW paramList typeTagOpt block)
+                    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION<FunctionNode> IDENTIFIER paramList typeTagOpt block typeParamOpt)
 	;
 funcProtoDecl     : declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt declAttrList)
                     |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt)
                     |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt)
                     |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt)
 	;
-classDecl         : CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBody RBRACE ->^(CLASS IDENTIFIER typeParamOpt inheritListOpt classBody)
+classDecl         : EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBody RBRACE ->^(CLASS IDENTIFIER EXTERN? typeParamOpt inheritListOpt classBody)
 	;
 classBody         : varDecl classBody
                     |   funcDecl classBody
@@ -666,6 +885,8 @@ IN	:	'in'
 VAR	:	'var'
 	;
 TYPEDEF	:	'typedef'
+	;
+EXTERN	:	'extern'
 	;
 
 LPAREN

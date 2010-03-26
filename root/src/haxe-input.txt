@@ -8,7 +8,7 @@ class Main
 	
 static function main( tmp:Int) 
 {
-var i:Int = 6;
+var i:Int = tmp;
 trace("Hello World!"+i);
 }
 	

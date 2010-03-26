@@ -9,9 +9,19 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
+import tree.specific.BlockScopeNode;
+import tree.specific.ClassNode;
+import tree.specific.ForNode;
+import tree.specific.FunctionNode;
+import tree.specific.VarDeclaration;
+import tree.specific.WhileNode;
+
 public class ExtendedCommonTree extends CommonTree {
 
     private boolean auxiliary = false;
+
+    // public static final int VAR_DECLARATION_INDEX = (new
+    // ArrayList<String>(Arrays.asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.)
 
     /**
      * @return the auxiliary
@@ -63,8 +73,8 @@ public class ExtendedCommonTree extends CommonTree {
 
     @SuppressWarnings("unchecked")
     public ExtendedCommonTree getNodeByPosition(int line, int posInLine) {
-        ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>) this
-                .getChildren();
+        ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>) ((ArrayList<ExtendedCommonTree>) this
+                .getChildren()).clone();
 
         if (this.getLine() != line) {
             Collections.sort(nodes, new ComparatorByLines());
@@ -105,7 +115,8 @@ public class ExtendedCommonTree extends CommonTree {
                 return nodes.get(0).getNodeByPosition(line, posInLine);
             }
 
-            if (pretender.getCharPositionInLine() + pretender.getText().length() >= posInLine) {
+            if (pretender.getCharPositionInLine() + pretender.getText().length() >= posInLine
+                    && pretender.auxiliary == false) {
                 return pretender;
             } else {
                 if (pretender.getChildren() != null) {
@@ -117,94 +128,98 @@ public class ExtendedCommonTree extends CommonTree {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public ExtendedCommonTree getDeclarationNode(ExtendedCommonTree usageNode) {
+        ExtendedCommonTree parent = (ExtendedCommonTree) this.getParent();
+        if (parent != null) {
+            ExtendedCommonTree declaration = null;
+            if (this instanceof VarDeclaration) {
+                if (this.isDeclaration(usageNode)) {
+                    declaration = this;
+                }
+            } else if (this instanceof FunctionNode) {
+                ExtendedCommonTree params = ((FunctionNode) this).getParamListNode();
+                if (params != null) {
+                    declaration = usageNode.isDeclaredIn(params.getChildren());
+                }
+
+            } else if (this instanceof WhileNode) {
+
+            } else if (this instanceof ForNode) {
+
+            }
+            if (declaration != null) {
+                return declaration;
+            }
+
+            int index = parent.getChildren().indexOf(this);
+            if (index > 0) {
+                return ((ExtendedCommonTree) parent.getChild(index - 1))
+                        .getDeclarationNode(usageNode);
+            } else {
+                if (parent instanceof BlockScopeNode) {
+                    // Если предок блока это класс, то, возможно, переменная
+                    // была определена после использования
+                    if (parent.getParent() instanceof ClassNode) {
+                        ExtendedCommonTree paramDeclaration = usageNode
+                                .isDeclaredIn((ArrayList<ExtendedCommonTree>) ((ExtendedCommonTree) parent
+                                        .getParent()).getChildren());
+                        if (paramDeclaration != null) {
+                            return paramDeclaration;
+                        }
+
+                    }
+                }
+                return parent.getDeclarationNode(usageNode);
+            }
+        } else {
+            return new ExtendedCommonTree(0);
+        }
+    }
+
     /**
-     * Calculates index of more appropriate child
+     * Returns child of current tree that has index-- due to passed child, or
+     * itself if child has index==0
      * 
-     * @param line
-     * @return return -1 in bad cases
+     * @param child
+     * @return
      */
-    // @SuppressWarnings("unchecked")
-    // public ArrayList<ExtendedCommonTree> getAppropriateChildrenByLine(int
-    // line) {
-    // ArrayList<ExtendedCommonTree> result = new
-    // ArrayList<ExtendedCommonTree>();
-    // ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>)
-    // this
-    // .getChildren();
-    // Collections.sort(nodes, new ComparatorByLines());
-    // for (int i = 0; i <= nodes.size() - 2; i++) {
-    // if (nodes.get(i).getLine() <= line && line < nodes.get(i + 1).getLine())
-    // {
-    // result.add(nodes.get(i));
-    // } else if (nodes.get(i).getLine() == line
-    // && line == nodes.get(i + 1).getLine()) {
-    // result.add(nodes.get(i));
-    // }
-    // }
-    // if (nodes.get(nodes.size() - 1).getLine() <= line) {
-    // result.add(nodes.get(nodes.size() - 1));
-    // }
-    // return result;
-    // }
-    //
-    // @SuppressWarnings("unchecked")
-    // public ExtendedCommonTree getAppropriateChildByPositionInLine(int
-    // position) {
-    // ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>)
-    // this
-    // .getChildren();
-    // Collections.sort(nodes, new ComparatorByLines());
-    // for (int i = 0; i <= nodes.size() - 2; i++) {
-    // if (nodes.get(i).getCharPositionInLine() <= position
-    // && position <= nodes.get(i + 1).getCharPositionInLine()) {
-    // return nodes.get(i);
-    // }
-    // }
-    // if (nodes.get(nodes.size() - 1).getCharPositionInLine() <= position) {
-    // return nodes.get(nodes.size() - 1);
-    // }
-    // return null;
-    // }
-    //
-    // public int getTreePositionBeginInLine() {
-    // ArrayList<ExtendedCommonTree> children = this.getAllChildren();
-    // int result = this.getCharPositionInLine();
-    // for (ExtendedCommonTree tree : children) {
-    // if (tree.getLine() == this.getLine()) {
-    // if (result > tree.getCharPositionInLine()) {
-    // result = tree.getCharPositionInLine();
-    // }
-    // }
-    // }
-    // return result;
-    // }
-    //
-    // /**
-    // * Returns not last item.getCharPositionInLine(), but last
-    // * (item.getCharPositionInLine()+item.token.lenght())
-    // *
-    // * @return
-    // */
-    // public int getTreePositionEndInLine() {
-    // ArrayList<ExtendedCommonTree> children = this.getAllChildren();
-    // int result = this.getCharPositionInLine();
-    // for (ExtendedCommonTree tree : children) {
-    // if (tree.getLine() == this.getLine()) {
-    // if (result > tree.getCharPositionInLine()) {
-    // result = tree.getCharPositionInLine();
-    // }
-    // }
-    // }
-    // return result;
-    // }
-    //
-    // public int getTreeFirstLine() {
-    // return 0;
-    // }
-    //
-    // public int getTreeLastLine() {
-    // return 0;
-    // }
+    private ExtendedCommonTree getPreviosChild(ExtendedCommonTree child) {
+        int index = this.getChildren().indexOf(child);
+        if (index > 0) {
+            return (ExtendedCommonTree) this.getChild(index - 1);
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Checks if it is declaration of current object in passed list. If not,
+     * returns null;
+     * 
+     * @param declarations
+     * @return
+     */
+    private ExtendedCommonTree isDeclaredIn(List<ExtendedCommonTree> declarations) {
+        for (ExtendedCommonTree tree : declarations) {
+            if (tree.isDeclaration(this)) {
+                return tree;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Checks if this object is declaration of usage
+     * 
+     * @param usage
+     * @return
+     */
+    private boolean isDeclaration(ExtendedCommonTree usage) {
+        return ((this instanceof VarDeclaration) && (this.getChildren() != null) && (this
+                .getChild(0).getText().equals(usage.getText())));
+
+    }
 
     @SuppressWarnings("unchecked")
     public ArrayList<ExtendedCommonTree> getAllChildren() {

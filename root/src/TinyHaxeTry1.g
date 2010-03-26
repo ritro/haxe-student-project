@@ -19,7 +19,13 @@ tokens {
 	VAR_INIT;
 }
 
+@lexer::header{
+package main;
+}
+
 @header{
+package main;
+
 import tree.ExtendedCommonTree;
 
 import tree.specific.ClassNode;
@@ -68,7 +74,7 @@ declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_AT
 paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST",true] param+)
 	|	
 	;
-param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(IDENTIFIER typeTagOpt varInit? QUES?)
+param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER typeTagOpt varInit? QUES?)
 	;
 dotIdent          : (IDENTIFIER -> IDENTIFIER) (DOT ident=IDENTIFIER ->^(DOT $dotIdent $ident))*
 	;

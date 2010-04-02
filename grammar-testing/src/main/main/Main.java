@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import main.tree.ExtendedCommonTree;
 import main.tree.ExtendedTreeAdaptor;
+import main.tree.exceptions.AlreadyDeclaredVarDeclarationException;
+import main.tree.exceptions.NotDeclaredVarUsageException;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -19,10 +21,10 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        Main main = new Main();
+        // Main main = new Main();
 
         System.out.print("Reading file...");
-        String path = "./src/haxe-input.txt";
+        String path = "./src/main/haxe-input.txt";
         ANTLRFileStream charStream = null;
         try {
             charStream = new ANTLRFileStream(path);
@@ -51,7 +53,22 @@ public class Main {
             e.printStackTrace();
         }
         printTree(tree, 0);
+        System.out.println();
 
+        try {
+            tree.calculateScopes();
+        } catch (AlreadyDeclaredVarDeclarationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NotDeclaredVarUsageException e) {
+            System.out.println("\n---------------------------------------------");
+            e.getUsage().toString();
+            System.out.println("---------------------------------------------\n");
+
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        printTree(tree, 0);
         ExtendedCommonTree target = tree.getNodeByPosition(11, 12);
 
         System.out.println("Result:" + target);

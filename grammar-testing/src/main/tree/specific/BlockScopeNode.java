@@ -3,6 +3,8 @@
  */
 package main.tree.specific;
 
+import java.util.ArrayList;
+
 import main.tree.ExtendedCommonTree;
 
 import org.antlr.runtime.Token;
@@ -13,6 +15,34 @@ import org.antlr.runtime.tree.CommonTree;
  * 
  */
 public class BlockScopeNode extends ExtendedCommonTree {
+
+    /**
+     * Each BlockScope contains Nodes representing vars, that could be used in
+     * current scope
+     */
+    private ArrayList<VarUsage> declaredVars = new ArrayList<VarUsage>();
+
+    /**
+     * @return the declaredVars
+     */
+
+    /*
+     * public ArrayList<VarUsage> getDeclaredVars() { return this.declaredVars;
+     * }
+     */
+
+    @SuppressWarnings("unchecked")
+    public ArrayList<VarUsage> getDeclaredVarsClone() {
+        return (ArrayList<VarUsage>) this.declaredVars.clone();
+    }
+
+    /**
+     * @param declaredVars
+     *            the declaredVars to set
+     */
+    public void setDeclaredVars(ArrayList<VarUsage> declaredVars) {
+        this.declaredVars = declaredVars;
+    }
 
     /**
      * 
@@ -74,4 +104,44 @@ public class BlockScopeNode extends ExtendedCommonTree {
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     * Checks if there is var with such name in current scope
+     * 
+     * @param varName
+     * @return
+     */
+    public boolean doScopeContainsVarName(String varName) {
+        for (VarUsage usage : declaredVars) {
+            if (usage.getText().equals(varName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Return type of var as it stores in scope
+     * 
+     * @param varName
+     * @return
+     */
+    public String getVarInScopeType(String varName) {
+        for (VarUsage usage : declaredVars) {
+            if (usage.getText().equals(varName)) {
+                return usage.getVarType();
+            }
+        }
+        return VarUsage.VarTypes.UNKNOWN.toString();
+    }
+
+    @Override
+    public String toString() {
+        String vars = "";
+        for (VarUsage usage : declaredVars) {
+            vars += "[" + usage.getVarType() + " " + usage.getText() + "]" + ", ";
+        }
+        return super.toString() + "(" + this.getLine() + ", "
+                + this.getCharPositionInLine() + ")" + "(" + vars + ") "
+                + this.getClass();
+    }
 }

@@ -10,8 +10,8 @@ class Main
 	{
 		var i:Int = tmp;
 		trace("Hello World!"+i);
-		foo++;
-		bar--;
+		foo=1+2;
+		
 	}	
 	
 	var bar;

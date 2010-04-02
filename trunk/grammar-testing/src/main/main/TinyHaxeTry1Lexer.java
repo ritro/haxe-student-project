@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g 2010-03-30 02:54:13
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g 2010-04-02 02:49:26
 
 package main.main;
 
@@ -9,160 +9,161 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class TinyHaxeTry1Lexer extends Lexer {
-    public static final int CAST=83;
-    public static final int PACKAGE=14;
-    public static final int FUNCTION=27;
-    public static final int EXPONENT=148;
-    public static final int LT=42;
-    public static final int STAR=75;
-    public static final int WHILE=47;
-    public static final int FLOATNUM=97;
-    public static final int CONST=111;
-    public static final int OCTAL_ESC=152;
-    public static final int CASE=57;
-    public static final int CHAR=110;
-    public static final int NEW=82;
-    public static final int DO=48;
-    public static final int EXTERN=87;
+    public static final int CAST=90;
+    public static final int PACKAGE=15;
+    public static final int FUNCTION=34;
+    public static final int EXPONENT=152;
+    public static final int LT=49;
+    public static final int STAR=82;
+    public static final int WHILE=54;
+    public static final int FLOATNUM=103;
+    public static final int CONST=117;
+    public static final int OCTAL_ESC=156;
+    public static final int CASE=64;
+    public static final int CHAR=116;
+    public static final int NEW=89;
+    public static final int EXTERN=93;
+    public static final int DO=55;
     public static final int EOF=-1;
-    public static final int GTGT=71;
-    public static final int BREAK=55;
-    public static final int LBRACKET=30;
-    public static final int RPAREN=29;
-    public static final int FINAL=113;
-    public static final int IMPORT=18;
-    public static final int SUBSUB=78;
-    public static final int STAREQ=131;
-    public static final int CARET=69;
-    public static final int RETURN=53;
-    public static final int THIS=125;
-    public static final int DOUBLE=112;
-    public static final int MONKEYS_AT=143;
-    public static final int BARBAR=61;
-    public static final int VAR=85;
-    public static final int VOID=40;
-    public static final int SUPER=124;
-    public static final int EQ=86;
-    public static final int GOTO=116;
-    public static final int AMPAMP=62;
-    public static final int T__154=154;
-    public static final int COMMENT=149;
-    public static final int T__155=155;
-    public static final int T__156=156;
+    public static final int GTGT=78;
+    public static final int BREAK=62;
+    public static final int LBRACKET=37;
+    public static final int RPAREN=36;
+    public static final int FINAL=119;
+    public static final int IMPORT=19;
+    public static final int SUBSUB=85;
+    public static final int STAREQ=135;
+    public static final int CARET=76;
+    public static final int RETURN=60;
+    public static final int THIS=131;
+    public static final int DOUBLE=118;
+    public static final int MONKEYS_AT=144;
+    public static final int BARBAR=68;
+    public static final int VAR=92;
+    public static final int VOID=47;
+    public static final int SUPER=130;
+    public static final int EQ=28;
+    public static final int GOTO=122;
+    public static final int AMPAMP=69;
+    public static final int COMMENT=153;
     public static final int VAR_INIT=13;
-    public static final int QUES=26;
-    public static final int EQEQ=63;
-    public static final int HexPrefix=103;
-    public static final int PP_IF=32;
-    public static final int PERCENTDBBQ=139;
-    public static final int RBRACE=52;
-    public static final int STATIC=21;
-    public static final int PRIVATE=20;
+    public static final int QUES=27;
+    public static final int LTLTEQ=148;
+    public static final int EQEQ=70;
+    public static final int HexPrefix=109;
+    public static final int PP_IF=39;
+    public static final int PERCENTDBBQ=140;
+    public static final int RBRACE=59;
+    public static final int STATIC=22;
+    public static final int PRIVATE=21;
     public static final int BLOCK_SCOPE=7;
-    public static final int SWITCH=50;
-    public static final int NULL=81;
-    public static final int STRICTFP=123;
-    public static final int ELSE=44;
-    public static final int NATIVE=120;
-    public static final int ELLIPSIS=60;
-    public static final int THROWS=126;
-    public static final int INT=118;
-    public static final int SLASHEQ=132;
-    public static final int INTLITERAL=94;
-    public static final int PERCENTBB=145;
-    public static final int TRY=49;
-    public static final int LongSuffix=102;
-    public static final int LONGLITERAL=93;
-    public static final int PERCENTLL=144;
-    public static final int BANGEQQ=142;
-    public static final int WS=100;
-    public static final int PERCENTDLQ=137;
+    public static final int SWITCH=57;
+    public static final int NULL=88;
+    public static final int GTGTEQ=149;
+    public static final int STRICTFP=129;
+    public static final int ELSE=51;
+    public static final int NATIVE=126;
+    public static final int ELLIPSIS=67;
+    public static final int THROWS=132;
+    public static final int INT=124;
+    public static final int SLASHEQ=31;
+    public static final int INTLITERAL=100;
+    public static final int PERCENTBB=146;
+    public static final int TRY=56;
+    public static final int LongSuffix=108;
+    public static final int LONGLITERAL=99;
+    public static final int PERCENTLL=145;
+    public static final int BANGEQQ=143;
+    public static final int WS=106;
+    public static final int PERCENTDLQ=138;
     public static final int INHERIT_LIST_OPT=11;
-    public static final int CHARLITERAL=96;
-    public static final int GT=41;
-    public static final int INLINE=22;
-    public static final int CATCH=59;
-    public static final int FALSE=99;
-    public static final int EscapeSequence=106;
-    public static final int THROW=54;
-    public static final int DYNAMIC=23;
-    public static final int PROTECTED=121;
-    public static final int CLASS=88;
-    public static final int PP_ELSEIF=34;
-    public static final int BAREQ=134;
-    public static final int PP_ELSE=35;
-    public static final int IntegerNumber=101;
-    public static final int AMP=68;
-    public static final int PLUSPLUS=79;
-    public static final int LBRACE=51;
+    public static final int CHARLITERAL=102;
+    public static final int GT=48;
+    public static final int INLINE=23;
+    public static final int CATCH=66;
+    public static final int FALSE=105;
+    public static final int EscapeSequence=112;
+    public static final int THROW=61;
+    public static final int DYNAMIC=24;
+    public static final int PROTECTED=127;
+    public static final int CLASS=94;
+    public static final int PP_ELSEIF=41;
+    public static final int BAREQ=136;
+    public static final int PP_ELSE=42;
+    public static final int IntegerNumber=107;
+    public static final int AMP=75;
+    public static final int PLUSPLUS=86;
+    public static final int LBRACE=58;
     public static final int TYPE_PARAM_OPT=10;
-    public static final int LTEQ=66;
-    public static final int GTGTGT=72;
-    public static final int SUBEQ=130;
-    public static final int FOR=45;
-    public static final int Exponent=105;
-    public static final int SUB=74;
+    public static final int LTEQ=73;
+    public static final int SUBEQ=30;
+    public static final int GTGTGT=79;
+    public static final int FOR=52;
+    public static final int Exponent=111;
+    public static final int SUB=81;
     public static final int SUFFIX_EXPR=6;
-    public static final int FLOAT=115;
-    public static final int ABSTRACT=107;
-    public static final int MINUS_BIGGER=39;
-    public static final int PERCENTDBQ=138;
-    public static final int HexDigit=104;
-    public static final int PLUSEQ=129;
-    public static final int LPAREN=28;
-    public static final int IF=43;
-    public static final int INTNUM=147;
-    public static final int SLASH=76;
-    public static final int PP_END=36;
-    public static final int BOOLEAN=108;
-    public static final int ESC_SEQ=153;
-    public static final int IN=46;
-    public static final int IMPLEMENTS=91;
-    public static final int CONTINUE=56;
-    public static final int COMMA=25;
-    public static final int AMPEQ=133;
-    public static final int IDENTIFIER=16;
-    public static final int TRANSIENT=127;
-    public static final int TILDE=80;
-    public static final int BANGEQ=64;
-    public static final int PLUS=73;
-    public static final int RBRACKET=31;
-    public static final int DOT=17;
-    public static final int LTLT=70;
-    public static final int BYTE=109;
-    public static final int PERCENT=77;
-    public static final int VOLATILE=128;
+    public static final int FLOAT=121;
+    public static final int ABSTRACT=113;
+    public static final int MINUS_BIGGER=46;
+    public static final int PERCENTDBQ=139;
+    public static final int HexDigit=110;
+    public static final int PLUSEQ=29;
+    public static final int LPAREN=35;
+    public static final int IF=50;
+    public static final int INTNUM=151;
+    public static final int SLASH=83;
+    public static final int PP_END=43;
+    public static final int BOOLEAN=114;
+    public static final int ESC_SEQ=157;
+    public static final int IN=53;
+    public static final int IMPLEMENTS=97;
+    public static final int GTGTGTEQ=150;
+    public static final int CONTINUE=63;
+    public static final int COMMA=26;
+    public static final int AMPEQ=33;
+    public static final int IDENTIFIER=17;
+    public static final int TRANSIENT=133;
+    public static final int TILDE=87;
+    public static final int BANGEQ=71;
+    public static final int PLUS=80;
+    public static final int RBRACKET=38;
+    public static final int DOT=18;
+    public static final int LTLT=77;
+    public static final int BYTE=115;
+    public static final int PERCENT=84;
+    public static final int VOLATILE=134;
     public static final int DECL_ATTR_LIST=12;
-    public static final int TYPEDEF=92;
-    public static final int UNICODE_ESC=151;
-    public static final int DEFAULT=58;
-    public static final int EQEQEQ=140;
-    public static final int HEX_DIGIT=150;
-    public static final int SHORT=122;
-    public static final int BANG=33;
-    public static final int INSTANCEOF=117;
-    public static final int GTEQ=65;
-    public static final int PP_ERROR=37;
+    public static final int ASSIGN_OPERATOR=14;
+    public static final int TYPEDEF=98;
+    public static final int UNICODE_ESC=155;
+    public static final int DEFAULT=65;
+    public static final int EQEQEQ=141;
+    public static final int HEX_DIGIT=154;
+    public static final int SHORT=128;
+    public static final int BANG=40;
+    public static final int INSTANCEOF=123;
+    public static final int GTEQ=72;
+    public static final int PP_ERROR=44;
     public static final int MODULE=5;
-    public static final int SEMI=15;
-    public static final int TRUE=98;
-    public static final int COLON=38;
+    public static final int SEMI=16;
+    public static final int TRUE=104;
+    public static final int COLON=45;
     public static final int PARAM_LIST=8;
-    public static final int PERCENTLESQ=141;
-    public static final int ENUM=84;
-    public static final int FINALLY=114;
-    public static final int PERCENTEQ=136;
+    public static final int PERCENTLESQ=142;
+    public static final int ENUM=91;
+    public static final int PERCENTEQ=32;
+    public static final int FINALLY=120;
     public static final int PROPERTY_DECL=4;
-    public static final int OVERRIDE=24;
-    public static final int STRINGLITERAL=95;
-    public static final int CARETEQ=135;
-    public static final int PERCENTBBB=146;
-    public static final int INTERFACE=89;
-    public static final int LONG=119;
-    public static final int PUBLIC=19;
-    public static final int EXTENDS=90;
+    public static final int OVERRIDE=25;
+    public static final int STRINGLITERAL=101;
+    public static final int CARETEQ=137;
+    public static final int PERCENTBBB=147;
+    public static final int INTERFACE=95;
+    public static final int LONG=125;
+    public static final int PUBLIC=20;
+    public static final int EXTENDS=96;
     public static final int TYPE_TAG=9;
-    public static final int BAR=67;
+    public static final int BAR=74;
 
     // delegates
     // delegators
@@ -177,76 +178,13 @@ public class TinyHaxeTry1Lexer extends Lexer {
     }
     public String getGrammarFileName() { return "C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g"; }
 
-    // $ANTLR start "T__154"
-    public final void mT__154() throws RecognitionException {
-        try {
-            int _type = T__154;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:7:8: ( '<<=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:7:10: '<<='
-            {
-            match("<<="); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__154"
-
-    // $ANTLR start "T__155"
-    public final void mT__155() throws RecognitionException {
-        try {
-            int _type = T__155;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:8:8: ( '>>=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:8:10: '>>='
-            {
-            match(">>="); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__155"
-
-    // $ANTLR start "T__156"
-    public final void mT__156() throws RecognitionException {
-        try {
-            int _type = T__156;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:9:8: ( '>>>=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:9:10: '>>>='
-            {
-            match(">>>="); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__156"
-
     // $ANTLR start "WS"
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:370:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:370:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:433:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:433:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -274,8 +212,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:381:5: ( IntegerNumber LongSuffix )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:381:9: IntegerNumber LongSuffix
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:444:5: ( IntegerNumber LongSuffix )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:444:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
             mLongSuffix(); 
@@ -295,8 +233,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:386:5: ( IntegerNumber )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:386:9: IntegerNumber
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:449:5: ( IntegerNumber )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:449:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -313,7 +251,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:391:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:454:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
             int alt4=4;
             int LA4_0 = input.LA(1);
 
@@ -352,17 +290,17 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:391:9: '0'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:454:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:392:9: '1' .. '9' ( '0' .. '9' )*
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:455:9: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:392:18: ( '0' .. '9' )*
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:455:18: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -375,7 +313,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:392:19: '0' .. '9'
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:455:19: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -391,10 +329,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:393:9: '0' ( '0' .. '7' )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:456:9: '0' ( '0' .. '7' )+
                     {
                     match('0'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:393:13: ( '0' .. '7' )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:456:13: ( '0' .. '7' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -408,7 +346,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:393:14: '0' .. '7'
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:456:14: '0' .. '7'
                     	    {
                     	    matchRange('0','7'); 
 
@@ -428,10 +366,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:394:9: HexPrefix ( HexDigit )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:457:9: HexPrefix ( HexDigit )+
                     {
                     mHexPrefix(); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:394:19: ( HexDigit )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:457:19: ( HexDigit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -445,7 +383,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:394:19: HexDigit
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:457:19: HexDigit
                     	    {
                     	    mHexDigit(); 
 
@@ -475,7 +413,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HexPrefix"
     public final void mHexPrefix() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:399:5: ( '0x' | '0X' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:462:5: ( '0x' | '0X' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -503,7 +441,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:399:9: '0x'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:462:9: '0x'
                     {
                     match("0x"); 
 
@@ -511,7 +449,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:399:16: '0X'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:462:16: '0X'
                     {
                     match("0X"); 
 
@@ -529,8 +467,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:404:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:404:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:467:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:467:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -553,7 +491,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:409:5: ( 'l' | 'L' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:472:5: ( 'l' | 'L' )
             // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -577,8 +515,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:414:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:414:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:477:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:477:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -589,7 +527,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:414:23: ( '+' | '-' )?
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:477:23: ( '+' | '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -615,7 +553,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:414:38: ( '0' .. '9' )+
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:477:38: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -629,7 +567,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:414:40: '0' .. '9'
+            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:477:40: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -659,11 +597,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:418:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:418:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:481:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:481:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:419:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:482:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -681,14 +619,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:419:13: EscapeSequence
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:482:13: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:420:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:483:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -720,89 +658,89 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:428:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:428:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:491:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:491:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             {
             match('\\'); 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:428:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:491:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             int alt9=11;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:429:18: 'b'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:492:18: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:430:18: 't'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:493:18: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:431:18: 'n'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:494:18: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:432:18: 'f'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:495:18: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:433:18: 'r'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:496:18: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:434:18: '\\\"'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:497:18: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 7 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:435:18: '\\''
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:498:18: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 8 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:436:18: '\\\\'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:499:18: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 9 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:18: ( '0' .. '3' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:19: '0' .. '3'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:18: ( '0' .. '3' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:19: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:29: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:30: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:29: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:30: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:40: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:438:41: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:40: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:501:41: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -812,17 +750,17 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 10 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:440:18: ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:18: ( '0' .. '7' ) ( '0' .. '7' )
                     {
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:440:18: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:440:19: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:18: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:19: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:440:29: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:440:30: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:29: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:30: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -832,10 +770,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 11 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:442:18: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:505:18: ( '0' .. '7' )
                     {
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:442:18: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:442:19: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:505:18: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:505:19: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -861,8 +799,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ABSTRACT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:447:5: ( 'abstract' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:447:9: 'abstract'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:510:5: ( 'abstract' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:510:9: 'abstract'
             {
             match("abstract"); 
 
@@ -882,8 +820,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:451:5: ( 'boolean' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:451:9: 'boolean'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:514:5: ( 'boolean' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:514:9: 'boolean'
             {
             match("boolean"); 
 
@@ -903,8 +841,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:455:5: ( 'break' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:455:9: 'break'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:518:5: ( 'break' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:518:9: 'break'
             {
             match("break"); 
 
@@ -924,8 +862,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:459:5: ( 'byte' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:459:9: 'byte'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:522:5: ( 'byte' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:522:9: 'byte'
             {
             match("byte"); 
 
@@ -945,8 +883,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CASE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:463:5: ( 'case' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:463:9: 'case'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:526:5: ( 'case' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:526:9: 'case'
             {
             match("case"); 
 
@@ -966,8 +904,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CATCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:467:5: ( 'catch' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:467:9: 'catch'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:530:5: ( 'catch' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:530:9: 'catch'
             {
             match("catch"); 
 
@@ -987,8 +925,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:471:5: ( 'char' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:471:9: 'char'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:534:5: ( 'char' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:534:9: 'char'
             {
             match("char"); 
 
@@ -1008,8 +946,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:475:5: ( 'class' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:475:9: 'class'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:538:5: ( 'class' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:538:9: 'class'
             {
             match("class"); 
 
@@ -1029,8 +967,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CONST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:479:5: ( 'const' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:479:9: 'const'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:542:5: ( 'const' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:542:9: 'const'
             {
             match("const"); 
 
@@ -1050,8 +988,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CONTINUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:483:5: ( 'continue' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:483:9: 'continue'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:546:5: ( 'continue' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:546:9: 'continue'
             {
             match("continue"); 
 
@@ -1071,8 +1009,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DEFAULT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:487:5: ( 'default' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:487:9: 'default'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:550:5: ( 'default' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:550:9: 'default'
             {
             match("default"); 
 
@@ -1092,8 +1030,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:491:5: ( 'do' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:491:9: 'do'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:554:5: ( 'do' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:554:9: 'do'
             {
             match("do"); 
 
@@ -1113,8 +1051,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:495:5: ( 'double' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:495:9: 'double'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:558:5: ( 'double' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:558:9: 'double'
             {
             match("double"); 
 
@@ -1134,8 +1072,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:499:5: ( 'else' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:499:9: 'else'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:562:5: ( 'else' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:562:9: 'else'
             {
             match("else"); 
 
@@ -1155,8 +1093,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ENUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:5: ( 'enum' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:503:9: 'enum'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:566:5: ( 'enum' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:566:9: 'enum'
             {
             match("enum"); 
 
@@ -1176,8 +1114,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:507:5: ( 'extends' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:507:9: 'extends'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:570:5: ( 'extends' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:570:9: 'extends'
             {
             match("extends"); 
 
@@ -1197,8 +1135,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FINAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:511:5: ( 'final' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:511:9: 'final'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:574:5: ( 'final' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:574:9: 'final'
             {
             match("final"); 
 
@@ -1218,8 +1156,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FINALLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:515:5: ( 'finally' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:515:9: 'finally'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:578:5: ( 'finally' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:578:9: 'finally'
             {
             match("finally"); 
 
@@ -1239,8 +1177,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:519:5: ( 'float' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:519:9: 'float'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:582:5: ( 'float' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:582:9: 'float'
             {
             match("float"); 
 
@@ -1260,8 +1198,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:523:5: ( 'for' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:523:9: 'for'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:586:5: ( 'for' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:586:9: 'for'
             {
             match("for"); 
 
@@ -1281,8 +1219,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GOTO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:527:5: ( 'goto' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:527:9: 'goto'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:590:5: ( 'goto' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:590:9: 'goto'
             {
             match("goto"); 
 
@@ -1302,8 +1240,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:531:5: ( 'if' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:531:9: 'if'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:594:5: ( 'if' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:594:9: 'if'
             {
             match("if"); 
 
@@ -1323,8 +1261,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IMPLEMENTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:535:5: ( 'implements' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:535:9: 'implements'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:598:5: ( 'implements' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:598:9: 'implements'
             {
             match("implements"); 
 
@@ -1344,8 +1282,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IMPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:539:5: ( 'import' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:539:9: 'import'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:602:5: ( 'import' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:602:9: 'import'
             {
             match("import"); 
 
@@ -1365,8 +1303,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:543:5: ( 'instanceof' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:543:9: 'instanceof'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:606:5: ( 'instanceof' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:606:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1386,8 +1324,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:547:5: ( 'int' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:547:9: 'int'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:610:5: ( 'int' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:610:9: 'int'
             {
             match("int"); 
 
@@ -1407,8 +1345,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTERFACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:551:5: ( 'interface' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:551:9: 'interface'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:614:5: ( 'interface' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:614:9: 'interface'
             {
             match("interface"); 
 
@@ -1428,8 +1366,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:555:5: ( 'long' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:555:9: 'long'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:618:5: ( 'long' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:618:9: 'long'
             {
             match("long"); 
 
@@ -1449,8 +1387,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NATIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:559:5: ( 'native' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:559:9: 'native'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:622:5: ( 'native' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:622:9: 'native'
             {
             match("native"); 
 
@@ -1470,8 +1408,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:563:5: ( 'new' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:563:9: 'new'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:626:5: ( 'new' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:626:9: 'new'
             {
             match("new"); 
 
@@ -1491,8 +1429,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PACKAGE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:567:5: ( 'package' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:567:9: 'package'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:630:5: ( 'package' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:630:9: 'package'
             {
             match("package"); 
 
@@ -1512,8 +1450,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:571:5: ( 'private' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:571:9: 'private'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:634:5: ( 'private' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:634:9: 'private'
             {
             match("private"); 
 
@@ -1533,8 +1471,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PROTECTED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:575:5: ( 'protected' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:575:9: 'protected'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:638:5: ( 'protected' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:638:9: 'protected'
             {
             match("protected"); 
 
@@ -1554,8 +1492,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:579:5: ( 'public' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:579:9: 'public'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:642:5: ( 'public' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:642:9: 'public'
             {
             match("public"); 
 
@@ -1575,8 +1513,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:583:5: ( 'return' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:583:9: 'return'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:646:5: ( 'return' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:646:9: 'return'
             {
             match("return"); 
 
@@ -1596,8 +1534,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:587:5: ( 'short' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:587:9: 'short'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:650:5: ( 'short' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:650:9: 'short'
             {
             match("short"); 
 
@@ -1617,8 +1555,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STATIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:591:5: ( 'static' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:591:9: 'static'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:654:5: ( 'static' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:654:9: 'static'
             {
             match("static"); 
 
@@ -1638,8 +1576,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:595:2: ( 'inline' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:595:4: 'inline'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:658:2: ( 'inline' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:658:4: 'inline'
             {
             match("inline"); 
 
@@ -1659,8 +1597,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DYNAMIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:599:2: ( 'dynamic' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:599:3: 'dynamic'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:662:2: ( 'dynamic' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:662:3: 'dynamic'
             {
             match("dynamic"); 
 
@@ -1680,8 +1618,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = OVERRIDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:603:2: ( 'override' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:603:3: 'override'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:666:2: ( 'override' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:666:3: 'override'
             {
             match("override"); 
 
@@ -1701,8 +1639,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STRICTFP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:607:5: ( 'strictfp' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:607:9: 'strictfp'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:670:5: ( 'strictfp' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:670:9: 'strictfp'
             {
             match("strictfp"); 
 
@@ -1722,8 +1660,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:611:5: ( 'super' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:611:9: 'super'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:674:5: ( 'super' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:674:9: 'super'
             {
             match("super"); 
 
@@ -1743,8 +1681,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:615:5: ( 'switch' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:615:9: 'switch'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:678:5: ( 'switch' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:678:9: 'switch'
             {
             match("switch"); 
 
@@ -1764,8 +1702,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:619:5: ( 'this' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:619:9: 'this'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:682:5: ( 'this' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:682:9: 'this'
             {
             match("this"); 
 
@@ -1785,8 +1723,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:623:5: ( 'throw' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:623:9: 'throw'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:686:5: ( 'throw' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:686:9: 'throw'
             {
             match("throw"); 
 
@@ -1806,8 +1744,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THROWS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:627:5: ( 'throws' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:627:9: 'throws'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:690:5: ( 'throws' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:690:9: 'throws'
             {
             match("throws"); 
 
@@ -1827,8 +1765,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRANSIENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:631:5: ( 'transient' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:631:9: 'transient'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:694:5: ( 'transient' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:694:9: 'transient'
             {
             match("transient"); 
 
@@ -1848,8 +1786,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:635:5: ( 'try' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:635:9: 'try'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:698:5: ( 'try' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:698:9: 'try'
             {
             match("try"); 
 
@@ -1869,8 +1807,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:639:5: ( 'void' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:639:9: 'void'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:702:5: ( 'void' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:702:9: 'void'
             {
             match("void"); 
 
@@ -1890,8 +1828,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VOLATILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:643:5: ( 'volatile' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:643:9: 'volatile'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:706:5: ( 'volatile' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:706:9: 'volatile'
             {
             match("volatile"); 
 
@@ -1911,8 +1849,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:647:5: ( 'while' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:647:9: 'while'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:710:5: ( 'while' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:710:9: 'while'
             {
             match("while"); 
 
@@ -1932,8 +1870,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:651:5: ( 'true' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:651:9: 'true'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:714:5: ( 'true' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:714:9: 'true'
             {
             match("true"); 
 
@@ -1953,8 +1891,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:655:5: ( 'false' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:655:9: 'false'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:718:5: ( 'false' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:718:9: 'false'
             {
             match("false"); 
 
@@ -1974,8 +1912,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:659:5: ( 'null' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:659:9: 'null'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:722:5: ( 'null' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:722:9: 'null'
             {
             match("null"); 
 
@@ -1995,8 +1933,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CAST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:661:6: ( 'cast' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:661:8: 'cast'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:724:6: ( 'cast' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:724:8: 'cast'
             {
             match("cast"); 
 
@@ -2016,8 +1954,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:665:2: ( 'function' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:665:4: 'function'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:728:2: ( 'function' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:728:4: 'function'
             {
             match("function"); 
 
@@ -2037,8 +1975,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:668:4: ( 'in' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:668:6: 'in'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:731:4: ( 'in' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:731:6: 'in'
             {
             match("in"); 
 
@@ -2058,8 +1996,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:670:5: ( 'var' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:670:7: 'var'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:733:5: ( 'var' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:733:7: 'var'
             {
             match("var"); 
 
@@ -2079,8 +2017,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TYPEDEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:672:9: ( 'typedef' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:672:11: 'typedef'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:735:9: ( 'typedef' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:735:11: 'typedef'
             {
             match("typedef"); 
 
@@ -2100,8 +2038,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EXTERN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:674:8: ( 'extern' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:674:10: 'extern'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:737:8: ( 'extern' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:737:10: 'extern'
             {
             match("extern"); 
 
@@ -2121,8 +2059,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:678:5: ( '(' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:678:9: '('
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:741:5: ( '(' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:741:9: '('
             {
             match('('); 
 
@@ -2141,8 +2079,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:682:5: ( ')' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:682:9: ')'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:745:5: ( ')' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:745:9: ')'
             {
             match(')'); 
 
@@ -2161,8 +2099,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:686:5: ( '{' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:686:9: '{'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:749:5: ( '{' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:749:9: '{'
             {
             match('{'); 
 
@@ -2181,8 +2119,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:690:5: ( '}' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:690:9: '}'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:753:5: ( '}' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:753:9: '}'
             {
             match('}'); 
 
@@ -2201,8 +2139,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:694:5: ( '[' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:694:9: '['
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:757:5: ( '[' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:757:9: '['
             {
             match('['); 
 
@@ -2221,8 +2159,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:698:5: ( ']' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:698:9: ']'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:761:5: ( ']' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:761:9: ']'
             {
             match(']'); 
 
@@ -2241,8 +2179,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SEMI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:702:5: ( ';' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:702:9: ';'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:765:5: ( ';' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:765:9: ';'
             {
             match(';'); 
 
@@ -2261,8 +2199,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:706:5: ( ',' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:706:9: ','
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:769:5: ( ',' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:769:9: ','
             {
             match(','); 
 
@@ -2281,8 +2219,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:710:5: ( '.' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:710:9: '.'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:773:5: ( '.' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:773:9: '.'
             {
             match('.'); 
 
@@ -2301,8 +2239,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ELLIPSIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:714:5: ( '...' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:714:9: '...'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:777:5: ( '...' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:777:9: '...'
             {
             match("..."); 
 
@@ -2322,8 +2260,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:718:5: ( '=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:718:9: '='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:781:5: ( '=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:781:9: '='
             {
             match('='); 
 
@@ -2342,8 +2280,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:722:5: ( '!' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:722:9: '!'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:785:5: ( '!' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:785:9: '!'
             {
             match('!'); 
 
@@ -2362,8 +2300,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TILDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:726:5: ( '~' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:726:9: '~'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:789:5: ( '~' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:789:9: '~'
             {
             match('~'); 
 
@@ -2382,8 +2320,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = QUES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:730:5: ( '?' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:730:9: '?'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:793:5: ( '?' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:793:9: '?'
             {
             match('?'); 
 
@@ -2402,8 +2340,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:734:5: ( ':' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:734:9: ':'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:797:5: ( ':' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:797:9: ':'
             {
             match(':'); 
 
@@ -2422,8 +2360,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:738:5: ( '==' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:738:9: '=='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:801:5: ( '==' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:801:9: '=='
             {
             match("=="); 
 
@@ -2443,8 +2381,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMPAMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:742:5: ( '&&' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:742:9: '&&'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:805:5: ( '&&' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:805:9: '&&'
             {
             match("&&"); 
 
@@ -2464,8 +2402,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BARBAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:746:5: ( '||' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:746:9: '||'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:809:5: ( '||' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:809:9: '||'
             {
             match("||"); 
 
@@ -2485,8 +2423,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUSPLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:750:5: ( '++' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:750:9: '++'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:813:5: ( '++' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:813:9: '++'
             {
             match("++"); 
 
@@ -2506,8 +2444,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUBSUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:754:5: ( '--' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:754:9: '--'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:817:5: ( '--' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:817:9: '--'
             {
             match("--"); 
 
@@ -2527,8 +2465,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:758:5: ( '+' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:758:9: '+'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:821:5: ( '+' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:821:9: '+'
             {
             match('+'); 
 
@@ -2547,8 +2485,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:762:5: ( '-' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:762:9: '-'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:825:5: ( '-' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:825:9: '-'
             {
             match('-'); 
 
@@ -2567,8 +2505,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:766:5: ( '*' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:766:9: '*'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:829:5: ( '*' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:829:9: '*'
             {
             match('*'); 
 
@@ -2587,8 +2525,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:770:5: ( '/' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:770:9: '/'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:833:5: ( '/' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:833:9: '/'
             {
             match('/'); 
 
@@ -2607,8 +2545,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:774:5: ( '&' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:774:9: '&'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:837:5: ( '&' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:837:9: '&'
             {
             match('&'); 
 
@@ -2627,8 +2565,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:778:5: ( '|' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:778:9: '|'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:841:5: ( '|' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:841:9: '|'
             {
             match('|'); 
 
@@ -2647,8 +2585,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CARET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:782:5: ( '^' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:782:9: '^'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:845:5: ( '^' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:845:9: '^'
             {
             match('^'); 
 
@@ -2667,8 +2605,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:786:5: ( '%' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:786:9: '%'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:849:5: ( '%' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:849:9: '%'
             {
             match('%'); 
 
@@ -2687,8 +2625,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUSEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:790:5: ( '+=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:790:9: '+='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:853:5: ( '+=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:853:9: '+='
             {
             match("+="); 
 
@@ -2708,8 +2646,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUBEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:794:5: ( '-=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:794:9: '-='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:857:5: ( '-=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:857:9: '-='
             {
             match("-="); 
 
@@ -2729,8 +2667,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:798:5: ( '*=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:798:9: '*='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:861:5: ( '*=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:861:9: '*='
             {
             match("*="); 
 
@@ -2750,8 +2688,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SLASHEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:802:5: ( '/=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:802:9: '/='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:865:5: ( '/=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:865:9: '/='
             {
             match("/="); 
 
@@ -2771,8 +2709,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMPEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:806:5: ( '&=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:806:9: '&='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:869:5: ( '&=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:869:9: '&='
             {
             match("&="); 
 
@@ -2792,8 +2730,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:810:5: ( '|=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:810:9: '|='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:873:5: ( '|=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:873:9: '|='
             {
             match("|="); 
 
@@ -2813,8 +2751,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CARETEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:814:5: ( '^=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:814:9: '^='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:877:5: ( '^=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:877:9: '^='
             {
             match("^="); 
 
@@ -2834,8 +2772,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:818:5: ( '%=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:818:9: '%='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:881:5: ( '%=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:881:9: '%='
             {
             match("%="); 
 
@@ -2855,8 +2793,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDLQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:822:2: ( '%%<<%%=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:822:4: '%%<<%%='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:885:2: ( '%%<<%%=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:885:4: '%%<<%%='
             {
             match("%%<<%%="); 
 
@@ -2876,8 +2814,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDBQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:825:2: ( '%%>>%%=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:825:4: '%%>>%%='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:888:2: ( '%%>>%%=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:888:4: '%%>>%%='
             {
             match("%%>>%%="); 
 
@@ -2897,8 +2835,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDBBQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:828:2: ( '%%>>>%%=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:828:4: '%%>>>%%='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:891:2: ( '%%>>>%%=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:891:4: '%%>>>%%='
             {
             match("%%>>>%%="); 
 
@@ -2918,8 +2856,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQEQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:831:2: ( '===' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:831:3: '==='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:894:2: ( '===' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:894:3: '==='
             {
             match("==="); 
 
@@ -2939,8 +2877,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTLESQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:835:1: ( '%%<=%%' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:835:3: '%%<=%%'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:898:1: ( '%%<=%%' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:898:3: '%%<=%%'
             {
             match("%%<=%%"); 
 
@@ -2960,8 +2898,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANGEQQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:839:2: ( '!==' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:839:3: '!=='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:902:2: ( '!==' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:902:3: '!=='
             {
             match("!=="); 
 
@@ -2981,8 +2919,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = MONKEYS_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:843:5: ( '@' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:843:9: '@'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:906:5: ( '@' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:906:9: '@'
             {
             match('@'); 
 
@@ -3001,8 +2939,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANGEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:847:5: ( '!=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:847:9: '!='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:910:5: ( '!=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:910:9: '!='
             {
             match("!="); 
 
@@ -3022,8 +2960,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = MINUS_BIGGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:850:2: ( '->' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:850:4: '->'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:913:2: ( '->' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:913:4: '->'
             {
             match("->"); 
 
@@ -3043,8 +2981,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTLL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:854:2: ( '%%<<%%' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:854:3: '%%<<%%'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:917:2: ( '%%<<%%' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:917:3: '%%<<%%'
             {
             match("%%<<%%"); 
 
@@ -3064,8 +3002,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTBB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:857:2: ( '%%>>%%' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:857:3: '%%>>%%'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:920:2: ( '%%>>%%' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:920:3: '%%>>%%'
             {
             match("%%>>%%"); 
 
@@ -3085,8 +3023,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTBBB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:860:2: ( '%%>>>%%' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:860:3: '%%>>>%%'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:923:2: ( '%%>>>%%' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:923:3: '%%>>>%%'
             {
             match("%%>>>%%"); 
 
@@ -3106,8 +3044,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:863:5: ( '>' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:863:9: '>'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:926:5: ( '>' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:926:9: '>'
             {
             match('>'); 
 
@@ -3126,8 +3064,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:865:6: ( '>>' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:865:8: '>>'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:928:6: ( '>>' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:928:8: '>>'
             {
             match(">>"); 
 
@@ -3147,8 +3085,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTLT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:867:6: ( '<<' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:867:8: '<<'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:930:6: ( '<<' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:930:8: '<<'
             {
             match("<<"); 
 
@@ -3168,8 +3106,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:869:8: ( '>>>' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:869:10: '>>>'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:932:8: ( '>>>' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:932:10: '>>>'
             {
             match(">>>"); 
 
@@ -3184,13 +3122,76 @@ public class TinyHaxeTry1Lexer extends Lexer {
     }
     // $ANTLR end "GTGTGT"
 
+    // $ANTLR start "LTLTEQ"
+    public final void mLTLTEQ() throws RecognitionException {
+        try {
+            int _type = LTLTEQ;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:935:8: ( '<<=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:935:10: '<<='
+            {
+            match("<<="); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "LTLTEQ"
+
+    // $ANTLR start "GTGTEQ"
+    public final void mGTGTEQ() throws RecognitionException {
+        try {
+            int _type = GTGTEQ;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:938:8: ( '>>=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:938:10: '>>='
+            {
+            match(">>="); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "GTGTEQ"
+
+    // $ANTLR start "GTGTGTEQ"
+    public final void mGTGTGTEQ() throws RecognitionException {
+        try {
+            int _type = GTGTGTEQ;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:941:9: ( '>>>=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:941:11: '>>>='
+            {
+            match(">>>="); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "GTGTGTEQ"
+
     // $ANTLR start "GTEQ"
     public final void mGTEQ() throws RecognitionException {
         try {
             int _type = GTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:872:6: ( '>=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:872:8: '>='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:944:6: ( '>=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:944:8: '>='
             {
             match(">="); 
 
@@ -3210,8 +3211,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:874:6: ( '<=' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:874:8: '<='
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:946:6: ( '<=' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:946:8: '<='
             {
             match("<="); 
 
@@ -3231,8 +3232,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:878:5: ( '<' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:878:9: '<'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:950:5: ( '<' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:950:9: '<'
             {
             match('<'); 
 
@@ -3251,8 +3252,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:882:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:882:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:954:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:954:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3263,7 +3264,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:882:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:954:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop10:
             do {
                 int alt10=2;
@@ -3312,10 +3313,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:885:8: ( ( '0' .. '9' )+ )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:885:10: ( '0' .. '9' )+
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:957:8: ( ( '0' .. '9' )+ )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:957:10: ( '0' .. '9' )+
             {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:885:10: ( '0' .. '9' )+
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:957:10: ( '0' .. '9' )+
             int cnt11=0;
             loop11:
             do {
@@ -3329,7 +3330,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:885:10: '0' .. '9'
+            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:957:10: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3361,14 +3362,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FLOATNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
             int alt18=3;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:9: ( '0' .. '9' )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:9: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -3382,7 +3383,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:10: '0' .. '9'
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3399,7 +3400,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:25: ( '0' .. '9' )*
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:25: ( '0' .. '9' )*
                     loop13:
                     do {
                         int alt13=2;
@@ -3412,7 +3413,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:26: '0' .. '9'
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3424,7 +3425,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         }
                     } while (true);
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:37: ( EXPONENT )?
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:37: ( EXPONENT )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -3433,7 +3434,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:889:37: EXPONENT
+                            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:961:37: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -3446,10 +3447,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:890:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:962:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
                     match('.'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:890:13: ( '0' .. '9' )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:962:13: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -3463,7 +3464,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:890:14: '0' .. '9'
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:962:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3479,7 +3480,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         cnt15++;
                     } while (true);
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:890:25: ( EXPONENT )?
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:962:25: ( EXPONENT )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -3488,7 +3489,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:890:25: EXPONENT
+                            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:962:25: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -3501,9 +3502,9 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:891:9: ( '0' .. '9' )+ EXPONENT
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:963:9: ( '0' .. '9' )+ EXPONENT
                     {
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:891:9: ( '0' .. '9' )+
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:963:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -3517,7 +3518,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:891:10: '0' .. '9'
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:963:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3552,7 +3553,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:895:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:967:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3580,11 +3581,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt22) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:895:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:967:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:895:14: (~ ( '\\n' | '\\r' ) )*
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:967:14: (~ ( '\\n' | '\\r' ) )*
                     loop19:
                     do {
                         int alt19=2;
@@ -3597,7 +3598,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:895:14: ~ ( '\\n' | '\\r' )
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:967:14: ~ ( '\\n' | '\\r' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -3617,7 +3618,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         }
                     } while (true);
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:895:28: ( '\\r' )?
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:967:28: ( '\\r' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3626,7 +3627,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt20) {
                         case 1 :
-                            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:895:28: '\\r'
+                            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:967:28: '\\r'
                             {
                             match('\r'); 
 
@@ -3641,11 +3642,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:896:9: '/*' ( options {greedy=false; } : . )* '*/'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:968:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:896:14: ( options {greedy=false; } : . )*
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:968:14: ( options {greedy=false; } : . )*
                     loop21:
                     do {
                         int alt21=2;
@@ -3670,7 +3671,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt21) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:896:42: .
+                    	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:968:42: .
                     	    {
                     	    matchAny(); 
 
@@ -3703,11 +3704,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:901:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:901:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:973:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:973:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:902:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:974:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
             loop23:
             do {
                 int alt23=3;
@@ -3723,14 +3724,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt23) {
             	case 1 :
-            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:902:13: EscapeSequence
+            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:974:13: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:903:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:975:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3767,8 +3768,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:909:7: ( '#if' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:909:9: '#if'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:981:7: ( '#if' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:981:9: '#if'
             {
             match("#if"); 
 
@@ -3788,8 +3789,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_ELSEIF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:912:2: ( '#elseif' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:912:4: '#elseif'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:984:2: ( '#elseif' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:984:4: '#elseif'
             {
             match("#elseif"); 
 
@@ -3809,8 +3810,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:914:9: ( '#else' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:914:11: '#else'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:986:9: ( '#else' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:986:11: '#else'
             {
             match("#else"); 
 
@@ -3830,8 +3831,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_END;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:916:8: ( '#end' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:916:10: '#end'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:988:8: ( '#end' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:988:10: '#end'
             {
             match("#end"); 
 
@@ -3851,8 +3852,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_ERROR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:918:9: ( '#error' )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:918:11: '#error'
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:990:9: ( '#error' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:990:11: '#error'
             {
             match("#error"); 
 
@@ -3870,8 +3871,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:922:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:922:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:994:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:994:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -3882,7 +3883,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:922:22: ( '+' | '-' )?
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:994:22: ( '+' | '-' )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3908,7 +3909,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:922:33: ( '0' .. '9' )+
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:994:33: ( '0' .. '9' )+
             int cnt25=0;
             loop25:
             do {
@@ -3922,7 +3923,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt25) {
             	case 1 :
-            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:922:34: '0' .. '9'
+            	    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:994:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3950,8 +3951,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:925:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:925:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:997:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:997:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -3974,7 +3975,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:929:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1001:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt26=3;
             int LA26_0 = input.LA(1);
 
@@ -4025,7 +4026,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:929:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1001:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -4041,14 +4042,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:930:9: UNICODE_ESC
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1002:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:931:9: OCTAL_ESC
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1003:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -4065,7 +4066,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt27=3;
             int LA27_0 = input.LA(1);
 
@@ -4111,25 +4112,25 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:14: ( '0' .. '3' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:15: '0' .. '3'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:14: ( '0' .. '3' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:25: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:26: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:25: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:36: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:936:37: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:36: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1008:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4139,18 +4140,18 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:937:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1009:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:937:14: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:937:15: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1009:14: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1009:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:937:25: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:937:26: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1009:25: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1009:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4160,11 +4161,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:938:9: '\\\\' ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1010:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:938:14: ( '0' .. '7' )
-                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:938:15: '0' .. '7'
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1010:14: ( '0' .. '7' )
+                    // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1010:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4184,8 +4185,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:943:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:943:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1015:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1015:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
             match('u'); 
@@ -4203,929 +4204,929 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR end "UNICODE_ESC"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:8: ( T__154 | T__155 | T__156 | WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | VAR | TYPEDEF | EXTERN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | PERCENTDLQ | PERCENTDBQ | PERCENTDBBQ | EQEQEQ | PERCENTLESQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | PERCENTLL | PERCENTBB | PERCENTBBB | GT | GTGT | LTLT | GTGTGT | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PP_IF | PP_ELSEIF | PP_ELSE | PP_END | PP_ERROR )
+        // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:8: ( WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | VAR | TYPEDEF | EXTERN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | PERCENTDLQ | PERCENTDBQ | PERCENTDBBQ | EQEQEQ | PERCENTLESQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | PERCENTLL | PERCENTBB | PERCENTBBB | GT | GTGT | LTLT | GTGTGT | LTLTEQ | GTGTEQ | GTGTGTEQ | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PP_IF | PP_ELSEIF | PP_ELSE | PP_END | PP_ERROR )
         int alt28=132;
         alt28 = dfa28.predict(input);
         switch (alt28) {
             case 1 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:10: T__154
-                {
-                mT__154(); 
-
-                }
-                break;
-            case 2 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:17: T__155
-                {
-                mT__155(); 
-
-                }
-                break;
-            case 3 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:24: T__156
-                {
-                mT__156(); 
-
-                }
-                break;
-            case 4 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:31: WS
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:10: WS
                 {
                 mWS(); 
 
                 }
                 break;
-            case 5 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:34: LONGLITERAL
+            case 2 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:13: LONGLITERAL
                 {
                 mLONGLITERAL(); 
 
                 }
                 break;
-            case 6 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:46: INTLITERAL
+            case 3 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:25: INTLITERAL
                 {
                 mINTLITERAL(); 
 
                 }
                 break;
-            case 7 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:57: CHARLITERAL
+            case 4 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:36: CHARLITERAL
                 {
                 mCHARLITERAL(); 
 
                 }
                 break;
-            case 8 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:69: ABSTRACT
+            case 5 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:48: ABSTRACT
                 {
                 mABSTRACT(); 
 
                 }
                 break;
-            case 9 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:78: BOOLEAN
+            case 6 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:57: BOOLEAN
                 {
                 mBOOLEAN(); 
 
                 }
                 break;
-            case 10 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:86: BREAK
+            case 7 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:65: BREAK
                 {
                 mBREAK(); 
 
                 }
                 break;
-            case 11 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:92: BYTE
+            case 8 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:71: BYTE
                 {
                 mBYTE(); 
 
                 }
                 break;
-            case 12 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:97: CASE
+            case 9 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:76: CASE
                 {
                 mCASE(); 
 
                 }
                 break;
-            case 13 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:102: CATCH
+            case 10 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:81: CATCH
                 {
                 mCATCH(); 
 
                 }
                 break;
-            case 14 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:108: CHAR
+            case 11 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:87: CHAR
                 {
                 mCHAR(); 
 
                 }
                 break;
-            case 15 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:113: CLASS
+            case 12 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:92: CLASS
                 {
                 mCLASS(); 
 
                 }
                 break;
-            case 16 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:119: CONST
+            case 13 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:98: CONST
                 {
                 mCONST(); 
 
                 }
                 break;
-            case 17 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:125: CONTINUE
+            case 14 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:104: CONTINUE
                 {
                 mCONTINUE(); 
 
                 }
                 break;
-            case 18 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:134: DEFAULT
+            case 15 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:113: DEFAULT
                 {
                 mDEFAULT(); 
 
                 }
                 break;
-            case 19 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:142: DO
+            case 16 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:121: DO
                 {
                 mDO(); 
 
                 }
                 break;
-            case 20 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:145: DOUBLE
+            case 17 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:124: DOUBLE
                 {
                 mDOUBLE(); 
 
                 }
                 break;
-            case 21 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:152: ELSE
+            case 18 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:131: ELSE
                 {
                 mELSE(); 
 
                 }
                 break;
-            case 22 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:157: ENUM
+            case 19 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:136: ENUM
                 {
                 mENUM(); 
 
                 }
                 break;
-            case 23 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:162: EXTENDS
+            case 20 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:141: EXTENDS
                 {
                 mEXTENDS(); 
 
                 }
                 break;
-            case 24 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:170: FINAL
+            case 21 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:149: FINAL
                 {
                 mFINAL(); 
 
                 }
                 break;
-            case 25 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:176: FINALLY
+            case 22 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:155: FINALLY
                 {
                 mFINALLY(); 
 
                 }
                 break;
-            case 26 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:184: FLOAT
+            case 23 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:163: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
-            case 27 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:190: FOR
+            case 24 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:169: FOR
                 {
                 mFOR(); 
 
                 }
                 break;
-            case 28 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:194: GOTO
+            case 25 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:173: GOTO
                 {
                 mGOTO(); 
 
                 }
                 break;
-            case 29 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:199: IF
+            case 26 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:178: IF
                 {
                 mIF(); 
 
                 }
                 break;
-            case 30 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:202: IMPLEMENTS
+            case 27 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:181: IMPLEMENTS
                 {
                 mIMPLEMENTS(); 
 
                 }
                 break;
-            case 31 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:213: IMPORT
+            case 28 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:192: IMPORT
                 {
                 mIMPORT(); 
 
                 }
                 break;
-            case 32 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:220: INSTANCEOF
+            case 29 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:199: INSTANCEOF
                 {
                 mINSTANCEOF(); 
 
                 }
                 break;
-            case 33 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:231: INT
+            case 30 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:210: INT
                 {
                 mINT(); 
 
                 }
                 break;
-            case 34 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:235: INTERFACE
+            case 31 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:214: INTERFACE
                 {
                 mINTERFACE(); 
 
                 }
                 break;
-            case 35 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:245: LONG
+            case 32 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:224: LONG
                 {
                 mLONG(); 
 
                 }
                 break;
-            case 36 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:250: NATIVE
+            case 33 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:229: NATIVE
                 {
                 mNATIVE(); 
 
                 }
                 break;
-            case 37 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:257: NEW
+            case 34 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:236: NEW
                 {
                 mNEW(); 
 
                 }
                 break;
-            case 38 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:261: PACKAGE
+            case 35 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:240: PACKAGE
                 {
                 mPACKAGE(); 
 
                 }
                 break;
-            case 39 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:269: PRIVATE
+            case 36 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:248: PRIVATE
                 {
                 mPRIVATE(); 
 
                 }
                 break;
-            case 40 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:277: PROTECTED
+            case 37 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:256: PROTECTED
                 {
                 mPROTECTED(); 
 
                 }
                 break;
-            case 41 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:287: PUBLIC
+            case 38 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:266: PUBLIC
                 {
                 mPUBLIC(); 
 
                 }
                 break;
-            case 42 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:294: RETURN
+            case 39 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:273: RETURN
                 {
                 mRETURN(); 
 
                 }
                 break;
-            case 43 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:301: SHORT
+            case 40 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:280: SHORT
                 {
                 mSHORT(); 
 
                 }
                 break;
-            case 44 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:307: STATIC
+            case 41 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:286: STATIC
                 {
                 mSTATIC(); 
 
                 }
                 break;
-            case 45 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:314: INLINE
+            case 42 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:293: INLINE
                 {
                 mINLINE(); 
 
                 }
                 break;
-            case 46 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:321: DYNAMIC
+            case 43 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:300: DYNAMIC
                 {
                 mDYNAMIC(); 
 
                 }
                 break;
-            case 47 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:329: OVERRIDE
+            case 44 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:308: OVERRIDE
                 {
                 mOVERRIDE(); 
 
                 }
                 break;
-            case 48 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:338: STRICTFP
+            case 45 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:317: STRICTFP
                 {
                 mSTRICTFP(); 
 
                 }
                 break;
-            case 49 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:347: SUPER
+            case 46 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:326: SUPER
                 {
                 mSUPER(); 
 
                 }
                 break;
-            case 50 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:353: SWITCH
+            case 47 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:332: SWITCH
                 {
                 mSWITCH(); 
 
                 }
                 break;
-            case 51 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:360: THIS
+            case 48 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:339: THIS
                 {
                 mTHIS(); 
 
                 }
                 break;
-            case 52 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:365: THROW
+            case 49 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:344: THROW
                 {
                 mTHROW(); 
 
                 }
                 break;
-            case 53 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:371: THROWS
+            case 50 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:350: THROWS
                 {
                 mTHROWS(); 
 
                 }
                 break;
-            case 54 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:378: TRANSIENT
+            case 51 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:357: TRANSIENT
                 {
                 mTRANSIENT(); 
 
                 }
                 break;
-            case 55 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:388: TRY
+            case 52 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:367: TRY
                 {
                 mTRY(); 
 
                 }
                 break;
-            case 56 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:392: VOID
+            case 53 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:371: VOID
                 {
                 mVOID(); 
 
                 }
                 break;
-            case 57 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:397: VOLATILE
+            case 54 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:376: VOLATILE
                 {
                 mVOLATILE(); 
 
                 }
                 break;
-            case 58 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:406: WHILE
+            case 55 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:385: WHILE
                 {
                 mWHILE(); 
 
                 }
                 break;
-            case 59 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:412: TRUE
+            case 56 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:391: TRUE
                 {
                 mTRUE(); 
 
                 }
                 break;
-            case 60 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:417: FALSE
+            case 57 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:396: FALSE
                 {
                 mFALSE(); 
 
                 }
                 break;
-            case 61 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:423: NULL
+            case 58 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:402: NULL
                 {
                 mNULL(); 
 
                 }
                 break;
-            case 62 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:428: CAST
+            case 59 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:407: CAST
                 {
                 mCAST(); 
 
                 }
                 break;
-            case 63 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:433: FUNCTION
+            case 60 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:412: FUNCTION
                 {
                 mFUNCTION(); 
 
                 }
                 break;
-            case 64 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:442: IN
+            case 61 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:421: IN
                 {
                 mIN(); 
 
                 }
                 break;
-            case 65 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:445: VAR
+            case 62 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:424: VAR
                 {
                 mVAR(); 
 
                 }
                 break;
-            case 66 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:449: TYPEDEF
+            case 63 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:428: TYPEDEF
                 {
                 mTYPEDEF(); 
 
                 }
                 break;
-            case 67 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:457: EXTERN
+            case 64 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:436: EXTERN
                 {
                 mEXTERN(); 
 
                 }
                 break;
-            case 68 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:464: LPAREN
+            case 65 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:443: LPAREN
                 {
                 mLPAREN(); 
 
                 }
                 break;
-            case 69 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:471: RPAREN
+            case 66 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:450: RPAREN
                 {
                 mRPAREN(); 
 
                 }
                 break;
-            case 70 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:478: LBRACE
+            case 67 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:457: LBRACE
                 {
                 mLBRACE(); 
 
                 }
                 break;
-            case 71 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:485: RBRACE
+            case 68 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:464: RBRACE
                 {
                 mRBRACE(); 
 
                 }
                 break;
-            case 72 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:492: LBRACKET
+            case 69 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:471: LBRACKET
                 {
                 mLBRACKET(); 
 
                 }
                 break;
-            case 73 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:501: RBRACKET
+            case 70 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:480: RBRACKET
                 {
                 mRBRACKET(); 
 
                 }
                 break;
-            case 74 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:510: SEMI
+            case 71 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:489: SEMI
                 {
                 mSEMI(); 
 
                 }
                 break;
-            case 75 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:515: COMMA
+            case 72 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:494: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
-            case 76 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:521: DOT
+            case 73 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:500: DOT
                 {
                 mDOT(); 
 
                 }
                 break;
-            case 77 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:525: ELLIPSIS
+            case 74 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:504: ELLIPSIS
                 {
                 mELLIPSIS(); 
 
                 }
                 break;
-            case 78 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:534: EQ
+            case 75 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:513: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
-            case 79 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:537: BANG
+            case 76 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:516: BANG
                 {
                 mBANG(); 
 
                 }
                 break;
-            case 80 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:542: TILDE
+            case 77 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:521: TILDE
                 {
                 mTILDE(); 
 
                 }
                 break;
-            case 81 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:548: QUES
+            case 78 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:527: QUES
                 {
                 mQUES(); 
 
                 }
                 break;
-            case 82 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:553: COLON
+            case 79 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:532: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
-            case 83 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:559: EQEQ
+            case 80 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:538: EQEQ
                 {
                 mEQEQ(); 
 
                 }
                 break;
-            case 84 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:564: AMPAMP
+            case 81 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:543: AMPAMP
                 {
                 mAMPAMP(); 
 
                 }
                 break;
-            case 85 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:571: BARBAR
+            case 82 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:550: BARBAR
                 {
                 mBARBAR(); 
 
                 }
                 break;
-            case 86 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:578: PLUSPLUS
+            case 83 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:557: PLUSPLUS
                 {
                 mPLUSPLUS(); 
 
                 }
                 break;
-            case 87 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:587: SUBSUB
+            case 84 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:566: SUBSUB
                 {
                 mSUBSUB(); 
 
                 }
                 break;
-            case 88 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:594: PLUS
+            case 85 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:573: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
-            case 89 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:599: SUB
+            case 86 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:578: SUB
                 {
                 mSUB(); 
 
                 }
                 break;
-            case 90 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:603: STAR
+            case 87 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:582: STAR
                 {
                 mSTAR(); 
 
                 }
                 break;
-            case 91 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:608: SLASH
+            case 88 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:587: SLASH
                 {
                 mSLASH(); 
 
                 }
                 break;
-            case 92 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:614: AMP
+            case 89 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:593: AMP
                 {
                 mAMP(); 
 
                 }
                 break;
-            case 93 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:618: BAR
+            case 90 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:597: BAR
                 {
                 mBAR(); 
 
                 }
                 break;
-            case 94 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:622: CARET
+            case 91 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:601: CARET
                 {
                 mCARET(); 
 
                 }
                 break;
-            case 95 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:628: PERCENT
+            case 92 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:607: PERCENT
                 {
                 mPERCENT(); 
 
                 }
                 break;
-            case 96 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:636: PLUSEQ
+            case 93 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:615: PLUSEQ
                 {
                 mPLUSEQ(); 
 
                 }
                 break;
-            case 97 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:643: SUBEQ
+            case 94 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:622: SUBEQ
                 {
                 mSUBEQ(); 
 
                 }
                 break;
-            case 98 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:649: STAREQ
+            case 95 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:628: STAREQ
                 {
                 mSTAREQ(); 
 
                 }
                 break;
-            case 99 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:656: SLASHEQ
+            case 96 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:635: SLASHEQ
                 {
                 mSLASHEQ(); 
 
                 }
                 break;
-            case 100 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:664: AMPEQ
+            case 97 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:643: AMPEQ
                 {
                 mAMPEQ(); 
 
                 }
                 break;
-            case 101 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:670: BAREQ
+            case 98 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:649: BAREQ
                 {
                 mBAREQ(); 
 
                 }
                 break;
-            case 102 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:676: CARETEQ
+            case 99 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:655: CARETEQ
                 {
                 mCARETEQ(); 
 
                 }
                 break;
-            case 103 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:684: PERCENTEQ
+            case 100 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:663: PERCENTEQ
                 {
                 mPERCENTEQ(); 
 
                 }
                 break;
-            case 104 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:694: PERCENTDLQ
+            case 101 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:673: PERCENTDLQ
                 {
                 mPERCENTDLQ(); 
 
                 }
                 break;
-            case 105 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:705: PERCENTDBQ
+            case 102 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:684: PERCENTDBQ
                 {
                 mPERCENTDBQ(); 
 
                 }
                 break;
-            case 106 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:716: PERCENTDBBQ
+            case 103 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:695: PERCENTDBBQ
                 {
                 mPERCENTDBBQ(); 
 
                 }
                 break;
-            case 107 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:728: EQEQEQ
+            case 104 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:707: EQEQEQ
                 {
                 mEQEQEQ(); 
 
                 }
                 break;
-            case 108 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:735: PERCENTLESQ
+            case 105 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:714: PERCENTLESQ
                 {
                 mPERCENTLESQ(); 
 
                 }
                 break;
-            case 109 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:747: BANGEQQ
+            case 106 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:726: BANGEQQ
                 {
                 mBANGEQQ(); 
 
                 }
                 break;
-            case 110 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:755: MONKEYS_AT
+            case 107 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:734: MONKEYS_AT
                 {
                 mMONKEYS_AT(); 
 
                 }
                 break;
-            case 111 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:766: BANGEQ
+            case 108 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:745: BANGEQ
                 {
                 mBANGEQ(); 
 
                 }
                 break;
-            case 112 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:773: MINUS_BIGGER
+            case 109 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:752: MINUS_BIGGER
                 {
                 mMINUS_BIGGER(); 
 
                 }
                 break;
-            case 113 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:786: PERCENTLL
+            case 110 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:765: PERCENTLL
                 {
                 mPERCENTLL(); 
 
                 }
                 break;
-            case 114 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:796: PERCENTBB
+            case 111 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:775: PERCENTBB
                 {
                 mPERCENTBB(); 
 
                 }
                 break;
-            case 115 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:806: PERCENTBBB
+            case 112 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:785: PERCENTBBB
                 {
                 mPERCENTBBB(); 
 
                 }
                 break;
-            case 116 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:817: GT
+            case 113 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:796: GT
                 {
                 mGT(); 
 
                 }
                 break;
-            case 117 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:820: GTGT
+            case 114 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:799: GTGT
                 {
                 mGTGT(); 
 
                 }
                 break;
-            case 118 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:825: LTLT
+            case 115 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:804: LTLT
                 {
                 mLTLT(); 
 
                 }
                 break;
-            case 119 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:830: GTGTGT
+            case 116 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:809: GTGTGT
                 {
                 mGTGTGT(); 
 
                 }
                 break;
+            case 117 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:816: LTLTEQ
+                {
+                mLTLTEQ(); 
+
+                }
+                break;
+            case 118 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:823: GTGTEQ
+                {
+                mGTGTEQ(); 
+
+                }
+                break;
+            case 119 :
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:830: GTGTGTEQ
+                {
+                mGTGTGTEQ(); 
+
+                }
+                break;
             case 120 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:837: GTEQ
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:839: GTEQ
                 {
                 mGTEQ(); 
 
                 }
                 break;
             case 121 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:842: LTEQ
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:844: LTEQ
                 {
                 mLTEQ(); 
 
                 }
                 break;
             case 122 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:847: LT
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:849: LT
                 {
                 mLT(); 
 
                 }
                 break;
             case 123 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:850: IDENTIFIER
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:852: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
                 }
                 break;
             case 124 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:861: INTNUM
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:863: INTNUM
                 {
                 mINTNUM(); 
 
                 }
                 break;
             case 125 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:868: FLOATNUM
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:870: FLOATNUM
                 {
                 mFLOATNUM(); 
 
                 }
                 break;
             case 126 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:877: COMMENT
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:879: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 127 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:885: STRINGLITERAL
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:887: STRINGLITERAL
                 {
                 mSTRINGLITERAL(); 
 
                 }
                 break;
             case 128 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:899: PP_IF
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:901: PP_IF
                 {
                 mPP_IF(); 
 
                 }
                 break;
             case 129 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:905: PP_ELSEIF
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:907: PP_ELSEIF
                 {
                 mPP_ELSEIF(); 
 
                 }
                 break;
             case 130 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:915: PP_ELSE
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:917: PP_ELSE
                 {
                 mPP_ELSE(); 
 
                 }
                 break;
             case 131 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:923: PP_END
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:925: PP_END
                 {
                 mPP_END(); 
 
                 }
                 break;
             case 132 :
-                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:930: PP_ERROR
+                // C:\\Documents and Settings\\kondratyev\\workspace\\grammar-testing\\src\\TinyHaxeTry1.g:1:932: PP_ERROR
                 {
                 mPP_ERROR(); 
 
@@ -5201,7 +5202,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "428:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )";
+            return "491:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )";
         }
     }
     static final String DFA18_eotS =
@@ -5254,21 +5255,21 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "888:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+            return "960:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
         }
     }
     static final String DFA28_eotS =
-        "\1\uffff\1\64\1\67\1\uffff\2\72\1\uffff\21\57\10\uffff\1\153\1"+
-        "\155\1\157\3\uffff\1\162\1\165\1\170\1\174\1\176\1\u0081\1\u0083"+
-        "\1\u0086\4\uffff\1\u008a\2\uffff\1\u008d\6\uffff\1\72\1\u008f\1"+
-        "\uffff\1\72\11\57\1\u009b\12\57\1\u00a6\1\57\1\u00ab\23\57\2\uffff"+
-        "\1\u00c6\1\uffff\1\u00c8\35\uffff\1\u00cf\1\uffff\1\72\1\uffff\13"+
-        "\57\1\uffff\6\57\1\u00e3\3\57\1\uffff\2\57\1\u00eb\1\57\1\uffff"+
-        "\2\57\1\u00ef\17\57\1\u00ff\4\57\1\u0104\1\57\13\uffff\3\57\1\u010d"+
+        "\2\uffff\2\67\1\uffff\21\57\10\uffff\1\145\1\147\1\151\3\uffff"+
+        "\1\154\1\157\1\162\1\166\1\170\1\173\1\175\1\u0080\1\uffff\1\u0083"+
+        "\1\u0086\6\uffff\1\67\1\u008a\2\uffff\1\67\11\57\1\u0096\12\57\1"+
+        "\u00a1\1\57\1\u00a6\23\57\2\uffff\1\u00c1\1\uffff\1\u00c3\30\uffff"+
+        "\1\u00c8\2\uffff\1\u00ca\4\uffff\1\67\1\uffff\13\57\1\uffff\6\57"+
+        "\1\u00e1\3\57\1\uffff\2\57\1\u00e9\1\57\1\uffff\2\57\1\u00ed\17"+
+        "\57\1\u00fd\4\57\1\u0102\1\57\6\uffff\1\u0108\7\uffff\3\57\1\u010d"+
         "\1\u010e\1\u010f\1\57\1\u0111\6\57\1\u0118\1\u0119\3\57\1\uffff"+
         "\2\57\1\u0120\4\57\1\uffff\1\57\1\u0126\1\57\1\uffff\1\u0128\13"+
         "\57\1\u0134\2\57\1\uffff\1\u0137\1\57\1\u0139\1\57\1\uffff\1\57"+
-        "\4\uffff\2\57\1\u0142\3\uffff\1\u0143\1\uffff\1\u0144\1\u0145\4"+
+        "\6\uffff\2\57\1\u0142\3\uffff\1\u0143\1\uffff\1\u0144\1\u0145\4"+
         "\57\2\uffff\2\57\1\u014d\1\u014e\1\u014f\1\57\1\uffff\5\57\1\uffff"+
         "\1\57\1\uffff\5\57\1\u015c\2\57\1\u015f\2\57\1\uffff\1\u0163\1\57"+
         "\1\uffff\1\57\1\uffff\1\57\1\u0167\3\uffff\1\u016c\2\57\4\uffff"+
@@ -5284,127 +5285,126 @@ public class TinyHaxeTry1Lexer extends Lexer {
     static final String DFA28_eofS =
         "\u01b6\uffff";
     static final String DFA28_minS =
-        "\1\11\1\74\1\75\1\uffff\2\56\1\uffff\1\142\1\157\1\141\1\145\1"+
-        "\154\1\141\1\157\1\146\1\157\2\141\1\145\1\150\1\166\1\150\1\141"+
-        "\1\150\10\uffff\1\56\2\75\3\uffff\1\46\1\75\1\53\1\55\1\75\1\52"+
-        "\1\75\1\45\3\uffff\1\145\1\75\2\uffff\1\75\2\uffff\2\60\2\uffff"+
-        "\2\56\1\uffff\1\56\1\163\1\157\1\145\1\164\1\163\2\141\1\156\1\146"+
-        "\1\60\1\156\1\163\1\165\1\164\1\156\1\157\1\162\1\154\1\156\1\164"+
-        "\1\60\1\160\1\60\1\156\1\164\1\167\1\154\1\143\1\151\1\142\1\164"+
-        "\1\157\1\141\1\160\1\151\1\145\1\151\1\141\1\160\1\151\1\162\1\151"+
-        "\2\uffff\1\75\1\uffff\1\75\26\uffff\1\74\2\uffff\1\154\3\uffff\1"+
-        "\75\1\uffff\1\60\1\uffff\1\164\1\154\1\141\2\145\1\143\1\162\2\163"+
-        "\1\141\1\142\1\uffff\1\141\1\145\1\155\1\145\2\141\1\60\1\163\1"+
-        "\143\1\157\1\uffff\1\154\1\164\1\60\1\151\1\uffff\1\147\1\151\1"+
-        "\60\1\154\1\153\1\166\1\164\1\154\1\165\1\162\1\164\1\151\1\145"+
-        "\1\164\1\162\1\163\1\157\1\156\1\60\2\145\1\144\1\141\1\60\1\154"+
-        "\4\uffff\1\74\1\76\1\163\4\uffff\1\162\1\145\1\153\3\60\1\150\1"+
+        "\1\11\1\uffff\2\56\1\uffff\1\142\1\157\1\141\1\145\1\154\1\141"+
+        "\1\157\1\146\1\157\2\141\1\145\1\150\1\166\1\150\1\141\1\150\10"+
+        "\uffff\1\56\2\75\3\uffff\1\46\1\75\1\53\1\55\1\75\1\52\1\75\1\45"+
+        "\1\uffff\1\75\1\74\2\uffff\1\145\2\60\1\uffff\2\56\2\uffff\1\56"+
+        "\1\163\1\157\1\145\1\164\1\163\2\141\1\156\1\146\1\60\1\156\1\163"+
+        "\1\165\1\164\1\156\1\157\1\162\1\154\1\156\1\164\1\60\1\160\1\60"+
+        "\1\156\1\164\1\167\1\154\1\143\1\151\1\142\1\164\1\157\1\141\1\160"+
+        "\1\151\1\145\1\151\1\141\1\160\1\151\1\162\1\151\2\uffff\1\75\1"+
+        "\uffff\1\75\26\uffff\1\74\1\uffff\1\75\2\uffff\1\75\3\uffff\1\154"+
+        "\1\60\1\uffff\1\164\1\154\1\141\2\145\1\143\1\162\2\163\1\141\1"+
+        "\142\1\uffff\1\141\1\145\1\155\1\145\2\141\1\60\1\163\1\143\1\157"+
+        "\1\uffff\1\154\1\164\1\60\1\151\1\uffff\1\147\1\151\1\60\1\154\1"+
+        "\153\1\166\1\164\1\154\1\165\1\162\1\164\1\151\1\145\1\164\1\162"+
+        "\1\163\1\157\1\156\1\60\2\145\1\144\1\141\1\60\1\154\4\uffff\1\74"+
+        "\1\76\1\75\4\uffff\1\163\2\uffff\1\162\1\145\1\153\3\60\1\150\1"+
         "\60\1\163\1\164\1\151\1\165\1\154\1\155\2\60\1\156\1\154\1\164\1"+
         "\uffff\1\145\1\164\1\60\1\145\1\162\1\141\1\162\1\uffff\1\156\1"+
         "\60\1\166\1\uffff\1\60\2\141\1\145\1\151\1\162\1\164\1\151\1\143"+
         "\1\162\1\143\1\162\1\60\1\167\1\163\1\uffff\1\60\1\144\1\60\1\164"+
-        "\1\uffff\1\145\1\45\1\uffff\1\45\1\145\2\141\1\60\3\uffff\1\60\1"+
-        "\uffff\2\60\1\156\1\154\1\145\1\151\2\uffff\1\144\1\156\3\60\1\151"+
-        "\1\uffff\1\155\1\164\1\156\1\146\1\145\1\uffff\1\145\1\uffff\1\147"+
-        "\1\164\2\143\1\156\1\60\1\143\1\164\1\60\1\150\1\151\1\uffff\1\60"+
-        "\1\151\1\uffff\1\145\1\uffff\1\151\1\60\3\45\1\151\1\143\1\156\4"+
-        "\uffff\1\165\1\164\1\60\1\143\1\163\1\60\1\171\3\uffff\1\157\1\145"+
-        "\1\60\1\143\1\141\2\60\2\145\1\164\2\60\1\uffff\1\60\1\146\1\uffff"+
-        "\1\60\1\144\1\60\1\uffff\1\145\1\146\1\154\1\uffff\2\75\1\45\2\uffff"+
-        "\1\164\1\60\1\145\1\60\1\uffff\2\60\1\uffff\1\60\2\156\1\uffff\1"+
-        "\145\1\143\2\uffff\2\60\1\145\3\uffff\1\160\1\uffff\1\145\1\uffff"+
-        "\1\156\1\60\1\145\4\uffff\1\75\1\60\1\uffff\1\60\4\uffff\1\60\1"+
-        "\164\1\157\1\145\2\uffff\1\144\2\60\1\164\1\uffff\1\60\5\uffff\1"+
-        "\163\1\146\2\60\2\uffff\1\60\1\uffff\2\60\5\uffff";
+        "\1\uffff\1\145\1\45\1\uffff\1\45\2\uffff\1\145\2\141\1\60\3\uffff"+
+        "\1\60\1\uffff\2\60\1\156\1\154\1\145\1\151\2\uffff\1\144\1\156\3"+
+        "\60\1\151\1\uffff\1\155\1\164\1\156\1\146\1\145\1\uffff\1\145\1"+
+        "\uffff\1\147\1\164\2\143\1\156\1\60\1\143\1\164\1\60\1\150\1\151"+
+        "\1\uffff\1\60\1\151\1\uffff\1\145\1\uffff\1\151\1\60\3\45\1\151"+
+        "\1\143\1\156\4\uffff\1\165\1\164\1\60\1\143\1\163\1\60\1\171\3\uffff"+
+        "\1\157\1\145\1\60\1\143\1\141\2\60\2\145\1\164\2\60\1\uffff\1\60"+
+        "\1\146\1\uffff\1\60\1\144\1\60\1\uffff\1\145\1\146\1\154\1\uffff"+
+        "\2\75\1\45\2\uffff\1\164\1\60\1\145\1\60\1\uffff\2\60\1\uffff\1"+
+        "\60\2\156\1\uffff\1\145\1\143\2\uffff\2\60\1\145\3\uffff\1\160\1"+
+        "\uffff\1\145\1\uffff\1\156\1\60\1\145\4\uffff\1\75\1\60\1\uffff"+
+        "\1\60\4\uffff\1\60\1\164\1\157\1\145\2\uffff\1\144\2\60\1\164\1"+
+        "\uffff\1\60\5\uffff\1\163\1\146\2\60\2\uffff\1\60\1\uffff\2\60\5"+
+        "\uffff";
     static final String DFA28_maxS =
-        "\1\176\1\75\1\76\1\uffff\1\170\1\154\1\uffff\1\142\1\171\1\157"+
-        "\1\171\1\170\1\165\1\157\1\156\1\157\2\165\1\145\1\167\1\166\1\171"+
-        "\1\157\1\150\10\uffff\1\71\2\75\3\uffff\1\75\1\174\1\75\1\76\4\75"+
-        "\3\uffff\1\151\1\75\2\uffff\1\76\2\uffff\2\146\2\uffff\1\154\1\145"+
-        "\1\uffff\1\154\1\163\1\157\1\145\2\164\2\141\1\156\1\146\1\172\1"+
-        "\156\1\163\1\165\1\164\1\156\1\157\1\162\1\154\1\156\1\164\1\172"+
-        "\1\160\1\172\1\156\1\164\1\167\1\154\1\143\1\157\1\142\1\164\1\157"+
-        "\1\162\1\160\1\151\1\145\1\162\1\171\1\160\1\154\1\162\1\151\2\uffff"+
-        "\1\75\1\uffff\1\75\26\uffff\1\76\2\uffff\1\162\3\uffff\1\75\1\uffff"+
-        "\1\154\1\uffff\1\164\1\154\1\141\1\145\1\164\1\143\1\162\1\163\1"+
-        "\164\1\141\1\142\1\uffff\1\141\1\145\1\155\1\145\2\141\1\172\1\163"+
-        "\1\143\1\157\1\uffff\1\157\1\164\1\172\1\151\1\uffff\1\147\1\151"+
-        "\1\172\1\154\1\153\1\166\1\164\1\154\1\165\1\162\1\164\1\151\1\145"+
-        "\1\164\1\162\1\163\1\157\1\156\1\172\2\145\1\144\1\141\1\172\1\154"+
-        "\4\uffff\1\75\1\76\1\163\4\uffff\1\162\1\145\1\153\3\172\1\150\1"+
-        "\172\1\163\1\164\1\151\1\165\1\154\1\155\2\172\1\162\1\154\1\164"+
-        "\1\uffff\1\145\1\164\1\172\1\145\1\162\1\141\1\162\1\uffff\1\156"+
-        "\1\172\1\166\1\uffff\1\172\2\141\1\145\1\151\1\162\1\164\1\151\1"+
-        "\143\1\162\1\143\1\162\1\172\1\167\1\163\1\uffff\1\172\1\144\1\172"+
-        "\1\164\1\uffff\1\145\1\45\1\uffff\1\76\1\145\2\141\1\172\3\uffff"+
-        "\1\172\1\uffff\2\172\1\156\1\154\1\145\1\151\2\uffff\1\144\1\156"+
-        "\3\172\1\151\1\uffff\1\155\1\164\1\156\1\146\1\145\1\uffff\1\145"+
-        "\1\uffff\1\147\1\164\2\143\1\156\1\172\1\143\1\164\1\172\1\150\1"+
-        "\151\1\uffff\1\172\1\151\1\uffff\1\145\1\uffff\1\151\1\172\3\45"+
-        "\1\151\1\143\1\156\4\uffff\1\165\1\164\1\172\1\143\1\163\1\172\1"+
-        "\171\3\uffff\1\157\1\145\1\172\1\143\1\141\2\172\2\145\1\164\2\172"+
-        "\1\uffff\1\172\1\146\1\uffff\1\172\1\144\1\172\1\uffff\1\145\1\146"+
-        "\1\154\1\uffff\2\75\1\45\2\uffff\1\164\1\172\1\145\1\172\1\uffff"+
-        "\2\172\1\uffff\1\172\2\156\1\uffff\1\145\1\143\2\uffff\2\172\1\145"+
-        "\3\uffff\1\160\1\uffff\1\145\1\uffff\1\156\1\172\1\145\4\uffff\1"+
-        "\75\1\172\1\uffff\1\172\4\uffff\1\172\1\164\1\157\1\145\2\uffff"+
-        "\1\144\2\172\1\164\1\uffff\1\172\5\uffff\1\163\1\146\2\172\2\uffff"+
-        "\1\172\1\uffff\2\172\5\uffff";
+        "\1\176\1\uffff\1\170\1\154\1\uffff\1\142\1\171\1\157\1\171\1\170"+
+        "\1\165\1\157\1\156\1\157\2\165\1\145\1\167\1\166\1\171\1\157\1\150"+
+        "\10\uffff\1\71\2\75\3\uffff\1\75\1\174\1\75\1\76\4\75\1\uffff\1"+
+        "\76\1\75\2\uffff\1\151\2\146\1\uffff\1\154\1\145\2\uffff\1\154\1"+
+        "\163\1\157\1\145\2\164\2\141\1\156\1\146\1\172\1\156\1\163\1\165"+
+        "\1\164\1\156\1\157\1\162\1\154\1\156\1\164\1\172\1\160\1\172\1\156"+
+        "\1\164\1\167\1\154\1\143\1\157\1\142\1\164\1\157\1\162\1\160\1\151"+
+        "\1\145\1\162\1\171\1\160\1\154\1\162\1\151\2\uffff\1\75\1\uffff"+
+        "\1\75\26\uffff\1\76\1\uffff\1\76\2\uffff\1\75\3\uffff\1\162\1\154"+
+        "\1\uffff\1\164\1\154\1\141\1\145\1\164\1\143\1\162\1\163\1\164\1"+
+        "\141\1\142\1\uffff\1\141\1\145\1\155\1\145\2\141\1\172\1\163\1\143"+
+        "\1\157\1\uffff\1\157\1\164\1\172\1\151\1\uffff\1\147\1\151\1\172"+
+        "\1\154\1\153\1\166\1\164\1\154\1\165\1\162\1\164\1\151\1\145\1\164"+
+        "\1\162\1\163\1\157\1\156\1\172\2\145\1\144\1\141\1\172\1\154\4\uffff"+
+        "\1\75\1\76\1\75\4\uffff\1\163\2\uffff\1\162\1\145\1\153\3\172\1"+
+        "\150\1\172\1\163\1\164\1\151\1\165\1\154\1\155\2\172\1\162\1\154"+
+        "\1\164\1\uffff\1\145\1\164\1\172\1\145\1\162\1\141\1\162\1\uffff"+
+        "\1\156\1\172\1\166\1\uffff\1\172\2\141\1\145\1\151\1\162\1\164\1"+
+        "\151\1\143\1\162\1\143\1\162\1\172\1\167\1\163\1\uffff\1\172\1\144"+
+        "\1\172\1\164\1\uffff\1\145\1\45\1\uffff\1\76\2\uffff\1\145\2\141"+
+        "\1\172\3\uffff\1\172\1\uffff\2\172\1\156\1\154\1\145\1\151\2\uffff"+
+        "\1\144\1\156\3\172\1\151\1\uffff\1\155\1\164\1\156\1\146\1\145\1"+
+        "\uffff\1\145\1\uffff\1\147\1\164\2\143\1\156\1\172\1\143\1\164\1"+
+        "\172\1\150\1\151\1\uffff\1\172\1\151\1\uffff\1\145\1\uffff\1\151"+
+        "\1\172\3\45\1\151\1\143\1\156\4\uffff\1\165\1\164\1\172\1\143\1"+
+        "\163\1\172\1\171\3\uffff\1\157\1\145\1\172\1\143\1\141\2\172\2\145"+
+        "\1\164\2\172\1\uffff\1\172\1\146\1\uffff\1\172\1\144\1\172\1\uffff"+
+        "\1\145\1\146\1\154\1\uffff\2\75\1\45\2\uffff\1\164\1\172\1\145\1"+
+        "\172\1\uffff\2\172\1\uffff\1\172\2\156\1\uffff\1\145\1\143\2\uffff"+
+        "\2\172\1\145\3\uffff\1\160\1\uffff\1\145\1\uffff\1\156\1\172\1\145"+
+        "\4\uffff\1\75\1\172\1\uffff\1\172\4\uffff\1\172\1\164\1\157\1\145"+
+        "\2\uffff\1\144\2\172\1\164\1\uffff\1\172\5\uffff\1\163\1\146\2\172"+
+        "\2\uffff\1\172\1\uffff\2\172\5\uffff";
     static final String DFA28_acceptS =
-        "\3\uffff\1\4\2\uffff\1\7\21\uffff\1\104\1\105\1\106\1\107\1\110"+
-        "\1\111\1\112\1\113\3\uffff\1\120\1\121\1\122\10\uffff\1\156\1\173"+
-        "\1\177\2\uffff\1\171\1\172\1\uffff\1\170\1\164\2\uffff\1\6\1\175"+
-        "\2\uffff\1\5\53\uffff\1\115\1\114\1\uffff\1\116\1\uffff\1\117\1"+
-        "\124\1\144\1\134\1\125\1\145\1\135\1\126\1\140\1\130\1\127\1\141"+
-        "\1\160\1\131\1\142\1\132\1\143\1\176\1\133\1\146\1\136\1\147\1\uffff"+
-        "\1\137\1\u0080\1\uffff\1\1\1\166\1\2\1\uffff\1\165\1\uffff\1\174"+
-        "\13\uffff\1\23\12\uffff\1\35\4\uffff\1\100\31\uffff\1\153\1\123"+
-        "\1\155\1\157\3\uffff\1\u0083\1\u0084\1\3\1\167\23\uffff\1\33\7\uffff"+
-        "\1\41\3\uffff\1\45\17\uffff\1\67\4\uffff\1\101\2\uffff\1\154\5\uffff"+
-        "\1\13\1\14\1\76\1\uffff\1\16\6\uffff\1\25\1\26\6\uffff\1\34\5\uffff"+
-        "\1\43\1\uffff\1\75\13\uffff\1\63\2\uffff\1\73\1\uffff\1\70\10\uffff"+
-        "\1\12\1\15\1\17\1\20\7\uffff\1\30\1\32\1\74\14\uffff\1\53\2\uffff"+
-        "\1\61\3\uffff\1\64\3\uffff\1\72\3\uffff\1\u0081\1\u0082\4\uffff"+
-        "\1\24\2\uffff\1\103\3\uffff\1\37\2\uffff\1\55\1\44\3\uffff\1\51"+
-        "\1\52\1\54\1\uffff\1\62\1\uffff\1\65\3\uffff\1\150\1\161\1\151\1"+
-        "\162\2\uffff\1\11\1\uffff\1\22\1\56\1\27\1\31\4\uffff\1\46\1\47"+
-        "\4\uffff\1\102\1\uffff\1\152\1\163\1\10\1\21\1\77\4\uffff\1\60\1"+
-        "\57\1\uffff\1\71\2\uffff\1\42\1\50\1\66\1\36\1\40";
+        "\1\uffff\1\1\2\uffff\1\4\21\uffff\1\101\1\102\1\103\1\104\1\105"+
+        "\1\106\1\107\1\110\3\uffff\1\115\1\116\1\117\10\uffff\1\153\2\uffff"+
+        "\1\173\1\177\3\uffff\1\175\2\uffff\1\3\1\2\53\uffff\1\112\1\111"+
+        "\1\uffff\1\113\1\uffff\1\114\1\121\1\141\1\131\1\122\1\142\1\132"+
+        "\1\123\1\135\1\125\1\124\1\136\1\155\1\126\1\137\1\127\1\140\1\176"+
+        "\1\130\1\143\1\133\1\144\1\uffff\1\134\1\uffff\1\170\1\161\1\uffff"+
+        "\1\171\1\172\1\u0080\2\uffff\1\174\13\uffff\1\20\12\uffff\1\32\4"+
+        "\uffff\1\75\31\uffff\1\150\1\120\1\152\1\154\3\uffff\1\166\1\162"+
+        "\1\165\1\163\1\uffff\1\u0083\1\u0084\23\uffff\1\30\7\uffff\1\36"+
+        "\3\uffff\1\42\17\uffff\1\64\4\uffff\1\76\2\uffff\1\151\1\uffff\1"+
+        "\167\1\164\4\uffff\1\10\1\11\1\73\1\uffff\1\13\6\uffff\1\22\1\23"+
+        "\6\uffff\1\31\5\uffff\1\40\1\uffff\1\72\13\uffff\1\60\2\uffff\1"+
+        "\70\1\uffff\1\65\10\uffff\1\7\1\12\1\14\1\15\7\uffff\1\25\1\27\1"+
+        "\71\14\uffff\1\50\2\uffff\1\56\3\uffff\1\61\3\uffff\1\67\3\uffff"+
+        "\1\u0081\1\u0082\4\uffff\1\21\2\uffff\1\100\3\uffff\1\34\2\uffff"+
+        "\1\52\1\41\3\uffff\1\46\1\47\1\51\1\uffff\1\57\1\uffff\1\62\3\uffff"+
+        "\1\145\1\156\1\146\1\157\2\uffff\1\6\1\uffff\1\17\1\53\1\24\1\26"+
+        "\4\uffff\1\43\1\44\4\uffff\1\77\1\uffff\1\147\1\160\1\5\1\16\1\74"+
+        "\4\uffff\1\55\1\54\1\uffff\1\66\2\uffff\1\37\1\45\1\63\1\33\1\35";
     static final String DFA28_specialS =
         "\u01b6\uffff}>";
     static final String[] DFA28_transitionS = {
-            "\2\3\2\uffff\1\3\22\uffff\1\3\1\42\1\60\1\61\1\uffff\1\55\1"+
-            "\46\1\6\1\30\1\31\1\52\1\50\1\37\1\51\1\40\1\53\1\4\11\5\1\45"+
-            "\1\36\1\1\1\41\1\2\1\44\1\56\32\57\1\34\1\uffff\1\35\1\54\1"+
-            "\57\1\uffff\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\57\1\16\2\57"+
-            "\1\17\1\57\1\20\1\24\1\21\1\57\1\22\1\23\1\25\1\57\1\26\1\27"+
-            "\3\57\1\32\1\47\1\33\1\43",
-            "\1\62\1\63",
-            "\1\66\1\65",
+            "\2\1\2\uffff\1\1\22\uffff\1\1\1\40\1\60\1\61\1\uffff\1\53\1"+
+            "\44\1\4\1\26\1\27\1\50\1\46\1\35\1\47\1\36\1\51\1\2\11\3\1\43"+
+            "\1\34\1\56\1\37\1\55\1\42\1\54\32\57\1\32\1\uffff\1\33\1\52"+
+            "\1\57\1\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\57\1\14\2\57"+
+            "\1\15\1\57\1\16\1\22\1\17\1\57\1\20\1\21\1\23\1\57\1\24\1\25"+
+            "\3\57\1\30\1\45\1\31\1\41",
             "",
-            "\1\73\1\uffff\10\74\2\75\13\uffff\1\73\6\uffff\1\76\13\uffff"+
-            "\1\71\14\uffff\1\73\6\uffff\1\76\13\uffff\1\70",
-            "\1\73\1\uffff\12\77\13\uffff\1\73\6\uffff\1\76\30\uffff\1"+
-            "\73\6\uffff\1\76",
+            "\1\64\1\uffff\10\65\2\66\13\uffff\1\64\6\uffff\1\70\13\uffff"+
+            "\1\63\14\uffff\1\64\6\uffff\1\70\13\uffff\1\62",
+            "\1\64\1\uffff\12\71\13\uffff\1\64\6\uffff\1\70\30\uffff\1"+
+            "\64\6\uffff\1\70",
             "",
-            "\1\100",
-            "\1\101\2\uffff\1\102\6\uffff\1\103",
-            "\1\104\6\uffff\1\105\3\uffff\1\106\2\uffff\1\107",
-            "\1\110\11\uffff\1\111\11\uffff\1\112",
-            "\1\113\1\uffff\1\114\11\uffff\1\115",
-            "\1\121\7\uffff\1\116\2\uffff\1\117\2\uffff\1\120\5\uffff\1"+
-            "\122",
-            "\1\123",
-            "\1\124\6\uffff\1\125\1\126",
-            "\1\127",
-            "\1\130\3\uffff\1\131\17\uffff\1\132",
-            "\1\133\20\uffff\1\134\2\uffff\1\135",
-            "\1\136",
-            "\1\137\13\uffff\1\140\1\141\1\uffff\1\142",
+            "\1\72",
+            "\1\73\2\uffff\1\74\6\uffff\1\75",
+            "\1\76\6\uffff\1\77\3\uffff\1\100\2\uffff\1\101",
+            "\1\102\11\uffff\1\103\11\uffff\1\104",
+            "\1\105\1\uffff\1\106\11\uffff\1\107",
+            "\1\113\7\uffff\1\110\2\uffff\1\111\2\uffff\1\112\5\uffff\1"+
+            "\114",
+            "\1\115",
+            "\1\116\6\uffff\1\117\1\120",
+            "\1\121",
+            "\1\122\3\uffff\1\123\17\uffff\1\124",
+            "\1\125\20\uffff\1\126\2\uffff\1\127",
+            "\1\130",
+            "\1\131\13\uffff\1\132\1\133\1\uffff\1\134",
+            "\1\135",
+            "\1\136\11\uffff\1\137\6\uffff\1\140",
+            "\1\142\15\uffff\1\141",
             "\1\143",
-            "\1\144\11\uffff\1\145\6\uffff\1\146",
-            "\1\150\15\uffff\1\147",
-            "\1\151",
             "",
             "",
             "",
@@ -5413,89 +5413,85 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "",
             "",
             "",
-            "\1\152\1\uffff\12\73",
-            "\1\154",
-            "\1\156",
+            "\1\144\1\uffff\12\64",
+            "\1\146",
+            "\1\150",
             "",
             "",
             "",
-            "\1\160\26\uffff\1\161",
-            "\1\164\76\uffff\1\163",
-            "\1\166\21\uffff\1\167",
-            "\1\171\17\uffff\1\172\1\173",
-            "\1\175",
-            "\1\u0080\4\uffff\1\u0080\15\uffff\1\177",
-            "\1\u0082",
-            "\1\u0085\27\uffff\1\u0084",
+            "\1\152\26\uffff\1\153",
+            "\1\156\76\uffff\1\155",
+            "\1\160\21\uffff\1\161",
+            "\1\163\17\uffff\1\164\1\165",
+            "\1\167",
+            "\1\172\4\uffff\1\172\15\uffff\1\171",
+            "\1\174",
+            "\1\177\27\uffff\1\176",
             "",
+            "\1\u0082\1\u0081",
+            "\1\u0084\1\u0085",
             "",
             "",
             "\1\u0088\3\uffff\1\u0087",
-            "\1\u0089",
+            "\12\u0089\7\uffff\6\u0089\32\uffff\6\u0089",
+            "\12\u0089\7\uffff\6\u0089\32\uffff\6\u0089",
+            "",
+            "\1\64\1\uffff\10\65\2\66\13\uffff\1\64\6\uffff\1\70\30\uffff"+
+            "\1\64\6\uffff\1\70",
+            "\1\64\1\uffff\12\66\13\uffff\1\64\37\uffff\1\64",
             "",
             "",
-            "\1\u008b\1\u008c",
-            "",
-            "",
-            "\12\u008e\7\uffff\6\u008e\32\uffff\6\u008e",
-            "\12\u008e\7\uffff\6\u008e\32\uffff\6\u008e",
-            "",
-            "",
-            "\1\73\1\uffff\10\74\2\75\13\uffff\1\73\6\uffff\1\76\30\uffff"+
-            "\1\73\6\uffff\1\76",
-            "\1\73\1\uffff\12\75\13\uffff\1\73\37\uffff\1\73",
-            "",
-            "\1\73\1\uffff\12\77\13\uffff\1\73\6\uffff\1\76\30\uffff\1"+
-            "\73\6\uffff\1\76",
-            "\1\u0090",
+            "\1\64\1\uffff\12\71\13\uffff\1\64\6\uffff\1\70\30\uffff\1"+
+            "\64\6\uffff\1\70",
+            "\1\u008b",
+            "\1\u008c",
+            "\1\u008d",
+            "\1\u008e",
+            "\1\u008f\1\u0090",
             "\1\u0091",
             "\1\u0092",
             "\1\u0093",
-            "\1\u0094\1\u0095",
-            "\1\u0096",
+            "\1\u0094",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\24\57\1\u0095\5"+
+            "\57",
             "\1\u0097",
             "\1\u0098",
             "\1\u0099",
-            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\24\57\1\u009a\5"+
-            "\57",
+            "\1\u009a",
+            "\1\u009b",
             "\1\u009c",
             "\1\u009d",
             "\1\u009e",
             "\1\u009f",
             "\1\u00a0",
-            "\1\u00a1",
-            "\1\u00a2",
-            "\1\u00a3",
-            "\1\u00a4",
-            "\1\u00a5",
             "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u00a2",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\u00a5\6"+
+            "\57\1\u00a3\1\u00a4\6\57",
             "\1\u00a7",
-            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\u00aa\6"+
-            "\57\1\u00a8\1\u00a9\6\57",
-            "\1\u00ac",
-            "\1\u00ad",
+            "\1\u00a8",
+            "\1\u00a9",
+            "\1\u00aa",
+            "\1\u00ab",
+            "\1\u00ac\5\uffff\1\u00ad",
             "\1\u00ae",
             "\1\u00af",
             "\1\u00b0",
-            "\1\u00b1\5\uffff\1\u00b2",
+            "\1\u00b1\20\uffff\1\u00b2",
             "\1\u00b3",
             "\1\u00b4",
             "\1\u00b5",
-            "\1\u00b6\20\uffff\1\u00b7",
-            "\1\u00b8",
-            "\1\u00b9",
-            "\1\u00ba",
-            "\1\u00bb\10\uffff\1\u00bc",
-            "\1\u00bd\23\uffff\1\u00bf\3\uffff\1\u00be",
+            "\1\u00b6\10\uffff\1\u00b7",
+            "\1\u00b8\23\uffff\1\u00ba\3\uffff\1\u00b9",
+            "\1\u00bb",
+            "\1\u00bc\2\uffff\1\u00bd",
+            "\1\u00be",
+            "\1\u00bf",
+            "",
+            "",
             "\1\u00c0",
-            "\1\u00c1\2\uffff\1\u00c2",
-            "\1\u00c3",
-            "\1\u00c4",
             "",
-            "",
-            "\1\u00c5",
-            "",
-            "\1\u00c7",
+            "\1\u00c2",
             "",
             "",
             "",
@@ -5518,50 +5514,53 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "",
             "",
             "",
-            "\1\u00c9\1\uffff\1\u00ca",
+            "\1\u00c4\1\uffff\1\u00c5",
+            "",
+            "\1\u00c7\1\u00c6",
+            "",
+            "",
+            "\1\u00c9",
+            "",
             "",
             "",
             "\1\u00cb\1\uffff\1\u00cc\3\uffff\1\u00cd",
-            "",
-            "",
+            "\12\u0089\7\uffff\6\u0089\5\uffff\1\70\24\uffff\6\u0089\5"+
+            "\uffff\1\70",
             "",
             "\1\u00ce",
-            "",
-            "\12\u008e\7\uffff\6\u008e\5\uffff\1\76\24\uffff\6\u008e\5"+
-            "\uffff\1\76",
-            "",
+            "\1\u00cf",
             "\1\u00d0",
             "\1\u00d1",
-            "\1\u00d2",
-            "\1\u00d3",
-            "\1\u00d4\16\uffff\1\u00d5",
+            "\1\u00d2\16\uffff\1\u00d3",
+            "\1\u00d4",
+            "\1\u00d5",
             "\1\u00d6",
-            "\1\u00d7",
-            "\1\u00d8",
-            "\1\u00d9\1\u00da",
+            "\1\u00d7\1\u00d8",
+            "\1\u00d9",
+            "\1\u00da",
+            "",
             "\1\u00db",
             "\1\u00dc",
-            "",
             "\1\u00dd",
             "\1\u00de",
             "\1\u00df",
             "\1\u00e0",
-            "\1\u00e1",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u00e2",
-            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u00e3",
             "\1\u00e4",
-            "\1\u00e5",
-            "\1\u00e6",
             "",
-            "\1\u00e7\2\uffff\1\u00e8",
-            "\1\u00e9",
-            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\u00ea\25"+
+            "\1\u00e5\2\uffff\1\u00e6",
+            "\1\u00e7",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\u00e8\25"+
             "\57",
-            "\1\u00ec",
+            "\1\u00ea",
             "",
-            "\1\u00ed",
-            "\1\u00ee",
+            "\1\u00eb",
+            "\1\u00ec",
             "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u00ee",
+            "\1\u00ef",
             "\1\u00f0",
             "\1\u00f1",
             "\1\u00f2",
@@ -5575,24 +5574,25 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "\1\u00fa",
             "\1\u00fb",
             "\1\u00fc",
-            "\1\u00fd",
-            "\1\u00fe",
             "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u00fe",
+            "\1\u00ff",
             "\1\u0100",
             "\1\u0101",
-            "\1\u0102",
-            "\1\u0103",
             "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
-            "\1\u0105",
+            "\1\u0103",
             "",
             "",
             "",
             "",
-            "\1\u0106\1\u0107",
-            "\1\u0108",
+            "\1\u0104\1\u0105",
+            "\1\u0106",
+            "\1\u0107",
+            "",
+            "",
+            "",
+            "",
             "\1\u0109",
-            "",
-            "",
             "",
             "",
             "\1\u010a",
@@ -5652,6 +5652,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "\1\u013c",
             "",
             "\1\u013d\30\uffff\1\u013e",
+            "",
+            "",
             "\1\u013f",
             "\1\u0140",
             "\1\u0141",
@@ -5859,7 +5861,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA28_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__154 | T__155 | T__156 | WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | VAR | TYPEDEF | EXTERN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | PERCENTDLQ | PERCENTDBQ | PERCENTDBBQ | EQEQEQ | PERCENTLESQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | PERCENTLL | PERCENTBB | PERCENTBBB | GT | GTGT | LTLT | GTGTGT | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PP_IF | PP_ELSEIF | PP_ELSE | PP_END | PP_ERROR );";
+            return "1:1: Tokens : ( WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | VAR | TYPEDEF | EXTERN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | PERCENTDLQ | PERCENTDBQ | PERCENTDBBQ | EQEQEQ | PERCENTLESQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | PERCENTLL | PERCENTBB | PERCENTBBB | GT | GTGT | LTLT | GTGTGT | LTLTEQ | GTGTEQ | GTGTGTEQ | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PP_IF | PP_ELSEIF | PP_ELSE | PP_END | PP_ERROR );";
         }
     }
  

@@ -17,6 +17,7 @@ tokens {
 	INHERIT_LIST_OPT;
 	DECL_ATTR_LIST;
 	VAR_INIT;
+	ASSIGN_OPERATOR;
 }
 
 @lexer::header{
@@ -38,10 +39,12 @@ import main.tree.specific.TryNode;
 import main.tree.specific.WhileNode;
 import main.tree.specific.VarDeclaration;
 import main.tree.specific.BlockScopeNode;
+import main.tree.specific.VarUsage;
+import main.tree.specific.AssignOperationNode;
 }
 
 module            : myPackage? topLevelList ->^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList)
-    	;
+   ;
 	
 topLevelList      :  (topLevel)*
 ;
@@ -75,23 +78,50 @@ declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_AT
 paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST",true] param+)
 	|	
 	;
-param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER,true] IDENTIFIER typeTagOpt varInit? QUES?)
+param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER,true] IDENTIFIER<VarUsage> typeTagOpt varInit? QUES?)
 	;
-dotIdent          : (IDENTIFIER -> IDENTIFIER) (DOT ident=IDENTIFIER ->^(DOT $dotIdent $ident))*
+	
+id	:	IDENTIFIER<VarUsage>
 	;
-assignOp          : '='
-                    |   '+='
-                    |   '-='
-                    |   '*='
-                    |   '/='
-                    |   '%='
-                    |   '&='
-                    |   '|='
-                    |   '^='
-                    |   '<<='
-                    |   '>>='
-                    |   '>>>='
+	
+dotIdent:	(id -> id) (DOT ident=id ->^(DOT $dotIdent $ident))*
 	;
+
+//dotIdent:	id1=id (DOT id2=id)*  -> ^($id1 ^(DOT $id2)*)
+//	;
+
+
+	
+/*assignOp:	EQ	-> ^(EQ<AssignOperationNode>[$EQ] EQ)
+        |	PLUSEQ -> ^
+	|	SUBEQ
+	|	STAREQ
+	|	'/='
+	|	'%='
+	|	'&='
+	|	'|='
+	|	'^='
+	|	'<<='
+	|	'>>='
+	|	'>>>='
+	;
+	*/
+	
+assignOp:	EQ	-> EQ<AssignOperationNode>[$EQ]
+        |	PLUSEQ 	-> PLUSEQ<AssignOperationNode>[$PLUSEQ]
+        |	SUBEQ	-> SUBEQ<AssignOperationNode>[$SUBEQ]
+        |	SLASHEQ	-> SLASHEQ<AssignOperationNode>[$SLASHEQ]
+	|	PERCENTEQ
+			-> PERCENTEQ<AssignOperationNode>[$PERCENTEQ]
+	|	AMPEQ	-> AMPEQ<AssignOperationNode>[$AMPEQ]
+	//|	BAREQ	-> ^(BAREQ<AssignOperationNode>[$BAREQ])
+	//|	CARETEQ -> ^(CARETEQ<AssignOperationNode>[$CARETEQ])
+	//|	LTLTEQ	-> ^(LTLTEQ<AssignOperationNode>[$LTLTEQ])
+	//|	GTGTEQ	-> ^(GTGTEQ<AssignOperationNode>[$GTGTEQ])
+	//|	GTGTGTEQ-> ^(GTGTGTEQ<AssignOperationNode>[$GTGTGTEQ])
+	;
+
+	
 funcLit           : FUNCTION LPAREN paramList RPAREN typeTagOpt block -> ^(FUNCTION<FunctionNode> paramList typeTagOpt block)
 	;
 arrayLit         : LBRACKET! exprListOpt RBRACKET!
@@ -251,7 +281,7 @@ value	:	funcLit
         
 newExpr           : NEW type LPAREN exprListOpt RPAREN ->^(NEW type exprListOpt)
 	;
-cast              : CAST LPAREN expr (COMMA funcType)? RPAREN -> ^(CAST expr funcType?)
+cast    :	CAST LPAREN expr (COMMA funcType)? RPAREN -> ^(CAST expr funcType?)
 	|	CAST LPAREN expr RPAREN ->^(CAST expr)
 	;
 //! -------- Declarations
@@ -265,10 +295,13 @@ enumDecl          : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENU
 	;
 enumBody          : (enumValueDecl)+
 	;
-enumValueDecl     :IDENTIFIER LPAREN! paramList RPAREN! SEMI!
-                    |  IDENTIFIER SEMI!
-                    |   pp
+	
+enumValueDecl     
+	:	IDENTIFIER LPAREN! paramList RPAREN! SEMI!	
+	|	IDENTIFIER SEMI!	
+	|	pp
 	;
+	
 varDeclList       : varDecl varDeclList
 	;
 	
@@ -277,19 +310,25 @@ varDecl           : (declAttrList)? VAR varDeclPartList SEMI ->^(VAR<VarDeclarat
 	
 varDeclPartList   : varDeclPart (COMMA! varDeclPart)*
 	;
-varDeclPart       :IDENTIFIER propDeclOpt typeTagOpt varInit
+varDeclPart       :IDENTIFIER<VarUsage> propDeclOpt typeTagOpt varInit
 	;
-propDecl          : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<ExtendedCommonTree>["PROPERTY_DECL",true] $a1 $a2)
+	
+propDecl:	LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<ExtendedCommonTree>["PROPERTY_DECL",true] $a1 $a2)
 	;
-propAccessor      :IDENTIFIER
-                    |   NULL
-                    |   DEFAULT
-                    |   DYNAMIC
+	
+propAccessor	
+	:	IDENTIFIER	
+	|	NULL	
+	|	DEFAULT
+	|	DYNAMIC
 	;
-propDeclOpt       : propDecl
-                    |
+	
+propDeclOpt
+	:	propDecl	
+	|
 	;
-varInit           : EQ expr ->^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr)
+	
+varInit :	EQ expr ->^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr)
 	|	
 	;
 	
@@ -297,33 +336,45 @@ funcDecl:	declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block ->
 	|	declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTagOpt? block typeParamOpt?)
 	;
 	
-funcProtoDecl     : declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt declAttrList)
-                    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt)
-                    |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt)
-                    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt)
+funcProtoDecl
+	:	declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt declAttrList)
+	|	declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt)
+	|	FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt)
+	|	FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt)
 	;
-classDecl         : EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBodyScope RBRACE ->^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope?)
+	
+classDecl
+	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBodyScope RBRACE ->^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope?)
 	;
+	
 classBodyScope
 	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode> classBody?)
 	;
-classBody         : varDecl classBody
-                    |   funcDecl classBody
-                    |   pp classBody
-                    |
-	;
-interfaceDecl     : INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
-	;
-interfaceBody     : varDecl interfaceBody
-                    |   funcProtoDecl interfaceBody
-                    |   pp interfaceBody
-                    |
-;
-
-inheritList       : inherit (COMMA! inherit)*
+	
+classBody
+	:	varDecl classBody
+	|	funcDecl classBody
+	|	pp classBody
+	|
 	;
 	
-inheritListOpt    : inheritList ->^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList)
+interfaceDecl     
+	:	INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
+	;
+	
+interfaceBody
+	:	varDecl interfaceBody
+	|	funcProtoDecl interfaceBody
+	|	pp interfaceBody
+	|
+	;
+
+inheritList       
+	:	inherit (COMMA! inherit)*
+	;
+	
+inheritListOpt    
+	:	inheritList ->^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList)
 	|	
     	;
     	
@@ -331,11 +382,15 @@ inherit	:	EXTENDS type -> ^(EXTENDS type)
         |	IMPLEMENTS type -> ^(IMPLEMENTS type)
 	;
 	
-typedefDecl       : TYPEDEF IDENTIFIER EQ funcType
+typedefDecl       
+	:	TYPEDEF IDENTIFIER EQ funcType
 	;
-typeExtend        : GT funcType COMMA!
+	
+typeExtend
+        :	GT funcType COMMA!
 	;
-anonType          : LBRACE!
+	
+anonType:	LBRACE!
 			( 
                     	|    anonTypeFieldList 
                    	|    varDeclList 
@@ -343,28 +398,36 @@ anonType          : LBRACE!
                     			|anonTypeFieldList
                     			|varDeclList) 
                     	) 
-                    RBRACE!
+                RBRACE!
 	;
-anonTypeFieldList : anonTypeField (COMMA! anonTypeField)*
+	
+anonTypeFieldList 
+	:	anonTypeField (COMMA! anonTypeField)*
 	;
 
-objLit            : '{'! objLitElemList '}'!
-;
-anonTypeField     :IDENTIFIER COLON! funcType
+objLit	:	'{'! objLitElemList '}'!
 	;
-objLitElemList    : objLitElem (COMMA! objLitElem)*
+
+anonTypeField
+	:	IDENTIFIER COLON! funcType
 	;
-objLitElem        :IDENTIFIER COLON! expr
+	
+objLitElemList    
+	:	objLitElem (COMMA! objLitElem)*
+	;
+	
+objLitElem
+        :	IDENTIFIER COLON! expr
 	;
 	
 elementarySymbol
-	:	LONGLITERAL
-	|	INTLITERAL
-	|	STRINGLITERAL
-	|	CHARLITERAL
-	|	FLOATNUM
-	|	TRUE
-	|	FALSE
+	:	LONGLITERAL	-> LONGLITERAL<VarUsage>[$LONGLITERAL, "INT"]
+	|	INTLITERAL	-> INTLITERAL<VarUsage>[$INTLITERAL, "INT"]
+	|	STRINGLITERAL	-> STRINGLITERAL<VarUsage>[$STRINGLITERAL,"STRING"]
+	|	CHARLITERAL	-> CHARLITERAL<VarUsage>[$CHARLITERAL, "STRING"]
+	|	FLOATNUM	-> FLOATNUM<VarUsage>[$FLOATNUM, "FLOAT"]
+	|	TRUE		-> TRUE<VarUsage>[$TRUE,"BOOL"]
+	|	FALSE		-> FALSE<VarUsage>[$FALSE,"BOOL"]
 	;    
 
 WS  :   ( ' '
@@ -868,7 +931,16 @@ LTLT	:	'<<'
 	;
 GTGTGT	:	'>>>'
 	;
-
+	
+LTLTEQ	:	'<<='
+	;
+	
+GTGTEQ	:	'>>='
+	;
+	
+GTGTGTEQ:	'>>>='
+	;	
+	
 GTEQ	:	'>='
 	;
 LTEQ	:	'<='

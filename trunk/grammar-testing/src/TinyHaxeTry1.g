@@ -18,6 +18,7 @@ tokens {
 	DECL_ATTR_LIST;
 	VAR_INIT;
 	ASSIGN_OPERATOR;
+	PACKAGE;
 }
 
 @lexer::header{

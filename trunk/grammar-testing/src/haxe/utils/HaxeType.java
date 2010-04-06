@@ -13,11 +13,14 @@ public class HaxeType {
 	public static final HaxeType haxeInt;
 	public static final HaxeType haxeVoid;
 	public static final HaxeType haxeBool;
-	//public static final HaxeType haxeString;
+	public static final HaxeType haxeString;
+	public static final HaxeType haxeDynamic;
+	public static final HaxeType haxeObject;
+	public static final HaxeType haxeNotYetRecognized;
+	public static final HaxeType haxeUndefined;
 
 	static {
 		haxeFloat = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Float");
-
 		haxeInt = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Int");
 		haxeInt.setClassHierarchy(new ArrayList<HaxeType>() {
 			private static final long serialVersionUID = 1L;
@@ -25,11 +28,13 @@ public class HaxeType {
 				add(haxeFloat);
 			}
 		});
-
 		haxeVoid = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Void");
-
 		haxeBool = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Bool");
-
+		haxeString = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".String");
+		haxeDynamic = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Dynamic");
+		haxeObject = new HaxeType("haxe.Object");
+		haxeNotYetRecognized = new HaxeType("haxe.notYetRecognized");
+		haxeUndefined = new HaxeType("haxe.Undefined");
 	}
 
 	/**
@@ -98,6 +103,17 @@ public class HaxeType {
 	}
 
 	public HaxeType() {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.getFullTypeName().length() != 0 ? this.getFullTypeName()
+				: this.getTypeName();
 	}
 
 }

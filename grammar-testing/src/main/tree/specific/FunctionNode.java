@@ -2,6 +2,7 @@ package main.tree.specific;
 
 import java.util.ArrayList;
 
+import main.haxe.utils.HaxeType;
 import main.tree.ExtendedCommonTree;
 
 import org.antlr.runtime.CommonToken;
@@ -58,13 +59,17 @@ public class FunctionNode extends ExtendedCommonTree {
         return this.getChild(0).getText();
     }
 
-    public String getFunctionReturnType() {
+    public HaxeType getFunctionReturnType() {
         for (ExtendedCommonTree tree : this.getChildren()) {
             if (tree.getToken().getType() == TYPE_TAG_TYPE) {
-                return tree.getChild(0).getText();
+                /**
+                 * FIXME Нужно находить название этого класса в объявлениях,
+                 * если он не примитивный, и возвращать его копию.
+                 */
+                return new HaxeType(tree.getChild(0).getText());
             }
         }
-        return VarUsage.VarTypes.UNKNOWN.toString();
+        return HaxeType.haxeUndefined;
     }
 
     public BlockScopeNode getBlockScope() {

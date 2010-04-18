@@ -5,6 +5,7 @@ package main.tree.specific;
 
 import java.util.ArrayList;
 
+import main.haxe.utils.HaxeType;
 import main.tree.ExtendedCommonTree;
 
 import org.antlr.runtime.Token;
@@ -34,6 +35,13 @@ public class BlockScopeNode extends ExtendedCommonTree {
     @SuppressWarnings("unchecked")
     public ArrayList<VarUsage> getDeclaredVarsClone() {
         return (ArrayList<VarUsage>) this.declaredVars.clone();
+    }
+
+    /**
+     * @return the declaredVars
+     */
+    public ArrayList<VarUsage> getDeclaredVars() {
+        return declaredVars;
     }
 
     /**
@@ -125,13 +133,13 @@ public class BlockScopeNode extends ExtendedCommonTree {
      * @param varName
      * @return
      */
-    public String getVarInScopeType(String varName) {
+    public HaxeType getVarInScopeType(String varName) {
         for (VarUsage usage : declaredVars) {
             if (usage.getText().equals(varName)) {
                 return usage.getVarType();
             }
         }
-        return VarUsage.VarTypes.UNKNOWN.toString();
+        return HaxeType.haxeUndefined;
     }
 
     @Override

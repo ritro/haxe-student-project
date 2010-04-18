@@ -9,8 +9,11 @@ class Main
 static function main( tmp:Int) : void
 {
 	var i:Int = tmp;
+	var y:Float;
 	main("Hello World!"+i);
-	i = 1+2;
+	//i = cast(a, String);
+	y = 1+(2*3);
+	
 }
 	
 }

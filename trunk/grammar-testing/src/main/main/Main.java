@@ -5,6 +5,7 @@ import java.io.IOException;
 import main.tree.ExtendedCommonTree;
 import main.tree.ExtendedTreeAdaptor;
 import main.tree.exceptions.AlreadyDeclaredVarDeclarationException;
+import main.tree.exceptions.HaxeCastException;
 import main.tree.exceptions.NotDeclaredVarUsageException;
 
 import org.antlr.runtime.ANTLRFileStream;
@@ -21,8 +22,6 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
-        // Main main = new Main();
-
         System.out.print("Reading file...");
         String path = "./src/main/haxe-input.txt";
         ANTLRFileStream charStream = null;
@@ -58,21 +57,22 @@ public class Main {
         try {
             tree.calculateScopes();
         } catch (AlreadyDeclaredVarDeclarationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (NotDeclaredVarUsageException e) {
             System.out.println("\n---------------------------------------------");
             e.getUsage().toString();
             System.out.println("---------------------------------------------\n");
-
-            // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (HaxeCastException e) {
+            System.out.println("-------------------------");
+            e.getNodeWithException().toStringTree();
         }
         printTree(tree, 0);
-        ExtendedCommonTree target = tree.getNodeByPosition(11, 12);
+        // ExtendedCommonTree target = tree.getNodeByPosition(11, 12);
 
-        System.out.println("Result:" + target);
-        System.out.println("Declaration:" + target.getDeclarationNode(target));
+        // System.out.println("Result:" + target);
+        // System.out.println("Declaration:" +
+        // target.getDeclarationNode(target));
     }
 
     public static void printTree(ExtendedCommonTree t, int indent) {

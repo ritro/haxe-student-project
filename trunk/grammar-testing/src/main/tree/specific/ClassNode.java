@@ -2,6 +2,7 @@ package main.tree.specific;
 
 import java.util.ArrayList;
 
+import main.haxe.utils.HaxeType;
 import main.tree.ExtendedCommonTree;
 
 import org.antlr.runtime.Token;
@@ -62,7 +63,12 @@ public class ClassNode extends ExtendedCommonTree {
                 } else if (tree instanceof ClassNode) {
                     ClassNode classTree = (ClassNode) tree;
                     VarUsage usage = new VarUsage(classTree.getChild(0).getToken());
-                    usage.setVarType(classTree.getChild(0).getToken().getText());
+                    /**
+                     * FIXME нужно создавать тип, используя всю информацию о
+                     * классе
+                     */
+                    usage.setVarType(new HaxeType(classTree.getChild(0).getToken()
+                            .getText()));
                     list.add(usage);
                 }
             }

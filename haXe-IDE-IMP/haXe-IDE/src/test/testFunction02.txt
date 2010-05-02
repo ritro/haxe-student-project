@@ -1,0 +1,5 @@
+static function main(tmp:Int) 
+{
+	var i:Int = tmp;
+	trace("Hello World!"+i);
+}

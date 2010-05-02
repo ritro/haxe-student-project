@@ -1,0 +1,19 @@
+package tmp;
+
+import flash.Lib.lib2;
+
+
+class Main 
+{
+	
+static function main( tmp:Int) : void
+{
+	var i:Int = tmp;
+	var y:Float;
+	main("Hello World!"+i);
+	//i = cast(a, String);
+	y = 1+(2*3);
+	
+}
+	
+}

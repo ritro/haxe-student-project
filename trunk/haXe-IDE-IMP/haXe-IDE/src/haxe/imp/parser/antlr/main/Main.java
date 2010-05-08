@@ -7,10 +7,8 @@ import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.tree.exceptions.NotDeclaredVarUsageException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.antlr.runtime.ANTLRFileStream;
-import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
@@ -24,6 +22,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// org.antlr.runtime.RecognitionException tmp;
 		System.out.print("Reading file...");
 		String path = "./src/haxe/imp/parser/antlr/main/haxe-input.txt";
 		ANTLRFileStream charStream = null;
@@ -38,8 +37,9 @@ public class Main {
 		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(charStream);
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		System.out.println("Yes");
-		ArrayList<CommonToken> arrayList = (ArrayList<CommonToken>) tokenStream
-				.getTokens();
+		// ArrayList<CommonToken> arrayList = (ArrayList<CommonToken>)
+		// tokenStream
+		// .getTokens();
 		System.out.print("Parsing file...");
 		TinyHaxeTry1Parser parser = new TinyHaxeTry1Parser(tokenStream);
 		parser.setTreeAdaptor(new ExtendedTreeAdaptor());

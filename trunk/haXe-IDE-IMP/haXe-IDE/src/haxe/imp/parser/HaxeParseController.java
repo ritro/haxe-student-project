@@ -21,7 +21,6 @@ import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.IMessageHandler;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
-import org.eclipse.imp.parser.LPGSourcePositionLocator;
 import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
@@ -106,7 +105,7 @@ public class HaxeParseController implements IParseController {
 	@Override
 	public ISourcePositionLocator getSourcePositionLocator() {
 		if (fSourcePositionLocator == null) {
-			fSourcePositionLocator = new LPGSourcePositionLocator(this);
+			fSourcePositionLocator = new HaxeSourcePositionLocator(this);
 		}
 		return fSourcePositionLocator;
 	}
@@ -127,7 +126,7 @@ public class HaxeParseController implements IParseController {
 
 	private class InnerCommonTokenIterator implements Iterator<Object> {
 		private ArrayList<CommonToken> commonTokens = new ArrayList<CommonToken>();
-		private int currentTokenNumber = 0;
+		private int currentTokenNumber = -1;
 		private int begin = 0;
 		private int end = 0;
 
@@ -138,12 +137,12 @@ public class HaxeParseController implements IParseController {
 					.getTokens();
 			begin = region.getOffset();
 			end = region.getOffset() + region.getLength();
-			for (CommonToken token : commonTokens) {
-				if (token.getStopIndex() > begin) {
-					currentTokenNumber = commonTokens.indexOf(token);
-					break;
-				}
-			}
+			// for (CommonToken token : commonTokens) {
+			// if (token.getStopIndex() > begin) {
+			// currentTokenNumber = commonTokens.indexOf(token);
+			// break;
+			// }
+			// }
 		}
 
 		@Override

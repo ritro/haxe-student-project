@@ -19,5 +19,12 @@
             language="haxe">
       </parser>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.tokenColorer">
+      <tokenColorer
+            class="haxe.imp.tokenColorer.HaxeTokenColorer"
+            language="haxe">
+      </tokenColorer>
+   </extension>
 
 </plugin>

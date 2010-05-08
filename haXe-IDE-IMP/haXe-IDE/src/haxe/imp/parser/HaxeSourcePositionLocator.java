@@ -48,7 +48,10 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 
 	@Override
 	public int getEndOffset(Object entity) {
-		if (entity instanceof ExtendedCommonTree) {
+		if (entity instanceof CommonToken) {
+			return ((CommonToken) entity).getStartIndex()
+					+ ((CommonToken) entity).getText().length();
+		} else if (entity instanceof ExtendedCommonTree) {
 			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
 					.getToken();
 			return commonToken.getStartIndex() + commonToken.getText().length()
@@ -60,7 +63,9 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 
 	@Override
 	public int getLength(Object entity) {
-		if (entity instanceof ExtendedCommonTree) {
+		if (entity instanceof CommonToken) {
+			return ((CommonToken) entity).getText().length();
+		} else if (entity instanceof ExtendedCommonTree) {
 			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
 					.getToken();
 			return commonToken.getText().length();
@@ -87,8 +92,9 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 
 	@Override
 	public int getStartOffset(Object entity) {
-
-		if (entity instanceof ExtendedCommonTree) {
+		if (entity instanceof CommonToken) {
+			return ((CommonToken) entity).getStartIndex();
+		} else if (entity instanceof ExtendedCommonTree) {
 			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
 					.getToken();
 			return commonToken.getStartIndex();

@@ -7,7 +7,7 @@
       <language
             description="haxe lang"
             extensions="hx"
-            icon="C:\dist\eclipse\workspace\haXe-IDE\src\resources\haxeSymbol.PNG"
+            icon="/haXe-IDE/haxeSymbol.PNG"
             language="haxe">
       </language>
    </extension>

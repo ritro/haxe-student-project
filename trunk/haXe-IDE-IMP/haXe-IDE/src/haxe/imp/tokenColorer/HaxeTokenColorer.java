@@ -62,9 +62,9 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		defaultAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLACK));
 		numberAttribute = new TextAttribute(display
-				.getSystemColor(SWT.COLOR_DARK_YELLOW), null, SWT.BOLD);
+				.getSystemColor(SWT.COLOR_DARK_RED));
 		commentAttribute = new TextAttribute(display
-				.getSystemColor(SWT.COLOR_DARK_RED), null, SWT.ITALIC);
+				.getSystemColor(SWT.COLOR_DARK_GREEN));
 		stringAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLUE));
 	}
@@ -101,13 +101,17 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case INTERFACE:
 		case VAR:
 		case NULL:
+		case PUBLIC:
+		case PRIVATE:
 			return functionAttribute;
-		case STRINGLITERAL:
 		case CHARLITERAL:
+		case STRINGLITERAL:
 			return stringAttribute;
 		case INT:
 		case FLOAT:
 			return numberAttribute;
+		case COMMENT:
+			return commentAttribute;
 		default:
 			return defaultAttribute;
 		}

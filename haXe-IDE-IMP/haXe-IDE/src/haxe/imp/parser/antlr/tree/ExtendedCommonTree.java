@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.parser.antlr.tree;
 
 import static haxe.imp.parser.antlr.utils.HaxeType.areBothNumbers;
@@ -24,25 +34,52 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExtendedCommonTree.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class ExtendedCommonTree extends CommonTree {
 
+	/** The auxiliary. */
 	private boolean auxiliary = false;
 
+	/**
+	 * The Enum boolOperations.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	private enum boolOperations {
-		PLUS, MINUS, MULTY, DIV, PERCENT
+
+		/** The PLUS. */
+		PLUS,
+		/** The MINUS. */
+		MINUS,
+		/** The MULTY. */
+		MULTY,
+		/** The DIV. */
+		DIV,
+		/** The PERCENT. */
+		PERCENT
 	};
 
+	/** The Constant PARAM_LIST_TYPE. */
 	public static final int PARAM_LIST_TYPE = (new ArrayList<String>(Arrays
 			.asList(TinyHaxeTry1Parser.tokenNames)))
 			.indexOf(TreeTokens.PARAM_LIST.toString());
 
+	/** The Constant TYPE_TAG_TYPE. */
 	public static final int TYPE_TAG_TYPE = (new ArrayList<String>(Arrays
 			.asList(TinyHaxeTry1Parser.tokenNames)))
 			.indexOf(TreeTokens.TYPE_TAG.toString());
 
+	/** The Constant SUFFIX_EXPR_TYPE. */
 	public static final int SUFFIX_EXPR_TYPE = (new ArrayList<String>(Arrays
 			.asList(TinyHaxeTry1Parser.tokenNames)))
 			.indexOf(TreeTokens.SUFFIX_EXPR.toString());
+
+	/** The Constant VAR_INIT_TYPE. */
 	public static final int VAR_INIT_TYPE = (new ArrayList<String>(Arrays
 			.asList(TinyHaxeTry1Parser.tokenNames)))
 			.indexOf(TreeTokens.VAR_INIT.toString());
@@ -52,6 +89,8 @@ public class ExtendedCommonTree extends CommonTree {
 	// .toString());
 
 	/**
+	 * Checks if is auxiliary.
+	 * 
 	 * @return the auxiliary
 	 */
 	public boolean isAuxiliary() {
@@ -59,6 +98,8 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
+	 * Sets the auxiliary.
+	 * 
 	 * @param auxiliary
 	 *            the auxiliary to set
 	 */
@@ -66,35 +107,84 @@ public class ExtendedCommonTree extends CommonTree {
 		this.auxiliary = auxiliary;
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 */
 	public ExtendedCommonTree() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 * 
+	 * @param node
+	 *            the node
+	 */
 	public ExtendedCommonTree(CommonTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 * 
+	 * @param t
+	 *            the t
+	 */
 	public ExtendedCommonTree(Token t) {
 		super(t);
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 * 
+	 * @param ttype
+	 *            the ttype
+	 * @param t
+	 *            the t
+	 * @param auxiliary
+	 *            the auxiliary
+	 */
 	public ExtendedCommonTree(int ttype, Token t, boolean auxiliary) {
 		token = t;
 		this.auxiliary = auxiliary;
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 * 
+	 * @param ttype
+	 *            the ttype
+	 * @param type
+	 *            the type
+	 * @param auxiliary
+	 *            the auxiliary
+	 */
 	public ExtendedCommonTree(int ttype, String type, boolean auxiliary) {
 		this.token = new CommonToken(ttype, type);
 		this.auxiliary = auxiliary;
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 * 
+	 * @param ttype
+	 *            the ttype
+	 * @param auxiliary
+	 *            the auxiliary
+	 */
 	public ExtendedCommonTree(int ttype, boolean auxiliary) {
 		System.out.println("Extended: " + ttype);
 		token = new CommonToken(ttype);
 		this.auxiliary = auxiliary;
 	}
 
+	/**
+	 * Instantiates a new extended common tree.
+	 * 
+	 * @param ttype
+	 *            the ttype
+	 */
 	public ExtendedCommonTree(int ttype) {
 		token = new CommonToken(ttype);
 	}
@@ -103,7 +193,9 @@ public class ExtendedCommonTree extends CommonTree {
 	 * Calculating scopes in tree. Should be applied only to module
 	 * 
 	 * @throws AlreadyDeclaredVarDeclarationException
+	 *             the already declared var declaration exception
 	 * @throws NotDeclaredVarUsageException
+	 *             the not declared var usage exception
 	 */
 	public void calculateScopes()
 			throws AlreadyDeclaredVarDeclarationException,
@@ -118,10 +210,16 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
+	 * Calculate scopes.
 	 * 
 	 * @param blockScope
+	 *            the block scope
 	 * @throws AlreadyDeclaredVarDeclarationException
+	 *             the already declared var declaration exception
 	 * @throws NotDeclaredVarUsageException
+	 *             the not declared var usage exception
+	 * @throws HaxeCastException
+	 *             the haxe cast exception
 	 */
 	protected void calculateScopes(BlockScopeNode blockScope)
 			throws AlreadyDeclaredVarDeclarationException,
@@ -215,6 +313,19 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * Gets the type of operation.
+	 * 
+	 * @param leftNode
+	 *            the left node
+	 * @param rightNode
+	 *            the right node
+	 * @param operator
+	 *            the operator
+	 * @return the type of operation
+	 * @throws HaxeCastException
+	 *             the haxe cast exception
+	 */
 	private HaxeType getTypeOfOperation(ExtendedCommonTree leftNode,
 			ExtendedCommonTree rightNode, boolOperations operator)
 			throws HaxeCastException {
@@ -264,6 +375,15 @@ public class ExtendedCommonTree extends CommonTree {
 		throw new HaxeCastException((ExtendedCommonTree) leftNode.parent);
 	}
 
+	/**
+	 * Gets the type of operation.
+	 * 
+	 * @param node
+	 *            the node
+	 * @return the type of operation
+	 * @throws HaxeCastException
+	 *             the haxe cast exception
+	 */
 	private HaxeType getTypeOfOperation(ExtendedCommonTree node)
 			throws HaxeCastException {
 		if (node instanceof VarUsage) {
@@ -291,36 +411,85 @@ public class ExtendedCommonTree extends CommonTree {
 		return HaxeType.haxeUndefined;
 	}
 
+	/**
+	 * The Class Pair.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	public class Pair {
+
+		/** The begin. */
 		private int begin = -1;
+
+		/** The end. */
 		private int end = -1;
 
+		/**
+		 * Gets the begin.
+		 * 
+		 * @return the begin
+		 */
 		public int getBegin() {
 			return begin;
 		}
 
+		/**
+		 * Sets the begin.
+		 * 
+		 * @param begin
+		 *            the new begin
+		 */
 		public void setBegin(int begin) {
 			this.begin = begin;
 		}
 
+		/**
+		 * Gets the end.
+		 * 
+		 * @return the end
+		 */
 		public int getEnd() {
 			return end;
 		}
 
+		/**
+		 * Sets the end.
+		 * 
+		 * @param end
+		 *            the new end
+		 */
 		public void setEnd(int end) {
 			this.end = end;
 		}
 
+		/**
+		 * Instantiates a new pair.
+		 * 
+		 * @param begin
+		 *            the begin
+		 * @param end
+		 *            the end
+		 */
 		public Pair(int begin, int end) {
 			super();
 			this.begin = begin;
 			this.end = end;
 		}
 
+		/**
+		 * Instantiates a new pair.
+		 */
 		public Pair() {
 			super();
 		}
 
+		/**
+		 * Surrounds.
+		 * 
+		 * @param value
+		 *            the value
+		 * @return true, if successful
+		 */
 		public boolean surrounds(int value) {
 			return (begin <= value && end > value) ? true : false;
 		}
@@ -332,7 +501,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 * соответсвующий токен, для дополнительных - смотрю первого и последнего
 	 * сына. Считается, что дополнительные узлы не могут быть листьями.
 	 * 
-	 * @return
+	 * @return the region for node
 	 */
 	public Pair getRegionForNode() {
 		if (this.auxiliary) {
@@ -348,10 +517,11 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
-	 * Get most-inner node of AST tree by it's offset
+	 * Get most-inner node of AST tree by it's offset.
 	 * 
 	 * @param offset
-	 * @return
+	 *            the offset
+	 * @return the node by position
 	 */
 	@SuppressWarnings("unchecked")
 	public ExtendedCommonTree getNodeByPosition(int offset) {
@@ -408,6 +578,13 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * Do tree contains offset in node.
+	 * 
+	 * @param offset
+	 *            the offset
+	 * @return true, if successful
+	 */
 	private boolean doTreeContainsOffsetInNode(int offset) {
 		CommonToken commonToken = (CommonToken) this.getToken();
 		if (commonToken.getStartIndex() <= offset
@@ -427,6 +604,13 @@ public class ExtendedCommonTree extends CommonTree {
 		return false;
 	}
 
+	/**
+	 * Gets the node with offset.
+	 * 
+	 * @param offset
+	 *            the offset
+	 * @return the node with offset
+	 */
 	private ExtendedCommonTree getNodeWithOffset(int offset) {
 		CommonToken commonToken = (CommonToken) this.getToken();
 		if (commonToken.getStartIndex() <= offset
@@ -446,6 +630,15 @@ public class ExtendedCommonTree extends CommonTree {
 		return null;
 	}
 
+	/**
+	 * Gets the node by position.
+	 * 
+	 * @param line
+	 *            the line
+	 * @param posInLine
+	 *            the pos in line
+	 * @return the node by position
+	 */
 	@SuppressWarnings("unchecked")
 	public ExtendedCommonTree getNodeByPosition(int line, int posInLine) {
 		ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>) (this
@@ -506,6 +699,13 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * Gets the declaration node.
+	 * 
+	 * @param usageNode
+	 *            the usage node
+	 * @return the declaration node
+	 */
 	public ExtendedCommonTree getDeclarationNode(ExtendedCommonTree usageNode) {
 		ExtendedCommonTree parent = (ExtendedCommonTree) this.getParent();
 		if (parent != null) {
@@ -562,7 +762,8 @@ public class ExtendedCommonTree extends CommonTree {
 	 * returns null;
 	 * 
 	 * @param declarations
-	 * @return
+	 *            the declarations
+	 * @return the extended common tree
 	 */
 	private ExtendedCommonTree isDeclaredIn(
 			List<ExtendedCommonTree> declarations) {
@@ -576,10 +777,11 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
-	 * Checks if this object is declaration of usage
+	 * Checks if this object is declaration of usage.
 	 * 
 	 * @param usage
-	 * @return
+	 *            the usage
+	 * @return true, if is declaration
 	 */
 	private boolean isDeclaration(ExtendedCommonTree usage) {
 		return ((this instanceof VarDeclaration)
@@ -587,16 +789,35 @@ public class ExtendedCommonTree extends CommonTree {
 				.equals(usage.getText())));
 	}
 
+	/**
+	 * Checks if is func declaration.
+	 * 
+	 * @param usage
+	 *            the usage
+	 * @return true, if is func declaration
+	 */
 	private boolean isFuncDeclaration(ExtendedCommonTree usage) {
 		return ((this instanceof FunctionNode) && (this.getChild(0).getText()
 				.equals(usage.getText())));
 	}
 
+	/**
+	 * Checks if is class declaration.
+	 * 
+	 * @param usage
+	 *            the usage
+	 * @return true, if is class declaration
+	 */
 	private boolean isClassDeclaration(ExtendedCommonTree usage) {
 		return ((this instanceof ClassNode) && (this.getChild(0).getText()
 				.equals(usage.getText())));
 	}
 
+	/**
+	 * Gets the all children.
+	 * 
+	 * @return the all children
+	 */
 	public ArrayList<ExtendedCommonTree> getAllChildren() {
 		ArrayList<ExtendedCommonTree> childs = new ArrayList<ExtendedCommonTree>();
 		if (this.getChildCount() != 0) {
@@ -609,7 +830,18 @@ public class ExtendedCommonTree extends CommonTree {
 		return childs;
 	}
 
+	/**
+	 * The Class ComparatorByLines.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	private class ComparatorByLines implements Comparator<CommonTree> {
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 */
 		@Override
 		public int compare(CommonTree arg0, CommonTree arg1) {
 			if (arg0.getLine() < arg1.getLine()) {
@@ -622,7 +854,18 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * The Class ComparatorByPosInLine.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	private class ComparatorByPosInLine implements Comparator<CommonTree> {
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 */
 		@Override
 		public int compare(CommonTree arg0, CommonTree arg1) {
 			if (arg0.getCharPositionInLine() < arg1.getCharPositionInLine()) {

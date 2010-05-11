@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.parser;
 
 import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
@@ -25,6 +35,7 @@ import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
+// TODO: Auto-generated Javadoc
 /**
  * NOTE: This version of the Parse Controller is for use when the Parse
  * Controller and corresponding Node Locator are generated separately from a
@@ -47,7 +58,11 @@ import org.eclipse.jface.text.IRegion;
  * @since May 15, 2007 Addition of dummy types
  */
 public class HaxeParseController implements IParseController {
+
+	/** The current ast. */
 	private ExtendedCommonTree currentAST = new ExtendedCommonTree();
+
+	/** The token stream. */
 	private CommonTokenStream tokenStream = new CommonTokenStream();
 	/**
 	 * The language of the source being parsed by this IParseController.
@@ -63,7 +78,7 @@ public class HaxeParseController implements IParseController {
 	protected ISourceProject fProject;
 
 	/**
-	 * The path to the file containing the source being parsed by this
+	 * The path to the file containing the source being parsed by this.
 	 * {@link IParseController}.
 	 */
 	protected IPath fFilePath;
@@ -74,34 +89,65 @@ public class HaxeParseController implements IParseController {
 	 */
 	protected IMessageHandler handler;
 
+	/** The source position locator. */
 	private ISourcePositionLocator fSourcePositionLocator;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getAnnotationTypeInfo()
+	 */
 	@Override
 	public IAnnotationTypeInfo getAnnotationTypeInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getCurrentAst()
+	 */
 	@Override
 	public Object getCurrentAst() {
 		return currentAST;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getLanguage()
+	 */
 	@Override
 	public Language getLanguage() {
 		return fLanguage;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getPath()
+	 */
 	@Override
 	public IPath getPath() {
 		return fFilePath;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getProject()
+	 */
 	@Override
 	public ISourceProject getProject() {
 		return fProject;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getSourcePositionLocator()
+	 */
 	@Override
 	public ISourcePositionLocator getSourcePositionLocator() {
 		if (fSourcePositionLocator == null) {
@@ -110,12 +156,24 @@ public class HaxeParseController implements IParseController {
 		return fSourcePositionLocator;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#getSyntaxProperties()
+	 */
 	@Override
 	public ILanguageSyntaxProperties getSyntaxProperties() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.IParseController#getTokenIterator(org.eclipse.
+	 * jface.text.IRegion)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Iterator getTokenIterator(IRegion region) {
@@ -124,12 +182,33 @@ public class HaxeParseController implements IParseController {
 		return commonTokenIterator;
 	}
 
+	/**
+	 * The Class InnerCommonTokenIterator.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	private class InnerCommonTokenIterator implements Iterator<Object> {
+
+		/** The common tokens. */
 		private ArrayList<CommonToken> commonTokens = new ArrayList<CommonToken>();
+
+		/** The current token number. */
 		private int currentTokenNumber = -1;
+
+		/** The begin. */
 		private int begin = 0;
+
+		/** The end. */
 		private int end = 0;
 
+		/**
+		 * Instantiates a new inner common token iterator.
+		 * 
+		 * @param commonTokenStream
+		 *            the common token stream
+		 * @param region
+		 *            the region
+		 */
 		@SuppressWarnings("unchecked")
 		public InnerCommonTokenIterator(CommonTokenStream commonTokenStream,
 				IRegion region) {
@@ -145,6 +224,11 @@ public class HaxeParseController implements IParseController {
 			// }
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#hasNext()
+		 */
 		@Override
 		public boolean hasNext() {
 			if (currentTokenNumber + 1 >= commonTokens.size()) {
@@ -155,12 +239,22 @@ public class HaxeParseController implements IParseController {
 				return false;
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#next()
+		 */
 		@Override
 		public Object next() {
 			currentTokenNumber++;
 			return commonTokens.get(currentTokenNumber);
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.util.Iterator#remove()
+		 */
 		@Override
 		public void remove() {
 			commonTokens.remove(currentTokenNumber);
@@ -168,6 +262,14 @@ public class HaxeParseController implements IParseController {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.IParseController#initialize(org.eclipse.core.runtime
+	 * .IPath, org.eclipse.imp.model.ISourceProject,
+	 * org.eclipse.imp.parser.IMessageHandler)
+	 */
 	@Override
 	public void initialize(IPath filePath, ISourceProject project,
 			IMessageHandler handler) {
@@ -177,6 +279,12 @@ public class HaxeParseController implements IParseController {
 
 	}
 
+	/**
+	 * Do parse.
+	 * 
+	 * @param contents
+	 *            the contents
+	 */
 	private void doParse(String contents) {
 		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(new ANTLRStringStream(
 				contents));
@@ -198,6 +306,12 @@ public class HaxeParseController implements IParseController {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.imp.parser.IParseController#parse(java.lang.String,
+	 * org.eclipse.core.runtime.IProgressMonitor)
+	 */
 	@Override
 	public Object parse(String input, IProgressMonitor monitor) {
 		currentAST = null;

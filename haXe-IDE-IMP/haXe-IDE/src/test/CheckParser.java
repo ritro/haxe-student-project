@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package test;
 
 import static junit.framework.Assert.assertEquals;
@@ -17,12 +27,27 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CheckParser.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class CheckParser {
 
+	/**
+	 * Sets the up before class.
+	 * 
+	 * @throws Exception
+	 *             the exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Test module.
+	 */
 	@Test
 	public void testModule() {
 		String path = "./src/test/testModule.txt";
@@ -39,6 +64,9 @@ public class CheckParser {
 		assertEquals(3, (tree).getChildren().size());
 	}
 
+	/**
+	 * Test function.
+	 */
 	@Test
 	public void testFunction() {
 		String path = "./src/test/testFunction01.txt";
@@ -95,6 +123,9 @@ public class CheckParser {
 		Assert.assertEquals("For Function04", 4, (tree).getChildren().size());
 	}
 
+	/**
+	 * Test class.
+	 */
 	@Test
 	public void testClass() {
 		String path = "./src/test/testClass01.txt";
@@ -128,6 +159,9 @@ public class CheckParser {
 		assertEquals("For Class02", 3, (tree).getChildren().size());
 	}
 
+	/**
+	 * Test if statement.
+	 */
 	@Test
 	public void testIfStatement() {
 		String path = "./src/test/testIf01";
@@ -176,6 +210,9 @@ public class CheckParser {
 		assertEquals("For if03", 3, (tree).getChildren().size());
 	}
 
+	/**
+	 * Test for statement.
+	 */
 	@Test
 	public void testForStatement() {
 		String path = "./src/test/testFor01";
@@ -209,6 +246,9 @@ public class CheckParser {
 		assertEquals("For for02", 2, (tree).getChildren().size());
 	}
 
+	/**
+	 * Test while statement.
+	 */
 	@Test
 	public void testWhileStatement() {
 		String path = "./src/test/testWhile01";
@@ -242,6 +282,9 @@ public class CheckParser {
 		assertEquals("For While02", 2, (tree).getChildren().size());
 	}
 
+	/**
+	 * Test switch statement.
+	 */
 	@Test
 	public void testSwitchStatement() {
 		String path = "./src/test/testSwitch01";
@@ -261,8 +304,11 @@ public class CheckParser {
 	}
 
 	/**
+	 * Creates the parser lexer for file.
+	 * 
 	 * @param path
-	 * @return
+	 *            the path
+	 * @return the tiny haxe try1 parser
 	 */
 	private TinyHaxeTry1Parser createParserLexerForFile(String path) {
 		ANTLRFileStream charStream = null;
@@ -279,6 +325,12 @@ public class CheckParser {
 		return parser;
 	}
 
+	/**
+	 * Prints the tree.
+	 * 
+	 * @param t
+	 *            the t
+	 */
 	private static void printTree(ExtendedCommonTree t) {
 		System.out.println();
 		System.out.println("                    Tree: " + t.toString());
@@ -286,6 +338,14 @@ public class CheckParser {
 
 	}
 
+	/**
+	 * Prints the tree.
+	 * 
+	 * @param t
+	 *            the t
+	 * @param indent
+	 *            the indent
+	 */
 	private static void printTree(ExtendedCommonTree t, int indent) {
 		if (t != null) {
 			StringBuffer sb = new StringBuffer(indent);

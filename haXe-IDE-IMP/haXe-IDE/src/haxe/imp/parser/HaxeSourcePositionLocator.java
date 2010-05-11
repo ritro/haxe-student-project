@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.parser;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -9,6 +19,7 @@ import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
+// TODO: Auto-generated Javadoc
 /**
  * NOTE: This version of the ISourcePositionLocator is for use when the Source
  * Position Locator and corresponding Parse Controller are generated separately
@@ -29,28 +40,56 @@ import org.eclipse.imp.parser.ISourcePositionLocator;
  */
 public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 
+	/** The parse controller. */
 	private final IParseController fParseController;
 
+	/**
+	 * Instantiates a new haxe source position locator.
+	 * 
+	 * @param parseController
+	 *            the parse controller
+	 */
 	public HaxeSourcePositionLocator(IParseController parseController) {
 		fParseController = parseController;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.ISourcePositionLocator#findNode(java.lang.Object,
+	 * int)
+	 */
 	@Override
 	public Object findNode(Object astRoot, int offset) {
 		return ((ExtendedCommonTree) astRoot).getNodeByPosition(offset);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.ISourcePositionLocator#findNode(java.lang.Object,
+	 * int, int)
+	 */
 	@Override
 	public Object findNode(Object astRoot, int startOffset, int endOffset) {
 		// TODO use endOffset
 		return ((ExtendedCommonTree) astRoot).getNodeByPosition(startOffset);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.ISourcePositionLocator#getEndOffset(java.lang.
+	 * Object)
+	 */
 	@Override
 	public int getEndOffset(Object entity) {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getStartIndex()
-					+ ((CommonToken) entity).getText().length();
+					+ ((CommonToken) entity).getText().length() - 1;
 		} else if (entity instanceof ExtendedCommonTree) {
 			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
 					.getToken();
@@ -61,6 +100,12 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.ISourcePositionLocator#getLength(java.lang.Object)
+	 */
 	@Override
 	public int getLength(Object entity) {
 		if (entity instanceof CommonToken) {
@@ -74,6 +119,12 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.ISourcePositionLocator#getPath(java.lang.Object)
+	 */
 	@Override
 	public IPath getPath(Object node) {
 		if (node instanceof IAst) {
@@ -90,6 +141,13 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		// return new Path("");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.parser.ISourcePositionLocator#getStartOffset(java.lang
+	 * .Object)
+	 */
 	@Override
 	public int getStartOffset(Object entity) {
 		if (entity instanceof CommonToken) {

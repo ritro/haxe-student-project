@@ -1,3 +1,13 @@
+/*******************************************************************************
+* Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the GNU General Public License, version 2
+* which accompanies this distribution, and is available at
+* http://www.gnu.org/licenses/gpl-2.0.html
+*
+* Contributors:
+*    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+*******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -7,32 +17,49 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.Token;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ClassNode.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class ClassNode extends ExtendedCommonTree {
 
     /**
-     * 
-     */
+	 * Instantiates a new class node.
+	 */
     public ClassNode() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     /**
-     * @param node
-     */
+	 * Instantiates a new class node.
+	 * 
+	 * @param node
+	 *            the node
+	 */
     public ClassNode(ExtendedCommonTree node) {
         super(node);
         // TODO Auto-generated constructor stub
     }
 
     /**
-     * @param t
-     */
+	 * Instantiates a new class node.
+	 * 
+	 * @param t
+	 *            the t
+	 */
     public ClassNode(Token t) {
         super(t);
         // TODO Auto-generated constructor stub
     }
 
+    /**
+	 * Gets the block scope.
+	 * 
+	 * @return the block scope
+	 */
     public BlockScopeNode getBlockScope() {
         for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this.getChildren()) {
             if (tree instanceof BlockScopeNode) {
@@ -42,6 +69,11 @@ public class ClassNode extends ExtendedCommonTree {
         return null;
     }
 
+    /**
+	 * Gets the all declared vars.
+	 * 
+	 * @return the all declared vars
+	 */
     public ArrayList<VarUsage> getAllDeclaredVars() {
         ArrayList<VarUsage> list = new ArrayList<VarUsage>();
         BlockScopeNode blockScopeNode = this.getBlockScope();

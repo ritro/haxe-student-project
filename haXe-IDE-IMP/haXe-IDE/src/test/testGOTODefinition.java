@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package test;
 
 import static junit.framework.Assert.assertEquals;
@@ -20,12 +30,27 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class testGOTODefinition.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class testGOTODefinition {
 
+	/**
+	 * Sets the up before class.
+	 * 
+	 * @throws Exception
+	 *             the exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Test get declaration node.
+	 */
 	@Test
 	public void testGetDeclarationNode() {
 		String path = "./src/test/testGOTODef01";
@@ -69,6 +94,9 @@ public class testGOTODefinition {
 		assertEquals(VarDeclaration.class, iDecl.getClass());
 	}
 
+	/**
+	 * Test get function declaration node.
+	 */
 	@Test
 	public void testGetFunctionDeclarationNode() {
 		String path = "./src/test/testGOTODef02";
@@ -99,6 +127,9 @@ public class testGOTODefinition {
 		assertEquals(FunctionNode.class, iDecl.getClass());
 	}
 
+	/**
+	 * Test get class declaration node.
+	 */
 	@Test
 	public void testGetClassDeclarationNode() {
 		String path = "./src/test/testGOTODef03";
@@ -124,8 +155,11 @@ public class testGOTODefinition {
 	}
 
 	/**
+	 * Creates the parser lexer for file.
+	 * 
 	 * @param path
-	 * @return
+	 *            the path
+	 * @return the tiny haxe try1 parser
 	 */
 	private TinyHaxeTry1Parser createParserLexerForFile(String path) {
 		ANTLRFileStream charStream = null;
@@ -142,12 +176,26 @@ public class testGOTODefinition {
 		return parser;
 	}
 
+	/**
+	 * Prints the tree.
+	 * 
+	 * @param t
+	 *            the t
+	 */
 	private static void printTree(ExtendedCommonTree t) {
 		System.out.println();
 		System.out.println("                    Tree: " + t.toString());
 		printTree(t, 0);
 	}
 
+	/**
+	 * Prints the tree.
+	 * 
+	 * @param t
+	 *            the t
+	 * @param indent
+	 *            the indent
+	 */
 	private static void printTree(ExtendedCommonTree t, int indent) {
 		if (t != null) {
 			StringBuffer sb = new StringBuffer(indent);

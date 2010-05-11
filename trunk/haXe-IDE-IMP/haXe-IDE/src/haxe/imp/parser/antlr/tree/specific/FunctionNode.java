@@ -1,3 +1,13 @@
+/*******************************************************************************
+* Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the GNU General Public License, version 2
+* which accompanies this distribution, and is available at
+* http://www.gnu.org/licenses/gpl-2.0.html
+*
+* Contributors:
+*    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+*******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -8,29 +18,49 @@ import java.util.ArrayList;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FunctionNode.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class FunctionNode extends ExtendedCommonTree {
     // public static final int
 
+    /**
+	 * Instantiates a new function node.
+	 */
     public FunctionNode() {
         super();
     }
 
     /**
-     * @param node
-     */
+	 * Instantiates a new function node.
+	 * 
+	 * @param node
+	 *            the node
+	 */
     public FunctionNode(ExtendedCommonTree node) {
         super(node);
         // TODO Auto-generated constructor stub
     }
 
     /**
-     * @param t
-     */
+	 * Instantiates a new function node.
+	 * 
+	 * @param t
+	 *            the t
+	 */
     public FunctionNode(Token t) {
         super(t);
         // TODO Auto-generated constructor stub
     }
 
+    /**
+	 * Gets the param list node.
+	 * 
+	 * @return the param list node
+	 */
     public ExtendedCommonTree getParamListNode() {
         for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this.getChildren()) {
             Token token = (CommonToken) tree.getToken();
@@ -41,6 +71,11 @@ public class FunctionNode extends ExtendedCommonTree {
         return null;
     }
 
+    /**
+	 * Gets the parameters as var usage.
+	 * 
+	 * @return the parameters as var usage
+	 */
     public ArrayList<VarUsage> getParametersAsVarUsage() {
         ArrayList<VarUsage> list = new ArrayList<VarUsage>();
         ExtendedCommonTree parameters = this.getParamListNode();
@@ -55,10 +90,20 @@ public class FunctionNode extends ExtendedCommonTree {
         return list;
     }
 
+    /**
+	 * Gets the function name.
+	 * 
+	 * @return the function name
+	 */
     public String getFunctionName() {
         return this.getChild(0).getText();
     }
 
+    /**
+	 * Gets the function return type.
+	 * 
+	 * @return the function return type
+	 */
     public HaxeType getFunctionReturnType() {
         for (ExtendedCommonTree tree : this.getChildren()) {
             if (tree.getToken().getType() == TYPE_TAG_TYPE) {
@@ -72,6 +117,11 @@ public class FunctionNode extends ExtendedCommonTree {
         return HaxeType.haxeUndefined;
     }
 
+    /**
+	 * Gets the block scope.
+	 * 
+	 * @return the block scope
+	 */
     public BlockScopeNode getBlockScope() {
         for (ExtendedCommonTree tree : this.getChildren()) {
             if (tree instanceof BlockScopeNode) {

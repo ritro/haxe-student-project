@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.tokenColorer;
 
 import haxe.imp.parser.HaxeParsersym;
@@ -11,14 +21,25 @@ import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HaxeTokenColorer.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class HaxeTokenColorer extends TokenColorerBase implements
 		HaxeParsersym, ITokenColorer {
-	protected final TextAttribute doubleAttribute, functionAttribute,
-			keywordAttribute, numberAttribute, commentAttribute,
-			stringAttribute;
+
+	/** The default attribute. */
+	protected final TextAttribute functionAttribute, keywordAttribute,
+			numberAttribute, commentAttribute, stringAttribute,
+			defaultAttribute;
 
 	// protected final TextAttribute commentAttribute, stringAttribute;
 
+	/**
+	 * Instantiates a new haxe token colorer.
+	 */
 	public HaxeTokenColorer() {
 		super();
 		// TODO Define text attributes for the various token types that will
@@ -34,36 +55,61 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		// invocation may cease to function
 		// properly or at all.
 		Display display = Display.getDefault();
-		doubleAttribute = new TextAttribute(display
-				.getSystemColor(SWT.COLOR_DARK_GREEN), null, SWT.BOLD);
-		functionAttribute = new TextAttribute(display
-				.getSystemColor(SWT.COLOR_BLACK), null, SWT.NORMAL);
 		keywordAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_MAGENTA), null, SWT.BOLD);
+		functionAttribute = new TextAttribute(display
+				.getSystemColor(SWT.COLOR_DARK_RED), null, SWT.BOLD);
+		defaultAttribute = new TextAttribute(display
+				.getSystemColor(SWT.COLOR_BLACK));
 		numberAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_YELLOW), null, SWT.BOLD);
 		commentAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_RED), null, SWT.ITALIC);
 		stringAttribute = new TextAttribute(display
-				.getSystemColor(SWT.COLOR_DARK_BLUE), null, SWT.BOLD);
+				.getSystemColor(SWT.COLOR_BLUE));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.services.base.TokenColorerBase#getColoring(org.eclipse
+	 * .imp.parser.IParseController, java.lang.Object)
+	 */
 	@Override
 	public TextAttribute getColoring(IParseController controller, Object o) {
 		if (o == null) {
 			return null;
 		}
+
 		CommonToken token = (CommonToken) o;
 		switch (token.getType()) {
 		// START_HERE
-		case 34:
+		case FUNCTION:
+		case STATIC:
+		case CLASS:
+		case VOID:
+		case NEW:
+		case PACKAGE:
+		case IMPORT:
+		case IMPLEMENTS:
+		case EXTENDS:
+		case RETURN:
+		case DEFAULT:
+		case CASE:
+		case CAST:
+		case INTERFACE:
+		case VAR:
+		case NULL:
 			return functionAttribute;
-		case 101:
+		case STRINGLITERAL:
+		case CHARLITERAL:
 			return stringAttribute;
-		case 106:
-			return doubleAttribute;
+		case INT:
+		case FLOAT:
+			return numberAttribute;
 		default:
-			return keywordAttribute;
+			return defaultAttribute;
 		}
 
 		// IToken token = (IToken) o;
@@ -90,6 +136,13 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		// }
 	}
 
+	/**
+	 * Calculate damage extent.
+	 * 
+	 * @param seed
+	 *            the seed
+	 * @return the i region
+	 */
 	public IRegion calculateDamageExtent(IRegion seed) {
 		return seed;
 	}

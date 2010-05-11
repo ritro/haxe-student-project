@@ -1,6 +1,13 @@
-/**
- * 
- */
+/*******************************************************************************
+* Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the GNU General Public License, version 2
+* which accompanies this distribution, and is available at
+* http://www.gnu.org/licenses/gpl-2.0.html
+*
+* Contributors:
+*    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+*******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -11,19 +18,23 @@ import java.util.ArrayList;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author kondratyev
+ * The Class BlockScopeNode.
  * 
+ * @author kondratyev
  */
 public class BlockScopeNode extends ExtendedCommonTree {
 
 	/**
 	 * Each BlockScope contains Nodes representing vars, that could be used in
-	 * current scope
+	 * current scope.
 	 */
 	private ArrayList<VarUsage> declaredVars = new ArrayList<VarUsage>();
 
 	/**
+	 * Gets the declared vars clone.
+	 * 
 	 * @return the declaredVars
 	 */
 
@@ -38,6 +49,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Gets the declared vars.
+	 * 
 	 * @return the declaredVars
 	 */
 	public ArrayList<VarUsage> getDeclaredVars() {
@@ -45,6 +58,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Sets the declared vars.
+	 * 
 	 * @param declaredVars
 	 *            the declaredVars to set
 	 */
@@ -53,14 +68,17 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
-     * 
-     */
+	 * Instantiates a new block scope node.
+	 */
 	public BlockScopeNode() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * Instantiates a new block scope node.
+	 * 
 	 * @param node
+	 *            the node
 	 */
 	public BlockScopeNode(CommonTree node) {
 		super(node);
@@ -68,7 +86,10 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Instantiates a new block scope node.
+	 * 
 	 * @param t
+	 *            the t
 	 */
 	public BlockScopeNode(Token t) {
 		super(t);
@@ -76,9 +97,14 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Instantiates a new block scope node.
+	 * 
 	 * @param ttype
+	 *            the ttype
 	 * @param t
+	 *            the t
 	 * @param auxiliary
+	 *            the auxiliary
 	 */
 	public BlockScopeNode(int ttype, Token t, boolean auxiliary) {
 		super(ttype, t, auxiliary);
@@ -86,9 +112,14 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Instantiates a new block scope node.
+	 * 
 	 * @param ttype
+	 *            the ttype
 	 * @param type
+	 *            the type
 	 * @param auxiliary
+	 *            the auxiliary
 	 */
 	public BlockScopeNode(int ttype, String type, boolean auxiliary) {
 		super(ttype, type, auxiliary);
@@ -96,8 +127,12 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Instantiates a new block scope node.
+	 * 
 	 * @param ttype
+	 *            the ttype
 	 * @param auxiliary
+	 *            the auxiliary
 	 */
 	public BlockScopeNode(int ttype, boolean auxiliary) {
 		super(ttype, auxiliary);
@@ -105,7 +140,10 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
+	 * Instantiates a new block scope node.
+	 * 
 	 * @param ttype
+	 *            the ttype
 	 */
 	public BlockScopeNode(int ttype) {
 		super(ttype);
@@ -113,10 +151,11 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
-	 * Checks if there is var with such name in current scope
+	 * Checks if there is var with such name in current scope.
 	 * 
 	 * @param varName
-	 * @return
+	 *            the var name
+	 * @return true, if successful
 	 */
 	public boolean doScopeContainsVarName(String varName) {
 		for (VarUsage usage : declaredVars) {
@@ -128,10 +167,11 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	}
 
 	/**
-	 * Return type of var as it stores in scope
+	 * Return type of var as it stores in scope.
 	 * 
 	 * @param varName
-	 * @return
+	 *            the var name
+	 * @return the var in scope type
 	 */
 	public HaxeType getVarInScopeType(String varName) {
 		for (VarUsage usage : declaredVars) {

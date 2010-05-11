@@ -5,8 +5,9 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            extensions="hx"
             description="haxe lang"
+            extensions="hx"
+            icon="C:\dist\eclipse\workspace\haXe-IDE\src\resources\haxeSymbol.PNG"
             language="haxe">
       </language>
    </extension>

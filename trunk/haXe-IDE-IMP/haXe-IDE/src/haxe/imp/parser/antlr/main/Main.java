@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.parser.antlr.main;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -12,14 +22,19 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author kondratyev
+ * The Class Main.
  * 
+ * @author kondratyev
  */
 public class Main {
 
 	/**
+	 * The main method.
+	 * 
 	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 		// org.antlr.runtime.RecognitionException tmp;
@@ -87,6 +102,14 @@ public class Main {
 		// target.getDeclarationNode(target));
 	}
 
+	/**
+	 * Prints the tree.
+	 * 
+	 * @param t
+	 *            the t
+	 * @param indent
+	 *            the indent
+	 */
 	public static void printTree(ExtendedCommonTree t, int indent) {
 		if (t != null) {
 			StringBuffer sb = new StringBuffer(indent);

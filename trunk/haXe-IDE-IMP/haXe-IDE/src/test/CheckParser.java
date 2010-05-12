@@ -65,6 +65,26 @@ public class CheckParser {
 	}
 
 	/**
+	 * Test module.
+	 */
+	@Test
+	public void testModule2() {
+		String path = "./src/test/testModule2";
+		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		ExtendedCommonTree tree = new ExtendedCommonTree();
+		try {
+			TinyHaxeTry1Parser.module_return parserResult = parser.module();
+			tree = (ExtendedCommonTree) parserResult.getTree();
+		} catch (RecognitionException e) {
+			e.printStackTrace();
+			fail("Exception on EmptyModuleRecognition");
+		}
+		printTree(tree);
+		assertEquals(0, parser.getNumberOfSyntaxErrors());
+		assertEquals(2, (tree).getChildren().size());
+	}
+
+	/**
 	 * Test function.
 	 */
 	@Test

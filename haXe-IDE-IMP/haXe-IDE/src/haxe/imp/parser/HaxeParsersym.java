@@ -31,13 +31,13 @@ public interface HaxeParsersym {
 	public static final int EXPONENT = 152;
 
 	/** The Constant LT. */
-	public static final int LT = 52;
+	public static final int LT = 51;
 
 	/** The Constant STAR. */
-	public static final int STAR = 85;
+	public static final int STAR = 86;
 
 	/** The Constant WHILE. */
-	public static final int WHILE = 57;
+	public static final int WHILE = 59;
 
 	/** The Constant FLOATNUM. */
 	public static final int FLOATNUM = 106;
@@ -49,28 +49,28 @@ public interface HaxeParsersym {
 	public static final int OCTAL_ESC = 156;
 
 	/** The Constant CASE. */
-	public static final int CASE = 67;
+	public static final int CASE = 69;
 
 	/** The Constant CHAR. */
 	public static final int CHAR = 118;
 
 	/** The Constant NEW. */
-	public static final int NEW = 92;
+	public static final int NEW = 54;
 
 	/** The Constant EXTERN. */
 	public static final int EXTERN = 96;
 
 	/** The Constant DO. */
-	public static final int DO = 58;
+	public static final int DO = 60;
 
 	/** The Constant EOF. */
 	public static final int EOF = -1;
 
 	/** The Constant GTGT. */
-	public static final int GTGT = 81;
+	public static final int GTGT = 53;
 
 	/** The Constant BREAK. */
-	public static final int BREAK = 65;
+	public static final int BREAK = 67;
 
 	/** The Constant LBRACKET. */
 	public static final int LBRACKET = 37;
@@ -85,16 +85,16 @@ public interface HaxeParsersym {
 	public static final int IMPORT = 19;
 
 	/** The Constant SUBSUB. */
-	public static final int SUBSUB = 88;
+	public static final int SUBSUB = 89;
 
 	/** The Constant STAREQ. */
 	public static final int STAREQ = 135;
 
 	/** The Constant CARET. */
-	public static final int CARET = 79;
+	public static final int CARET = 81;
 
 	/** The Constant RETURN. */
-	public static final int RETURN = 63;
+	public static final int RETURN = 65;
 
 	/** The Constant THIS. */
 	public static final int THIS = 131;
@@ -106,7 +106,7 @@ public interface HaxeParsersym {
 	public static final int MONKEYS_AT = 144;
 
 	/** The Constant BARBAR. */
-	public static final int BARBAR = 71;
+	public static final int BARBAR = 73;
 
 	/** The Constant VAR. */
 	public static final int VAR = 95;
@@ -124,7 +124,7 @@ public interface HaxeParsersym {
 	public static final int GOTO = 123;
 
 	/** The Constant AMPAMP. */
-	public static final int AMPAMP = 72;
+	public static final int AMPAMP = 74;
 
 	/** The Constant COMMENT. */
 	public static final int COMMENT = 153;
@@ -139,7 +139,7 @@ public interface HaxeParsersym {
 	public static final int LTLTEQ = 148;
 
 	/** The Constant EQEQ. */
-	public static final int EQEQ = 73;
+	public static final int EQEQ = 75;
 
 	/** The Constant HexPrefix. */
 	public static final int HexPrefix = 112;
@@ -151,7 +151,7 @@ public interface HaxeParsersym {
 	public static final int PERCENTDBBQ = 140;
 
 	/** The Constant RBRACE. */
-	public static final int RBRACE = 62;
+	public static final int RBRACE = 64;
 
 	/** The Constant STATIC. */
 	public static final int STATIC = 22;
@@ -163,10 +163,10 @@ public interface HaxeParsersym {
 	public static final int BLOCK_SCOPE = 7;
 
 	/** The Constant SWITCH. */
-	public static final int SWITCH = 60;
+	public static final int SWITCH = 62;
 
 	/** The Constant NULL. */
-	public static final int NULL = 91;
+	public static final int NULL = 92;
 
 	/** The Constant GTGTEQ. */
 	public static final int GTGTEQ = 149;
@@ -175,13 +175,13 @@ public interface HaxeParsersym {
 	public static final int STRICTFP = 129;
 
 	/** The Constant ELSE. */
-	public static final int ELSE = 54;
+	public static final int ELSE = 56;
 
 	/** The Constant NATIVE. */
 	public static final int NATIVE = 126;
 
 	/** The Constant ELLIPSIS. */
-	public static final int ELLIPSIS = 70;
+	public static final int ELLIPSIS = 72;
 
 	/** The Constant THROWS. */
 	public static final int THROWS = 132;
@@ -199,7 +199,7 @@ public interface HaxeParsersym {
 	public static final int PERCENTBB = 146;
 
 	/** The Constant TRY. */
-	public static final int TRY = 59;
+	public static final int TRY = 61;
 
 	/** The Constant LongSuffix. */
 	public static final int LongSuffix = 111;
@@ -226,13 +226,13 @@ public interface HaxeParsersym {
 	public static final int CHARLITERAL = 105;
 
 	/** The Constant GT. */
-	public static final int GT = 51;
+	public static final int GT = 52;
 
 	/** The Constant INLINE. */
 	public static final int INLINE = 23;
 
 	/** The Constant CATCH. */
-	public static final int CATCH = 69;
+	public static final int CATCH = 71;
 
 	/** The Constant FALSE. */
 	public static final int FALSE = 108;
@@ -241,7 +241,7 @@ public interface HaxeParsersym {
 	public static final int EscapeSequence = 115;
 
 	/** The Constant THROW. */
-	public static final int THROW = 64;
+	public static final int THROW = 66;
 
 	/** The Constant DYNAMIC. */
 	public static final int DYNAMIC = 24;
@@ -265,34 +265,34 @@ public interface HaxeParsersym {
 	public static final int IntegerNumber = 110;
 
 	/** The Constant AMP. */
-	public static final int AMP = 78;
+	public static final int AMP = 80;
 
 	/** The Constant PLUSPLUS. */
-	public static final int PLUSPLUS = 89;
+	public static final int PLUSPLUS = 90;
 
 	/** The Constant LBRACE. */
-	public static final int LBRACE = 61;
+	public static final int LBRACE = 63;
 
 	/** The Constant TYPE_PARAM_OPT. */
 	public static final int TYPE_PARAM_OPT = 10;
 
 	/** The Constant LTEQ. */
-	public static final int LTEQ = 76;
+	public static final int LTEQ = 78;
 
 	/** The Constant SUBEQ. */
 	public static final int SUBEQ = 30;
 
 	/** The Constant GTGTGT. */
-	public static final int GTGTGT = 82;
+	public static final int GTGTGT = 83;
 
 	/** The Constant FOR. */
-	public static final int FOR = 55;
+	public static final int FOR = 57;
 
 	/** The Constant Exponent. */
 	public static final int Exponent = 114;
 
 	/** The Constant SUB. */
-	public static final int SUB = 84;
+	public static final int SUB = 85;
 
 	/** The Constant SUFFIX_EXPR. */
 	public static final int SUFFIX_EXPR = 6;
@@ -319,13 +319,13 @@ public interface HaxeParsersym {
 	public static final int LPAREN = 35;
 
 	/** The Constant IF. */
-	public static final int IF = 53;
+	public static final int IF = 55;
 
 	/** The Constant INTNUM. */
 	public static final int INTNUM = 151;
 
 	/** The Constant SLASH. */
-	public static final int SLASH = 86;
+	public static final int SLASH = 87;
 
 	/** The Constant BOOLEAN. */
 	public static final int BOOLEAN = 50;
@@ -337,7 +337,7 @@ public interface HaxeParsersym {
 	public static final int ESC_SEQ = 157;
 
 	/** The Constant IN. */
-	public static final int IN = 56;
+	public static final int IN = 58;
 
 	/** The Constant IMPLEMENTS. */
 	public static final int IMPLEMENTS = 100;
@@ -346,7 +346,7 @@ public interface HaxeParsersym {
 	public static final int GTGTGTEQ = 150;
 
 	/** The Constant CONTINUE. */
-	public static final int CONTINUE = 66;
+	public static final int CONTINUE = 68;
 
 	/** The Constant COMMA. */
 	public static final int COMMA = 26;
@@ -361,13 +361,13 @@ public interface HaxeParsersym {
 	public static final int TRANSIENT = 133;
 
 	/** The Constant TILDE. */
-	public static final int TILDE = 90;
+	public static final int TILDE = 91;
 
 	/** The Constant BANGEQ. */
-	public static final int BANGEQ = 74;
+	public static final int BANGEQ = 76;
 
 	/** The Constant PLUS. */
-	public static final int PLUS = 83;
+	public static final int PLUS = 84;
 
 	/** The Constant RBRACKET. */
 	public static final int RBRACKET = 38;
@@ -376,13 +376,13 @@ public interface HaxeParsersym {
 	public static final int DOT = 18;
 
 	/** The Constant LTLT. */
-	public static final int LTLT = 80;
+	public static final int LTLT = 82;
 
 	/** The Constant BYTE. */
 	public static final int BYTE = 117;
 
 	/** The Constant PERCENT. */
-	public static final int PERCENT = 87;
+	public static final int PERCENT = 88;
 
 	/** The Constant VOLATILE. */
 	public static final int VOLATILE = 134;
@@ -400,7 +400,7 @@ public interface HaxeParsersym {
 	public static final int UNICODE_ESC = 155;
 
 	/** The Constant DEFAULT. */
-	public static final int DEFAULT = 68;
+	public static final int DEFAULT = 70;
 
 	/** The Constant EQEQEQ. */
 	public static final int EQEQEQ = 141;
@@ -418,7 +418,7 @@ public interface HaxeParsersym {
 	public static final int INSTANCEOF = 124;
 
 	/** The Constant GTEQ. */
-	public static final int GTEQ = 75;
+	public static final int GTEQ = 77;
 
 	/** The Constant PP_ERROR. */
 	public static final int PP_ERROR = 44;
@@ -481,7 +481,7 @@ public interface HaxeParsersym {
 	public static final int TYPE_TAG = 9;
 
 	/** The Constant BAR. */
-	public static final int BAR = 77;
+	public static final int BAR = 79;
 
 	/** The Constant TK_ERROR_TOKEN. */
 	public final static int

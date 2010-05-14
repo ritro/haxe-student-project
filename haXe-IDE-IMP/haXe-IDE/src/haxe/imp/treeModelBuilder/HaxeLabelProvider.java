@@ -120,11 +120,11 @@ public class HaxeLabelProvider implements ILabelProvider {
 	}
 
 	/**
-	 * Gets the label for.
+	 * Generating label for outline tree in correspond to passed node.
 	 * 
 	 * @param n
-	 *            the n
-	 * @return the label for
+	 *            passed node
+	 * @return the label for node in outline tree
 	 */
 	public static String getLabelFor(ExtendedCommonTree n) {
 		// START_HERE
@@ -143,8 +143,6 @@ public class HaxeLabelProvider implements ILabelProvider {
 		} else if (n instanceof AssignOperationNode) {
 			AssignOperationNode stmt = (AssignOperationNode) n;
 			return stmt.getText() + "=";
-			// getidentifier().toString() + "="
-			// + stmt.getexpression().toString();
 		} else if (n instanceof ClassNode) {
 			return "Class " + ((ClassNode) n).getClassName();
 		} else if (n instanceof FunctionNode) {

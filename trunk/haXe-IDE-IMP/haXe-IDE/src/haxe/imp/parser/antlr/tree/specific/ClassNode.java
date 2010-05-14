@@ -1,13 +1,13 @@
 /*******************************************************************************
-* Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
-* All rights reserved. This program and the accompanying materials
-* are made available under the terms of the GNU General Public License, version 2
-* which accompanies this distribution, and is available at
-* http://www.gnu.org/licenses/gpl-2.0.html
-*
-* Contributors:
-*    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
-*******************************************************************************/
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -25,87 +25,106 @@ import org.antlr.runtime.Token;
  */
 public class ClassNode extends ExtendedCommonTree {
 
-    /**
+	/** The class name. */
+	private String className = "";
+
+	/**
+	 * Gets the class name.
+	 * 
+	 * @return the class name
+	 */
+	public String getClassName() {
+		if (className.equals("")) {
+			className = this.getChild(0).getText();
+		}
+		return className;
+	}
+
+	/**
 	 * Instantiates a new class node.
 	 */
-    public ClassNode() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public ClassNode() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
+	/**
 	 * Instantiates a new class node.
 	 * 
 	 * @param node
 	 *            the node
 	 */
-    public ClassNode(ExtendedCommonTree node) {
-        super(node);
-        // TODO Auto-generated constructor stub
-    }
+	public ClassNode(ExtendedCommonTree node) {
+		super(node);
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
+	/**
 	 * Instantiates a new class node.
 	 * 
 	 * @param t
 	 *            the t
 	 */
-    public ClassNode(Token t) {
-        super(t);
-        // TODO Auto-generated constructor stub
-    }
+	public ClassNode(Token t) {
+		super(t);
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
+	/**
 	 * Gets the block scope.
 	 * 
 	 * @return the block scope
 	 */
-    public BlockScopeNode getBlockScope() {
-        for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this.getChildren()) {
-            if (tree instanceof BlockScopeNode) {
-                return (BlockScopeNode) tree;
-            }
-        }
-        return null;
-    }
+	public BlockScopeNode getBlockScope() {
+		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
+				.getChildren()) {
+			if (tree instanceof BlockScopeNode) {
+				return (BlockScopeNode) tree;
+			}
+		}
+		return null;
+	}
 
-    /**
+	/**
 	 * Gets the all declared vars.
 	 * 
 	 * @return the all declared vars
 	 */
-    public ArrayList<VarUsage> getAllDeclaredVars() {
-        ArrayList<VarUsage> list = new ArrayList<VarUsage>();
-        BlockScopeNode blockScopeNode = this.getBlockScope();
-        if (blockScopeNode != null) {
-            for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) blockScopeNode
-                    .getChildren()) {
-                if (tree instanceof VarDeclaration) {
-                    VarDeclaration declarationTree = (VarDeclaration) tree;
-                    declarationTree.getVarNameNode().setVarType(
-                            declarationTree.getVarType());
-                    VarUsage varUsage = declarationTree.getVarNameNode().getClone();
-                    list.add(varUsage);
-                } else if (tree instanceof FunctionNode) {
-                    FunctionNode functionTree = (FunctionNode) tree;
-                    VarUsage usage = new VarUsage(((ExtendedCommonTree) functionTree
-                            .getChild(0)).getToken());
-                    usage.setVarType(functionTree.getFunctionReturnType());
-                    list.add(usage);
-                } else if (tree instanceof ClassNode) {
-                    ClassNode classTree = (ClassNode) tree;
-                    VarUsage usage = new VarUsage(classTree.getChild(0).getToken());
-                    /**
-                     * FIXME нужно создавать тип, используя всю информацию о
-                     * классе
-                     */
-                    usage.setVarType(new HaxeType(classTree.getChild(0).getToken()
-                            .getText()));
-                    list.add(usage);
-                }
-            }
-        }
-        return list;
-    }
+	public ArrayList<VarUsage> getAllDeclaredVars() {
+		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
+		BlockScopeNode blockScopeNode = this.getBlockScope();
+		if (blockScopeNode != null) {
+			for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) blockScopeNode
+					.getChildren()) {
+				if (tree instanceof VarDeclaration) {
+					VarDeclaration declarationTree = (VarDeclaration) tree;
+					declarationTree.getVarNameNode().setVarType(
+							declarationTree.getVarType());
+					VarUsage varUsage = declarationTree.getVarNameNode()
+							.getClone();
+					list.add(varUsage);
+				} else if (tree instanceof FunctionNode) {
+					FunctionNode functionTree = (FunctionNode) tree;
+					VarUsage usage = new VarUsage(
+							((ExtendedCommonTree) functionTree.getChild(0))
+									.getToken());
+					usage.setVarType(functionTree.getFunctionReturnType());
+					list.add(usage);
+				} else if (tree instanceof ClassNode) {
+					ClassNode classTree = (ClassNode) tree;
+					VarUsage usage = new VarUsage(classTree.getChild(0)
+							.getToken());
+					/**
+					 * FIXME нужно создавать тип, используя всю информацию о
+					 * классе
+					 */
+					usage.setVarType(new HaxeType(classTree.getChild(0)
+							.getToken().getText()));
+					list.add(usage);
+				}
+			}
+		}
+		return list;
+	}
 
 }

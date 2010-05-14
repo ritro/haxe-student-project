@@ -130,6 +130,14 @@ public class HaxeLabelProvider implements ILabelProvider {
 		// START_HERE
 		if (n.token.getType() == TinyHaxeTry1Lexer.MODULE) {
 			return "Module";
+		} else if (n.token.getType() == TinyHaxeTry1Lexer.ENUM) {
+			String enumReturn = "Enum ";
+			if (n.getChildCount() > 0) {
+				if (!(n.getChild(0) instanceof VarDeclaration)) {
+					enumReturn += n.getChild(0).getText();
+				}
+			}
+			return enumReturn;
 		} else if (n instanceof BlockScopeNode) {
 			return "Block";
 		} else if (n instanceof AssignOperationNode) {

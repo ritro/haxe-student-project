@@ -973,4 +973,32 @@ public class ExtendedCommonTree extends CommonTree {
 				+ +token.getStopIndex();
 	}
 
+	/**
+	 * Prints full tree into console
+	 */
+	public void printTree() {
+		printTree(this, 0);
+	}
+
+	/**
+	 * Prints the tree.
+	 * 
+	 * @param t
+	 *            the t
+	 * @param indent
+	 *            the indent
+	 */
+	private void printTree(ExtendedCommonTree t, int indent) {
+		if (t != null) {
+			StringBuffer sb = new StringBuffer(indent);
+			for (int i = 0; i < indent; i++)
+				sb = sb.append("   ");
+			for (int i = 0; i < t.getChildCount(); i++) {
+				System.out.println(sb.toString() + t.getChild(i).toString()
+						+ t.getChild(i).getText());
+				printTree(t.getChild(i), indent + 1);
+			}
+		}
+	}
+
 }

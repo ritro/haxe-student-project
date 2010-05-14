@@ -145,8 +145,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 			return hdr.getFullNameWithParameters();
 		} else if (n instanceof VarDeclaration) {
 			VarDeclaration varDeclaration = (VarDeclaration) n;
-			return varDeclaration.getVarNameNode().getText() + " : "
-					+ varDeclaration.getVarType().getTypeName();
+			return varDeclaration.getNameWithType();
 		}
 		return "<???>";
 	}

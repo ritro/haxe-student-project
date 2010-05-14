@@ -38,7 +38,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		HaxeModelVisitor visitor = new HaxeModelVisitor();
 
 		rootNode.accept(visitor);
-		System.out.println("");
+		// System.out.println("");
 	}
 
 	/**

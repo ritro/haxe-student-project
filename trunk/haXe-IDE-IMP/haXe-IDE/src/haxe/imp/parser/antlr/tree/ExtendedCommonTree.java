@@ -631,7 +631,11 @@ public class ExtendedCommonTree extends CommonTree {
 				if (pretender.getRegionForNode().surrounds(offset)) {
 					return pretender.getNodeByPosition(offset);
 				} else if (pretender.getRegionForNode().getBegin() > offset) {
-					return nodes.get(i - 1).getNodeByPosition(offset);
+					if (i == 0) {
+						return this;
+					} else {
+						return nodes.get(i - 1).getNodeByPosition(offset);
+					}
 				}
 			}
 			return pretender.getNodeByPosition(offset);

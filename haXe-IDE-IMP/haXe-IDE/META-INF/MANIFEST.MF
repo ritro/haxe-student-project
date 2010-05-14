@@ -10,7 +10,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.imp.runtime,
  lpg.runtime.java,
  org.eclipse.jface.text,
- lpg.runtime
+ lpg.runtime,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-LazyStart: true

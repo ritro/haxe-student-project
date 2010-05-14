@@ -103,12 +103,17 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case NULL:
 		case PUBLIC:
 		case PRIVATE:
+		case IN:
+		case ENUM:
+		case TRUE:
+		case FALSE:
 			return functionAttribute;
 		case CHARLITERAL:
 		case STRINGLITERAL:
 			return stringAttribute;
 		case INT:
 		case FLOAT:
+		case BOOLEAN:
 			return numberAttribute;
 		case COMMENT:
 			return commentAttribute;

@@ -15,6 +15,7 @@ import lpg.runtime.IAst;
 
 import org.antlr.runtime.CommonToken;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.model.ICompilationUnit;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
@@ -156,6 +157,8 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
 					.getToken();
 			return commonToken.getStartIndex();
+		} else if (entity instanceof ModelTreeNode) {
+			return this.getStartOffset(((ModelTreeNode) entity).getASTNode());
 		} else {
 			throw new RuntimeException();
 		}

@@ -5,9 +5,9 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            description="haxe lang"
-            extensions="hx"
             icon="/haXe-IDE/haxeSymbol.PNG"
+            extensions="hx"
+            description="haxe lang"
             language="haxe">
       </language>
    </extension>
@@ -26,6 +26,20 @@
             class="haxe.imp.tokenColorer.HaxeTokenColorer"
             language="haxe">
       </tokenColorer>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.modelTreeBuilder">
+      <treeBuilder
+            class="haxe.imp.treeModelBuilder.HaxeTreeModelBuilder"
+            language="haxe">
+      </treeBuilder>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.labelProvider">
+      <labelProvider
+            class="haxe.imp.treeModelBuilder.HaxeLabelProvider"
+            language="haxe">
+      </labelProvider>
    </extension>
 
 </plugin>

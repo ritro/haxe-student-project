@@ -23,6 +23,7 @@ import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,6 +84,11 @@ public class ExtendedCommonTree extends CommonTree {
 	public static final int VAR_INIT_TYPE = (new ArrayList<String>(Arrays
 			.asList(TinyHaxeTry1Parser.tokenNames)))
 			.indexOf(TreeTokens.VAR_INIT.toString());
+
+	/** The Constant MODULE_TYPE. */
+	public static final int MODULE_TYPE = (new ArrayList<String>(Arrays
+			.asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.MODULE
+			.toString());
 
 	// public static final int TYPE_TAG_TYPE = (new ArrayList<String>(Arrays
 	// .asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.TYPE_TAG
@@ -206,6 +212,52 @@ public class ExtendedCommonTree extends CommonTree {
 						((ClassNode) tree).getBlockScope());
 				break;
 			}
+		}
+	}
+
+	/**
+	 * Accept.
+	 * 
+	 * @param visitor
+	 *            the visitor
+	 */
+	public void accept(HaxeModelVisitor visitor) {
+		try {
+			if (this.token.getType() == MODULE_TYPE) {
+				visitor.visit(this);
+				for (ExtendedCommonTree child : this.getChildren()) {
+					child.accept(visitor);
+				}
+				visitor.endVisit(this);
+			} else if (this instanceof FunctionNode) {
+				visitor.visit(this);
+				visitor.endVisit(this);
+			} else if (this instanceof ClassNode) {
+				visitor.visit(this);
+				for (ExtendedCommonTree child : this.getChildren()) {
+					child.accept(visitor);
+				}
+				visitor.endVisit(this);
+			} else if (this instanceof VarDeclaration) {
+				visitor.visit(this);
+				visitor.endVisit(this);
+			} else if (this instanceof BlockScopeNode) {
+				boolean isParentClass = (this.parent instanceof ClassNode);
+				if (!isParentClass) {
+					visitor.visit(this, false);
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+					visitor.endVisit(this);
+				} else {
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+				}
+			}
+		} catch (NullPointerException nullPointerException) {
+			System.out
+					.println("Exception caught from invocation of language-specific tree model builder implementation");
 		}
 	}
 

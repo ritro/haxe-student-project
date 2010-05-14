@@ -1,13 +1,4 @@
-/*******************************************************************************
-* Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
-* All rights reserved. This program and the accompanying materials
-* are made available under the terms of the GNU General Public License, version 2
-* which accompanies this distribution, and is available at
-* http://www.gnu.org/licenses/gpl-2.0.html
-*
-* Contributors:
-*    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
-*******************************************************************************/
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g 2010-05-14 19:49:15
 
 package haxe.imp.parser.antlr.main;
 
@@ -35,571 +26,200 @@ import java.util.HashMap;
 
 import org.antlr.runtime.tree.*;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class TinyHaxeTry1Parser.
- * 
- * @author Anatoly Kondratyev
- */
 public class TinyHaxeTry1Parser extends Parser {
-    
-    /** The Constant tokenNames. */
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PROPERTY_DECL", "MODULE", "SUFFIX_EXPR", "BLOCK_SCOPE", "PARAM_LIST", "TYPE_TAG", "TYPE_PARAM_OPT", "INHERIT_LIST_OPT", "DECL_ATTR_LIST", "VAR_INIT", "ASSIGN_OPERATOR", "PACKAGE", "SEMI", "IDENTIFIER", "DOT", "IMPORT", "PUBLIC", "PRIVATE", "STATIC", "INLINE", "DYNAMIC", "OVERRIDE", "COMMA", "QUES", "EQ", "PLUSEQ", "SUBEQ", "SLASHEQ", "PERCENTEQ", "AMPEQ", "FUNCTION", "LPAREN", "RPAREN", "LBRACKET", "RBRACKET", "PP_IF", "BANG", "PP_ELSEIF", "PP_ELSE", "PP_END", "PP_ERROR", "COLON", "MINUS_BIGGER", "VOID", "INT", "FLOAT", "BOOLEAN", "LT", "GT", "GTGT", "NEW", "IF", "ELSE", "FOR", "IN", "WHILE", "DO", "TRY", "SWITCH", "LBRACE", "RBRACE", "RETURN", "THROW", "BREAK", "CONTINUE", "CASE", "DEFAULT", "CATCH", "ELLIPSIS", "BARBAR", "AMPAMP", "EQEQ", "BANGEQ", "GTEQ", "LTEQ", "BAR", "AMP", "CARET", "LTLT", "GTGTGT", "PLUS", "SUB", "STAR", "SLASH", "PERCENT", "SUBSUB", "PLUSPLUS", "TILDE", "NULL", "CAST", "ENUM", "VAR", "EXTERN", "CLASS", "INTERFACE", "EXTENDS", "IMPLEMENTS", "TYPEDEF", "LONGLITERAL", "INTLITERAL", "STRINGLITERAL", "CHARLITERAL", "FLOATNUM", "TRUE", "FALSE", "WS", "IntegerNumber", "LongSuffix", "HexPrefix", "HexDigit", "Exponent", "EscapeSequence", "ABSTRACT", "BYTE", "CHAR", "CONST", "DOUBLE", "FINAL", "FINALLY", "GOTO", "INSTANCEOF", "LONG", "NATIVE", "PROTECTED", "SHORT", "STRICTFP", "SUPER", "THIS", "THROWS", "TRANSIENT", "VOLATILE", "STAREQ", "BAREQ", "CARETEQ", "PERCENTDLQ", "PERCENTDBQ", "PERCENTDBBQ", "EQEQEQ", "PERCENTLESQ", "BANGEQQ", "MONKEYS_AT", "PERCENTLL", "PERCENTBB", "PERCENTBBB", "LTLTEQ", "GTGTEQ", "GTGTGTEQ", "INTNUM", "EXPONENT", "COMMENT", "HEX_DIGIT", "UNICODE_ESC", "OCTAL_ESC", "ESC_SEQ"
     };
-    
-    /** The Constant CAST. */
     public static final int CAST=93;
-    
-    /** The Constant FUNCTION. */
     public static final int FUNCTION=34;
-    
-    /** The Constant PACKAGE. */
     public static final int PACKAGE=15;
-    
-    /** The Constant EXPONENT. */
     public static final int EXPONENT=152;
-    
-    /** The Constant LT. */
     public static final int LT=51;
-    
-    /** The Constant STAR. */
     public static final int STAR=86;
-    
-    /** The Constant WHILE. */
     public static final int WHILE=59;
-    
-    /** The Constant FLOATNUM. */
     public static final int FLOATNUM=106;
-    
-    /** The Constant CONST. */
     public static final int CONST=119;
-    
-    /** The Constant OCTAL_ESC. */
     public static final int OCTAL_ESC=156;
-    
-    /** The Constant CASE. */
     public static final int CASE=69;
-    
-    /** The Constant CHAR. */
     public static final int CHAR=118;
-    
-    /** The Constant NEW. */
     public static final int NEW=54;
-    
-    /** The Constant EXTERN. */
     public static final int EXTERN=96;
-    
-    /** The Constant DO. */
     public static final int DO=60;
-    
-    /** The Constant EOF. */
     public static final int EOF=-1;
-    
-    /** The Constant GTGT. */
     public static final int GTGT=53;
-    
-    /** The Constant BREAK. */
     public static final int BREAK=67;
-    
-    /** The Constant LBRACKET. */
     public static final int LBRACKET=37;
-    
-    /** The Constant FINAL. */
     public static final int FINAL=121;
-    
-    /** The Constant RPAREN. */
     public static final int RPAREN=36;
-    
-    /** The Constant IMPORT. */
     public static final int IMPORT=19;
-    
-    /** The Constant SUBSUB. */
     public static final int SUBSUB=89;
-    
-    /** The Constant STAREQ. */
     public static final int STAREQ=135;
-    
-    /** The Constant CARET. */
     public static final int CARET=81;
-    
-    /** The Constant THIS. */
     public static final int THIS=131;
-    
-    /** The Constant RETURN. */
     public static final int RETURN=65;
-    
-    /** The Constant DOUBLE. */
     public static final int DOUBLE=120;
-    
-    /** The Constant MONKEYS_AT. */
     public static final int MONKEYS_AT=144;
-    
-    /** The Constant BARBAR. */
     public static final int BARBAR=73;
-    
-    /** The Constant VAR. */
     public static final int VAR=95;
-    
-    /** The Constant VOID. */
     public static final int VOID=47;
-    
-    /** The Constant SUPER. */
     public static final int SUPER=130;
-    
-    /** The Constant GOTO. */
     public static final int GOTO=123;
-    
-    /** The Constant EQ. */
     public static final int EQ=28;
-    
-    /** The Constant COMMENT. */
     public static final int COMMENT=153;
-    
-    /** The Constant AMPAMP. */
     public static final int AMPAMP=74;
-    
-    /** The Constant VAR_INIT. */
     public static final int VAR_INIT=13;
-    
-    /** The Constant LTLTEQ. */
     public static final int LTLTEQ=148;
-    
-    /** The Constant QUES. */
     public static final int QUES=27;
-    
-    /** The Constant EQEQ. */
     public static final int EQEQ=75;
-    
-    /** The Constant HexPrefix. */
     public static final int HexPrefix=112;
-    
-    /** The Constant PP_IF. */
     public static final int PP_IF=39;
-    
-    /** The Constant PERCENTDBBQ. */
     public static final int PERCENTDBBQ=140;
-    
-    /** The Constant RBRACE. */
     public static final int RBRACE=64;
-    
-    /** The Constant STATIC. */
     public static final int STATIC=22;
-    
-    /** The Constant PRIVATE. */
     public static final int PRIVATE=21;
-    
-    /** The Constant BLOCK_SCOPE. */
     public static final int BLOCK_SCOPE=7;
-    
-    /** The Constant SWITCH. */
     public static final int SWITCH=62;
-    
-    /** The Constant NULL. */
     public static final int NULL=92;
-    
-    /** The Constant GTGTEQ. */
     public static final int GTGTEQ=149;
-    
-    /** The Constant STRICTFP. */
     public static final int STRICTFP=129;
-    
-    /** The Constant ELSE. */
     public static final int ELSE=56;
-    
-    /** The Constant NATIVE. */
     public static final int NATIVE=126;
-    
-    /** The Constant ELLIPSIS. */
     public static final int ELLIPSIS=72;
-    
-    /** The Constant THROWS. */
     public static final int THROWS=132;
-    
-    /** The Constant INT. */
     public static final int INT=48;
-    
-    /** The Constant SLASHEQ. */
     public static final int SLASHEQ=31;
-    
-    /** The Constant INTLITERAL. */
     public static final int INTLITERAL=103;
-    
-    /** The Constant PERCENTBB. */
     public static final int PERCENTBB=146;
-    
-    /** The Constant TRY. */
     public static final int TRY=61;
-    
-    /** The Constant LongSuffix. */
     public static final int LongSuffix=111;
-    
-    /** The Constant LONGLITERAL. */
     public static final int LONGLITERAL=102;
-    
-    /** The Constant PERCENTLL. */
     public static final int PERCENTLL=145;
-    
-    /** The Constant BANGEQQ. */
     public static final int BANGEQQ=143;
-    
-    /** The Constant WS. */
     public static final int WS=109;
-    
-    /** The Constant PERCENTDLQ. */
     public static final int PERCENTDLQ=138;
-    
-    /** The Constant INHERIT_LIST_OPT. */
     public static final int INHERIT_LIST_OPT=11;
-    
-    /** The Constant CHARLITERAL. */
     public static final int CHARLITERAL=105;
-    
-    /** The Constant GT. */
     public static final int GT=52;
-    
-    /** The Constant INLINE. */
     public static final int INLINE=23;
-    
-    /** The Constant CATCH. */
     public static final int CATCH=71;
-    
-    /** The Constant FALSE. */
     public static final int FALSE=108;
-    
-    /** The Constant EscapeSequence. */
     public static final int EscapeSequence=115;
-    
-    /** The Constant THROW. */
     public static final int THROW=66;
-    
-    /** The Constant DYNAMIC. */
     public static final int DYNAMIC=24;
-    
-    /** The Constant PROTECTED. */
     public static final int PROTECTED=127;
-    
-    /** The Constant CLASS. */
     public static final int CLASS=97;
-    
-    /** The Constant PP_ELSEIF. */
     public static final int PP_ELSEIF=41;
-    
-    /** The Constant BAREQ. */
     public static final int BAREQ=136;
-    
-    /** The Constant PP_ELSE. */
     public static final int PP_ELSE=42;
-    
-    /** The Constant IntegerNumber. */
     public static final int IntegerNumber=110;
-    
-    /** The Constant AMP. */
     public static final int AMP=80;
-    
-    /** The Constant PLUSPLUS. */
     public static final int PLUSPLUS=90;
-    
-    /** The Constant LBRACE. */
     public static final int LBRACE=63;
-    
-    /** The Constant TYPE_PARAM_OPT. */
     public static final int TYPE_PARAM_OPT=10;
-    
-    /** The Constant LTEQ. */
     public static final int LTEQ=78;
-    
-    /** The Constant SUBEQ. */
     public static final int SUBEQ=30;
-    
-    /** The Constant GTGTGT. */
     public static final int GTGTGT=83;
-    
-    /** The Constant Exponent. */
     public static final int Exponent=114;
-    
-    /** The Constant FOR. */
     public static final int FOR=57;
-    
-    /** The Constant SUFFIX_EXPR. */
     public static final int SUFFIX_EXPR=6;
-    
-    /** The Constant SUB. */
     public static final int SUB=85;
-    
-    /** The Constant FLOAT. */
     public static final int FLOAT=49;
-    
-    /** The Constant ABSTRACT. */
     public static final int ABSTRACT=116;
-    
-    /** The Constant MINUS_BIGGER. */
     public static final int MINUS_BIGGER=46;
-    
-    /** The Constant PERCENTDBQ. */
     public static final int PERCENTDBQ=139;
-    
-    /** The Constant HexDigit. */
     public static final int HexDigit=113;
-    
-    /** The Constant PLUSEQ. */
     public static final int PLUSEQ=29;
-    
-    /** The Constant LPAREN. */
     public static final int LPAREN=35;
-    
-    /** The Constant IF. */
     public static final int IF=55;
-    
-    /** The Constant INTNUM. */
     public static final int INTNUM=151;
-    
-    /** The Constant ESC_SEQ. */
     public static final int ESC_SEQ=157;
-    
-    /** The Constant PP_END. */
     public static final int PP_END=43;
-    
-    /** The Constant BOOLEAN. */
     public static final int BOOLEAN=50;
-    
-    /** The Constant SLASH. */
     public static final int SLASH=87;
-    
-    /** The Constant IN. */
     public static final int IN=58;
-    
-    /** The Constant GTGTGTEQ. */
     public static final int GTGTGTEQ=150;
-    
-    /** The Constant IMPLEMENTS. */
     public static final int IMPLEMENTS=100;
-    
-    /** The Constant CONTINUE. */
     public static final int CONTINUE=68;
-    
-    /** The Constant COMMA. */
     public static final int COMMA=26;
-    
-    /** The Constant AMPEQ. */
     public static final int AMPEQ=33;
-    
-    /** The Constant TRANSIENT. */
     public static final int TRANSIENT=133;
-    
-    /** The Constant IDENTIFIER. */
     public static final int IDENTIFIER=17;
-    
-    /** The Constant TILDE. */
     public static final int TILDE=91;
-    
-    /** The Constant BANGEQ. */
     public static final int BANGEQ=76;
-    
-    /** The Constant PLUS. */
     public static final int PLUS=84;
-    
-    /** The Constant RBRACKET. */
     public static final int RBRACKET=38;
-    
-    /** The Constant DOT. */
     public static final int DOT=18;
-    
-    /** The Constant LTLT. */
     public static final int LTLT=82;
-    
-    /** The Constant BYTE. */
     public static final int BYTE=117;
-    
-    /** The Constant PERCENT. */
     public static final int PERCENT=88;
-    
-    /** The Constant VOLATILE. */
     public static final int VOLATILE=134;
-    
-    /** The Constant DECL_ATTR_LIST. */
     public static final int DECL_ATTR_LIST=12;
-    
-    /** The Constant ASSIGN_OPERATOR. */
     public static final int ASSIGN_OPERATOR=14;
-    
-    /** The Constant TYPEDEF. */
     public static final int TYPEDEF=101;
-    
-    /** The Constant UNICODE_ESC. */
     public static final int UNICODE_ESC=155;
-    
-    /** The Constant EQEQEQ. */
     public static final int EQEQEQ=141;
-    
-    /** The Constant DEFAULT. */
     public static final int DEFAULT=70;
-    
-    /** The Constant HEX_DIGIT. */
     public static final int HEX_DIGIT=154;
-    
-    /** The Constant SHORT. */
     public static final int SHORT=128;
-    
-    /** The Constant BANG. */
     public static final int BANG=40;
-    
-    /** The Constant INSTANCEOF. */
     public static final int INSTANCEOF=124;
-    
-    /** The Constant PP_ERROR. */
     public static final int PP_ERROR=44;
-    
-    /** The Constant GTEQ. */
     public static final int GTEQ=77;
-    
-    /** The Constant MODULE. */
     public static final int MODULE=5;
-    
-    /** The Constant TRUE. */
     public static final int TRUE=107;
-    
-    /** The Constant SEMI. */
     public static final int SEMI=16;
-    
-    /** The Constant COLON. */
     public static final int COLON=45;
-    
-    /** The Constant PARAM_LIST. */
     public static final int PARAM_LIST=8;
-    
-    /** The Constant PERCENTLESQ. */
     public static final int PERCENTLESQ=142;
-    
-    /** The Constant ENUM. */
     public static final int ENUM=94;
-    
-    /** The Constant FINALLY. */
     public static final int FINALLY=122;
-    
-    /** The Constant PERCENTEQ. */
     public static final int PERCENTEQ=32;
-    
-    /** The Constant PROPERTY_DECL. */
     public static final int PROPERTY_DECL=4;
-    
-    /** The Constant OVERRIDE. */
     public static final int OVERRIDE=25;
-    
-    /** The Constant STRINGLITERAL. */
     public static final int STRINGLITERAL=104;
-    
-    /** The Constant CARETEQ. */
     public static final int CARETEQ=137;
-    
-    /** The Constant PERCENTBBB. */
     public static final int PERCENTBBB=147;
-    
-    /** The Constant INTERFACE. */
     public static final int INTERFACE=98;
-    
-    /** The Constant LONG. */
     public static final int LONG=125;
-    
-    /** The Constant EXTENDS. */
     public static final int EXTENDS=99;
-    
-    /** The Constant PUBLIC. */
     public static final int PUBLIC=20;
-    
-    /** The Constant TYPE_TAG. */
     public static final int TYPE_TAG=9;
-    
-    /** The Constant BAR. */
     public static final int BAR=79;
 
     // delegates
     // delegators
 
 
-        /**
-	 * Instantiates a new tiny haxe try1 parser.
-	 * 
-	 * @param input
-	 *            the input
-	 */
-    public TinyHaxeTry1Parser(TokenStream input) {
+        public TinyHaxeTry1Parser(TokenStream input) {
             this(input, new RecognizerSharedState());
         }
-        
-        /**
-		 * Instantiates a new tiny haxe try1 parser.
-		 * 
-		 * @param input
-		 *            the input
-		 * @param state
-		 *            the state
-		 */
         public TinyHaxeTry1Parser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-            this.state.ruleMemo = new HashMap[249+1];
+            this.state.ruleMemo = new HashMap[250+1];
              
              
         }
         
-    /** The adaptor. */
     protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
-    /**
-	 * Sets the tree adaptor.
-	 * 
-	 * @param adaptor
-	 *            the new tree adaptor
-	 */
     public void setTreeAdaptor(TreeAdaptor adaptor) {
         this.adaptor = adaptor;
     }
-    
-    /**
-	 * Gets the tree adaptor.
-	 * 
-	 * @return the tree adaptor
-	 */
     public TreeAdaptor getTreeAdaptor() {
         return adaptor;
     }
 
-    /* (non-Javadoc)
-     * @see org.antlr.runtime.BaseRecognizer#getTokenNames()
-     */
     public String[] getTokenNames() { return TinyHaxeTry1Parser.tokenNames; }
-    
-    /* (non-Javadoc)
-     * @see org.antlr.runtime.BaseRecognizer#getGrammarFileName()
-     */
     public String getGrammarFileName() { return "C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g"; }
 
 
-    /**
-	 * The Class module_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class module_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "module"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:46:1: module : ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? topLevelList ) ;
-    /**
-	 * Module.
-	 * 
-	 * @return the tiny haxe try1 parser.module_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.module_return module() throws RecognitionException {
         TinyHaxeTry1Parser.module_return retval = new TinyHaxeTry1Parser.module_return();
         retval.start = input.LT(1);
@@ -705,31 +325,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "module"
 
-    /**
-	 * The Class topLevelList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class topLevelList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "topLevelList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:49:1: topLevelList : ( topLevel )* ;
-    /**
-	 * Top level list.
-	 * 
-	 * @return the tiny haxe try1 parser.top level list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.topLevelList_return topLevelList() throws RecognitionException {
         TinyHaxeTry1Parser.topLevelList_return retval = new TinyHaxeTry1Parser.topLevelList_return();
         retval.start = input.LT(1);
@@ -801,31 +403,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "topLevelList"
 
-    /**
-	 * The Class topLevel_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class topLevel_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "topLevel"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:51:1: topLevel : ( myImport | pp | topLevelDecl );
-    /**
-	 * Top level.
-	 * 
-	 * @return the tiny haxe try1 parser.top level_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.topLevel_return topLevel() throws RecognitionException {
         TinyHaxeTry1Parser.topLevel_return retval = new TinyHaxeTry1Parser.topLevel_return();
         retval.start = input.LT(1);
@@ -942,31 +526,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "topLevel"
 
-    /**
-	 * The Class myPackage_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class myPackage_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "myPackage"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:55:1: myPackage : PACKAGE dotIdent SEMI -> ^( PACKAGE dotIdent ) ;
-    /**
-	 * My package.
-	 * 
-	 * @return the tiny haxe try1 parser.my package_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.myPackage_return myPackage() throws RecognitionException {
         TinyHaxeTry1Parser.myPackage_return retval = new TinyHaxeTry1Parser.myPackage_return();
         retval.start = input.LT(1);
@@ -1052,31 +618,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "myPackage"
 
-    /**
-	 * The Class qualifiedIdentifier_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class qualifiedIdentifier_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "qualifiedIdentifier"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:58:1: qualifiedIdentifier : (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* ;
-    /**
-	 * Qualified identifier.
-	 * 
-	 * @return the tiny haxe try1 parser.qualified identifier_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.qualifiedIdentifier_return qualifiedIdentifier() throws RecognitionException {
         TinyHaxeTry1Parser.qualifiedIdentifier_return retval = new TinyHaxeTry1Parser.qualifiedIdentifier_return();
         retval.start = input.LT(1);
@@ -1152,7 +700,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: DOT, qualifiedIdentifier, ident
+            	    // elements: qualifiedIdentifier, DOT, ident
             	    // token labels: ident
             	    // rule labels: retval
             	    // token list labels: 
@@ -1212,31 +760,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "qualifiedIdentifier"
 
-    /**
-	 * The Class myImport_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class myImport_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "myImport"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:62:1: myImport : IMPORT dotIdent SEMI ;
-    /**
-	 * My import.
-	 * 
-	 * @return the tiny haxe try1 parser.my import_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.myImport_return myImport() throws RecognitionException {
         TinyHaxeTry1Parser.myImport_return retval = new TinyHaxeTry1Parser.myImport_return();
         retval.start = input.LT(1);
@@ -1294,31 +824,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "myImport"
 
-    /**
-	 * The Class access_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class access_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "access"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:66:1: access : ( PUBLIC | PRIVATE );
-    /**
-	 * Access.
-	 * 
-	 * @return the tiny haxe try1 parser.access_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.access_return access() throws RecognitionException {
         TinyHaxeTry1Parser.access_return retval = new TinyHaxeTry1Parser.access_return();
         retval.start = input.LT(1);
@@ -1372,31 +884,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "access"
 
-    /**
-	 * The Class declAttr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class declAttr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "declAttr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:69:1: declAttr : ( STATIC | INLINE | DYNAMIC | OVERRIDE | access );
-    /**
-	 * Decl attr.
-	 * 
-	 * @return the tiny haxe try1 parser.decl attr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.declAttr_return declAttr() throws RecognitionException {
         TinyHaxeTry1Parser.declAttr_return retval = new TinyHaxeTry1Parser.declAttr_return();
         retval.start = input.LT(1);
@@ -1544,31 +1038,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "declAttr"
 
-    /**
-	 * The Class declAttrList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class declAttrList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "declAttrList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:75:1: declAttrList : ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\",true] ( declAttr )+ ) ;
-    /**
-	 * Decl attr list.
-	 * 
-	 * @return the tiny haxe try1 parser.decl attr list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.declAttrList_return declAttrList() throws RecognitionException {
         TinyHaxeTry1Parser.declAttrList_return retval = new TinyHaxeTry1Parser.declAttrList_return();
         retval.start = input.LT(1);
@@ -1679,31 +1155,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "declAttrList"
 
-    /**
-	 * The Class paramList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class paramList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "paramList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:78:1: paramList : ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\",true] ( param )+ ) | );
-    /**
-	 * Param list.
-	 * 
-	 * @return the tiny haxe try1 parser.param list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.paramList_return paramList() throws RecognitionException {
         TinyHaxeTry1Parser.paramList_return retval = new TinyHaxeTry1Parser.paramList_return();
         retval.start = input.LT(1);
@@ -1849,31 +1307,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "paramList"
 
-    /**
-	 * The Class param_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class param_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "param"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:1: param : ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER,true] IDENTIFIER ( typeTagOpt )? ( varInit )? ( QUES )? ) ;
-    /**
-	 * Param.
-	 * 
-	 * @return the tiny haxe try1 parser.param_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.param_return param() throws RecognitionException {
         TinyHaxeTry1Parser.param_return retval = new TinyHaxeTry1Parser.param_return();
         retval.start = input.LT(1);
@@ -1936,7 +1376,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: QUES, typeTagOpt, IDENTIFIER, varInit
+            // elements: typeTagOpt, varInit, IDENTIFIER, QUES
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2003,31 +1443,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "param"
 
-    /**
-	 * The Class id_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class id_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "id"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:84:1: id : IDENTIFIER ;
-    /**
-	 * Id.
-	 * 
-	 * @return the tiny haxe try1 parser.id_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.id_return id() throws RecognitionException {
         TinyHaxeTry1Parser.id_return retval = new TinyHaxeTry1Parser.id_return();
         retval.start = input.LT(1);
@@ -2074,31 +1496,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "id"
 
-    /**
-	 * The Class dotIdent_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class dotIdent_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "dotIdent"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:87:1: dotIdent : ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )* ;
-    /**
-	 * Dot ident.
-	 * 
-	 * @return the tiny haxe try1 parser.dot ident_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.dotIdent_return dotIdent() throws RecognitionException {
         TinyHaxeTry1Parser.dotIdent_return retval = new TinyHaxeTry1Parser.dotIdent_return();
         retval.start = input.LT(1);
@@ -2178,7 +1582,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: ident, DOT, dotIdent
+            	    // elements: dotIdent, DOT, ident
             	    // token labels: 
             	    // rule labels: retval, ident
             	    // token list labels: 
@@ -2238,31 +1642,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "dotIdent"
 
-    /**
-	 * The Class assignOp_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class assignOp_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "assignOp"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:110:1: assignOp : ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] );
-    /**
-	 * Assign op.
-	 * 
-	 * @return the tiny haxe try1 parser.assign op_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.assignOp_return assignOp() throws RecognitionException {
         TinyHaxeTry1Parser.assignOp_return retval = new TinyHaxeTry1Parser.assignOp_return();
         retval.start = input.LT(1);
@@ -2530,31 +1916,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "assignOp"
 
-    /**
-	 * The Class funcLit_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class funcLit_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "funcLit"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:125:1: funcLit : FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block -> ^( FUNCTION paramList ( typeTagOpt )? block ) ;
-    /**
-	 * Func lit.
-	 * 
-	 * @return the tiny haxe try1 parser.func lit_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.funcLit_return funcLit() throws RecognitionException {
         TinyHaxeTry1Parser.funcLit_return retval = new TinyHaxeTry1Parser.funcLit_return();
         retval.start = input.LT(1);
@@ -2653,7 +2021,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, paramList, FUNCTION, typeTagOpt
+            // elements: paramList, typeTagOpt, block, FUNCTION
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2709,31 +2077,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "funcLit"
 
-    /**
-	 * The Class arrayLit_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class arrayLit_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "arrayLit"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:127:1: arrayLit : LBRACKET exprListOpt RBRACKET ;
-    /**
-	 * Array lit.
-	 * 
-	 * @return the tiny haxe try1 parser.array lit_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.arrayLit_return arrayLit() throws RecognitionException {
         TinyHaxeTry1Parser.arrayLit_return retval = new TinyHaxeTry1Parser.arrayLit_return();
         retval.start = input.LT(1);
@@ -2787,31 +2137,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "arrayLit"
 
-    /**
-	 * The Class pp_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class pp_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "pp"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:134:1: pp : ( ppIf | ppElseIf | ppElse | ppEnd | ppError );
-    /**
-	 * Pp.
-	 * 
-	 * @return the tiny haxe try1 parser.pp_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.pp_return pp() throws RecognitionException {
         TinyHaxeTry1Parser.pp_return retval = new TinyHaxeTry1Parser.pp_return();
         retval.start = input.LT(1);
@@ -2962,31 +2294,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "pp"
 
-    /**
-	 * The Class ppIf_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class ppIf_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "ppIf"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:140:1: ppIf : ( PP_IF IDENTIFIER | PP_IF BANG IDENTIFIER );
-    /**
-	 * Pp if.
-	 * 
-	 * @return the tiny haxe try1 parser.pp if_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.ppIf_return ppIf() throws RecognitionException {
         TinyHaxeTry1Parser.ppIf_return retval = new TinyHaxeTry1Parser.ppIf_return();
         retval.start = input.LT(1);
@@ -3100,31 +2414,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "ppIf"
 
-    /**
-	 * The Class ppElseIf_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class ppElseIf_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "ppElseIf"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:143:1: ppElseIf : ( PP_ELSEIF IDENTIFIER | PP_ELSEIF BANG IDENTIFIER );
-    /**
-	 * Pp else if.
-	 * 
-	 * @return the tiny haxe try1 parser.pp else if_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.ppElseIf_return ppElseIf() throws RecognitionException {
         TinyHaxeTry1Parser.ppElseIf_return retval = new TinyHaxeTry1Parser.ppElseIf_return();
         retval.start = input.LT(1);
@@ -3238,31 +2534,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "ppElseIf"
 
-    /**
-	 * The Class ppElse_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class ppElse_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "ppElse"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:146:1: ppElse : PP_ELSE ;
-    /**
-	 * Pp else.
-	 * 
-	 * @return the tiny haxe try1 parser.pp else_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.ppElse_return ppElse() throws RecognitionException {
         TinyHaxeTry1Parser.ppElse_return retval = new TinyHaxeTry1Parser.ppElse_return();
         retval.start = input.LT(1);
@@ -3309,31 +2587,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "ppElse"
 
-    /**
-	 * The Class ppEnd_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class ppEnd_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "ppEnd"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:148:1: ppEnd : PP_END ;
-    /**
-	 * Pp end.
-	 * 
-	 * @return the tiny haxe try1 parser.pp end_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.ppEnd_return ppEnd() throws RecognitionException {
         TinyHaxeTry1Parser.ppEnd_return retval = new TinyHaxeTry1Parser.ppEnd_return();
         retval.start = input.LT(1);
@@ -3380,31 +2640,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "ppEnd"
 
-    /**
-	 * The Class ppError_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class ppError_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "ppError"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:1: ppError : PP_ERROR ;
-    /**
-	 * Pp error.
-	 * 
-	 * @return the tiny haxe try1 parser.pp error_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.ppError_return ppError() throws RecognitionException {
         TinyHaxeTry1Parser.ppError_return retval = new TinyHaxeTry1Parser.ppError_return();
         retval.start = input.LT(1);
@@ -3451,31 +2693,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "ppError"
 
-    /**
-	 * The Class typeTag_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeTag_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeTag"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:155:1: typeTag : COLON funcType ;
-    /**
-	 * Type tag.
-	 * 
-	 * @return the tiny haxe try1 parser.type tag_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.typeTag_return typeTag() throws RecognitionException {
         TinyHaxeTry1Parser.typeTag_return retval = new TinyHaxeTry1Parser.typeTag_return();
         retval.start = input.LT(1);
@@ -3526,31 +2750,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeTag"
 
-    /**
-	 * The Class typeTagOpt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeTagOpt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeTagOpt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:158:1: typeTagOpt : ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] typeTag ) | );
-    /**
-	 * Type tag opt.
-	 * 
-	 * @return the tiny haxe try1 parser.type tag opt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.typeTagOpt_return typeTagOpt() throws RecognitionException {
         TinyHaxeTry1Parser.typeTagOpt_return retval = new TinyHaxeTry1Parser.typeTagOpt_return();
         retval.start = input.LT(1);
@@ -3651,31 +2857,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeTagOpt"
 
-    /**
-	 * The Class typeList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:163:1: typeList : ( funcType ( COMMA funcType )* | typeConstraint ( COMMA typeConstraint )* );
-    /**
-	 * Type list.
-	 * 
-	 * @return the tiny haxe try1 parser.type list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.typeList_return typeList() throws RecognitionException {
         TinyHaxeTry1Parser.typeList_return retval = new TinyHaxeTry1Parser.typeList_return();
         retval.start = input.LT(1);
@@ -3815,31 +3003,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeList"
 
-    /**
-	 * The Class funcType_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class funcType_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "funcType"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:167:1: funcType : ( ( type ) ( MINUS_BIGGER type )* | VOID );
-    /**
-	 * Func type.
-	 * 
-	 * @return the tiny haxe try1 parser.func type_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.funcType_return funcType() throws RecognitionException {
         TinyHaxeTry1Parser.funcType_return retval = new TinyHaxeTry1Parser.funcType_return();
         retval.start = input.LT(1);
@@ -3983,31 +3153,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "funcType"
 
-    /**
-	 * The Class type_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class type_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "type"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:1: type : ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* | );
-    /**
-	 * Type.
-	 * 
-	 * @return the tiny haxe try1 parser.type_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.type_return type() throws RecognitionException {
         TinyHaxeTry1Parser.type_return retval = new TinyHaxeTry1Parser.type_return();
         retval.start = input.LT(1);
@@ -4241,31 +3393,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "type"
 
-    /**
-	 * The Class typeParam_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeParam_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeParam"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:175:1: typeParam : LT ( type | typeList ) ( GT | GTGT | ) ;
-    /**
-	 * Type param.
-	 * 
-	 * @return the tiny haxe try1 parser.type param_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.typeParam_return typeParam() throws RecognitionException {
         TinyHaxeTry1Parser.typeParam_return retval = new TinyHaxeTry1Parser.typeParam_return();
         retval.start = input.LT(1);
@@ -4472,31 +3606,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeParam"
 
-    /**
-	 * The Class typeParamOpt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeParamOpt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeParamOpt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:181:1: typeParamOpt : ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] typeParam ) | );
-    /**
-	 * Type param opt.
-	 * 
-	 * @return the tiny haxe try1 parser.type param opt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.typeParamOpt_return typeParamOpt() throws RecognitionException {
         TinyHaxeTry1Parser.typeParamOpt_return retval = new TinyHaxeTry1Parser.typeParamOpt_return();
         retval.start = input.LT(1);
@@ -4611,31 +3727,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeParamOpt"
 
-    /**
-	 * The Class typeConstraint_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeConstraint_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeConstraint"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:186:1: typeConstraint : IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint IDENTIFIER typeList ) ;
-    /**
-	 * Type constraint.
-	 * 
-	 * @return the tiny haxe try1 parser.type constraint_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.typeConstraint_return typeConstraint() throws RecognitionException {
         TinyHaxeTry1Parser.typeConstraint_return retval = new TinyHaxeTry1Parser.typeConstraint_return();
         retval.start = input.LT(1);
@@ -4684,7 +3782,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, typeList, typeConstraint
+            // elements: typeConstraint, typeList, IDENTIFIER
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4734,31 +3832,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeConstraint"
 
-    /**
-	 * The Class functionReturn_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class functionReturn_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "functionReturn"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:190:1: functionReturn : ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? block ) ;
-    /**
-	 * Function return.
-	 * 
-	 * @return the tiny haxe try1 parser.function return_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.functionReturn_return functionReturn() throws RecognitionException {
         TinyHaxeTry1Parser.functionReturn_return retval = new TinyHaxeTry1Parser.functionReturn_return();
         retval.start = input.LT(1);
@@ -4851,7 +3931,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: FUNCTION, block, typeTagOpt, paramList, NEW, declAttrList
+            // elements: paramList, typeTagOpt, NEW, block, FUNCTION, declAttrList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4919,31 +3999,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "functionReturn"
 
-    /**
-	 * The Class statement_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class statement_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "statement"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:194:1: statement : ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) statement ) | WHILE parExpression statement -> ^( WHILE parExpression statement ) | DO statement WHILE parExpression SEMI -> ^( DO parExpression statement ) | TRY block catchStmtList -> ^( TRY block catchStmtList ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH expr ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW expr ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON IDENTIFIER statement ) | SEMI );
-    /**
-	 * Statement.
-	 * 
-	 * @return the tiny haxe try1 parser.statement_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.statement_return statement() throws RecognitionException {
         TinyHaxeTry1Parser.statement_return retval = new TinyHaxeTry1Parser.statement_return();
         retval.start = input.LT(1);
@@ -5180,7 +4242,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: ELSE, st1, parExpression, IF, st2
+                    // elements: st2, ELSE, st1, IF, parExpression
                     // token labels: 
                     // rule labels: retval, st1, st2
                     // token list labels: 
@@ -5203,7 +4265,7 @@ public class TinyHaxeTry1Parser extends Parser {
                         adaptor.addChild(root_1, stream_parExpression.nextTree());
                         adaptor.addChild(root_1, stream_st1.nextTree());
                         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:198:92: ( ^( ELSE $st2) )?
-                        if ( stream_ELSE.hasNext()||stream_st2.hasNext() ) {
+                        if ( stream_st2.hasNext()||stream_ELSE.hasNext() ) {
                             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:198:92: ^( ELSE $st2)
                             {
                             Object root_2 = (Object)adaptor.nil();
@@ -5215,8 +4277,8 @@ public class TinyHaxeTry1Parser extends Parser {
                             }
 
                         }
-                        stream_ELSE.reset();
                         stream_st2.reset();
+                        stream_ELSE.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -5262,7 +4324,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: FOR, statement, exp2, exp1, IN
+                    // elements: statement, exp2, IN, FOR, exp1
                     // token labels: 
                     // rule labels: retval, exp2, exp1
                     // token list labels: 
@@ -5323,7 +4385,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, WHILE, statement
+                    // elements: statement, parExpression, WHILE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5379,7 +4441,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, parExpression, DO
+                    // elements: parExpression, statement, DO
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5429,7 +4491,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: block, TRY, catchStmtList
+                    // elements: TRY, catchStmtList, block
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5521,7 +4583,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: caseStmt, expr, SWITCH
+                    // elements: SWITCH, caseStmt, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5710,7 +4772,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: BREAK, IDENTIFIER
+                    // elements: IDENTIFIER, BREAK
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5775,7 +4837,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, CONTINUE
+                    // elements: CONTINUE, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5841,7 +4903,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: COLON, IDENTIFIER, statement
+                    // elements: IDENTIFIER, statement, COLON
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5902,31 +4964,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "statement"
 
-    /**
-	 * The Class parExpression_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class parExpression_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "parExpression"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:213:1: parExpression : LPAREN expr RPAREN ;
-    /**
-	 * Par expression.
-	 * 
-	 * @return the tiny haxe try1 parser.par expression_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.parExpression_return parExpression() throws RecognitionException {
         TinyHaxeTry1Parser.parExpression_return retval = new TinyHaxeTry1Parser.parExpression_return();
         retval.start = input.LT(1);
@@ -5980,31 +5024,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "parExpression"
 
-    /**
-	 * The Class block_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class block_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "block"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:217:1: block : ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true] ( blockStmt )* ) | SEMI );
-    /**
-	 * Block.
-	 * 
-	 * @return the tiny haxe try1 parser.block_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.block_return block() throws RecognitionException {
         TinyHaxeTry1Parser.block_return retval = new TinyHaxeTry1Parser.block_return();
         retval.start = input.LT(1);
@@ -6150,31 +5176,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "block"
 
-    /**
-	 * The Class blockStmt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class blockStmt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "blockStmt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:221:1: blockStmt : ( varDecl | classDecl | statement );
-    /**
-	 * Block stmt.
-	 * 
-	 * @return the tiny haxe try1 parser.block stmt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.blockStmt_return blockStmt() throws RecognitionException {
         TinyHaxeTry1Parser.blockStmt_return retval = new TinyHaxeTry1Parser.blockStmt_return();
         retval.start = input.LT(1);
@@ -6260,31 +5268,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "blockStmt"
 
-    /**
-	 * The Class breakStmt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class breakStmt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "breakStmt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:228:1: breakStmt : BREAK SEMI ;
-    /**
-	 * Break stmt.
-	 * 
-	 * @return the tiny haxe try1 parser.break stmt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.breakStmt_return breakStmt() throws RecognitionException {
         TinyHaxeTry1Parser.breakStmt_return retval = new TinyHaxeTry1Parser.breakStmt_return();
         retval.start = input.LT(1);
@@ -6334,31 +5324,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "breakStmt"
 
-    /**
-	 * The Class continueStmt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class continueStmt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "continueStmt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:230:1: continueStmt : CONTINUE SEMI ;
-    /**
-	 * Continue stmt.
-	 * 
-	 * @return the tiny haxe try1 parser.continue stmt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.continueStmt_return continueStmt() throws RecognitionException {
         TinyHaxeTry1Parser.continueStmt_return retval = new TinyHaxeTry1Parser.continueStmt_return();
         retval.start = input.LT(1);
@@ -6408,31 +5380,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "continueStmt"
 
-    /**
-	 * The Class caseStmt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class caseStmt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "caseStmt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:233:1: caseStmt : ( CASE exprList COLON statement -> ^( CASE exprList statement ) | DEFAULT COLON statement -> ^( DEFAULT statement ) );
-    /**
-	 * Case stmt.
-	 * 
-	 * @return the tiny haxe try1 parser.case stmt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.caseStmt_return caseStmt() throws RecognitionException {
         TinyHaxeTry1Parser.caseStmt_return retval = new TinyHaxeTry1Parser.caseStmt_return();
         retval.start = input.LT(1);
@@ -6503,7 +5457,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: exprList, CASE, statement
+                    // elements: exprList, statement, CASE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6550,7 +5504,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: DEFAULT, statement
+                    // elements: statement, DEFAULT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6601,31 +5555,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "caseStmt"
 
-    /**
-	 * The Class defaultStmt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class defaultStmt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "defaultStmt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:237:1: defaultStmt : DEFAULT COLON ;
-    /**
-	 * Default stmt.
-	 * 
-	 * @return the tiny haxe try1 parser.default stmt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.defaultStmt_return defaultStmt() throws RecognitionException {
         TinyHaxeTry1Parser.defaultStmt_return retval = new TinyHaxeTry1Parser.defaultStmt_return();
         retval.start = input.LT(1);
@@ -6675,31 +5611,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "defaultStmt"
 
-    /**
-	 * The Class catchStmtList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class catchStmtList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "catchStmtList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:239:1: catchStmtList : ( catchStmt catchStmtList | );
-    /**
-	 * Catch stmt list.
-	 * 
-	 * @return the tiny haxe try1 parser.catch stmt list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.catchStmtList_return catchStmtList() throws RecognitionException {
         TinyHaxeTry1Parser.catchStmtList_return retval = new TinyHaxeTry1Parser.catchStmtList_return();
         retval.start = input.LT(1);
@@ -6782,31 +5700,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "catchStmtList"
 
-    /**
-	 * The Class catchStmt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class catchStmt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "catchStmt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:242:1: catchStmt : CATCH LPAREN param RPAREN block -> ^( CATCH param block ) ;
-    /**
-	 * Catch stmt.
-	 * 
-	 * @return the tiny haxe try1 parser.catch stmt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.catchStmt_return catchStmt() throws RecognitionException {
         TinyHaxeTry1Parser.catchStmt_return retval = new TinyHaxeTry1Parser.catchStmt_return();
         retval.start = input.LT(1);
@@ -6908,31 +5808,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "catchStmt"
 
-    /**
-	 * The Class exprListOpt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class exprListOpt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "exprListOpt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:246:1: exprListOpt : ( exprList | );
-    /**
-	 * Expr list opt.
-	 * 
-	 * @return the tiny haxe try1 parser.expr list opt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.exprListOpt_return exprListOpt() throws RecognitionException {
         TinyHaxeTry1Parser.exprListOpt_return retval = new TinyHaxeTry1Parser.exprListOpt_return();
         retval.start = input.LT(1);
@@ -7089,31 +5971,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "exprListOpt"
 
-    /**
-	 * The Class exprList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class exprList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "exprList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:249:1: exprList : expr ( COMMA expr )* ;
-    /**
-	 * Expr list.
-	 * 
-	 * @return the tiny haxe try1 parser.expr list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.exprList_return exprList() throws RecognitionException {
         TinyHaxeTry1Parser.exprList_return retval = new TinyHaxeTry1Parser.exprList_return();
         retval.start = input.LT(1);
@@ -7196,31 +6060,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "exprList"
 
-    /**
-	 * The Class expr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class expr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "expr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:251:1: expr : assignExpr ;
-    /**
-	 * Expr.
-	 * 
-	 * @return the tiny haxe try1 parser.expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.expr_return expr() throws RecognitionException {
         TinyHaxeTry1Parser.expr_return retval = new TinyHaxeTry1Parser.expr_return();
         retval.start = input.LT(1);
@@ -7268,31 +6114,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "expr"
 
-    /**
-	 * The Class assignExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class assignExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "assignExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:253:1: assignExpr : iterExpr ( assignOp iterExpr )* ;
-    /**
-	 * Assign expr.
-	 * 
-	 * @return the tiny haxe try1 parser.assign expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.assignExpr_return assignExpr() throws RecognitionException {
         TinyHaxeTry1Parser.assignExpr_return retval = new TinyHaxeTry1Parser.assignExpr_return();
         retval.start = input.LT(1);
@@ -7380,31 +6208,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "assignExpr"
 
-    /**
-	 * The Class iterExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class iterExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "iterExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:256:1: iterExpr : ternaryExpr ( ELLIPSIS ternaryExpr )* ;
-    /**
-	 * Iter expr.
-	 * 
-	 * @return the tiny haxe try1 parser.iter expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.iterExpr_return iterExpr() throws RecognitionException {
         TinyHaxeTry1Parser.iterExpr_return retval = new TinyHaxeTry1Parser.iterExpr_return();
         retval.start = input.LT(1);
@@ -7491,31 +6301,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "iterExpr"
 
-    /**
-	 * The Class ternaryExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class ternaryExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "ternaryExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:1: ternaryExpr : logicOrExpr ( QUES expr COLON logicOrExpr )* ;
-    /**
-	 * Ternary expr.
-	 * 
-	 * @return the tiny haxe try1 parser.ternary expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.ternaryExpr_return ternaryExpr() throws RecognitionException {
         TinyHaxeTry1Parser.ternaryExpr_return retval = new TinyHaxeTry1Parser.ternaryExpr_return();
         retval.start = input.LT(1);
@@ -7613,31 +6405,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "ternaryExpr"
 
-    /**
-	 * The Class logicOrExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class logicOrExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "logicOrExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:261:1: logicOrExpr : ( logicAndExpr ) ( BARBAR logicAndExpr )* ;
-    /**
-	 * Logic or expr.
-	 * 
-	 * @return the tiny haxe try1 parser.logic or expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.logicOrExpr_return logicOrExpr() throws RecognitionException {
         TinyHaxeTry1Parser.logicOrExpr_return retval = new TinyHaxeTry1Parser.logicOrExpr_return();
         retval.start = input.LT(1);
@@ -7730,31 +6504,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "logicOrExpr"
 
-    /**
-	 * The Class logicAndExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class logicAndExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "logicAndExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:263:1: logicAndExpr : ( cmpExpr ) ( AMPAMP cmpExpr )* ;
-    /**
-	 * Logic and expr.
-	 * 
-	 * @return the tiny haxe try1 parser.logic and expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.logicAndExpr_return logicAndExpr() throws RecognitionException {
         TinyHaxeTry1Parser.logicAndExpr_return retval = new TinyHaxeTry1Parser.logicAndExpr_return();
         retval.start = input.LT(1);
@@ -7847,31 +6603,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "logicAndExpr"
 
-    /**
-	 * The Class cmpExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class cmpExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "cmpExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:265:1: cmpExpr : ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )* ;
-    /**
-	 * Cmp expr.
-	 * 
-	 * @return the tiny haxe try1 parser.cmp expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.cmpExpr_return cmpExpr() throws RecognitionException {
         TinyHaxeTry1Parser.cmpExpr_return retval = new TinyHaxeTry1Parser.cmpExpr_return();
         retval.start = input.LT(1);
@@ -8080,31 +6818,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "cmpExpr"
 
-    /**
-	 * The Class bitExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class bitExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "bitExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:267:1: bitExpr : ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )* ;
-    /**
-	 * Bit expr.
-	 * 
-	 * @return the tiny haxe try1 parser.bit expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.bitExpr_return bitExpr() throws RecognitionException {
         TinyHaxeTry1Parser.bitExpr_return retval = new TinyHaxeTry1Parser.bitExpr_return();
         retval.start = input.LT(1);
@@ -8251,31 +6971,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "bitExpr"
 
-    /**
-	 * The Class shiftExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class shiftExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "shiftExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:270:1: shiftExpr : ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* ;
-    /**
-	 * Shift expr.
-	 * 
-	 * @return the tiny haxe try1 parser.shift expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.shiftExpr_return shiftExpr() throws RecognitionException {
         TinyHaxeTry1Parser.shiftExpr_return retval = new TinyHaxeTry1Parser.shiftExpr_return();
         retval.start = input.LT(1);
@@ -8447,31 +7149,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "shiftExpr"
 
-    /**
-	 * The Class addExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class addExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "addExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:273:1: addExpr : ( multExpr ) ( ( PLUS | SUB ) multExpr )* ;
-    /**
-	 * Adds the expr.
-	 * 
-	 * @return the tiny haxe try1 parser.add expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.addExpr_return addExpr() throws RecognitionException {
         TinyHaxeTry1Parser.addExpr_return retval = new TinyHaxeTry1Parser.addExpr_return();
         retval.start = input.LT(1);
@@ -8604,31 +7288,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "addExpr"
 
-    /**
-	 * The Class multExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class multExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "multExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:275:1: multExpr : ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )* ;
-    /**
-	 * Mult expr.
-	 * 
-	 * @return the tiny haxe try1 parser.mult expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.multExpr_return multExpr() throws RecognitionException {
         TinyHaxeTry1Parser.multExpr_return retval = new TinyHaxeTry1Parser.multExpr_return();
         retval.start = input.LT(1);
@@ -8783,31 +7449,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "multExpr"
 
-    /**
-	 * The Class prefixExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class prefixExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "prefixExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:277:1: prefixExpr : ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr );
-    /**
-	 * Prefix expr.
-	 * 
-	 * @return the tiny haxe try1 parser.prefix expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.prefixExpr_return prefixExpr() throws RecognitionException {
         TinyHaxeTry1Parser.prefixExpr_return retval = new TinyHaxeTry1Parser.prefixExpr_return();
         retval.start = input.LT(1);
@@ -9054,31 +7702,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "prefixExpr"
 
-    /**
-	 * The Class suffixExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class suffixExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "suffixExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:283:1: suffixExpr : ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] value ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] value PLUSPLUS ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] value SUBSUB ) | value typeParamOpt );
-    /**
-	 * Suffix expr.
-	 * 
-	 * @return the tiny haxe try1 parser.suffix expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.suffixExpr_return suffixExpr() throws RecognitionException {
         TinyHaxeTry1Parser.suffixExpr_return retval = new TinyHaxeTry1Parser.suffixExpr_return();
         retval.start = input.LT(1);
@@ -9345,31 +7975,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "suffixExpr"
 
-    /**
-	 * The Class value_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class value_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "value"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:291:1: value : ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent | );
-    /**
-	 * Value.
-	 * 
-	 * @return the tiny haxe try1 parser.value_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.value_return value() throws RecognitionException {
         TinyHaxeTry1Parser.value_return retval = new TinyHaxeTry1Parser.value_return();
         retval.start = input.LT(1);
@@ -9558,31 +8170,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "value"
 
-    /**
-	 * The Class newExpr_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class newExpr_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "newExpr"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:301:1: newExpr : NEW type LPAREN exprListOpt RPAREN -> ^( NEW type ( exprListOpt )? ) ;
-    /**
-	 * New expr.
-	 * 
-	 * @return the tiny haxe try1 parser.new expr_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.newExpr_return newExpr() throws RecognitionException {
         TinyHaxeTry1Parser.newExpr_return retval = new TinyHaxeTry1Parser.newExpr_return();
         retval.start = input.LT(1);
@@ -9634,7 +8228,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: exprListOpt, type, NEW
+            // elements: type, NEW, exprListOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -9689,31 +8283,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "newExpr"
 
-    /**
-	 * The Class cast_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class cast_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "cast"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:303:1: cast : ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST expr ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST expr ) );
-    /**
-	 * Cast.
-	 * 
-	 * @return the tiny haxe try1 parser.cast_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.cast_return cast() throws RecognitionException {
         TinyHaxeTry1Parser.cast_return retval = new TinyHaxeTry1Parser.cast_return();
         retval.start = input.LT(1);
@@ -9825,7 +8401,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: funcType, CAST, expr
+                    // elements: expr, CAST, funcType
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9880,7 +8456,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, CAST
+                    // elements: CAST, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9931,31 +8507,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "cast"
 
-    /**
-	 * The Class topLevelDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class topLevelDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "topLevelDecl"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:308:1: topLevelDecl : ( classDecl | interfaceDecl | enumDecl | typedefDecl );
-    /**
-	 * Top level decl.
-	 * 
-	 * @return the tiny haxe try1 parser.top level decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.topLevelDecl_return topLevelDecl() throws RecognitionException {
         TinyHaxeTry1Parser.topLevelDecl_return retval = new TinyHaxeTry1Parser.topLevelDecl_return();
         retval.start = input.LT(1);
@@ -10086,31 +8644,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "topLevelDecl"
 
-    /**
-	 * The Class enumDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class enumDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "enumDecl"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:1: enumDecl : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM IDENTIFIER typeParamOpt enumBody ) ;
-    /**
-	 * Enum decl.
-	 * 
-	 * @return the tiny haxe try1 parser.enum decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:1: enumDecl : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM IDENTIFIER ( typeParamOpt )? enumBody ) ;
     public final TinyHaxeTry1Parser.enumDecl_return enumDecl() throws RecognitionException {
         TinyHaxeTry1Parser.enumDecl_return retval = new TinyHaxeTry1Parser.enumDecl_return();
         retval.start = input.LT(1);
@@ -10138,7 +8678,7 @@ public class TinyHaxeTry1Parser extends Parser {
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:19: ( ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM IDENTIFIER typeParamOpt enumBody ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:19: ( ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM IDENTIFIER ( typeParamOpt )? enumBody ) )
             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:21: ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE
             {
             ENUM284=(Token)match(input,ENUM,FOLLOW_ENUM_in_enumDecl3094); if (state.failed) return retval; 
@@ -10168,7 +8708,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
             // AST REWRITE
-            // elements: ENUM, IDENTIFIER, enumBody, typeParamOpt
+            // elements: IDENTIFIER, typeParamOpt, ENUM, enumBody
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10179,15 +8719,20 @@ public class TinyHaxeTry1Parser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 313:73: -> ^( ENUM IDENTIFIER typeParamOpt enumBody )
+            // 313:73: -> ^( ENUM IDENTIFIER ( typeParamOpt )? enumBody )
             {
-                // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:76: ^( ENUM IDENTIFIER typeParamOpt enumBody )
+                // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:76: ^( ENUM IDENTIFIER ( typeParamOpt )? enumBody )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_ENUM.nextNode(), root_1);
 
                 adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
+                // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:94: ( typeParamOpt )?
+                if ( stream_typeParamOpt.hasNext() ) {
+                    adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
+
+                }
+                stream_typeParamOpt.reset();
                 adaptor.addChild(root_1, stream_enumBody.nextTree());
 
                 adaptor.addChild(root_0, root_1);
@@ -10219,31 +8764,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "enumDecl"
 
-    /**
-	 * The Class enumBody_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class enumBody_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "enumBody"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:1: enumBody : ( enumValueDecl )+ ;
-    /**
-	 * Enum body.
-	 * 
-	 * @return the tiny haxe try1 parser.enum body_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:1: enumBody : ( enumValueDecl )* ;
     public final TinyHaxeTry1Parser.enumBody_return enumBody() throws RecognitionException {
         TinyHaxeTry1Parser.enumBody_return retval = new TinyHaxeTry1Parser.enumBody_return();
         retval.start = input.LT(1);
@@ -10256,13 +8783,12 @@ public class TinyHaxeTry1Parser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:19: ( ( enumValueDecl )+ )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:21: ( enumValueDecl )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:19: ( ( enumValueDecl )* )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:21: ( enumValueDecl )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:21: ( enumValueDecl )+
-            int cnt62=0;
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:21: ( enumValueDecl )*
             loop62:
             do {
                 int alt62=2;
@@ -10277,7 +8803,7 @@ public class TinyHaxeTry1Parser extends Parser {
             	case 1 :
             	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:315:22: enumValueDecl
             	    {
-            	    pushFollow(FOLLOW_enumValueDecl_in_enumBody3135);
+            	    pushFollow(FOLLOW_enumValueDecl_in_enumBody3136);
             	    enumValueDecl290=enumValueDecl();
 
             	    state._fsp--;
@@ -10288,13 +8814,8 @@ public class TinyHaxeTry1Parser extends Parser {
             	    break;
 
             	default :
-            	    if ( cnt62 >= 1 ) break loop62;
-            	    if (state.backtracking>0) {state.failed=true; return retval;}
-                        EarlyExitException eee =
-                            new EarlyExitException(62, input);
-                        throw eee;
+            	    break loop62;
                 }
-                cnt62++;
             } while (true);
 
 
@@ -10321,31 +8842,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "enumBody"
 
-    /**
-	 * The Class enumValueDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class enumValueDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "enumValueDecl"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:318:1: enumValueDecl : ( IDENTIFIER LPAREN paramList RPAREN SEMI | IDENTIFIER SEMI | pp );
-    /**
-	 * Enum value decl.
-	 * 
-	 * @return the tiny haxe try1 parser.enum value decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:318:1: enumValueDecl : ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER ) | pp );
     public final TinyHaxeTry1Parser.enumValueDecl_return enumValueDecl() throws RecognitionException {
         TinyHaxeTry1Parser.enumValueDecl_return retval = new TinyHaxeTry1Parser.enumValueDecl_return();
         retval.start = input.LT(1);
@@ -10369,10 +8872,14 @@ public class TinyHaxeTry1Parser extends Parser {
         Object SEMI295_tree=null;
         Object IDENTIFIER296_tree=null;
         Object SEMI297_tree=null;
-
+        RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
+        RewriteRuleTokenStream stream_SEMI=new RewriteRuleTokenStream(adaptor,"token SEMI");
+        RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
+        RewriteRuleTokenStream stream_LPAREN=new RewriteRuleTokenStream(adaptor,"token LPAREN");
+        RewriteRuleSubtreeStream stream_paramList=new RewriteRuleSubtreeStream(adaptor,"rule paramList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:319:2: ( IDENTIFIER LPAREN paramList RPAREN SEMI | IDENTIFIER SEMI | pp )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:319:2: ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER ) | pp )
             int alt63=3;
             int LA63_0 = input.LA(1);
 
@@ -10407,37 +8914,99 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 1 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:319:4: IDENTIFIER LPAREN paramList RPAREN SEMI
                     {
-                    root_0 = (Object)adaptor.nil();
+                    IDENTIFIER291=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl3155); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER291);
 
-                    IDENTIFIER291=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl3154); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    IDENTIFIER291_tree = (Object)adaptor.create(IDENTIFIER291);
-                    adaptor.addChild(root_0, IDENTIFIER291_tree);
-                    }
-                    LPAREN292=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_enumValueDecl3156); if (state.failed) return retval;
+                    LPAREN292=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_enumValueDecl3157); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN292);
+
                     pushFollow(FOLLOW_paramList_in_enumValueDecl3159);
                     paramList293=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, paramList293.getTree());
-                    RPAREN294=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_enumValueDecl3161); if (state.failed) return retval;
-                    SEMI295=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl3164); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList293.getTree());
+                    RPAREN294=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_enumValueDecl3161); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN294);
 
+                    SEMI295=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl3163); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI295);
+
+
+
+                    // AST REWRITE
+                    // elements: IDENTIFIER, paramList, IDENTIFIER
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                    root_0 = (Object)adaptor.nil();
+                    // 319:44: -> ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER ( paramList )? )
+                    {
+                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:319:46: ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER ( paramList )? )
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER291), root_1);
+
+                        adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
+                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:319:109: ( paramList )?
+                        if ( stream_paramList.hasNext() ) {
+                            adaptor.addChild(root_1, stream_paramList.nextTree());
+
+                        }
+                        stream_paramList.reset();
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    retval.tree = root_0;}
                     }
                     break;
                 case 2 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:320:4: IDENTIFIER SEMI
                     {
-                    root_0 = (Object)adaptor.nil();
+                    IDENTIFIER296=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl3187); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER296);
 
-                    IDENTIFIER296=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl3171); if (state.failed) return retval;
+                    SEMI297=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl3189); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI297);
+
+
+
+                    // AST REWRITE
+                    // elements: IDENTIFIER, IDENTIFIER
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
                     if ( state.backtracking==0 ) {
-                    IDENTIFIER296_tree = (Object)adaptor.create(IDENTIFIER296);
-                    adaptor.addChild(root_0, IDENTIFIER296_tree);
-                    }
-                    SEMI297=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl3173); if (state.failed) return retval;
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
+                    root_0 = (Object)adaptor.nil();
+                    // 320:23: -> ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER )
+                    {
+                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:320:25: ^( IDENTIFIER[$IDENTIFIER] IDENTIFIER )
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER296), root_1);
+
+                        adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    retval.tree = root_0;}
                     }
                     break;
                 case 3 :
@@ -10445,7 +9014,7 @@ public class TinyHaxeTry1Parser extends Parser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pp_in_enumValueDecl3180);
+                    pushFollow(FOLLOW_pp_in_enumValueDecl3211);
                     pp298=pp();
 
                     state._fsp--;
@@ -10477,31 +9046,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "enumValueDecl"
 
-    /**
-	 * The Class varDeclList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class varDeclList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "varDeclList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:324:1: varDeclList : varDecl varDeclList ;
-    /**
-	 * Var decl list.
-	 * 
-	 * @return the tiny haxe try1 parser.var decl list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.varDeclList_return varDeclList() throws RecognitionException {
         TinyHaxeTry1Parser.varDeclList_return retval = new TinyHaxeTry1Parser.varDeclList_return();
         retval.start = input.LT(1);
@@ -10521,13 +9072,13 @@ public class TinyHaxeTry1Parser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_varDecl_in_varDeclList3197);
+            pushFollow(FOLLOW_varDecl_in_varDeclList3228);
             varDecl299=varDecl();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl299.getTree());
-            pushFollow(FOLLOW_varDeclList_in_varDeclList3199);
+            pushFollow(FOLLOW_varDeclList_in_varDeclList3230);
             varDeclList300=varDeclList();
 
             state._fsp--;
@@ -10557,31 +9108,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "varDeclList"
 
-    /**
-	 * The Class varDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class varDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "varDecl"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:327:1: varDecl : ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? varDeclPartList ) ;
-    /**
-	 * Var decl.
-	 * 
-	 * @return the tiny haxe try1 parser.var decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.varDecl_return varDecl() throws RecognitionException {
         TinyHaxeTry1Parser.varDecl_return retval = new TinyHaxeTry1Parser.varDecl_return();
         retval.start = input.LT(1);
@@ -10617,7 +9150,7 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 1 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:327:22: declAttrList
                     {
-                    pushFollow(FOLLOW_declAttrList_in_varDecl3221);
+                    pushFollow(FOLLOW_declAttrList_in_varDecl3252);
                     declAttrList301=declAttrList();
 
                     state._fsp--;
@@ -10629,22 +9162,22 @@ public class TinyHaxeTry1Parser extends Parser {
 
             }
 
-            VAR302=(Token)match(input,VAR,FOLLOW_VAR_in_varDecl3225); if (state.failed) return retval; 
+            VAR302=(Token)match(input,VAR,FOLLOW_VAR_in_varDecl3256); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_VAR.add(VAR302);
 
-            pushFollow(FOLLOW_varDeclPartList_in_varDecl3227);
+            pushFollow(FOLLOW_varDeclPartList_in_varDecl3258);
             varDeclPartList303=varDeclPartList();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_varDeclPartList.add(varDeclPartList303.getTree());
-            SEMI304=(Token)match(input,SEMI,FOLLOW_SEMI_in_varDecl3229); if (state.failed) return retval; 
+            SEMI304=(Token)match(input,SEMI,FOLLOW_SEMI_in_varDecl3260); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMI.add(SEMI304);
 
 
 
             // AST REWRITE
-            // elements: declAttrList, VAR, varDeclPartList
+            // elements: VAR, declAttrList, varDeclPartList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10699,31 +9232,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "varDecl"
 
-    /**
-	 * The Class varDeclPartList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class varDeclPartList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "varDeclPartList"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:330:1: varDeclPartList : varDeclPart ( COMMA varDeclPart )* ;
-    /**
-	 * Var decl part list.
-	 * 
-	 * @return the tiny haxe try1 parser.var decl part list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.varDeclPartList_return varDeclPartList() throws RecognitionException {
         TinyHaxeTry1Parser.varDeclPartList_return retval = new TinyHaxeTry1Parser.varDeclPartList_return();
         retval.start = input.LT(1);
@@ -10745,7 +9260,7 @@ public class TinyHaxeTry1Parser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_varDeclPart_in_varDeclPartList3257);
+            pushFollow(FOLLOW_varDeclPart_in_varDeclPartList3288);
             varDeclPart305=varDeclPart();
 
             state._fsp--;
@@ -10766,8 +9281,8 @@ public class TinyHaxeTry1Parser extends Parser {
             	case 1 :
             	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:330:34: COMMA varDeclPart
             	    {
-            	    COMMA306=(Token)match(input,COMMA,FOLLOW_COMMA_in_varDeclPartList3260); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_varDeclPart_in_varDeclPartList3263);
+            	    COMMA306=(Token)match(input,COMMA,FOLLOW_COMMA_in_varDeclPartList3291); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_varDeclPart_in_varDeclPartList3294);
             	    varDeclPart307=varDeclPart();
 
             	    state._fsp--;
@@ -10806,31 +9321,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "varDeclPartList"
 
-    /**
-	 * The Class varDeclPart_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class varDeclPart_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "varDeclPart"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:332:1: varDeclPart : IDENTIFIER propDeclOpt typeTagOpt varInit ;
-    /**
-	 * Var decl part.
-	 * 
-	 * @return the tiny haxe try1 parser.var decl part_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.varDeclPart_return varDeclPart() throws RecognitionException {
         TinyHaxeTry1Parser.varDeclPart_return retval = new TinyHaxeTry1Parser.varDeclPart_return();
         retval.start = input.LT(1);
@@ -10854,24 +9351,24 @@ public class TinyHaxeTry1Parser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER308=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_varDeclPart3279); if (state.failed) return retval;
+            IDENTIFIER308=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_varDeclPart3310); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER308_tree = new VarUsage(IDENTIFIER308) ;
             adaptor.addChild(root_0, IDENTIFIER308_tree);
             }
-            pushFollow(FOLLOW_propDeclOpt_in_varDeclPart3284);
+            pushFollow(FOLLOW_propDeclOpt_in_varDeclPart3315);
             propDeclOpt309=propDeclOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, propDeclOpt309.getTree());
-            pushFollow(FOLLOW_typeTagOpt_in_varDeclPart3286);
+            pushFollow(FOLLOW_typeTagOpt_in_varDeclPart3317);
             typeTagOpt310=typeTagOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, typeTagOpt310.getTree());
-            pushFollow(FOLLOW_varInit_in_varDeclPart3288);
+            pushFollow(FOLLOW_varInit_in_varDeclPart3319);
             varInit311=varInit();
 
             state._fsp--;
@@ -10901,31 +9398,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "varDeclPart"
 
-    /**
-	 * The Class propDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class propDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "propDecl"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:335:1: propDecl : LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] $a1 $a2) ;
-    /**
-	 * Prop decl.
-	 * 
-	 * @return the tiny haxe try1 parser.prop decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.propDecl_return propDecl() throws RecognitionException {
         TinyHaxeTry1Parser.propDecl_return retval = new TinyHaxeTry1Parser.propDecl_return();
         retval.start = input.LT(1);
@@ -10952,25 +9431,25 @@ public class TinyHaxeTry1Parser extends Parser {
             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:335:9: ( LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] $a1 $a2) )
             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:335:11: LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN
             {
-            LPAREN312=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_propDecl3298); if (state.failed) return retval; 
+            LPAREN312=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_propDecl3329); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN312);
 
-            pushFollow(FOLLOW_propAccessor_in_propDecl3302);
+            pushFollow(FOLLOW_propAccessor_in_propDecl3333);
             a1=propAccessor();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_propAccessor.add(a1.getTree());
-            COMMA313=(Token)match(input,COMMA,FOLLOW_COMMA_in_propDecl3304); if (state.failed) return retval; 
+            COMMA313=(Token)match(input,COMMA,FOLLOW_COMMA_in_propDecl3335); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_COMMA.add(COMMA313);
 
-            pushFollow(FOLLOW_propAccessor_in_propDecl3308);
+            pushFollow(FOLLOW_propAccessor_in_propDecl3339);
             a2=propAccessor();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_propAccessor.add(a2.getTree());
-            RPAREN314=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_propDecl3310); if (state.failed) return retval; 
+            RPAREN314=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_propDecl3341); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN314);
 
 
@@ -11028,31 +9507,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "propDecl"
 
-    /**
-	 * The Class propAccessor_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class propAccessor_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "propAccessor"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:338:1: propAccessor : ( IDENTIFIER | NULL | DEFAULT | DYNAMIC );
-    /**
-	 * Prop accessor.
-	 * 
-	 * @return the tiny haxe try1 parser.prop accessor_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.propAccessor_return propAccessor() throws RecognitionException {
         TinyHaxeTry1Parser.propAccessor_return retval = new TinyHaxeTry1Parser.propAccessor_return();
         retval.start = input.LT(1);
@@ -11106,31 +9567,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "propAccessor"
 
-    /**
-	 * The Class propDeclOpt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class propDeclOpt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "propDeclOpt"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:345:1: propDeclOpt : ( propDecl | );
-    /**
-	 * Prop decl opt.
-	 * 
-	 * @return the tiny haxe try1 parser.prop decl opt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.propDeclOpt_return propDeclOpt() throws RecognitionException {
         TinyHaxeTry1Parser.propDeclOpt_return retval = new TinyHaxeTry1Parser.propDeclOpt_return();
         retval.start = input.LT(1);
@@ -11166,7 +9609,7 @@ public class TinyHaxeTry1Parser extends Parser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_propDecl_in_propDeclOpt3368);
+                    pushFollow(FOLLOW_propDecl_in_propDeclOpt3399);
                     propDecl316=propDecl();
 
                     state._fsp--;
@@ -11205,31 +9648,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "propDeclOpt"
 
-    /**
-	 * The Class varInit_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class varInit_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "varInit"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:350:1: varInit : ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] expr ) | );
-    /**
-	 * Var init.
-	 * 
-	 * @return the tiny haxe try1 parser.var init_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.varInit_return varInit() throws RecognitionException {
         TinyHaxeTry1Parser.varInit_return retval = new TinyHaxeTry1Parser.varInit_return();
         retval.start = input.LT(1);
@@ -11266,10 +9691,10 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 1 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:350:11: EQ expr
                     {
-                    EQ317=(Token)match(input,EQ,FOLLOW_EQ_in_varInit3383); if (state.failed) return retval; 
+                    EQ317=(Token)match(input,EQ,FOLLOW_EQ_in_varInit3414); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EQ.add(EQ317);
 
-                    pushFollow(FOLLOW_expr_in_varInit3385);
+                    pushFollow(FOLLOW_expr_in_varInit3416);
                     expr318=expr();
 
                     state._fsp--;
@@ -11336,31 +9761,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "varInit"
 
-    /**
-	 * The Class funcDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class funcDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "funcDecl"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:354:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? block ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? block ( typeParamOpt )? ) );
-    /**
-	 * Func decl.
-	 * 
-	 * @return the tiny haxe try1 parser.func decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.funcDecl_return funcDecl() throws RecognitionException {
         TinyHaxeTry1Parser.funcDecl_return retval = new TinyHaxeTry1Parser.funcDecl_return();
         retval.start = input.LT(1);
@@ -11432,7 +9839,7 @@ public class TinyHaxeTry1Parser extends Parser {
                         case 1 :
                             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0: declAttrList
                             {
-                            pushFollow(FOLLOW_declAttrList_in_funcDecl3410);
+                            pushFollow(FOLLOW_declAttrList_in_funcDecl3441);
                             declAttrList319=declAttrList();
 
                             state._fsp--;
@@ -11444,31 +9851,31 @@ public class TinyHaxeTry1Parser extends Parser {
 
                     }
 
-                    FUNCTION320=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl3413); if (state.failed) return retval; 
+                    FUNCTION320=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl3444); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION320);
 
-                    NEW321=(Token)match(input,NEW,FOLLOW_NEW_in_funcDecl3415); if (state.failed) return retval; 
+                    NEW321=(Token)match(input,NEW,FOLLOW_NEW_in_funcDecl3446); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NEW.add(NEW321);
 
-                    LPAREN322=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl3417); if (state.failed) return retval; 
+                    LPAREN322=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl3448); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN322);
 
-                    pushFollow(FOLLOW_paramList_in_funcDecl3419);
+                    pushFollow(FOLLOW_paramList_in_funcDecl3450);
                     paramList323=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_paramList.add(paramList323.getTree());
-                    RPAREN324=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl3421); if (state.failed) return retval; 
+                    RPAREN324=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl3452); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN324);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl3423);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl3454);
                     typeTagOpt325=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt325.getTree());
-                    pushFollow(FOLLOW_block_in_funcDecl3425);
+                    pushFollow(FOLLOW_block_in_funcDecl3456);
                     block326=block();
 
                     state._fsp--;
@@ -11477,7 +9884,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: block, paramList, declAttrList, FUNCTION, NEW, typeTagOpt
+                    // elements: declAttrList, typeTagOpt, paramList, block, NEW, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11538,7 +9945,7 @@ public class TinyHaxeTry1Parser extends Parser {
                         case 1 :
                             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0: declAttrList
                             {
-                            pushFollow(FOLLOW_declAttrList_in_funcDecl3453);
+                            pushFollow(FOLLOW_declAttrList_in_funcDecl3484);
                             declAttrList327=declAttrList();
 
                             state._fsp--;
@@ -11550,37 +9957,37 @@ public class TinyHaxeTry1Parser extends Parser {
 
                     }
 
-                    FUNCTION328=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl3456); if (state.failed) return retval; 
+                    FUNCTION328=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl3487); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION328);
 
-                    IDENTIFIER329=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcDecl3458); if (state.failed) return retval; 
+                    IDENTIFIER329=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcDecl3489); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER329);
 
-                    pushFollow(FOLLOW_typeParamOpt_in_funcDecl3460);
+                    pushFollow(FOLLOW_typeParamOpt_in_funcDecl3491);
                     typeParamOpt330=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt330.getTree());
-                    LPAREN331=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl3462); if (state.failed) return retval; 
+                    LPAREN331=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl3493); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN331);
 
-                    pushFollow(FOLLOW_paramList_in_funcDecl3464);
+                    pushFollow(FOLLOW_paramList_in_funcDecl3495);
                     paramList332=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_paramList.add(paramList332.getTree());
-                    RPAREN333=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl3466); if (state.failed) return retval; 
+                    RPAREN333=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl3497); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN333);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl3468);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl3499);
                     typeTagOpt334=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt334.getTree());
-                    pushFollow(FOLLOW_block_in_funcDecl3470);
+                    pushFollow(FOLLOW_block_in_funcDecl3501);
                     block335=block();
 
                     state._fsp--;
@@ -11589,7 +9996,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: block, typeTagOpt, FUNCTION, paramList, IDENTIFIER, typeParamOpt, declAttrList
+                    // elements: typeTagOpt, block, typeParamOpt, declAttrList, paramList, FUNCTION, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11665,31 +10072,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "funcDecl"
 
-    /**
-	 * The Class funcProtoDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class funcProtoDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "funcProtoDecl"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:358:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION NEW paramList typeTagOpt declAttrList ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION NEW paramList typeTagOpt ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt ) );
-    /**
-	 * Func proto decl.
-	 * 
-	 * @return the tiny haxe try1 parser.func proto decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.funcProtoDecl_return funcProtoDecl() throws RecognitionException {
         TinyHaxeTry1Parser.funcProtoDecl_return retval = new TinyHaxeTry1Parser.funcProtoDecl_return();
         retval.start = input.LT(1);
@@ -11780,43 +10169,43 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 1 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:359:4: declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3506);
+                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3537);
                     declAttrList336=declAttrList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList336.getTree());
-                    FUNCTION337=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3508); if (state.failed) return retval; 
+                    FUNCTION337=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3539); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION337);
 
-                    NEW338=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl3510); if (state.failed) return retval; 
+                    NEW338=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl3541); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NEW.add(NEW338);
 
-                    LPAREN339=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3512); if (state.failed) return retval; 
+                    LPAREN339=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3543); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN339);
 
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3514);
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3545);
                     paramList340=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_paramList.add(paramList340.getTree());
-                    RPAREN341=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3516); if (state.failed) return retval; 
+                    RPAREN341=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3547); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN341);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3518);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3549);
                     typeTagOpt342=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt342.getTree());
-                    SEMI343=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3520); if (state.failed) return retval; 
+                    SEMI343=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3551); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI343);
 
 
 
                     // AST REWRITE
-                    // elements: paramList, FUNCTION, declAttrList, typeTagOpt, NEW
+                    // elements: declAttrList, paramList, typeTagOpt, NEW, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11850,49 +10239,49 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 2 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:360:4: declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3539);
+                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3570);
                     declAttrList344=declAttrList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList344.getTree());
-                    FUNCTION345=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3541); if (state.failed) return retval; 
+                    FUNCTION345=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3572); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION345);
 
-                    IDENTIFIER346=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl3543); if (state.failed) return retval; 
+                    IDENTIFIER346=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl3574); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER346);
 
-                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3545);
+                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3576);
                     typeParamOpt347=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt347.getTree());
-                    LPAREN348=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3547); if (state.failed) return retval; 
+                    LPAREN348=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3578); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN348);
 
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3549);
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3580);
                     paramList349=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_paramList.add(paramList349.getTree());
-                    RPAREN350=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3551); if (state.failed) return retval; 
+                    RPAREN350=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3582); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN350);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3553);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3584);
                     typeTagOpt351=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt351.getTree());
-                    SEMI352=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3555); if (state.failed) return retval; 
+                    SEMI352=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3586); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI352);
 
 
 
                     // AST REWRITE
-                    // elements: declAttrList, typeParamOpt, typeTagOpt, paramList, FUNCTION, IDENTIFIER
+                    // elements: IDENTIFIER, declAttrList, typeTagOpt, FUNCTION, typeParamOpt, paramList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11927,37 +10316,37 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 3 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:361:4: FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    FUNCTION353=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3575); if (state.failed) return retval; 
+                    FUNCTION353=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3606); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION353);
 
-                    NEW354=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl3577); if (state.failed) return retval; 
+                    NEW354=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl3608); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_NEW.add(NEW354);
 
-                    LPAREN355=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3579); if (state.failed) return retval; 
+                    LPAREN355=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3610); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN355);
 
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3581);
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3612);
                     paramList356=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_paramList.add(paramList356.getTree());
-                    RPAREN357=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3583); if (state.failed) return retval; 
+                    RPAREN357=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3614); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN357);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3585);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3616);
                     typeTagOpt358=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt358.getTree());
-                    SEMI359=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3587); if (state.failed) return retval; 
+                    SEMI359=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3618); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI359);
 
 
 
                     // AST REWRITE
-                    // elements: NEW, FUNCTION, typeTagOpt, paramList
+                    // elements: NEW, paramList, typeTagOpt, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11990,43 +10379,43 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 4 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:362:4: FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    FUNCTION360=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3604); if (state.failed) return retval; 
+                    FUNCTION360=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3635); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION360);
 
-                    IDENTIFIER361=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl3606); if (state.failed) return retval; 
+                    IDENTIFIER361=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl3637); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER361);
 
-                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3608);
+                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3639);
                     typeParamOpt362=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt362.getTree());
-                    LPAREN363=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3610); if (state.failed) return retval; 
+                    LPAREN363=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3641); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN363);
 
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3612);
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3643);
                     paramList364=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_paramList.add(paramList364.getTree());
-                    RPAREN365=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3614); if (state.failed) return retval; 
+                    RPAREN365=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3645); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN365);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3616);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3647);
                     typeTagOpt366=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt366.getTree());
-                    SEMI367=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3618); if (state.failed) return retval; 
+                    SEMI367=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3649); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI367);
 
 
 
                     // AST REWRITE
-                    // elements: paramList, typeParamOpt, typeTagOpt, FUNCTION, IDENTIFIER
+                    // elements: IDENTIFIER, typeParamOpt, typeTagOpt, paramList, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -12080,31 +10469,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "funcProtoDecl"
 
-    /**
-	 * The Class classDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class classDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "classDecl"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:365:1: classDecl : ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBodyScope RBRACE -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) ;
-    /**
-	 * Class decl.
-	 * 
-	 * @return the tiny haxe try1 parser.class decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.classDecl_return classDecl() throws RecognitionException {
         TinyHaxeTry1Parser.classDecl_return retval = new TinyHaxeTry1Parser.classDecl_return();
         retval.start = input.LT(1);
@@ -12152,7 +10523,7 @@ public class TinyHaxeTry1Parser extends Parser {
                 case 1 :
                     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0: EXTERN
                     {
-                    EXTERN368=(Token)match(input,EXTERN,FOLLOW_EXTERN_in_classDecl3643); if (state.failed) return retval; 
+                    EXTERN368=(Token)match(input,EXTERN,FOLLOW_EXTERN_in_classDecl3674); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EXTERN.add(EXTERN368);
 
 
@@ -12161,40 +10532,40 @@ public class TinyHaxeTry1Parser extends Parser {
 
             }
 
-            CLASS369=(Token)match(input,CLASS,FOLLOW_CLASS_in_classDecl3646); if (state.failed) return retval; 
+            CLASS369=(Token)match(input,CLASS,FOLLOW_CLASS_in_classDecl3677); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CLASS.add(CLASS369);
 
-            IDENTIFIER370=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDecl3648); if (state.failed) return retval; 
+            IDENTIFIER370=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDecl3679); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER370);
 
-            pushFollow(FOLLOW_typeParamOpt_in_classDecl3650);
+            pushFollow(FOLLOW_typeParamOpt_in_classDecl3681);
             typeParamOpt371=typeParamOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt371.getTree());
-            pushFollow(FOLLOW_inheritListOpt_in_classDecl3652);
+            pushFollow(FOLLOW_inheritListOpt_in_classDecl3683);
             inheritListOpt372=inheritListOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_inheritListOpt.add(inheritListOpt372.getTree());
-            LBRACE373=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_classDecl3654); if (state.failed) return retval; 
+            LBRACE373=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_classDecl3685); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE373);
 
-            pushFollow(FOLLOW_classBodyScope_in_classDecl3656);
+            pushFollow(FOLLOW_classBodyScope_in_classDecl3687);
             classBodyScope374=classBodyScope();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_classBodyScope.add(classBodyScope374.getTree());
-            RBRACE375=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_classDecl3658); if (state.failed) return retval; 
+            RBRACE375=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_classDecl3689); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE375);
 
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, inheritListOpt, CLASS, classBodyScope, typeParamOpt, EXTERN
+            // elements: inheritListOpt, typeParamOpt, EXTERN, classBodyScope, IDENTIFIER, CLASS
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -12267,31 +10638,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "classDecl"
 
-    /**
-	 * The Class classBodyScope_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class classBodyScope_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "classBodyScope"
     // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:369:1: classBodyScope : classBody -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true] ( classBody )? ) ;
-    /**
-	 * Class body scope.
-	 * 
-	 * @return the tiny haxe try1 parser.class body scope_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final TinyHaxeTry1Parser.classBodyScope_return classBodyScope() throws RecognitionException {
         TinyHaxeTry1Parser.classBodyScope_return retval = new TinyHaxeTry1Parser.classBodyScope_return();
         retval.start = input.LT(1);
@@ -12307,7 +10660,7 @@ public class TinyHaxeTry1Parser extends Parser {
             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:370:2: ( classBody -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true] ( classBody )? ) )
             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:370:4: classBody
             {
-            pushFollow(FOLLOW_classBody_in_classBodyScope3692);
+            pushFollow(FOLLOW_classBody_in_classBodyScope3723);
             classBody376=classBody();
 
             state._fsp--;
@@ -12370,31 +10723,13 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "classBodyScope"
 
-    /**
-	 * The Class classBody_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class classBody_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "classBody"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:1: classBody : ( varDecl classBody | funcDecl classBody | pp classBody | );
-    /**
-	 * Class body.
-	 * 
-	 * @return the tiny haxe try1 parser.class body_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:1: classBody : ( varDecl classBody | funcDecl classBody | pp classBody | enumDecl classBody | );
     public final TinyHaxeTry1Parser.classBody_return classBody() throws RecognitionException {
         TinyHaxeTry1Parser.classBody_return retval = new TinyHaxeTry1Parser.classBody_return();
         retval.start = input.LT(1);
@@ -12413,12 +10748,16 @@ public class TinyHaxeTry1Parser extends Parser {
 
         TinyHaxeTry1Parser.classBody_return classBody382 = null;
 
+        TinyHaxeTry1Parser.enumDecl_return enumDecl383 = null;
+
+        TinyHaxeTry1Parser.classBody_return classBody384 = null;
+
 
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:374:2: ( varDecl classBody | funcDecl classBody | pp classBody | )
-            int alt73=4;
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:374:2: ( varDecl classBody | funcDecl classBody | pp classBody | enumDecl classBody | )
+            int alt73=5;
             alt73 = dfa73.predict(input);
             switch (alt73) {
                 case 1 :
@@ -12426,13 +10765,13 @@ public class TinyHaxeTry1Parser extends Parser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDecl_in_classBody3717);
+                    pushFollow(FOLLOW_varDecl_in_classBody3748);
                     varDecl377=varDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl377.getTree());
-                    pushFollow(FOLLOW_classBody_in_classBody3719);
+                    pushFollow(FOLLOW_classBody_in_classBody3750);
                     classBody378=classBody();
 
                     state._fsp--;
@@ -12446,13 +10785,13 @@ public class TinyHaxeTry1Parser extends Parser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_funcDecl_in_classBody3724);
+                    pushFollow(FOLLOW_funcDecl_in_classBody3755);
                     funcDecl379=funcDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, funcDecl379.getTree());
-                    pushFollow(FOLLOW_classBody_in_classBody3726);
+                    pushFollow(FOLLOW_classBody_in_classBody3757);
                     classBody380=classBody();
 
                     state._fsp--;
@@ -12466,13 +10805,13 @@ public class TinyHaxeTry1Parser extends Parser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pp_in_classBody3731);
+                    pushFollow(FOLLOW_pp_in_classBody3762);
                     pp381=pp();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, pp381.getTree());
-                    pushFollow(FOLLOW_classBody_in_classBody3733);
+                    pushFollow(FOLLOW_classBody_in_classBody3764);
                     classBody382=classBody();
 
                     state._fsp--;
@@ -12482,7 +10821,27 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:378:2: 
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:377:4: enumDecl classBody
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_enumDecl_in_classBody3769);
+                    enumDecl383=enumDecl();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumDecl383.getTree());
+                    pushFollow(FOLLOW_classBody_in_classBody3771);
+                    classBody384=classBody();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classBody384.getTree());
+
+                    }
+                    break;
+                case 5 :
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:379:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -12511,83 +10870,65 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "classBody"
 
-    /**
-	 * The Class interfaceDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class interfaceDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "interfaceDecl"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:380:1: interfaceDecl : INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE ;
-    /**
-	 * Interface decl.
-	 * 
-	 * @return the tiny haxe try1 parser.interface decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:381:1: interfaceDecl : INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE ;
     public final TinyHaxeTry1Parser.interfaceDecl_return interfaceDecl() throws RecognitionException {
         TinyHaxeTry1Parser.interfaceDecl_return retval = new TinyHaxeTry1Parser.interfaceDecl_return();
         retval.start = input.LT(1);
         int interfaceDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token INTERFACE383=null;
-        Token LBRACE386=null;
-        Token RBRACE388=null;
-        TinyHaxeTry1Parser.type_return type384 = null;
+        Token INTERFACE385=null;
+        Token LBRACE388=null;
+        Token RBRACE390=null;
+        TinyHaxeTry1Parser.type_return type386 = null;
 
-        TinyHaxeTry1Parser.inheritListOpt_return inheritListOpt385 = null;
+        TinyHaxeTry1Parser.inheritListOpt_return inheritListOpt387 = null;
 
-        TinyHaxeTry1Parser.interfaceBody_return interfaceBody387 = null;
+        TinyHaxeTry1Parser.interfaceBody_return interfaceBody389 = null;
 
 
-        Object INTERFACE383_tree=null;
-        Object LBRACE386_tree=null;
-        Object RBRACE388_tree=null;
+        Object INTERFACE385_tree=null;
+        Object LBRACE388_tree=null;
+        Object RBRACE390_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:381:2: ( INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:381:4: INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:382:2: ( INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:382:4: INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
             {
             root_0 = (Object)adaptor.nil();
 
-            INTERFACE383=(Token)match(input,INTERFACE,FOLLOW_INTERFACE_in_interfaceDecl3753); if (state.failed) return retval;
+            INTERFACE385=(Token)match(input,INTERFACE,FOLLOW_INTERFACE_in_interfaceDecl3791); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            INTERFACE383_tree = (Object)adaptor.create(INTERFACE383);
-            adaptor.addChild(root_0, INTERFACE383_tree);
+            INTERFACE385_tree = (Object)adaptor.create(INTERFACE385);
+            adaptor.addChild(root_0, INTERFACE385_tree);
             }
-            pushFollow(FOLLOW_type_in_interfaceDecl3755);
-            type384=type();
+            pushFollow(FOLLOW_type_in_interfaceDecl3793);
+            type386=type();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, type384.getTree());
-            pushFollow(FOLLOW_inheritListOpt_in_interfaceDecl3757);
-            inheritListOpt385=inheritListOpt();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, type386.getTree());
+            pushFollow(FOLLOW_inheritListOpt_in_interfaceDecl3795);
+            inheritListOpt387=inheritListOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, inheritListOpt385.getTree());
-            LBRACE386=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_interfaceDecl3759); if (state.failed) return retval;
-            pushFollow(FOLLOW_interfaceBody_in_interfaceDecl3762);
-            interfaceBody387=interfaceBody();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, inheritListOpt387.getTree());
+            LBRACE388=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_interfaceDecl3797); if (state.failed) return retval;
+            pushFollow(FOLLOW_interfaceBody_in_interfaceDecl3800);
+            interfaceBody389=interfaceBody();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody387.getTree());
-            RBRACE388=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_interfaceDecl3764); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody389.getTree());
+            RBRACE390=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_interfaceDecl3802); if (state.failed) return retval;
 
             }
 
@@ -12612,89 +10953,51 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "interfaceDecl"
 
-    /**
-	 * The Class interfaceBody_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class interfaceBody_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "interfaceBody"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:384:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | pp interfaceBody | );
-    /**
-	 * Interface body.
-	 * 
-	 * @return the tiny haxe try1 parser.interface body_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:385:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | pp interfaceBody | );
     public final TinyHaxeTry1Parser.interfaceBody_return interfaceBody() throws RecognitionException {
         TinyHaxeTry1Parser.interfaceBody_return retval = new TinyHaxeTry1Parser.interfaceBody_return();
         retval.start = input.LT(1);
         int interfaceBody_StartIndex = input.index();
         Object root_0 = null;
 
-        TinyHaxeTry1Parser.varDecl_return varDecl389 = null;
-
-        TinyHaxeTry1Parser.interfaceBody_return interfaceBody390 = null;
-
-        TinyHaxeTry1Parser.funcProtoDecl_return funcProtoDecl391 = null;
+        TinyHaxeTry1Parser.varDecl_return varDecl391 = null;
 
         TinyHaxeTry1Parser.interfaceBody_return interfaceBody392 = null;
 
-        TinyHaxeTry1Parser.pp_return pp393 = null;
+        TinyHaxeTry1Parser.funcProtoDecl_return funcProtoDecl393 = null;
 
         TinyHaxeTry1Parser.interfaceBody_return interfaceBody394 = null;
+
+        TinyHaxeTry1Parser.pp_return pp395 = null;
+
+        TinyHaxeTry1Parser.interfaceBody_return interfaceBody396 = null;
 
 
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:385:2: ( varDecl interfaceBody | funcProtoDecl interfaceBody | pp interfaceBody | )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:386:2: ( varDecl interfaceBody | funcProtoDecl interfaceBody | pp interfaceBody | )
             int alt74=4;
             alt74 = dfa74.predict(input);
             switch (alt74) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:385:4: varDecl interfaceBody
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:386:4: varDecl interfaceBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDecl_in_interfaceBody3777);
-                    varDecl389=varDecl();
+                    pushFollow(FOLLOW_varDecl_in_interfaceBody3815);
+                    varDecl391=varDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl389.getTree());
-                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3779);
-                    interfaceBody390=interfaceBody();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody390.getTree());
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:386:4: funcProtoDecl interfaceBody
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    pushFollow(FOLLOW_funcProtoDecl_in_interfaceBody3784);
-                    funcProtoDecl391=funcProtoDecl();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcProtoDecl391.getTree());
-                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3786);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl391.getTree());
+                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3817);
                     interfaceBody392=interfaceBody();
 
                     state._fsp--;
@@ -12703,18 +11006,18 @@ public class TinyHaxeTry1Parser extends Parser {
 
                     }
                     break;
-                case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:387:4: pp interfaceBody
+                case 2 :
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:387:4: funcProtoDecl interfaceBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pp_in_interfaceBody3791);
-                    pp393=pp();
+                    pushFollow(FOLLOW_funcProtoDecl_in_interfaceBody3822);
+                    funcProtoDecl393=funcProtoDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pp393.getTree());
-                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3793);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcProtoDecl393.getTree());
+                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3824);
                     interfaceBody394=interfaceBody();
 
                     state._fsp--;
@@ -12723,8 +11026,28 @@ public class TinyHaxeTry1Parser extends Parser {
 
                     }
                     break;
+                case 3 :
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:388:4: pp interfaceBody
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_pp_in_interfaceBody3829);
+                    pp395=pp();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pp395.getTree());
+                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3831);
+                    interfaceBody396=interfaceBody();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody396.getTree());
+
+                    }
+                    break;
                 case 4 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:389:2: 
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:390:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -12753,59 +11076,41 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "interfaceBody"
 
-    /**
-	 * The Class inheritList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class inheritList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "inheritList"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:391:1: inheritList : inherit ( COMMA inherit )* ;
-    /**
-	 * Inherit list.
-	 * 
-	 * @return the tiny haxe try1 parser.inherit list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:392:1: inheritList : inherit ( COMMA inherit )* ;
     public final TinyHaxeTry1Parser.inheritList_return inheritList() throws RecognitionException {
         TinyHaxeTry1Parser.inheritList_return retval = new TinyHaxeTry1Parser.inheritList_return();
         retval.start = input.LT(1);
         int inheritList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA396=null;
-        TinyHaxeTry1Parser.inherit_return inherit395 = null;
-
+        Token COMMA398=null;
         TinyHaxeTry1Parser.inherit_return inherit397 = null;
 
+        TinyHaxeTry1Parser.inherit_return inherit399 = null;
 
-        Object COMMA396_tree=null;
+
+        Object COMMA398_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:392:2: ( inherit ( COMMA inherit )* )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:392:4: inherit ( COMMA inherit )*
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:393:2: ( inherit ( COMMA inherit )* )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:393:4: inherit ( COMMA inherit )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_inherit_in_inheritList3814);
-            inherit395=inherit();
+            pushFollow(FOLLOW_inherit_in_inheritList3852);
+            inherit397=inherit();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit395.getTree());
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:392:12: ( COMMA inherit )*
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit397.getTree());
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:393:12: ( COMMA inherit )*
             loop75:
             do {
                 int alt75=2;
@@ -12818,15 +11123,15 @@ public class TinyHaxeTry1Parser extends Parser {
 
                 switch (alt75) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:392:13: COMMA inherit
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:393:13: COMMA inherit
             	    {
-            	    COMMA396=(Token)match(input,COMMA,FOLLOW_COMMA_in_inheritList3817); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_inherit_in_inheritList3820);
-            	    inherit397=inherit();
+            	    COMMA398=(Token)match(input,COMMA,FOLLOW_COMMA_in_inheritList3855); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_inherit_in_inheritList3858);
+            	    inherit399=inherit();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit397.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit399.getTree());
 
             	    }
             	    break;
@@ -12860,44 +11165,26 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "inheritList"
 
-    /**
-	 * The Class inheritListOpt_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class inheritListOpt_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "inheritListOpt"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:395:1: inheritListOpt : ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList ) | );
-    /**
-	 * Inherit list opt.
-	 * 
-	 * @return the tiny haxe try1 parser.inherit list opt_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:396:1: inheritListOpt : ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList ) | );
     public final TinyHaxeTry1Parser.inheritListOpt_return inheritListOpt() throws RecognitionException {
         TinyHaxeTry1Parser.inheritListOpt_return retval = new TinyHaxeTry1Parser.inheritListOpt_return();
         retval.start = input.LT(1);
         int inheritListOpt_StartIndex = input.index();
         Object root_0 = null;
 
-        TinyHaxeTry1Parser.inheritList_return inheritList398 = null;
+        TinyHaxeTry1Parser.inheritList_return inheritList400 = null;
 
 
         RewriteRuleSubtreeStream stream_inheritList=new RewriteRuleSubtreeStream(adaptor,"rule inheritList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 80) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:396:2: ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList ) | )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:397:2: ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList ) | )
             int alt76=2;
             int LA76_0 = input.LA(1);
 
@@ -12916,14 +11203,14 @@ public class TinyHaxeTry1Parser extends Parser {
             }
             switch (alt76) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:396:4: inheritList
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:397:4: inheritList
                     {
-                    pushFollow(FOLLOW_inheritList_in_inheritListOpt3838);
-                    inheritList398=inheritList();
+                    pushFollow(FOLLOW_inheritList_in_inheritListOpt3876);
+                    inheritList400=inheritList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_inheritList.add(inheritList398.getTree());
+                    if ( state.backtracking==0 ) stream_inheritList.add(inheritList400.getTree());
 
 
                     // AST REWRITE
@@ -12938,9 +11225,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 396:16: -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList )
+                    // 397:16: -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList )
                     {
-                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:396:18: ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList )
+                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:397:18: ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] inheritList )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new ExtendedCommonTree(INHERIT_LIST_OPT, "INHERIT_LIST_OPT", true), root_1);
@@ -12956,7 +11243,7 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:398:6: 
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:399:6: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -12985,52 +11272,34 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "inheritListOpt"
 
-    /**
-	 * The Class inherit_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class inherit_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "inherit"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:400:1: inherit : ( EXTENDS type -> ^( EXTENDS type ) | IMPLEMENTS type -> ^( IMPLEMENTS type ) );
-    /**
-	 * Inherit.
-	 * 
-	 * @return the tiny haxe try1 parser.inherit_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:401:1: inherit : ( EXTENDS type -> ^( EXTENDS type ) | IMPLEMENTS type -> ^( IMPLEMENTS type ) );
     public final TinyHaxeTry1Parser.inherit_return inherit() throws RecognitionException {
         TinyHaxeTry1Parser.inherit_return retval = new TinyHaxeTry1Parser.inherit_return();
         retval.start = input.LT(1);
         int inherit_StartIndex = input.index();
         Object root_0 = null;
 
-        Token EXTENDS399=null;
-        Token IMPLEMENTS401=null;
-        TinyHaxeTry1Parser.type_return type400 = null;
-
+        Token EXTENDS401=null;
+        Token IMPLEMENTS403=null;
         TinyHaxeTry1Parser.type_return type402 = null;
 
+        TinyHaxeTry1Parser.type_return type404 = null;
 
-        Object EXTENDS399_tree=null;
-        Object IMPLEMENTS401_tree=null;
+
+        Object EXTENDS401_tree=null;
+        Object IMPLEMENTS403_tree=null;
         RewriteRuleTokenStream stream_IMPLEMENTS=new RewriteRuleTokenStream(adaptor,"token IMPLEMENTS");
         RewriteRuleTokenStream stream_EXTENDS=new RewriteRuleTokenStream(adaptor,"token EXTENDS");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 81) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:400:9: ( EXTENDS type -> ^( EXTENDS type ) | IMPLEMENTS type -> ^( IMPLEMENTS type ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:401:9: ( EXTENDS type -> ^( EXTENDS type ) | IMPLEMENTS type -> ^( IMPLEMENTS type ) )
             int alt77=2;
             int LA77_0 = input.LA(1);
 
@@ -13049,21 +11318,21 @@ public class TinyHaxeTry1Parser extends Parser {
             }
             switch (alt77) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:400:11: EXTENDS type
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:401:11: EXTENDS type
                     {
-                    EXTENDS399=(Token)match(input,EXTENDS,FOLLOW_EXTENDS_in_inherit3872); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_EXTENDS.add(EXTENDS399);
+                    EXTENDS401=(Token)match(input,EXTENDS,FOLLOW_EXTENDS_in_inherit3910); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_EXTENDS.add(EXTENDS401);
 
-                    pushFollow(FOLLOW_type_in_inherit3874);
-                    type400=type();
+                    pushFollow(FOLLOW_type_in_inherit3912);
+                    type402=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_type.add(type400.getTree());
+                    if ( state.backtracking==0 ) stream_type.add(type402.getTree());
 
 
                     // AST REWRITE
-                    // elements: EXTENDS, type
+                    // elements: type, EXTENDS
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -13074,9 +11343,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 400:24: -> ^( EXTENDS type )
+                    // 401:24: -> ^( EXTENDS type )
                     {
-                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:400:27: ^( EXTENDS type )
+                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:401:27: ^( EXTENDS type )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_EXTENDS.nextNode(), root_1);
@@ -13092,17 +11361,17 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:401:11: IMPLEMENTS type
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:402:11: IMPLEMENTS type
                     {
-                    IMPLEMENTS401=(Token)match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_inherit3894); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IMPLEMENTS.add(IMPLEMENTS401);
+                    IMPLEMENTS403=(Token)match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_inherit3932); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IMPLEMENTS.add(IMPLEMENTS403);
 
-                    pushFollow(FOLLOW_type_in_inherit3896);
-                    type402=type();
+                    pushFollow(FOLLOW_type_in_inherit3934);
+                    type404=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_type.add(type402.getTree());
+                    if ( state.backtracking==0 ) stream_type.add(type404.getTree());
 
 
                     // AST REWRITE
@@ -13117,9 +11386,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 401:27: -> ^( IMPLEMENTS type )
+                    // 402:27: -> ^( IMPLEMENTS type )
                     {
-                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:401:30: ^( IMPLEMENTS type )
+                        // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:402:30: ^( IMPLEMENTS type )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_IMPLEMENTS.nextNode(), root_1);
@@ -13157,75 +11426,57 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "inherit"
 
-    /**
-	 * The Class typedefDecl_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typedefDecl_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typedefDecl"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:404:1: typedefDecl : TYPEDEF IDENTIFIER EQ funcType ;
-    /**
-	 * Typedef decl.
-	 * 
-	 * @return the tiny haxe try1 parser.typedef decl_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:405:1: typedefDecl : TYPEDEF IDENTIFIER EQ funcType ;
     public final TinyHaxeTry1Parser.typedefDecl_return typedefDecl() throws RecognitionException {
         TinyHaxeTry1Parser.typedefDecl_return retval = new TinyHaxeTry1Parser.typedefDecl_return();
         retval.start = input.LT(1);
         int typedefDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token TYPEDEF403=null;
-        Token IDENTIFIER404=null;
-        Token EQ405=null;
-        TinyHaxeTry1Parser.funcType_return funcType406 = null;
+        Token TYPEDEF405=null;
+        Token IDENTIFIER406=null;
+        Token EQ407=null;
+        TinyHaxeTry1Parser.funcType_return funcType408 = null;
 
 
-        Object TYPEDEF403_tree=null;
-        Object IDENTIFIER404_tree=null;
-        Object EQ405_tree=null;
+        Object TYPEDEF405_tree=null;
+        Object IDENTIFIER406_tree=null;
+        Object EQ407_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 82) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:405:2: ( TYPEDEF IDENTIFIER EQ funcType )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:405:4: TYPEDEF IDENTIFIER EQ funcType
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:406:2: ( TYPEDEF IDENTIFIER EQ funcType )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:406:4: TYPEDEF IDENTIFIER EQ funcType
             {
             root_0 = (Object)adaptor.nil();
 
-            TYPEDEF403=(Token)match(input,TYPEDEF,FOLLOW_TYPEDEF_in_typedefDecl3923); if (state.failed) return retval;
+            TYPEDEF405=(Token)match(input,TYPEDEF,FOLLOW_TYPEDEF_in_typedefDecl3961); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            TYPEDEF403_tree = (Object)adaptor.create(TYPEDEF403);
-            adaptor.addChild(root_0, TYPEDEF403_tree);
+            TYPEDEF405_tree = (Object)adaptor.create(TYPEDEF405);
+            adaptor.addChild(root_0, TYPEDEF405_tree);
             }
-            IDENTIFIER404=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typedefDecl3925); if (state.failed) return retval;
+            IDENTIFIER406=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typedefDecl3963); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER404_tree = (Object)adaptor.create(IDENTIFIER404);
-            adaptor.addChild(root_0, IDENTIFIER404_tree);
+            IDENTIFIER406_tree = (Object)adaptor.create(IDENTIFIER406);
+            adaptor.addChild(root_0, IDENTIFIER406_tree);
             }
-            EQ405=(Token)match(input,EQ,FOLLOW_EQ_in_typedefDecl3927); if (state.failed) return retval;
+            EQ407=(Token)match(input,EQ,FOLLOW_EQ_in_typedefDecl3965); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            EQ405_tree = (Object)adaptor.create(EQ405);
-            adaptor.addChild(root_0, EQ405_tree);
+            EQ407_tree = (Object)adaptor.create(EQ407);
+            adaptor.addChild(root_0, EQ407_tree);
             }
-            pushFollow(FOLLOW_funcType_in_typedefDecl3929);
-            funcType406=funcType();
+            pushFollow(FOLLOW_funcType_in_typedefDecl3967);
+            funcType408=funcType();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType406.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType408.getTree());
 
             }
 
@@ -13250,64 +11501,46 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typedefDecl"
 
-    /**
-	 * The Class typeExtend_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class typeExtend_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "typeExtend"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:408:1: typeExtend : GT funcType COMMA ;
-    /**
-	 * Type extend.
-	 * 
-	 * @return the tiny haxe try1 parser.type extend_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:1: typeExtend : GT funcType COMMA ;
     public final TinyHaxeTry1Parser.typeExtend_return typeExtend() throws RecognitionException {
         TinyHaxeTry1Parser.typeExtend_return retval = new TinyHaxeTry1Parser.typeExtend_return();
         retval.start = input.LT(1);
         int typeExtend_StartIndex = input.index();
         Object root_0 = null;
 
-        Token GT407=null;
-        Token COMMA409=null;
-        TinyHaxeTry1Parser.funcType_return funcType408 = null;
+        Token GT409=null;
+        Token COMMA411=null;
+        TinyHaxeTry1Parser.funcType_return funcType410 = null;
 
 
-        Object GT407_tree=null;
-        Object COMMA409_tree=null;
+        Object GT409_tree=null;
+        Object COMMA411_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 83) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:9: ( GT funcType COMMA )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:11: GT funcType COMMA
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:410:9: ( GT funcType COMMA )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:410:11: GT funcType COMMA
             {
             root_0 = (Object)adaptor.nil();
 
-            GT407=(Token)match(input,GT,FOLLOW_GT_in_typeExtend3948); if (state.failed) return retval;
+            GT409=(Token)match(input,GT,FOLLOW_GT_in_typeExtend3986); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            GT407_tree = (Object)adaptor.create(GT407);
-            adaptor.addChild(root_0, GT407_tree);
+            GT409_tree = (Object)adaptor.create(GT409);
+            adaptor.addChild(root_0, GT409_tree);
             }
-            pushFollow(FOLLOW_funcType_in_typeExtend3950);
-            funcType408=funcType();
+            pushFollow(FOLLOW_funcType_in_typeExtend3988);
+            funcType410=funcType();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType408.getTree());
-            COMMA409=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeExtend3952); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType410.getTree());
+            COMMA411=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeExtend3990); if (state.failed) return retval;
 
             }
 
@@ -13332,62 +11565,44 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "typeExtend"
 
-    /**
-	 * The Class anonType_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class anonType_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "anonType"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:412:1: anonType : LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE ;
-    /**
-	 * Anon type.
-	 * 
-	 * @return the tiny haxe try1 parser.anon type_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:1: anonType : LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE ;
     public final TinyHaxeTry1Parser.anonType_return anonType() throws RecognitionException {
         TinyHaxeTry1Parser.anonType_return retval = new TinyHaxeTry1Parser.anonType_return();
         retval.start = input.LT(1);
         int anonType_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LBRACE410=null;
-        Token RBRACE416=null;
-        TinyHaxeTry1Parser.anonTypeFieldList_return anonTypeFieldList411 = null;
+        Token LBRACE412=null;
+        Token RBRACE418=null;
+        TinyHaxeTry1Parser.anonTypeFieldList_return anonTypeFieldList413 = null;
 
-        TinyHaxeTry1Parser.varDeclList_return varDeclList412 = null;
+        TinyHaxeTry1Parser.varDeclList_return varDeclList414 = null;
 
-        TinyHaxeTry1Parser.typeExtend_return typeExtend413 = null;
+        TinyHaxeTry1Parser.typeExtend_return typeExtend415 = null;
 
-        TinyHaxeTry1Parser.anonTypeFieldList_return anonTypeFieldList414 = null;
+        TinyHaxeTry1Parser.anonTypeFieldList_return anonTypeFieldList416 = null;
 
-        TinyHaxeTry1Parser.varDeclList_return varDeclList415 = null;
+        TinyHaxeTry1Parser.varDeclList_return varDeclList417 = null;
 
 
-        Object LBRACE410_tree=null;
-        Object RBRACE416_tree=null;
+        Object LBRACE412_tree=null;
+        Object RBRACE418_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 84) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:412:9: ( LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:412:11: LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:9: ( LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:11: LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE
             {
             root_0 = (Object)adaptor.nil();
 
-            LBRACE410=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_anonType3963); if (state.failed) return retval;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:4: ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) )
+            LBRACE412=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_anonType4001); if (state.failed) return retval;
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:414:4: ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) )
             int alt79=4;
             switch ( input.LA(1) ) {
             case RBRACE:
@@ -13426,44 +11641,44 @@ public class TinyHaxeTry1Parser extends Parser {
 
             switch (alt79) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:414:22: 
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:415:22: 
                     {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:414:27: anonTypeFieldList
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:415:27: anonTypeFieldList
                     {
-                    pushFollow(FOLLOW_anonTypeFieldList_in_anonType3998);
-                    anonTypeFieldList411=anonTypeFieldList();
+                    pushFollow(FOLLOW_anonTypeFieldList_in_anonType4036);
+                    anonTypeFieldList413=anonTypeFieldList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList411.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList413.getTree());
 
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:415:26: varDeclList
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:416:26: varDeclList
                     {
-                    pushFollow(FOLLOW_varDeclList_in_anonType4026);
-                    varDeclList412=varDeclList();
+                    pushFollow(FOLLOW_varDeclList_in_anonType4064);
+                    varDeclList414=varDeclList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList412.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList414.getTree());
 
                     }
                     break;
                 case 4 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:416:27: typeExtend ( | anonTypeFieldList | varDeclList )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:27: typeExtend ( | anonTypeFieldList | varDeclList )
                     {
-                    pushFollow(FOLLOW_typeExtend_in_anonType4055);
-                    typeExtend413=typeExtend();
+                    pushFollow(FOLLOW_typeExtend_in_anonType4093);
+                    typeExtend415=typeExtend();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typeExtend413.getTree());
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:416:38: ( | anonTypeFieldList | varDeclList )
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typeExtend415.getTree());
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:38: ( | anonTypeFieldList | varDeclList )
                     int alt78=3;
                     switch ( input.LA(1) ) {
                     case RBRACE:
@@ -13497,31 +11712,31 @@ public class TinyHaxeTry1Parser extends Parser {
 
                     switch (alt78) {
                         case 1 :
-                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:24: 
+                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:418:24: 
                             {
                             }
                             break;
                         case 2 :
-                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:25: anonTypeFieldList
+                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:418:25: anonTypeFieldList
                             {
-                            pushFollow(FOLLOW_anonTypeFieldList_in_anonType4083);
-                            anonTypeFieldList414=anonTypeFieldList();
+                            pushFollow(FOLLOW_anonTypeFieldList_in_anonType4121);
+                            anonTypeFieldList416=anonTypeFieldList();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList414.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList416.getTree());
 
                             }
                             break;
                         case 3 :
-                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:418:25: varDeclList
+                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:419:25: varDeclList
                             {
-                            pushFollow(FOLLOW_varDeclList_in_anonType4109);
-                            varDeclList415=varDeclList();
+                            pushFollow(FOLLOW_varDeclList_in_anonType4147);
+                            varDeclList417=varDeclList();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList415.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList417.getTree());
 
                             }
                             break;
@@ -13534,7 +11749,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
             }
 
-            RBRACE416=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_anonType4153); if (state.failed) return retval;
+            RBRACE418=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_anonType4191); if (state.failed) return retval;
 
             }
 
@@ -13559,59 +11774,41 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "anonType"
 
-    /**
-	 * The Class anonTypeFieldList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class anonTypeFieldList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "anonTypeFieldList"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:423:1: anonTypeFieldList : anonTypeField ( COMMA anonTypeField )* ;
-    /**
-	 * Anon type field list.
-	 * 
-	 * @return the tiny haxe try1 parser.anon type field list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:424:1: anonTypeFieldList : anonTypeField ( COMMA anonTypeField )* ;
     public final TinyHaxeTry1Parser.anonTypeFieldList_return anonTypeFieldList() throws RecognitionException {
         TinyHaxeTry1Parser.anonTypeFieldList_return retval = new TinyHaxeTry1Parser.anonTypeFieldList_return();
         retval.start = input.LT(1);
         int anonTypeFieldList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA418=null;
-        TinyHaxeTry1Parser.anonTypeField_return anonTypeField417 = null;
-
+        Token COMMA420=null;
         TinyHaxeTry1Parser.anonTypeField_return anonTypeField419 = null;
 
+        TinyHaxeTry1Parser.anonTypeField_return anonTypeField421 = null;
 
-        Object COMMA418_tree=null;
+
+        Object COMMA420_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 85) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:424:2: ( anonTypeField ( COMMA anonTypeField )* )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:424:4: anonTypeField ( COMMA anonTypeField )*
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:425:2: ( anonTypeField ( COMMA anonTypeField )* )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:425:4: anonTypeField ( COMMA anonTypeField )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList4167);
-            anonTypeField417=anonTypeField();
+            pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList4205);
+            anonTypeField419=anonTypeField();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField417.getTree());
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:424:18: ( COMMA anonTypeField )*
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField419.getTree());
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:425:18: ( COMMA anonTypeField )*
             loop80:
             do {
                 int alt80=2;
@@ -13624,15 +11821,15 @@ public class TinyHaxeTry1Parser extends Parser {
 
                 switch (alt80) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:424:19: COMMA anonTypeField
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:425:19: COMMA anonTypeField
             	    {
-            	    COMMA418=(Token)match(input,COMMA,FOLLOW_COMMA_in_anonTypeFieldList4170); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList4173);
-            	    anonTypeField419=anonTypeField();
+            	    COMMA420=(Token)match(input,COMMA,FOLLOW_COMMA_in_anonTypeFieldList4208); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList4211);
+            	    anonTypeField421=anonTypeField();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField419.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField421.getTree());
 
             	    }
             	    break;
@@ -13666,60 +11863,42 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "anonTypeFieldList"
 
-    /**
-	 * The Class objLit_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class objLit_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "objLit"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:427:1: objLit : '{' objLitElemList '}' ;
-    /**
-	 * Obj lit.
-	 * 
-	 * @return the tiny haxe try1 parser.obj lit_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:428:1: objLit : '{' objLitElemList '}' ;
     public final TinyHaxeTry1Parser.objLit_return objLit() throws RecognitionException {
         TinyHaxeTry1Parser.objLit_return retval = new TinyHaxeTry1Parser.objLit_return();
         retval.start = input.LT(1);
         int objLit_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal420=null;
         Token char_literal422=null;
-        TinyHaxeTry1Parser.objLitElemList_return objLitElemList421 = null;
+        Token char_literal424=null;
+        TinyHaxeTry1Parser.objLitElemList_return objLitElemList423 = null;
 
 
-        Object char_literal420_tree=null;
         Object char_literal422_tree=null;
+        Object char_literal424_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 86) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:427:8: ( '{' objLitElemList '}' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:427:10: '{' objLitElemList '}'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:428:8: ( '{' objLitElemList '}' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:428:10: '{' objLitElemList '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal420=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_objLit4185); if (state.failed) return retval;
-            pushFollow(FOLLOW_objLitElemList_in_objLit4188);
-            objLitElemList421=objLitElemList();
+            char_literal422=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_objLit4223); if (state.failed) return retval;
+            pushFollow(FOLLOW_objLitElemList_in_objLit4226);
+            objLitElemList423=objLitElemList();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElemList421.getTree());
-            char_literal422=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_objLit4190); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElemList423.getTree());
+            char_literal424=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_objLit4228); if (state.failed) return retval;
 
             }
 
@@ -13744,64 +11923,46 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "objLit"
 
-    /**
-	 * The Class anonTypeField_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class anonTypeField_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "anonTypeField"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:430:1: anonTypeField : IDENTIFIER COLON funcType ;
-    /**
-	 * Anon type field.
-	 * 
-	 * @return the tiny haxe try1 parser.anon type field_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:431:1: anonTypeField : IDENTIFIER COLON funcType ;
     public final TinyHaxeTry1Parser.anonTypeField_return anonTypeField() throws RecognitionException {
         TinyHaxeTry1Parser.anonTypeField_return retval = new TinyHaxeTry1Parser.anonTypeField_return();
         retval.start = input.LT(1);
         int anonTypeField_StartIndex = input.index();
         Object root_0 = null;
 
-        Token IDENTIFIER423=null;
-        Token COLON424=null;
-        TinyHaxeTry1Parser.funcType_return funcType425 = null;
+        Token IDENTIFIER425=null;
+        Token COLON426=null;
+        TinyHaxeTry1Parser.funcType_return funcType427 = null;
 
 
-        Object IDENTIFIER423_tree=null;
-        Object COLON424_tree=null;
+        Object IDENTIFIER425_tree=null;
+        Object COLON426_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 87) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:431:2: ( IDENTIFIER COLON funcType )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:431:4: IDENTIFIER COLON funcType
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:432:2: ( IDENTIFIER COLON funcType )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:432:4: IDENTIFIER COLON funcType
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER423=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_anonTypeField4202); if (state.failed) return retval;
+            IDENTIFIER425=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_anonTypeField4240); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER423_tree = (Object)adaptor.create(IDENTIFIER423);
-            adaptor.addChild(root_0, IDENTIFIER423_tree);
+            IDENTIFIER425_tree = (Object)adaptor.create(IDENTIFIER425);
+            adaptor.addChild(root_0, IDENTIFIER425_tree);
             }
-            COLON424=(Token)match(input,COLON,FOLLOW_COLON_in_anonTypeField4204); if (state.failed) return retval;
-            pushFollow(FOLLOW_funcType_in_anonTypeField4207);
-            funcType425=funcType();
+            COLON426=(Token)match(input,COLON,FOLLOW_COLON_in_anonTypeField4242); if (state.failed) return retval;
+            pushFollow(FOLLOW_funcType_in_anonTypeField4245);
+            funcType427=funcType();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType425.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType427.getTree());
 
             }
 
@@ -13826,59 +11987,41 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "anonTypeField"
 
-    /**
-	 * The Class objLitElemList_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class objLitElemList_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "objLitElemList"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:434:1: objLitElemList : objLitElem ( COMMA objLitElem )* ;
-    /**
-	 * Obj lit elem list.
-	 * 
-	 * @return the tiny haxe try1 parser.obj lit elem list_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:435:1: objLitElemList : objLitElem ( COMMA objLitElem )* ;
     public final TinyHaxeTry1Parser.objLitElemList_return objLitElemList() throws RecognitionException {
         TinyHaxeTry1Parser.objLitElemList_return retval = new TinyHaxeTry1Parser.objLitElemList_return();
         retval.start = input.LT(1);
         int objLitElemList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA427=null;
-        TinyHaxeTry1Parser.objLitElem_return objLitElem426 = null;
-
+        Token COMMA429=null;
         TinyHaxeTry1Parser.objLitElem_return objLitElem428 = null;
 
+        TinyHaxeTry1Parser.objLitElem_return objLitElem430 = null;
 
-        Object COMMA427_tree=null;
+
+        Object COMMA429_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 88) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:435:2: ( objLitElem ( COMMA objLitElem )* )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:435:4: objLitElem ( COMMA objLitElem )*
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:436:2: ( objLitElem ( COMMA objLitElem )* )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:436:4: objLitElem ( COMMA objLitElem )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_objLitElem_in_objLitElemList4223);
-            objLitElem426=objLitElem();
+            pushFollow(FOLLOW_objLitElem_in_objLitElemList4261);
+            objLitElem428=objLitElem();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem426.getTree());
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:435:15: ( COMMA objLitElem )*
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem428.getTree());
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:436:15: ( COMMA objLitElem )*
             loop81:
             do {
                 int alt81=2;
@@ -13891,15 +12034,15 @@ public class TinyHaxeTry1Parser extends Parser {
 
                 switch (alt81) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:435:16: COMMA objLitElem
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:436:16: COMMA objLitElem
             	    {
-            	    COMMA427=(Token)match(input,COMMA,FOLLOW_COMMA_in_objLitElemList4226); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_objLitElem_in_objLitElemList4229);
-            	    objLitElem428=objLitElem();
+            	    COMMA429=(Token)match(input,COMMA,FOLLOW_COMMA_in_objLitElemList4264); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_objLitElem_in_objLitElemList4267);
+            	    objLitElem430=objLitElem();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem428.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem430.getTree());
 
             	    }
             	    break;
@@ -13933,64 +12076,46 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "objLitElemList"
 
-    /**
-	 * The Class objLitElem_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class objLitElem_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "objLitElem"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:438:1: objLitElem : IDENTIFIER COLON expr ;
-    /**
-	 * Obj lit elem.
-	 * 
-	 * @return the tiny haxe try1 parser.obj lit elem_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:439:1: objLitElem : IDENTIFIER COLON expr ;
     public final TinyHaxeTry1Parser.objLitElem_return objLitElem() throws RecognitionException {
         TinyHaxeTry1Parser.objLitElem_return retval = new TinyHaxeTry1Parser.objLitElem_return();
         retval.start = input.LT(1);
         int objLitElem_StartIndex = input.index();
         Object root_0 = null;
 
-        Token IDENTIFIER429=null;
-        Token COLON430=null;
-        TinyHaxeTry1Parser.expr_return expr431 = null;
+        Token IDENTIFIER431=null;
+        Token COLON432=null;
+        TinyHaxeTry1Parser.expr_return expr433 = null;
 
 
-        Object IDENTIFIER429_tree=null;
-        Object COLON430_tree=null;
+        Object IDENTIFIER431_tree=null;
+        Object COLON432_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 89) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:439:9: ( IDENTIFIER COLON expr )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:439:11: IDENTIFIER COLON expr
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:440:9: ( IDENTIFIER COLON expr )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:440:11: IDENTIFIER COLON expr
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER429=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_objLitElem4250); if (state.failed) return retval;
+            IDENTIFIER431=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_objLitElem4288); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER429_tree = (Object)adaptor.create(IDENTIFIER429);
-            adaptor.addChild(root_0, IDENTIFIER429_tree);
+            IDENTIFIER431_tree = (Object)adaptor.create(IDENTIFIER431);
+            adaptor.addChild(root_0, IDENTIFIER431_tree);
             }
-            COLON430=(Token)match(input,COLON,FOLLOW_COLON_in_objLitElem4252); if (state.failed) return retval;
-            pushFollow(FOLLOW_expr_in_objLitElem4255);
-            expr431=expr();
+            COLON432=(Token)match(input,COLON,FOLLOW_COLON_in_objLitElem4290); if (state.failed) return retval;
+            pushFollow(FOLLOW_expr_in_objLitElem4293);
+            expr433=expr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr431.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr433.getTree());
 
             }
 
@@ -14015,52 +12140,34 @@ public class TinyHaxeTry1Parser extends Parser {
     }
     // $ANTLR end "objLitElem"
 
-    /**
-	 * The Class elementarySymbol_return.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     public static class elementarySymbol_return extends ParserRuleReturnScope {
-        
-        /** The tree. */
         Object tree;
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.RuleReturnScope#getTree()
-         */
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "elementarySymbol"
-    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:442:1: elementarySymbol : ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] );
-    /**
-	 * Elementary symbol.
-	 * 
-	 * @return the tiny haxe try1 parser.elementary symbol_return
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
+    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:443:1: elementarySymbol : ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] );
     public final TinyHaxeTry1Parser.elementarySymbol_return elementarySymbol() throws RecognitionException {
         TinyHaxeTry1Parser.elementarySymbol_return retval = new TinyHaxeTry1Parser.elementarySymbol_return();
         retval.start = input.LT(1);
         int elementarySymbol_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LONGLITERAL432=null;
-        Token INTLITERAL433=null;
-        Token STRINGLITERAL434=null;
-        Token CHARLITERAL435=null;
-        Token FLOATNUM436=null;
-        Token TRUE437=null;
-        Token FALSE438=null;
+        Token LONGLITERAL434=null;
+        Token INTLITERAL435=null;
+        Token STRINGLITERAL436=null;
+        Token CHARLITERAL437=null;
+        Token FLOATNUM438=null;
+        Token TRUE439=null;
+        Token FALSE440=null;
 
-        Object LONGLITERAL432_tree=null;
-        Object INTLITERAL433_tree=null;
-        Object STRINGLITERAL434_tree=null;
-        Object CHARLITERAL435_tree=null;
-        Object FLOATNUM436_tree=null;
-        Object TRUE437_tree=null;
-        Object FALSE438_tree=null;
+        Object LONGLITERAL434_tree=null;
+        Object INTLITERAL435_tree=null;
+        Object STRINGLITERAL436_tree=null;
+        Object CHARLITERAL437_tree=null;
+        Object FLOATNUM438_tree=null;
+        Object TRUE439_tree=null;
+        Object FALSE440_tree=null;
         RewriteRuleTokenStream stream_INTLITERAL=new RewriteRuleTokenStream(adaptor,"token INTLITERAL");
         RewriteRuleTokenStream stream_FALSE=new RewriteRuleTokenStream(adaptor,"token FALSE");
         RewriteRuleTokenStream stream_TRUE=new RewriteRuleTokenStream(adaptor,"token TRUE");
@@ -14071,7 +12178,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 90) ) { return retval; }
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:443:2: ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:444:2: ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] )
             int alt82=7;
             switch ( input.LA(1) ) {
             case LONGLITERAL:
@@ -14119,10 +12226,10 @@ public class TinyHaxeTry1Parser extends Parser {
 
             switch (alt82) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:443:4: LONGLITERAL
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:444:4: LONGLITERAL
                     {
-                    LONGLITERAL432=(Token)match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_elementarySymbol4267); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LONGLITERAL.add(LONGLITERAL432);
+                    LONGLITERAL434=(Token)match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_elementarySymbol4305); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LONGLITERAL.add(LONGLITERAL434);
 
 
 
@@ -14138,9 +12245,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 443:16: -> LONGLITERAL[$LONGLITERAL, \"INT\"]
+                    // 444:16: -> LONGLITERAL[$LONGLITERAL, \"INT\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(LONGLITERAL, LONGLITERAL432, "INT"));
+                        adaptor.addChild(root_0, new VarUsage(LONGLITERAL, LONGLITERAL434, "INT"));
 
                     }
 
@@ -14148,10 +12255,10 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:444:4: INTLITERAL
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:445:4: INTLITERAL
                     {
-                    INTLITERAL433=(Token)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_elementarySymbol4280); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_INTLITERAL.add(INTLITERAL433);
+                    INTLITERAL435=(Token)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_elementarySymbol4318); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_INTLITERAL.add(INTLITERAL435);
 
 
 
@@ -14167,9 +12274,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 444:15: -> INTLITERAL[$INTLITERAL, \"INT\"]
+                    // 445:15: -> INTLITERAL[$INTLITERAL, \"INT\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(INTLITERAL, INTLITERAL433, "INT"));
+                        adaptor.addChild(root_0, new VarUsage(INTLITERAL, INTLITERAL435, "INT"));
 
                     }
 
@@ -14177,10 +12284,10 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:445:4: STRINGLITERAL
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:446:4: STRINGLITERAL
                     {
-                    STRINGLITERAL434=(Token)match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_elementarySymbol4293); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_STRINGLITERAL.add(STRINGLITERAL434);
+                    STRINGLITERAL436=(Token)match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_elementarySymbol4331); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_STRINGLITERAL.add(STRINGLITERAL436);
 
 
 
@@ -14196,9 +12303,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 445:18: -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"]
+                    // 446:18: -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(STRINGLITERAL, STRINGLITERAL434, "STRING"));
+                        adaptor.addChild(root_0, new VarUsage(STRINGLITERAL, STRINGLITERAL436, "STRING"));
 
                     }
 
@@ -14206,10 +12313,10 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:446:4: CHARLITERAL
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:447:4: CHARLITERAL
                     {
-                    CHARLITERAL435=(Token)match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_elementarySymbol4306); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CHARLITERAL.add(CHARLITERAL435);
+                    CHARLITERAL437=(Token)match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_elementarySymbol4344); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CHARLITERAL.add(CHARLITERAL437);
 
 
 
@@ -14225,9 +12332,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 446:16: -> CHARLITERAL[$CHARLITERAL, \"STRING\"]
+                    // 447:16: -> CHARLITERAL[$CHARLITERAL, \"STRING\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(CHARLITERAL, CHARLITERAL435, "STRING"));
+                        adaptor.addChild(root_0, new VarUsage(CHARLITERAL, CHARLITERAL437, "STRING"));
 
                     }
 
@@ -14235,10 +12342,10 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:447:4: FLOATNUM
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:448:4: FLOATNUM
                     {
-                    FLOATNUM436=(Token)match(input,FLOATNUM,FOLLOW_FLOATNUM_in_elementarySymbol4319); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FLOATNUM.add(FLOATNUM436);
+                    FLOATNUM438=(Token)match(input,FLOATNUM,FOLLOW_FLOATNUM_in_elementarySymbol4357); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FLOATNUM.add(FLOATNUM438);
 
 
 
@@ -14254,9 +12361,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 447:13: -> FLOATNUM[$FLOATNUM, \"FLOAT\"]
+                    // 448:13: -> FLOATNUM[$FLOATNUM, \"FLOAT\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(FLOATNUM, FLOATNUM436, "FLOAT"));
+                        adaptor.addChild(root_0, new VarUsage(FLOATNUM, FLOATNUM438, "FLOAT"));
 
                     }
 
@@ -14264,10 +12371,10 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 6 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:448:4: TRUE
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:449:4: TRUE
                     {
-                    TRUE437=(Token)match(input,TRUE,FOLLOW_TRUE_in_elementarySymbol4332); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_TRUE.add(TRUE437);
+                    TRUE439=(Token)match(input,TRUE,FOLLOW_TRUE_in_elementarySymbol4370); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_TRUE.add(TRUE439);
 
 
 
@@ -14283,9 +12390,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 448:10: -> TRUE[$TRUE,\"BOOL\"]
+                    // 449:10: -> TRUE[$TRUE,\"BOOL\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(TRUE, TRUE437, "BOOL"));
+                        adaptor.addChild(root_0, new VarUsage(TRUE, TRUE439, "BOOL"));
 
                     }
 
@@ -14293,10 +12400,10 @@ public class TinyHaxeTry1Parser extends Parser {
                     }
                     break;
                 case 7 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:449:4: FALSE
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:450:4: FALSE
                     {
-                    FALSE438=(Token)match(input,FALSE,FOLLOW_FALSE_in_elementarySymbol4346); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FALSE.add(FALSE438);
+                    FALSE440=(Token)match(input,FALSE,FOLLOW_FALSE_in_elementarySymbol4384); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FALSE.add(FALSE440);
 
 
 
@@ -14312,9 +12419,9 @@ public class TinyHaxeTry1Parser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 449:11: -> FALSE[$FALSE,\"BOOL\"]
+                    // 450:11: -> FALSE[$FALSE,\"BOOL\"]
                     {
-                        adaptor.addChild(root_0, new VarUsage(FALSE, FALSE438, "BOOL"));
+                        adaptor.addChild(root_0, new VarUsage(FALSE, FALSE440, "BOOL"));
 
                     }
 
@@ -14345,12 +12452,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end "elementarySymbol"
 
     // $ANTLR start synpred21_TinyHaxeTry1
-    /**
-	 * Synpred21_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred21_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:125:54: ( typeTagOpt )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:125:54: typeTagOpt
@@ -14366,12 +12467,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred21_TinyHaxeTry1
 
     // $ANTLR start synpred29_TinyHaxeTry1
-    /**
-	 * Synpred29_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred29_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:163:21: ( COMMA funcType )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:163:21: COMMA funcType
@@ -14388,12 +12483,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred29_TinyHaxeTry1
 
     // $ANTLR start synpred30_TinyHaxeTry1
-    /**
-	 * Synpred30_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred30_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:163:11: ( funcType ( COMMA funcType )* )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:163:11: funcType ( COMMA funcType )*
@@ -14439,12 +12528,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred30_TinyHaxeTry1
 
     // $ANTLR start synpred31_TinyHaxeTry1
-    /**
-	 * Synpred31_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred31_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:20: ( COMMA typeConstraint )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:20: COMMA typeConstraint
@@ -14461,12 +12544,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred31_TinyHaxeTry1
 
     // $ANTLR start synpred32_TinyHaxeTry1
-    /**
-	 * Synpred32_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred32_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:167:19: ( MINUS_BIGGER type )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:167:19: MINUS_BIGGER type
@@ -14483,12 +12560,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred32_TinyHaxeTry1
 
     // $ANTLR start synpred33_TinyHaxeTry1
-    /**
-	 * Synpred33_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred33_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:167:11: ( ( type ) ( MINUS_BIGGER type )* )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:167:11: ( type ) ( MINUS_BIGGER type )*
@@ -14540,12 +12611,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred33_TinyHaxeTry1
 
     // $ANTLR start synpred40_TinyHaxeTry1
-    /**
-	 * Synpred40_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred40_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:65: ( typeParam )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:65: typeParam
@@ -14561,12 +12626,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred40_TinyHaxeTry1
 
     // $ANTLR start synpred41_TinyHaxeTry1
-    /**
-	 * Synpred41_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred41_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:8: ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )*
@@ -14713,12 +12772,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred41_TinyHaxeTry1
 
     // $ANTLR start synpred42_TinyHaxeTry1
-    /**
-	 * Synpred42_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred42_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:9: ( type )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:9: type
@@ -14734,12 +12787,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred42_TinyHaxeTry1
 
     // $ANTLR start synpred43_TinyHaxeTry1
-    /**
-	 * Synpred43_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred43_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:25: ( GT )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:25: GT
@@ -14751,12 +12798,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred43_TinyHaxeTry1
 
     // $ANTLR start synpred44_TinyHaxeTry1
-    /**
-	 * Synpred44_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred44_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:29: ( GTGT )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:29: GTGT
@@ -14768,12 +12809,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred44_TinyHaxeTry1
 
     // $ANTLR start synpred45_TinyHaxeTry1
-    /**
-	 * Synpred45_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred45_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:4: ( typeParam )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:4: typeParam
@@ -14789,12 +12824,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred45_TinyHaxeTry1
 
     // $ANTLR start synpred47_TinyHaxeTry1
-    /**
-	 * Synpred47_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred47_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:195:4: ( block )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:195:4: block
@@ -14810,12 +12839,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred47_TinyHaxeTry1
 
     // $ANTLR start synpred48_TinyHaxeTry1
-    /**
-	 * Synpred48_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred48_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:196:4: ( assignExpr SEMI )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:196:4: assignExpr SEMI
@@ -14832,12 +12855,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred48_TinyHaxeTry1
 
     // $ANTLR start synpred50_TinyHaxeTry1
-    /**
-	 * Synpred50_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred50_TinyHaxeTry1_fragment() throws RecognitionException {   
         TinyHaxeTry1Parser.statement_return st2 = null;
 
@@ -14857,12 +12874,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred50_TinyHaxeTry1
 
     // $ANTLR start synpred58_TinyHaxeTry1
-    /**
-	 * Synpred58_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred58_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:204:12: ( expr )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:204:12: expr
@@ -14878,12 +12889,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred58_TinyHaxeTry1
 
     // $ANTLR start synpred65_TinyHaxeTry1
-    /**
-	 * Synpred65_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred65_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:208:4: ( expr SEMI )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:208:4: expr SEMI
@@ -14900,12 +12905,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred65_TinyHaxeTry1
 
     // $ANTLR start synpred66_TinyHaxeTry1
-    /**
-	 * Synpred66_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred66_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:4: ( IDENTIFIER COLON statement )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:4: IDENTIFIER COLON statement
@@ -14923,12 +12922,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred66_TinyHaxeTry1
 
     // $ANTLR start synpred69_TinyHaxeTry1
-    /**
-	 * Synpred69_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred69_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:222:4: ( varDecl )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:222:4: varDecl
@@ -14944,12 +12937,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred69_TinyHaxeTry1
 
     // $ANTLR start synpred73_TinyHaxeTry1
-    /**
-	 * Synpred73_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred73_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:246:21: ( exprList )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:246:21: exprList
@@ -14965,12 +12952,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred73_TinyHaxeTry1
 
     // $ANTLR start synpred90_TinyHaxeTry1
-    /**
-	 * Synpred90_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred90_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:270:49: ( ( GT GT ) addExpr )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:270:49: ( GT GT ) addExpr
@@ -14994,12 +12975,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred90_TinyHaxeTry1
 
     // $ANTLR start synpred101_TinyHaxeTry1
-    /**
-	 * Synpred101_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred101_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:277:21: ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:277:21: ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
@@ -15025,12 +13000,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred101_TinyHaxeTry1
 
     // $ANTLR start synpred104_TinyHaxeTry1
-    /**
-	 * Synpred104_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred104_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:284:4: ( value LPAREN exprListOpt RPAREN )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:284:4: value LPAREN exprListOpt RPAREN
@@ -15053,12 +13022,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred104_TinyHaxeTry1
 
     // $ANTLR start synpred105_TinyHaxeTry1
-    /**
-	 * Synpred105_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred105_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:285:4: ( value LBRACKET expr RBRACKET )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:285:4: value LBRACKET expr RBRACKET
@@ -15081,12 +13044,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred105_TinyHaxeTry1
 
     // $ANTLR start synpred106_TinyHaxeTry1
-    /**
-	 * Synpred106_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred106_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:286:4: ( value PLUSPLUS )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:286:4: value PLUSPLUS
@@ -15103,12 +13060,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred106_TinyHaxeTry1
 
     // $ANTLR start synpred107_TinyHaxeTry1
-    /**
-	 * Synpred107_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred107_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:287:4: ( value SUBSUB )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:287:4: value SUBSUB
@@ -15125,12 +13076,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred107_TinyHaxeTry1
 
     // $ANTLR start synpred109_TinyHaxeTry1
-    /**
-	 * Synpred109_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred109_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:292:4: ( arrayLit )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:292:4: arrayLit
@@ -15146,12 +13091,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred109_TinyHaxeTry1
 
     // $ANTLR start synpred113_TinyHaxeTry1
-    /**
-	 * Synpred113_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred113_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:296:23: ( expr )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:296:23: expr
@@ -15167,12 +13106,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred113_TinyHaxeTry1
 
     // $ANTLR start synpred114_TinyHaxeTry1
-    /**
-	 * Synpred114_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred114_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:296:14: ( LPAREN ( expr | statement ) RPAREN )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:296:14: LPAREN ( expr | statement ) RPAREN
@@ -15214,12 +13147,6 @@ public class TinyHaxeTry1Parser extends Parser {
     // $ANTLR end synpred114_TinyHaxeTry1
 
     // $ANTLR start synpred117_TinyHaxeTry1
-    /**
-	 * Synpred117_ tiny haxe try1_fragment.
-	 * 
-	 * @throws RecognitionException
-	 *             the recognition exception
-	 */
     public final void synpred117_TinyHaxeTry1_fragment() throws RecognitionException {   
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:303:11: ( CAST LPAREN expr ( COMMA funcType )? RPAREN )
         // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:303:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
@@ -15262,11 +13189,6 @@ public class TinyHaxeTry1Parser extends Parser {
 
     // Delegated rules
 
-    /**
-	 * Synpred104_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred104_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15281,12 +13203,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred73_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred73_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15301,12 +13217,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred47_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred47_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15321,12 +13231,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred66_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred66_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15341,12 +13245,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred48_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred48_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15361,12 +13259,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred40_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred40_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15381,12 +13273,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred30_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred30_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15401,12 +13287,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred29_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred29_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15421,12 +13301,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred45_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred45_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15441,12 +13315,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred43_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred43_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15461,12 +13329,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred101_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred101_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15481,12 +13343,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred31_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred31_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15501,12 +13357,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred69_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred69_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15521,12 +13371,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred113_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred113_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15541,12 +13385,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred44_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred44_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15561,12 +13399,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred117_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred117_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15581,12 +13413,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred105_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred105_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15601,12 +13427,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred50_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred50_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15621,12 +13441,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred21_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred21_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15641,12 +13455,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred41_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred41_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15661,12 +13469,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred107_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred107_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15681,12 +13483,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred114_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred114_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15701,12 +13497,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred90_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred90_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15721,12 +13511,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred65_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred65_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15741,12 +13525,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred32_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred32_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15761,12 +13539,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred106_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred106_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15781,12 +13553,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred58_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred58_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15801,12 +13567,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred42_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred42_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15821,12 +13581,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred109_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred109_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15841,12 +13595,6 @@ public class TinyHaxeTry1Parser extends Parser {
         state.failed=false;
         return success;
     }
-    
-    /**
-	 * Synpred33_ tiny haxe try1.
-	 * 
-	 * @return true, if successful
-	 */
     public final boolean synpred33_TinyHaxeTry1() {
         state.backtracking++;
         int start = input.mark();
@@ -15863,73 +13611,32 @@ public class TinyHaxeTry1Parser extends Parser {
     }
 
 
-    /** The dfa19. */
     protected DFA19 dfa19 = new DFA19(this);
-    
-    /** The dfa18. */
     protected DFA18 dfa18 = new DFA18(this);
-    
-    /** The dfa24. */
     protected DFA24 dfa24 = new DFA24(this);
-    
-    /** The dfa25. */
     protected DFA25 dfa25 = new DFA25(this);
-    
-    /** The dfa34. */
     protected DFA34 dfa34 = new DFA34(this);
-    
-    /** The dfa37. */
     protected DFA37 dfa37 = new DFA37(this);
-    
-    /** The dfa56. */
     protected DFA56 dfa56 = new DFA56(this);
-    
-    /** The dfa58. */
     protected DFA58 dfa58 = new DFA58(this);
-    
-    /** The dfa57. */
     protected DFA57 dfa57 = new DFA57(this);
-    
-    /** The dfa70. */
     protected DFA70 dfa70 = new DFA70(this);
-    
-    /** The dfa71. */
     protected DFA71 dfa71 = new DFA71(this);
-    
-    /** The dfa73. */
     protected DFA73 dfa73 = new DFA73(this);
-    
-    /** The dfa74. */
     protected DFA74 dfa74 = new DFA74(this);
-    
-    /** The dfa94. */
     protected DFA94 dfa94 = new DFA94(this);
-    
-    /** The Constant DFA19_eotS. */
     static final String DFA19_eotS =
         "\73\uffff";
-    
-    /** The Constant DFA19_eofS. */
     static final String DFA19_eofS =
         "\1\1\72\uffff";
-    
-    /** The Constant DFA19_minS. */
     static final String DFA19_minS =
         "\1\20\1\uffff\1\0\70\uffff";
-    
-    /** The Constant DFA19_maxS. */
     static final String DFA19_maxS =
         "\1\145\1\uffff\1\0\70\uffff";
-    
-    /** The Constant DFA19_acceptS. */
     static final String DFA19_acceptS =
         "\1\uffff\1\1\70\uffff\1\2";
-    
-    /** The Constant DFA19_specialS. */
     static final String DFA19_specialS =
         "\2\uffff\1\0\70\uffff}>";
-    
-    /** The Constant DFA19_transitionS. */
     static final String[] DFA19_transitionS = {
             "\1\1\1\2\1\uffff\1\1\4\uffff\1\1\1\uffff\10\1\1\uffff\2\1\1"+
             "\uffff\2\1\1\uffff\15\1\4\uffff\1\1\4\uffff\2\1\7\uffff\21\1"+
@@ -15994,25 +13701,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA19_eot. */
     static final short[] DFA19_eot = DFA.unpackEncodedString(DFA19_eotS);
-    
-    /** The Constant DFA19_eof. */
     static final short[] DFA19_eof = DFA.unpackEncodedString(DFA19_eofS);
-    
-    /** The Constant DFA19_min. */
     static final char[] DFA19_min = DFA.unpackEncodedStringToUnsignedChars(DFA19_minS);
-    
-    /** The Constant DFA19_max. */
     static final char[] DFA19_max = DFA.unpackEncodedStringToUnsignedChars(DFA19_maxS);
-    
-    /** The Constant DFA19_accept. */
     static final short[] DFA19_accept = DFA.unpackEncodedString(DFA19_acceptS);
-    
-    /** The Constant DFA19_special. */
     static final short[] DFA19_special = DFA.unpackEncodedString(DFA19_specialS);
-    
-    /** The Constant DFA19_transition. */
     static final short[][] DFA19_transition;
 
     static {
@@ -16023,19 +13717,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA19.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA19 extends DFA {
 
-        /**
-		 * Instantiates a new dF a19.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA19(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 19;
@@ -16047,17 +13730,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA19_special;
             this.transition = DFA19_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "163:1: typeList : ( funcType ( COMMA funcType )* | typeConstraint ( COMMA typeConstraint )* );";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -16085,32 +13760,18 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA18_eotS. */
     static final String DFA18_eotS =
         "\65\uffff";
-    
-    /** The Constant DFA18_eofS. */
     static final String DFA18_eofS =
         "\1\1\64\uffff";
-    
-    /** The Constant DFA18_minS. */
     static final String DFA18_minS =
         "\1\20\4\uffff\1\0\57\uffff";
-    
-    /** The Constant DFA18_maxS. */
     static final String DFA18_maxS =
         "\1\145\4\uffff\1\0\57\uffff";
-    
-    /** The Constant DFA18_acceptS. */
     static final String DFA18_acceptS =
         "\1\uffff\1\2\62\uffff\1\1";
-    
-    /** The Constant DFA18_specialS. */
     static final String DFA18_specialS =
         "\5\uffff\1\0\57\uffff}>";
-    
-    /** The Constant DFA18_transitionS. */
     static final String[] DFA18_transitionS = {
             "\1\1\2\uffff\1\1\6\uffff\1\5\7\1\1\uffff\2\1\1\uffff\2\1\1"+
             "\uffff\6\1\4\uffff\3\1\4\uffff\1\1\4\uffff\2\1\7\uffff\21\1"+
@@ -16169,25 +13830,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA18_eot. */
     static final short[] DFA18_eot = DFA.unpackEncodedString(DFA18_eotS);
-    
-    /** The Constant DFA18_eof. */
     static final short[] DFA18_eof = DFA.unpackEncodedString(DFA18_eofS);
-    
-    /** The Constant DFA18_min. */
     static final char[] DFA18_min = DFA.unpackEncodedStringToUnsignedChars(DFA18_minS);
-    
-    /** The Constant DFA18_max. */
     static final char[] DFA18_max = DFA.unpackEncodedStringToUnsignedChars(DFA18_maxS);
-    
-    /** The Constant DFA18_accept. */
     static final short[] DFA18_accept = DFA.unpackEncodedString(DFA18_acceptS);
-    
-    /** The Constant DFA18_special. */
     static final short[] DFA18_special = DFA.unpackEncodedString(DFA18_specialS);
-    
-    /** The Constant DFA18_transition. */
     static final short[][] DFA18_transition;
 
     static {
@@ -16198,19 +13846,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA18.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA18 extends DFA {
 
-        /**
-		 * Instantiates a new dF a18.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA18(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 18;
@@ -16222,17 +13859,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA18_special;
             this.transition = DFA18_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "()* loopback of 164:19: ( COMMA typeConstraint )*";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -16260,32 +13889,18 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA24_eotS. */
     static final String DFA24_eotS =
         "\72\uffff";
-    
-    /** The Constant DFA24_eofS. */
     static final String DFA24_eofS =
         "\1\10\71\uffff";
-    
-    /** The Constant DFA24_minS. */
     static final String DFA24_minS =
         "\1\20\1\0\70\uffff";
-    
-    /** The Constant DFA24_maxS. */
     static final String DFA24_maxS =
         "\1\145\1\0\70\uffff";
-    
-    /** The Constant DFA24_acceptS. */
     static final String DFA24_acceptS =
         "\2\uffff\1\1\5\uffff\1\2\61\uffff";
-    
-    /** The Constant DFA24_specialS. */
     static final String DFA24_specialS =
         "\1\uffff\1\0\70\uffff}>";
-    
-    /** The Constant DFA24_transitionS. */
     static final String[] DFA24_transitionS = {
             "\1\10\1\2\1\uffff\1\10\4\uffff\1\2\1\uffff\10\10\1\uffff\2"+
             "\10\1\uffff\2\10\1\uffff\6\10\4\2\3\10\4\uffff\1\10\4\uffff"+
@@ -16349,25 +13964,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA24_eot. */
     static final short[] DFA24_eot = DFA.unpackEncodedString(DFA24_eotS);
-    
-    /** The Constant DFA24_eof. */
     static final short[] DFA24_eof = DFA.unpackEncodedString(DFA24_eofS);
-    
-    /** The Constant DFA24_min. */
     static final char[] DFA24_min = DFA.unpackEncodedStringToUnsignedChars(DFA24_minS);
-    
-    /** The Constant DFA24_max. */
     static final char[] DFA24_max = DFA.unpackEncodedStringToUnsignedChars(DFA24_maxS);
-    
-    /** The Constant DFA24_accept. */
     static final short[] DFA24_accept = DFA.unpackEncodedString(DFA24_acceptS);
-    
-    /** The Constant DFA24_special. */
     static final short[] DFA24_special = DFA.unpackEncodedString(DFA24_specialS);
-    
-    /** The Constant DFA24_transition. */
     static final short[][] DFA24_transition;
 
     static {
@@ -16378,19 +13980,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA24.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA24 extends DFA {
 
-        /**
-		 * Instantiates a new dF a24.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA24(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 24;
@@ -16402,17 +13993,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA24_special;
             this.transition = DFA24_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "171:1: type : ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* | );";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -16440,36 +14023,22 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA25_eotS. */
     static final String DFA25_eotS =
         "\74\uffff";
-    
-    /** The Constant DFA25_eofS. */
     static final String DFA25_eofS =
         "\1\16\73\uffff";
-    
-    /** The Constant DFA25_minS. */
     static final String DFA25_minS =
         "\1\20\71\0\2\uffff";
-    
-    /** The Constant DFA25_maxS. */
     static final String DFA25_maxS =
         "\1\145\71\0\2\uffff";
-    
-    /** The Constant DFA25_acceptS. */
     static final String DFA25_acceptS =
         "\72\uffff\1\1\1\2";
-    
-    /** The Constant DFA25_specialS. */
     static final String DFA25_specialS =
-        "\1\uffff\1\16\1\33\1\4\1\1\1\34\1\30\1\31\1\12\1\26\1\44\1\67\1"+
-        "\52\1\61\1\27\1\46\1\20\1\43\1\0\1\3\1\11\1\22\1\42\1\55\1\62\1"+
-        "\14\1\23\1\66\1\63\1\51\1\13\1\45\1\37\1\35\1\32\1\15\1\10\1\6\1"+
-        "\47\1\2\1\21\1\40\1\24\1\50\1\54\1\36\1\41\1\17\1\70\1\53\1\7\1"+
-        "\56\1\60\1\64\1\65\1\25\1\5\1\57\2\uffff}>";
-    
-    /** The Constant DFA25_transitionS. */
+        "\1\uffff\1\33\1\63\1\52\1\46\1\44\1\36\1\47\1\34\1\0\1\41\1\60"+
+        "\1\54\1\62\1\42\1\5\1\7\1\51\1\12\1\24\1\2\1\3\1\35\1\57\1\37\1"+
+        "\11\1\4\1\55\1\25\1\53\1\26\1\17\1\27\1\21\1\23\1\50\1\16\1\22\1"+
+        "\66\1\31\1\45\1\56\1\20\1\6\1\13\1\1\1\61\1\30\1\32\1\15\1\14\1"+
+        "\10\1\64\1\67\1\70\1\43\1\65\1\40\2\uffff}>";
     static final String[] DFA25_transitionS = {
             "\1\17\1\2\1\uffff\1\20\4\uffff\1\5\1\uffff\1\14\1\60\1\13\1"+
             "\62\1\63\1\64\1\65\1\66\1\uffff\1\34\1\15\1\uffff\1\71\1\21"+
@@ -16539,25 +14108,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA25_eot. */
     static final short[] DFA25_eot = DFA.unpackEncodedString(DFA25_eotS);
-    
-    /** The Constant DFA25_eof. */
     static final short[] DFA25_eof = DFA.unpackEncodedString(DFA25_eofS);
-    
-    /** The Constant DFA25_min. */
     static final char[] DFA25_min = DFA.unpackEncodedStringToUnsignedChars(DFA25_minS);
-    
-    /** The Constant DFA25_max. */
     static final char[] DFA25_max = DFA.unpackEncodedStringToUnsignedChars(DFA25_maxS);
-    
-    /** The Constant DFA25_accept. */
     static final short[] DFA25_accept = DFA.unpackEncodedString(DFA25_acceptS);
-    
-    /** The Constant DFA25_special. */
     static final short[] DFA25_special = DFA.unpackEncodedString(DFA25_specialS);
-    
-    /** The Constant DFA25_transition. */
     static final short[][] DFA25_transition;
 
     static {
@@ -16568,19 +14124,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA25.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA25 extends DFA {
 
-        /**
-		 * Instantiates a new dF a25.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA25(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 25;
@@ -16592,352 +14137,14 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA25_special;
             this.transition = DFA25_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "176:8: ( type | typeList )";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA25_18 = input.LA(1);
-
-                         
-                        int index25_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA25_4 = input.LA(1);
-
-                         
-                        int index25_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA25_39 = input.LA(1);
-
-                         
-                        int index25_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA25_19 = input.LA(1);
-
-                         
-                        int index25_19 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_19);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA25_3 = input.LA(1);
-
-                         
-                        int index25_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA25_56 = input.LA(1);
-
-                         
-                        int index25_56 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_56);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA25_37 = input.LA(1);
-
-                         
-                        int index25_37 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_37);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA25_50 = input.LA(1);
-
-                         
-                        int index25_50 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_50);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA25_36 = input.LA(1);
-
-                         
-                        int index25_36 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_36);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA25_20 = input.LA(1);
-
-                         
-                        int index25_20 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_20);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA25_8 = input.LA(1);
-
-                         
-                        int index25_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA25_30 = input.LA(1);
-
-                         
-                        int index25_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA25_25 = input.LA(1);
-
-                         
-                        int index25_25 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_25);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA25_35 = input.LA(1);
-
-                         
-                        int index25_35 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_35);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA25_1 = input.LA(1);
-
-                         
-                        int index25_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
-                        int LA25_47 = input.LA(1);
-
-                         
-                        int index25_47 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_47);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA25_16 = input.LA(1);
-
-                         
-                        int index25_16 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_16);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 17 : 
-                        int LA25_40 = input.LA(1);
-
-                         
-                        int index25_40 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_40);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 18 : 
-                        int LA25_21 = input.LA(1);
-
-                         
-                        int index25_21 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_21);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 19 : 
-                        int LA25_26 = input.LA(1);
-
-                         
-                        int index25_26 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_26);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 20 : 
-                        int LA25_42 = input.LA(1);
-
-                         
-                        int index25_42 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_42);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 21 : 
-                        int LA25_55 = input.LA(1);
-
-                         
-                        int index25_55 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_55);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 22 : 
                         int LA25_9 = input.LA(1);
 
                          
@@ -16952,112 +14159,7 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 23 : 
-                        int LA25_14 = input.LA(1);
-
-                         
-                        int index25_14 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_14);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 24 : 
-                        int LA25_6 = input.LA(1);
-
-                         
-                        int index25_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 25 : 
-                        int LA25_7 = input.LA(1);
-
-                         
-                        int index25_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
-                        int LA25_34 = input.LA(1);
-
-                         
-                        int index25_34 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_34);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 27 : 
-                        int LA25_2 = input.LA(1);
-
-                         
-                        int index25_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 28 : 
-                        int LA25_5 = input.LA(1);
-
-                         
-                        int index25_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 29 : 
-                        int LA25_33 = input.LA(1);
-
-                         
-                        int index25_33 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_33);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 30 : 
+                    case 1 : 
                         int LA25_45 = input.LA(1);
 
                          
@@ -17072,11 +14174,11 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_45);
                         if ( s>=0 ) return s;
                         break;
-                    case 31 : 
-                        int LA25_32 = input.LA(1);
+                    case 2 : 
+                        int LA25_20 = input.LA(1);
 
                          
-                        int index25_32 = input.index();
+                        int index25_20 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17084,14 +14186,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_32);
+                        input.seek(index25_20);
                         if ( s>=0 ) return s;
                         break;
-                    case 32 : 
-                        int LA25_41 = input.LA(1);
+                    case 3 : 
+                        int LA25_21 = input.LA(1);
 
                          
-                        int index25_41 = input.index();
+                        int index25_21 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17099,14 +14201,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_41);
+                        input.seek(index25_21);
                         if ( s>=0 ) return s;
                         break;
-                    case 33 : 
-                        int LA25_46 = input.LA(1);
+                    case 4 : 
+                        int LA25_26 = input.LA(1);
 
                          
-                        int index25_46 = input.index();
+                        int index25_26 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17114,70 +14216,10 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_46);
+                        input.seek(index25_26);
                         if ( s>=0 ) return s;
                         break;
-                    case 34 : 
-                        int LA25_22 = input.LA(1);
-
-                         
-                        int index25_22 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_22);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 35 : 
-                        int LA25_17 = input.LA(1);
-
-                         
-                        int index25_17 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_17);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 36 : 
-                        int LA25_10 = input.LA(1);
-
-                         
-                        int index25_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 37 : 
-                        int LA25_31 = input.LA(1);
-
-                         
-                        int index25_31 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_31);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 38 : 
+                    case 5 : 
                         int LA25_15 = input.LA(1);
 
                          
@@ -17192,22 +14234,7 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_15);
                         if ( s>=0 ) return s;
                         break;
-                    case 39 : 
-                        int LA25_38 = input.LA(1);
-
-                         
-                        int index25_38 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_38);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 40 : 
+                    case 6 : 
                         int LA25_43 = input.LA(1);
 
                          
@@ -17222,11 +14249,11 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_43);
                         if ( s>=0 ) return s;
                         break;
-                    case 41 : 
-                        int LA25_29 = input.LA(1);
+                    case 7 : 
+                        int LA25_16 = input.LA(1);
 
                          
-                        int index25_29 = input.index();
+                        int index25_16 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17234,70 +14261,10 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_29);
+                        input.seek(index25_16);
                         if ( s>=0 ) return s;
                         break;
-                    case 42 : 
-                        int LA25_12 = input.LA(1);
-
-                         
-                        int index25_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 43 : 
-                        int LA25_49 = input.LA(1);
-
-                         
-                        int index25_49 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_49);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 44 : 
-                        int LA25_44 = input.LA(1);
-
-                         
-                        int index25_44 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_44);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 45 : 
-                        int LA25_23 = input.LA(1);
-
-                         
-                        int index25_23 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
-
-                        else if ( (true) ) {s = 59;}
-
-                         
-                        input.seek(index25_23);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 46 : 
+                    case 8 : 
                         int LA25_51 = input.LA(1);
 
                          
@@ -17312,11 +14279,11 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_51);
                         if ( s>=0 ) return s;
                         break;
-                    case 47 : 
-                        int LA25_57 = input.LA(1);
+                    case 9 : 
+                        int LA25_25 = input.LA(1);
 
                          
-                        int index25_57 = input.index();
+                        int index25_25 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17324,14 +14291,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_57);
+                        input.seek(index25_25);
                         if ( s>=0 ) return s;
                         break;
-                    case 48 : 
-                        int LA25_52 = input.LA(1);
+                    case 10 : 
+                        int LA25_18 = input.LA(1);
 
                          
-                        int index25_52 = input.index();
+                        int index25_18 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17339,14 +14306,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_52);
+                        input.seek(index25_18);
                         if ( s>=0 ) return s;
                         break;
-                    case 49 : 
-                        int LA25_13 = input.LA(1);
+                    case 11 : 
+                        int LA25_44 = input.LA(1);
 
                          
-                        int index25_13 = input.index();
+                        int index25_44 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17354,14 +14321,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_13);
+                        input.seek(index25_44);
                         if ( s>=0 ) return s;
                         break;
-                    case 50 : 
-                        int LA25_24 = input.LA(1);
+                    case 12 : 
+                        int LA25_50 = input.LA(1);
 
                          
-                        int index25_24 = input.index();
+                        int index25_50 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17369,10 +14336,130 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_24);
+                        input.seek(index25_50);
                         if ( s>=0 ) return s;
                         break;
-                    case 51 : 
+                    case 13 : 
+                        int LA25_49 = input.LA(1);
+
+                         
+                        int index25_49 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_49);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA25_36 = input.LA(1);
+
+                         
+                        int index25_36 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_36);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA25_31 = input.LA(1);
+
+                         
+                        int index25_31 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_31);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA25_42 = input.LA(1);
+
+                         
+                        int index25_42 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_42);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA25_33 = input.LA(1);
+
+                         
+                        int index25_33 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_33);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA25_37 = input.LA(1);
+
+                         
+                        int index25_37 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_37);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 19 : 
+                        int LA25_34 = input.LA(1);
+
+                         
+                        int index25_34 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_34);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 20 : 
+                        int LA25_19 = input.LA(1);
+
+                         
+                        int index25_19 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_19);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 21 : 
                         int LA25_28 = input.LA(1);
 
                          
@@ -17387,11 +14474,11 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_28);
                         if ( s>=0 ) return s;
                         break;
-                    case 52 : 
-                        int LA25_53 = input.LA(1);
+                    case 22 : 
+                        int LA25_30 = input.LA(1);
 
                          
-                        int index25_53 = input.index();
+                        int index25_30 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17399,14 +14486,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_53);
+                        input.seek(index25_30);
                         if ( s>=0 ) return s;
                         break;
-                    case 53 : 
-                        int LA25_54 = input.LA(1);
+                    case 23 : 
+                        int LA25_32 = input.LA(1);
 
                          
-                        int index25_54 = input.index();
+                        int index25_32 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17414,14 +14501,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_54);
+                        input.seek(index25_32);
                         if ( s>=0 ) return s;
                         break;
-                    case 54 : 
-                        int LA25_27 = input.LA(1);
+                    case 24 : 
+                        int LA25_47 = input.LA(1);
 
                          
-                        int index25_27 = input.index();
+                        int index25_47 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17429,14 +14516,14 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_27);
+                        input.seek(index25_47);
                         if ( s>=0 ) return s;
                         break;
-                    case 55 : 
-                        int LA25_11 = input.LA(1);
+                    case 25 : 
+                        int LA25_39 = input.LA(1);
 
                          
-                        int index25_11 = input.index();
+                        int index25_39 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
@@ -17444,10 +14531,10 @@ public class TinyHaxeTry1Parser extends Parser {
                         else if ( (true) ) {s = 59;}
 
                          
-                        input.seek(index25_11);
+                        input.seek(index25_39);
                         if ( s>=0 ) return s;
                         break;
-                    case 56 : 
+                    case 26 : 
                         int LA25_48 = input.LA(1);
 
                          
@@ -17462,6 +14549,456 @@ public class TinyHaxeTry1Parser extends Parser {
                         input.seek(index25_48);
                         if ( s>=0 ) return s;
                         break;
+                    case 27 : 
+                        int LA25_1 = input.LA(1);
+
+                         
+                        int index25_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 28 : 
+                        int LA25_8 = input.LA(1);
+
+                         
+                        int index25_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 29 : 
+                        int LA25_22 = input.LA(1);
+
+                         
+                        int index25_22 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_22);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 30 : 
+                        int LA25_6 = input.LA(1);
+
+                         
+                        int index25_6 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 31 : 
+                        int LA25_24 = input.LA(1);
+
+                         
+                        int index25_24 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_24);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 32 : 
+                        int LA25_57 = input.LA(1);
+
+                         
+                        int index25_57 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_57);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 33 : 
+                        int LA25_10 = input.LA(1);
+
+                         
+                        int index25_10 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 34 : 
+                        int LA25_14 = input.LA(1);
+
+                         
+                        int index25_14 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_14);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 35 : 
+                        int LA25_55 = input.LA(1);
+
+                         
+                        int index25_55 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_55);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 36 : 
+                        int LA25_5 = input.LA(1);
+
+                         
+                        int index25_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 37 : 
+                        int LA25_40 = input.LA(1);
+
+                         
+                        int index25_40 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_40);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 38 : 
+                        int LA25_4 = input.LA(1);
+
+                         
+                        int index25_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 39 : 
+                        int LA25_7 = input.LA(1);
+
+                         
+                        int index25_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 40 : 
+                        int LA25_35 = input.LA(1);
+
+                         
+                        int index25_35 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_35);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 41 : 
+                        int LA25_17 = input.LA(1);
+
+                         
+                        int index25_17 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_17);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 42 : 
+                        int LA25_3 = input.LA(1);
+
+                         
+                        int index25_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 43 : 
+                        int LA25_29 = input.LA(1);
+
+                         
+                        int index25_29 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_29);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 44 : 
+                        int LA25_12 = input.LA(1);
+
+                         
+                        int index25_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 45 : 
+                        int LA25_27 = input.LA(1);
+
+                         
+                        int index25_27 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_27);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 46 : 
+                        int LA25_41 = input.LA(1);
+
+                         
+                        int index25_41 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_41);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 47 : 
+                        int LA25_23 = input.LA(1);
+
+                         
+                        int index25_23 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_23);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 48 : 
+                        int LA25_11 = input.LA(1);
+
+                         
+                        int index25_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 49 : 
+                        int LA25_46 = input.LA(1);
+
+                         
+                        int index25_46 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_46);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 50 : 
+                        int LA25_13 = input.LA(1);
+
+                         
+                        int index25_13 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_13);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 51 : 
+                        int LA25_2 = input.LA(1);
+
+                         
+                        int index25_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 52 : 
+                        int LA25_52 = input.LA(1);
+
+                         
+                        int index25_52 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_52);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 53 : 
+                        int LA25_56 = input.LA(1);
+
+                         
+                        int index25_56 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_56);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 54 : 
+                        int LA25_38 = input.LA(1);
+
+                         
+                        int index25_38 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_38);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 55 : 
+                        int LA25_53 = input.LA(1);
+
+                         
+                        int index25_53 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_53);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 56 : 
+                        int LA25_54 = input.LA(1);
+
+                         
+                        int index25_54 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred42_TinyHaxeTry1()) ) {s = 58;}
+
+                        else if ( (true) ) {s = 59;}
+
+                         
+                        input.seek(index25_54);
+                        if ( s>=0 ) return s;
+                        break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
@@ -17470,36 +15007,22 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA34_eotS. */
     static final String DFA34_eotS =
         "\103\uffff";
-    
-    /** The Constant DFA34_eofS. */
     static final String DFA34_eofS =
         "\103\uffff";
-    
-    /** The Constant DFA34_minS. */
     static final String DFA34_minS =
         "\1\20\55\0\25\uffff";
-    
-    /** The Constant DFA34_maxS. */
     static final String DFA34_maxS =
         "\1\154\55\0\25\uffff";
-    
-    /** The Constant DFA34_acceptS. */
     static final String DFA34_acceptS =
         "\56\uffff\1\3\5\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14"+
         "\1\15\1\1\1\2\1\16\1\20\1\17";
-    
-    /** The Constant DFA34_specialS. */
     static final String DFA34_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
         "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
         "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
         "\1\46\1\47\1\50\1\51\1\52\1\53\1\54\25\uffff}>";
-    
-    /** The Constant DFA34_transitionS. */
     static final String[] DFA34_transitionS = {
             "\1\2\1\21\2\uffff\6\56\1\uffff\1\46\1\50\1\51\1\52\1\53\1\54"+
             "\1\55\1\6\1\20\1\uffff\1\7\2\uffff\1\31\12\uffff\1\24\1\33\1"+
@@ -17576,25 +15099,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA34_eot. */
     static final short[] DFA34_eot = DFA.unpackEncodedString(DFA34_eotS);
-    
-    /** The Constant DFA34_eof. */
     static final short[] DFA34_eof = DFA.unpackEncodedString(DFA34_eofS);
-    
-    /** The Constant DFA34_min. */
     static final char[] DFA34_min = DFA.unpackEncodedStringToUnsignedChars(DFA34_minS);
-    
-    /** The Constant DFA34_max. */
     static final char[] DFA34_max = DFA.unpackEncodedStringToUnsignedChars(DFA34_maxS);
-    
-    /** The Constant DFA34_accept. */
     static final short[] DFA34_accept = DFA.unpackEncodedString(DFA34_acceptS);
-    
-    /** The Constant DFA34_special. */
     static final short[] DFA34_special = DFA.unpackEncodedString(DFA34_specialS);
-    
-    /** The Constant DFA34_transition. */
     static final short[][] DFA34_transition;
 
     static {
@@ -17605,19 +15115,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA34.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA34 extends DFA {
 
-        /**
-		 * Instantiates a new dF a34.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA34(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 34;
@@ -17629,17 +15128,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA34_special;
             this.transition = DFA34_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "194:1: statement : ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) statement ) | WHILE parExpression statement -> ^( WHILE parExpression statement ) | DO statement WHILE parExpression SEMI -> ^( DO parExpression statement ) | TRY block catchStmtList -> ^( TRY block catchStmtList ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH expr ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW expr ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON IDENTIFIER statement ) | SEMI );";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -18335,32 +15826,18 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA37_eotS. */
     static final String DFA37_eotS =
         "\101\uffff";
-    
-    /** The Constant DFA37_eofS. */
     static final String DFA37_eofS =
         "\101\uffff";
-    
-    /** The Constant DFA37_minS. */
     static final String DFA37_minS =
         "\1\20\6\0\72\uffff";
-    
-    /** The Constant DFA37_maxS. */
     static final String DFA37_maxS =
         "\1\154\6\0\72\uffff";
-    
-    /** The Constant DFA37_acceptS. */
     static final String DFA37_acceptS =
         "\7\uffff\1\2\1\uffff\1\3\66\uffff\1\1";
-    
-    /** The Constant DFA37_specialS. */
     static final String DFA37_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\72\uffff}>";
-    
-    /** The Constant DFA37_transitionS. */
     static final String[] DFA37_transitionS = {
             "\2\11\2\uffff\2\5\1\1\1\2\1\3\1\4\1\uffff\11\11\1\uffff\1\11"+
             "\2\uffff\1\11\12\uffff\2\11\1\uffff\2\11\1\uffff\1\11\1\uffff"+
@@ -18431,25 +15908,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA37_eot. */
     static final short[] DFA37_eot = DFA.unpackEncodedString(DFA37_eotS);
-    
-    /** The Constant DFA37_eof. */
     static final short[] DFA37_eof = DFA.unpackEncodedString(DFA37_eofS);
-    
-    /** The Constant DFA37_min. */
     static final char[] DFA37_min = DFA.unpackEncodedStringToUnsignedChars(DFA37_minS);
-    
-    /** The Constant DFA37_max. */
     static final char[] DFA37_max = DFA.unpackEncodedStringToUnsignedChars(DFA37_maxS);
-    
-    /** The Constant DFA37_accept. */
     static final short[] DFA37_accept = DFA.unpackEncodedString(DFA37_acceptS);
-    
-    /** The Constant DFA37_special. */
     static final short[] DFA37_special = DFA.unpackEncodedString(DFA37_specialS);
-    
-    /** The Constant DFA37_transition. */
     static final short[][] DFA37_transition;
 
     static {
@@ -18460,19 +15924,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA37.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA37 extends DFA {
 
-        /**
-		 * Instantiates a new dF a37.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA37(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 37;
@@ -18484,17 +15937,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA37_special;
             this.transition = DFA37_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "221:1: blockStmt : ( varDecl | classDecl | statement );";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -18597,33 +16042,19 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA56_eotS. */
     static final String DFA56_eotS =
         "\64\uffff";
-    
-    /** The Constant DFA56_eofS. */
     static final String DFA56_eofS =
         "\1\20\63\uffff";
-    
-    /** The Constant DFA56_minS. */
     static final String DFA56_minS =
         "\1\20\15\0\46\uffff";
-    
-    /** The Constant DFA56_maxS. */
     static final String DFA56_maxS =
         "\1\154\15\0\46\uffff";
-    
-    /** The Constant DFA56_acceptS. */
     static final String DFA56_acceptS =
         "\16\uffff\1\3\1\4\1\5\41\uffff\1\1\1\2";
-    
-    /** The Constant DFA56_specialS. */
     static final String DFA56_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
         "\14\46\uffff}>";
-    
-    /** The Constant DFA56_transitionS. */
     static final String[] DFA56_transitionS = {
             "\1\20\1\15\10\uffff\10\20\1\1\1\14\1\20\1\2\1\20\6\uffff\1"+
             "\20\5\uffff\2\20\5\uffff\1\20\4\uffff\1\3\1\20\7\uffff\21\20"+
@@ -18682,25 +16113,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA56_eot. */
     static final short[] DFA56_eot = DFA.unpackEncodedString(DFA56_eotS);
-    
-    /** The Constant DFA56_eof. */
     static final short[] DFA56_eof = DFA.unpackEncodedString(DFA56_eofS);
-    
-    /** The Constant DFA56_min. */
     static final char[] DFA56_min = DFA.unpackEncodedStringToUnsignedChars(DFA56_minS);
-    
-    /** The Constant DFA56_max. */
     static final char[] DFA56_max = DFA.unpackEncodedStringToUnsignedChars(DFA56_maxS);
-    
-    /** The Constant DFA56_accept. */
     static final short[] DFA56_accept = DFA.unpackEncodedString(DFA56_acceptS);
-    
-    /** The Constant DFA56_special. */
     static final short[] DFA56_special = DFA.unpackEncodedString(DFA56_specialS);
-    
-    /** The Constant DFA56_transition. */
     static final short[][] DFA56_transition;
 
     static {
@@ -18711,19 +16129,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA56.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA56 extends DFA {
 
-        /**
-		 * Instantiates a new dF a56.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA56(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 56;
@@ -18735,17 +16142,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA56_special;
             this.transition = DFA56_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "283:1: suffixExpr : ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] value ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] value PLUSPLUS ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] value SUBSUB ) | value typeParamOpt );";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -19031,33 +16430,19 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA58_eotS. */
     static final String DFA58_eotS =
         "\64\uffff";
-    
-    /** The Constant DFA58_eofS. */
     static final String DFA58_eofS =
         "\1\16\63\uffff";
-    
-    /** The Constant DFA58_minS. */
     static final String DFA58_minS =
         "\1\20\1\uffff\1\0\11\uffff\1\0\47\uffff";
-    
-    /** The Constant DFA58_maxS. */
     static final String DFA58_maxS =
         "\1\154\1\uffff\1\0\11\uffff\1\0\47\uffff";
-    
-    /** The Constant DFA58_acceptS. */
     static final String DFA58_acceptS =
         "\1\uffff\1\1\1\uffff\1\3\1\4\1\5\7\uffff\1\7\1\10\43\uffff\1\2"+
         "\1\6";
-    
-    /** The Constant DFA58_specialS. */
     static final String DFA58_specialS =
         "\2\uffff\1\0\11\uffff\1\1\47\uffff}>";
-    
-    /** The Constant DFA58_transitionS. */
     static final String[] DFA58_transitionS = {
             "\1\16\1\15\10\uffff\10\16\1\1\1\14\1\16\1\2\1\16\6\uffff\1"+
             "\16\5\uffff\2\16\5\uffff\1\16\4\uffff\1\3\1\16\7\uffff\23\16"+
@@ -19115,25 +16500,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA58_eot. */
     static final short[] DFA58_eot = DFA.unpackEncodedString(DFA58_eotS);
-    
-    /** The Constant DFA58_eof. */
     static final short[] DFA58_eof = DFA.unpackEncodedString(DFA58_eofS);
-    
-    /** The Constant DFA58_min. */
     static final char[] DFA58_min = DFA.unpackEncodedStringToUnsignedChars(DFA58_minS);
-    
-    /** The Constant DFA58_max. */
     static final char[] DFA58_max = DFA.unpackEncodedStringToUnsignedChars(DFA58_maxS);
-    
-    /** The Constant DFA58_accept. */
     static final short[] DFA58_accept = DFA.unpackEncodedString(DFA58_acceptS);
-    
-    /** The Constant DFA58_special. */
     static final short[] DFA58_special = DFA.unpackEncodedString(DFA58_specialS);
-    
-    /** The Constant DFA58_transition. */
     static final short[][] DFA58_transition;
 
     static {
@@ -19144,19 +16516,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA58.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA58 extends DFA {
 
-        /**
-		 * Instantiates a new dF a58.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA58(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 58;
@@ -19168,17 +16529,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA58_special;
             this.transition = DFA58_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "291:1: value : ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent | );";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -19221,35 +16574,21 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA57_eotS. */
     static final String DFA57_eotS =
         "\77\uffff";
-    
-    /** The Constant DFA57_eofS. */
     static final String DFA57_eofS =
         "\77\uffff";
-    
-    /** The Constant DFA57_minS. */
     static final String DFA57_minS =
         "\1\20\54\0\22\uffff";
-    
-    /** The Constant DFA57_maxS. */
     static final String DFA57_maxS =
         "\1\154\54\0\22\uffff";
-    
-    /** The Constant DFA57_acceptS. */
     static final String DFA57_acceptS =
         "\55\uffff\1\1\1\2\20\uffff";
-    
-    /** The Constant DFA57_specialS. */
     static final String DFA57_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
         "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
         "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
         "\1\46\1\47\1\50\1\51\1\52\1\53\22\uffff}>";
-    
-    /** The Constant DFA57_transitionS. */
     static final String[] DFA57_transitionS = {
             "\1\56\1\20\2\uffff\6\56\1\uffff\1\45\1\47\1\50\1\51\1\52\1"+
             "\53\1\54\1\4\1\17\1\55\1\5\2\uffff\1\30\12\uffff\1\23\1\32\1"+
@@ -19321,25 +16660,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA57_eot. */
     static final short[] DFA57_eot = DFA.unpackEncodedString(DFA57_eotS);
-    
-    /** The Constant DFA57_eof. */
     static final short[] DFA57_eof = DFA.unpackEncodedString(DFA57_eofS);
-    
-    /** The Constant DFA57_min. */
     static final char[] DFA57_min = DFA.unpackEncodedStringToUnsignedChars(DFA57_minS);
-    
-    /** The Constant DFA57_max. */
     static final char[] DFA57_max = DFA.unpackEncodedStringToUnsignedChars(DFA57_maxS);
-    
-    /** The Constant DFA57_accept. */
     static final short[] DFA57_accept = DFA.unpackEncodedString(DFA57_acceptS);
-    
-    /** The Constant DFA57_special. */
     static final short[] DFA57_special = DFA.unpackEncodedString(DFA57_specialS);
-    
-    /** The Constant DFA57_transition. */
     static final short[][] DFA57_transition;
 
     static {
@@ -19350,19 +16676,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA57.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA57 extends DFA {
 
-        /**
-		 * Instantiates a new dF a57.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA57(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 57;
@@ -19374,17 +16689,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA57_special;
             this.transition = DFA57_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "296:22: ( expr | statement )";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -20057,32 +17364,18 @@ public class TinyHaxeTry1Parser extends Parser {
             throw nvae;
         }
     }
-    
-    /** The Constant DFA70_eotS. */
     static final String DFA70_eotS =
         "\11\uffff";
-    
-    /** The Constant DFA70_eofS. */
     static final String DFA70_eofS =
         "\11\uffff";
-    
-    /** The Constant DFA70_minS. */
     static final String DFA70_minS =
         "\6\24\1\21\2\uffff";
-    
-    /** The Constant DFA70_maxS. */
     static final String DFA70_maxS =
         "\6\42\1\66\2\uffff";
-    
-    /** The Constant DFA70_acceptS. */
     static final String DFA70_acceptS =
         "\7\uffff\1\1\1\2";
-    
-    /** The Constant DFA70_specialS. */
     static final String DFA70_specialS =
         "\11\uffff}>";
-    
-    /** The Constant DFA70_transitionS. */
     static final String[] DFA70_transitionS = {
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\6",
@@ -20095,25 +17388,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA70_eot. */
     static final short[] DFA70_eot = DFA.unpackEncodedString(DFA70_eotS);
-    
-    /** The Constant DFA70_eof. */
     static final short[] DFA70_eof = DFA.unpackEncodedString(DFA70_eofS);
-    
-    /** The Constant DFA70_min. */
     static final char[] DFA70_min = DFA.unpackEncodedStringToUnsignedChars(DFA70_minS);
-    
-    /** The Constant DFA70_max. */
     static final char[] DFA70_max = DFA.unpackEncodedStringToUnsignedChars(DFA70_maxS);
-    
-    /** The Constant DFA70_accept. */
     static final short[] DFA70_accept = DFA.unpackEncodedString(DFA70_acceptS);
-    
-    /** The Constant DFA70_special. */
     static final short[] DFA70_special = DFA.unpackEncodedString(DFA70_specialS);
-    
-    /** The Constant DFA70_transition. */
     static final short[][] DFA70_transition;
 
     static {
@@ -20124,19 +17404,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA70.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA70 extends DFA {
 
-        /**
-		 * Instantiates a new dF a70.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA70(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 70;
@@ -20148,40 +17417,22 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA70_special;
             this.transition = DFA70_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "354:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? block ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? block ( typeParamOpt )? ) );";
         }
     }
-    
-    /** The Constant DFA71_eotS. */
     static final String DFA71_eotS =
         "\14\uffff";
-    
-    /** The Constant DFA71_eofS. */
     static final String DFA71_eofS =
         "\14\uffff";
-    
-    /** The Constant DFA71_minS. */
     static final String DFA71_minS =
         "\6\24\2\21\4\uffff";
-    
-    /** The Constant DFA71_maxS. */
     static final String DFA71_maxS =
         "\6\42\2\66\4\uffff";
-    
-    /** The Constant DFA71_acceptS. */
     static final String DFA71_acceptS =
-        "\10\uffff\1\3\1\4\1\2\1\1";
-    
-    /** The Constant DFA71_specialS. */
+        "\10\uffff\1\3\1\4\1\1\1\2";
     static final String DFA71_specialS =
         "\14\uffff}>";
-    
-    /** The Constant DFA71_transitionS. */
     static final String[] DFA71_transitionS = {
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7",
@@ -20190,32 +17441,19 @@ public class TinyHaxeTry1Parser extends Parser {
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7",
             "\1\11\44\uffff\1\10",
-            "\1\12\44\uffff\1\13",
+            "\1\13\44\uffff\1\12",
             "",
             "",
             "",
             ""
     };
 
-    /** The Constant DFA71_eot. */
     static final short[] DFA71_eot = DFA.unpackEncodedString(DFA71_eotS);
-    
-    /** The Constant DFA71_eof. */
     static final short[] DFA71_eof = DFA.unpackEncodedString(DFA71_eofS);
-    
-    /** The Constant DFA71_min. */
     static final char[] DFA71_min = DFA.unpackEncodedStringToUnsignedChars(DFA71_minS);
-    
-    /** The Constant DFA71_max. */
     static final char[] DFA71_max = DFA.unpackEncodedStringToUnsignedChars(DFA71_maxS);
-    
-    /** The Constant DFA71_accept. */
     static final short[] DFA71_accept = DFA.unpackEncodedString(DFA71_acceptS);
-    
-    /** The Constant DFA71_special. */
     static final short[] DFA71_special = DFA.unpackEncodedString(DFA71_specialS);
-    
-    /** The Constant DFA71_transition. */
     static final short[][] DFA71_transition;
 
     static {
@@ -20226,19 +17464,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA71.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA71 extends DFA {
 
-        /**
-		 * Instantiates a new dF a71.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA71(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 71;
@@ -20250,73 +17477,43 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA71_special;
             this.transition = DFA71_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "358:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION NEW paramList typeTagOpt declAttrList ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION NEW paramList typeTagOpt ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt ) );";
         }
     }
-    
-    /** The Constant DFA73_eotS. */
     static final String DFA73_eotS =
-        "\12\uffff";
-    
-    /** The Constant DFA73_eofS. */
+        "\13\uffff";
     static final String DFA73_eofS =
-        "\1\11\11\uffff";
-    
-    /** The Constant DFA73_minS. */
+        "\1\12\12\uffff";
     static final String DFA73_minS =
-        "\6\24\4\uffff";
-    
-    /** The Constant DFA73_maxS. */
+        "\6\24\5\uffff";
     static final String DFA73_maxS =
-        "\6\137\4\uffff";
-    
-    /** The Constant DFA73_acceptS. */
+        "\6\137\5\uffff";
     static final String DFA73_acceptS =
-        "\6\uffff\1\1\1\2\1\3\1\4";
-    
-    /** The Constant DFA73_specialS. */
+        "\6\uffff\1\1\1\2\1\3\1\4\1\5";
     static final String DFA73_specialS =
-        "\12\uffff}>";
-    
-    /** The Constant DFA73_transitionS. */
+        "\13\uffff}>";
     static final String[] DFA73_transitionS = {
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\4\uffff\1\10\1\uffff\4\10"+
-            "\23\uffff\1\11\36\uffff\1\6",
+            "\23\uffff\1\12\35\uffff\1\11\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\74\uffff\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\74\uffff\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\74\uffff\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\74\uffff\1\6",
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\74\uffff\1\6",
+            "",
             "",
             "",
             "",
             ""
     };
 
-    /** The Constant DFA73_eot. */
     static final short[] DFA73_eot = DFA.unpackEncodedString(DFA73_eotS);
-    
-    /** The Constant DFA73_eof. */
     static final short[] DFA73_eof = DFA.unpackEncodedString(DFA73_eofS);
-    
-    /** The Constant DFA73_min. */
     static final char[] DFA73_min = DFA.unpackEncodedStringToUnsignedChars(DFA73_minS);
-    
-    /** The Constant DFA73_max. */
     static final char[] DFA73_max = DFA.unpackEncodedStringToUnsignedChars(DFA73_maxS);
-    
-    /** The Constant DFA73_accept. */
     static final short[] DFA73_accept = DFA.unpackEncodedString(DFA73_acceptS);
-    
-    /** The Constant DFA73_special. */
     static final short[] DFA73_special = DFA.unpackEncodedString(DFA73_specialS);
-    
-    /** The Constant DFA73_transition. */
     static final short[][] DFA73_transition;
 
     static {
@@ -20327,19 +17524,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA73.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA73 extends DFA {
 
-        /**
-		 * Instantiates a new dF a73.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA73(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 73;
@@ -20351,40 +17537,22 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA73_special;
             this.transition = DFA73_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
-            return "373:1: classBody : ( varDecl classBody | funcDecl classBody | pp classBody | );";
+            return "373:1: classBody : ( varDecl classBody | funcDecl classBody | pp classBody | enumDecl classBody | );";
         }
     }
-    
-    /** The Constant DFA74_eotS. */
     static final String DFA74_eotS =
         "\12\uffff";
-    
-    /** The Constant DFA74_eofS. */
     static final String DFA74_eofS =
         "\1\11\11\uffff";
-    
-    /** The Constant DFA74_minS. */
     static final String DFA74_minS =
         "\6\24\4\uffff";
-    
-    /** The Constant DFA74_maxS. */
     static final String DFA74_maxS =
         "\6\137\4\uffff";
-    
-    /** The Constant DFA74_acceptS. */
     static final String DFA74_acceptS =
         "\6\uffff\1\1\1\2\1\3\1\4";
-    
-    /** The Constant DFA74_specialS. */
     static final String DFA74_specialS =
         "\12\uffff}>";
-    
-    /** The Constant DFA74_transitionS. */
     static final String[] DFA74_transitionS = {
             "\2\5\1\1\1\2\1\3\1\4\10\uffff\1\7\4\uffff\1\10\1\uffff\4\10"+
             "\23\uffff\1\11\36\uffff\1\6",
@@ -20399,25 +17567,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA74_eot. */
     static final short[] DFA74_eot = DFA.unpackEncodedString(DFA74_eotS);
-    
-    /** The Constant DFA74_eof. */
     static final short[] DFA74_eof = DFA.unpackEncodedString(DFA74_eofS);
-    
-    /** The Constant DFA74_min. */
     static final char[] DFA74_min = DFA.unpackEncodedStringToUnsignedChars(DFA74_minS);
-    
-    /** The Constant DFA74_max. */
     static final char[] DFA74_max = DFA.unpackEncodedStringToUnsignedChars(DFA74_maxS);
-    
-    /** The Constant DFA74_accept. */
     static final short[] DFA74_accept = DFA.unpackEncodedString(DFA74_acceptS);
-    
-    /** The Constant DFA74_special. */
     static final short[] DFA74_special = DFA.unpackEncodedString(DFA74_specialS);
-    
-    /** The Constant DFA74_transition. */
     static final short[][] DFA74_transition;
 
     static {
@@ -20428,19 +17583,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA74.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA74 extends DFA {
 
-        /**
-		 * Instantiates a new dF a74.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA74(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 74;
@@ -20452,43 +17596,25 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA74_special;
             this.transition = DFA74_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
-            return "384:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | pp interfaceBody | );";
+            return "385:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | pp interfaceBody | );";
         }
     }
-    
-    /** The Constant DFA94_eotS. */
     static final String DFA94_eotS =
         "\77\uffff";
-    
-    /** The Constant DFA94_eofS. */
     static final String DFA94_eofS =
         "\77\uffff";
-    
-    /** The Constant DFA94_minS. */
     static final String DFA94_minS =
         "\1\20\54\0\22\uffff";
-    
-    /** The Constant DFA94_maxS. */
     static final String DFA94_maxS =
         "\1\154\54\0\22\uffff";
-    
-    /** The Constant DFA94_acceptS. */
     static final String DFA94_acceptS =
         "\55\uffff\1\1\1\2\20\uffff";
-    
-    /** The Constant DFA94_specialS. */
     static final String DFA94_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
         "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
         "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
         "\1\46\1\47\1\50\1\51\1\52\1\53\22\uffff}>";
-    
-    /** The Constant DFA94_transitionS. */
     static final String[] DFA94_transitionS = {
             "\1\56\1\20\2\uffff\6\56\1\uffff\1\45\1\47\1\50\1\51\1\52\1"+
             "\53\1\54\1\4\1\17\1\55\1\5\2\uffff\1\30\12\uffff\1\23\1\32\1"+
@@ -20560,25 +17686,12 @@ public class TinyHaxeTry1Parser extends Parser {
             ""
     };
 
-    /** The Constant DFA94_eot. */
     static final short[] DFA94_eot = DFA.unpackEncodedString(DFA94_eotS);
-    
-    /** The Constant DFA94_eof. */
     static final short[] DFA94_eof = DFA.unpackEncodedString(DFA94_eofS);
-    
-    /** The Constant DFA94_min. */
     static final char[] DFA94_min = DFA.unpackEncodedStringToUnsignedChars(DFA94_minS);
-    
-    /** The Constant DFA94_max. */
     static final char[] DFA94_max = DFA.unpackEncodedStringToUnsignedChars(DFA94_maxS);
-    
-    /** The Constant DFA94_accept. */
     static final short[] DFA94_accept = DFA.unpackEncodedString(DFA94_acceptS);
-    
-    /** The Constant DFA94_special. */
     static final short[] DFA94_special = DFA.unpackEncodedString(DFA94_specialS);
-    
-    /** The Constant DFA94_transition. */
     static final short[][] DFA94_transition;
 
     static {
@@ -20589,19 +17702,8 @@ public class TinyHaxeTry1Parser extends Parser {
         }
     }
 
-    /**
-	 * The Class DFA94.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
     class DFA94 extends DFA {
 
-        /**
-		 * Instantiates a new dF a94.
-		 * 
-		 * @param recognizer
-		 *            the recognizer
-		 */
         public DFA94(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 94;
@@ -20613,17 +17715,9 @@ public class TinyHaxeTry1Parser extends Parser {
             this.special = DFA94_special;
             this.transition = DFA94_transition;
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#getDescription()
-         */
         public String getDescription() {
             return "296:22: ( expr | statement )";
         }
-        
-        /* (non-Javadoc)
-         * @see org.antlr.runtime.DFA#specialStateTransition(int, org.antlr.runtime.IntStream)
-         */
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
@@ -21298,1549 +18392,522 @@ public class TinyHaxeTry1Parser extends Parser {
     }
  
 
-    /** The Constant FOLLOW_myPackage_in_module119. */
     public static final BitSet FOLLOW_myPackage_in_module119 = new BitSet(new long[]{0x00001E8000080000L,0x0000002740000000L});
-    
-    /** The Constant FOLLOW_topLevelList_in_module122. */
     public static final BitSet FOLLOW_topLevelList_in_module122 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_topLevel_in_topLevelList156. */
     public static final BitSet FOLLOW_topLevel_in_topLevelList156 = new BitSet(new long[]{0x00001E8000080002L,0x0000002740000000L});
-    
-    /** The Constant FOLLOW_myImport_in_topLevel175. */
     public static final BitSet FOLLOW_myImport_in_topLevel175 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_pp_in_topLevel201. */
     public static final BitSet FOLLOW_pp_in_topLevel201 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_topLevelDecl_in_topLevel227. */
     public static final BitSet FOLLOW_topLevelDecl_in_topLevel227 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PACKAGE_in_myPackage246. */
     public static final BitSet FOLLOW_PACKAGE_in_myPackage246 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_dotIdent_in_myPackage248. */
     public static final BitSet FOLLOW_dotIdent_in_myPackage248 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_myPackage250. */
     public static final BitSet FOLLOW_SEMI_in_myPackage250 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_qualifiedIdentifier281. */
     public static final BitSet FOLLOW_IDENTIFIER_in_qualifiedIdentifier281 = new BitSet(new long[]{0x0000000000040002L});
-    
-    /** The Constant FOLLOW_DOT_in_qualifiedIdentifier297. */
     public static final BitSet FOLLOW_DOT_in_qualifiedIdentifier297 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_qualifiedIdentifier301. */
     public static final BitSet FOLLOW_IDENTIFIER_in_qualifiedIdentifier301 = new BitSet(new long[]{0x0000000000040002L});
-    
-    /** The Constant FOLLOW_IMPORT_in_myImport343. */
     public static final BitSet FOLLOW_IMPORT_in_myImport343 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_dotIdent_in_myImport346. */
     public static final BitSet FOLLOW_dotIdent_in_myImport346 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_myImport348. */
     public static final BitSet FOLLOW_SEMI_in_myImport348 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_set_in_access0. */
     public static final BitSet FOLLOW_set_in_access0 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_STATIC_in_declAttr435. */
     public static final BitSet FOLLOW_STATIC_in_declAttr435 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_INLINE_in_declAttr460. */
     public static final BitSet FOLLOW_INLINE_in_declAttr460 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_DYNAMIC_in_declAttr486. */
     public static final BitSet FOLLOW_DYNAMIC_in_declAttr486 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_OVERRIDE_in_declAttr512. */
     public static final BitSet FOLLOW_OVERRIDE_in_declAttr512 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_access_in_declAttr538. */
     public static final BitSet FOLLOW_access_in_declAttr538 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttr_in_declAttrList553. */
     public static final BitSet FOLLOW_declAttr_in_declAttrList553 = new BitSet(new long[]{0x0000000003F00002L});
-    
-    /** The Constant FOLLOW_param_in_paramList594. */
     public static final BitSet FOLLOW_param_in_paramList594 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_paramList597. */
     public static final BitSet FOLLOW_COMMA_in_paramList597 = new BitSet(new long[]{0x0000000008020000L});
-    
-    /** The Constant FOLLOW_param_in_paramList599. */
     public static final BitSet FOLLOW_param_in_paramList599 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_QUES_in_param638. */
     public static final BitSet FOLLOW_QUES_in_param638 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_param641. */
     public static final BitSet FOLLOW_IDENTIFIER_in_param641 = new BitSet(new long[]{0x0000200010000000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_param643. */
     public static final BitSet FOLLOW_typeTagOpt_in_param643 = new BitSet(new long[]{0x0000000010000000L});
-    
-    /** The Constant FOLLOW_varInit_in_param645. */
     public static final BitSet FOLLOW_varInit_in_param645 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_id680. */
     public static final BitSet FOLLOW_IDENTIFIER_in_id680 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_id_in_dotIdent694. */
     public static final BitSet FOLLOW_id_in_dotIdent694 = new BitSet(new long[]{0x0000000000040002L});
-    
-    /** The Constant FOLLOW_DOT_in_dotIdent702. */
     public static final BitSet FOLLOW_DOT_in_dotIdent702 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_id_in_dotIdent706. */
     public static final BitSet FOLLOW_id_in_dotIdent706 = new BitSet(new long[]{0x0000000000040002L});
-    
-    /** The Constant FOLLOW_EQ_in_assignOp738. */
     public static final BitSet FOLLOW_EQ_in_assignOp738 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PLUSEQ_in_assignOp758. */
     public static final BitSet FOLLOW_PLUSEQ_in_assignOp758 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_SUBEQ_in_assignOp779. */
     public static final BitSet FOLLOW_SUBEQ_in_assignOp779 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_SLASHEQ_in_assignOp799. */
     public static final BitSet FOLLOW_SLASHEQ_in_assignOp799 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PERCENTEQ_in_assignOp812. */
     public static final BitSet FOLLOW_PERCENTEQ_in_assignOp812 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_AMPEQ_in_assignOp828. */
     public static final BitSet FOLLOW_AMPEQ_in_assignOp828 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcLit868. */
     public static final BitSet FOLLOW_FUNCTION_in_funcLit868 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcLit870. */
     public static final BitSet FOLLOW_LPAREN_in_funcLit870 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcLit872. */
     public static final BitSet FOLLOW_paramList_in_funcLit872 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcLit874. */
     public static final BitSet FOLLOW_RPAREN_in_funcLit874 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcLit876. */
     public static final BitSet FOLLOW_typeTagOpt_in_funcLit876 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_block_in_funcLit879. */
     public static final BitSet FOLLOW_block_in_funcLit879 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LBRACKET_in_arrayLit912. */
     public static final BitSet FOLLOW_LBRACKET_in_arrayLit912 = new BitSet(new long[]{0x8048016C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_exprListOpt_in_arrayLit915. */
     public static final BitSet FOLLOW_exprListOpt_in_arrayLit915 = new BitSet(new long[]{0x0000004000000000L});
-    
-    /** The Constant FOLLOW_RBRACKET_in_arrayLit917. */
     public static final BitSet FOLLOW_RBRACKET_in_arrayLit917 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ppIf_in_pp945. */
     public static final BitSet FOLLOW_ppIf_in_pp945 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ppElseIf_in_pp971. */
     public static final BitSet FOLLOW_ppElseIf_in_pp971 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ppElse_in_pp997. */
     public static final BitSet FOLLOW_ppElse_in_pp997 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ppEnd_in_pp1023. */
     public static final BitSet FOLLOW_ppEnd_in_pp1023 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ppError_in_pp1049. */
     public static final BitSet FOLLOW_ppError_in_pp1049 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_IF_in_ppIf1071. */
     public static final BitSet FOLLOW_PP_IF_in_ppIf1071 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_ppIf1073. */
     public static final BitSet FOLLOW_IDENTIFIER_in_ppIf1073 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_IF_in_ppIf1099. */
     public static final BitSet FOLLOW_PP_IF_in_ppIf1099 = new BitSet(new long[]{0x0000010000000000L});
-    
-    /** The Constant FOLLOW_BANG_in_ppIf1101. */
     public static final BitSet FOLLOW_BANG_in_ppIf1101 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_ppIf1103. */
     public static final BitSet FOLLOW_IDENTIFIER_in_ppIf1103 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_ELSEIF_in_ppElseIf1121. */
     public static final BitSet FOLLOW_PP_ELSEIF_in_ppElseIf1121 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_ppElseIf1123. */
     public static final BitSet FOLLOW_IDENTIFIER_in_ppElseIf1123 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_ELSEIF_in_ppElseIf1148. */
     public static final BitSet FOLLOW_PP_ELSEIF_in_ppElseIf1148 = new BitSet(new long[]{0x0000010000000000L});
-    
-    /** The Constant FOLLOW_BANG_in_ppElseIf1150. */
     public static final BitSet FOLLOW_BANG_in_ppElseIf1150 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_ppElseIf1152. */
     public static final BitSet FOLLOW_IDENTIFIER_in_ppElseIf1152 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_ELSE_in_ppElse1172. */
     public static final BitSet FOLLOW_PP_ELSE_in_ppElse1172 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_END_in_ppEnd1193. */
     public static final BitSet FOLLOW_PP_END_in_ppEnd1193 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_PP_ERROR_in_ppError1212. */
     public static final BitSet FOLLOW_PP_ERROR_in_ppError1212 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_COLON_in_typeTag1225. */
     public static final BitSet FOLLOW_COLON_in_typeTag1225 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_typeTag1228. */
     public static final BitSet FOLLOW_funcType_in_typeTag1228 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_typeTag_in_typeTagOpt1240. */
     public static final BitSet FOLLOW_typeTag_in_typeTagOpt1240 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_funcType_in_typeList1265. */
     public static final BitSet FOLLOW_funcType_in_typeList1265 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_typeList1268. */
     public static final BitSet FOLLOW_COMMA_in_typeList1268 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_typeList1271. */
     public static final BitSet FOLLOW_funcType_in_typeList1271 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_typeConstraint_in_typeList1279. */
     public static final BitSet FOLLOW_typeConstraint_in_typeList1279 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_typeList1282. */
     public static final BitSet FOLLOW_COMMA_in_typeList1282 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_typeConstraint_in_typeList1285. */
     public static final BitSet FOLLOW_typeConstraint_in_typeList1285 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_type_in_funcType1300. */
     public static final BitSet FOLLOW_type_in_funcType1300 = new BitSet(new long[]{0x0000400000000002L});
-    
-    /** The Constant FOLLOW_MINUS_BIGGER_in_funcType1304. */
     public static final BitSet FOLLOW_MINUS_BIGGER_in_funcType1304 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_type_in_funcType1307. */
     public static final BitSet FOLLOW_type_in_funcType1307 = new BitSet(new long[]{0x0000400000000002L});
-    
-    /** The Constant FOLLOW_VOID_in_funcType1314. */
     public static final BitSet FOLLOW_VOID_in_funcType1314 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_anonType_in_type1326. */
     public static final BitSet FOLLOW_anonType_in_type1326 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_dotIdent_in_type1330. */
     public static final BitSet FOLLOW_dotIdent_in_type1330 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_INT_in_type1333. */
     public static final BitSet FOLLOW_INT_in_type1333 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_FLOAT_in_type1336. */
     public static final BitSet FOLLOW_FLOAT_in_type1336 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_DYNAMIC_in_type1339. */
     public static final BitSet FOLLOW_DYNAMIC_in_type1339 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_BOOLEAN_in_type1341. */
     public static final BitSet FOLLOW_BOOLEAN_in_type1341 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_VOID_in_type1343. */
     public static final BitSet FOLLOW_VOID_in_type1343 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_typeParam_in_type1347. */
     public static final BitSet FOLLOW_typeParam_in_type1347 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_LT_in_typeParam1365. */
     public static final BitSet FOLLOW_LT_in_typeParam1365 = new BitSet(new long[]{0x8037C00001020000L});
-    
-    /** The Constant FOLLOW_type_in_typeParam1369. */
     public static final BitSet FOLLOW_type_in_typeParam1369 = new BitSet(new long[]{0x0030000000000002L});
-    
-    /** The Constant FOLLOW_typeList_in_typeParam1371. */
     public static final BitSet FOLLOW_typeList_in_typeParam1371 = new BitSet(new long[]{0x0030000000000002L});
-    
-    /** The Constant FOLLOW_GT_in_typeParam1375. */
     public static final BitSet FOLLOW_GT_in_typeParam1375 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_GTGT_in_typeParam1378. */
     public static final BitSet FOLLOW_GTGT_in_typeParam1378 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_typeParam_in_typeParamOpt1401. */
     public static final BitSet FOLLOW_typeParam_in_typeParamOpt1401 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_typeConstraint1442. */
     public static final BitSet FOLLOW_IDENTIFIER_in_typeConstraint1442 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_typeConstraint1444. */
     public static final BitSet FOLLOW_COLON_in_typeConstraint1444 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_typeConstraint1446. */
     public static final BitSet FOLLOW_LPAREN_in_typeConstraint1446 = new BitSet(new long[]{0x8037C00001020000L});
-    
-    /** The Constant FOLLOW_typeList_in_typeConstraint1448. */
     public static final BitSet FOLLOW_typeList_in_typeConstraint1448 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_typeConstraint1450. */
     public static final BitSet FOLLOW_RPAREN_in_typeConstraint1450 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttrList_in_functionReturn1474. */
     public static final BitSet FOLLOW_declAttrList_in_functionReturn1474 = new BitSet(new long[]{0x0000000400000000L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_functionReturn1477. */
     public static final BitSet FOLLOW_FUNCTION_in_functionReturn1477 = new BitSet(new long[]{0x0040000000000000L});
-    
-    /** The Constant FOLLOW_NEW_in_functionReturn1479. */
     public static final BitSet FOLLOW_NEW_in_functionReturn1479 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_functionReturn1481. */
     public static final BitSet FOLLOW_LPAREN_in_functionReturn1481 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_functionReturn1483. */
     public static final BitSet FOLLOW_paramList_in_functionReturn1483 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_functionReturn1485. */
     public static final BitSet FOLLOW_RPAREN_in_functionReturn1485 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_functionReturn1487. */
     public static final BitSet FOLLOW_typeTagOpt_in_functionReturn1487 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_block_in_functionReturn1489. */
     public static final BitSet FOLLOW_block_in_functionReturn1489 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_block_in_statement1525. */
     public static final BitSet FOLLOW_block_in_statement1525 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_assignExpr_in_statement1530. */
     public static final BitSet FOLLOW_assignExpr_in_statement1530 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1532. */
     public static final BitSet FOLLOW_SEMI_in_statement1532 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDecl_in_statement1538. */
     public static final BitSet FOLLOW_varDecl_in_statement1538 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IF_in_statement1543. */
     public static final BitSet FOLLOW_IF_in_statement1543 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_parExpression_in_statement1545. */
     public static final BitSet FOLLOW_parExpression_in_statement1545 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_statement1549. */
     public static final BitSet FOLLOW_statement_in_statement1549 = new BitSet(new long[]{0x0100000000000002L});
-    
-    /** The Constant FOLLOW_ELSE_in_statement1552. */
     public static final BitSet FOLLOW_ELSE_in_statement1552 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_statement1556. */
     public static final BitSet FOLLOW_statement_in_statement1556 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_FOR_in_statement1595. */
     public static final BitSet FOLLOW_FOR_in_statement1595 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_statement1597. */
     public static final BitSet FOLLOW_LPAREN_in_statement1597 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_statement1601. */
     public static final BitSet FOLLOW_expr_in_statement1601 = new BitSet(new long[]{0x0400000000000000L});
-    
-    /** The Constant FOLLOW_IN_in_statement1603. */
     public static final BitSet FOLLOW_IN_in_statement1603 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_statement1607. */
     public static final BitSet FOLLOW_expr_in_statement1607 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_statement1609. */
     public static final BitSet FOLLOW_RPAREN_in_statement1609 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_statement1611. */
     public static final BitSet FOLLOW_statement_in_statement1611 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_WHILE_in_statement1637. */
     public static final BitSet FOLLOW_WHILE_in_statement1637 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_parExpression_in_statement1639. */
     public static final BitSet FOLLOW_parExpression_in_statement1639 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_statement1641. */
     public static final BitSet FOLLOW_statement_in_statement1641 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_DO_in_statement1659. */
     public static final BitSet FOLLOW_DO_in_statement1659 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_statement1661. */
     public static final BitSet FOLLOW_statement_in_statement1661 = new BitSet(new long[]{0x0800000000000000L});
-    
-    /** The Constant FOLLOW_WHILE_in_statement1663. */
     public static final BitSet FOLLOW_WHILE_in_statement1663 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_parExpression_in_statement1665. */
     public static final BitSet FOLLOW_parExpression_in_statement1665 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1667. */
     public static final BitSet FOLLOW_SEMI_in_statement1667 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_TRY_in_statement1685. */
     public static final BitSet FOLLOW_TRY_in_statement1685 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_block_in_statement1687. */
     public static final BitSet FOLLOW_block_in_statement1687 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    
-    /** The Constant FOLLOW_catchStmtList_in_statement1689. */
     public static final BitSet FOLLOW_catchStmtList_in_statement1689 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_SWITCH_in_statement1707. */
     public static final BitSet FOLLOW_SWITCH_in_statement1707 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_statement1709. */
     public static final BitSet FOLLOW_LPAREN_in_statement1709 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_statement1711. */
     public static final BitSet FOLLOW_expr_in_statement1711 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_statement1713. */
     public static final BitSet FOLLOW_RPAREN_in_statement1713 = new BitSet(new long[]{0x8000000000000000L});
-    
-    /** The Constant FOLLOW_LBRACE_in_statement1715. */
     public static final BitSet FOLLOW_LBRACE_in_statement1715 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000060L});
-    
-    /** The Constant FOLLOW_caseStmt_in_statement1717. */
     public static final BitSet FOLLOW_caseStmt_in_statement1717 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000061L});
-    
-    /** The Constant FOLLOW_RBRACE_in_statement1720. */
     public static final BitSet FOLLOW_RBRACE_in_statement1720 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_RETURN_in_statement1739. */
     public static final BitSet FOLLOW_RETURN_in_statement1739 = new BitSet(new long[]{0x8048012C00030000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_statement1742. */
     public static final BitSet FOLLOW_expr_in_statement1742 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1746. */
     public static final BitSet FOLLOW_SEMI_in_statement1746 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_THROW_in_statement1759. */
     public static final BitSet FOLLOW_THROW_in_statement1759 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_statement1761. */
     public static final BitSet FOLLOW_expr_in_statement1761 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1763. */
     public static final BitSet FOLLOW_SEMI_in_statement1763 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_BREAK_in_statement1776. */
     public static final BitSet FOLLOW_BREAK_in_statement1776 = new BitSet(new long[]{0x0000000000030000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_statement1779. */
     public static final BitSet FOLLOW_IDENTIFIER_in_statement1779 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1783. */
     public static final BitSet FOLLOW_SEMI_in_statement1783 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CONTINUE_in_statement1797. */
     public static final BitSet FOLLOW_CONTINUE_in_statement1797 = new BitSet(new long[]{0x0000000000030000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_statement1800. */
     public static final BitSet FOLLOW_IDENTIFIER_in_statement1800 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1804. */
     public static final BitSet FOLLOW_SEMI_in_statement1804 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_expr_in_statement1818. */
     public static final BitSet FOLLOW_expr_in_statement1818 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1821. */
     public static final BitSet FOLLOW_SEMI_in_statement1821 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_statement1827. */
     public static final BitSet FOLLOW_IDENTIFIER_in_statement1827 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_statement1829. */
     public static final BitSet FOLLOW_COLON_in_statement1829 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_statement1831. */
     public static final BitSet FOLLOW_statement_in_statement1831 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_SEMI_in_statement1846. */
     public static final BitSet FOLLOW_SEMI_in_statement1846 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LPAREN_in_parExpression1867. */
     public static final BitSet FOLLOW_LPAREN_in_parExpression1867 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_parExpression1870. */
     public static final BitSet FOLLOW_expr_in_parExpression1870 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_parExpression1872. */
     public static final BitSet FOLLOW_RPAREN_in_parExpression1872 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LBRACE_in_block1894. */
     public static final BitSet FOLLOW_LBRACE_in_block1894 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC3BE20001FL});
-    
-    /** The Constant FOLLOW_blockStmt_in_block1897. */
     public static final BitSet FOLLOW_blockStmt_in_block1897 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC3BE20001FL});
-    
-    /** The Constant FOLLOW_RBRACE_in_block1901. */
     public static final BitSet FOLLOW_RBRACE_in_block1901 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_SEMI_in_block1919. */
     public static final BitSet FOLLOW_SEMI_in_block1919 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDecl_in_blockStmt1932. */
     public static final BitSet FOLLOW_varDecl_in_blockStmt1932 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_classDecl_in_blockStmt1937. */
     public static final BitSet FOLLOW_classDecl_in_blockStmt1937 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_statement_in_blockStmt1942. */
     public static final BitSet FOLLOW_statement_in_blockStmt1942 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_BREAK_in_breakStmt1973. */
     public static final BitSet FOLLOW_BREAK_in_breakStmt1973 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_breakStmt1975. */
     public static final BitSet FOLLOW_SEMI_in_breakStmt1975 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CONTINUE_in_continueStmt1990. */
     public static final BitSet FOLLOW_CONTINUE_in_continueStmt1990 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_continueStmt1992. */
     public static final BitSet FOLLOW_SEMI_in_continueStmt1992 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CASE_in_caseStmt2003. */
     public static final BitSet FOLLOW_CASE_in_caseStmt2003 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_exprList_in_caseStmt2005. */
     public static final BitSet FOLLOW_exprList_in_caseStmt2005 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_caseStmt2007. */
     public static final BitSet FOLLOW_COLON_in_caseStmt2007 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_caseStmt2009. */
     public static final BitSet FOLLOW_statement_in_caseStmt2009 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_DEFAULT_in_caseStmt2024. */
     public static final BitSet FOLLOW_DEFAULT_in_caseStmt2024 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_caseStmt2026. */
     public static final BitSet FOLLOW_COLON_in_caseStmt2026 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_caseStmt2028. */
     public static final BitSet FOLLOW_statement_in_caseStmt2028 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_DEFAULT_in_defaultStmt2052. */
     public static final BitSet FOLLOW_DEFAULT_in_defaultStmt2052 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_defaultStmt2054. */
     public static final BitSet FOLLOW_COLON_in_defaultStmt2054 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_catchStmt_in_catchStmtList2068. */
     public static final BitSet FOLLOW_catchStmt_in_catchStmtList2068 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    
-    /** The Constant FOLLOW_catchStmtList_in_catchStmtList2070. */
     public static final BitSet FOLLOW_catchStmtList_in_catchStmtList2070 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CATCH_in_catchStmt2109. */
     public static final BitSet FOLLOW_CATCH_in_catchStmt2109 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_catchStmt2111. */
     public static final BitSet FOLLOW_LPAREN_in_catchStmt2111 = new BitSet(new long[]{0x0000000008020000L});
-    
-    /** The Constant FOLLOW_param_in_catchStmt2113. */
     public static final BitSet FOLLOW_param_in_catchStmt2113 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_catchStmt2115. */
     public static final BitSet FOLLOW_RPAREN_in_catchStmt2115 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_block_in_catchStmt2117. */
     public static final BitSet FOLLOW_block_in_catchStmt2117 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_exprList_in_exprListOpt2144. */
     public static final BitSet FOLLOW_exprList_in_exprListOpt2144 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_expr_in_exprList2184. */
     public static final BitSet FOLLOW_expr_in_exprList2184 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_exprList2187. */
     public static final BitSet FOLLOW_COMMA_in_exprList2187 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_exprList2190. */
     public static final BitSet FOLLOW_expr_in_exprList2190 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_assignExpr_in_expr2214. */
     public static final BitSet FOLLOW_assignExpr_in_expr2214 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_iterExpr_in_assignExpr2230. */
     public static final BitSet FOLLOW_iterExpr_in_assignExpr2230 = new BitSet(new long[]{0x00000003F0000002L});
-    
-    /** The Constant FOLLOW_assignOp_in_assignExpr2233. */
     public static final BitSet FOLLOW_assignOp_in_assignExpr2233 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_iterExpr_in_assignExpr2236. */
     public static final BitSet FOLLOW_iterExpr_in_assignExpr2236 = new BitSet(new long[]{0x00000003F0000002L});
-    
-    /** The Constant FOLLOW_ternaryExpr_in_iterExpr2249. */
     public static final BitSet FOLLOW_ternaryExpr_in_iterExpr2249 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    
-    /** The Constant FOLLOW_ELLIPSIS_in_iterExpr2252. */
     public static final BitSet FOLLOW_ELLIPSIS_in_iterExpr2252 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_ternaryExpr_in_iterExpr2255. */
     public static final BitSet FOLLOW_ternaryExpr_in_iterExpr2255 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    
-    /** The Constant FOLLOW_logicOrExpr_in_ternaryExpr2281. */
     public static final BitSet FOLLOW_logicOrExpr_in_ternaryExpr2281 = new BitSet(new long[]{0x0000000008000002L});
-    
-    /** The Constant FOLLOW_QUES_in_ternaryExpr2284. */
     public static final BitSet FOLLOW_QUES_in_ternaryExpr2284 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_ternaryExpr2287. */
     public static final BitSet FOLLOW_expr_in_ternaryExpr2287 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_ternaryExpr2289. */
     public static final BitSet FOLLOW_COLON_in_ternaryExpr2289 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_logicOrExpr_in_ternaryExpr2292. */
     public static final BitSet FOLLOW_logicOrExpr_in_ternaryExpr2292 = new BitSet(new long[]{0x0000000008000002L});
-    
-    /** The Constant FOLLOW_logicAndExpr_in_logicOrExpr2310. */
     public static final BitSet FOLLOW_logicAndExpr_in_logicOrExpr2310 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-    
-    /** The Constant FOLLOW_BARBAR_in_logicOrExpr2314. */
     public static final BitSet FOLLOW_BARBAR_in_logicOrExpr2314 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_logicAndExpr_in_logicOrExpr2317. */
     public static final BitSet FOLLOW_logicAndExpr_in_logicOrExpr2317 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-    
-    /** The Constant FOLLOW_cmpExpr_in_logicAndExpr2334. */
     public static final BitSet FOLLOW_cmpExpr_in_logicAndExpr2334 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    
-    /** The Constant FOLLOW_AMPAMP_in_logicAndExpr2338. */
     public static final BitSet FOLLOW_AMPAMP_in_logicAndExpr2338 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_cmpExpr_in_logicAndExpr2341. */
     public static final BitSet FOLLOW_cmpExpr_in_logicAndExpr2341 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    
-    /** The Constant FOLLOW_bitExpr_in_cmpExpr2363. */
     public static final BitSet FOLLOW_bitExpr_in_cmpExpr2363 = new BitSet(new long[]{0x0018000000000002L,0x0000000000007800L});
-    
-    /** The Constant FOLLOW_EQEQ_in_cmpExpr2368. */
     public static final BitSet FOLLOW_EQEQ_in_cmpExpr2368 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_BANGEQ_in_cmpExpr2372. */
     public static final BitSet FOLLOW_BANGEQ_in_cmpExpr2372 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_GTEQ_in_cmpExpr2377. */
     public static final BitSet FOLLOW_GTEQ_in_cmpExpr2377 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_LTEQ_in_cmpExpr2382. */
     public static final BitSet FOLLOW_LTEQ_in_cmpExpr2382 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_GT_in_cmpExpr2387. */
     public static final BitSet FOLLOW_GT_in_cmpExpr2387 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_LT_in_cmpExpr2392. */
     public static final BitSet FOLLOW_LT_in_cmpExpr2392 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_bitExpr_in_cmpExpr2397. */
     public static final BitSet FOLLOW_bitExpr_in_cmpExpr2397 = new BitSet(new long[]{0x0018000000000002L,0x0000000000007800L});
-    
-    /** The Constant FOLLOW_shiftExpr_in_bitExpr2419. */
     public static final BitSet FOLLOW_shiftExpr_in_bitExpr2419 = new BitSet(new long[]{0x0000000000000002L,0x0000000000038000L});
-    
-    /** The Constant FOLLOW_BAR_in_bitExpr2423. */
     public static final BitSet FOLLOW_BAR_in_bitExpr2423 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_shiftExpr_in_bitExpr2426. */
     public static final BitSet FOLLOW_shiftExpr_in_bitExpr2426 = new BitSet(new long[]{0x0000000000000002L,0x0000000000038000L});
-    
-    /** The Constant FOLLOW_AMP_in_bitExpr2430. */
     public static final BitSet FOLLOW_AMP_in_bitExpr2430 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_shiftExpr_in_bitExpr2433. */
     public static final BitSet FOLLOW_shiftExpr_in_bitExpr2433 = new BitSet(new long[]{0x0000000000000002L,0x0000000000038000L});
-    
-    /** The Constant FOLLOW_CARET_in_bitExpr2436. */
     public static final BitSet FOLLOW_CARET_in_bitExpr2436 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_shiftExpr_in_bitExpr2439. */
     public static final BitSet FOLLOW_shiftExpr_in_bitExpr2439 = new BitSet(new long[]{0x0000000000000002L,0x0000000000038000L});
-    
-    /** The Constant FOLLOW_addExpr_in_shiftExpr2460. */
     public static final BitSet FOLLOW_addExpr_in_shiftExpr2460 = new BitSet(new long[]{0x0010000000000002L,0x00000000000C0000L});
-    
-    /** The Constant FOLLOW_LTLT_in_shiftExpr2464. */
     public static final BitSet FOLLOW_LTLT_in_shiftExpr2464 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_addExpr_in_shiftExpr2468. */
     public static final BitSet FOLLOW_addExpr_in_shiftExpr2468 = new BitSet(new long[]{0x0010000000000002L,0x00000000000C0000L});
-    
-    /** The Constant FOLLOW_GT_in_shiftExpr2473. */
     public static final BitSet FOLLOW_GT_in_shiftExpr2473 = new BitSet(new long[]{0x0010000000000000L});
-    
-    /** The Constant FOLLOW_GT_in_shiftExpr2475. */
     public static final BitSet FOLLOW_GT_in_shiftExpr2475 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_addExpr_in_shiftExpr2480. */
     public static final BitSet FOLLOW_addExpr_in_shiftExpr2480 = new BitSet(new long[]{0x0010000000000002L,0x00000000000C0000L});
-    
-    /** The Constant FOLLOW_GTGTGT_in_shiftExpr2484. */
     public static final BitSet FOLLOW_GTGTGT_in_shiftExpr2484 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_addExpr_in_shiftExpr2487. */
     public static final BitSet FOLLOW_addExpr_in_shiftExpr2487 = new BitSet(new long[]{0x0010000000000002L,0x00000000000C0000L});
-    
-    /** The Constant FOLLOW_multExpr_in_addExpr2510. */
     public static final BitSet FOLLOW_multExpr_in_addExpr2510 = new BitSet(new long[]{0x0000000000000002L,0x0000000000300000L});
-    
-    /** The Constant FOLLOW_PLUS_in_addExpr2515. */
     public static final BitSet FOLLOW_PLUS_in_addExpr2515 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_SUB_in_addExpr2520. */
     public static final BitSet FOLLOW_SUB_in_addExpr2520 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_multExpr_in_addExpr2524. */
     public static final BitSet FOLLOW_multExpr_in_addExpr2524 = new BitSet(new long[]{0x0000000000000002L,0x0000000000300000L});
-    
-    /** The Constant FOLLOW_prefixExpr_in_multExpr2546. */
     public static final BitSet FOLLOW_prefixExpr_in_multExpr2546 = new BitSet(new long[]{0x0000000000000002L,0x0000000001C00000L});
-    
-    /** The Constant FOLLOW_STAR_in_multExpr2551. */
     public static final BitSet FOLLOW_STAR_in_multExpr2551 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_SLASH_in_multExpr2554. */
     public static final BitSet FOLLOW_SLASH_in_multExpr2554 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_PERCENT_in_multExpr2557. */
     public static final BitSet FOLLOW_PERCENT_in_multExpr2557 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_prefixExpr_in_multExpr2561. */
     public static final BitSet FOLLOW_prefixExpr_in_multExpr2561 = new BitSet(new long[]{0x0000000000000002L,0x0000000001C00000L});
-    
-    /** The Constant FOLLOW_set_in_prefixExpr2579. */
     public static final BitSet FOLLOW_set_in_prefixExpr2579 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_prefixExpr_in_prefixExpr2591. */
     public static final BitSet FOLLOW_prefixExpr_in_prefixExpr2591 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_newExpr_in_prefixExpr2617. */
     public static final BitSet FOLLOW_newExpr_in_prefixExpr2617 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_cast_in_prefixExpr2643. */
     public static final BitSet FOLLOW_cast_in_prefixExpr2643 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_suffixExpr_in_prefixExpr2669. */
     public static final BitSet FOLLOW_suffixExpr_in_prefixExpr2669 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_suffixExpr2688. */
     public static final BitSet FOLLOW_value_in_suffixExpr2688 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_suffixExpr2690. */
     public static final BitSet FOLLOW_LPAREN_in_suffixExpr2690 = new BitSet(new long[]{0x8048013C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_exprListOpt_in_suffixExpr2692. */
     public static final BitSet FOLLOW_exprListOpt_in_suffixExpr2692 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_suffixExpr2694. */
     public static final BitSet FOLLOW_RPAREN_in_suffixExpr2694 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_suffixExpr2714. */
     public static final BitSet FOLLOW_value_in_suffixExpr2714 = new BitSet(new long[]{0x0000002000000000L});
-    
-    /** The Constant FOLLOW_LBRACKET_in_suffixExpr2716. */
     public static final BitSet FOLLOW_LBRACKET_in_suffixExpr2716 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_suffixExpr2718. */
     public static final BitSet FOLLOW_expr_in_suffixExpr2718 = new BitSet(new long[]{0x0000004000000000L});
-    
-    /** The Constant FOLLOW_RBRACKET_in_suffixExpr2720. */
     public static final BitSet FOLLOW_RBRACKET_in_suffixExpr2720 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_suffixExpr2725. */
     public static final BitSet FOLLOW_value_in_suffixExpr2725 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    
-    /** The Constant FOLLOW_PLUSPLUS_in_suffixExpr2727. */
     public static final BitSet FOLLOW_PLUSPLUS_in_suffixExpr2727 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_suffixExpr2745. */
     public static final BitSet FOLLOW_value_in_suffixExpr2745 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    
-    /** The Constant FOLLOW_SUBSUB_in_suffixExpr2747. */
     public static final BitSet FOLLOW_SUBSUB_in_suffixExpr2747 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_suffixExpr2766. */
     public static final BitSet FOLLOW_value_in_suffixExpr2766 = new BitSet(new long[]{0x0008000000000000L});
-    
-    /** The Constant FOLLOW_typeParamOpt_in_suffixExpr2768. */
     public static final BitSet FOLLOW_typeParamOpt_in_suffixExpr2768 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_funcLit_in_value2777. */
     public static final BitSet FOLLOW_funcLit_in_value2777 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_arrayLit_in_value2783. */
     public static final BitSet FOLLOW_arrayLit_in_value2783 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_objLit_in_value2798. */
     public static final BitSet FOLLOW_objLit_in_value2798 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_NULL_in_value2813. */
     public static final BitSet FOLLOW_NULL_in_value2813 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_elementarySymbol_in_value2828. */
     public static final BitSet FOLLOW_elementarySymbol_in_value2828 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LPAREN_in_value2843. */
     public static final BitSet FOLLOW_LPAREN_in_value2843 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_expr_in_value2847. */
     public static final BitSet FOLLOW_expr_in_value2847 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_statement_in_value2849. */
     public static final BitSet FOLLOW_statement_in_value2849 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_value2852. */
     public static final BitSet FOLLOW_RPAREN_in_value2852 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_dotIdent_in_value2865. */
     public static final BitSet FOLLOW_dotIdent_in_value2865 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_NEW_in_newExpr2910. */
     public static final BitSet FOLLOW_NEW_in_newExpr2910 = new BitSet(new long[]{0x8007800801020000L});
-    
-    /** The Constant FOLLOW_type_in_newExpr2912. */
     public static final BitSet FOLLOW_type_in_newExpr2912 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_newExpr2914. */
     public static final BitSet FOLLOW_LPAREN_in_newExpr2914 = new BitSet(new long[]{0x8048013C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_exprListOpt_in_newExpr2916. */
     public static final BitSet FOLLOW_exprListOpt_in_newExpr2916 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_newExpr2918. */
     public static final BitSet FOLLOW_RPAREN_in_newExpr2918 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CAST_in_cast2940. */
     public static final BitSet FOLLOW_CAST_in_cast2940 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_cast2942. */
     public static final BitSet FOLLOW_LPAREN_in_cast2942 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_cast2944. */
     public static final BitSet FOLLOW_expr_in_cast2944 = new BitSet(new long[]{0x0000001004000000L});
-    
-    /** The Constant FOLLOW_COMMA_in_cast2947. */
     public static final BitSet FOLLOW_COMMA_in_cast2947 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_cast2949. */
     public static final BitSet FOLLOW_funcType_in_cast2949 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_cast2953. */
     public static final BitSet FOLLOW_RPAREN_in_cast2953 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CAST_in_cast2969. */
     public static final BitSet FOLLOW_CAST_in_cast2969 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_cast2971. */
     public static final BitSet FOLLOW_LPAREN_in_cast2971 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_cast2973. */
     public static final BitSet FOLLOW_expr_in_cast2973 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_cast2975. */
     public static final BitSet FOLLOW_RPAREN_in_cast2975 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_classDecl_in_topLevelDecl2998. */
     public static final BitSet FOLLOW_classDecl_in_topLevelDecl2998 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_interfaceDecl_in_topLevelDecl3024. */
     public static final BitSet FOLLOW_interfaceDecl_in_topLevelDecl3024 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_enumDecl_in_topLevelDecl3050. */
     public static final BitSet FOLLOW_enumDecl_in_topLevelDecl3050 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_typedefDecl_in_topLevelDecl3076. */
     public static final BitSet FOLLOW_typedefDecl_in_topLevelDecl3076 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ENUM_in_enumDecl3094. */
     public static final BitSet FOLLOW_ENUM_in_enumDecl3094 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_enumDecl3096. */
     public static final BitSet FOLLOW_IDENTIFIER_in_enumDecl3096 = new BitSet(new long[]{0x8008000000000000L});
-    
-    /** The Constant FOLLOW_typeParamOpt_in_enumDecl3098. */
     public static final BitSet FOLLOW_typeParamOpt_in_enumDecl3098 = new BitSet(new long[]{0x8000000000000000L});
-    
-    /** The Constant FOLLOW_LBRACE_in_enumDecl3100. */
-    public static final BitSet FOLLOW_LBRACE_in_enumDecl3100 = new BitSet(new long[]{0x00001E8000020000L});
-    
-    /** The Constant FOLLOW_enumBody_in_enumDecl3102. */
+    public static final BitSet FOLLOW_LBRACE_in_enumDecl3100 = new BitSet(new long[]{0x00001E8000020000L,0x0000000000000001L});
     public static final BitSet FOLLOW_enumBody_in_enumDecl3102 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_RBRACE_in_enumDecl3104. */
     public static final BitSet FOLLOW_RBRACE_in_enumDecl3104 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_enumValueDecl_in_enumBody3135. */
-    public static final BitSet FOLLOW_enumValueDecl_in_enumBody3135 = new BitSet(new long[]{0x00001E8000020002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_enumValueDecl3154. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl3154 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_enumValueDecl3156. */
-    public static final BitSet FOLLOW_LPAREN_in_enumValueDecl3156 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_enumValueDecl3159. */
+    public static final BitSet FOLLOW_enumValueDecl_in_enumBody3136 = new BitSet(new long[]{0x00001E8000020002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl3155 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_LPAREN_in_enumValueDecl3157 = new BitSet(new long[]{0x0000001008020000L});
     public static final BitSet FOLLOW_paramList_in_enumValueDecl3159 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_enumValueDecl3161. */
     public static final BitSet FOLLOW_RPAREN_in_enumValueDecl3161 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_enumValueDecl3164. */
-    public static final BitSet FOLLOW_SEMI_in_enumValueDecl3164 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_enumValueDecl3171. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl3171 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_enumValueDecl3173. */
-    public static final BitSet FOLLOW_SEMI_in_enumValueDecl3173 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_pp_in_enumValueDecl3180. */
-    public static final BitSet FOLLOW_pp_in_enumValueDecl3180 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDecl_in_varDeclList3197. */
-    public static final BitSet FOLLOW_varDecl_in_varDeclList3197 = new BitSet(new long[]{0x0000000003F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_varDeclList_in_varDeclList3199. */
-    public static final BitSet FOLLOW_varDeclList_in_varDeclList3199 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttrList_in_varDecl3221. */
-    public static final BitSet FOLLOW_declAttrList_in_varDecl3221 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_VAR_in_varDecl3225. */
-    public static final BitSet FOLLOW_VAR_in_varDecl3225 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_varDeclPartList_in_varDecl3227. */
-    public static final BitSet FOLLOW_varDeclPartList_in_varDecl3227 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_varDecl3229. */
-    public static final BitSet FOLLOW_SEMI_in_varDecl3229 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDeclPart_in_varDeclPartList3257. */
-    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList3257 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_varDeclPartList3260. */
-    public static final BitSet FOLLOW_COMMA_in_varDeclPartList3260 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_varDeclPart_in_varDeclPartList3263. */
-    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList3263 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_varDeclPart3279. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_varDeclPart3279 = new BitSet(new long[]{0x0000200810000000L});
-    
-    /** The Constant FOLLOW_propDeclOpt_in_varDeclPart3284. */
-    public static final BitSet FOLLOW_propDeclOpt_in_varDeclPart3284 = new BitSet(new long[]{0x0000200010000000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_varDeclPart3286. */
-    public static final BitSet FOLLOW_typeTagOpt_in_varDeclPart3286 = new BitSet(new long[]{0x0000000010000000L});
-    
-    /** The Constant FOLLOW_varInit_in_varDeclPart3288. */
-    public static final BitSet FOLLOW_varInit_in_varDeclPart3288 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LPAREN_in_propDecl3298. */
-    public static final BitSet FOLLOW_LPAREN_in_propDecl3298 = new BitSet(new long[]{0x0000000001020000L,0x0000000010000040L});
-    
-    /** The Constant FOLLOW_propAccessor_in_propDecl3302. */
-    public static final BitSet FOLLOW_propAccessor_in_propDecl3302 = new BitSet(new long[]{0x0000000004000000L});
-    
-    /** The Constant FOLLOW_COMMA_in_propDecl3304. */
-    public static final BitSet FOLLOW_COMMA_in_propDecl3304 = new BitSet(new long[]{0x0000000001020000L,0x0000000010000040L});
-    
-    /** The Constant FOLLOW_propAccessor_in_propDecl3308. */
-    public static final BitSet FOLLOW_propAccessor_in_propDecl3308 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_propDecl3310. */
-    public static final BitSet FOLLOW_RPAREN_in_propDecl3310 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_set_in_propAccessor0. */
+    public static final BitSet FOLLOW_SEMI_in_enumValueDecl3163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl3187 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_SEMI_in_enumValueDecl3189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pp_in_enumValueDecl3211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_varDeclList3228 = new BitSet(new long[]{0x0000000003F00000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_varDeclList_in_varDeclList3230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_varDecl3252 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_VAR_in_varDecl3256 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_varDeclPartList_in_varDecl3258 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_SEMI_in_varDecl3260 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList3288 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_COMMA_in_varDeclPartList3291 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList3294 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_varDeclPart3310 = new BitSet(new long[]{0x0000200810000000L});
+    public static final BitSet FOLLOW_propDeclOpt_in_varDeclPart3315 = new BitSet(new long[]{0x0000200010000000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_varDeclPart3317 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_varInit_in_varDeclPart3319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_propDecl3329 = new BitSet(new long[]{0x0000000001020000L,0x0000000010000040L});
+    public static final BitSet FOLLOW_propAccessor_in_propDecl3333 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_COMMA_in_propDecl3335 = new BitSet(new long[]{0x0000000001020000L,0x0000000010000040L});
+    public static final BitSet FOLLOW_propAccessor_in_propDecl3339 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RPAREN_in_propDecl3341 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_propAccessor0 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_propDecl_in_propDeclOpt3368. */
-    public static final BitSet FOLLOW_propDecl_in_propDeclOpt3368 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_EQ_in_varInit3383. */
-    public static final BitSet FOLLOW_EQ_in_varInit3383 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_varInit3385. */
-    public static final BitSet FOLLOW_expr_in_varInit3385 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttrList_in_funcDecl3410. */
-    public static final BitSet FOLLOW_declAttrList_in_funcDecl3410 = new BitSet(new long[]{0x0000000400000000L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcDecl3413. */
-    public static final BitSet FOLLOW_FUNCTION_in_funcDecl3413 = new BitSet(new long[]{0x0040000000000000L});
-    
-    /** The Constant FOLLOW_NEW_in_funcDecl3415. */
-    public static final BitSet FOLLOW_NEW_in_funcDecl3415 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcDecl3417. */
-    public static final BitSet FOLLOW_LPAREN_in_funcDecl3417 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcDecl3419. */
-    public static final BitSet FOLLOW_paramList_in_funcDecl3419 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcDecl3421. */
-    public static final BitSet FOLLOW_RPAREN_in_funcDecl3421 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcDecl3423. */
-    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl3423 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_block_in_funcDecl3425. */
-    public static final BitSet FOLLOW_block_in_funcDecl3425 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttrList_in_funcDecl3453. */
-    public static final BitSet FOLLOW_declAttrList_in_funcDecl3453 = new BitSet(new long[]{0x0000000400000000L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcDecl3456. */
-    public static final BitSet FOLLOW_FUNCTION_in_funcDecl3456 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_funcDecl3458. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_funcDecl3458 = new BitSet(new long[]{0x0008000800000000L});
-    
-    /** The Constant FOLLOW_typeParamOpt_in_funcDecl3460. */
-    public static final BitSet FOLLOW_typeParamOpt_in_funcDecl3460 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcDecl3462. */
-    public static final BitSet FOLLOW_LPAREN_in_funcDecl3462 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcDecl3464. */
-    public static final BitSet FOLLOW_paramList_in_funcDecl3464 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcDecl3466. */
-    public static final BitSet FOLLOW_RPAREN_in_funcDecl3466 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcDecl3468. */
-    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl3468 = new BitSet(new long[]{0x8000200000010000L});
-    
-    /** The Constant FOLLOW_block_in_funcDecl3470. */
-    public static final BitSet FOLLOW_block_in_funcDecl3470 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttrList_in_funcProtoDecl3506. */
-    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl3506 = new BitSet(new long[]{0x0000000400000000L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcProtoDecl3508. */
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3508 = new BitSet(new long[]{0x0040000000000000L});
-    
-    /** The Constant FOLLOW_NEW_in_funcProtoDecl3510. */
-    public static final BitSet FOLLOW_NEW_in_funcProtoDecl3510 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcProtoDecl3512. */
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3512 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcProtoDecl3514. */
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3514 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcProtoDecl3516. */
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3516 = new BitSet(new long[]{0x0000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcProtoDecl3518. */
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3518 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_funcProtoDecl3520. */
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3520 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_declAttrList_in_funcProtoDecl3539. */
-    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl3539 = new BitSet(new long[]{0x0000000400000000L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcProtoDecl3541. */
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3541 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_funcProtoDecl3543. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl3543 = new BitSet(new long[]{0x0008000800000000L});
-    
-    /** The Constant FOLLOW_typeParamOpt_in_funcProtoDecl3545. */
-    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl3545 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcProtoDecl3547. */
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3547 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcProtoDecl3549. */
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3549 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcProtoDecl3551. */
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3551 = new BitSet(new long[]{0x0000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcProtoDecl3553. */
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3553 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_funcProtoDecl3555. */
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3555 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcProtoDecl3575. */
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3575 = new BitSet(new long[]{0x0040000000000000L});
-    
-    /** The Constant FOLLOW_NEW_in_funcProtoDecl3577. */
-    public static final BitSet FOLLOW_NEW_in_funcProtoDecl3577 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcProtoDecl3579. */
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3579 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcProtoDecl3581. */
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3581 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcProtoDecl3583. */
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3583 = new BitSet(new long[]{0x0000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcProtoDecl3585. */
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3585 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_funcProtoDecl3587. */
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3587 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_FUNCTION_in_funcProtoDecl3604. */
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3604 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_funcProtoDecl3606. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl3606 = new BitSet(new long[]{0x0008000800000000L});
-    
-    /** The Constant FOLLOW_typeParamOpt_in_funcProtoDecl3608. */
-    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl3608 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_funcProtoDecl3610. */
+    public static final BitSet FOLLOW_propDecl_in_propDeclOpt3399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQ_in_varInit3414 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
+    public static final BitSet FOLLOW_expr_in_varInit3416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcDecl3441 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcDecl3444 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_funcDecl3446 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcDecl3448 = new BitSet(new long[]{0x0000001008020000L});
+    public static final BitSet FOLLOW_paramList_in_funcDecl3450 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcDecl3452 = new BitSet(new long[]{0x8000200000010000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl3454 = new BitSet(new long[]{0x8000200000010000L});
+    public static final BitSet FOLLOW_block_in_funcDecl3456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcDecl3484 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcDecl3487 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_funcDecl3489 = new BitSet(new long[]{0x0008000800000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_funcDecl3491 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcDecl3493 = new BitSet(new long[]{0x0000001008020000L});
+    public static final BitSet FOLLOW_paramList_in_funcDecl3495 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcDecl3497 = new BitSet(new long[]{0x8000200000010000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl3499 = new BitSet(new long[]{0x8000200000010000L});
+    public static final BitSet FOLLOW_block_in_funcDecl3501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl3537 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3539 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_funcProtoDecl3541 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3543 = new BitSet(new long[]{0x0000001008020000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3545 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3547 = new BitSet(new long[]{0x0000200000010000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3549 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl3570 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3572 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl3574 = new BitSet(new long[]{0x0008000800000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl3576 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3578 = new BitSet(new long[]{0x0000001008020000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3580 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3582 = new BitSet(new long[]{0x0000200000010000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3584 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3586 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3606 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_funcProtoDecl3608 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3610 = new BitSet(new long[]{0x0000001008020000L});
-    
-    /** The Constant FOLLOW_paramList_in_funcProtoDecl3612. */
     public static final BitSet FOLLOW_paramList_in_funcProtoDecl3612 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_funcProtoDecl3614. */
     public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3614 = new BitSet(new long[]{0x0000200000010000L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_funcProtoDecl3616. */
     public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3616 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_funcProtoDecl3618. */
     public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3618 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_EXTERN_in_classDecl3643. */
-    public static final BitSet FOLLOW_EXTERN_in_classDecl3643 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    
-    /** The Constant FOLLOW_CLASS_in_classDecl3646. */
-    public static final BitSet FOLLOW_CLASS_in_classDecl3646 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_classDecl3648. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_classDecl3648 = new BitSet(new long[]{0x8008000000000000L,0x0000001800000000L});
-    
-    /** The Constant FOLLOW_typeParamOpt_in_classDecl3650. */
-    public static final BitSet FOLLOW_typeParamOpt_in_classDecl3650 = new BitSet(new long[]{0x8000000000000000L,0x0000001800000000L});
-    
-    /** The Constant FOLLOW_inheritListOpt_in_classDecl3652. */
-    public static final BitSet FOLLOW_inheritListOpt_in_classDecl3652 = new BitSet(new long[]{0x8000000000000000L});
-    
-    /** The Constant FOLLOW_LBRACE_in_classDecl3654. */
-    public static final BitSet FOLLOW_LBRACE_in_classDecl3654 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_classBodyScope_in_classDecl3656. */
-    public static final BitSet FOLLOW_classBodyScope_in_classDecl3656 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_RBRACE_in_classDecl3658. */
-    public static final BitSet FOLLOW_RBRACE_in_classDecl3658 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_classBody_in_classBodyScope3692. */
-    public static final BitSet FOLLOW_classBody_in_classBodyScope3692 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDecl_in_classBody3717. */
-    public static final BitSet FOLLOW_varDecl_in_classBody3717 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_classBody_in_classBody3719. */
-    public static final BitSet FOLLOW_classBody_in_classBody3719 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_funcDecl_in_classBody3724. */
-    public static final BitSet FOLLOW_funcDecl_in_classBody3724 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_classBody_in_classBody3726. */
-    public static final BitSet FOLLOW_classBody_in_classBody3726 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_pp_in_classBody3731. */
-    public static final BitSet FOLLOW_pp_in_classBody3731 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_classBody_in_classBody3733. */
-    public static final BitSet FOLLOW_classBody_in_classBody3733 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_INTERFACE_in_interfaceDecl3753. */
-    public static final BitSet FOLLOW_INTERFACE_in_interfaceDecl3753 = new BitSet(new long[]{0x8007800001020000L,0x0000001800000000L});
-    
-    /** The Constant FOLLOW_type_in_interfaceDecl3755. */
-    public static final BitSet FOLLOW_type_in_interfaceDecl3755 = new BitSet(new long[]{0x8000000000000000L,0x0000001800000000L});
-    
-    /** The Constant FOLLOW_inheritListOpt_in_interfaceDecl3757. */
-    public static final BitSet FOLLOW_inheritListOpt_in_interfaceDecl3757 = new BitSet(new long[]{0x8000000000000000L});
-    
-    /** The Constant FOLLOW_LBRACE_in_interfaceDecl3759. */
-    public static final BitSet FOLLOW_LBRACE_in_interfaceDecl3759 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000001L});
-    
-    /** The Constant FOLLOW_interfaceBody_in_interfaceDecl3762. */
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceDecl3762 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_RBRACE_in_interfaceDecl3764. */
-    public static final BitSet FOLLOW_RBRACE_in_interfaceDecl3764 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDecl_in_interfaceBody3777. */
-    public static final BitSet FOLLOW_varDecl_in_interfaceBody3777 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_interfaceBody_in_interfaceBody3779. */
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3779 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_funcProtoDecl_in_interfaceBody3784. */
-    public static final BitSet FOLLOW_funcProtoDecl_in_interfaceBody3784 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_interfaceBody_in_interfaceBody3786. */
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3786 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_pp_in_interfaceBody3791. */
-    public static final BitSet FOLLOW_pp_in_interfaceBody3791 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
-    
-    /** The Constant FOLLOW_interfaceBody_in_interfaceBody3793. */
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3793 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_inherit_in_inheritList3814. */
-    public static final BitSet FOLLOW_inherit_in_inheritList3814 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_inheritList3817. */
-    public static final BitSet FOLLOW_COMMA_in_inheritList3817 = new BitSet(new long[]{0x0000000000000000L,0x0000001800000000L});
-    
-    /** The Constant FOLLOW_inherit_in_inheritList3820. */
-    public static final BitSet FOLLOW_inherit_in_inheritList3820 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_inheritList_in_inheritListOpt3838. */
-    public static final BitSet FOLLOW_inheritList_in_inheritListOpt3838 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_EXTENDS_in_inherit3872. */
-    public static final BitSet FOLLOW_EXTENDS_in_inherit3872 = new BitSet(new long[]{0x8007800001020000L});
-    
-    /** The Constant FOLLOW_type_in_inherit3874. */
-    public static final BitSet FOLLOW_type_in_inherit3874 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IMPLEMENTS_in_inherit3894. */
-    public static final BitSet FOLLOW_IMPLEMENTS_in_inherit3894 = new BitSet(new long[]{0x8007800001020000L});
-    
-    /** The Constant FOLLOW_type_in_inherit3896. */
-    public static final BitSet FOLLOW_type_in_inherit3896 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_TYPEDEF_in_typedefDecl3923. */
-    public static final BitSet FOLLOW_TYPEDEF_in_typedefDecl3923 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_typedefDecl3925. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_typedefDecl3925 = new BitSet(new long[]{0x0000000010000000L});
-    
-    /** The Constant FOLLOW_EQ_in_typedefDecl3927. */
-    public static final BitSet FOLLOW_EQ_in_typedefDecl3927 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_typedefDecl3929. */
-    public static final BitSet FOLLOW_funcType_in_typedefDecl3929 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_GT_in_typeExtend3948. */
-    public static final BitSet FOLLOW_GT_in_typeExtend3948 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_typeExtend3950. */
-    public static final BitSet FOLLOW_funcType_in_typeExtend3950 = new BitSet(new long[]{0x0000000004000000L});
-    
-    /** The Constant FOLLOW_COMMA_in_typeExtend3952. */
-    public static final BitSet FOLLOW_COMMA_in_typeExtend3952 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LBRACE_in_anonType3963. */
-    public static final BitSet FOLLOW_LBRACE_in_anonType3963 = new BitSet(new long[]{0x0010000003F20000L,0x0000000080000001L});
-    
-    /** The Constant FOLLOW_anonTypeFieldList_in_anonType3998. */
-    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType3998 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_varDeclList_in_anonType4026. */
-    public static final BitSet FOLLOW_varDeclList_in_anonType4026 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_typeExtend_in_anonType4055. */
-    public static final BitSet FOLLOW_typeExtend_in_anonType4055 = new BitSet(new long[]{0x0000000003F20000L,0x0000000080000001L});
-    
-    /** The Constant FOLLOW_anonTypeFieldList_in_anonType4083. */
-    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType4083 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_varDeclList_in_anonType4109. */
-    public static final BitSet FOLLOW_varDeclList_in_anonType4109 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_RBRACE_in_anonType4153. */
-    public static final BitSet FOLLOW_RBRACE_in_anonType4153 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_anonTypeField_in_anonTypeFieldList4167. */
-    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList4167 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_anonTypeFieldList4170. */
-    public static final BitSet FOLLOW_COMMA_in_anonTypeFieldList4170 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_anonTypeField_in_anonTypeFieldList4173. */
-    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList4173 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_LBRACE_in_objLit4185. */
-    public static final BitSet FOLLOW_LBRACE_in_objLit4185 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_objLitElemList_in_objLit4188. */
-    public static final BitSet FOLLOW_objLitElemList_in_objLit4188 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    
-    /** The Constant FOLLOW_RBRACE_in_objLit4190. */
-    public static final BitSet FOLLOW_RBRACE_in_objLit4190 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_anonTypeField4202. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_anonTypeField4202 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_anonTypeField4204. */
-    public static final BitSet FOLLOW_COLON_in_anonTypeField4204 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_anonTypeField4207. */
-    public static final BitSet FOLLOW_funcType_in_anonTypeField4207 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_objLitElem_in_objLitElemList4223. */
-    public static final BitSet FOLLOW_objLitElem_in_objLitElemList4223 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_objLitElemList4226. */
-    public static final BitSet FOLLOW_COMMA_in_objLitElemList4226 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_objLitElem_in_objLitElemList4229. */
-    public static final BitSet FOLLOW_objLitElem_in_objLitElemList4229 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_objLitElem4250. */
-    public static final BitSet FOLLOW_IDENTIFIER_in_objLitElem4250 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_objLitElem4252. */
-    public static final BitSet FOLLOW_COLON_in_objLitElem4252 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_objLitElem4255. */
-    public static final BitSet FOLLOW_expr_in_objLitElem4255 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LONGLITERAL_in_elementarySymbol4267. */
-    public static final BitSet FOLLOW_LONGLITERAL_in_elementarySymbol4267 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_INTLITERAL_in_elementarySymbol4280. */
-    public static final BitSet FOLLOW_INTLITERAL_in_elementarySymbol4280 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_STRINGLITERAL_in_elementarySymbol4293. */
-    public static final BitSet FOLLOW_STRINGLITERAL_in_elementarySymbol4293 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CHARLITERAL_in_elementarySymbol4306. */
-    public static final BitSet FOLLOW_CHARLITERAL_in_elementarySymbol4306 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_FLOATNUM_in_elementarySymbol4319. */
-    public static final BitSet FOLLOW_FLOATNUM_in_elementarySymbol4319 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_TRUE_in_elementarySymbol4332. */
-    public static final BitSet FOLLOW_TRUE_in_elementarySymbol4332 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_FALSE_in_elementarySymbol4346. */
-    public static final BitSet FOLLOW_FALSE_in_elementarySymbol4346 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_typeTagOpt_in_synpred21_TinyHaxeTry1876. */
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3635 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl3637 = new BitSet(new long[]{0x0008000800000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl3639 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3641 = new BitSet(new long[]{0x0000001008020000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3643 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3645 = new BitSet(new long[]{0x0000200000010000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3647 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EXTERN_in_classDecl3674 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_CLASS_in_classDecl3677 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_classDecl3679 = new BitSet(new long[]{0x8008000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_classDecl3681 = new BitSet(new long[]{0x8000000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_inheritListOpt_in_classDecl3683 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_LBRACE_in_classDecl3685 = new BitSet(new long[]{0x00001E8403F00000L,0x00000000C0000000L});
+    public static final BitSet FOLLOW_classBodyScope_in_classDecl3687 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_classDecl3689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classBody_in_classBodyScope3723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_classBody3748 = new BitSet(new long[]{0x00001E8403F00000L,0x00000000C0000000L});
+    public static final BitSet FOLLOW_classBody_in_classBody3750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcDecl_in_classBody3755 = new BitSet(new long[]{0x00001E8403F00000L,0x00000000C0000000L});
+    public static final BitSet FOLLOW_classBody_in_classBody3757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pp_in_classBody3762 = new BitSet(new long[]{0x00001E8403F00000L,0x00000000C0000000L});
+    public static final BitSet FOLLOW_classBody_in_classBody3764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enumDecl_in_classBody3769 = new BitSet(new long[]{0x00001E8403F00000L,0x00000000C0000000L});
+    public static final BitSet FOLLOW_classBody_in_classBody3771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTERFACE_in_interfaceDecl3791 = new BitSet(new long[]{0x8007800001020000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_type_in_interfaceDecl3793 = new BitSet(new long[]{0x8000000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_inheritListOpt_in_interfaceDecl3795 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_LBRACE_in_interfaceDecl3797 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000001L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceDecl3800 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_interfaceDecl3802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_interfaceBody3815 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcProtoDecl_in_interfaceBody3822 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3824 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pp_in_interfaceBody3829 = new BitSet(new long[]{0x00001E8403F00000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3831 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_inherit_in_inheritList3852 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_COMMA_in_inheritList3855 = new BitSet(new long[]{0x0000000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_inherit_in_inheritList3858 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_inheritList_in_inheritListOpt3876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EXTENDS_in_inherit3910 = new BitSet(new long[]{0x8007800001020000L});
+    public static final BitSet FOLLOW_type_in_inherit3912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IMPLEMENTS_in_inherit3932 = new BitSet(new long[]{0x8007800001020000L});
+    public static final BitSet FOLLOW_type_in_inherit3934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TYPEDEF_in_typedefDecl3961 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_typedefDecl3963 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_EQ_in_typedefDecl3965 = new BitSet(new long[]{0x8007C00001020000L});
+    public static final BitSet FOLLOW_funcType_in_typedefDecl3967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_GT_in_typeExtend3986 = new BitSet(new long[]{0x8007C00001020000L});
+    public static final BitSet FOLLOW_funcType_in_typeExtend3988 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_COMMA_in_typeExtend3990 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACE_in_anonType4001 = new BitSet(new long[]{0x0010000003F20000L,0x0000000080000001L});
+    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType4036 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_varDeclList_in_anonType4064 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_typeExtend_in_anonType4093 = new BitSet(new long[]{0x0000000003F20000L,0x0000000080000001L});
+    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType4121 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_varDeclList_in_anonType4147 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_anonType4191 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList4205 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_COMMA_in_anonTypeFieldList4208 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList4211 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_LBRACE_in_objLit4223 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_objLitElemList_in_objLit4226 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_objLit4228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_anonTypeField4240 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_COLON_in_anonTypeField4242 = new BitSet(new long[]{0x8007C00001020000L});
+    public static final BitSet FOLLOW_funcType_in_anonTypeField4245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_objLitElem_in_objLitElemList4261 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_COMMA_in_objLitElemList4264 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_objLitElem_in_objLitElemList4267 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_objLitElem4288 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_COLON_in_objLitElem4290 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
+    public static final BitSet FOLLOW_expr_in_objLitElem4293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LONGLITERAL_in_elementarySymbol4305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTLITERAL_in_elementarySymbol4318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRINGLITERAL_in_elementarySymbol4331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHARLITERAL_in_elementarySymbol4344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOATNUM_in_elementarySymbol4357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TRUE_in_elementarySymbol4370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FALSE_in_elementarySymbol4384 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_typeTagOpt_in_synpred21_TinyHaxeTry1876 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_synpred29_TinyHaxeTry11268. */
     public static final BitSet FOLLOW_COMMA_in_synpred29_TinyHaxeTry11268 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_synpred29_TinyHaxeTry11271. */
     public static final BitSet FOLLOW_funcType_in_synpred29_TinyHaxeTry11271 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_funcType_in_synpred30_TinyHaxeTry11265. */
     public static final BitSet FOLLOW_funcType_in_synpred30_TinyHaxeTry11265 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_synpred30_TinyHaxeTry11268. */
     public static final BitSet FOLLOW_COMMA_in_synpred30_TinyHaxeTry11268 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_synpred30_TinyHaxeTry11271. */
     public static final BitSet FOLLOW_funcType_in_synpred30_TinyHaxeTry11271 = new BitSet(new long[]{0x0000000004000002L});
-    
-    /** The Constant FOLLOW_COMMA_in_synpred31_TinyHaxeTry11282. */
     public static final BitSet FOLLOW_COMMA_in_synpred31_TinyHaxeTry11282 = new BitSet(new long[]{0x0000000000020000L});
-    
-    /** The Constant FOLLOW_typeConstraint_in_synpred31_TinyHaxeTry11285. */
     public static final BitSet FOLLOW_typeConstraint_in_synpred31_TinyHaxeTry11285 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_MINUS_BIGGER_in_synpred32_TinyHaxeTry11304. */
     public static final BitSet FOLLOW_MINUS_BIGGER_in_synpred32_TinyHaxeTry11304 = new BitSet(new long[]{0x8007800001020000L});
-    
-    /** The Constant FOLLOW_type_in_synpred32_TinyHaxeTry11307. */
     public static final BitSet FOLLOW_type_in_synpred32_TinyHaxeTry11307 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_type_in_synpred33_TinyHaxeTry11300. */
     public static final BitSet FOLLOW_type_in_synpred33_TinyHaxeTry11300 = new BitSet(new long[]{0x0000400000000002L});
-    
-    /** The Constant FOLLOW_MINUS_BIGGER_in_synpred33_TinyHaxeTry11304. */
     public static final BitSet FOLLOW_MINUS_BIGGER_in_synpred33_TinyHaxeTry11304 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_type_in_synpred33_TinyHaxeTry11307. */
     public static final BitSet FOLLOW_type_in_synpred33_TinyHaxeTry11307 = new BitSet(new long[]{0x0000400000000002L});
-    
-    /** The Constant FOLLOW_typeParam_in_synpred40_TinyHaxeTry11347. */
     public static final BitSet FOLLOW_typeParam_in_synpred40_TinyHaxeTry11347 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_anonType_in_synpred41_TinyHaxeTry11326. */
     public static final BitSet FOLLOW_anonType_in_synpred41_TinyHaxeTry11326 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_dotIdent_in_synpred41_TinyHaxeTry11330. */
     public static final BitSet FOLLOW_dotIdent_in_synpred41_TinyHaxeTry11330 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_INT_in_synpred41_TinyHaxeTry11333. */
     public static final BitSet FOLLOW_INT_in_synpred41_TinyHaxeTry11333 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_FLOAT_in_synpred41_TinyHaxeTry11336. */
     public static final BitSet FOLLOW_FLOAT_in_synpred41_TinyHaxeTry11336 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_DYNAMIC_in_synpred41_TinyHaxeTry11339. */
     public static final BitSet FOLLOW_DYNAMIC_in_synpred41_TinyHaxeTry11339 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_BOOLEAN_in_synpred41_TinyHaxeTry11341. */
     public static final BitSet FOLLOW_BOOLEAN_in_synpred41_TinyHaxeTry11341 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_VOID_in_synpred41_TinyHaxeTry11343. */
     public static final BitSet FOLLOW_VOID_in_synpred41_TinyHaxeTry11343 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_typeParam_in_synpred41_TinyHaxeTry11347. */
     public static final BitSet FOLLOW_typeParam_in_synpred41_TinyHaxeTry11347 = new BitSet(new long[]{0x0008000000000002L});
-    
-    /** The Constant FOLLOW_type_in_synpred42_TinyHaxeTry11369. */
     public static final BitSet FOLLOW_type_in_synpred42_TinyHaxeTry11369 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_GT_in_synpred43_TinyHaxeTry11375. */
     public static final BitSet FOLLOW_GT_in_synpred43_TinyHaxeTry11375 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_GTGT_in_synpred44_TinyHaxeTry11378. */
     public static final BitSet FOLLOW_GTGT_in_synpred44_TinyHaxeTry11378 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_typeParam_in_synpred45_TinyHaxeTry11401. */
     public static final BitSet FOLLOW_typeParam_in_synpred45_TinyHaxeTry11401 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_block_in_synpred47_TinyHaxeTry11525. */
     public static final BitSet FOLLOW_block_in_synpred47_TinyHaxeTry11525 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_assignExpr_in_synpred48_TinyHaxeTry11530. */
     public static final BitSet FOLLOW_assignExpr_in_synpred48_TinyHaxeTry11530 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_synpred48_TinyHaxeTry11532. */
     public static final BitSet FOLLOW_SEMI_in_synpred48_TinyHaxeTry11532 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_ELSE_in_synpred50_TinyHaxeTry11552. */
     public static final BitSet FOLLOW_ELSE_in_synpred50_TinyHaxeTry11552 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_synpred50_TinyHaxeTry11556. */
     public static final BitSet FOLLOW_statement_in_synpred50_TinyHaxeTry11556 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_expr_in_synpred58_TinyHaxeTry11742. */
     public static final BitSet FOLLOW_expr_in_synpred58_TinyHaxeTry11742 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_expr_in_synpred65_TinyHaxeTry11818. */
     public static final BitSet FOLLOW_expr_in_synpred65_TinyHaxeTry11818 = new BitSet(new long[]{0x0000000000010000L});
-    
-    /** The Constant FOLLOW_SEMI_in_synpred65_TinyHaxeTry11821. */
     public static final BitSet FOLLOW_SEMI_in_synpred65_TinyHaxeTry11821 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_IDENTIFIER_in_synpred66_TinyHaxeTry11827. */
     public static final BitSet FOLLOW_IDENTIFIER_in_synpred66_TinyHaxeTry11827 = new BitSet(new long[]{0x0000200000000000L});
-    
-    /** The Constant FOLLOW_COLON_in_synpred66_TinyHaxeTry11829. */
     public static final BitSet FOLLOW_COLON_in_synpred66_TinyHaxeTry11829 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_statement_in_synpred66_TinyHaxeTry11831. */
     public static final BitSet FOLLOW_statement_in_synpred66_TinyHaxeTry11831 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_varDecl_in_synpred69_TinyHaxeTry11932. */
     public static final BitSet FOLLOW_varDecl_in_synpred69_TinyHaxeTry11932 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_exprList_in_synpred73_TinyHaxeTry12144. */
     public static final BitSet FOLLOW_exprList_in_synpred73_TinyHaxeTry12144 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_GT_in_synpred90_TinyHaxeTry12473. */
     public static final BitSet FOLLOW_GT_in_synpred90_TinyHaxeTry12473 = new BitSet(new long[]{0x0010000000000000L});
-    
-    /** The Constant FOLLOW_GT_in_synpred90_TinyHaxeTry12475. */
     public static final BitSet FOLLOW_GT_in_synpred90_TinyHaxeTry12475 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_addExpr_in_synpred90_TinyHaxeTry12480. */
     public static final BitSet FOLLOW_addExpr_in_synpred90_TinyHaxeTry12480 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_set_in_synpred101_TinyHaxeTry12579. */
     public static final BitSet FOLLOW_set_in_synpred101_TinyHaxeTry12579 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_prefixExpr_in_synpred101_TinyHaxeTry12591. */
     public static final BitSet FOLLOW_prefixExpr_in_synpred101_TinyHaxeTry12591 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_synpred104_TinyHaxeTry12688. */
     public static final BitSet FOLLOW_value_in_synpred104_TinyHaxeTry12688 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_synpred104_TinyHaxeTry12690. */
     public static final BitSet FOLLOW_LPAREN_in_synpred104_TinyHaxeTry12690 = new BitSet(new long[]{0x8048013C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_exprListOpt_in_synpred104_TinyHaxeTry12692. */
     public static final BitSet FOLLOW_exprListOpt_in_synpred104_TinyHaxeTry12692 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_synpred104_TinyHaxeTry12694. */
     public static final BitSet FOLLOW_RPAREN_in_synpred104_TinyHaxeTry12694 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_synpred105_TinyHaxeTry12714. */
     public static final BitSet FOLLOW_value_in_synpred105_TinyHaxeTry12714 = new BitSet(new long[]{0x0000002000000000L});
-    
-    /** The Constant FOLLOW_LBRACKET_in_synpred105_TinyHaxeTry12716. */
     public static final BitSet FOLLOW_LBRACKET_in_synpred105_TinyHaxeTry12716 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_synpred105_TinyHaxeTry12718. */
     public static final BitSet FOLLOW_expr_in_synpred105_TinyHaxeTry12718 = new BitSet(new long[]{0x0000004000000000L});
-    
-    /** The Constant FOLLOW_RBRACKET_in_synpred105_TinyHaxeTry12720. */
     public static final BitSet FOLLOW_RBRACKET_in_synpred105_TinyHaxeTry12720 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_synpred106_TinyHaxeTry12725. */
     public static final BitSet FOLLOW_value_in_synpred106_TinyHaxeTry12725 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    
-    /** The Constant FOLLOW_PLUSPLUS_in_synpred106_TinyHaxeTry12727. */
     public static final BitSet FOLLOW_PLUSPLUS_in_synpred106_TinyHaxeTry12727 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_value_in_synpred107_TinyHaxeTry12745. */
     public static final BitSet FOLLOW_value_in_synpred107_TinyHaxeTry12745 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    
-    /** The Constant FOLLOW_SUBSUB_in_synpred107_TinyHaxeTry12747. */
     public static final BitSet FOLLOW_SUBSUB_in_synpred107_TinyHaxeTry12747 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_arrayLit_in_synpred109_TinyHaxeTry12783. */
     public static final BitSet FOLLOW_arrayLit_in_synpred109_TinyHaxeTry12783 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_expr_in_synpred113_TinyHaxeTry12847. */
     public static final BitSet FOLLOW_expr_in_synpred113_TinyHaxeTry12847 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_LPAREN_in_synpred114_TinyHaxeTry12843. */
     public static final BitSet FOLLOW_LPAREN_in_synpred114_TinyHaxeTry12843 = new BitSet(new long[]{0xFAC8212C03F30000L,0x00001FC0BE20001EL});
-    
-    /** The Constant FOLLOW_expr_in_synpred114_TinyHaxeTry12847. */
     public static final BitSet FOLLOW_expr_in_synpred114_TinyHaxeTry12847 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_statement_in_synpred114_TinyHaxeTry12849. */
     public static final BitSet FOLLOW_statement_in_synpred114_TinyHaxeTry12849 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_synpred114_TinyHaxeTry12852. */
     public static final BitSet FOLLOW_RPAREN_in_synpred114_TinyHaxeTry12852 = new BitSet(new long[]{0x0000000000000002L});
-    
-    /** The Constant FOLLOW_CAST_in_synpred117_TinyHaxeTry12940. */
     public static final BitSet FOLLOW_CAST_in_synpred117_TinyHaxeTry12940 = new BitSet(new long[]{0x0000000800000000L});
-    
-    /** The Constant FOLLOW_LPAREN_in_synpred117_TinyHaxeTry12942. */
     public static final BitSet FOLLOW_LPAREN_in_synpred117_TinyHaxeTry12942 = new BitSet(new long[]{0x8048012C00020000L,0x00001FC03E200000L});
-    
-    /** The Constant FOLLOW_expr_in_synpred117_TinyHaxeTry12944. */
     public static final BitSet FOLLOW_expr_in_synpred117_TinyHaxeTry12944 = new BitSet(new long[]{0x0000001004000000L});
-    
-    /** The Constant FOLLOW_COMMA_in_synpred117_TinyHaxeTry12947. */
     public static final BitSet FOLLOW_COMMA_in_synpred117_TinyHaxeTry12947 = new BitSet(new long[]{0x8007C00001020000L});
-    
-    /** The Constant FOLLOW_funcType_in_synpred117_TinyHaxeTry12949. */
     public static final BitSet FOLLOW_funcType_in_synpred117_TinyHaxeTry12949 = new BitSet(new long[]{0x0000001000000000L});
-    
-    /** The Constant FOLLOW_RPAREN_in_synpred117_TinyHaxeTry12953. */
     public static final BitSet FOLLOW_RPAREN_in_synpred117_TinyHaxeTry12953 = new BitSet(new long[]{0x0000000000000002L});
 
 }

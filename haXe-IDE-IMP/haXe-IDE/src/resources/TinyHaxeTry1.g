@@ -310,14 +310,14 @@ topLevelDecl      : classDecl
                     |   enumDecl
                     |   typedefDecl
 	;
-enumDecl          : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER typeParamOpt enumBody)
+enumDecl          : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER typeParamOpt? enumBody)
 	;
-enumBody          : (enumValueDecl)+
+enumBody          : (enumValueDecl)*
 	;
 	
 enumValueDecl     
-	:	IDENTIFIER LPAREN! paramList RPAREN! SEMI!	
-	|	IDENTIFIER SEMI!	
+	:	IDENTIFIER LPAREN paramList RPAREN SEMI ->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage> paramList? )	
+	|	IDENTIFIER SEMI				->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>)
 	|	pp
 	;
 	
@@ -374,6 +374,7 @@ classBody
 	:	varDecl classBody
 	|	funcDecl classBody
 	|	pp classBody
+	|	enumDecl classBody
 	|
 	;
 	

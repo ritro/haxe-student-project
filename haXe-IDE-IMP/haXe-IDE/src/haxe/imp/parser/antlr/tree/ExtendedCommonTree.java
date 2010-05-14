@@ -90,9 +90,10 @@ public class ExtendedCommonTree extends CommonTree {
 			.asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.MODULE
 			.toString());
 
-	// public static final int TYPE_TAG_TYPE = (new ArrayList<String>(Arrays
-	// .asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.TYPE_TAG
-	// .toString());
+	/** The Constant ENUM_TYPE. */
+	public static final int ENUM_TYPE = (new ArrayList<String>(Arrays
+			.asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.ENUM
+			.toString());
 
 	/**
 	 * Checks if is auxiliary.
@@ -221,6 +222,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 * @param visitor
 	 *            the visitor
 	 */
+
 	public void accept(HaxeModelVisitor visitor) {
 		try {
 			if (this.token.getType() == MODULE_TYPE) {
@@ -254,6 +256,12 @@ public class ExtendedCommonTree extends CommonTree {
 						child.accept(visitor);
 					}
 				}
+			} else if (this.token.getType() == ENUM_TYPE) {
+				visitor.visit(this);
+				for (ExtendedCommonTree child : this.getChildren()) {
+					child.accept(visitor);
+				}
+				visitor.endVisit(this);
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out

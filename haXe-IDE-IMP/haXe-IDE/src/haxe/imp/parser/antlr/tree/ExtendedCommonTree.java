@@ -271,6 +271,12 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * Accept.
+	 * 
+	 * @param visitor
+	 *            the visitor
+	 */
 	public void accept(HaxeFoldingVisitor visitor) {
 		try {
 			if (this.token.getType() == MODULE_TYPE) {
@@ -1031,7 +1037,7 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
-	 * Prints full tree into console
+	 * Prints full tree into console.
 	 */
 	public void printTree() {
 		printTree(this, 0);

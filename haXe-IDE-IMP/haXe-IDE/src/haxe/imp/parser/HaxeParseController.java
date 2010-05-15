@@ -298,7 +298,7 @@ public class HaxeParseController implements IParseController {
 		try {
 			TinyHaxeTry1Parser.module_return parserResult = parser.module();
 			currentAST = (ExtendedCommonTree) parserResult.getTree();
-			System.out.println("succes!");
+			System.out.println("success!");
 		} catch (RecognitionException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

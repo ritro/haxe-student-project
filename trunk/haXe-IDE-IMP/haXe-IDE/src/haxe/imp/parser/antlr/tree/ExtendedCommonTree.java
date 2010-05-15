@@ -12,6 +12,8 @@ package haxe.imp.parser.antlr.tree;
 
 import static haxe.imp.parser.antlr.utils.HaxeType.areBothNumbers;
 import static haxe.imp.parser.antlr.utils.HaxeType.getCommonNumberType;
+import haxe.imp.foldingUpdater.HaxeFoldingUpdater.HaxeFoldingVisitor;
+import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
 import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
 import haxe.imp.parser.antlr.tree.exceptions.AlreadyDeclaredVarDeclarationException;
 import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
@@ -262,6 +264,49 @@ public class ExtendedCommonTree extends CommonTree {
 					child.accept(visitor);
 				}
 				visitor.endVisit(this);
+			}
+		} catch (NullPointerException nullPointerException) {
+			System.out
+					.println("Exception caught from invocation of language-specific tree model builder implementation");
+		}
+	}
+
+	public void accept(HaxeFoldingVisitor visitor) {
+		try {
+			if (this.token.getType() == MODULE_TYPE) {
+				for (ExtendedCommonTree child : this.getChildren()) {
+					child.accept(visitor);
+				}
+			} else if (this instanceof FunctionNode) {
+				visitor.visit(this);
+				// visitor.endVisit(this);
+			} else if (this instanceof ClassNode) {
+				visitor.visit(this);
+				for (ExtendedCommonTree child : this.getChildren()) {
+					child.accept(visitor);
+				}
+				// visitor.endVisit(this);
+			} else if (this instanceof BlockScopeNode) {
+				boolean isParentClass = (this.parent instanceof ClassNode);
+				if (!isParentClass) {
+					// visitor.visit(this, false);
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+					// visitor.endVisit(this);
+				} else {
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+				}
+			} else if (this.token.getType() == ENUM_TYPE) {
+				visitor.visit(this);
+				for (ExtendedCommonTree child : this.getChildren()) {
+					child.accept(visitor);
+				}
+				// visitor.endVisit(this);
+			} else if (this.token.getType() == TinyHaxeTry1Lexer.COMMENT) {
+				visitor.visit(this);
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out

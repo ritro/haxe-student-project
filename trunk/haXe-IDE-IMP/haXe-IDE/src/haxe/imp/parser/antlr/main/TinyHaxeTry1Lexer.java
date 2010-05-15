@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g 2010-05-14 19:49:15
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g 2010-05-15 03:57:17
 
 package haxe.imp.parser.antlr.main;
 
@@ -183,8 +183,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:453:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:453:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:458:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:458:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -212,8 +212,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:464:5: ( IntegerNumber LongSuffix )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:464:9: IntegerNumber LongSuffix
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:469:5: ( IntegerNumber LongSuffix )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:469:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
             mLongSuffix(); 
@@ -233,8 +233,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:469:5: ( IntegerNumber )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:469:9: IntegerNumber
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:474:5: ( IntegerNumber )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:474:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -251,7 +251,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:474:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:479:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
             int alt4=4;
             int LA4_0 = input.LA(1);
 
@@ -290,17 +290,17 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:474:9: '0'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:479:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:475:9: '1' .. '9' ( '0' .. '9' )*
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:480:9: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:475:18: ( '0' .. '9' )*
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:480:18: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -313,7 +313,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:475:19: '0' .. '9'
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:480:19: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -329,10 +329,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:476:9: '0' ( '0' .. '7' )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:481:9: '0' ( '0' .. '7' )+
                     {
                     match('0'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:476:13: ( '0' .. '7' )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:481:13: ( '0' .. '7' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -346,7 +346,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:476:14: '0' .. '7'
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:481:14: '0' .. '7'
                     	    {
                     	    matchRange('0','7'); 
 
@@ -366,10 +366,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:477:9: HexPrefix ( HexDigit )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:482:9: HexPrefix ( HexDigit )+
                     {
                     mHexPrefix(); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:477:19: ( HexDigit )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:482:19: ( HexDigit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -383,7 +383,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:477:19: HexDigit
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:482:19: HexDigit
                     	    {
                     	    mHexDigit(); 
 
@@ -413,7 +413,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HexPrefix"
     public final void mHexPrefix() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:482:5: ( '0x' | '0X' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:487:5: ( '0x' | '0X' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -441,7 +441,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:482:9: '0x'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:487:9: '0x'
                     {
                     match("0x"); 
 
@@ -449,7 +449,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:482:16: '0X'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:487:16: '0X'
                     {
                     match("0X"); 
 
@@ -467,8 +467,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:487:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:487:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:492:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:492:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -491,7 +491,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:492:5: ( 'l' | 'L' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:497:5: ( 'l' | 'L' )
             // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -515,8 +515,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:497:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:497:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -527,7 +527,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:497:23: ( '+' | '-' )?
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:23: ( '+' | '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -553,7 +553,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             }
 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:497:38: ( '0' .. '9' )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:38: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -567,7 +567,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:497:40: '0' .. '9'
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:40: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -597,11 +597,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:501:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:501:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:506:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:506:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:507:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -619,14 +619,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:502:13: EscapeSequence
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:507:13: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:503:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:508:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -658,89 +658,89 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:511:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:511:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:516:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:516:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             {
             match('\\'); 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:511:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:516:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             int alt9=11;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:512:18: 'b'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:517:18: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:513:18: 't'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:518:18: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:514:18: 'n'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:519:18: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:515:18: 'f'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:520:18: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 5 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:516:18: 'r'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:18: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 6 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:517:18: '\\\"'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:522:18: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 7 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:518:18: '\\''
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:523:18: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 8 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:519:18: '\\\\'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:524:18: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 9 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:18: ( '0' .. '3' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:19: '0' .. '3'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:18: ( '0' .. '3' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:19: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:29: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:30: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:29: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:30: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:40: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:521:41: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:40: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:526:41: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -750,17 +750,17 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 10 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:523:18: ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:528:18: ( '0' .. '7' ) ( '0' .. '7' )
                     {
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:523:18: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:523:19: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:528:18: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:528:19: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:523:29: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:523:30: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:528:29: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:528:30: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -770,10 +770,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 11 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:525:18: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:530:18: ( '0' .. '7' )
                     {
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:525:18: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:525:19: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:530:18: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:530:19: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -799,8 +799,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ABSTRACT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:530:5: ( 'abstract' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:530:9: 'abstract'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:535:5: ( 'abstract' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:535:9: 'abstract'
             {
             match("abstract"); 
 
@@ -820,8 +820,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:534:5: ( 'Bool' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:534:9: 'Bool'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:539:5: ( 'Bool' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:539:9: 'Bool'
             {
             match("Bool"); 
 
@@ -841,8 +841,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:538:5: ( 'break' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:538:9: 'break'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:543:5: ( 'break' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:543:9: 'break'
             {
             match("break"); 
 
@@ -862,8 +862,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:542:5: ( 'byte' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:542:9: 'byte'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:547:5: ( 'byte' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:547:9: 'byte'
             {
             match("byte"); 
 
@@ -883,8 +883,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CASE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:546:5: ( 'case' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:546:9: 'case'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:551:5: ( 'case' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:551:9: 'case'
             {
             match("case"); 
 
@@ -904,8 +904,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CATCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:550:5: ( 'catch' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:550:9: 'catch'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:555:5: ( 'catch' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:555:9: 'catch'
             {
             match("catch"); 
 
@@ -925,8 +925,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:554:5: ( 'char' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:554:9: 'char'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:559:5: ( 'char' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:559:9: 'char'
             {
             match("char"); 
 
@@ -946,8 +946,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:558:5: ( 'class' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:558:9: 'class'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:563:5: ( 'class' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:563:9: 'class'
             {
             match("class"); 
 
@@ -967,8 +967,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CONST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:562:5: ( 'const' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:562:9: 'const'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:567:5: ( 'const' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:567:9: 'const'
             {
             match("const"); 
 
@@ -988,8 +988,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CONTINUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:566:5: ( 'continue' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:566:9: 'continue'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:571:5: ( 'continue' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:571:9: 'continue'
             {
             match("continue"); 
 
@@ -1009,8 +1009,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DEFAULT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:570:5: ( 'default' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:570:9: 'default'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:575:5: ( 'default' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:575:9: 'default'
             {
             match("default"); 
 
@@ -1030,8 +1030,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:574:5: ( 'do' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:574:9: 'do'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:579:5: ( 'do' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:579:9: 'do'
             {
             match("do"); 
 
@@ -1051,8 +1051,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:578:5: ( 'double' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:578:9: 'double'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:583:5: ( 'double' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:583:9: 'double'
             {
             match("double"); 
 
@@ -1072,8 +1072,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:582:5: ( 'else' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:582:9: 'else'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:587:5: ( 'else' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:587:9: 'else'
             {
             match("else"); 
 
@@ -1093,8 +1093,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ENUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:586:5: ( 'enum' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:586:9: 'enum'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:591:5: ( 'enum' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:591:9: 'enum'
             {
             match("enum"); 
 
@@ -1114,8 +1114,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:590:5: ( 'extends' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:590:9: 'extends'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:595:5: ( 'extends' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:595:9: 'extends'
             {
             match("extends"); 
 
@@ -1135,8 +1135,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FINAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:594:5: ( 'final' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:594:9: 'final'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:599:5: ( 'final' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:599:9: 'final'
             {
             match("final"); 
 
@@ -1156,8 +1156,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FINALLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:598:5: ( 'finally' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:598:9: 'finally'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:603:5: ( 'finally' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:603:9: 'finally'
             {
             match("finally"); 
 
@@ -1177,8 +1177,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:602:5: ( 'Float' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:602:9: 'Float'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:607:5: ( 'Float' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:607:9: 'Float'
             {
             match("Float"); 
 
@@ -1198,8 +1198,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:606:5: ( 'for' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:606:9: 'for'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:611:5: ( 'for' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:611:9: 'for'
             {
             match("for"); 
 
@@ -1219,8 +1219,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GOTO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:610:5: ( 'goto' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:610:9: 'goto'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:615:5: ( 'goto' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:615:9: 'goto'
             {
             match("goto"); 
 
@@ -1240,8 +1240,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:614:5: ( 'if' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:614:9: 'if'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:619:5: ( 'if' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:619:9: 'if'
             {
             match("if"); 
 
@@ -1261,8 +1261,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IMPLEMENTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:618:5: ( 'implements' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:618:9: 'implements'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:623:5: ( 'implements' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:623:9: 'implements'
             {
             match("implements"); 
 
@@ -1282,8 +1282,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IMPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:622:5: ( 'import' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:622:9: 'import'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:627:5: ( 'import' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:627:9: 'import'
             {
             match("import"); 
 
@@ -1303,8 +1303,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:626:5: ( 'instanceof' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:626:9: 'instanceof'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:631:5: ( 'instanceof' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:631:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1324,8 +1324,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:630:5: ( 'Int' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:630:9: 'Int'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:635:5: ( 'Int' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:635:9: 'Int'
             {
             match("Int"); 
 
@@ -1345,8 +1345,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTERFACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:634:5: ( 'interface' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:634:9: 'interface'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:639:5: ( 'interface' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:639:9: 'interface'
             {
             match("interface"); 
 
@@ -1366,8 +1366,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:638:5: ( 'long' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:638:9: 'long'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:643:5: ( 'long' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:643:9: 'long'
             {
             match("long"); 
 
@@ -1387,8 +1387,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NATIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:642:5: ( 'native' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:642:9: 'native'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:647:5: ( 'native' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:647:9: 'native'
             {
             match("native"); 
 
@@ -1408,8 +1408,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:646:5: ( 'new' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:646:9: 'new'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:651:5: ( 'new' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:651:9: 'new'
             {
             match("new"); 
 
@@ -1429,8 +1429,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PACKAGE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:650:5: ( 'package' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:650:9: 'package'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:655:5: ( 'package' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:655:9: 'package'
             {
             match("package"); 
 
@@ -1450,8 +1450,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:654:5: ( 'private' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:654:9: 'private'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:659:5: ( 'private' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:659:9: 'private'
             {
             match("private"); 
 
@@ -1471,8 +1471,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PROTECTED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:658:5: ( 'protected' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:658:9: 'protected'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:663:5: ( 'protected' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:663:9: 'protected'
             {
             match("protected"); 
 
@@ -1492,8 +1492,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:662:5: ( 'public' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:662:9: 'public'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:667:5: ( 'public' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:667:9: 'public'
             {
             match("public"); 
 
@@ -1513,8 +1513,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:666:5: ( 'return' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:666:9: 'return'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:671:5: ( 'return' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:671:9: 'return'
             {
             match("return"); 
 
@@ -1534,8 +1534,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:670:5: ( 'short' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:670:9: 'short'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:675:5: ( 'short' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:675:9: 'short'
             {
             match("short"); 
 
@@ -1555,8 +1555,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STATIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:674:5: ( 'static' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:674:9: 'static'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:679:5: ( 'static' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:679:9: 'static'
             {
             match("static"); 
 
@@ -1576,8 +1576,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:678:2: ( 'inline' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:678:4: 'inline'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:683:2: ( 'inline' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:683:4: 'inline'
             {
             match("inline"); 
 
@@ -1597,8 +1597,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DYNAMIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:682:2: ( 'dynamic' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:682:3: 'dynamic'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:687:2: ( 'dynamic' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:687:3: 'dynamic'
             {
             match("dynamic"); 
 
@@ -1618,8 +1618,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = OVERRIDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:686:2: ( 'override' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:686:3: 'override'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:691:2: ( 'override' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:691:3: 'override'
             {
             match("override"); 
 
@@ -1639,8 +1639,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STRICTFP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:690:5: ( 'strictfp' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:690:9: 'strictfp'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:695:5: ( 'strictfp' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:695:9: 'strictfp'
             {
             match("strictfp"); 
 
@@ -1660,8 +1660,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:694:5: ( 'super' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:694:9: 'super'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:699:5: ( 'super' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:699:9: 'super'
             {
             match("super"); 
 
@@ -1681,8 +1681,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:698:5: ( 'switch' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:698:9: 'switch'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:703:5: ( 'switch' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:703:9: 'switch'
             {
             match("switch"); 
 
@@ -1702,8 +1702,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:702:5: ( 'this' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:702:9: 'this'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:707:5: ( 'this' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:707:9: 'this'
             {
             match("this"); 
 
@@ -1723,8 +1723,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:706:5: ( 'throw' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:706:9: 'throw'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:711:5: ( 'throw' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:711:9: 'throw'
             {
             match("throw"); 
 
@@ -1744,8 +1744,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THROWS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:710:5: ( 'throws' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:710:9: 'throws'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:715:5: ( 'throws' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:715:9: 'throws'
             {
             match("throws"); 
 
@@ -1765,8 +1765,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRANSIENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:714:5: ( 'transient' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:714:9: 'transient'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:719:5: ( 'transient' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:719:9: 'transient'
             {
             match("transient"); 
 
@@ -1786,8 +1786,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:718:5: ( 'try' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:718:9: 'try'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:723:5: ( 'try' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:723:9: 'try'
             {
             match("try"); 
 
@@ -1807,8 +1807,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:722:5: ( 'Void' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:722:9: 'Void'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:727:5: ( 'Void' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:727:9: 'Void'
             {
             match("Void"); 
 
@@ -1828,8 +1828,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VOLATILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:726:5: ( 'volatile' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:726:9: 'volatile'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:731:5: ( 'volatile' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:731:9: 'volatile'
             {
             match("volatile"); 
 
@@ -1849,8 +1849,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:730:5: ( 'while' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:730:9: 'while'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:735:5: ( 'while' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:735:9: 'while'
             {
             match("while"); 
 
@@ -1870,8 +1870,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:734:5: ( 'true' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:734:9: 'true'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:739:5: ( 'true' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:739:9: 'true'
             {
             match("true"); 
 
@@ -1891,8 +1891,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:738:5: ( 'false' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:738:9: 'false'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:743:5: ( 'false' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:743:9: 'false'
             {
             match("false"); 
 
@@ -1912,8 +1912,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:742:5: ( 'null' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:742:9: 'null'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:747:5: ( 'null' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:747:9: 'null'
             {
             match("null"); 
 
@@ -1933,8 +1933,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CAST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:744:6: ( 'cast' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:744:8: 'cast'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:749:6: ( 'cast' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:749:8: 'cast'
             {
             match("cast"); 
 
@@ -1954,8 +1954,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:748:2: ( 'function' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:748:4: 'function'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:753:2: ( 'function' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:753:4: 'function'
             {
             match("function"); 
 
@@ -1975,8 +1975,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:751:4: ( 'in' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:751:6: 'in'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:756:4: ( 'in' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:756:6: 'in'
             {
             match("in"); 
 
@@ -1996,8 +1996,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:753:5: ( 'var' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:753:7: 'var'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:758:5: ( 'var' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:758:7: 'var'
             {
             match("var"); 
 
@@ -2017,8 +2017,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TYPEDEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:755:9: ( 'typedef' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:755:11: 'typedef'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:760:9: ( 'typedef' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:760:11: 'typedef'
             {
             match("typedef"); 
 
@@ -2038,8 +2038,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EXTERN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:757:8: ( 'extern' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:757:10: 'extern'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:762:8: ( 'extern' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:762:10: 'extern'
             {
             match("extern"); 
 
@@ -2059,8 +2059,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:761:5: ( '(' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:761:9: '('
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:766:5: ( '(' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:766:9: '('
             {
             match('('); 
 
@@ -2079,8 +2079,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:765:5: ( ')' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:765:9: ')'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:770:5: ( ')' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:770:9: ')'
             {
             match(')'); 
 
@@ -2099,8 +2099,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:769:5: ( '{' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:769:9: '{'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:774:5: ( '{' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:774:9: '{'
             {
             match('{'); 
 
@@ -2119,8 +2119,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:773:5: ( '}' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:773:9: '}'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:778:5: ( '}' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:778:9: '}'
             {
             match('}'); 
 
@@ -2139,8 +2139,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:777:5: ( '[' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:777:9: '['
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:782:5: ( '[' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:782:9: '['
             {
             match('['); 
 
@@ -2159,8 +2159,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:781:5: ( ']' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:781:9: ']'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:786:5: ( ']' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:786:9: ']'
             {
             match(']'); 
 
@@ -2179,8 +2179,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SEMI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:785:5: ( ';' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:785:9: ';'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:790:5: ( ';' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:790:9: ';'
             {
             match(';'); 
 
@@ -2199,8 +2199,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:789:5: ( ',' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:789:9: ','
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:794:5: ( ',' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:794:9: ','
             {
             match(','); 
 
@@ -2219,8 +2219,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:793:5: ( '.' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:793:9: '.'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:798:5: ( '.' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:798:9: '.'
             {
             match('.'); 
 
@@ -2239,8 +2239,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ELLIPSIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:797:5: ( '...' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:797:9: '...'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:802:5: ( '...' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:802:9: '...'
             {
             match("..."); 
 
@@ -2260,8 +2260,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:801:5: ( '=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:801:9: '='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:806:5: ( '=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:806:9: '='
             {
             match('='); 
 
@@ -2280,8 +2280,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:805:5: ( '!' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:805:9: '!'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:810:5: ( '!' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:810:9: '!'
             {
             match('!'); 
 
@@ -2300,8 +2300,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TILDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:809:5: ( '~' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:809:9: '~'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:814:5: ( '~' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:814:9: '~'
             {
             match('~'); 
 
@@ -2320,8 +2320,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = QUES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:813:5: ( '?' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:813:9: '?'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:818:5: ( '?' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:818:9: '?'
             {
             match('?'); 
 
@@ -2340,8 +2340,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:817:5: ( ':' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:817:9: ':'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:822:5: ( ':' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:822:9: ':'
             {
             match(':'); 
 
@@ -2360,8 +2360,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:821:5: ( '==' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:821:9: '=='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:826:5: ( '==' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:826:9: '=='
             {
             match("=="); 
 
@@ -2381,8 +2381,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMPAMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:825:5: ( '&&' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:825:9: '&&'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:830:5: ( '&&' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:830:9: '&&'
             {
             match("&&"); 
 
@@ -2402,8 +2402,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BARBAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:829:5: ( '||' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:829:9: '||'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:834:5: ( '||' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:834:9: '||'
             {
             match("||"); 
 
@@ -2423,8 +2423,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUSPLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:833:5: ( '++' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:833:9: '++'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:838:5: ( '++' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:838:9: '++'
             {
             match("++"); 
 
@@ -2444,8 +2444,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUBSUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:837:5: ( '--' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:837:9: '--'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:842:5: ( '--' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:842:9: '--'
             {
             match("--"); 
 
@@ -2465,8 +2465,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:841:5: ( '+' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:841:9: '+'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:846:5: ( '+' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:846:9: '+'
             {
             match('+'); 
 
@@ -2485,8 +2485,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:845:5: ( '-' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:845:9: '-'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:850:5: ( '-' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:850:9: '-'
             {
             match('-'); 
 
@@ -2505,8 +2505,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:849:5: ( '*' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:849:9: '*'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:854:5: ( '*' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:854:9: '*'
             {
             match('*'); 
 
@@ -2525,8 +2525,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:853:5: ( '/' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:853:9: '/'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:858:5: ( '/' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:858:9: '/'
             {
             match('/'); 
 
@@ -2545,8 +2545,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:857:5: ( '&' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:857:9: '&'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:862:5: ( '&' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:862:9: '&'
             {
             match('&'); 
 
@@ -2565,8 +2565,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:861:5: ( '|' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:861:9: '|'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:866:5: ( '|' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:866:9: '|'
             {
             match('|'); 
 
@@ -2585,8 +2585,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CARET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:865:5: ( '^' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:865:9: '^'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:870:5: ( '^' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:870:9: '^'
             {
             match('^'); 
 
@@ -2605,8 +2605,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:869:5: ( '%' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:869:9: '%'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:874:5: ( '%' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:874:9: '%'
             {
             match('%'); 
 
@@ -2625,8 +2625,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUSEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:873:5: ( '+=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:873:9: '+='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:878:5: ( '+=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:878:9: '+='
             {
             match("+="); 
 
@@ -2646,8 +2646,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUBEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:877:5: ( '-=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:877:9: '-='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:882:5: ( '-=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:882:9: '-='
             {
             match("-="); 
 
@@ -2667,8 +2667,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:881:5: ( '*=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:881:9: '*='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:886:5: ( '*=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:886:9: '*='
             {
             match("*="); 
 
@@ -2688,8 +2688,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SLASHEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:885:5: ( '/=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:885:9: '/='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:890:5: ( '/=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:890:9: '/='
             {
             match("/="); 
 
@@ -2709,8 +2709,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMPEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:889:5: ( '&=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:889:9: '&='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:894:5: ( '&=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:894:9: '&='
             {
             match("&="); 
 
@@ -2730,8 +2730,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:893:5: ( '|=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:893:9: '|='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:898:5: ( '|=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:898:9: '|='
             {
             match("|="); 
 
@@ -2751,8 +2751,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CARETEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:897:5: ( '^=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:897:9: '^='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:902:5: ( '^=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:902:9: '^='
             {
             match("^="); 
 
@@ -2772,8 +2772,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:901:5: ( '%=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:901:9: '%='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:906:5: ( '%=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:906:9: '%='
             {
             match("%="); 
 
@@ -2793,8 +2793,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDLQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:905:2: ( '%%<<%%=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:905:4: '%%<<%%='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:910:2: ( '%%<<%%=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:910:4: '%%<<%%='
             {
             match("%%<<%%="); 
 
@@ -2814,8 +2814,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDBQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:908:2: ( '%%>>%%=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:908:4: '%%>>%%='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:913:2: ( '%%>>%%=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:913:4: '%%>>%%='
             {
             match("%%>>%%="); 
 
@@ -2835,8 +2835,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDBBQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:911:2: ( '%%>>>%%=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:911:4: '%%>>>%%='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:916:2: ( '%%>>>%%=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:916:4: '%%>>>%%='
             {
             match("%%>>>%%="); 
 
@@ -2856,8 +2856,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQEQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:914:2: ( '===' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:914:3: '==='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:919:2: ( '===' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:919:3: '==='
             {
             match("==="); 
 
@@ -2877,8 +2877,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTLESQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:918:1: ( '%%<=%%' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:918:3: '%%<=%%'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:923:1: ( '%%<=%%' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:923:3: '%%<=%%'
             {
             match("%%<=%%"); 
 
@@ -2898,8 +2898,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANGEQQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:922:2: ( '!==' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:922:3: '!=='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:927:2: ( '!==' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:927:3: '!=='
             {
             match("!=="); 
 
@@ -2919,8 +2919,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = MONKEYS_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:926:5: ( '@' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:926:9: '@'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:931:5: ( '@' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:931:9: '@'
             {
             match('@'); 
 
@@ -2939,8 +2939,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANGEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:929:8: ( '!=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:929:10: '!='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:934:8: ( '!=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:934:10: '!='
             {
             match("!="); 
 
@@ -2960,8 +2960,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = MINUS_BIGGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:933:2: ( '->' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:933:4: '->'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:938:2: ( '->' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:938:4: '->'
             {
             match("->"); 
 
@@ -2981,8 +2981,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTLL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:937:2: ( '%%<<%%' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:937:3: '%%<<%%'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:942:2: ( '%%<<%%' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:942:3: '%%<<%%'
             {
             match("%%<<%%"); 
 
@@ -3002,8 +3002,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTBB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:940:2: ( '%%>>%%' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:940:3: '%%>>%%'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:945:2: ( '%%>>%%' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:945:3: '%%>>%%'
             {
             match("%%>>%%"); 
 
@@ -3023,8 +3023,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTBBB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:943:2: ( '%%>>>%%' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:943:3: '%%>>>%%'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:948:2: ( '%%>>>%%' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:948:3: '%%>>>%%'
             {
             match("%%>>>%%"); 
 
@@ -3044,8 +3044,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:946:4: ( '>' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:946:6: '>'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:951:4: ( '>' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:951:6: '>'
             {
             match('>'); 
 
@@ -3064,8 +3064,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:949:6: ( '>>' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:949:8: '>>'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:954:6: ( '>>' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:954:8: '>>'
             {
             match(">>"); 
 
@@ -3085,8 +3085,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTLT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:952:6: ( '<<' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:952:8: '<<'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:957:6: ( '<<' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:957:8: '<<'
             {
             match("<<"); 
 
@@ -3106,8 +3106,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:954:8: ( '>>>' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:954:10: '>>>'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:959:8: ( '>>>' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:959:10: '>>>'
             {
             match(">>>"); 
 
@@ -3127,8 +3127,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTLTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:957:8: ( '<<=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:957:10: '<<='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:962:8: ( '<<=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:962:10: '<<='
             {
             match("<<="); 
 
@@ -3148,8 +3148,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:960:8: ( '>>=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:960:10: '>>='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:965:8: ( '>>=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:965:10: '>>='
             {
             match(">>="); 
 
@@ -3169,8 +3169,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTGTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:963:9: ( '>>>=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:963:11: '>>>='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:968:9: ( '>>>=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:968:11: '>>>='
             {
             match(">>>="); 
 
@@ -3190,8 +3190,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:966:6: ( '>=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:966:8: '>='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:971:6: ( '>=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:971:8: '>='
             {
             match(">="); 
 
@@ -3211,8 +3211,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:968:6: ( '<=' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:968:8: '<='
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:973:6: ( '<=' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:973:8: '<='
             {
             match("<="); 
 
@@ -3232,8 +3232,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:972:5: ( '<' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:972:9: '<'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:977:5: ( '<' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:977:9: '<'
             {
             match('<'); 
 
@@ -3252,8 +3252,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:976:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:976:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:981:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:981:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3264,7 +3264,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:976:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:981:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop10:
             do {
                 int alt10=2;
@@ -3313,10 +3313,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:979:8: ( ( '0' .. '9' )+ )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:979:10: ( '0' .. '9' )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:8: ( ( '0' .. '9' )+ )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:10: ( '0' .. '9' )+
             {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:979:10: ( '0' .. '9' )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:10: ( '0' .. '9' )+
             int cnt11=0;
             loop11:
             do {
@@ -3330,7 +3330,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:979:10: '0' .. '9'
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:10: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3362,14 +3362,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FLOATNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
             int alt18=3;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:9: ( '0' .. '9' )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:9: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -3383,7 +3383,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:10: '0' .. '9'
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3400,7 +3400,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:25: ( '0' .. '9' )*
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:25: ( '0' .. '9' )*
                     loop13:
                     do {
                         int alt13=2;
@@ -3413,7 +3413,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:26: '0' .. '9'
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3425,7 +3425,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         }
                     } while (true);
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:37: ( EXPONENT )?
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:37: ( EXPONENT )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -3434,7 +3434,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:983:37: EXPONENT
+                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:988:37: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -3447,10 +3447,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
                     match('.'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:13: ( '0' .. '9' )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:13: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -3464,7 +3464,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:14: '0' .. '9'
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3480,7 +3480,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         cnt15++;
                     } while (true);
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:25: ( EXPONENT )?
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:25: ( EXPONENT )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -3489,7 +3489,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:984:25: EXPONENT
+                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:25: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -3502,9 +3502,9 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:985:9: ( '0' .. '9' )+ EXPONENT
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:990:9: ( '0' .. '9' )+ EXPONENT
                     {
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:985:9: ( '0' .. '9' )+
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:990:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -3518,7 +3518,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:985:10: '0' .. '9'
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:990:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3553,7 +3553,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:994:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3581,11 +3581,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt22) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:994:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:14: (~ ( '\\n' | '\\r' ) )*
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:994:14: (~ ( '\\n' | '\\r' ) )*
                     loop19:
                     do {
                         int alt19=2;
@@ -3598,7 +3598,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:14: ~ ( '\\n' | '\\r' )
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:994:14: ~ ( '\\n' | '\\r' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -3618,7 +3618,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         }
                     } while (true);
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:28: ( '\\r' )?
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:994:28: ( '\\r' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3627,7 +3627,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt20) {
                         case 1 :
-                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:989:28: '\\r'
+                            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:994:28: '\\r'
                             {
                             match('\r'); 
 
@@ -3642,11 +3642,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:990:9: '/*' ( options {greedy=false; } : . )* '*/'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:995:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:990:14: ( options {greedy=false; } : . )*
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:995:14: ( options {greedy=false; } : . )*
                     loop21:
                     do {
                         int alt21=2;
@@ -3671,7 +3671,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt21) {
                     	case 1 :
-                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:990:42: .
+                    	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:995:42: .
                     	    {
                     	    matchAny(); 
 
@@ -3704,11 +3704,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:995:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:995:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1000:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1000:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:996:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1001:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
             loop23:
             do {
                 int alt23=3;
@@ -3724,14 +3724,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt23) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:996:13: EscapeSequence
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1001:13: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:997:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1002:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3768,8 +3768,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1003:7: ( '#if' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1003:9: '#if'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1008:7: ( '#if' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1008:9: '#if'
             {
             match("#if"); 
 
@@ -3789,8 +3789,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_ELSEIF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1006:2: ( '#elseif' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1006:4: '#elseif'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1011:2: ( '#elseif' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1011:4: '#elseif'
             {
             match("#elseif"); 
 
@@ -3810,8 +3810,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1008:9: ( '#else' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1008:11: '#else'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1013:9: ( '#else' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1013:11: '#else'
             {
             match("#else"); 
 
@@ -3831,8 +3831,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_END;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1010:8: ( '#end' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1010:10: '#end'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1015:8: ( '#end' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1015:10: '#end'
             {
             match("#end"); 
 
@@ -3852,8 +3852,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PP_ERROR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1012:9: ( '#error' )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1012:11: '#error'
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1017:9: ( '#error' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1017:11: '#error'
             {
             match("#error"); 
 
@@ -3871,8 +3871,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1016:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1016:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1021:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1021:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -3883,7 +3883,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1016:22: ( '+' | '-' )?
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1021:22: ( '+' | '-' )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3909,7 +3909,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             }
 
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1016:33: ( '0' .. '9' )+
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1021:33: ( '0' .. '9' )+
             int cnt25=0;
             loop25:
             do {
@@ -3923,7 +3923,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt25) {
             	case 1 :
-            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1016:34: '0' .. '9'
+            	    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1021:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3951,8 +3951,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1019:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1019:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1024:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1024:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -3975,7 +3975,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1023:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1028:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt26=3;
             int LA26_0 = input.LA(1);
 
@@ -4026,7 +4026,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1023:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1028:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -4042,14 +4042,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1024:9: UNICODE_ESC
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1029:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1025:9: OCTAL_ESC
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -4066,7 +4066,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt27=3;
             int LA27_0 = input.LA(1);
 
@@ -4112,25 +4112,25 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:14: ( '0' .. '3' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:15: '0' .. '3'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:14: ( '0' .. '3' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:25: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:26: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:25: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:36: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1030:37: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:36: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1035:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4140,18 +4140,18 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1031:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1036:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1031:14: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1031:15: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1036:14: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1036:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1031:25: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1031:26: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1036:25: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1036:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4161,11 +4161,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1032:9: '\\\\' ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1037:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1032:14: ( '0' .. '7' )
-                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1032:15: '0' .. '7'
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1037:14: ( '0' .. '7' )
+                    // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1037:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4185,8 +4185,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1037:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1037:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1042:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:1042:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
             match('u'); 
@@ -5202,7 +5202,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "511:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )";
+            return "516:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )";
         }
     }
     static final String DFA18_eotS =
@@ -5255,7 +5255,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "982:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+            return "987:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
         }
     }
     static final String DFA28_eotS =

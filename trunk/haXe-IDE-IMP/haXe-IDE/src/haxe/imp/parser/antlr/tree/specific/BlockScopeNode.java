@@ -1,13 +1,13 @@
 /*******************************************************************************
-* Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
-* All rights reserved. This program and the accompanying materials
-* are made available under the terms of the GNU General Public License, version 2
-* which accompanies this distribution, and is available at
-* http://www.gnu.org/licenses/gpl-2.0.html
-*
-* Contributors:
-*    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
-*******************************************************************************/
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -15,6 +15,7 @@ import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
 
+import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
@@ -31,6 +32,9 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * current scope.
 	 */
 	private ArrayList<VarUsage> declaredVars = new ArrayList<VarUsage>();
+
+	private int lBracketPosition;
+	private int rBracketPosition;
 
 	/**
 	 * Gets the declared vars clone.
@@ -65,6 +69,18 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 */
 	public void setDeclaredVars(ArrayList<VarUsage> declaredVars) {
 		this.declaredVars = declaredVars;
+	}
+
+	public int getlBracketPosition() {
+		return lBracketPosition;
+	}
+
+	public int getrBracketPosition() {
+		return rBracketPosition;
+	}
+
+	public void setrBracketPosition(int rBracketPosition) {
+		this.rBracketPosition = rBracketPosition;
 	}
 
 	/**
@@ -148,6 +164,13 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	public BlockScopeNode(int ttype) {
 		super(ttype);
 		// TODO Auto-generated constructor stub
+	}
+
+	public BlockScopeNode(int blockScope, String string, boolean b,
+			Token lBracket) {
+		super(blockScope, string, b);
+		CommonToken lb = (CommonToken) lBracket;
+		this.lBracketPosition = lb.getStartIndex();
 	}
 
 	/**

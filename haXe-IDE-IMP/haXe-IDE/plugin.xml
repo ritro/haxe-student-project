@@ -41,5 +41,12 @@
             language="haxe">
       </labelProvider>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.foldingUpdater">
+      <foldingUpdater
+            class="haxe.imp.foldingUpdater.HaxeFoldingUpdater"
+            language="haxe">
+      </foldingUpdater>
+   </extension>
 
 </plugin>

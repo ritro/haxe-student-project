@@ -214,7 +214,7 @@ parExpression
     :   LPAREN! expr RPAREN!
     ;
 
-block         : LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true] blockStmt*) 
+block         : LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true,$LBRACE] blockStmt* RBRACE) 
 	|	SEMI!
 	;
 	
@@ -363,12 +363,17 @@ funcProtoDecl
 	;
 	
 classDecl
-	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt LBRACE classBodyScope RBRACE ->^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope?)
+	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt lb=LBRACE classBodyScope[$lb] RBRACE ->^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope? RBRACE<ExtendedCommonTree>[$RBRACE, true])
 	;
 	
-classBodyScope
-	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true] classBody?)
+classBodyScope[Token lBracket]
+	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true, $lBracket] classBody?)
 	;
+
+//classBodyScope
+//	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true] classBody?)
+//	;
+
 	
 classBody
 	:	varDecl classBody

@@ -33,7 +33,10 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 */
 	private ArrayList<VarUsage> declaredVars = new ArrayList<VarUsage>();
 
+	/** The l bracket position. */
 	private int lBracketPosition;
+
+	/** The r bracket position. */
 	private int rBracketPosition;
 
 	/**
@@ -71,14 +74,30 @@ public class BlockScopeNode extends ExtendedCommonTree {
 		this.declaredVars = declaredVars;
 	}
 
+	/**
+	 * Gets the l bracket position.
+	 * 
+	 * @return the l bracket position
+	 */
 	public int getlBracketPosition() {
 		return lBracketPosition;
 	}
 
+	/**
+	 * Gets the r bracket position.
+	 * 
+	 * @return the r bracket position
+	 */
 	public int getrBracketPosition() {
 		return rBracketPosition;
 	}
 
+	/**
+	 * Sets the r bracket position.
+	 * 
+	 * @param rBracketPosition
+	 *            the new r bracket position
+	 */
 	public void setrBracketPosition(int rBracketPosition) {
 		this.rBracketPosition = rBracketPosition;
 	}
@@ -166,6 +185,18 @@ public class BlockScopeNode extends ExtendedCommonTree {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new block scope node.
+	 * 
+	 * @param blockScope
+	 *            the block scope
+	 * @param string
+	 *            the string
+	 * @param b
+	 *            the b
+	 * @param lBracket
+	 *            the l bracket
+	 */
 	public BlockScopeNode(int blockScope, String string, boolean b,
 			Token lBracket) {
 		super(blockScope, string, b);

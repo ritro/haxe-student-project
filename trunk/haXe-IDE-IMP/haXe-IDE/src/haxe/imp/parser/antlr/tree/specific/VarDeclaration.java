@@ -26,8 +26,15 @@ import org.antlr.runtime.tree.CommonTree;
  * @author Anatoly Kondratyev
  */
 public class VarDeclaration extends ExtendedCommonTree {
+
+	/** The name with type. */
 	private String nameWithType = "";
 
+	/**
+	 * Gets the name with type.
+	 * 
+	 * @return the name with type
+	 */
 	public String getNameWithType() {
 		if (nameWithType.equals("")) {
 			nameWithType = this.getVarName() + " : "

@@ -37,7 +37,9 @@ public enum TreeTokens {
 	/** The DEC l_ att r_ list. */
 	DECL_ATTR_LIST,
 	/** The VA r_ init. */
-	VAR_INIT, ENUM,
+	VAR_INIT,
+	/** The ENUM. */
+	ENUM,
 	/** The PACKAGE. */
 
 	PACKAGE;

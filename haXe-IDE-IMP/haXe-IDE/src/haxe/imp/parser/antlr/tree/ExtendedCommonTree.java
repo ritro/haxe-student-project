@@ -36,6 +36,7 @@ import java.util.List;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
+import org.eclipse.imp.parser.IMessageHandler;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -47,6 +48,8 @@ public class ExtendedCommonTree extends CommonTree {
 
 	/** The auxiliary. */
 	private boolean auxiliary = false;
+
+	private static IMessageHandler messageHandler;
 
 	/**
 	 * The Enum boolOperations.
@@ -114,6 +117,21 @@ public class ExtendedCommonTree extends CommonTree {
 	 */
 	public void setAuxiliary(boolean auxiliary) {
 		this.auxiliary = auxiliary;
+	}
+
+	/**
+	 * @param messageHandler
+	 *            the messageHandler to set
+	 */
+	public static void setMessageHandler(IMessageHandler messageHandler) {
+		ExtendedCommonTree.messageHandler = messageHandler;
+	}
+
+	/**
+	 * @return the messageHandler
+	 */
+	public static IMessageHandler getMessageHandler() {
+		return messageHandler;
 	}
 
 	/**
@@ -199,6 +217,19 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
+	 * Printing error messages in eclipse's text editor (as red circles at the
+	 * left)
+	 * 
+	 * @param message
+	 * @param offset
+	 * @param length
+	 */
+	private void commitError(String message, int offset, int length) {
+		messageHandler.handleSimpleMessage(message, offset,
+				offset + length - 1, 0, 0, 0, 0);
+	}
+
+	/**
 	 * Calculating scopes in tree. Should be applied only to module
 	 * 
 	 * @throws AlreadyDeclaredVarDeclarationException
@@ -206,9 +237,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 * @throws NotDeclaredVarUsageException
 	 *             the not declared var usage exception
 	 */
-	public void calculateScopes()
-			throws AlreadyDeclaredVarDeclarationException,
-			NotDeclaredVarUsageException {
+	public void calculateScopes() {
 		for (ExtendedCommonTree tree : this.getChildren()) {
 			if (tree instanceof ClassNode) {
 				((ClassNode) tree).getBlockScope().calculateScopes(
@@ -333,8 +362,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 *             the haxe cast exception
 	 */
 	protected void calculateScopes(BlockScopeNode blockScope)
-			throws AlreadyDeclaredVarDeclarationException,
-			NotDeclaredVarUsageException, HaxeCastException {
+			throws HaxeCastException {
 		if (this instanceof BlockScopeNode) {
 			BlockScopeNode thisAsBlockScope = (BlockScopeNode) this;
 			thisAsBlockScope.setDeclaredVars(blockScope.getDeclaredVarsClone());
@@ -372,7 +400,10 @@ public class ExtendedCommonTree extends CommonTree {
 				// Попробовать посчитать тип выражения
 			}
 			if (blockScope.getDeclaredVarsClone().contains(varUsage)) {
-				throw new AlreadyDeclaredVarDeclarationException();
+				commitError("Var is already declared", ((CommonToken) varUsage
+						.getToken()).getStartIndex(), ((CommonToken) varUsage
+						.getToken()).getText().length());
+				// throw new AlreadyDeclaredVarDeclarationException();
 			} else {
 				// TODO could be used without cloning
 				ArrayList<VarUsage> united = new ArrayList<VarUsage>(blockScope
@@ -396,8 +427,10 @@ public class ExtendedCommonTree extends CommonTree {
 					// blockScope.getDeclaredVars().indexOf(arg0)
 				}
 			} else {
-
-				throw new HaxeCastException(this);
+				commitError(this.getText() + ": cast problems", this.getToken()
+						.getStartIndex(), this.getToken().getText().length());
+				return;
+				// throw new HaxeCastException(this);
 			}
 
 		} else if (this instanceof VarUsage) {
@@ -409,7 +442,13 @@ public class ExtendedCommonTree extends CommonTree {
 					thisAsVarUsage.setVarType(blockScope
 							.getVarInScopeType(thisAsVarUsage.getText()));
 				} else {
-					throw new NotDeclaredVarUsageException(thisAsVarUsage);
+					commitError(thisAsVarUsage.getText() + " is not declared",
+							((CommonToken) thisAsVarUsage.getToken())
+									.getStartIndex(),
+							((CommonToken) thisAsVarUsage.getToken()).getText()
+									.length());
+					return;
+					// throw new NotDeclaredVarUsageException(thisAsVarUsage);
 				}
 			}
 		} else if (this instanceof FunctionNode) {
@@ -450,24 +489,41 @@ public class ExtendedCommonTree extends CommonTree {
 			} else if (areBothNumbers(leftType, rightType)) {
 				return getCommonNumberType(leftType, rightType);
 			} else {
-				throw new HaxeCastException(
-						(ExtendedCommonTree) leftNode.parent);
+				commitError(leftNode.parent.getText() + ": cast problems",
+						((CommonToken) leftNode.parent.getToken())
+								.getStartIndex(), leftNode.parent.getToken()
+								.getText().length());
+				return HaxeType.haxeObject;
+				// throw new HaxeCastException(
+				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		case DIV: {
 			if (areBothNumbers(leftType, rightType)) {
 				return HaxeType.haxeFloat;
 			} else {
-				throw new HaxeCastException(
-						(ExtendedCommonTree) leftNode.parent);
+				commitError(leftNode.parent.getText() + ": cast problems",
+						((CommonToken) leftNode.parent.getToken())
+								.getStartIndex(), leftNode.parent.getToken()
+								.getText().length());
+				return HaxeType.haxeObject;
+
+				// throw new HaxeCastException(
+				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		case MINUS: {
 			if (areBothNumbers(leftType, rightType)) {
 				return getCommonNumberType(leftType, rightType);
 			} else {
-				throw new HaxeCastException(
-						(ExtendedCommonTree) leftNode.parent);
+				commitError(leftNode.parent.getText() + ": cast problems",
+						((CommonToken) leftNode.parent.getToken())
+								.getStartIndex(), leftNode.parent.getToken()
+								.getText().length());
+				return HaxeType.haxeObject;
+
+				// throw new HaxeCastException(
+				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		case MULTY: {
@@ -478,8 +534,14 @@ public class ExtendedCommonTree extends CommonTree {
 				}
 				return HaxeType.haxeFloat;
 			} else {
-				throw new HaxeCastException(
-						(ExtendedCommonTree) leftNode.parent);
+				commitError(leftNode.parent.getText() + ": cast problems",
+						((CommonToken) leftNode.parent.getToken())
+								.getStartIndex(), leftNode.parent.getToken()
+								.getText().length());
+				return HaxeType.haxeObject;
+
+				// throw new HaxeCastException(
+				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		}
@@ -1014,6 +1076,12 @@ public class ExtendedCommonTree extends CommonTree {
 	public ExtendedCommonTree getChild(int i) {
 		// TODO Auto-generated method stub
 		return (ExtendedCommonTree) super.getChild(i);
+	}
+
+	@Override
+	public CommonToken getToken() {
+		// TODO Auto-generated method stub
+		return (CommonToken) super.getToken();
 	}
 
 	/*

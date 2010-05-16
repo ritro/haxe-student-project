@@ -56,6 +56,9 @@ import org.eclipse.jface.text.IRegion;
  * @since May 1, 2007 Addition of marker types
  * @since May 10, 2007 Conversion IProject -> ISourceProject
  * @since May 15, 2007 Addition of dummy types
+ * 
+ * @author of currently this version is Anatoly Kondratyev
+ *         (anatoly.kondratyev@googlemail.com)
  */
 public class HaxeParseController implements IParseController {
 
@@ -276,6 +279,7 @@ public class HaxeParseController implements IParseController {
 		this.fProject = project;
 		this.fFilePath = filePath;
 		this.handler = handler;
+		// org.eclipse.imp.editor.AnnotationHoverBase
 
 	}
 
@@ -299,10 +303,27 @@ public class HaxeParseController implements IParseController {
 			TinyHaxeTry1Parser.module_return parserResult = parser.module();
 			currentAST = (ExtendedCommonTree) parserResult.getTree();
 			System.out.println("success!");
+			ExtendedCommonTree.setMessageHandler(handler);
+			handler.clearMessages();
+			currentAST.calculateScopes();
+
 		} catch (RecognitionException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
+		}// } catch (AlreadyDeclaredVarDeclarationException e) {
+		// System.out.println("Already declared");
+		// handler.handleSimpleMessage("FooBar", 50, 60, 0, 0, 1, 1);
+		// // handler.endMessageGroup();
+		// // e.printStackTrace();
+		// } catch (NotDeclaredVarUsageException e) {
+		// System.out.println("Not declared" + e.getUsage());
+		// CommonToken commonToken = (CommonToken) e.getUsage().getToken();
+		// handler.handleSimpleMessage(e.getUsage().getText(), commonToken
+		// .getStartIndex(), commonToken.getStartIndex()
+		// + commonToken.getText().length() - 1, 0, 0, 0, 0);
+		//
+		// // e.printStackTrace();
+		// }
 
 	}
 

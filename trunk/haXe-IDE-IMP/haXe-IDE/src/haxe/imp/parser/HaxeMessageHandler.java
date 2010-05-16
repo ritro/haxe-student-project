@@ -10,7 +10,21 @@
  *******************************************************************************/
 package haxe.imp.parser;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.parser.IMessageHandler;
+import org.eclipse.jface.text.Position;
+import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.jface.text.source.IAnnotationModel;
+import org.eclipse.jface.text.source.IAnnotationModelExtension;
+import org.eclipse.ui.texteditor.IDocumentProvider;
+import org.eclipse.ui.texteditor.ITextEditor;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -20,33 +34,35 @@ import org.eclipse.imp.parser.IMessageHandler;
  */
 public class HaxeMessageHandler implements IMessageHandler {
 
+	private static class PositionedMessage {
+		public final String message;
+		public final Position pos;
+
+		public PositionedMessage(String msg, Position pos) {
+			this.message = msg;
+			this.pos = pos;
+		}
+	}
+
+	private final ITextEditor fEditor;
+	private final String fAnnotationType;
+	private final List<PositionedMessage> fMessages = new LinkedList<PositionedMessage>();
+	private final List<Annotation> fAnnotations = new LinkedList<Annotation>();
+
 	/**
 	 * Instantiates a new haxe message handler.
 	 */
-	public HaxeMessageHandler() {
-		// TODO Auto-generated constructor stub
+	public HaxeMessageHandler(ITextEditor textEditor, String annotationType) {
+		fEditor = textEditor;
+		if (annotationType == null)
+			fAnnotationType = UniversalEditor.PARSE_ANNOTATION_TYPE;
+		else
+			fAnnotationType = annotationType;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IMessageHandler#clearMessages()
-	 */
-	@Override
 	public void clearMessages() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IMessageHandler#endMessageGroup()
-	 */
-	@Override
-	public void endMessageGroup() {
-		// TODO Auto-generated method stub
-
+		removeAnnotations();
+		fMessages.clear();
 	}
 
 	/*
@@ -56,11 +72,10 @@ public class HaxeMessageHandler implements IMessageHandler {
 	 * org.eclipse.imp.parser.IMessageHandler#handleSimpleMessage(java.lang.
 	 * String, int, int, int, int, int, int)
 	 */
-	@Override
-	public void handleSimpleMessage(String msg, int startOffset, int endOffset,
-			int startCol, int endCol, int startLine, int endLine) {
-		// TODO Auto-generated method stub
-
+	public void handleSimpleMessage(String message, int startOffset,
+			int endOffset, int startCol, int endCol, int startLine, int endLine) {
+		Position pos = new Position(startOffset, endOffset - startOffset + 1);
+		fMessages.add(new PositionedMessage(message, pos));
 	}
 
 	/*
@@ -74,6 +89,77 @@ public class HaxeMessageHandler implements IMessageHandler {
 	public void startMessageGroup(String groupName) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void endMessageGroup() {
+	}
+
+	private void removeAnnotations() {
+		final IDocumentProvider docProvider = fEditor.getDocumentProvider();
+
+		if (docProvider == null) {
+			return;
+		}
+
+		IAnnotationModel model = docProvider.getAnnotationModel(fEditor
+				.getEditorInput());
+
+		if (model == null)
+			return;
+
+		if (model instanceof IAnnotationModelExtension) {
+			IAnnotationModelExtension modelExt = (IAnnotationModelExtension) model;
+			Annotation[] oldAnnotations = fAnnotations
+					.toArray(new Annotation[fAnnotations.size()]);
+
+			modelExt.replaceAnnotations(oldAnnotations, Collections.EMPTY_MAP);
+		} else {
+			for (Iterator i = model.getAnnotationIterator(); i.hasNext();) {
+				Annotation a = (Annotation) i.next();
+
+				if (a.getType().equals(fAnnotationType)) {
+					model.removeAnnotation(a);
+				}
+			}
+		}
+		// System.out.println("Annotations removed.");
+		fAnnotations.clear();
+	}
+
+	public void endMessages() {
+		IAnnotationModel model = fEditor.getDocumentProvider()
+				.getAnnotationModel(fEditor.getEditorInput());
+		if (model instanceof IAnnotationModelExtension) {
+			IAnnotationModelExtension modelExt = (IAnnotationModelExtension) model;
+			Annotation[] oldAnnotations = fAnnotations
+					.toArray(new Annotation[fAnnotations.size()]);
+			Map<Annotation, Position> newAnnotations = new HashMap<Annotation, Position>(
+					fMessages.size());
+			for (PositionedMessage pm : fMessages) {
+				Annotation anno = new Annotation(fAnnotationType, false,
+						pm.message);
+				newAnnotations.put(anno, pm.pos);
+				fAnnotations.add(anno);
+			}
+			modelExt.replaceAnnotations(oldAnnotations, newAnnotations);
+		} else {
+			for (Iterator i = model.getAnnotationIterator(); i.hasNext();) {
+				Annotation a = (Annotation) i.next();
+
+				if (a.getType().equals(fAnnotationType)) {
+					model.removeAnnotation(a);
+				}
+			}
+			for (PositionedMessage pm : fMessages) {
+				Annotation annotation = new Annotation(fAnnotationType, false,
+						pm.message);
+
+				model.addAnnotation(annotation, pm.pos);
+				fAnnotations.add(annotation);
+			}
+		}
+		// System.out.println("Annotation model updated.");
+		fMessages.clear();
 	}
 
 }

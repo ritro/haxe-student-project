@@ -48,5 +48,12 @@
             language="haxe">
       </foldingUpdater>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.referenceResolvers">
+      <referenceResolver
+            class="haxe.imp.referenceResolvers.HaxeReferenceResolver"
+            language="haxe">
+      </referenceResolver>
+   </extension>
 
 </plugin>

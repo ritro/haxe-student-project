@@ -15,8 +15,10 @@ import lpg.runtime.IAst;
 
 import org.antlr.runtime.CommonToken;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.model.ICompilationUnit;
+import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
@@ -137,6 +139,14 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		if (node instanceof ICompilationUnit) {
 			ICompilationUnit cu = (ICompilationUnit) node;
 			return cu.getPath();
+		}
+		if (node instanceof ExtendedCommonTree) {
+			ISourceProject iSourceProject = fParseController.getProject();
+			IPath result = fParseController.getPath();
+			// return result;
+			Path tmp = new Path(fParseController.getProject().getName() + "/"
+					+ result.toString());
+			return tmp;
 		}
 		throw new RuntimeException();
 		// return new Path("");

@@ -337,6 +337,7 @@ public class HaxeParseController implements IParseController {
 	public Object parse(String input, IProgressMonitor monitor) {
 		currentAST = null;
 		doParse(input);
+		currentAST.printTree();
 		return currentAST;
 	}
 

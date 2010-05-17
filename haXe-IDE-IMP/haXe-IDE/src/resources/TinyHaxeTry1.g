@@ -43,7 +43,7 @@ import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
-module            : myPackage? topLevelList ->^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList)
+module            : myPackage? topLevelList ->^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList?)
    ;
 	
 topLevelList      :  (topLevel)*
@@ -52,7 +52,7 @@ topLevel          : myImport
                     |   pp
                     |   topLevelDecl
 	;
-myPackage           : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent)
+myPackage           : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent?)
 	;
 	
 qualifiedIdentifier
@@ -78,7 +78,7 @@ declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_AT
 paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST",true] param+)
 	|	
 	;
-param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER,true] IDENTIFIER<VarUsage> typeTagOpt? varInit? QUES?)
+param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER,true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
 	;
 	
 id	:	IDENTIFIER<VarUsage>
@@ -86,26 +86,6 @@ id	:	IDENTIFIER<VarUsage>
 	
 dotIdent:	(id -> id) (DOT ident=id ->^(DOT $dotIdent $ident))*
 	;
-
-//dotIdent:	id1=id (DOT id2=id)*  -> ^($id1 ^(DOT $id2)*)
-//	;
-
-
-	
-/*assignOp:	EQ	-> ^(EQ<AssignOperationNode>[$EQ] EQ)
-        |	PLUSEQ -> ^
-	|	SUBEQ
-	|	STAREQ
-	|	'/='
-	|	'%='
-	|	'&='
-	|	'|='
-	|	'^='
-	|	'<<='
-	|	'>>='
-	|	'>>>='
-	;
-	*/
 	
 assignOp:	EQ	-> EQ<AssignOperationNode>[$EQ]
         |	PLUSEQ 	-> PLUSEQ<AssignOperationNode>[$PLUSEQ]
@@ -114,22 +94,16 @@ assignOp:	EQ	-> EQ<AssignOperationNode>[$EQ]
 	|	PERCENTEQ
 			-> PERCENTEQ<AssignOperationNode>[$PERCENTEQ]
 	|	AMPEQ	-> AMPEQ<AssignOperationNode>[$AMPEQ]
-	//|	BAREQ	-> ^(BAREQ<AssignOperationNode>[$BAREQ])
-	//|	CARETEQ -> ^(CARETEQ<AssignOperationNode>[$CARETEQ])
-	//|	LTLTEQ	-> ^(LTLTEQ<AssignOperationNode>[$LTLTEQ])
-	//|	GTGTEQ	-> ^(GTGTEQ<AssignOperationNode>[$GTGTEQ])
-	//|	GTGTGTEQ-> ^(GTGTGTEQ<AssignOperationNode>[$GTGTGTEQ])
 	;
 
 	
-funcLit           : FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList typeTagOpt? block)
+funcLit           : FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList? typeTagOpt? block?)
 	;
 arrayLit         : LBRACKET! exprListOpt RBRACKET!
 	;
 	/*
 ! -------- Preprocessor
 ! Not actually implemented as a preprocessor though.
-! See "Limitations, 5." for more detailed information.
 */
 pp                : ppIf
                     |   ppElseIf
@@ -156,7 +130,7 @@ typeTag	:	COLON! funcType
 	;
 	
 typeTagOpt
-	:	typeTag -> ^(TYPE_TAG<ExtendedCommonTree>["TYPE_TAG",true] typeTag)
+	:	typeTag -> ^(TYPE_TAG<ExtendedCommonTree>["TYPE_TAG",true] typeTag?)
 	|
 	;
 	
@@ -175,38 +149,37 @@ type	:	(anonType | dotIdent |INT |FLOAT |DYNAMIC|BOOLEAN|VOID) (typeParam)*
 typeParam
 	:	LT! (type|typeList) (GT!|GTGT!|)
 //	:	LT! typeList GT!
-
 	;
 	
 typeParamOpt      
-	:	typeParam->^(TYPE_PARAM_OPT<ExtendedCommonTree>["TYPE_PARAM_OPT",true] typeParam)
+	:	typeParam->^(TYPE_PARAM_OPT<ExtendedCommonTree>["TYPE_PARAM_OPT",true] typeParam?)
 	|	
        	;
        
-typeConstraint    : IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER typeList)
+typeConstraint    : IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER? typeList?)
 	;
 	
 
 functionReturn
-	:	declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block )
+	:	declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block? )
 	;	
 
 statement 
 	:	block
 	|	assignExpr SEMI!
 	|	varDecl
-	|	IF parExpression st1=statement (ELSE st2=statement)? -> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)          
-	|	FOR LPAREN exp1=expr IN exp2=expr RPAREN statement -> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement)
-	|	WHILE parExpression statement -> ^(WHILE<WhileNode> parExpression statement)
-	|	DO statement WHILE parExpression SEMI -> ^(DO<DoWhileNode> parExpression statement)
-	|	TRY block catchStmtList -> ^(TRY<TryNode> block catchStmtList)
-	|	SWITCH LPAREN expr RPAREN LBRACE caseStmt+ RBRACE -> ^(SWITCH<SwitchNode> expr caseStmt+)
-	|	RETURN (expr)? SEMI-> ^(RETURN expr?)
-	|	THROW expr SEMI -> ^(THROW expr)
-	|	BREAK (IDENTIFIER)? SEMI -> ^(BREAK IDENTIFIER?)
-	|	CONTINUE (IDENTIFIER)? SEMI -> ^(CONTINUE IDENTIFIER?)
+	|	IF parExpression st1=statement (ELSE st2=statement)? 	-> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)          
+	|	FOR LPAREN exp1=expr IN exp2=expr RPAREN statement 	-> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement?)
+	|	WHILE parExpression statement 				-> ^(WHILE<WhileNode> parExpression? statement?)
+	|	DO statement WHILE parExpression SEMI 			-> ^(DO<DoWhileNode> parExpression? statement?)
+	|	TRY block catchStmtList 				-> ^(TRY<TryNode> block? catchStmtList?)
+	|	SWITCH LPAREN expr RPAREN LBRACE caseStmt+ RBRACE 	-> ^(SWITCH<SwitchNode> expr? caseStmt+)
+	|	RETURN (expr)? SEMI					-> ^(RETURN expr?)
+	|	THROW expr SEMI 					-> ^(THROW expr?)
+	|	BREAK (IDENTIFIER)? SEMI				-> ^(BREAK IDENTIFIER?)
+	|	CONTINUE (IDENTIFIER)? SEMI 				-> ^(CONTINUE IDENTIFIER?)
 	|	expr  SEMI!
-	|	IDENTIFIER COLON statement -> ^(COLON IDENTIFIER statement)
+	|	IDENTIFIER COLON statement 				-> ^(COLON IDENTIFIER? statement?)
 	|	SEMI!
 	;
    
@@ -214,7 +187,7 @@ parExpression
     :   LPAREN! expr RPAREN!
     ;
 
-block         : LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true,$LBRACE] blockStmt* RBRACE) 
+block 	:	LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true,$LBRACE] blockStmt* RBRACE) 
 	|	SEMI!
 	;
 	
@@ -225,66 +198,92 @@ blockStmt
 	;
 	          
 	
-breakStmt         : BREAK SEMI!
-	;
-continueStmt      : CONTINUE SEMI!
-	;
-	
-caseStmt:	CASE exprList COLON statement -> ^(CASE exprList statement)
-	|	DEFAULT COLON statement ->^(DEFAULT statement)
+breakStmt         
+	:	BREAK SEMI!
 	;
 	
-defaultStmt       : DEFAULT COLON!
+continueStmt      
+	:	CONTINUE SEMI!
 	;
-catchStmtList     : catchStmt catchStmtList
-                    |
+	
+caseStmt:	CASE exprList COLON statement 	-> ^(CASE exprList? statement?)
+	|	DEFAULT COLON statement 	-> ^(DEFAULT statement?)
 	;
-catchStmt         : CATCH LPAREN param RPAREN block -> ^(CATCH param block)
+	
+defaultStmt
+       	:	DEFAULT COLON!
 	;
+	
+catchStmtList
+	: catchStmt catchStmtList
+        |
+	;
+	
+catchStmt
+        :	CATCH LPAREN param RPAREN block -> ^(CATCH param? block?)
+	;
+	
 //! -------- Expressions
 
-exprListOpt       : exprList
-                    |
+exprListOpt
+	:	exprList
+        |
 	;
-exprList          : expr (COMMA! expr)*
+	
+exprList:	expr (COMMA! expr)*
 	;
-expr              : assignExpr
+	
+expr	:	assignExpr
 	;
-assignExpr        : iterExpr (assignOp^ iterExpr)* 
+	
+assignExpr
+        : 	iterExpr (assignOp^ iterExpr)* 
+	;
+	
+
+ternaryExpr       
+	:	logicOrExpr (QUES^ expr COLON! logicOrExpr)*
 	;
 	
 iterExpr:	ternaryExpr (ELLIPSIS^ ternaryExpr)*
 	;
        	
-ternaryExpr       : logicOrExpr (QUES^ expr COLON! logicOrExpr)*
+logicOrExpr       
+	:	(logicAndExpr) (BARBAR^ logicAndExpr)*
 	;
-logicOrExpr       : (logicAndExpr) (BARBAR^ logicAndExpr)*
+	
+logicAndExpr      
+	:	(cmpExpr) (AMPAMP^ cmpExpr)*
 	;
-logicAndExpr      : (cmpExpr) (AMPAMP^ cmpExpr)*
+	
+cmpExpr :	(bitExpr) ((EQEQ^| BANGEQ^ | GTEQ^ | LTEQ^ | GT^ | LT^)  bitExpr)*
 	;
-cmpExpr           : (bitExpr) ((EQEQ^| BANGEQ^ | GTEQ^ | LTEQ^ | GT^ | LT^)  bitExpr)*
-	;
-bitExpr           : (shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*
+	
+bitExpr :	(shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*
 	;
 
-shiftExpr         : (addExpr) (LTLT^  addExpr | (GT GT)^  addExpr | GTGTGT^ addExpr)*
+shiftExpr
+	:	(addExpr) (LTLT^  addExpr | (GT GT)^  addExpr | GTGTGT^ addExpr)*
 	;
 
-addExpr           : (multExpr) ((PLUS^ | SUB^) multExpr )*
+addExpr : 	(multExpr) ((PLUS^ | SUB^) multExpr )*
 	;
-multExpr          : (prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
+	
+multExpr:	(prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
 	;
-prefixExpr        : (SUB|SUBSUB|PLUSPLUS|BANG|TILDE) prefixExpr
-                    |   newExpr
-                    |   cast
-                    |   suffixExpr
+	
+prefixExpr
+        :	(SUB|SUBSUB|PLUSPLUS|BANG|TILDE) prefixExpr
+        |	newExpr
+        |	cast
+        |	suffixExpr
         ;
 	
 suffixExpr
-	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value exprListOpt?)
+	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? exprListOpt?)
 	|	value LBRACKET expr RBRACKET
-	|	value PLUSPLUS ->^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value PLUSPLUS)
-	|	value SUBSUB -> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value SUBSUB)
+	|	value PLUSPLUS 			-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
+	|	value SUBSUB 			-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? SUBSUB)
 	|	value typeParamOpt
 ;
 
@@ -298,41 +297,51 @@ value	:	funcLit
         |
         ;
         
-newExpr           : NEW type LPAREN exprListOpt RPAREN ->^(NEW type exprListOpt?)
+newExpr           
+	:	NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)
 	;
-cast    :	CAST LPAREN expr (COMMA funcType)? RPAREN -> ^(CAST expr funcType?)
-	|	CAST LPAREN expr RPAREN ->^(CAST expr)
+	
+cast    :	CAST LPAREN expr (COMMA funcType)? RPAREN 	-> ^(CAST expr? funcType?)
+	|	CAST LPAREN expr RPAREN 			-> ^(CAST expr?)
 	;
+	
 //! -------- Declarations
 
-topLevelDecl      : classDecl
-                    |   interfaceDecl
-                    |   enumDecl
-                    |   typedefDecl
+topLevelDecl      
+	:	classDecl
+	|	interfaceDecl
+        |	enumDecl
+	|	typedefDecl
 	;
-enumDecl          : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER typeParamOpt? enumBody)
+	
+enumDecl:	ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER? typeParamOpt? enumBody?)
 	;
-enumBody          : (enumValueDecl)*
+	
+enumBody:	(enumValueDecl)*
 	;
 	
 enumValueDecl     
-	:	IDENTIFIER LPAREN paramList RPAREN SEMI ->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage> paramList? )	
-	|	IDENTIFIER SEMI				->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>)
+	:	IDENTIFIER LPAREN paramList RPAREN SEMI ->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>? paramList? )	
+	|	IDENTIFIER SEMI				->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>?)
 	|	pp
 	;
 	
-varDeclList       : varDecl varDeclList
+varDeclList       
+	:	varDecl varDeclList
 	;
 	
-varDecl           : (declAttrList)? VAR varDeclPartList SEMI ->^(VAR<VarDeclaration>[$VAR] declAttrList? varDeclPartList )
+varDecl :	(declAttrList)? VAR varDeclPartList SEMI ->^(VAR<VarDeclaration>[$VAR] declAttrList? varDeclPartList?)
 	;
 	
-varDeclPartList   : varDeclPart (COMMA! varDeclPart)*
-	;
-varDeclPart       :IDENTIFIER<VarUsage> propDeclOpt typeTagOpt varInit
+varDeclPartList   
+	:	varDeclPart (COMMA! varDeclPart)*
 	;
 	
-propDecl:	LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<ExtendedCommonTree>["PROPERTY_DECL",true] $a1 $a2)
+varDeclPart
+	:	IDENTIFIER<VarUsage> propDeclOpt typeTagOpt varInit
+	;
+	
+propDecl:	LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<ExtendedCommonTree>["PROPERTY_DECL",true] $a1? $a2?)
 	;
 	
 propAccessor	
@@ -347,34 +356,36 @@ propDeclOpt
 	|
 	;
 	
-varInit :	EQ expr ->^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr)
+varInit :	EQ expr ->^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr?)
 	|	
 	;
 	
-funcDecl:	declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block )
-	|	declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block ->^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTagOpt? block typeParamOpt?)
+funcDecl:	declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block 
+			-> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block? )
+	|	declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block 
+			->^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTagOpt? block? typeParamOpt?)
 	;
 	
 funcProtoDecl
-	:	declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt declAttrList)
-	|	declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt declAttrList typeParamOpt)
-	|	FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^(FUNCTION NEW paramList typeTagOpt)
-	|	FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI ->^(FUNCTION IDENTIFIER paramList typeTagOpt typeParamOpt)
+	:	declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI 
+			-> ^(FUNCTION NEW? paramList? typeTagOpt? declAttrList?)
+	|	declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI 
+			->^(FUNCTION IDENTIFIER? paramList? typeTagOpt? declAttrList? typeParamOpt?)
+	|	FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI 
+			-> ^(FUNCTION NEW? paramList? typeTagOpt?)
+	|	FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI 
+			->^(FUNCTION IDENTIFIER? paramList? typeTagOpt? typeParamOpt?)
 	;
 	
 classDecl
-	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt lb=LBRACE classBodyScope[$lb] RBRACE ->^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope? RBRACE<ExtendedCommonTree>[$RBRACE, true])
+	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt lb=LBRACE classBodyScope[$lb] RBRACE 
+			-> ^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope? RBRACE<ExtendedCommonTree>[$RBRACE, true])
 	;
 	
 classBodyScope[Token lBracket]
 	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true, $lBracket] classBody?)
 	;
 
-//classBodyScope
-//	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true] classBody?)
-//	;
-
-	
 classBody
 	:	varDecl classBody
 	|	funcDecl classBody
@@ -399,12 +410,12 @@ inheritList
 	;
 	
 inheritListOpt    
-	:	inheritList ->^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList)
+	:	inheritList ->^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList?)
 	|	
     	;
     	
-inherit	:	EXTENDS type -> ^(EXTENDS type)
-        |	IMPLEMENTS type -> ^(IMPLEMENTS type)
+inherit	:	EXTENDS type 	-> ^(EXTENDS type?)
+        |	IMPLEMENTS type -> ^(IMPLEMENTS type?)
 	;
 	
 typedefDecl       

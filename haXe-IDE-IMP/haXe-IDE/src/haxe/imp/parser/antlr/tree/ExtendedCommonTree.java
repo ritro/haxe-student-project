@@ -380,8 +380,10 @@ public class ExtendedCommonTree extends CommonTree {
 				varsFromClass.addAll(thisAsBlockScope.getDeclaredVarsClone());
 				thisAsBlockScope.setDeclaredVars(varsFromClass);
 			}
-			for (ExtendedCommonTree tree : this.getChildren()) {
-				tree.calculateScopes(thisAsBlockScope);
+			if (this.getChildCount() > 0) {
+				for (ExtendedCommonTree tree : this.getChildren()) {
+					tree.calculateScopes(thisAsBlockScope);
+				}
 			}
 		} else if (this instanceof VarDeclaration) {
 			VarDeclaration declarationTree = (VarDeclaration) this;
@@ -391,8 +393,10 @@ public class ExtendedCommonTree extends CommonTree {
 
 			ExtendedCommonTree varInitNode = declarationTree.getVAR_INIT_NODE();
 			if (varInitNode != null) {
-				for (ExtendedCommonTree tree : varInitNode.getChildren()) {
-					tree.calculateScopes(blockScope);
+				if (varInitNode.getChildCount() > 0) {
+					for (ExtendedCommonTree tree : varInitNode.getChildren()) {
+						tree.calculateScopes(blockScope);
+					}
 				}
 			}
 
@@ -414,8 +418,10 @@ public class ExtendedCommonTree extends CommonTree {
 		} else if (this instanceof AssignOperationNode) {
 			// 1. Пройтись по всем сыновьям, и всем использованиям переменным
 			// присвоить необходимый тип.
-			for (ExtendedCommonTree tree : this.getChildren()) {
-				tree.calculateScopes(blockScope);
+			if (this.getChildCount() > 0) {
+				for (ExtendedCommonTree tree : this.getChildren()) {
+					tree.calculateScopes(blockScope);
+				}
 			}
 
 			HaxeType leftPart = ((VarUsage) this.getChild(0)).getVarType();

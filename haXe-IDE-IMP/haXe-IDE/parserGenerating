@@ -16,7 +16,7 @@
 										BlockScopeNode blockScopeNode = (BlockScopeNode) ((ClassNode) root_1)
 												.getChild(childCount - 1);
 										blockScopeNode
-												.setrBracketPosition(((CommonToken) RBRACE374)
+												.setrBracketPosition(((CommonToken) RBRACE354)
 														.getStartIndex());
 									}
 								}
@@ -30,7 +30,7 @@
 В методе public final TinyHaxeTry1Parser.block_return block()
 			throws RecognitionException
 
-stream_blockStmt.reset();
+							stream_blockStmt.reset();
 
 							if (stream_RBRACE.nextNode() instanceof ExtendedCommonTree) {
 								ExtendedCommonTree rBracket = (ExtendedCommonTree) stream_RBRACE

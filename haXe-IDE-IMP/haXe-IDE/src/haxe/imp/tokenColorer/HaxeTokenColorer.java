@@ -33,7 +33,7 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 	/** The default attribute. */
 	protected final TextAttribute functionAttribute, keywordAttribute,
 			numberAttribute, commentAttribute, stringAttribute,
-			defaultAttribute;
+			defaultAttribute, processorCommand;
 
 	// protected final TextAttribute commentAttribute, stringAttribute;
 
@@ -67,6 +67,8 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 				.getSystemColor(SWT.COLOR_DARK_GREEN));
 		stringAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLUE));
+		processorCommand = new TextAttribute(display
+				.getSystemColor(SWT.COLOR_DARK_GRAY));
 	}
 
 	/*
@@ -117,6 +119,8 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 			return numberAttribute;
 		case COMMENT:
 			return commentAttribute;
+		case PROCESSORCOMMAND:
+			return processorCommand;
 		default:
 			return defaultAttribute;
 		}

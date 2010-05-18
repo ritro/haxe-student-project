@@ -770,18 +770,21 @@ public class ExtendedCommonTree extends CommonTree {
 	 */
 	private boolean doTreeContainsOffsetInNode(int offset) {
 		CommonToken commonToken = (CommonToken) this.getToken();
-		if (commonToken.getStartIndex() <= offset
-				&& commonToken.getStartIndex() + commonToken.getText().length() > offset) {
-			return true;
-		} else {
-			if (this.getChildCount() > 0) {
-				for (ExtendedCommonTree commonTree : this.getChildren()) {
-					if (commonTree.doTreeContainsOffsetInNode(offset)) {
-						return true;
-					}
-				}
+		if (commonToken != null) {
+			if (commonToken.getStartIndex() <= offset
+					&& commonToken.getStartIndex()
+							+ commonToken.getText().length() > offset) {
+				return true;
 			} else {
-				return false;
+				if (this.getChildCount() > 0) {
+					for (ExtendedCommonTree commonTree : this.getChildren()) {
+						if (commonTree.doTreeContainsOffsetInNode(offset)) {
+							return true;
+						}
+					}
+				} else {
+					return false;
+				}
 			}
 		}
 		return false;

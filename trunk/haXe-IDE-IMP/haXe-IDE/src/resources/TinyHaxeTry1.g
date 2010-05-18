@@ -49,7 +49,7 @@ module            : myPackage? topLevelList ->^(MODULE<ExtendedCommonTree>["MODU
 topLevelList      :  (topLevel)*
 ;
 topLevel          : myImport
-                    |   pp
+//                    |   pp
                     |   topLevelDecl
 	;
 myPackage           : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent?)
@@ -105,7 +105,7 @@ arrayLit         : LBRACKET! exprListOpt RBRACKET!
 ! -------- Preprocessor
 ! Not actually implemented as a preprocessor though.
 */
-pp                : ppIf
+/*pp                : ppIf
                     |   ppElseIf
                     |   ppElse
                     |   ppEnd
@@ -122,7 +122,7 @@ ppElse            : PP_ELSE
 ppEnd             : PP_END
 	;
 ppError           : PP_ERROR
-	;
+	;*/
 	
 //! -------- Types
 
@@ -323,7 +323,7 @@ enumBody:	(enumValueDecl)*
 enumValueDecl     
 	:	IDENTIFIER LPAREN paramList RPAREN SEMI ->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>? paramList? )	
 	|	IDENTIFIER SEMI				->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>?)
-	|	pp
+//	|	pp
 	;
 	
 varDeclList       
@@ -389,7 +389,7 @@ classBodyScope[Token lBracket]
 classBody
 	:	varDecl classBody
 	|	funcDecl classBody
-	|	pp classBody
+//	|	pp classBody
 	|	enumDecl classBody
 	|
 	;
@@ -401,7 +401,7 @@ interfaceDecl
 interfaceBody
 	:	varDecl interfaceBody
 	|	funcProtoDecl interfaceBody
-	|	pp interfaceBody
+//	|	pp interfaceBody
 	|
 	;
 
@@ -1006,6 +1006,9 @@ COMMENT
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
     
+PROCESSORCOMMAND
+	:  '#if' ( options {greedy=false;} : . )* '#end' {$channel=HIDDEN;}
+	;
 
 STRINGLITERAL
     :   '"' 
@@ -1016,7 +1019,7 @@ STRINGLITERAL
     ;
     
 //For Prepoccecor
-PP_IF	:	'#if'
+/*PP_IF	:	'#if'
 	;
 PP_ELSEIF
 	:	'#elseif'
@@ -1027,7 +1030,7 @@ PP_END	:	'#end'
 	;
 PP_ERROR:	'#error'
 	;
-
+*/
 fragment
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
 

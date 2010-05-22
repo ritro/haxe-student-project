@@ -103,7 +103,7 @@ public class HaxeFoldingUpdater extends FolderBase {
 				BlockScopeNode blockScopeNode = functionNode.getBlockScope();
 				start = blockScopeNode.getlBracketPosition();
 				len = blockScopeNode.getrBracketPosition() - start;
-				makeAnnotation(start, len);
+				makeAnnotation(start, len + 1);
 				return true;
 			}
 

@@ -39,11 +39,13 @@ public class FunctionNode extends ExtendedCommonTree {
 			ExtendedCommonTree paramList = this.getParamListNode();
 			String parameters = "";
 			String comma = "";
-			for (ExtendedCommonTree commonTree : paramList.getChildren()) {
-				parameters += comma
-						+ ((VarDeclaration) commonTree).getVarType()
-								.getTypeName();
-				comma = ", ";
+			if (paramList != null && paramList.getChildCount() != 0) {
+				for (ExtendedCommonTree commonTree : paramList.getChildren()) {
+					parameters += comma
+							+ ((VarDeclaration) commonTree).getVarType()
+									.getTypeName();
+					comma = ", ";
+				}
 			}
 			fullNameWithParameters = this.getFunctionName() + "(" + parameters
 					+ ") : " + getFunctionReturnType().getTypeName();

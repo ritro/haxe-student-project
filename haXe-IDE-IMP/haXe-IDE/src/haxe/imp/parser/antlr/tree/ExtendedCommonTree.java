@@ -238,11 +238,13 @@ public class ExtendedCommonTree extends CommonTree {
 	 *             the not declared var usage exception
 	 */
 	public void calculateScopes() {
-		for (ExtendedCommonTree tree : this.getChildren()) {
-			if (tree instanceof ClassNode) {
-				((ClassNode) tree).getBlockScope().calculateScopes(
-						((ClassNode) tree).getBlockScope());
-				break;
+		if (this.getChildCount() > 0) {
+			for (ExtendedCommonTree tree : this.getChildren()) {
+				if (tree instanceof ClassNode) {
+					((ClassNode) tree).getBlockScope().calculateScopes(
+							((ClassNode) tree).getBlockScope());
+					break;
+				}
 			}
 		}
 	}
@@ -458,8 +460,11 @@ public class ExtendedCommonTree extends CommonTree {
 				}
 			}
 		} else if (this instanceof FunctionNode) {
-			((FunctionNode) this).getBlockScope().calculateScopes(blockScope);
-
+			BlockScopeNode funcBlockScopeNode = ((FunctionNode) this)
+					.getBlockScope();
+			if (funcBlockScopeNode != null) {
+				funcBlockScopeNode.calculateScopes(blockScope);
+			}
 		} else {
 			if (this.getChildren() != null) {
 				for (ExtendedCommonTree tree : this.getChildren()) {
@@ -744,20 +749,24 @@ public class ExtendedCommonTree extends CommonTree {
 				return pretender;
 			}
 		} else {
-			ExtendedCommonTree pretender = nodes.get(0);
-			for (int i = 0; i <= nodes.size() - 1; i++) {
-				pretender = nodes.get(i);
-				if (pretender.getRegionForNode().surrounds(offset)) {
-					return pretender.getNodeByPosition(offset);
-				} else if (pretender.getRegionForNode().getBegin() > offset) {
-					if (i == 0) {
-						return this;
-					} else {
-						return nodes.get(i - 1).getNodeByPosition(offset);
+			if (nodes.size() > 0) {
+				ExtendedCommonTree pretender = nodes.get(0);
+				for (int i = 0; i <= nodes.size() - 1; i++) {
+					pretender = nodes.get(i);
+					if (pretender.getRegionForNode().surrounds(offset)) {
+						return pretender.getNodeByPosition(offset);
+					} else if (pretender.getRegionForNode().getBegin() > offset) {
+						if (i == 0) {
+							return this;
+						} else {
+							return nodes.get(i - 1).getNodeByPosition(offset);
+						}
 					}
 				}
+				return pretender.getNodeByPosition(offset);
+			} else {
+				return this;
 			}
-			return pretender.getNodeByPosition(offset);
 		}
 	}
 

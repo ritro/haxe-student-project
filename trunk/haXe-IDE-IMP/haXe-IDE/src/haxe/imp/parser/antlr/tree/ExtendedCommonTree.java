@@ -688,16 +688,34 @@ public class ExtendedCommonTree extends CommonTree {
 	 * @return the region for node
 	 */
 	public Pair getRegionForNode() {
+		int begin;
+		int end;
 		if (this.auxiliary) {
-			return new Pair(this.getChild(0).getRegionForNode().getBegin(),
-					this.getChild(this.getChildCount() - 1).getRegionForNode()
-							.getEnd());
+			try {
+				begin = this.getChild(0).getRegionForNode().getBegin();
+			} catch (NullPointerException e) {
+				begin = this.getToken().getStartIndex();
+			}
+			try {
+				end = this.getChild(this.getChildCount() - 1)
+						.getRegionForNode().getEnd();
+			} catch (NullPointerException e) {
+				end = this.getToken().getStartIndex()
+						+ this.getToken().getText().length();
+			}
 		} else {
-			return new Pair(((CommonToken) this.getToken()).getStartIndex(),
-					((CommonToken) this.getToken()).getStartIndex()
-							+ ((CommonToken) this.getToken()).getText()
-									.length());
+			try {
+				begin = this.getToken().getStartIndex();
+				end = this.getToken().getStartIndex()
+						+ this.getToken().getText().length();
+			} catch (NullPointerException nullPointerException) {
+				//
+				System.out.println("Problems on calculating region for node");
+				begin = 0;
+				end = 0;
+			}
 		}
+		return new Pair(begin, end);
 	}
 
 	/**

@@ -158,20 +158,23 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @return the var type
 	 */
 	public HaxeType getVarType() {
-		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
-				.getChildren()) {
-			Token token = (CommonToken) tree.getToken();
-			if (token.getType() == TYPE_TAG_TYPE) {
-				/**
-				 * FIXME Нужно находить название этого класса в объявлениях,
-				 * если он не примитивный, и возвращать его копию.
-				 */
-				// if
-				// (HaxeType.primaryTypes.contains(tree.getChild(0).getText())){
-				// return HaxeType
-				// }
-				return new HaxeType(tree.getChild(0).getText());
+		try {
+			for (ExtendedCommonTree tree : this.getChildren()) {
+				Token token = (CommonToken) tree.getToken();
+				if (token.getType() == TYPE_TAG_TYPE) {
+					/**
+					 * FIXME Нужно находить название этого класса в объявлениях,
+					 * если он не примитивный, и возвращать его копию.
+					 */
+					// if
+					// (HaxeType.primaryTypes.contains(tree.getChild(0).getText())){
+					// return HaxeType
+					// }
+					return new HaxeType(tree.getChild(0).getText());
+				}
 			}
+		} catch (NullPointerException nullPointerException) {
+			System.out.println("Problems on getting varType");
 		}
 		return HaxeType.haxeUndefined;
 	}

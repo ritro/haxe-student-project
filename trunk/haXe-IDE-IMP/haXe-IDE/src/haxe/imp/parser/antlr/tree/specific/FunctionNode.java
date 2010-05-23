@@ -133,14 +133,18 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * @return the function return type
 	 */
 	public HaxeType getFunctionReturnType() {
-		for (ExtendedCommonTree tree : this.getChildren()) {
-			if (tree.getToken().getType() == TYPE_TAG_TYPE) {
-				/**
-				 * FIXME Нужно находить название этого класса в объявлениях,
-				 * если он не примитивный, и возвращать его копию.
-				 */
-				return new HaxeType(tree.getChild(0).getText());
+		try {
+			for (ExtendedCommonTree tree : this.getChildren()) {
+				if (tree.getToken().getType() == TYPE_TAG_TYPE) {
+					/**
+					 * FIXME Нужно находить название этого класса в объявлениях,
+					 * если он не примитивный, и возвращать его копию.
+					 */
+					return new HaxeType(tree.getChild(0).getText());
+				}
 			}
+		} catch (NullPointerException nullPointerException) {
+			return HaxeType.haxeUndefined;
 		}
 		return HaxeType.haxeUndefined;
 	}
@@ -151,9 +155,11 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * @return the block scope
 	 */
 	public BlockScopeNode getBlockScope() {
-		for (ExtendedCommonTree tree : this.getChildren()) {
-			if (tree instanceof BlockScopeNode) {
-				return (BlockScopeNode) tree;
+		if (this.getChildCount() > 0) {
+			for (ExtendedCommonTree tree : this.getChildren()) {
+				if (tree instanceof BlockScopeNode) {
+					return (BlockScopeNode) tree;
+				}
 			}
 		}
 		return null;

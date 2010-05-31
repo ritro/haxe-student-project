@@ -13,9 +13,10 @@ package haxe_ide;
 import org.eclipse.imp.runtime.PluginBase;
 import org.osgi.framework.BundleContext;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Activator.
+ * 
+ * Activator of the plugin
  * 
  * @author Anatoly Kondratyev
  */
@@ -36,8 +37,9 @@ public class Activator extends PluginBase {
 	 * @return single instance of Activator
 	 */
 	public static Activator getInstance() {
-		if (sPlugin == null)
+		if (sPlugin == null) {
 			new Activator();
+		}
 		return sPlugin;
 	}
 
@@ -57,7 +59,7 @@ public class Activator extends PluginBase {
 	 * )
 	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
+	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 	}
 
@@ -96,8 +98,8 @@ public class Activator extends PluginBase {
 	 */
 	@Override
 	protected void initializeImageRegistry(
-			org.eclipse.jface.resource.ImageRegistry reg) {
-		org.osgi.framework.Bundle bundle = getBundle();
+			final org.eclipse.jface.resource.ImageRegistry reg) {
+		org.osgi.framework.Bundle bundle = this.getBundle();
 		org.eclipse.core.runtime.IPath path = ICONS_PATH
 				.append("haxe_default_image.gif");//$NON-NLS-1$
 		org.eclipse.jface.resource.ImageDescriptor imageDescriptor = createImageDescriptor(
@@ -131,8 +133,8 @@ public class Activator extends PluginBase {
 	 * @return the org.eclipse.jface.resource. image descriptor
 	 */
 	public static org.eclipse.jface.resource.ImageDescriptor createImageDescriptor(
-			org.osgi.framework.Bundle bundle,
-			org.eclipse.core.runtime.IPath path) {
+			final org.osgi.framework.Bundle bundle,
+			final org.eclipse.core.runtime.IPath path) {
 		java.net.URL url = org.eclipse.core.runtime.FileLocator.find(bundle,
 				path, null);
 		if (url != null) {

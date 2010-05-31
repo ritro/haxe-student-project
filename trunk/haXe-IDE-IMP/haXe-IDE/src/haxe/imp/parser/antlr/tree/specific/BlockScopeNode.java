@@ -19,7 +19,6 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BlockScopeNode.
  * 
@@ -38,23 +37,6 @@ public class BlockScopeNode extends ExtendedCommonTree {
 
 	/** The r bracket position. */
 	private int rBracketPosition;
-
-	/**
-	 * Gets the declared vars clone.
-	 * 
-	 * @return the declaredVars
-	 */
-
-	/*
-	 * public ArrayList<VarUsage> getDeclaredVars() { return this.declaredVars;
-	 * }
-	 */
-
-	@SuppressWarnings("unchecked")
-	public ArrayList<VarUsage> getDeclaredVarsClone() {
-		return this.declaredVars;
-		// return (ArrayList<VarUsage>) this.declaredVars.clone();
-	}
 
 	/**
 	 * Gets the declared vars.
@@ -238,16 +220,4 @@ public class BlockScopeNode extends ExtendedCommonTree {
 		}
 		return HaxeType.haxeUndefined;
 	}
-
-	// @Override
-	// public String toString() {
-	// /*
-	// * String vars = ""; for (VarUsage usage : declaredVars) { vars += "[" +
-	// * usage.getVarType() + " " + usage.getText() + "]" + ", "; } return
-	// * super.toString() + "(" + this.getLine() + ", " +
-	// * this.getCharPositionInLine() + ")" + "(" + vars + ") " +
-	// * this.getClass();
-	// */
-	// return super.toString();
-	// }
 }

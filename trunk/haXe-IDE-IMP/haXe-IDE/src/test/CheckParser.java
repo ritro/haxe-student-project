@@ -51,7 +51,7 @@ public class CheckParser {
 	@Test
 	public void testModule() {
 		String path = "./src/test/testModule.txt";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.module_return parserResult = parser.module();
@@ -70,7 +70,7 @@ public class CheckParser {
 	@Test
 	public void testModule2() {
 		String path = "./src/test/testModule2";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.module_return parserResult = parser.module();
@@ -90,7 +90,7 @@ public class CheckParser {
 	@Test
 	public void testFunction() {
 		String path = "./src/test/testFunction01.txt";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
@@ -104,7 +104,7 @@ public class CheckParser {
 		assertEquals("For Function01", 2, (tree).getChildren().size());
 
 		path = "./src/test/testFunction02.txt";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		try {
 			TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
 			tree = (ExtendedCommonTree) parserResult.getTree();
@@ -117,7 +117,7 @@ public class CheckParser {
 		Assert.assertEquals("For Function02", 4, (tree).getChildren().size());
 
 		path = "./src/test/testFunction03.txt";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		try {
 			TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
 			tree = (ExtendedCommonTree) parserResult.getTree();
@@ -130,7 +130,7 @@ public class CheckParser {
 		Assert.assertEquals("For Function03", 5, (tree).getChildren().size());
 
 		path = "./src/test/testFunction04";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		try {
 			TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
 			tree = (ExtendedCommonTree) parserResult.getTree();
@@ -149,7 +149,7 @@ public class CheckParser {
 	@Test
 	public void testClass() {
 		String path = "./src/test/testClass01.txt";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.classDecl_return parserResult = parser
@@ -164,7 +164,7 @@ public class CheckParser {
 		assertEquals("For Class01", 2, (tree).getChildren().size());
 
 		path = "./src/test/testClass02.txt";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.classDecl_return parserResult = parser
@@ -185,7 +185,7 @@ public class CheckParser {
 	@Test
 	public void testIfStatement() {
 		String path = "./src/test/testIf01";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -200,7 +200,7 @@ public class CheckParser {
 		assertEquals("For if01", 2, (tree).getChildren().size());
 
 		path = "./src/test/testIf02";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -215,7 +215,7 @@ public class CheckParser {
 		assertEquals("For if02", 3, (tree).getChildren().size());
 
 		path = "./src/test/testIf03";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -236,7 +236,7 @@ public class CheckParser {
 	@Test
 	public void testForStatement() {
 		String path = "./src/test/testFor01";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -251,7 +251,7 @@ public class CheckParser {
 		assertEquals("For For01", 2, (tree).getChildren().size());
 
 		path = "./src/test/testFor02";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -272,7 +272,7 @@ public class CheckParser {
 	@Test
 	public void testWhileStatement() {
 		String path = "./src/test/testWhile01";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -287,7 +287,7 @@ public class CheckParser {
 		assertEquals("For While01", 2, (tree).getChildren().size());
 
 		path = "./src/test/testWhile02";
-		parser = createParserLexerForFile(path);
+		parser = this.createParserLexerForFile(path);
 		tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -308,7 +308,7 @@ public class CheckParser {
 	@Test
 	public void testSwitchStatement() {
 		String path = "./src/test/testSwitch01";
-		TinyHaxeTry1Parser parser = createParserLexerForFile(path);
+		TinyHaxeTry1Parser parser = this.createParserLexerForFile(path);
 		ExtendedCommonTree tree = new ExtendedCommonTree();
 		try {
 			TinyHaxeTry1Parser.statement_return parserResult = parser
@@ -330,7 +330,7 @@ public class CheckParser {
 	 *            the path
 	 * @return the tiny haxe try1 parser
 	 */
-	private TinyHaxeTry1Parser createParserLexerForFile(String path) {
+	private TinyHaxeTry1Parser createParserLexerForFile(final String path) {
 		ANTLRFileStream charStream = null;
 		try {
 			charStream = new ANTLRFileStream(path);
@@ -351,7 +351,7 @@ public class CheckParser {
 	 * @param t
 	 *            the t
 	 */
-	private static void printTree(ExtendedCommonTree t) {
+	private static void printTree(final ExtendedCommonTree t) {
 		System.out.println();
 		System.out.println("                    Tree: " + t.toString());
 		printTree(t, 0);
@@ -366,11 +366,12 @@ public class CheckParser {
 	 * @param indent
 	 *            the indent
 	 */
-	private static void printTree(ExtendedCommonTree t, int indent) {
+	private static void printTree(final ExtendedCommonTree t, final int indent) {
 		if (t != null) {
 			StringBuffer sb = new StringBuffer(indent);
-			for (int i = 0; i < indent; i++)
+			for (int i = 0; i < indent; i++) {
 				sb = sb.append("   ");
+			}
 			for (int i = 0; i < t.getChildCount(); i++) {
 				System.out.println(sb.toString() + t.getChild(i).toString()
 						+ t.getChild(i).getText());

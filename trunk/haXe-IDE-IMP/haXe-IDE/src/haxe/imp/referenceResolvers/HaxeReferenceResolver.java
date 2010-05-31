@@ -16,7 +16,6 @@ import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HaxeReferenceResolver.
  * 
@@ -38,13 +37,10 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 	 *            the node
 	 * @return the link text
 	 */
-	public String getLinkText(Object node) {
+	public String getLinkText(final Object node) {
 		// TODO Replace the following with an implementation suitable to your
 		// language and reference types
-		// if (node instanceof VarUsage) {
-		// return ((VarUsage) node).getVarType().getFullTypeName();
-		// }
-		return "qwerqwerqwer";
+		return node.toString();
 	}
 
 	/**
@@ -57,26 +53,15 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 	 *            the controller
 	 * @return the link target
 	 */
-	public Object getLinkTarget(Object node, IParseController controller) {
+	public Object getLinkTarget(final Object node,
+			final IParseController controller) {
 		// START_HERE
 		// TODO Replace the following with an implementation suitable for your
 		// language and reference types
 
-		// NOTE: The code shown in this method body works with the
-		// example grammar used in the IMP language-service templates.
-		// It may be adaptable for use with other languages. HOWEVER,
-		// this particular code is not essential to reference resolvers
-		// in general, and the user should provide an implementation
-		// that is appropriate to the language and AST structure for
-		// which the service is being defined.
-
 		if (node instanceof VarUsage && controller.getCurrentAst() != null) {
-			// ExtendedCommonTree tree;// =
-			// (HaxeParseController)controller).getCurrentAst();
 			ExtendedCommonTree result;
 			try {
-				// result = ((ExtendedCommonTree) controller.getCurrentAst())
-				// .getDeclarationNode((ExtendedCommonTree) node);
 				result = ((ExtendedCommonTree) node)
 						.getDeclarationNode((ExtendedCommonTree) node);
 			} catch (Exception e) {
@@ -85,16 +70,5 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 			return result;
 		}
 		return null;
-
-		// if (node instanceof Iidentifier && controller.getCurrentAst() !=
-		// null) {
-		// identifier id = (identifier) node;
-		// HaxeParser parser = (HaxeParser) ((SimpleLPGParseController)
-		// controller)
-		// .getParser();
-		// SymbolTable<IAst> symtab = parser.getEnclosingSymbolTable(id);
-		// return symtab.findDeclaration(id.toString());
-		// }
-
 	}
 }

@@ -1,6 +1,13 @@
-/**
- * 
- */
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package test;
 
 import static junit.framework.Assert.fail;
@@ -19,11 +26,15 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 /**
- * @author kondratyev
+ * The Class TestNodeLookUp.
  * 
+ * @author kondratyev
  */
 public class TestNodeLookUp {
 
+	/**
+	 * Test get node by offset.
+	 */
 	@Test
 	public void testGetNodeByOffset() {
 		String path = "./src/test/getNodeByOffset";
@@ -38,7 +49,7 @@ public class TestNodeLookUp {
 		}
 		printTree(tree);
 		System.out.println("");
-		for (int i = 122; i < 173; i++) {
+		for (int i = 0; i < 173; i++) {
 			System.out.println(i + ") " + tree.getNodeByPosition(i));
 		}
 		// assertEquals(0, parser.getNumberOfSyntaxErrors());

@@ -31,14 +31,14 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 	 * .Object)
 	 */
 	@Override
-	public void visitTree(Object root) {
-		if (root == null)
+	public void visitTree(final Object root) {
+		if (root == null) {
 			return;
+		}
 		ExtendedCommonTree rootNode = (ExtendedCommonTree) root;
 		HaxeModelVisitor visitor = new HaxeModelVisitor();
 
 		rootNode.accept(visitor);
-		// System.out.println("");
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 * #unimplementedVisitor(java.lang.String)
 		 */
 		@Override
-		public void unimplementedVisitor(String s) {
+		public void unimplementedVisitor(final String s) {
 			System.out.println("unemplementedVisitor \n" + s);
 		}
 
@@ -67,9 +67,8 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 *            the n
 		 * @return true, if successful
 		 */
-		public boolean visit(Object n) {
-			// System.out.println("visit by \n" + n);
-			pushSubItem(n);
+		public boolean visit(final Object n) {
+			HaxeTreeModelBuilder.this.pushSubItem(n);
 			return true;
 		}
 
@@ -82,12 +81,12 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 *            the do create sub item
 		 * @return true, if successful
 		 */
-		public boolean visit(ExtendedCommonTree node, boolean doCreateSubItem) {
-			// System.out.println("General visit \n" + node);
+		public boolean visit(final ExtendedCommonTree node,
+				final boolean doCreateSubItem) {
 			if (doCreateSubItem) {
-				createSubItem(node);
+				HaxeTreeModelBuilder.this.createSubItem(node);
 			} else {
-				pushSubItem(node);
+				HaxeTreeModelBuilder.this.pushSubItem(node);
 			}
 			return true;
 		}
@@ -98,9 +97,8 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 * @param n
 		 *            the n
 		 */
-		public void endVisit(Object n) {
-			// System.out.println("EndVisit by \n" + n);
-			popSubItem();
+		public void endVisit(final Object n) {
+			HaxeTreeModelBuilder.this.popSubItem();
 		}
 	}
 }

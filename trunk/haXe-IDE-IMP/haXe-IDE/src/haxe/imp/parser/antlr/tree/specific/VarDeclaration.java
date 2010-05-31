@@ -19,7 +19,6 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class VarDeclaration.
  * 
@@ -36,11 +35,11 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @return the name with type
 	 */
 	public String getNameWithType() {
-		if (nameWithType.equals("")) {
-			nameWithType = this.getVarName() + " : "
+		if (this.nameWithType.equals("")) {
+			this.nameWithType = this.getVarName() + " : "
 					+ this.getVarType().getTypeName();
 		}
-		return nameWithType;
+		return this.nameWithType;
 	}
 
 	/**
@@ -57,7 +56,7 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public VarDeclaration(CommonTree node) {
+	public VarDeclaration(final CommonTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -68,7 +67,7 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @param t
 	 *            the t
 	 */
-	public VarDeclaration(Token t) {
+	public VarDeclaration(final Token t) {
 		super(t);
 		// TODO Auto-generated constructor stub
 	}
@@ -83,7 +82,8 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public VarDeclaration(int ttype, String type, boolean auxiliary) {
+	public VarDeclaration(final int ttype, final String type,
+			final boolean auxiliary) {
 		super(ttype, type, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -94,7 +94,7 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @param ttype
 	 *            the ttype
 	 */
-	public VarDeclaration(int ttype) {
+	public VarDeclaration(final int ttype) {
 		super(ttype);
 		// TODO Auto-generated constructor stub
 	}
@@ -107,7 +107,7 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @param token
 	 *            the token
 	 */
-	public VarDeclaration(int ttype, Token token) {
+	public VarDeclaration(final int ttype, final Token token) {
 		this.token = token;
 	}
 
@@ -121,7 +121,8 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public VarDeclaration(int ttype, Token token, boolean auxiliary) {
+	public VarDeclaration(final int ttype, final Token token,
+			final boolean auxiliary) {
 		this.token = token;
 		this.setAuxiliary(auxiliary);
 	}

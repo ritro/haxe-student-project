@@ -15,9 +15,7 @@ import static haxe.imp.parser.antlr.utils.HaxeType.getCommonNumberType;
 import haxe.imp.foldingUpdater.HaxeFoldingUpdater.HaxeFoldingVisitor;
 import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
 import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
-import haxe.imp.parser.antlr.tree.exceptions.AlreadyDeclaredVarDeclarationException;
 import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
-import haxe.imp.parser.antlr.tree.exceptions.NotDeclaredVarUsageException;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
@@ -38,7 +36,6 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.imp.parser.IMessageHandler;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ExtendedCommonTree.
  * 
@@ -49,22 +46,16 @@ public class ExtendedCommonTree extends CommonTree {
 	/** The auxiliary. */
 	private boolean auxiliary = false;
 
+	/** The message handler. */
 	private static IMessageHandler messageHandler;
 
 	/**
-	 * В данный момент будут использоваться в основном для узлов, которые
-	 * <code>auxilary == true</code>. Дают самую левую и самую правую координату
-	 * поддерева
+	 * Contains most left position of tree/subtree
 	 */
 	private int mostLeftPosition = -1;
-	private int mostRightPosition = -1;
 
-	/**
-	 * Next two fields is used to determine if mostLeft/RightPosition calculated
-	 * correctly
-	 */
-	private boolean isMostLeftPositionChecked = false;
-	private boolean isMostRightPositionChecked = false;
+	/** The most right position. */
+	private int mostRightPosition = -1;
 
 	/**
 	 * The Enum boolOperations.
@@ -135,6 +126,8 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
+	 * Sets the message handler.
+	 * 
 	 * @param messageHandler
 	 *            the messageHandler to set
 	 */
@@ -143,12 +136,19 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
+	 * Gets the message handler.
+	 * 
 	 * @return the messageHandler
 	 */
 	public static IMessageHandler getMessageHandler() {
 		return messageHandler;
 	}
 
+	/**
+	 * Gets the most left position.
+	 * 
+	 * @return the most left position
+	 */
 	public int getMostLeftPosition() {
 		if (this instanceof BlockScopeNode) {
 			return ((BlockScopeNode) this).getlBracketPosition();
@@ -174,10 +174,21 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * Sets the most left position.
+	 * 
+	 * @param mostLeftPosition
+	 *            the new most left position
+	 */
 	public void setMostLeftPosition(final int mostLeftPosition) {
 		this.mostLeftPosition = mostLeftPosition;
 	}
 
+	/**
+	 * Gets the most right position.
+	 * 
+	 * @return the most right position
+	 */
 	public int getMostRightPosition() {
 		if (this instanceof BlockScopeNode) {
 			return ((BlockScopeNode) this).getrBracketPosition();
@@ -208,6 +219,12 @@ public class ExtendedCommonTree extends CommonTree {
 		}
 	}
 
+	/**
+	 * Sets the most right position.
+	 * 
+	 * @param mostRightPosition
+	 *            the new most right position
+	 */
 	public void setMostRightPosition(final int mostRightPosition) {
 		this.mostRightPosition = mostRightPosition;
 	}
@@ -298,11 +315,14 @@ public class ExtendedCommonTree extends CommonTree {
 
 	/**
 	 * Printing error messages in eclipse's text editor (as red circles at the
-	 * left)
+	 * left).
 	 * 
 	 * @param message
+	 *            the message
 	 * @param offset
+	 *            the offset
 	 * @param length
+	 *            the length
 	 */
 	private void commitError(final String message, final int offset,
 			final int length) {
@@ -313,10 +333,6 @@ public class ExtendedCommonTree extends CommonTree {
 	/**
 	 * Calculating scopes in tree. Should be applied only to module
 	 * 
-	 * @throws AlreadyDeclaredVarDeclarationException
-	 *             the already declared var declaration exception
-	 * @throws NotDeclaredVarUsageException
-	 *             the not declared var usage exception
 	 */
 	public void calculateScopes() {
 		if (this.getChildCount() > 0) {
@@ -433,14 +449,12 @@ public class ExtendedCommonTree extends CommonTree {
 	}
 
 	/**
-	 * Calculate scopes.
+	 * Calculate scopes. Also it calculate primitive types. Thi operaqtion
+	 * should be also used before most operations on code (hyperlinking,
+	 * help-covering, autocompletion)
 	 * 
 	 * @param blockScope
 	 *            the block scope
-	 * @throws AlreadyDeclaredVarDeclarationException
-	 *             the already declared var declaration exception
-	 * @throws NotDeclaredVarUsageException
-	 *             the not declared var usage exception
 	 * @throws HaxeCastException
 	 *             the haxe cast exception
 	 */
@@ -448,20 +462,20 @@ public class ExtendedCommonTree extends CommonTree {
 			throws HaxeCastException {
 		if (this instanceof BlockScopeNode) {
 			BlockScopeNode thisAsBlockScope = (BlockScopeNode) this;
-			thisAsBlockScope.setDeclaredVars(blockScope.getDeclaredVarsClone());
+			thisAsBlockScope.setDeclaredVars(blockScope.getDeclaredVars());
 
 			if (this.getParent() instanceof FunctionNode) {
 				ArrayList<VarUsage> params = ((FunctionNode) this.getParent())
 						.getParametersAsVarUsage();
 
 				ArrayList<VarUsage> united = new ArrayList<VarUsage>(
-						thisAsBlockScope.getDeclaredVarsClone());
+						thisAsBlockScope.getDeclaredVars());
 				united.addAll(params);
 				thisAsBlockScope.setDeclaredVars(united);
 			} else if (this.getParent() instanceof ClassNode) {
 				ArrayList<VarUsage> varsFromClass = ((ClassNode) this
 						.getParent()).getAllDeclaredVars();
-				varsFromClass.addAll(thisAsBlockScope.getDeclaredVarsClone());
+				varsFromClass.addAll(thisAsBlockScope.getDeclaredVars());
 				thisAsBlockScope.setDeclaredVars(varsFromClass);
 			}
 			if (this.getChildCount() > 0) {
@@ -483,52 +497,38 @@ public class ExtendedCommonTree extends CommonTree {
 					}
 				}
 			}
-
 			if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
-				// Попробовать посчитать тип выражения
+				// Trying to calculate type
 			}
-			if (blockScope.getDeclaredVarsClone().contains(varUsage)) {
+			if (blockScope.getDeclaredVars().contains(varUsage)) {
 				this.commitError("Var is already declared",
 						((CommonToken) varUsage.getToken()).getStartIndex(),
 						((CommonToken) varUsage.getToken()).getText().length());
-				// throw new AlreadyDeclaredVarDeclarationException();
 			} else {
 				// TODO could be used without cloning
 				ArrayList<VarUsage> united = new ArrayList<VarUsage>(blockScope
-						.getDeclaredVarsClone());
+						.getDeclaredVars());
 				united.add(varUsage);
 				blockScope.setDeclaredVars(united);
 			}
 		} else if (this instanceof AssignOperationNode) {
-			// 1. Пройтись по всем сыновьям, и всем использованиям переменным
-			// присвоить необходимый тип.
 			if (this.getChildCount() > 0) {
 				for (ExtendedCommonTree tree : this.getChildren()) {
 					tree.calculateScopes(blockScope);
 				}
 			}
-
 			HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
 			HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
-
-			if (HaxeType.isAvailableAssignement(leftPart, rightPart)) {
-				if (!leftPart.equals(rightPart)) {
-					// ((VarUsage) this.getChild(0)).setVarType(rightPart);
-					// blockScope.getDeclaredVars().indexOf(arg0)
-				}
-			} else {
+			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
 				this.commitError(this.getText() + ": cast problems", this
 						.getToken().getStartIndex(), this.getToken().getText()
 						.length());
 				return;
-				// throw new HaxeCastException(this);
 			}
-
 		} else if (this instanceof VarUsage) {
 			VarUsage thisAsVarUsage = (VarUsage) this;
 			if (thisAsVarUsage.getHaxeType().equals(
 					HaxeType.haxeNotYetRecognized)) {
-
 				if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
 					thisAsVarUsage.setHaxeType(blockScope
 							.getVarInScopeType(thisAsVarUsage.getText()));
@@ -539,7 +539,6 @@ public class ExtendedCommonTree extends CommonTree {
 							((CommonToken) thisAsVarUsage.getToken()).getText()
 									.length());
 					return;
-					// throw new NotDeclaredVarUsageException(thisAsVarUsage);
 				}
 			}
 		} else if (this instanceof FunctionNode) {
@@ -588,8 +587,6 @@ public class ExtendedCommonTree extends CommonTree {
 								.getStartIndex(), leftNode.parent.getToken()
 								.getText().length());
 				return HaxeType.haxeObject;
-				// throw new HaxeCastException(
-				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		case DIV: {
@@ -601,9 +598,6 @@ public class ExtendedCommonTree extends CommonTree {
 								.getStartIndex(), leftNode.parent.getToken()
 								.getText().length());
 				return HaxeType.haxeObject;
-
-				// throw new HaxeCastException(
-				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		case MINUS: {
@@ -615,9 +609,6 @@ public class ExtendedCommonTree extends CommonTree {
 								.getStartIndex(), leftNode.parent.getToken()
 								.getText().length());
 				return HaxeType.haxeObject;
-
-				// throw new HaxeCastException(
-				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		case MULTY: {
@@ -633,9 +624,6 @@ public class ExtendedCommonTree extends CommonTree {
 								.getStartIndex(), leftNode.parent.getToken()
 								.getText().length());
 				return HaxeType.haxeObject;
-
-				// throw new HaxeCastException(
-				// (ExtendedCommonTree) leftNode.parent);
 			}
 		}
 		}
@@ -658,7 +646,7 @@ public class ExtendedCommonTree extends CommonTree {
 		} else if (node instanceof ExtendedCommonTree) {
 			if (node.getType() == SUFFIX_EXPR_TYPE) {
 				/**
-				 * TODO Проверять корректность передаваемых аргументов
+				 * TODO check types of arguments
 				 */
 				return ((VarUsage) node.getChild(0)).getHaxeType();
 			} else if (node.getText().equals("+")) {
@@ -768,8 +756,11 @@ public class ExtendedCommonTree extends CommonTree {
 	 * соответсвующий токен, для дополнительных - смотрю первого и последнего
 	 * сына. Считается, что дополнительные узлы не могут быть листьями.
 	 * 
+	 * Use getMostLeft/Right instead
+	 * 
 	 * @return the region for node
 	 */
+	@Deprecated
 	public Pair getRegionForNode() {
 		int begin;
 		int end;
@@ -811,8 +802,6 @@ public class ExtendedCommonTree extends CommonTree {
 	public ExtendedCommonTree getNodeByPosition(final int offset) {
 		if (this.getChildCount() > 0) {
 			for (ExtendedCommonTree child : this.getChildren()) {
-				int mostLeft = child.getMostLeftPosition();
-				int mostRight = child.getMostRightPosition();
 				if (child.getMostLeftPosition() <= offset
 						&& offset <= child.getMostRightPosition()) {
 					return child.getNodeByPosition(offset);
@@ -820,125 +809,12 @@ public class ExtendedCommonTree extends CommonTree {
 			}
 		}
 		return this;
-		// ArrayList<ExtendedCommonTree> nodes = this.getChildCount() > 0 ?
-		// (ArrayList<ExtendedCommonTree>) (this
-		// .getChildren()).clone()
-		// : new ArrayList<ExtendedCommonTree>();
-		//
-		// CommonToken token = (CommonToken) this.getToken();
-		//
-		// if (!this.auxiliary) {
-		// if (token.getStartIndex() <= offset
-		// && (token.getStartIndex() + token.getText().length()) > offset) {
-		// return this;
-		// } else {
-		// ExtendedCommonTree pretender = nodes.size() > 0 ? nodes.get(0)
-		// : null;
-		// for (int i = 0; i <= nodes.size() - 1; i++) {
-		// pretender = nodes.get(i);
-		// if (pretender.getRegionForNode().surrounds(offset)) {
-		// return pretender.getNodeByPosition(offset);
-		// } else if (pretender.getRegionForNode().getBegin() > offset) {
-		// if (pretender.getChildCount() > 0) {
-		// if (pretender.getChild(0).getRegionForNode()
-		// .getBegin() < pretender.getRegionForNode()
-		// .getBegin()) {
-		// return pretender.getChild(0).getNodeByPosition(
-		// offset);
-		// }
-		// } else {
-		// if (i >= 1) {
-		// return nodes.get(i - 1).getNodeByPosition(
-		// offset);
-		// } else {
-		// return this;
-		// }
-		// }
-		// } else if (pretender.doTreeContainsOffsetInNode(offset)) {
-		// return pretender.getNodeWithOffset(offset);
-		// }
-		// }
-		// return pretender;
-		// }
-		// } else {
-		// if (nodes.size() > 0) {
-		// ExtendedCommonTree pretender = nodes.get(0);
-		// for (int i = 0; i <= nodes.size() - 1; i++) {
-		// pretender = nodes.get(i);
-		// if (pretender.getRegionForNode().surrounds(offset)) {
-		// return pretender.getNodeByPosition(offset);
-		// } else if (pretender.getRegionForNode().getBegin() > offset) {
-		// if (i == 0) {
-		// return this;
-		// } else {
-		// return nodes.get(i - 1).getNodeByPosition(offset);
-		// }
-		// }
-		// }
-		// return pretender.getNodeByPosition(offset);
-		// } else {
-		// return this;
-		// }
-		// }
-	}
-
-	/**
-	 * Do tree contains offset in node.
-	 * 
-	 * @param offset
-	 *            the offset
-	 * @return true, if successful
-	 */
-	private boolean doTreeContainsOffsetInNode(final int offset) {
-		CommonToken commonToken = (CommonToken) this.getToken();
-		if (commonToken != null) {
-			if (commonToken.getStartIndex() <= offset
-					&& commonToken.getStartIndex()
-							+ commonToken.getText().length() > offset) {
-				return true;
-			} else {
-				if (this.getChildCount() > 0) {
-					for (ExtendedCommonTree commonTree : this.getChildren()) {
-						if (commonTree.doTreeContainsOffsetInNode(offset)) {
-							return true;
-						}
-					}
-				} else {
-					return false;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Gets the node with offset.
-	 * 
-	 * @param offset
-	 *            the offset
-	 * @return the node with offset
-	 */
-	private ExtendedCommonTree getNodeWithOffset(final int offset) {
-		CommonToken commonToken = (CommonToken) this.getToken();
-		if (commonToken.getStartIndex() <= offset
-				&& commonToken.getStartIndex() + commonToken.getText().length() > offset) {
-			return this;
-		} else {
-			if (this.getChildCount() > 0) {
-				for (ExtendedCommonTree commonTree : this.getChildren()) {
-					if (commonTree.getNodeWithOffset(offset) != null) {
-						return commonTree.getNodeWithOffset(offset);
-					}
-				}
-			} else {
-				return null;
-			}
-		}
-		return null;
 	}
 
 	/**
 	 * Gets the node by position.
+	 * 
+	 * Use <code>getNodeByPosition(Int offset)</code> instead
 	 * 
 	 * @param line
 	 *            the line
@@ -947,6 +823,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 * @return the node by position
 	 */
 	@SuppressWarnings("unchecked")
+	@Deprecated
 	public ExtendedCommonTree getNodeByPosition(final int line,
 			final int posInLine) {
 		ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>) (this
@@ -968,7 +845,6 @@ public class ExtendedCommonTree extends CommonTree {
 					return this;
 				}
 			}
-			System.out.println("Fail on first part");
 			return null;
 		} else {
 			for (int i = nodes.size() - 1; i >= 0; i--) {
@@ -1049,8 +925,6 @@ public class ExtendedCommonTree extends CommonTree {
 						.getDeclarationNode(usageNode);
 			} else {
 				if (parent instanceof BlockScopeNode) {
-					// Если предок блока это класс, то, возможно, переменная
-					// была определена после использования
 					if (parent.getParent() instanceof ClassNode) {
 						ExtendedCommonTree paramDeclaration = usageNode
 								.isDeclaredIn((parent).getChildren());
@@ -1139,6 +1013,11 @@ public class ExtendedCommonTree extends CommonTree {
 		return childs;
 	}
 
+	/**
+	 * Gets the available vars.
+	 * 
+	 * @return the available vars
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<ExtendedCommonTree> getAvailableVars() {
 		if (this instanceof BlockScopeNode) {
@@ -1225,6 +1104,11 @@ public class ExtendedCommonTree extends CommonTree {
 		return (ExtendedCommonTree) super.getChild(i);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.antlr.runtime.tree.CommonTree#getToken()
+	 */
 	@Override
 	public CommonToken getToken() {
 		// TODO Auto-generated method stub

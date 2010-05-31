@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.hoverHelper;
 
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
@@ -21,13 +31,33 @@ import org.eclipse.imp.services.base.HoverHelperBase;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.source.ISourceViewer;
 
+/**
+ * The Class HaxeHoverHelper.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
+
+	/** The resolver. */
 	IReferenceResolver fResolver = null;
 
+	/**
+	 * Tmp.
+	 * 
+	 * @return the extended common tree
+	 */
 	public ExtendedCommonTree tmp() {
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.services.IHoverHelper#getHoverHelpAt(org.eclipse.imp.
+	 * parser.IParseController, org.eclipse.jface.text.source.ISourceViewer,
+	 * int)
+	 */
 	public String getHoverHelpAt(final IParseController parseController,
 			final ISourceViewer srcViewer, final int offset) {
 		// If there are any annotations associated with the line that contains
@@ -142,6 +172,17 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		return msg;
 	}
 
+	/**
+	 * Gets the substring.
+	 * 
+	 * @param parseController
+	 *            the parse controller
+	 * @param start
+	 *            the start
+	 * @param end
+	 *            the end
+	 * @return the substring
+	 */
 	public static String getSubstring(final IParseController parseController,
 			final int start, final int end) {
 		return new String(((SimpleLPGParseController) parseController)
@@ -149,6 +190,15 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 				- start + 1);
 	}
 
+	/**
+	 * Gets the substring.
+	 * 
+	 * @param parseController
+	 *            the parse controller
+	 * @param token
+	 *            the token
+	 * @return the substring
+	 */
 	public static String getSubstring(final IParseController parseController,
 			final IToken token) {
 		return getSubstring(parseController, token.getStartOffset(), token

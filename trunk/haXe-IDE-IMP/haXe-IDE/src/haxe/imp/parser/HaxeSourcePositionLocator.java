@@ -22,7 +22,6 @@ import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
-// TODO: Auto-generated Javadoc
 /**
  * NOTE: This version of the ISourcePositionLocator is for use when the Source
  * Position Locator and corresponding Parse Controller are generated separately
@@ -52,8 +51,8 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * @param parseController
 	 *            the parse controller
 	 */
-	public HaxeSourcePositionLocator(IParseController parseController) {
-		fParseController = parseController;
+	public HaxeSourcePositionLocator(final IParseController parseController) {
+		this.fParseController = parseController;
 	}
 
 	/*
@@ -64,7 +63,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * int)
 	 */
 	@Override
-	public Object findNode(Object astRoot, int offset) {
+	public Object findNode(final Object astRoot, final int offset) {
 		return ((ExtendedCommonTree) astRoot).getNodeByPosition(offset);
 	}
 
@@ -76,7 +75,8 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * int, int)
 	 */
 	@Override
-	public Object findNode(Object astRoot, int startOffset, int endOffset) {
+	public Object findNode(final Object astRoot, final int startOffset,
+			final int endOffset) {
 		// TODO use endOffset
 		return ((ExtendedCommonTree) astRoot).getNodeByPosition(startOffset);
 	}
@@ -89,7 +89,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * Object)
 	 */
 	@Override
-	public int getEndOffset(Object entity) {
+	public int getEndOffset(final Object entity) {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getStartIndex()
 					+ ((CommonToken) entity).getText().length() - 1;
@@ -110,7 +110,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * org.eclipse.imp.parser.ISourcePositionLocator#getLength(java.lang.Object)
 	 */
 	@Override
-	public int getLength(Object entity) {
+	public int getLength(final Object entity) {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getText().length();
 		} else if (entity instanceof ExtendedCommonTree) {
@@ -129,10 +129,10 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * org.eclipse.imp.parser.ISourcePositionLocator#getPath(java.lang.Object)
 	 */
 	@Override
-	public IPath getPath(Object node) {
+	public IPath getPath(final Object node) {
 		if (node instanceof IAst) {
 			IAst node1 = (IAst) node;
-			return fParseController.getProject().getRawProject().getFile(
+			return this.fParseController.getProject().getRawProject().getFile(
 					node1.getLeftIToken().getILexStream().getFileName())
 					.getFullPath();
 		}
@@ -141,15 +141,13 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 			return cu.getPath();
 		}
 		if (node instanceof ExtendedCommonTree) {
-			ISourceProject iSourceProject = fParseController.getProject();
-			IPath result = fParseController.getPath();
-			// return result;
-			Path tmp = new Path(fParseController.getProject().getName() + "/"
-					+ result.toString());
+			ISourceProject iSourceProject = this.fParseController.getProject();
+			IPath result = this.fParseController.getPath();
+			Path tmp = new Path(this.fParseController.getProject().getName()
+					+ "/" + result.toString());
 			return tmp;
 		}
 		throw new RuntimeException();
-		// return new Path("");
 	}
 
 	/*
@@ -160,7 +158,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * .Object)
 	 */
 	@Override
-	public int getStartOffset(Object entity) {
+	public int getStartOffset(final Object entity) {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getStartIndex();
 		} else if (entity instanceof ExtendedCommonTree) {

@@ -35,7 +35,6 @@ import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
-// TODO: Auto-generated Javadoc
 /**
  * NOTE: This version of the Parse Controller is for use when the Parse
  * Controller and corresponding Node Locator are generated separately from a
@@ -187,6 +186,11 @@ public class HaxeParseController implements IParseController {
 
 	// public tokenS
 
+	/**
+	 * Gets the token stream.
+	 * 
+	 * @return the token stream
+	 */
 	public CommonTokenStream getTokenStream() {
 		return this.tokenStream;
 	}
@@ -225,12 +229,6 @@ public class HaxeParseController implements IParseController {
 					.getTokens();
 			this.begin = region.getOffset();
 			this.end = region.getOffset() + region.getLength();
-			// for (CommonToken token : commonTokens) {
-			// if (token.getStopIndex() > begin) {
-			// currentTokenNumber = commonTokens.indexOf(token);
-			// break;
-			// }
-			// }
 		}
 
 		/*
@@ -287,8 +285,6 @@ public class HaxeParseController implements IParseController {
 		this.fProject = project;
 		this.fFilePath = filePath;
 		this.handler = handler;
-		// org.eclipse.imp.editor.AnnotationHoverBase
-
 	}
 
 	/**
@@ -318,21 +314,7 @@ public class HaxeParseController implements IParseController {
 		} catch (RecognitionException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}// } catch (AlreadyDeclaredVarDeclarationException e) {
-		// System.out.println("Already declared");
-		// handler.handleSimpleMessage("FooBar", 50, 60, 0, 0, 1, 1);
-		// // handler.endMessageGroup();
-		// // e.printStackTrace();
-		// } catch (NotDeclaredVarUsageException e) {
-		// System.out.println("Not declared" + e.getUsage());
-		// CommonToken commonToken = (CommonToken) e.getUsage().getToken();
-		// handler.handleSimpleMessage(e.getUsage().getText(), commonToken
-		// .getStartIndex(), commonToken.getStartIndex()
-		// + commonToken.getText().length() - 1, 0, 0, 0, 0);
-		//
-		// // e.printStackTrace();
-		// }
-
+		}
 	}
 
 	/*

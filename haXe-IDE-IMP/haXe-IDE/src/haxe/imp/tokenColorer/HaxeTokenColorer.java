@@ -35,8 +35,6 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 			numberAttribute, commentAttribute, stringAttribute,
 			defaultAttribute, processorCommand;
 
-	// protected final TextAttribute commentAttribute, stringAttribute;
-
 	/**
 	 * Instantiates a new haxe token colorer.
 	 */
@@ -44,30 +42,20 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		super();
 		// TODO Define text attributes for the various token types that will
 		// have their text colored
-		//
-		// NOTE: Colors (i.e., instances of org.eclipse.swt.graphics.Color) are
-		// system resources
-		// and are limited in number. THEREFORE, it is good practice to reuse
-		// existing system Colors
-		// or to allocate a fixed set of new Colors and reuse those. If new
-		// Colors are instantiated
-		// beyond the bounds of your system capacity then your Eclipse
-		// invocation may cease to function
-		// properly or at all.
 		Display display = Display.getDefault();
-		keywordAttribute = new TextAttribute(display
+		this.keywordAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_MAGENTA), null, SWT.BOLD);
-		functionAttribute = new TextAttribute(display
+		this.functionAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_RED), null, SWT.BOLD);
-		defaultAttribute = new TextAttribute(display
+		this.defaultAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLACK));
-		numberAttribute = new TextAttribute(display
+		this.numberAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_RED));
-		commentAttribute = new TextAttribute(display
+		this.commentAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_GREEN));
-		stringAttribute = new TextAttribute(display
+		this.stringAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLUE));
-		processorCommand = new TextAttribute(display
+		this.processorCommand = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_GRAY));
 	}
 
@@ -79,7 +67,8 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 	 * .imp.parser.IParseController, java.lang.Object)
 	 */
 	@Override
-	public TextAttribute getColoring(IParseController controller, Object o) {
+	public TextAttribute getColoring(final IParseController controller,
+			final Object o) {
 		if (o == null) {
 			return null;
 		}
@@ -109,44 +98,21 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case ENUM:
 		case TRUE:
 		case FALSE:
-			return functionAttribute;
+			return this.functionAttribute;
 		case CHARLITERAL:
 		case STRINGLITERAL:
-			return stringAttribute;
+			return this.stringAttribute;
 		case INT:
 		case FLOAT:
 		case BOOLEAN:
-			return numberAttribute;
+			return this.numberAttribute;
 		case COMMENT:
-			return commentAttribute;
+			return this.commentAttribute;
 		case PROCESSORCOMMAND:
-			return processorCommand;
+			return this.processorCommand;
 		default:
-			return defaultAttribute;
+			return this.defaultAttribute;
 		}
-
-		// IToken token = (IToken) o;
-		// if (token.getKind() == TK_EOF_TOKEN)
-		// return null;
-		//
-		// switch (token.getKind()) {
-		// // START_HERE
-		// case TK_IDENTIFIER:
-		// return identifierAttribute;
-		// case TK_NUMBER:
-		// return numberAttribute;
-		// case TK_DoubleLiteral:
-		// return doubleAttribute;
-		// // case TK_StringLiteral:
-		// // return stringAttribute;
-		// // case TK_SINGLE_LINE_COMMENT:
-		// // return commentAttribute;
-		// default:
-		// if (((SimpleLPGParseController) controller).isKeyword(token
-		// .getKind()))
-		// return keywordAttribute;
-		// return super.getColoring(controller, token);
-		// }
 	}
 
 	/**
@@ -156,7 +122,7 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 	 *            the seed
 	 * @return the i region
 	 */
-	public IRegion calculateDamageExtent(IRegion seed) {
+	public IRegion calculateDamageExtent(final IRegion seed) {
 		return seed;
 	}
 }

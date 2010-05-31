@@ -14,8 +14,11 @@ package haxe.imp.parser.antlr.tree;
 /**
  * The Enum TreeTokens.
  * 
+ * Use fields from Lexer/parser instead
+ * 
  * @author Anatoly Kondratyev
  */
+@Deprecated
 public enum TreeTokens {
 
 	/** The PROPERT y_ decl. */

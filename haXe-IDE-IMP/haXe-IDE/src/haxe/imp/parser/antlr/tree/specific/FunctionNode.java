@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FunctionNode.
  * 
@@ -35,7 +34,7 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * @return the full name with parameters
 	 */
 	public String getFullNameWithParameters() {
-		if (fullNameWithParameters.equals("")) {
+		if (this.fullNameWithParameters.equals("")) {
 			ExtendedCommonTree paramList = this.getParamListNode();
 			String parameters = "";
 			String comma = "";
@@ -47,10 +46,11 @@ public class FunctionNode extends ExtendedCommonTree {
 					comma = ", ";
 				}
 			}
-			fullNameWithParameters = this.getFunctionName() + "(" + parameters
-					+ ") : " + getFunctionReturnType().getTypeName();
+			this.fullNameWithParameters = this.getFunctionName() + "("
+					+ parameters + ") : "
+					+ this.getFunctionReturnType().getTypeName();
 		}
-		return fullNameWithParameters;
+		return this.fullNameWithParameters;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public FunctionNode(ExtendedCommonTree node) {
+	public FunctionNode(final ExtendedCommonTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -77,7 +77,7 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * @param t
 	 *            the t
 	 */
-	public FunctionNode(Token t) {
+	public FunctionNode(final Token t) {
 		super(t);
 		// TODO Auto-generated constructor stub
 	}
@@ -136,10 +136,6 @@ public class FunctionNode extends ExtendedCommonTree {
 		try {
 			for (ExtendedCommonTree tree : this.getChildren()) {
 				if (tree.getToken().getType() == TYPE_TAG_TYPE) {
-					/**
-					 * FIXME Нужно находить название этого класса в объявлениях,
-					 * если он не примитивный, и возвращать его копию.
-					 */
 					return new HaxeType(tree.getChild(0).getText());
 				}
 			}

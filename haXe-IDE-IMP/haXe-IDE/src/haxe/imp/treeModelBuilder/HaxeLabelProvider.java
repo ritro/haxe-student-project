@@ -69,7 +69,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 * 
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
 	 */
-	public Image getImage(Object element) {
+	public Image getImage(final Object element) {
 		if (element instanceof IFile) {
 			// TODO: rewrite to provide more appropriate images
 			IFile file = (IFile) element;
@@ -89,8 +89,6 @@ public class HaxeLabelProvider implements ILabelProvider {
 				.getASTNode()
 				: (ExtendedCommonTree) element;
 		return getImageFor(n);
-		// return getImageFor((ExtendedCommonTree) element);
-
 	}
 
 	/**
@@ -100,9 +98,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 *            the n
 	 * @return the image for
 	 */
-	public static Image getImageFor(ExtendedCommonTree n) {
-		// TODO: return specific images for specific node
-		// types, as images are available and appropriate
+	public static Image getImageFor(final ExtendedCommonTree n) {
 		return DEFAULT_IMAGE;
 	}
 
@@ -111,7 +107,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 * 
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 */
-	public String getText(Object element) {
+	public String getText(final Object element) {
 		ExtendedCommonTree n = (element instanceof ModelTreeNode) ? (ExtendedCommonTree) ((ModelTreeNode) element)
 				.getASTNode()
 				: (ExtendedCommonTree) element;
@@ -126,7 +122,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 *            passed node
 	 * @return the label for node in outline tree
 	 */
-	public static String getLabelFor(ExtendedCommonTree n) {
+	public static String getLabelFor(final ExtendedCommonTree n) {
 		// START_HERE
 		if (n.token.getType() == TinyHaxeTry1Lexer.MODULE) {
 			return "Module";
@@ -163,8 +159,8 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.
 	 * jface.viewers.ILabelProviderListener)
 	 */
-	public void addListener(ILabelProviderListener listener) {
-		fListeners.add(listener);
+	public void addListener(final ILabelProviderListener listener) {
+		this.fListeners.add(listener);
 	}
 
 	/*
@@ -182,7 +178,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang
 	 * .Object, java.lang.String)
 	 */
-	public boolean isLabelProperty(Object element, String property) {
+	public boolean isLabelProperty(final Object element, final String property) {
 		return false;
 	}
 
@@ -193,7 +189,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 * org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse
 	 * .jface.viewers.ILabelProviderListener)
 	 */
-	public void removeListener(ILabelProviderListener listener) {
-		fListeners.remove(listener);
+	public void removeListener(final ILabelProviderListener listener) {
+		this.fListeners.remove(listener);
 	}
 }

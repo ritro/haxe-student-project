@@ -34,10 +34,10 @@ public class ClassNode extends ExtendedCommonTree {
 	 * @return the class name
 	 */
 	public String getClassName() {
-		if (className.equals("")) {
-			className = this.getChild(0).getText();
+		if (this.className.equals("")) {
+			this.className = this.getChild(0).getText();
 		}
-		return className;
+		return this.className;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class ClassNode extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public ClassNode(ExtendedCommonTree node) {
+	public ClassNode(final ExtendedCommonTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -65,7 +65,7 @@ public class ClassNode extends ExtendedCommonTree {
 	 * @param t
 	 *            the t
 	 */
-	public ClassNode(Token t) {
+	public ClassNode(final Token t) {
 		super(t);
 		// TODO Auto-generated constructor stub
 	}
@@ -115,8 +115,8 @@ public class ClassNode extends ExtendedCommonTree {
 					VarUsage usage = new VarUsage(classTree.getChild(0)
 							.getToken());
 					/**
-					 * FIXME нужно создавать тип, используя всю информацию о
-					 * классе
+					 * FIXME while creating HaxeType, we shoul use ALL available
+					 * information about it
 					 */
 					usage.setHaxeType(new HaxeType(classTree.getChild(0)
 							.getToken().getText()));

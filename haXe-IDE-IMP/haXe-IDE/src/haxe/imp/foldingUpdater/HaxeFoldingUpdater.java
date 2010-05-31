@@ -23,7 +23,6 @@ import org.eclipse.imp.services.base.FolderBase;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 
-// TODO: Auto-generated Javadoc
 /**
  * This file provides a skeletal implementation of the language-dependent
  * aspects of a source-text folder. This implementation is generated from a
@@ -56,7 +55,7 @@ public class HaxeFoldingUpdater extends FolderBase {
 		 * #unimplementedVisitor(java.lang.String)
 		 */
 		@Override
-		public void unimplementedVisitor(String s) {
+		public void unimplementedVisitor(final String s) {
 		}
 
 		// START_HERE
@@ -77,36 +76,24 @@ public class HaxeFoldingUpdater extends FolderBase {
 		 *            the n
 		 * @return true, if successful
 		 */
-		public boolean visit(ExtendedCommonTree n) {
+		public boolean visit(final ExtendedCommonTree n) {
 			int start = 0;
 			int len = 0;
-			/**
-			 * TODO Поскольку комментов нет в AST-дереве, я их и тут отловить не
-			 * могу. Так что, заготовка для этого была сделана зря
-			 */
-			// if (n.getType() == TinyHaxeTry1Lexer.COMMENT) {
-			// CommonToken commonToken = (CommonToken) n.getToken();
-			// start = commonToken.getStartIndex();
-			// len = commonToken.getText().length();
-			// makeAnnotation(start, len);
-			// return true;
-			// } else
 			if (n instanceof ClassNode) {
 				ClassNode classNode = (ClassNode) n;
 				BlockScopeNode blockScopeNode = classNode.getBlockScope();
 				start = blockScopeNode.getlBracketPosition();
 				len = blockScopeNode.getrBracketPosition() - start;
-				makeAnnotation(start, len);
+				HaxeFoldingUpdater.this.makeAnnotation(start, len);
 				return true;
 			} else if (n instanceof FunctionNode) {
 				FunctionNode functionNode = (FunctionNode) n;
 				BlockScopeNode blockScopeNode = functionNode.getBlockScope();
 				start = blockScopeNode.getlBracketPosition();
 				len = blockScopeNode.getrBracketPosition() - start;
-				makeAnnotation(start, len + 1);
+				HaxeFoldingUpdater.this.makeAnnotation(start, len + 1);
 				return true;
 			}
-
 			return false;
 
 		}
@@ -121,12 +108,10 @@ public class HaxeFoldingUpdater extends FolderBase {
 	 */
 	@Override
 	protected void sendVisitorToAST(
-			HashMap<Annotation, Position> newAnnotations,
-			List<Annotation> annotations, Object ast) {
-		// TODO Auto-generated method stub
+			final HashMap<Annotation, Position> newAnnotations,
+			final List<Annotation> annotations, final Object ast) {
 		HaxeFoldingVisitor visitor = new HaxeFoldingVisitor();
 		ExtendedCommonTree node = (ExtendedCommonTree) ast;
 		node.accept(visitor);
 	}
-
 }

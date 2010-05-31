@@ -17,7 +17,6 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class VarUsage.
  * 
@@ -87,7 +86,6 @@ public class VarUsage extends ExtendedCommonTree {
 	 *            the var type
 	 */
 	public VarUsage(final int ttype, final Token t, final String varType) {
-		// System.out.println(varType);
 		this.token = t;
 		if (varType.equals("INT")) {
 			this.setHaxeType(HaxeType.haxeInt);
@@ -183,6 +181,11 @@ public class VarUsage extends ExtendedCommonTree {
 		return varUsage;
 	}
 
+	/**
+	 * Gets the text with type.
+	 * 
+	 * @return the text with type
+	 */
 	public String getTextWithType() {
 		if (this.getParent() instanceof FunctionNode) {
 			return ((FunctionNode) this.getParent())

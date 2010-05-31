@@ -34,23 +34,52 @@ import org.eclipse.ui.texteditor.ITextEditor;
  */
 public class HaxeMessageHandler implements IMessageHandler {
 
+	/**
+	 * The Class PositionedMessage.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	private static class PositionedMessage {
+		
+		/** The message. */
 		public final String message;
+		
+		/** The pos. */
 		public final Position pos;
 
+		/**
+		 * Instantiates a new positioned message.
+		 * 
+		 * @param msg
+		 *            the msg
+		 * @param pos
+		 *            the pos
+		 */
 		public PositionedMessage(String msg, Position pos) {
 			this.message = msg;
 			this.pos = pos;
 		}
 	}
 
+	/** The editor. */
 	private final ITextEditor fEditor;
+	
+	/** The annotation type. */
 	private final String fAnnotationType;
+	
+	/** The messages. */
 	private final List<PositionedMessage> fMessages = new LinkedList<PositionedMessage>();
+	
+	/** The annotations. */
 	private final List<Annotation> fAnnotations = new LinkedList<Annotation>();
 
 	/**
 	 * Instantiates a new haxe message handler.
+	 * 
+	 * @param textEditor
+	 *            the text editor
+	 * @param annotationType
+	 *            the annotation type
 	 */
 	public HaxeMessageHandler(ITextEditor textEditor, String annotationType) {
 		fEditor = textEditor;
@@ -60,6 +89,9 @@ public class HaxeMessageHandler implements IMessageHandler {
 			fAnnotationType = annotationType;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.imp.parser.IMessageHandler#clearMessages()
+	 */
 	public void clearMessages() {
 		removeAnnotations();
 		fMessages.clear();
@@ -91,9 +123,15 @@ public class HaxeMessageHandler implements IMessageHandler {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.imp.parser.IMessageHandler#endMessageGroup()
+	 */
 	public void endMessageGroup() {
 	}
 
+	/**
+	 * Removes the annotations.
+	 */
 	private void removeAnnotations() {
 		final IDocumentProvider docProvider = fEditor.getDocumentProvider();
 
@@ -126,6 +164,9 @@ public class HaxeMessageHandler implements IMessageHandler {
 		fAnnotations.clear();
 	}
 
+	/**
+	 * End messages.
+	 */
 	public void endMessages() {
 		IAnnotationModel model = fEditor.getDocumentProvider()
 				.getAnnotationModel(fEditor.getEditorInput());

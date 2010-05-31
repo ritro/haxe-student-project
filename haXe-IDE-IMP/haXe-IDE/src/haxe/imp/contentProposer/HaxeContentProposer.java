@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU General Public License, version 2
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributors:
+ *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
+ *******************************************************************************/
 package haxe.imp.contentProposer;
 
 import haxe.imp.parser.HaxeParseController;
@@ -18,8 +28,20 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
+/**
+ * The Class HaxeContentProposer.
+ * 
+ * @author Anatoly Kondratyev
+ */
 public class HaxeContentProposer implements IContentProposer {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.imp.services.IContentProposer#getContentProposals(org.eclipse
+	 * .imp.parser.IParseController, int, org.eclipse.jface.text.ITextViewer)
+	 */
 	@Override
 	public ICompletionProposal[] getContentProposals(
 			final IParseController controller, final int offset,
@@ -56,18 +78,17 @@ public class HaxeContentProposer implements IContentProposer {
 		ArrayList<ExtendedCommonTree> availableVars = this.filterVars(
 				sourceNode.getAvailableVars(), sourceString);
 		return this.createSourceProposals(availableVars, sourceString, offset);
-		// SourceProposal sourceProposal = new SourceProposal("intValue : Int",
-		// "intValue", "int", offset);
-		//
-		// return new SourceProposal[] {
-		// new SourceProposal("Int", "int", offset),
-		// sourceProposal,
-		// new SourceProposal("intSecondValue : Int", "intSecondValue",
-		// "int", offset) };
-
 	}
 
-	/** FIXME use binary search */
+	/**
+	 * FIXME use binary search.
+	 * 
+	 * @param commonTokenStream
+	 *            the common token stream
+	 * @param offset
+	 *            the offset
+	 * @return the token at position
+	 */
 	@SuppressWarnings("unchecked")
 	private CommonToken getTokenAtPosition(
 			final CommonTokenStream commonTokenStream, final int offset) {
@@ -82,6 +103,15 @@ public class HaxeContentProposer implements IContentProposer {
 		return null;
 	}
 
+	/**
+	 * Filter vars.
+	 * 
+	 * @param vars
+	 *            the vars
+	 * @param prefix
+	 *            the prefix
+	 * @return the array list
+	 */
 	private ArrayList<ExtendedCommonTree> filterVars(
 			final ArrayList<ExtendedCommonTree> vars, final String prefix) {
 		ArrayList<ExtendedCommonTree> result = new ArrayList<ExtendedCommonTree>();
@@ -93,6 +123,17 @@ public class HaxeContentProposer implements IContentProposer {
 		return result;
 	}
 
+	/**
+	 * Creates the source proposals.
+	 * 
+	 * @param availableVars
+	 *            the available vars
+	 * @param prefix
+	 *            the prefix
+	 * @param offset
+	 *            the offset
+	 * @return the source proposal[]
+	 */
 	private SourceProposal[] createSourceProposals(
 			final ArrayList<ExtendedCommonTree> availableVars,
 			final String prefix, final int offset) {
@@ -100,57 +141,139 @@ public class HaxeContentProposer implements IContentProposer {
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
 		for (ExtendedCommonTree commonTree : availableVars) {
 			VarUsage usage = (VarUsage) commonTree;
-			// result.add(new ComparableSourceProposal(commonTree.getText(),
-			// prefix, offset));
-			//			
 			result.add(new ComparableSourceProposal(usage.getTextWithType(),
 					usage.getText(), prefix, offset));
 		}
 		return result.toArray(new SourceProposal[0]);
 	}
 
+	/**
+	 * The Class ComparableSourceProposal.
+	 * 
+	 * @author Anatoly Kondratyev
+	 */
 	private class ComparableSourceProposal extends SourceProposal implements
 			Comparable<ComparableSourceProposal> {
 
+		/**
+		 * Instantiates a new comparable source proposal.
+		 * 
+		 * @param newText
+		 *            the new text
+		 * @param prefix
+		 *            the prefix
+		 * @param offset
+		 *            the offset
+		 */
 		public ComparableSourceProposal(final String newText,
 				final String prefix, final int offset) {
 			super(newText, prefix, offset);
 		}
 
+		/**
+		 * Instantiates a new comparable source proposal.
+		 * 
+		 * @param proposal
+		 *            the proposal
+		 * @param newText
+		 *            the new text
+		 * @param prefix
+		 *            the prefix
+		 * @param offset
+		 *            the offset
+		 * @param cursorLoc
+		 *            the cursor loc
+		 */
 		public ComparableSourceProposal(final String proposal,
 				final String newText, final String prefix, final int offset,
 				final int cursorLoc) {
 			super(proposal, newText, prefix, offset, cursorLoc);
-			// TODO Auto-generated constructor stub
 		}
 
+		/**
+		 * Instantiates a new comparable source proposal.
+		 * 
+		 * @param proposal
+		 *            the proposal
+		 * @param newText
+		 *            the new text
+		 * @param prefix
+		 *            the prefix
+		 * @param offset
+		 *            the offset
+		 */
 		public ComparableSourceProposal(final String proposal,
 				final String newText, final String prefix, final int offset) {
 			super(proposal, newText, prefix, offset);
-			// TODO Auto-generated constructor stub
 		}
 
+		/**
+		 * Instantiates a new comparable source proposal.
+		 * 
+		 * @param proposal
+		 *            the proposal
+		 * @param newText
+		 *            the new text
+		 * @param prefix
+		 *            the prefix
+		 * @param region
+		 *            the region
+		 * @param cursorLoc
+		 *            the cursor loc
+		 * @param addlInfo
+		 *            the addl info
+		 */
 		public ComparableSourceProposal(final String proposal,
 				final String newText, final String prefix, final Region region,
 				final int cursorLoc, final String addlInfo) {
 			super(proposal, newText, prefix, region, cursorLoc, addlInfo);
-			// TODO Auto-generated constructor stub
 		}
 
+		/**
+		 * Instantiates a new comparable source proposal.
+		 * 
+		 * @param proposal
+		 *            the proposal
+		 * @param newText
+		 *            the new text
+		 * @param prefix
+		 *            the prefix
+		 * @param region
+		 *            the region
+		 * @param cursorLoc
+		 *            the cursor loc
+		 */
 		public ComparableSourceProposal(final String proposal,
 				final String newText, final String prefix, final Region region,
 				final int cursorLoc) {
 			super(proposal, newText, prefix, region, cursorLoc);
-			// TODO Auto-generated constructor stub
 		}
 
+		/**
+		 * Instantiates a new comparable source proposal.
+		 * 
+		 * @param proposal
+		 *            the proposal
+		 * @param newText
+		 *            the new text
+		 * @param prefix
+		 *            the prefix
+		 * @param region
+		 *            the region
+		 * @param addlInfo
+		 *            the addl info
+		 */
 		public ComparableSourceProposal(final String proposal,
 				final String newText, final String prefix, final Region region,
 				final String addlInfo) {
 			super(proposal, newText, prefix, region, addlInfo);
-			// TODO Auto-generated constructor stub
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Comparable#compareTo(java.lang.Object)
+		 */
 		@Override
 		/*
 		 * FIXME this method is not accurate, but I need it just to implement

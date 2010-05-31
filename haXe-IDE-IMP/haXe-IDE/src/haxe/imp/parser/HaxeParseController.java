@@ -113,7 +113,7 @@ public class HaxeParseController implements IParseController {
 	 */
 	@Override
 	public Object getCurrentAst() {
-		return currentAST;
+		return this.currentAST;
 	}
 
 	/*
@@ -123,7 +123,7 @@ public class HaxeParseController implements IParseController {
 	 */
 	@Override
 	public Language getLanguage() {
-		return fLanguage;
+		return this.fLanguage;
 	}
 
 	/*
@@ -133,7 +133,7 @@ public class HaxeParseController implements IParseController {
 	 */
 	@Override
 	public IPath getPath() {
-		return fFilePath;
+		return this.fFilePath;
 	}
 
 	/*
@@ -143,7 +143,7 @@ public class HaxeParseController implements IParseController {
 	 */
 	@Override
 	public ISourceProject getProject() {
-		return fProject;
+		return this.fProject;
 	}
 
 	/*
@@ -153,10 +153,10 @@ public class HaxeParseController implements IParseController {
 	 */
 	@Override
 	public ISourcePositionLocator getSourcePositionLocator() {
-		if (fSourcePositionLocator == null) {
-			fSourcePositionLocator = new HaxeSourcePositionLocator(this);
+		if (this.fSourcePositionLocator == null) {
+			this.fSourcePositionLocator = new HaxeSourcePositionLocator(this);
 		}
-		return fSourcePositionLocator;
+		return this.fSourcePositionLocator;
 	}
 
 	/*
@@ -179,10 +179,16 @@ public class HaxeParseController implements IParseController {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Iterator getTokenIterator(IRegion region) {
+	public Iterator getTokenIterator(final IRegion region) {
 		InnerCommonTokenIterator commonTokenIterator = new InnerCommonTokenIterator(
-				tokenStream, region);
+				this.tokenStream, region);
 		return commonTokenIterator;
+	}
+
+	// public tokenS
+
+	public CommonTokenStream getTokenStream() {
+		return this.tokenStream;
 	}
 
 	/**
@@ -213,12 +219,12 @@ public class HaxeParseController implements IParseController {
 		 *            the region
 		 */
 		@SuppressWarnings("unchecked")
-		public InnerCommonTokenIterator(CommonTokenStream commonTokenStream,
-				IRegion region) {
-			commonTokens = (ArrayList<CommonToken>) commonTokenStream
+		public InnerCommonTokenIterator(
+				final CommonTokenStream commonTokenStream, final IRegion region) {
+			this.commonTokens = (ArrayList<CommonToken>) commonTokenStream
 					.getTokens();
-			begin = region.getOffset();
-			end = region.getOffset() + region.getLength();
+			this.begin = region.getOffset();
+			this.end = region.getOffset() + region.getLength();
 			// for (CommonToken token : commonTokens) {
 			// if (token.getStopIndex() > begin) {
 			// currentTokenNumber = commonTokens.indexOf(token);
@@ -234,12 +240,14 @@ public class HaxeParseController implements IParseController {
 		 */
 		@Override
 		public boolean hasNext() {
-			if (currentTokenNumber + 1 >= commonTokens.size()) {
+			if (this.currentTokenNumber + 1 >= this.commonTokens.size()) {
 				return false;
-			} else if (commonTokens.get(currentTokenNumber + 1).getStartIndex() < end) {
+			} else if (this.commonTokens.get(this.currentTokenNumber + 1)
+					.getStartIndex() < this.end) {
 				return true;
-			} else
+			} else {
 				return false;
+			}
 		}
 
 		/*
@@ -249,8 +257,8 @@ public class HaxeParseController implements IParseController {
 		 */
 		@Override
 		public Object next() {
-			currentTokenNumber++;
-			return commonTokens.get(currentTokenNumber);
+			this.currentTokenNumber++;
+			return this.commonTokens.get(this.currentTokenNumber);
 		}
 
 		/*
@@ -260,7 +268,7 @@ public class HaxeParseController implements IParseController {
 		 */
 		@Override
 		public void remove() {
-			commonTokens.remove(currentTokenNumber);
+			this.commonTokens.remove(this.currentTokenNumber);
 		}
 
 	}
@@ -274,8 +282,8 @@ public class HaxeParseController implements IParseController {
 	 * org.eclipse.imp.parser.IMessageHandler)
 	 */
 	@Override
-	public void initialize(IPath filePath, ISourceProject project,
-			IMessageHandler handler) {
+	public void initialize(final IPath filePath, final ISourceProject project,
+			final IMessageHandler handler) {
 		this.fProject = project;
 		this.fFilePath = filePath;
 		this.handler = handler;
@@ -289,23 +297,23 @@ public class HaxeParseController implements IParseController {
 	 * @param contents
 	 *            the contents
 	 */
-	private void doParse(String contents) {
+	private void doParse(final String contents) {
 		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(new ANTLRStringStream(
 				contents));
-		tokenStream = new CommonTokenStream(lexer);
-		tokenStream.getTokens();
+		this.tokenStream = new CommonTokenStream(lexer);
+		this.tokenStream.getTokens();
 		System.out.print("Parsing file...");
-		TinyHaxeTry1Parser parser = new TinyHaxeTry1Parser(tokenStream);
+		TinyHaxeTry1Parser parser = new TinyHaxeTry1Parser(this.tokenStream);
 		parser.setTreeAdaptor(new ExtendedTreeAdaptor());
-		currentAST = new ExtendedCommonTree();
+		this.currentAST = new ExtendedCommonTree();
 
 		try {
 			TinyHaxeTry1Parser.module_return parserResult = parser.module();
-			currentAST = (ExtendedCommonTree) parserResult.getTree();
+			this.currentAST = (ExtendedCommonTree) parserResult.getTree();
 			System.out.println("success!");
-			ExtendedCommonTree.setMessageHandler(handler);
-			handler.clearMessages();
-			currentAST.calculateScopes();
+			ExtendedCommonTree.setMessageHandler(this.handler);
+			this.handler.clearMessages();
+			this.currentAST.calculateScopes();
 
 		} catch (RecognitionException e) {
 			e.printStackTrace();
@@ -334,11 +342,11 @@ public class HaxeParseController implements IParseController {
 	 * org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public Object parse(String input, IProgressMonitor monitor) {
-		currentAST = null;
-		doParse(input);
-		currentAST.printTree();
-		return currentAST;
+	public Object parse(final String input, final IProgressMonitor monitor) {
+		this.currentAST = null;
+		this.doParse(input);
+		this.currentAST.printTree();
+		return this.currentAST;
 	}
 
 }

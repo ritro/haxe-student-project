@@ -55,5 +55,39 @@
             language="haxe">
       </referenceResolver>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.contentProposer">
+      <proposer
+            class="haxe.imp.contentProposer.HaxeContentProposer"
+            language="haxe">
+      </proposer>
+   </extension>
+   <extension
+         id="haXe-IDE.hoverHelper"
+         name="haxe Hover Helper"
+         point="org.eclipse.imp.runtime.hoverHelper">
+      <hoverHelper
+            class="haxe.imp.hoverHelper.HaxeHoverHelper"
+            language="haxe">
+      </hoverHelper>
+   </extension>
+   <extension
+         id="haXe-IDE.referenceResolver"
+         name="haxe Reference Resolver"
+         point="org.eclipse.imp.runtime.referenceResolvers">
+      <docProvider
+            class="haxe.imp.hoverHelper.HelperReferenceResolver"
+            language="haxe">
+      </docProvider>
+   </extension>
+   <extension
+         id="haXe-IDE.documentationProvider"
+         name="haxe Documentation Provider"
+         point="org.eclipse.imp.runtime.documentationProvider">
+      <docProvider
+            class="haxe.imp.documentationProvider.HelperDocumentationProvider"
+            language="haxe">
+      </docProvider>
+   </extension>
 
 </plugin>

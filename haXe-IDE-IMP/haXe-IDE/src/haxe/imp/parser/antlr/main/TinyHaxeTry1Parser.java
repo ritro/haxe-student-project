@@ -222,11 +222,12 @@ public class TinyHaxeTry1Parser extends Parser {
 	// delegates
 	// delegators
 
-	public TinyHaxeTry1Parser(TokenStream input) {
+	public TinyHaxeTry1Parser(final TokenStream input) {
 		this(input, new RecognizerSharedState());
 	}
 
-	public TinyHaxeTry1Parser(TokenStream input, RecognizerSharedState state) {
+	public TinyHaxeTry1Parser(final TokenStream input,
+			final RecognizerSharedState state) {
 		super(input, state);
 		this.state.ruleMemo = new HashMap[234 + 1];
 
@@ -234,12 +235,12 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
-	public void setTreeAdaptor(TreeAdaptor adaptor) {
+	public void setTreeAdaptor(final TreeAdaptor adaptor) {
 		this.adaptor = adaptor;
 	}
 
 	public TreeAdaptor getTreeAdaptor() {
-		return adaptor;
+		return this.adaptor;
 	}
 
 	@Override
@@ -257,7 +258,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -268,8 +269,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.module_return module()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.module_return retval = new TinyHaxeTry1Parser.module_return();
-		retval.start = input.LT(1);
-		int module_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int module_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.myPackage_return myPackage1 = null;
@@ -277,11 +278,12 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.topLevelList_return topLevelList2 = null;
 
 		RewriteRuleSubtreeStream stream_myPackage = new RewriteRuleSubtreeStream(
-				adaptor, "rule myPackage");
+				this.adaptor, "rule myPackage");
 		RewriteRuleSubtreeStream stream_topLevelList = new RewriteRuleSubtreeStream(
-				adaptor, "rule topLevelList");
+				this.adaptor, "rule topLevelList");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 1)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 1)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:46:19:
@@ -293,7 +295,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:46:21:
 				// ( myPackage )?
 				int alt1 = 2;
-				int LA1_0 = input.LA(1);
+				int LA1_0 = this.input.LA(1);
 
 				if ((LA1_0 == PACKAGE)) {
 					alt1 = 1;
@@ -303,28 +305,32 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// myPackage
 				{
-					pushFollow(FOLLOW_myPackage_in_module119);
-					myPackage1 = myPackage();
+					this.pushFollow(FOLLOW_myPackage_in_module119);
+					myPackage1 = this.myPackage();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_myPackage.add(myPackage1.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				pushFollow(FOLLOW_topLevelList_in_module122);
-				topLevelList2 = topLevelList();
+				this.pushFollow(FOLLOW_topLevelList_in_module122);
+				topLevelList2 = this.topLevelList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_topLevelList.add(topLevelList2.getTree());
+				}
 
 				// AST REWRITE
 				// elements: topLevelList, myPackage
@@ -333,13 +339,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 46:45: -> ^( MODULE[\"MODULE\",true] ( myPackage )? (
 					// topLevelList )? )
 					{
@@ -347,15 +353,15 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( MODULE[\"MODULE\",true] ( myPackage )? (
 						// topLevelList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(MODULE, "MODULE",
 											true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:46:91:
 							// ( myPackage )?
 							if (stream_myPackage.hasNext()) {
-								adaptor.addChild(root_1, stream_myPackage
+								this.adaptor.addChild(root_1, stream_myPackage
 										.nextTree());
 
 							}
@@ -363,13 +369,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:46:102:
 							// ( topLevelList )?
 							if (stream_topLevelList.hasNext()) {
-								adaptor.addChild(root_1, stream_topLevelList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_topLevelList.nextTree());
 
 							}
 							stream_topLevelList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -378,23 +384,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 1, module_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 1, module_StartIndex);
 			}
 		}
 		return retval;
@@ -407,7 +413,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -417,14 +423,15 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.topLevelList_return topLevelList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.topLevelList_return retval = new TinyHaxeTry1Parser.topLevelList_return();
-		retval.start = input.LT(1);
-		int topLevelList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int topLevelList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.topLevel_return topLevel3 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 2)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 2)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:49:19:
@@ -432,13 +439,13 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:49:22:
 			// ( topLevel )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:49:22:
 				// ( topLevel )*
 				loop2: do {
 					int alt2 = 2;
-					int LA2_0 = input.LA(1);
+					int LA2_0 = this.input.LA(1);
 
 					if ((LA2_0 == IMPORT || LA2_0 == ENUM
 							|| (LA2_0 >= EXTERN && LA2_0 <= INTERFACE) || LA2_0 == TYPEDEF)) {
@@ -450,14 +457,16 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:49:23:
 						// topLevel
 					{
-						pushFollow(FOLLOW_topLevel_in_topLevelList157);
-						topLevel3 = topLevel();
+						this.pushFollow(FOLLOW_topLevel_in_topLevelList157);
+						topLevel3 = this.topLevel();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, topLevel3.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, topLevel3.getTree());
+						}
 
 					}
 						break;
@@ -469,23 +478,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 2, topLevelList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 2, topLevelList_StartIndex);
 			}
 		}
 		return retval;
@@ -498,7 +507,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -508,8 +517,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.topLevel_return topLevel()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.topLevel_return retval = new TinyHaxeTry1Parser.topLevel_return();
-		retval.start = input.LT(1);
-		int topLevel_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int topLevel_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.myImport_return myImport4 = null;
@@ -517,13 +526,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.topLevelDecl_return topLevelDecl5 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 3)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 3)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:51:19:
 			// ( myImport | topLevelDecl )
 			int alt3 = 2;
-			int LA3_0 = input.LA(1);
+			int LA3_0 = this.input.LA(1);
 
 			if ((LA3_0 == IMPORT)) {
 				alt3 = 1;
@@ -531,12 +541,12 @@ public class TinyHaxeTry1Parser extends Parser {
 					|| (LA3_0 >= EXTERN && LA3_0 <= INTERFACE) || LA3_0 == TYPEDEF)) {
 				alt3 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 3, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -545,16 +555,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:51:21:
 				// myImport
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_myImport_in_topLevel176);
-				myImport4 = myImport();
+				this.pushFollow(FOLLOW_myImport_in_topLevel176);
+				myImport4 = this.myImport();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, myImport4.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, myImport4.getTree());
+				}
 
 			}
 				break;
@@ -562,38 +574,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:53:25:
 				// topLevelDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_topLevelDecl_in_topLevel203);
-				topLevelDecl5 = topLevelDecl();
+				this.pushFollow(FOLLOW_topLevelDecl_in_topLevel203);
+				topLevelDecl5 = this.topLevelDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, topLevelDecl5.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, topLevelDecl5.getTree());
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 3, topLevel_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 3, topLevel_StartIndex);
 			}
 		}
 		return retval;
@@ -606,7 +620,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -616,8 +630,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.myPackage_return myPackage()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.myPackage_return retval = new TinyHaxeTry1Parser.myPackage_return();
-		retval.start = input.LT(1);
-		int myPackage_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int myPackage_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token PACKAGE6 = null;
@@ -627,13 +641,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object PACKAGE6_tree = null;
 		Object SEMI8_tree = null;
 		RewriteRuleTokenStream stream_PACKAGE = new RewriteRuleTokenStream(
-				adaptor, "token PACKAGE");
+				this.adaptor, "token PACKAGE");
 		RewriteRuleTokenStream stream_SEMI = new RewriteRuleTokenStream(
-				adaptor, "token SEMI");
+				this.adaptor, "token SEMI");
 		RewriteRuleSubtreeStream stream_dotIdent = new RewriteRuleSubtreeStream(
-				adaptor, "rule dotIdent");
+				this.adaptor, "rule dotIdent");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 4)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 4)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:55:21:
@@ -641,26 +656,33 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:55:23:
 			// PACKAGE dotIdent SEMI
 			{
-				PACKAGE6 = (Token) match(input, PACKAGE,
+				PACKAGE6 = (Token) this.match(this.input, PACKAGE,
 						FOLLOW_PACKAGE_in_myPackage222);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_PACKAGE.add(PACKAGE6);
+				}
 
-				pushFollow(FOLLOW_dotIdent_in_myPackage224);
-				dotIdent7 = dotIdent();
+				this.pushFollow(FOLLOW_dotIdent_in_myPackage224);
+				dotIdent7 = this.dotIdent();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_dotIdent.add(dotIdent7.getTree());
-				SEMI8 = (Token) match(input, SEMI, FOLLOW_SEMI_in_myPackage226);
-				if (state.failed)
+				}
+				SEMI8 = (Token) this.match(this.input, SEMI,
+						FOLLOW_SEMI_in_myPackage226);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI8);
+				}
 
 				// AST REWRITE
 				// elements: dotIdent, PACKAGE
@@ -669,32 +691,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 55:45: -> ^( PACKAGE ( dotIdent )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:55:48:
 						// ^( PACKAGE ( dotIdent )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_PACKAGE
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_PACKAGE.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:55:58:
 							// ( dotIdent )?
 							if (stream_dotIdent.hasNext()) {
-								adaptor.addChild(root_1, stream_dotIdent
+								this.adaptor.addChild(root_1, stream_dotIdent
 										.nextTree());
 
 							}
 							stream_dotIdent.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -703,23 +725,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 4, myPackage_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 4, myPackage_StartIndex);
 			}
 		}
 		return retval;
@@ -733,7 +755,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -744,8 +766,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.qualifiedIdentifier_return qualifiedIdentifier()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.qualifiedIdentifier_return retval = new TinyHaxeTry1Parser.qualifiedIdentifier_return();
-		retval.start = input.LT(1);
-		int qualifiedIdentifier_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int qualifiedIdentifier_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token a = null;
@@ -755,13 +777,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object a_tree = null;
 		Object ident_tree = null;
 		Object DOT9_tree = null;
-		RewriteRuleTokenStream stream_DOT = new RewriteRuleTokenStream(adaptor,
-				"token DOT");
+		RewriteRuleTokenStream stream_DOT = new RewriteRuleTokenStream(
+				this.adaptor, "token DOT");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 5)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 5)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:59:5:
@@ -776,12 +799,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:59:12:
 				// a= IDENTIFIER
 				{
-					a = (Token) match(input, IDENTIFIER,
+					a = (Token) this.match(this.input, IDENTIFIER,
 							FOLLOW_IDENTIFIER_in_qualifiedIdentifier258);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_IDENTIFIER.add(a);
+					}
 
 					// AST REWRITE
 					// elements: a
@@ -790,18 +815,18 @@ public class TinyHaxeTry1Parser extends Parser {
 					// token list labels:
 					// rule list labels:
 					// wildcard labels:
-					if (state.backtracking == 0) {
+					if (this.state.backtracking == 0) {
 						retval.tree = root_0;
 						RewriteRuleTokenStream stream_a = new RewriteRuleTokenStream(
-								adaptor, "token a", a);
+								this.adaptor, "token a", a);
 						RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-								adaptor, "rule retval",
+								this.adaptor, "rule retval",
 								retval != null ? retval.tree : null);
 
-						root_0 = (Object) adaptor.nil();
+						root_0 = (Object) this.adaptor.nil();
 						// 59:27: -> $a
 						{
-							adaptor.addChild(root_0, stream_a.nextNode());
+							this.adaptor.addChild(root_0, stream_a.nextNode());
 
 						}
 
@@ -814,7 +839,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// $ident) )*
 				loop4: do {
 					int alt4 = 2;
-					int LA4_0 = input.LA(1);
+					int LA4_0 = this.input.LA(1);
 
 					if ((LA4_0 == DOT)) {
 						alt4 = 1;
@@ -825,19 +850,23 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:59:41:
 						// DOT ident= IDENTIFIER
 					{
-						DOT9 = (Token) match(input, DOT,
+						DOT9 = (Token) this.match(this.input, DOT,
 								FOLLOW_DOT_in_qualifiedIdentifier274);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_DOT.add(DOT9);
+						}
 
-						ident = (Token) match(input, IDENTIFIER,
+						ident = (Token) this.match(this.input, IDENTIFIER,
 								FOLLOW_IDENTIFIER_in_qualifiedIdentifier278);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_IDENTIFIER.add(ident);
+						}
 
 						// AST REWRITE
 						// elements: DOT, ident, qualifiedIdentifier
@@ -846,30 +875,30 @@ public class TinyHaxeTry1Parser extends Parser {
 						// token list labels:
 						// rule list labels:
 						// wildcard labels:
-						if (state.backtracking == 0) {
+						if (this.state.backtracking == 0) {
 							retval.tree = root_0;
 							RewriteRuleTokenStream stream_ident = new RewriteRuleTokenStream(
-									adaptor, "token ident", ident);
+									this.adaptor, "token ident", ident);
 							RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-									adaptor, "rule retval",
+									this.adaptor, "rule retval",
 									retval != null ? retval.tree : null);
 
-							root_0 = (Object) adaptor.nil();
+							root_0 = (Object) this.adaptor.nil();
 							// 59:63: -> ^( DOT $qualifiedIdentifier $ident)
 							{
 								// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:59:67:
 								// ^( DOT $qualifiedIdentifier $ident)
 								{
-									Object root_1 = (Object) adaptor.nil();
-									root_1 = (Object) adaptor.becomeRoot(
+									Object root_1 = (Object) this.adaptor.nil();
+									root_1 = (Object) this.adaptor.becomeRoot(
 											stream_DOT.nextNode(), root_1);
 
-									adaptor.addChild(root_1, stream_retval
+									this.adaptor.addChild(root_1, stream_retval
 											.nextTree());
-									adaptor.addChild(root_1, stream_ident
+									this.adaptor.addChild(root_1, stream_ident
 											.nextNode());
 
-									adaptor.addChild(root_0, root_1);
+									this.adaptor.addChild(root_0, root_1);
 								}
 
 							}
@@ -886,23 +915,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 5, qualifiedIdentifier_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 5, qualifiedIdentifier_StartIndex);
 			}
 		}
 		return retval;
@@ -915,7 +944,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -925,8 +954,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.myImport_return myImport()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.myImport_return retval = new TinyHaxeTry1Parser.myImport_return();
-		retval.start = input.LT(1);
-		int myImport_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int myImport_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IMPORT10 = null;
@@ -937,7 +966,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object SEMI12_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 6)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 6)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:62:21:
@@ -945,47 +975,53 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:62:23:
 			// IMPORT dotIdent SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				IMPORT10 = (Token) match(input, IMPORT,
+				IMPORT10 = (Token) this.match(this.input, IMPORT,
 						FOLLOW_IMPORT_in_myImport320);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					IMPORT10_tree = (Object) adaptor.create(IMPORT10);
-					root_0 = (Object) adaptor.becomeRoot(IMPORT10_tree, root_0);
 				}
-				pushFollow(FOLLOW_dotIdent_in_myImport323);
-				dotIdent11 = dotIdent();
+				if (this.state.backtracking == 0) {
+					IMPORT10_tree = (Object) this.adaptor.create(IMPORT10);
+					root_0 = (Object) this.adaptor.becomeRoot(IMPORT10_tree,
+							root_0);
+				}
+				this.pushFollow(FOLLOW_dotIdent_in_myImport323);
+				dotIdent11 = this.dotIdent();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, dotIdent11.getTree());
-				SEMI12 = (Token) match(input, SEMI, FOLLOW_SEMI_in_myImport325);
-				if (state.failed)
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, dotIdent11.getTree());
+				}
+				SEMI12 = (Token) this.match(this.input, SEMI,
+						FOLLOW_SEMI_in_myImport325);
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 6, myImport_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 6, myImport_StartIndex);
 			}
 		}
 		return retval;
@@ -998,7 +1034,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1008,8 +1044,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.access_return access()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.access_return retval = new TinyHaxeTry1Parser.access_return();
-		retval.start = input.LT(1);
-		int access_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int access_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token set13 = null;
@@ -1017,53 +1053,54 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object set13_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 7)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 7)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:66:19:
 			// ( PUBLIC | PRIVATE )
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				set13 = (Token) input.LT(1);
-				if ((input.LA(1) >= PUBLIC && input.LA(1) <= PRIVATE)) {
-					input.consume();
-					if (state.backtracking == 0)
-						adaptor
-								.addChild(root_0, (Object) adaptor
-										.create(set13));
-					state.errorRecovery = false;
-					state.failed = false;
+				set13 = (Token) this.input.LT(1);
+				if ((this.input.LA(1) >= PUBLIC && this.input.LA(1) <= PRIVATE)) {
+					this.input.consume();
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, (Object) this.adaptor
+								.create(set13));
+					}
+					this.state.errorRecovery = false;
+					this.state.failed = false;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					MismatchedSetException mse = new MismatchedSetException(
-							null, input);
+							null, this.input);
 					throw mse;
 				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 7, access_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 7, access_StartIndex);
 			}
 		}
 		return retval;
@@ -1076,7 +1113,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1086,8 +1123,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.declAttr_return declAttr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.declAttr_return retval = new TinyHaxeTry1Parser.declAttr_return();
-		retval.start = input.LT(1);
-		int declAttr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int declAttr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token STATIC14 = null;
@@ -1102,13 +1139,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object OVERRIDE17_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 8)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 8)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:69:19:
 			// ( STATIC | INLINE | DYNAMIC | OVERRIDE | access )
 			int alt5 = 5;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case STATIC: {
 				alt5 = 1;
 			}
@@ -1131,12 +1169,12 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 5, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -1146,15 +1184,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:69:21:
 				// STATIC
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				STATIC14 = (Token) match(input, STATIC,
+				STATIC14 = (Token) this.match(this.input, STATIC,
 						FOLLOW_STATIC_in_declAttr412);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					STATIC14_tree = (Object) adaptor.create(STATIC14);
-					adaptor.addChild(root_0, STATIC14_tree);
+				}
+				if (this.state.backtracking == 0) {
+					STATIC14_tree = (Object) this.adaptor.create(STATIC14);
+					this.adaptor.addChild(root_0, STATIC14_tree);
 				}
 
 			}
@@ -1163,15 +1202,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:70:24:
 				// INLINE
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				INLINE15 = (Token) match(input, INLINE,
+				INLINE15 = (Token) this.match(this.input, INLINE,
 						FOLLOW_INLINE_in_declAttr437);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					INLINE15_tree = (Object) adaptor.create(INLINE15);
-					adaptor.addChild(root_0, INLINE15_tree);
+				}
+				if (this.state.backtracking == 0) {
+					INLINE15_tree = (Object) this.adaptor.create(INLINE15);
+					this.adaptor.addChild(root_0, INLINE15_tree);
 				}
 
 			}
@@ -1180,15 +1220,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:71:25:
 				// DYNAMIC
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				DYNAMIC16 = (Token) match(input, DYNAMIC,
+				DYNAMIC16 = (Token) this.match(this.input, DYNAMIC,
 						FOLLOW_DYNAMIC_in_declAttr463);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					DYNAMIC16_tree = (Object) adaptor.create(DYNAMIC16);
-					adaptor.addChild(root_0, DYNAMIC16_tree);
+				}
+				if (this.state.backtracking == 0) {
+					DYNAMIC16_tree = (Object) this.adaptor.create(DYNAMIC16);
+					this.adaptor.addChild(root_0, DYNAMIC16_tree);
 				}
 
 			}
@@ -1197,15 +1238,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:72:25:
 				// OVERRIDE
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				OVERRIDE17 = (Token) match(input, OVERRIDE,
+				OVERRIDE17 = (Token) this.match(this.input, OVERRIDE,
 						FOLLOW_OVERRIDE_in_declAttr489);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					OVERRIDE17_tree = (Object) adaptor.create(OVERRIDE17);
-					adaptor.addChild(root_0, OVERRIDE17_tree);
+				}
+				if (this.state.backtracking == 0) {
+					OVERRIDE17_tree = (Object) this.adaptor.create(OVERRIDE17);
+					this.adaptor.addChild(root_0, OVERRIDE17_tree);
 				}
 
 			}
@@ -1214,38 +1256,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:73:25:
 				// access
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_access_in_declAttr515);
-				access18 = access();
+				this.pushFollow(FOLLOW_access_in_declAttr515);
+				access18 = this.access();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, access18.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, access18.getTree());
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 8, declAttr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 8, declAttr_StartIndex);
 			}
 		}
 		return retval;
@@ -1258,7 +1302,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1269,16 +1313,17 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.declAttrList_return declAttrList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.declAttrList_return retval = new TinyHaxeTry1Parser.declAttrList_return();
-		retval.start = input.LT(1);
-		int declAttrList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int declAttrList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.declAttr_return declAttr19 = null;
 
 		RewriteRuleSubtreeStream stream_declAttr = new RewriteRuleSubtreeStream(
-				adaptor, "rule declAttr");
+				this.adaptor, "rule declAttr");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 9)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 9)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:75:19:
@@ -1292,7 +1337,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int cnt6 = 0;
 				loop6: do {
 					int alt6 = 2;
-					int LA6_0 = input.LA(1);
+					int LA6_0 = this.input.LA(1);
 
 					if (((LA6_0 >= PUBLIC && LA6_0 <= OVERRIDE))) {
 						alt6 = 1;
@@ -1303,27 +1348,30 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:75:22:
 						// declAttr
 					{
-						pushFollow(FOLLOW_declAttr_in_declAttrList530);
-						declAttr19 = declAttr();
+						this.pushFollow(FOLLOW_declAttr_in_declAttrList530);
+						declAttr19 = this.declAttr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_declAttr.add(declAttr19.getTree());
+						}
 
 					}
 						break;
 
 					default:
-						if (cnt6 >= 1)
+						if (cnt6 >= 1) {
 							break loop6;
-						if (state.backtracking > 0) {
-							state.failed = true;
+						}
+						if (this.state.backtracking > 0) {
+							this.state.failed = true;
 							return retval;
 						}
 						EarlyExitException eee = new EarlyExitException(6,
-								input);
+								this.input);
 						throw eee;
 					}
 					cnt6++;
@@ -1336,13 +1384,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 75:33: -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\",true] (
 					// declAttr )+ )
 					{
@@ -1350,8 +1398,8 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\",true] ( declAttr
 						// )+ )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(DECL_ATTR_LIST,
 											"DECL_ATTR_LIST", true), root_1);
 
@@ -1359,13 +1407,14 @@ public class TinyHaxeTry1Parser extends Parser {
 								throw new RewriteEarlyExitException();
 							}
 							while (stream_declAttr.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttr
+								this.adaptor.addChild(root_1, stream_declAttr
 										.nextTree());
 
 							}
 							stream_declAttr.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, this
+									.setLeftRightPositions(root_1));
 						}
 
 					}
@@ -1374,26 +1423,50 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 9, declAttrList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 9, declAttrList_StartIndex);
 			}
 		}
 		return retval;
+	}
+
+	/**
+	 * @param root_1
+	 * @return
+	 */
+	private ExtendedCommonTree setLeftRightPositions(final Object root_1) {
+		int leftMostPosition = -1;
+		int rightMostPosition = -1;
+		ExtendedCommonTree declAttrList = (ExtendedCommonTree) root_1;
+		try {
+			if (declAttrList.getChildCount() > 0) {
+				leftMostPosition = declAttrList.getChild(0)
+						.getMostLeftPosition();
+				rightMostPosition = declAttrList.getChild(
+						declAttrList.getChildCount() - 1)
+						.getMostRightPosition();
+			}
+		} catch (Exception exception) {
+
+		}
+		declAttrList.setMostLeftPosition(leftMostPosition);
+		declAttrList.setMostRightPosition(rightMostPosition);
+		return declAttrList;
 	}
 
 	// $ANTLR end "declAttrList"
@@ -1403,7 +1476,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1414,8 +1487,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.paramList_return paramList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.paramList_return retval = new TinyHaxeTry1Parser.paramList_return();
-		retval.start = input.LT(1);
-		int paramList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int paramList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA21 = null;
@@ -1425,30 +1498,31 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		Object COMMA21_tree = null;
 		RewriteRuleTokenStream stream_COMMA = new RewriteRuleTokenStream(
-				adaptor, "token COMMA");
+				this.adaptor, "token COMMA");
 		RewriteRuleSubtreeStream stream_param = new RewriteRuleSubtreeStream(
-				adaptor, "rule param");
+				this.adaptor, "rule param");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 10)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 10)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:78:19:
 			// ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\",true] (
 			// param )+ ) | )
 			int alt8 = 2;
-			int LA8_0 = input.LA(1);
+			int LA8_0 = this.input.LA(1);
 
 			if ((LA8_0 == IDENTIFIER || LA8_0 == QUES)) {
 				alt8 = 1;
 			} else if ((LA8_0 == RPAREN)) {
 				alt8 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 8, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -1457,19 +1531,21 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:78:21:
 				// param ( COMMA param )*
 			{
-				pushFollow(FOLLOW_param_in_paramList571);
-				param20 = param();
+				this.pushFollow(FOLLOW_param_in_paramList571);
+				param20 = this.param();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_param.add(param20.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:78:27:
 				// ( COMMA param )*
 				loop7: do {
 					int alt7 = 2;
-					int LA7_0 = input.LA(1);
+					int LA7_0 = this.input.LA(1);
 
 					if ((LA7_0 == COMMA)) {
 						alt7 = 1;
@@ -1480,21 +1556,25 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:78:28:
 						// COMMA param
 					{
-						COMMA21 = (Token) match(input, COMMA,
+						COMMA21 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_paramList574);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_COMMA.add(COMMA21);
+						}
 
-						pushFollow(FOLLOW_param_in_paramList576);
-						param22 = param();
+						this.pushFollow(FOLLOW_param_in_paramList576);
+						param22 = this.param();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_param.add(param22.getTree());
+						}
 
 					}
 						break;
@@ -1511,20 +1591,20 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 78:42: -> ^( PARAM_LIST[\"PARAM_LIST\",true] ( param )+ )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:78:45:
 						// ^( PARAM_LIST[\"PARAM_LIST\",true] ( param )+ )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(PARAM_LIST,
 											"PARAM_LIST", true), root_1);
 
@@ -1532,13 +1612,14 @@ public class TinyHaxeTry1Parser extends Parser {
 								throw new RewriteEarlyExitException();
 							}
 							while (stream_param.hasNext()) {
-								adaptor.addChild(root_1, stream_param
+								this.adaptor.addChild(root_1, stream_param
 										.nextTree());
 
 							}
 							stream_param.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, this
+									.setLeftRightPositions(root_1));
 						}
 
 					}
@@ -1550,29 +1631,29 @@ public class TinyHaxeTry1Parser extends Parser {
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:80:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 10, paramList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 10, paramList_StartIndex);
 			}
 		}
 		return retval;
@@ -1585,7 +1666,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1597,8 +1678,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.param_return param()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.param_return retval = new TinyHaxeTry1Parser.param_return();
-		retval.start = input.LT(1);
-		int param_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int param_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token QUES23 = null;
@@ -1610,15 +1691,16 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object QUES23_tree = null;
 		Object IDENTIFIER24_tree = null;
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_QUES = new RewriteRuleTokenStream(
-				adaptor, "token QUES");
+				this.adaptor, "token QUES");
 		RewriteRuleSubtreeStream stream_typeTagOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeTagOpt");
+				this.adaptor, "rule typeTagOpt");
 		RewriteRuleSubtreeStream stream_varInit = new RewriteRuleSubtreeStream(
-				adaptor, "rule varInit");
+				this.adaptor, "rule varInit");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 11)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 11)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:19:
@@ -1631,7 +1713,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:20:
 				// ( QUES )?
 				int alt9 = 2;
-				int LA9_0 = input.LA(1);
+				int LA9_0 = this.input.LA(1);
 
 				if ((LA9_0 == QUES)) {
 					alt9 = 1;
@@ -1641,40 +1723,49 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// QUES
 				{
-					QUES23 = (Token) match(input, QUES, FOLLOW_QUES_in_param615);
-					if (state.failed)
+					QUES23 = (Token) this.match(this.input, QUES,
+							FOLLOW_QUES_in_param615);
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_QUES.add(QUES23);
+					}
 
 				}
 					break;
 
 				}
 
-				IDENTIFIER24 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER24 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_param618);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER24);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_param620);
-				typeTagOpt25 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_param620);
+				typeTagOpt25 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt25.getTree());
-				pushFollow(FOLLOW_varInit_in_param622);
-				varInit26 = varInit();
+				}
+				this.pushFollow(FOLLOW_varInit_in_param622);
+				varInit26 = this.varInit();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_varInit.add(varInit26.getTree());
+				}
 
 				// AST REWRITE
 				// elements: QUES, typeTagOpt, varInit, IDENTIFIER
@@ -1683,13 +1774,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 81:56: -> ^( VAR[$IDENTIFIER,true] ( IDENTIFIER )? (
 					// typeTagOpt )? ( varInit )? ( QUES )? )
 					{
@@ -1697,15 +1788,15 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( VAR[$IDENTIFIER,true] ( IDENTIFIER )? ( typeTagOpt
 						// )? ( varInit )? ( QUES )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor
 									.becomeRoot(new VarDeclaration(VAR,
 											IDENTIFIER24, true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:99:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, new VarUsage(
+								this.adaptor.addChild(root_1, new VarUsage(
 										stream_IDENTIFIER.nextToken()));
 
 							}
@@ -1713,7 +1804,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:121:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -1721,7 +1812,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:133:
 							// ( varInit )?
 							if (stream_varInit.hasNext()) {
-								adaptor.addChild(root_1, stream_varInit
+								this.adaptor.addChild(root_1, stream_varInit
 										.nextTree());
 
 							}
@@ -1729,14 +1820,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:81:142:
 							// ( QUES )?
 							if (stream_QUES.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_QUES
-												.nextNode());
+								this.adaptor.addChild(root_1, stream_QUES
+										.nextNode());
 
 							}
 							stream_QUES.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -1745,23 +1835,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 11, param_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 11, param_StartIndex);
 			}
 		}
 		return retval;
@@ -1774,7 +1864,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1783,8 +1873,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	// id : IDENTIFIER ;
 	public final TinyHaxeTry1Parser.id_return id() throws RecognitionException {
 		TinyHaxeTry1Parser.id_return retval = new TinyHaxeTry1Parser.id_return();
-		retval.start = input.LT(1);
-		int id_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int id_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IDENTIFIER27 = null;
@@ -1792,7 +1882,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object IDENTIFIER27_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 12)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 12)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:84:4:
@@ -1800,36 +1891,37 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:84:6:
 			// IDENTIFIER
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				IDENTIFIER27 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER27 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_id658);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
+				}
+				if (this.state.backtracking == 0) {
 					IDENTIFIER27_tree = new VarUsage(IDENTIFIER27);
-					adaptor.addChild(root_0, IDENTIFIER27_tree);
+					this.adaptor.addChild(root_0, IDENTIFIER27_tree);
 				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 12, id_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 12, id_StartIndex);
 			}
 		}
 		return retval;
@@ -1842,7 +1934,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -1852,8 +1944,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.dotIdent_return dotIdent()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.dotIdent_return retval = new TinyHaxeTry1Parser.dotIdent_return();
-		retval.start = input.LT(1);
-		int dotIdent_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int dotIdent_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token DOT29 = null;
@@ -1862,12 +1954,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.id_return id28 = null;
 
 		Object DOT29_tree = null;
-		RewriteRuleTokenStream stream_DOT = new RewriteRuleTokenStream(adaptor,
-				"token DOT");
+		RewriteRuleTokenStream stream_DOT = new RewriteRuleTokenStream(
+				this.adaptor, "token DOT");
 		RewriteRuleSubtreeStream stream_id = new RewriteRuleSubtreeStream(
-				adaptor, "rule id");
+				this.adaptor, "rule id");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 13)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 13)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:87:9:
@@ -1880,14 +1973,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:87:12:
 				// id
 				{
-					pushFollow(FOLLOW_id_in_dotIdent672);
-					id28 = id();
+					this.pushFollow(FOLLOW_id_in_dotIdent672);
+					id28 = this.id();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_id.add(id28.getTree());
+					}
 
 					// AST REWRITE
 					// elements: id
@@ -1896,16 +1991,16 @@ public class TinyHaxeTry1Parser extends Parser {
 					// token list labels:
 					// rule list labels:
 					// wildcard labels:
-					if (state.backtracking == 0) {
+					if (this.state.backtracking == 0) {
 						retval.tree = root_0;
 						RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-								adaptor, "rule retval",
+								this.adaptor, "rule retval",
 								retval != null ? retval.tree : null);
 
-						root_0 = (Object) adaptor.nil();
+						root_0 = (Object) this.adaptor.nil();
 						// 87:15: -> id
 						{
-							adaptor.addChild(root_0, stream_id.nextTree());
+							this.adaptor.addChild(root_0, stream_id.nextTree());
 
 						}
 
@@ -1917,7 +2012,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( DOT ident= id -> ^( DOT $dotIdent $ident) )*
 				loop10: do {
 					int alt10 = 2;
-					int LA10_0 = input.LA(1);
+					int LA10_0 = this.input.LA(1);
 
 					if ((LA10_0 == DOT)) {
 						alt10 = 1;
@@ -1928,21 +2023,25 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:87:23:
 						// DOT ident= id
 					{
-						DOT29 = (Token) match(input, DOT,
+						DOT29 = (Token) this.match(this.input, DOT,
 								FOLLOW_DOT_in_dotIdent680);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_DOT.add(DOT29);
+						}
 
-						pushFollow(FOLLOW_id_in_dotIdent684);
-						ident = id();
+						this.pushFollow(FOLLOW_id_in_dotIdent684);
+						ident = this.id();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_id.add(ident.getTree());
+						}
 
 						// AST REWRITE
 						// elements: ident, DOT, dotIdent
@@ -1951,31 +2050,31 @@ public class TinyHaxeTry1Parser extends Parser {
 						// token list labels:
 						// rule list labels:
 						// wildcard labels:
-						if (state.backtracking == 0) {
+						if (this.state.backtracking == 0) {
 							retval.tree = root_0;
 							RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-									adaptor, "rule retval",
+									this.adaptor, "rule retval",
 									retval != null ? retval.tree : null);
 							RewriteRuleSubtreeStream stream_ident = new RewriteRuleSubtreeStream(
-									adaptor, "rule ident",
+									this.adaptor, "rule ident",
 									ident != null ? ident.tree : null);
 
-							root_0 = (Object) adaptor.nil();
+							root_0 = (Object) this.adaptor.nil();
 							// 87:36: -> ^( DOT $dotIdent $ident)
 							{
 								// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:87:38:
 								// ^( DOT $dotIdent $ident)
 								{
-									Object root_1 = (Object) adaptor.nil();
-									root_1 = (Object) adaptor.becomeRoot(
+									Object root_1 = (Object) this.adaptor.nil();
+									root_1 = (Object) this.adaptor.becomeRoot(
 											stream_DOT.nextNode(), root_1);
 
-									adaptor.addChild(root_1, stream_retval
+									this.adaptor.addChild(root_1, stream_retval
 											.nextTree());
-									adaptor.addChild(root_1, stream_ident
+									this.adaptor.addChild(root_1, stream_ident
 											.nextTree());
 
-									adaptor.addChild(root_0, root_1);
+									this.adaptor.addChild(root_0, root_1);
 								}
 
 							}
@@ -1992,23 +2091,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 13, dotIdent_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 13, dotIdent_StartIndex);
 			}
 		}
 		return retval;
@@ -2021,7 +2120,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -2033,8 +2132,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.assignOp_return assignOp()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.assignOp_return retval = new TinyHaxeTry1Parser.assignOp_return();
-		retval.start = input.LT(1);
-		int assignOp_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int assignOp_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token EQ30 = null;
@@ -2051,20 +2150,21 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object PERCENTEQ34_tree = null;
 		Object AMPEQ35_tree = null;
 		RewriteRuleTokenStream stream_SUBEQ = new RewriteRuleTokenStream(
-				adaptor, "token SUBEQ");
+				this.adaptor, "token SUBEQ");
 		RewriteRuleTokenStream stream_SLASHEQ = new RewriteRuleTokenStream(
-				adaptor, "token SLASHEQ");
+				this.adaptor, "token SLASHEQ");
 		RewriteRuleTokenStream stream_PERCENTEQ = new RewriteRuleTokenStream(
-				adaptor, "token PERCENTEQ");
-		RewriteRuleTokenStream stream_EQ = new RewriteRuleTokenStream(adaptor,
-				"token EQ");
+				this.adaptor, "token PERCENTEQ");
+		RewriteRuleTokenStream stream_EQ = new RewriteRuleTokenStream(
+				this.adaptor, "token EQ");
 		RewriteRuleTokenStream stream_AMPEQ = new RewriteRuleTokenStream(
-				adaptor, "token AMPEQ");
+				this.adaptor, "token AMPEQ");
 		RewriteRuleTokenStream stream_PLUSEQ = new RewriteRuleTokenStream(
-				adaptor, "token PLUSEQ");
+				this.adaptor, "token PLUSEQ");
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 14)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 14)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:90:9:
@@ -2072,7 +2172,7 @@ public class TinyHaxeTry1Parser extends Parser {
 			// SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ ->
 			// PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] )
 			int alt11 = 6;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case EQ: {
 				alt11 = 1;
 			}
@@ -2098,12 +2198,12 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 11, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -2113,11 +2213,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:90:11:
 				// EQ
 			{
-				EQ30 = (Token) match(input, EQ, FOLLOW_EQ_in_assignOp707);
-				if (state.failed)
+				EQ30 = (Token) this.match(this.input, EQ,
+						FOLLOW_EQ_in_assignOp707);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_EQ.add(EQ30);
+				}
 
 				// AST REWRITE
 				// elements: EQ
@@ -2126,17 +2229,17 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 90:14: -> EQ[$EQ]
 					{
-						adaptor.addChild(root_0, new AssignOperationNode(EQ,
-								EQ30));
+						this.adaptor.addChild(root_0, new AssignOperationNode(
+								EQ, EQ30));
 
 					}
 
@@ -2148,12 +2251,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:91:11:
 				// PLUSEQ
 			{
-				PLUSEQ31 = (Token) match(input, PLUSEQ,
+				PLUSEQ31 = (Token) this.match(this.input, PLUSEQ,
 						FOLLOW_PLUSEQ_in_assignOp727);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_PLUSEQ.add(PLUSEQ31);
+				}
 
 				// AST REWRITE
 				// elements: PLUSEQ
@@ -2162,16 +2267,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 91:19: -> PLUSEQ[$PLUSEQ]
 					{
-						adaptor.addChild(root_0, new AssignOperationNode(
+						this.adaptor.addChild(root_0, new AssignOperationNode(
 								PLUSEQ, PLUSEQ31));
 
 					}
@@ -2184,12 +2289,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:92:11:
 				// SUBEQ
 			{
-				SUBEQ32 = (Token) match(input, SUBEQ,
+				SUBEQ32 = (Token) this.match(this.input, SUBEQ,
 						FOLLOW_SUBEQ_in_assignOp748);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SUBEQ.add(SUBEQ32);
+				}
 
 				// AST REWRITE
 				// elements: SUBEQ
@@ -2198,17 +2305,17 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 92:17: -> SUBEQ[$SUBEQ]
 					{
-						adaptor.addChild(root_0, new AssignOperationNode(SUBEQ,
-								SUBEQ32));
+						this.adaptor.addChild(root_0, new AssignOperationNode(
+								SUBEQ, SUBEQ32));
 
 					}
 
@@ -2220,12 +2327,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:93:11:
 				// SLASHEQ
 			{
-				SLASHEQ33 = (Token) match(input, SLASHEQ,
+				SLASHEQ33 = (Token) this.match(this.input, SLASHEQ,
 						FOLLOW_SLASHEQ_in_assignOp768);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SLASHEQ.add(SLASHEQ33);
+				}
 
 				// AST REWRITE
 				// elements: SLASHEQ
@@ -2234,16 +2343,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 93:19: -> SLASHEQ[$SLASHEQ]
 					{
-						adaptor.addChild(root_0, new AssignOperationNode(
+						this.adaptor.addChild(root_0, new AssignOperationNode(
 								SLASHEQ, SLASHEQ33));
 
 					}
@@ -2256,12 +2365,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:94:4:
 				// PERCENTEQ
 			{
-				PERCENTEQ34 = (Token) match(input, PERCENTEQ,
+				PERCENTEQ34 = (Token) this.match(this.input, PERCENTEQ,
 						FOLLOW_PERCENTEQ_in_assignOp781);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_PERCENTEQ.add(PERCENTEQ34);
+				}
 
 				// AST REWRITE
 				// elements: PERCENTEQ
@@ -2270,16 +2381,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 95:4: -> PERCENTEQ[$PERCENTEQ]
 					{
-						adaptor.addChild(root_0, new AssignOperationNode(
+						this.adaptor.addChild(root_0, new AssignOperationNode(
 								PERCENTEQ, PERCENTEQ34));
 
 					}
@@ -2292,12 +2403,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:96:4:
 				// AMPEQ
 			{
-				AMPEQ35 = (Token) match(input, AMPEQ,
+				AMPEQ35 = (Token) this.match(this.input, AMPEQ,
 						FOLLOW_AMPEQ_in_assignOp797);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_AMPEQ.add(AMPEQ35);
+				}
 
 				// AST REWRITE
 				// elements: AMPEQ
@@ -2306,17 +2419,17 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 96:10: -> AMPEQ[$AMPEQ]
 					{
-						adaptor.addChild(root_0, new AssignOperationNode(AMPEQ,
-								AMPEQ35));
+						this.adaptor.addChild(root_0, new AssignOperationNode(
+								AMPEQ, AMPEQ35));
 
 					}
 
@@ -2326,23 +2439,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 14, assignOp_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 14, assignOp_StartIndex);
 			}
 		}
 		return retval;
@@ -2355,7 +2468,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -2366,8 +2479,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.funcLit_return funcLit()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.funcLit_return retval = new TinyHaxeTry1Parser.funcLit_return();
-		retval.start = input.LT(1);
-		int funcLit_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int funcLit_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token FUNCTION36 = null;
@@ -2383,19 +2496,20 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LPAREN37_tree = null;
 		Object RPAREN39_tree = null;
 		RewriteRuleTokenStream stream_FUNCTION = new RewriteRuleTokenStream(
-				adaptor, "token FUNCTION");
+				this.adaptor, "token FUNCTION");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_paramList = new RewriteRuleSubtreeStream(
-				adaptor, "rule paramList");
+				this.adaptor, "rule paramList");
 		RewriteRuleSubtreeStream stream_typeTagOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeTagOpt");
+				this.adaptor, "rule typeTagOpt");
 		RewriteRuleSubtreeStream stream_block = new RewriteRuleSubtreeStream(
-				adaptor, "rule block");
+				this.adaptor, "rule block");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 15)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 15)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:19:
@@ -2404,55 +2518,63 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:21:
 			// FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block
 			{
-				FUNCTION36 = (Token) match(input, FUNCTION,
+				FUNCTION36 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcLit827);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION36);
+				}
 
-				LPAREN37 = (Token) match(input, LPAREN,
+				LPAREN37 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcLit829);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN37);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcLit831);
-				paramList38 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcLit831);
+				paramList38 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList38.getTree());
-				RPAREN39 = (Token) match(input, RPAREN,
+				}
+				RPAREN39 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcLit833);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN39);
+				}
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:54:
 				// ( typeTagOpt )?
 				int alt12 = 2;
-				switch (input.LA(1)) {
+				switch (this.input.LA(1)) {
 				case COLON: {
 					alt12 = 1;
 				}
 					break;
 				case LBRACE: {
-					int LA12_2 = input.LA(2);
+					int LA12_2 = this.input.LA(2);
 
-					if ((synpred20_TinyHaxeTry1())) {
+					if ((this.synpred20_TinyHaxeTry1())) {
 						alt12 = 1;
 					}
 				}
 					break;
 				case SEMI: {
-					int LA12_3 = input.LA(2);
+					int LA12_3 = this.input.LA(2);
 
-					if ((synpred20_TinyHaxeTry1())) {
+					if ((this.synpred20_TinyHaxeTry1())) {
 						alt12 = 1;
 					}
 				}
@@ -2464,28 +2586,32 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// typeTagOpt
 				{
-					pushFollow(FOLLOW_typeTagOpt_in_funcLit835);
-					typeTagOpt40 = typeTagOpt();
+					this.pushFollow(FOLLOW_typeTagOpt_in_funcLit835);
+					typeTagOpt40 = this.typeTagOpt();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_typeTagOpt.add(typeTagOpt40.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				pushFollow(FOLLOW_block_in_funcLit838);
-				block41 = block();
+				this.pushFollow(FOLLOW_block_in_funcLit838);
+				block41 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_block.add(block41.getTree());
+				}
 
 				// AST REWRITE
 				// elements: block, typeTagOpt, FUNCTION, paramList
@@ -2494,13 +2620,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 100:72: -> ^( FUNCTION ( paramList )? ( typeTagOpt )? (
 					// block )? )
 					{
@@ -2508,15 +2634,15 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )?
 						// )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new FunctionNode(stream_FUNCTION
 											.nextToken()), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:100:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -2524,7 +2650,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:111:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -2532,38 +2658,36 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:123:
 							// ( block )?
 							if (stream_block.hasNext()) {
-								adaptor.addChild(root_1, stream_block
+								this.adaptor.addChild(root_1, stream_block
 										.nextTree());
 
 							}
 							stream_block.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
-
 					}
-
 					retval.tree = root_0;
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 15, funcLit_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 15, funcLit_StartIndex);
 			}
 		}
 		return retval;
@@ -2576,7 +2700,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -2586,8 +2710,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.arrayLit_return arrayLit()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.arrayLit_return retval = new TinyHaxeTry1Parser.arrayLit_return();
-		retval.start = input.LT(1);
-		int arrayLit_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int arrayLit_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LBRACKET42 = null;
@@ -2598,7 +2722,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RBRACKET44_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 16)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 16)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:102:18:
@@ -2606,44 +2731,48 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:102:20:
 			// LBRACKET exprListOpt RBRACKET
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				LBRACKET42 = (Token) match(input, LBRACKET,
+				LBRACKET42 = (Token) this.match(this.input, LBRACKET,
 						FOLLOW_LBRACKET_in_arrayLit873);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_exprListOpt_in_arrayLit876);
-				exprListOpt43 = exprListOpt();
+				}
+				this.pushFollow(FOLLOW_exprListOpt_in_arrayLit876);
+				exprListOpt43 = this.exprListOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, exprListOpt43.getTree());
-				RBRACKET44 = (Token) match(input, RBRACKET,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, exprListOpt43.getTree());
+				}
+				RBRACKET44 = (Token) this.match(this.input, RBRACKET,
 						FOLLOW_RBRACKET_in_arrayLit878);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 16, arrayLit_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 16, arrayLit_StartIndex);
 			}
 		}
 		return retval;
@@ -2656,7 +2785,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -2666,8 +2795,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeTag_return typeTag()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeTag_return retval = new TinyHaxeTry1Parser.typeTag_return();
-		retval.start = input.LT(1);
-		int typeTag_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeTag_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COLON45 = null;
@@ -2676,7 +2805,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COLON45_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 17)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 17)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:129:9:
@@ -2684,40 +2814,43 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:129:11:
 			// COLON funcType
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				COLON45 = (Token) match(input, COLON,
+				COLON45 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_typeTag897);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_funcType_in_typeTag900);
-				funcType46 = funcType();
+				}
+				this.pushFollow(FOLLOW_funcType_in_typeTag900);
+				funcType46 = this.funcType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcType46.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcType46.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 17, typeTag_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 17, typeTag_StartIndex);
 			}
 		}
 		return retval;
@@ -2730,7 +2863,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -2741,22 +2874,23 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeTagOpt_return typeTagOpt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeTagOpt_return retval = new TinyHaxeTry1Parser.typeTagOpt_return();
-		retval.start = input.LT(1);
-		int typeTagOpt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeTagOpt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.typeTag_return typeTag47 = null;
 
 		RewriteRuleSubtreeStream stream_typeTag = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeTag");
+				this.adaptor, "rule typeTag");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 18)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 18)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:133:2:
 			// ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | )
 			int alt13 = 2;
-			int LA13_0 = input.LA(1);
+			int LA13_0 = this.input.LA(1);
 
 			if ((LA13_0 == COLON)) {
 				alt13 = 1;
@@ -2764,12 +2898,12 @@ public class TinyHaxeTry1Parser extends Parser {
 					|| LA13_0 == EQ || LA13_0 == RPAREN || LA13_0 == LBRACE)) {
 				alt13 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 13, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -2778,14 +2912,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:133:4:
 				// typeTag
 			{
-				pushFollow(FOLLOW_typeTag_in_typeTagOpt912);
-				typeTag47 = typeTag();
+				this.pushFollow(FOLLOW_typeTag_in_typeTagOpt912);
+				typeTag47 = this.typeTag();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTag.add(typeTag47.getTree());
+				}
 
 				// AST REWRITE
 				// elements: typeTag
@@ -2794,33 +2930,34 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 133:12: -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:133:15:
 						// ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(TYPE_TAG,
 											"TYPE_TAG", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:133:63:
 							// ( typeTag )?
 							if (stream_typeTag.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTag
+								this.adaptor.addChild(root_1, stream_typeTag
 										.nextTree());
 
 							}
 							stream_typeTag.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, this
+									.setLeftRightPositions(root_1));
 						}
 
 					}
@@ -2832,29 +2969,29 @@ public class TinyHaxeTry1Parser extends Parser {
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:135:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 18, typeTagOpt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 18, typeTagOpt_StartIndex);
 			}
 		}
 		return retval;
@@ -2867,7 +3004,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -2878,8 +3015,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeList_return typeList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeList_return retval = new TinyHaxeTry1Parser.typeList_return();
-		retval.start = input.LT(1);
-		int typeList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA49 = null;
@@ -2896,39 +3033,42 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA52_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 19)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 19)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:9:
 			// ( funcType ( COMMA funcType )* | typeConstraint ( COMMA
 			// typeConstraint )* )
 			int alt16 = 2;
-			alt16 = dfa16.predict(input);
+			alt16 = this.dfa16.predict(this.input);
 			switch (alt16) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:11:
 				// funcType ( COMMA funcType )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_funcType_in_typeList938);
-				funcType48 = funcType();
+				this.pushFollow(FOLLOW_funcType_in_typeList938);
+				funcType48 = this.funcType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcType48.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcType48.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:20:
 				// ( COMMA funcType )*
 				loop14: do {
 					int alt14 = 2;
-					int LA14_0 = input.LA(1);
+					int LA14_0 = this.input.LA(1);
 
 					if ((LA14_0 == COMMA)) {
-						int LA14_2 = input.LA(2);
+						int LA14_2 = this.input.LA(2);
 
-						if ((synpred22_TinyHaxeTry1())) {
+						if ((this.synpred22_TinyHaxeTry1())) {
 							alt14 = 1;
 						}
 
@@ -2939,18 +3079,21 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:21:
 						// COMMA funcType
 					{
-						COMMA49 = (Token) match(input, COMMA,
+						COMMA49 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_typeList941);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_funcType_in_typeList944);
-						funcType50 = funcType();
+						}
+						this.pushFollow(FOLLOW_funcType_in_typeList944);
+						funcType50 = this.funcType();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, funcType50.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, funcType50.getTree());
+						}
 
 					}
 						break;
@@ -2966,40 +3109,44 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:138:4:
 				// typeConstraint ( COMMA typeConstraint )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_typeConstraint_in_typeList952);
-				typeConstraint51 = typeConstraint();
+				this.pushFollow(FOLLOW_typeConstraint_in_typeList952);
+				typeConstraint51 = this.typeConstraint();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, typeConstraint51.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, typeConstraint51.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:138:19:
 				// ( COMMA typeConstraint )*
 				loop15: do {
 					int alt15 = 2;
-					alt15 = dfa15.predict(input);
+					alt15 = this.dfa15.predict(this.input);
 					switch (alt15) {
 					case 1:
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:138:20:
 						// COMMA typeConstraint
 					{
-						COMMA52 = (Token) match(input, COMMA,
+						COMMA52 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_typeList955);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_typeConstraint_in_typeList958);
-						typeConstraint53 = typeConstraint();
+						}
+						this.pushFollow(FOLLOW_typeConstraint_in_typeList958);
+						typeConstraint53 = this.typeConstraint();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor
-									.addChild(root_0, typeConstraint53
-											.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, typeConstraint53
+									.getTree());
+						}
 
 					}
 						break;
@@ -3013,23 +3160,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 19, typeList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 19, typeList_StartIndex);
 			}
 		}
 		return retval;
@@ -3042,7 +3189,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -3052,8 +3199,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.funcType_return funcType()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.funcType_return retval = new TinyHaxeTry1Parser.funcType_return();
-		retval.start = input.LT(1);
-		int funcType_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int funcType_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token MINUS_BIGGER55 = null;
@@ -3066,13 +3213,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object VOID57_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 20)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 20)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:9:
 			// ( ( type ) ( MINUS_BIGGER type )* | VOID )
 			int alt18 = 2;
-			int LA18_0 = input.LA(1);
+			int LA18_0 = this.input.LA(1);
 
 			if ((LA18_0 == EOF || (LA18_0 >= SEMI && LA18_0 <= IDENTIFIER)
 					|| LA18_0 == IMPORT || LA18_0 == DYNAMIC
@@ -3085,29 +3233,29 @@ public class TinyHaxeTry1Parser extends Parser {
 					|| LA18_0 == ENUM || (LA18_0 >= EXTERN && LA18_0 <= TYPEDEF))) {
 				alt18 = 1;
 			} else if ((LA18_0 == VOID)) {
-				int LA18_2 = input.LA(2);
+				int LA18_2 = this.input.LA(2);
 
-				if ((synpred26_TinyHaxeTry1())) {
+				if ((this.synpred26_TinyHaxeTry1())) {
 					alt18 = 1;
 				} else if ((true)) {
 					alt18 = 2;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							18, 2, input);
+							18, 2, this.input);
 
 					throw nvae;
 				}
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 18, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -3116,21 +3264,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:11:
 				// ( type ) ( MINUS_BIGGER type )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:11:
 				// ( type )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:12:
 				// type
 				{
-					pushFollow(FOLLOW_type_in_funcType973);
-					type54 = type();
+					this.pushFollow(FOLLOW_type_in_funcType973);
+					type54 = this.type();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, type54.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, type54.getTree());
+					}
 
 				}
 
@@ -3138,12 +3288,12 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( MINUS_BIGGER type )*
 				loop17: do {
 					int alt17 = 2;
-					int LA17_0 = input.LA(1);
+					int LA17_0 = this.input.LA(1);
 
 					if ((LA17_0 == MINUS_BIGGER)) {
-						int LA17_2 = input.LA(2);
+						int LA17_2 = this.input.LA(2);
 
-						if ((synpred25_TinyHaxeTry1())) {
+						if ((this.synpred25_TinyHaxeTry1())) {
 							alt17 = 1;
 						}
 
@@ -3154,18 +3304,22 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:19:
 						// MINUS_BIGGER type
 					{
-						MINUS_BIGGER55 = (Token) match(input, MINUS_BIGGER,
+						MINUS_BIGGER55 = (Token) this.match(this.input,
+								MINUS_BIGGER,
 								FOLLOW_MINUS_BIGGER_in_funcType977);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_type_in_funcType980);
-						type56 = type();
+						}
+						this.pushFollow(FOLLOW_type_in_funcType980);
+						type56 = this.type();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, type56.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, type56.getTree());
+						}
 
 					}
 						break;
@@ -3181,37 +3335,39 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:142:4:
 				// VOID
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				VOID57 = (Token) match(input, VOID, FOLLOW_VOID_in_funcType987);
-				if (state.failed)
+				VOID57 = (Token) this.match(this.input, VOID,
+						FOLLOW_VOID_in_funcType987);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					VOID57_tree = (Object) adaptor.create(VOID57);
-					adaptor.addChild(root_0, VOID57_tree);
+				}
+				if (this.state.backtracking == 0) {
+					VOID57_tree = (Object) this.adaptor.create(VOID57);
+					this.adaptor.addChild(root_0, VOID57_tree);
 				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 20, funcType_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 20, funcType_StartIndex);
 			}
 		}
 		return retval;
@@ -3224,7 +3380,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -3235,8 +3391,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.type_return type()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.type_return retval = new TinyHaxeTry1Parser.type_return();
-		retval.start = input.LT(1);
-		int type_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int type_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token INT60 = null;
@@ -3257,27 +3413,28 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object VOID64_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 21)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 21)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:6:
 			// ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID
 			// ) ( typeParam )* | )
 			int alt21 = 2;
-			alt21 = dfa21.predict(input);
+			alt21 = this.dfa21.predict(this.input);
 			switch (alt21) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:8:
 				// ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN |
 				// VOID ) ( typeParam )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:8:
 				// ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN |
 				// VOID )
 				int alt19 = 7;
-				switch (input.LA(1)) {
+				switch (this.input.LA(1)) {
 				case LBRACE: {
 					alt19 = 1;
 				}
@@ -3307,12 +3464,12 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 					break;
 				default:
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							19, 0, input);
+							19, 0, this.input);
 
 					throw nvae;
 				}
@@ -3322,14 +3479,16 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:9:
 					// anonType
 				{
-					pushFollow(FOLLOW_anonType_in_type999);
-					anonType58 = anonType();
+					this.pushFollow(FOLLOW_anonType_in_type999);
+					anonType58 = this.anonType();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, anonType58.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, anonType58.getTree());
+					}
 
 				}
 					break;
@@ -3337,14 +3496,16 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:20:
 					// dotIdent
 				{
-					pushFollow(FOLLOW_dotIdent_in_type1003);
-					dotIdent59 = dotIdent();
+					this.pushFollow(FOLLOW_dotIdent_in_type1003);
+					dotIdent59 = this.dotIdent();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, dotIdent59.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, dotIdent59.getTree());
+					}
 
 				}
 					break;
@@ -3352,12 +3513,14 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:30:
 					// INT
 				{
-					INT60 = (Token) match(input, INT, FOLLOW_INT_in_type1006);
-					if (state.failed)
+					INT60 = (Token) this.match(this.input, INT,
+							FOLLOW_INT_in_type1006);
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0) {
-						INT60_tree = (Object) adaptor.create(INT60);
-						adaptor.addChild(root_0, INT60_tree);
+					}
+					if (this.state.backtracking == 0) {
+						INT60_tree = (Object) this.adaptor.create(INT60);
+						this.adaptor.addChild(root_0, INT60_tree);
 					}
 
 				}
@@ -3366,13 +3529,14 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:35:
 					// FLOAT
 				{
-					FLOAT61 = (Token) match(input, FLOAT,
+					FLOAT61 = (Token) this.match(this.input, FLOAT,
 							FOLLOW_FLOAT_in_type1009);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0) {
-						FLOAT61_tree = (Object) adaptor.create(FLOAT61);
-						adaptor.addChild(root_0, FLOAT61_tree);
+					}
+					if (this.state.backtracking == 0) {
+						FLOAT61_tree = (Object) this.adaptor.create(FLOAT61);
+						this.adaptor.addChild(root_0, FLOAT61_tree);
 					}
 
 				}
@@ -3381,13 +3545,15 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:42:
 					// DYNAMIC
 				{
-					DYNAMIC62 = (Token) match(input, DYNAMIC,
+					DYNAMIC62 = (Token) this.match(this.input, DYNAMIC,
 							FOLLOW_DYNAMIC_in_type1012);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0) {
-						DYNAMIC62_tree = (Object) adaptor.create(DYNAMIC62);
-						adaptor.addChild(root_0, DYNAMIC62_tree);
+					}
+					if (this.state.backtracking == 0) {
+						DYNAMIC62_tree = (Object) this.adaptor
+								.create(DYNAMIC62);
+						this.adaptor.addChild(root_0, DYNAMIC62_tree);
 					}
 
 				}
@@ -3396,13 +3562,15 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:50:
 					// BOOLEAN
 				{
-					BOOLEAN63 = (Token) match(input, BOOLEAN,
+					BOOLEAN63 = (Token) this.match(this.input, BOOLEAN,
 							FOLLOW_BOOLEAN_in_type1014);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0) {
-						BOOLEAN63_tree = (Object) adaptor.create(BOOLEAN63);
-						adaptor.addChild(root_0, BOOLEAN63_tree);
+					}
+					if (this.state.backtracking == 0) {
+						BOOLEAN63_tree = (Object) this.adaptor
+								.create(BOOLEAN63);
+						this.adaptor.addChild(root_0, BOOLEAN63_tree);
 					}
 
 				}
@@ -3411,12 +3579,14 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:58:
 					// VOID
 				{
-					VOID64 = (Token) match(input, VOID, FOLLOW_VOID_in_type1016);
-					if (state.failed)
+					VOID64 = (Token) this.match(this.input, VOID,
+							FOLLOW_VOID_in_type1016);
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0) {
-						VOID64_tree = (Object) adaptor.create(VOID64);
-						adaptor.addChild(root_0, VOID64_tree);
+					}
+					if (this.state.backtracking == 0) {
+						VOID64_tree = (Object) this.adaptor.create(VOID64);
+						this.adaptor.addChild(root_0, VOID64_tree);
 					}
 
 				}
@@ -3428,12 +3598,12 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( typeParam )*
 				loop20: do {
 					int alt20 = 2;
-					int LA20_0 = input.LA(1);
+					int LA20_0 = this.input.LA(1);
 
 					if ((LA20_0 == LT)) {
-						int LA20_2 = input.LA(2);
+						int LA20_2 = this.input.LA(2);
 
-						if ((synpred33_TinyHaxeTry1())) {
+						if ((this.synpred33_TinyHaxeTry1())) {
 							alt20 = 1;
 						}
 
@@ -3444,14 +3614,17 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:65:
 						// typeParam
 					{
-						pushFollow(FOLLOW_typeParam_in_type1020);
-						typeParam65 = typeParam();
+						this.pushFollow(FOLLOW_typeParam_in_type1020);
+						typeParam65 = this.typeParam();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, typeParam65.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor
+									.addChild(root_0, typeParam65.getTree());
+						}
 
 					}
 						break;
@@ -3466,29 +3639,29 @@ public class TinyHaxeTry1Parser extends Parser {
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:147:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 21, type_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 21, type_StartIndex);
 			}
 		}
 		return retval;
@@ -3501,7 +3674,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -3511,8 +3684,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeParam_return typeParam()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeParam_return retval = new TinyHaxeTry1Parser.typeParam_return();
-		retval.start = input.LT(1);
-		int typeParam_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeParam_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LT66 = null;
@@ -3527,7 +3700,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object GTGT70_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 22)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 22)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:2:
@@ -3535,28 +3709,32 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:4:
 			// LT ( type | typeList ) ( GT | GTGT | )
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				LT66 = (Token) match(input, LT, FOLLOW_LT_in_typeParam1038);
-				if (state.failed)
+				LT66 = (Token) this.match(this.input, LT,
+						FOLLOW_LT_in_typeParam1038);
+				if (this.state.failed) {
 					return retval;
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:8:
 				// ( type | typeList )
 				int alt22 = 2;
-				alt22 = dfa22.predict(input);
+				alt22 = this.dfa22.predict(this.input);
 				switch (alt22) {
 				case 1:
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:9:
 					// type
 				{
-					pushFollow(FOLLOW_type_in_typeParam1042);
-					type67 = type();
+					this.pushFollow(FOLLOW_type_in_typeParam1042);
+					type67 = this.type();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, type67.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, type67.getTree());
+					}
 
 				}
 					break;
@@ -3564,14 +3742,16 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:14:
 					// typeList
 				{
-					pushFollow(FOLLOW_typeList_in_typeParam1044);
-					typeList68 = typeList();
+					this.pushFollow(FOLLOW_typeList_in_typeParam1044);
+					typeList68 = this.typeList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, typeList68.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, typeList68.getTree());
+					}
 
 				}
 					break;
@@ -3581,40 +3761,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:24:
 				// ( GT | GTGT | )
 				int alt23 = 3;
-				switch (input.LA(1)) {
+				switch (this.input.LA(1)) {
 				case GT: {
-					int LA23_1 = input.LA(2);
+					int LA23_1 = this.input.LA(2);
 
-					if ((synpred36_TinyHaxeTry1())) {
+					if ((this.synpred36_TinyHaxeTry1())) {
 						alt23 = 1;
 					} else if ((true)) {
 						alt23 = 3;
 					} else {
-						if (state.backtracking > 0) {
-							state.failed = true;
+						if (this.state.backtracking > 0) {
+							this.state.failed = true;
 							return retval;
 						}
 						NoViableAltException nvae = new NoViableAltException(
-								"", 23, 1, input);
+								"", 23, 1, this.input);
 
 						throw nvae;
 					}
 				}
 					break;
 				case GTGT: {
-					int LA23_2 = input.LA(2);
+					int LA23_2 = this.input.LA(2);
 
-					if ((synpred37_TinyHaxeTry1())) {
+					if ((this.synpred37_TinyHaxeTry1())) {
 						alt23 = 2;
 					} else if ((true)) {
 						alt23 = 3;
 					} else {
-						if (state.backtracking > 0) {
-							state.failed = true;
+						if (this.state.backtracking > 0) {
+							this.state.failed = true;
 							return retval;
 						}
 						NoViableAltException nvae = new NoViableAltException(
-								"", 23, 2, input);
+								"", 23, 2, this.input);
 
 						throw nvae;
 					}
@@ -3668,12 +3848,12 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 					break;
 				default:
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							23, 0, input);
+							23, 0, this.input);
 
 					throw nvae;
 				}
@@ -3683,9 +3863,11 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:25:
 					// GT
 				{
-					GT69 = (Token) match(input, GT, FOLLOW_GT_in_typeParam1048);
-					if (state.failed)
+					GT69 = (Token) this.match(this.input, GT,
+							FOLLOW_GT_in_typeParam1048);
+					if (this.state.failed) {
 						return retval;
+					}
 
 				}
 					break;
@@ -3693,10 +3875,11 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:29:
 					// GTGT
 				{
-					GTGT70 = (Token) match(input, GTGT,
+					GTGT70 = (Token) this.match(this.input, GTGT,
 							FOLLOW_GTGT_in_typeParam1051);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
+					}
 
 				}
 					break;
@@ -3710,23 +3893,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 22, typeParam_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 22, typeParam_StartIndex);
 			}
 		}
 		return retval;
@@ -3739,7 +3922,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -3750,38 +3933,39 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeParamOpt_return typeParamOpt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeParamOpt_return retval = new TinyHaxeTry1Parser.typeParamOpt_return();
-		retval.start = input.LT(1);
-		int typeParamOpt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeParamOpt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.typeParam_return typeParam71 = null;
 
 		RewriteRuleSubtreeStream stream_typeParam = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeParam");
+				this.adaptor, "rule typeParam");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 23)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 23)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:155:2:
 			// ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] (
 			// typeParam )? ) | )
 			int alt24 = 2;
-			int LA24_0 = input.LA(1);
+			int LA24_0 = this.input.LA(1);
 
 			if ((LA24_0 == LT)) {
-				int LA24_1 = input.LA(2);
+				int LA24_1 = this.input.LA(2);
 
-				if ((synpred38_TinyHaxeTry1())) {
+				if ((this.synpred38_TinyHaxeTry1())) {
 					alt24 = 1;
 				} else if ((true)) {
 					alt24 = 2;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							24, 1, input);
+							24, 1, this.input);
 
 					throw nvae;
 				}
@@ -3793,12 +3977,12 @@ public class TinyHaxeTry1Parser extends Parser {
 					|| (LA24_0 >= ELLIPSIS && LA24_0 <= PERCENT) || (LA24_0 >= EXTENDS && LA24_0 <= IMPLEMENTS))) {
 				alt24 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 24, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -3807,14 +3991,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:155:4:
 				// typeParam
 			{
-				pushFollow(FOLLOW_typeParam_in_typeParamOpt1073);
-				typeParam71 = typeParam();
+				this.pushFollow(FOLLOW_typeParam_in_typeParamOpt1073);
+				typeParam71 = this.typeParam();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeParam.add(typeParam71.getTree());
+				}
 
 				// AST REWRITE
 				// elements: typeParam
@@ -3823,13 +4009,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 155:13: -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] (
 					// typeParam )? )
 					{
@@ -3837,21 +4023,21 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] (
 						// typeParam )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(TYPE_PARAM_OPT,
 											"TYPE_PARAM_OPT", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:155:75:
 							// ( typeParam )?
 							if (stream_typeParam.hasNext()) {
-								adaptor.addChild(root_1, stream_typeParam
+								this.adaptor.addChild(root_1, stream_typeParam
 										.nextTree());
 
 							}
 							stream_typeParam.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -3863,29 +4049,29 @@ public class TinyHaxeTry1Parser extends Parser {
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:157:9:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 23, typeParamOpt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 23, typeParamOpt_StartIndex);
 			}
 		}
 		return retval;
@@ -3898,7 +4084,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -3909,8 +4095,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeConstraint_return typeConstraint()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeConstraint_return retval = new TinyHaxeTry1Parser.typeConstraint_return();
-		retval.start = input.LT(1);
-		int typeConstraint_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeConstraint_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IDENTIFIER72 = null;
@@ -3924,17 +4110,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LPAREN74_tree = null;
 		Object RPAREN76_tree = null;
 		RewriteRuleTokenStream stream_COLON = new RewriteRuleTokenStream(
-				adaptor, "token COLON");
+				this.adaptor, "token COLON");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_typeList = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeList");
+				this.adaptor, "rule typeList");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 24)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 24)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:159:19:
@@ -3943,41 +4130,51 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:159:21:
 			// IDENTIFIER COLON LPAREN typeList RPAREN
 			{
-				IDENTIFIER72 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER72 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_typeConstraint1115);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER72);
+				}
 
-				COLON73 = (Token) match(input, COLON,
+				COLON73 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_typeConstraint1117);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_COLON.add(COLON73);
+				}
 
-				LPAREN74 = (Token) match(input, LPAREN,
+				LPAREN74 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_typeConstraint1119);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN74);
+				}
 
-				pushFollow(FOLLOW_typeList_in_typeConstraint1121);
-				typeList75 = typeList();
+				this.pushFollow(FOLLOW_typeList_in_typeConstraint1121);
+				typeList75 = this.typeList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeList.add(typeList75.getTree());
-				RPAREN76 = (Token) match(input, RPAREN,
+				}
+				RPAREN76 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_typeConstraint1123);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN76);
+				}
 
 				// AST REWRITE
 				// elements: IDENTIFIER, typeConstraint, typeList
@@ -3986,27 +4183,27 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 159:61: -> ^( $typeConstraint ( IDENTIFIER )? ( typeList
 					// )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:159:64:
 						// ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_retval
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_retval.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:159:82:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
@@ -4014,13 +4211,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:159:94:
 							// ( typeList )?
 							if (stream_typeList.hasNext()) {
-								adaptor.addChild(root_1, stream_typeList
+								this.adaptor.addChild(root_1, stream_typeList
 										.nextTree());
 
 							}
 							stream_typeList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -4029,23 +4226,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 24, typeConstraint_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 24, typeConstraint_StartIndex);
 			}
 		}
 		return retval;
@@ -4058,7 +4255,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -4070,8 +4267,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.functionReturn_return functionReturn()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.functionReturn_return retval = new TinyHaxeTry1Parser.functionReturn_return();
-		retval.start = input.LT(1);
-		int functionReturn_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int functionReturn_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token FUNCTION78 = null;
@@ -4091,23 +4288,24 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LPAREN80_tree = null;
 		Object RPAREN82_tree = null;
 		RewriteRuleTokenStream stream_FUNCTION = new RewriteRuleTokenStream(
-				adaptor, "token FUNCTION");
-		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(adaptor,
-				"token NEW");
+				this.adaptor, "token FUNCTION");
+		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(
+				this.adaptor, "token NEW");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_declAttrList = new RewriteRuleSubtreeStream(
-				adaptor, "rule declAttrList");
+				this.adaptor, "rule declAttrList");
 		RewriteRuleSubtreeStream stream_paramList = new RewriteRuleSubtreeStream(
-				adaptor, "rule paramList");
+				this.adaptor, "rule paramList");
 		RewriteRuleSubtreeStream stream_typeTagOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeTagOpt");
+				this.adaptor, "rule typeTagOpt");
 		RewriteRuleSubtreeStream stream_block = new RewriteRuleSubtreeStream(
-				adaptor, "rule block");
+				this.adaptor, "rule block");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 25)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 25)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:2:
@@ -4121,7 +4319,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:4:
 				// ( declAttrList )?
 				int alt25 = 2;
-				int LA25_0 = input.LA(1);
+				int LA25_0 = this.input.LA(1);
 
 				if (((LA25_0 >= PUBLIC && LA25_0 <= OVERRIDE))) {
 					alt25 = 1;
@@ -4131,72 +4329,88 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// declAttrList
 				{
-					pushFollow(FOLLOW_declAttrList_in_functionReturn1149);
-					declAttrList77 = declAttrList();
+					this.pushFollow(FOLLOW_declAttrList_in_functionReturn1149);
+					declAttrList77 = this.declAttrList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_declAttrList.add(declAttrList77.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				FUNCTION78 = (Token) match(input, FUNCTION,
+				FUNCTION78 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_functionReturn1152);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION78);
+				}
 
-				NEW79 = (Token) match(input, NEW,
+				NEW79 = (Token) this.match(this.input, NEW,
 						FOLLOW_NEW_in_functionReturn1154);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_NEW.add(NEW79);
+				}
 
-				LPAREN80 = (Token) match(input, LPAREN,
+				LPAREN80 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_functionReturn1156);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN80);
+				}
 
-				pushFollow(FOLLOW_paramList_in_functionReturn1158);
-				paramList81 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_functionReturn1158);
+				paramList81 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList81.getTree());
-				RPAREN82 = (Token) match(input, RPAREN,
+				}
+				RPAREN82 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_functionReturn1160);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN82);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_functionReturn1162);
-				typeTagOpt83 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_functionReturn1162);
+				typeTagOpt83 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt83.getTree());
-				pushFollow(FOLLOW_block_in_functionReturn1164);
-				block84 = block();
+				}
+				this.pushFollow(FOLLOW_block_in_functionReturn1164);
+				block84 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_block.add(block84.getTree());
+				}
 
 				// AST REWRITE
 				// elements: FUNCTION, block, paramList, typeTagOpt, NEW,
@@ -4206,13 +4420,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 164:72: -> ^( FUNCTION NEW ( declAttrList )? ( paramList
 					// )? ( typeTagOpt )? ( block )? )
 					{
@@ -4220,24 +4434,25 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION NEW ( declAttrList )? ( paramList )? (
 						// typeTagOpt )? ( block )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new FunctionNode(stream_FUNCTION
 											.nextToken()), root_1);
 
-							adaptor.addChild(root_1, stream_NEW.nextNode());
+							this.adaptor
+									.addChild(root_1, stream_NEW.nextNode());
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:104:
 							// ( declAttrList )?
 							if (stream_declAttrList.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttrList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_declAttrList.nextTree());
 
 							}
 							stream_declAttrList.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:118:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -4245,7 +4460,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:129:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -4253,13 +4468,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:164:141:
 							// ( block )?
 							if (stream_block.hasNext()) {
-								adaptor.addChild(root_1, stream_block
+								this.adaptor.addChild(root_1, stream_block
 										.nextTree());
 
 							}
 							stream_block.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -4268,23 +4483,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 25, functionReturn_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 25, functionReturn_StartIndex);
 			}
 		}
 		return retval;
@@ -4297,7 +4512,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -4319,8 +4534,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.statement_return statement()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.statement_return retval = new TinyHaxeTry1Parser.statement_return();
-		retval.start = input.LT(1);
-		int statement_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int statement_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token SEMI87 = null;
@@ -4428,57 +4643,58 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COLON130_tree = null;
 		Object SEMI132_tree = null;
 		RewriteRuleTokenStream stream_COLON = new RewriteRuleTokenStream(
-				adaptor, "token COLON");
+				this.adaptor, "token COLON");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
-		RewriteRuleTokenStream stream_IN = new RewriteRuleTokenStream(adaptor,
-				"token IN");
+				this.adaptor, "token RPAREN");
+		RewriteRuleTokenStream stream_IN = new RewriteRuleTokenStream(
+				this.adaptor, "token IN");
 		RewriteRuleTokenStream stream_RBRACE = new RewriteRuleTokenStream(
-				adaptor, "token RBRACE");
+				this.adaptor, "token RBRACE");
 		RewriteRuleTokenStream stream_WHILE = new RewriteRuleTokenStream(
-				adaptor, "token WHILE");
+				this.adaptor, "token WHILE");
 		RewriteRuleTokenStream stream_CONTINUE = new RewriteRuleTokenStream(
-				adaptor, "token CONTINUE");
+				this.adaptor, "token CONTINUE");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_SWITCH = new RewriteRuleTokenStream(
-				adaptor, "token SWITCH");
+				this.adaptor, "token SWITCH");
 		RewriteRuleTokenStream stream_ELSE = new RewriteRuleTokenStream(
-				adaptor, "token ELSE");
+				this.adaptor, "token ELSE");
 		RewriteRuleTokenStream stream_LBRACE = new RewriteRuleTokenStream(
-				adaptor, "token LBRACE");
+				this.adaptor, "token LBRACE");
 		RewriteRuleTokenStream stream_RETURN = new RewriteRuleTokenStream(
-				adaptor, "token RETURN");
-		RewriteRuleTokenStream stream_FOR = new RewriteRuleTokenStream(adaptor,
-				"token FOR");
-		RewriteRuleTokenStream stream_DO = new RewriteRuleTokenStream(adaptor,
-				"token DO");
+				this.adaptor, "token RETURN");
+		RewriteRuleTokenStream stream_FOR = new RewriteRuleTokenStream(
+				this.adaptor, "token FOR");
+		RewriteRuleTokenStream stream_DO = new RewriteRuleTokenStream(
+				this.adaptor, "token DO");
 		RewriteRuleTokenStream stream_SEMI = new RewriteRuleTokenStream(
-				adaptor, "token SEMI");
+				this.adaptor, "token SEMI");
 		RewriteRuleTokenStream stream_BREAK = new RewriteRuleTokenStream(
-				adaptor, "token BREAK");
+				this.adaptor, "token BREAK");
 		RewriteRuleTokenStream stream_THROW = new RewriteRuleTokenStream(
-				adaptor, "token THROW");
-		RewriteRuleTokenStream stream_TRY = new RewriteRuleTokenStream(adaptor,
-				"token TRY");
+				this.adaptor, "token THROW");
+		RewriteRuleTokenStream stream_TRY = new RewriteRuleTokenStream(
+				this.adaptor, "token TRY");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
-		RewriteRuleTokenStream stream_IF = new RewriteRuleTokenStream(adaptor,
-				"token IF");
+				this.adaptor, "token LPAREN");
+		RewriteRuleTokenStream stream_IF = new RewriteRuleTokenStream(
+				this.adaptor, "token IF");
 		RewriteRuleSubtreeStream stream_statement = new RewriteRuleSubtreeStream(
-				adaptor, "rule statement");
+				this.adaptor, "rule statement");
 		RewriteRuleSubtreeStream stream_parExpression = new RewriteRuleSubtreeStream(
-				adaptor, "rule parExpression");
+				this.adaptor, "rule parExpression");
 		RewriteRuleSubtreeStream stream_caseStmt = new RewriteRuleSubtreeStream(
-				adaptor, "rule caseStmt");
+				this.adaptor, "rule caseStmt");
 		RewriteRuleSubtreeStream stream_block = new RewriteRuleSubtreeStream(
-				adaptor, "rule block");
+				this.adaptor, "rule block");
 		RewriteRuleSubtreeStream stream_catchStmtList = new RewriteRuleSubtreeStream(
-				adaptor, "rule catchStmtList");
+				this.adaptor, "rule catchStmtList");
 		RewriteRuleSubtreeStream stream_expr = new RewriteRuleSubtreeStream(
-				adaptor, "rule expr");
+				this.adaptor, "rule expr");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 26)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 26)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:168:2:
@@ -4497,22 +4713,24 @@ public class TinyHaxeTry1Parser extends Parser {
 			// CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON
 			// statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI )
 			int alt31 = 16;
-			alt31 = dfa31.predict(input);
+			alt31 = this.dfa31.predict(this.input);
 			switch (alt31) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:168:4:
 				// block
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_block_in_statement1201);
-				block85 = block();
+				this.pushFollow(FOLLOW_block_in_statement1201);
+				block85 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, block85.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, block85.getTree());
+				}
 
 			}
 				break;
@@ -4520,20 +4738,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:169:4:
 				// assignExpr SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_assignExpr_in_statement1206);
-				assignExpr86 = assignExpr();
+				this.pushFollow(FOLLOW_assignExpr_in_statement1206);
+				assignExpr86 = this.assignExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, assignExpr86.getTree());
-				SEMI87 = (Token) match(input, SEMI,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, assignExpr86.getTree());
+				}
+				SEMI87 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1208);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 				break;
@@ -4541,16 +4762,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:170:4:
 				// varDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_varDecl_in_statement1214);
-				varDecl88 = varDecl();
+				this.pushFollow(FOLLOW_varDecl_in_statement1214);
+				varDecl88 = this.varDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDecl88.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDecl88.getTree());
+				}
 
 			}
 				break;
@@ -4558,37 +4781,44 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:4:
 				// IF parExpression st1= statement ( ELSE st2= statement )?
 			{
-				IF89 = (Token) match(input, IF, FOLLOW_IF_in_statement1219);
-				if (state.failed)
+				IF89 = (Token) this.match(this.input, IF,
+						FOLLOW_IF_in_statement1219);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IF.add(IF89);
+				}
 
-				pushFollow(FOLLOW_parExpression_in_statement1221);
-				parExpression90 = parExpression();
+				this.pushFollow(FOLLOW_parExpression_in_statement1221);
+				parExpression90 = this.parExpression();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_parExpression.add(parExpression90.getTree());
-				pushFollow(FOLLOW_statement_in_statement1225);
-				st1 = statement();
+				}
+				this.pushFollow(FOLLOW_statement_in_statement1225);
+				st1 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(st1.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:35:
 				// ( ELSE st2= statement )?
 				int alt26 = 2;
-				int LA26_0 = input.LA(1);
+				int LA26_0 = this.input.LA(1);
 
 				if ((LA26_0 == ELSE)) {
-					int LA26_1 = input.LA(2);
+					int LA26_1 = this.input.LA(2);
 
-					if ((synpred43_TinyHaxeTry1())) {
+					if ((this.synpred43_TinyHaxeTry1())) {
 						alt26 = 1;
 					}
 				}
@@ -4597,21 +4827,25 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:36:
 					// ELSE st2= statement
 				{
-					ELSE91 = (Token) match(input, ELSE,
+					ELSE91 = (Token) this.match(this.input, ELSE,
 							FOLLOW_ELSE_in_statement1228);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_ELSE.add(ELSE91);
+					}
 
-					pushFollow(FOLLOW_statement_in_statement1232);
-					st2 = statement();
+					this.pushFollow(FOLLOW_statement_in_statement1232);
+					st2 = this.statement();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_statement.add(st2.getTree());
+					}
 
 				}
 					break;
@@ -4625,50 +4859,53 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 					RewriteRuleSubtreeStream stream_st1 = new RewriteRuleSubtreeStream(
-							adaptor, "rule st1", st1 != null ? st1.tree : null);
+							this.adaptor, "rule st1", st1 != null ? st1.tree
+									: null);
 					RewriteRuleSubtreeStream stream_st2 = new RewriteRuleSubtreeStream(
-							adaptor, "rule st2", st2 != null ? st2.tree : null);
+							this.adaptor, "rule st2", st2 != null ? st2.tree
+									: null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 171:58: -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:61:
 						// ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(new IfNode(
-									stream_IF.nextToken()), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									new IfNode(stream_IF.nextToken()), root_1);
 
-							adaptor.addChild(root_1, stream_parExpression
+							this.adaptor.addChild(root_1, stream_parExpression
 									.nextTree());
-							adaptor.addChild(root_1, stream_st1.nextTree());
+							this.adaptor
+									.addChild(root_1, stream_st1.nextTree());
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:93:
 							// ( ^( ELSE $st2) )?
 							if (stream_ELSE.hasNext() || stream_st2.hasNext()) {
 								// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:93:
 								// ^( ELSE $st2)
 								{
-									Object root_2 = (Object) adaptor.nil();
-									root_2 = (Object) adaptor.becomeRoot(
+									Object root_2 = (Object) this.adaptor.nil();
+									root_2 = (Object) this.adaptor.becomeRoot(
 											stream_ELSE.nextNode(), root_2);
 
-									adaptor.addChild(root_2, stream_st2
+									this.adaptor.addChild(root_2, stream_st2
 											.nextTree());
 
-									adaptor.addChild(root_1, root_2);
+									this.adaptor.addChild(root_1, root_2);
 								}
 
 							}
 							stream_ELSE.reset();
 							stream_st2.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -4681,56 +4918,72 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:172:4:
 				// FOR LPAREN exp1= expr IN exp2= expr RPAREN statement
 			{
-				FOR92 = (Token) match(input, FOR, FOLLOW_FOR_in_statement1272);
-				if (state.failed)
+				FOR92 = (Token) this.match(this.input, FOR,
+						FOLLOW_FOR_in_statement1272);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FOR.add(FOR92);
+				}
 
-				LPAREN93 = (Token) match(input, LPAREN,
+				LPAREN93 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_statement1274);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN93);
+				}
 
-				pushFollow(FOLLOW_expr_in_statement1278);
-				exp1 = expr();
+				this.pushFollow(FOLLOW_expr_in_statement1278);
+				exp1 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(exp1.getTree());
-				IN94 = (Token) match(input, IN, FOLLOW_IN_in_statement1280);
-				if (state.failed)
+				}
+				IN94 = (Token) this.match(this.input, IN,
+						FOLLOW_IN_in_statement1280);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IN.add(IN94);
+				}
 
-				pushFollow(FOLLOW_expr_in_statement1284);
-				exp2 = expr();
+				this.pushFollow(FOLLOW_expr_in_statement1284);
+				exp2 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(exp2.getTree());
-				RPAREN95 = (Token) match(input, RPAREN,
+				}
+				RPAREN95 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_statement1286);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN95);
+				}
 
-				pushFollow(FOLLOW_statement_in_statement1288);
-				statement96 = statement();
+				this.pushFollow(FOLLOW_statement_in_statement1288);
+				statement96 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(statement96.getTree());
+				}
 
 				// AST REWRITE
 				// elements: FOR, IN, exp1, statement, exp2
@@ -4739,54 +4992,53 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 					RewriteRuleSubtreeStream stream_exp2 = new RewriteRuleSubtreeStream(
-							adaptor, "rule exp2", exp2 != null ? exp2.tree
+							this.adaptor, "rule exp2", exp2 != null ? exp2.tree
 									: null);
 					RewriteRuleSubtreeStream stream_exp1 = new RewriteRuleSubtreeStream(
-							adaptor, "rule exp1", exp1 != null ? exp1.tree
+							this.adaptor, "rule exp1", exp1 != null ? exp1.tree
 									: null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 172:56: -> ^( FOR ^( IN $exp1 $exp2) ( statement )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:172:59:
 						// ^( FOR ^( IN $exp1 $exp2) ( statement )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(new ForNode(
-									stream_FOR.nextToken()), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor
+									.becomeRoot(new ForNode(stream_FOR
+											.nextToken()), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:172:74:
 							// ^( IN $exp1 $exp2)
 							{
-								Object root_2 = (Object) adaptor.nil();
-								root_2 = (Object) adaptor.becomeRoot(stream_IN
-										.nextNode(), root_2);
+								Object root_2 = (Object) this.adaptor.nil();
+								root_2 = (Object) this.adaptor.becomeRoot(
+										stream_IN.nextNode(), root_2);
 
-								adaptor
-										.addChild(root_2, stream_exp1
-												.nextTree());
-								adaptor
-										.addChild(root_2, stream_exp2
-												.nextTree());
+								this.adaptor.addChild(root_2, stream_exp1
+										.nextTree());
+								this.adaptor.addChild(root_2, stream_exp2
+										.nextTree());
 
-								adaptor.addChild(root_1, root_2);
+								this.adaptor.addChild(root_1, root_2);
 							}
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:172:92:
 							// ( statement )?
 							if (stream_statement.hasNext()) {
-								adaptor.addChild(root_1, stream_statement
+								this.adaptor.addChild(root_1, stream_statement
 										.nextTree());
 
 							}
 							stream_statement.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -4799,29 +5051,35 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:173:4:
 				// WHILE parExpression statement
 			{
-				WHILE97 = (Token) match(input, WHILE,
+				WHILE97 = (Token) this.match(this.input, WHILE,
 						FOLLOW_WHILE_in_statement1316);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_WHILE.add(WHILE97);
+				}
 
-				pushFollow(FOLLOW_parExpression_in_statement1318);
-				parExpression98 = parExpression();
+				this.pushFollow(FOLLOW_parExpression_in_statement1318);
+				parExpression98 = this.parExpression();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_parExpression.add(parExpression98.getTree());
-				pushFollow(FOLLOW_statement_in_statement1320);
-				statement99 = statement();
+				}
+				this.pushFollow(FOLLOW_statement_in_statement1320);
+				statement99 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(statement99.getTree());
+				}
 
 				// AST REWRITE
 				// elements: WHILE, statement, parExpression
@@ -4830,40 +5088,41 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 173:38: -> ^( WHILE ( parExpression )? ( statement )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:173:41:
 						// ^( WHILE ( parExpression )? ( statement )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(new WhileNode(
-									stream_WHILE.nextToken()), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									new WhileNode(stream_WHILE.nextToken()),
+									root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:173:60:
 							// ( parExpression )?
 							if (stream_parExpression.hasNext()) {
-								adaptor.addChild(root_1, stream_parExpression
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_parExpression.nextTree());
 
 							}
 							stream_parExpression.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:173:75:
 							// ( statement )?
 							if (stream_statement.hasNext()) {
-								adaptor.addChild(root_1, stream_statement
+								this.adaptor.addChild(root_1, stream_statement
 										.nextTree());
 
 							}
 							stream_statement.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -4876,41 +5135,52 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:174:4:
 				// DO statement WHILE parExpression SEMI
 			{
-				DO100 = (Token) match(input, DO, FOLLOW_DO_in_statement1344);
-				if (state.failed)
+				DO100 = (Token) this.match(this.input, DO,
+						FOLLOW_DO_in_statement1344);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_DO.add(DO100);
+				}
 
-				pushFollow(FOLLOW_statement_in_statement1346);
-				statement101 = statement();
+				this.pushFollow(FOLLOW_statement_in_statement1346);
+				statement101 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(statement101.getTree());
-				WHILE102 = (Token) match(input, WHILE,
+				}
+				WHILE102 = (Token) this.match(this.input, WHILE,
 						FOLLOW_WHILE_in_statement1348);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_WHILE.add(WHILE102);
+				}
 
-				pushFollow(FOLLOW_parExpression_in_statement1350);
-				parExpression103 = parExpression();
+				this.pushFollow(FOLLOW_parExpression_in_statement1350);
+				parExpression103 = this.parExpression();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_parExpression.add(parExpression103.getTree());
-				SEMI104 = (Token) match(input, SEMI,
+				}
+				SEMI104 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1352);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI104);
+				}
 
 				// AST REWRITE
 				// elements: DO, statement, parExpression
@@ -4919,41 +5189,41 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 174:45: -> ^( DO ( parExpression )? ( statement )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:174:48:
 						// ^( DO ( parExpression )? ( statement )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new DoWhileNode(stream_DO.nextToken()),
 									root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:174:66:
 							// ( parExpression )?
 							if (stream_parExpression.hasNext()) {
-								adaptor.addChild(root_1, stream_parExpression
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_parExpression.nextTree());
 
 							}
 							stream_parExpression.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:174:81:
 							// ( statement )?
 							if (stream_statement.hasNext()) {
-								adaptor.addChild(root_1, stream_statement
+								this.adaptor.addChild(root_1, stream_statement
 										.nextTree());
 
 							}
 							stream_statement.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -4966,28 +5236,35 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:175:4:
 				// TRY block catchStmtList
 			{
-				TRY105 = (Token) match(input, TRY, FOLLOW_TRY_in_statement1375);
-				if (state.failed)
+				TRY105 = (Token) this.match(this.input, TRY,
+						FOLLOW_TRY_in_statement1375);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_TRY.add(TRY105);
+				}
 
-				pushFollow(FOLLOW_block_in_statement1377);
-				block106 = block();
+				this.pushFollow(FOLLOW_block_in_statement1377);
+				block106 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_block.add(block106.getTree());
-				pushFollow(FOLLOW_catchStmtList_in_statement1379);
-				catchStmtList107 = catchStmtList();
+				}
+				this.pushFollow(FOLLOW_catchStmtList_in_statement1379);
+				catchStmtList107 = this.catchStmtList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_catchStmtList.add(catchStmtList107.getTree());
+				}
 
 				// AST REWRITE
 				// elements: catchStmtList, block, TRY
@@ -4996,26 +5273,27 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 175:32: -> ^( TRY ( block )? ( catchStmtList )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:175:35:
 						// ^( TRY ( block )? ( catchStmtList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(new TryNode(
-									stream_TRY.nextToken()), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor
+									.becomeRoot(new TryNode(stream_TRY
+											.nextToken()), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:175:50:
 							// ( block )?
 							if (stream_block.hasNext()) {
-								adaptor.addChild(root_1, stream_block
+								this.adaptor.addChild(root_1, stream_block
 										.nextTree());
 
 							}
@@ -5023,13 +5301,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:175:57:
 							// ( catchStmtList )?
 							if (stream_catchStmtList.hasNext()) {
-								adaptor.addChild(root_1, stream_catchStmtList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_catchStmtList.nextTree());
 
 							}
 							stream_catchStmtList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5042,48 +5320,58 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:4:
 				// SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE
 			{
-				SWITCH108 = (Token) match(input, SWITCH,
+				SWITCH108 = (Token) this.match(this.input, SWITCH,
 						FOLLOW_SWITCH_in_statement1403);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SWITCH.add(SWITCH108);
+				}
 
-				LPAREN109 = (Token) match(input, LPAREN,
+				LPAREN109 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_statement1405);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN109);
+				}
 
-				pushFollow(FOLLOW_expr_in_statement1407);
-				expr110 = expr();
+				this.pushFollow(FOLLOW_expr_in_statement1407);
+				expr110 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(expr110.getTree());
-				RPAREN111 = (Token) match(input, RPAREN,
+				}
+				RPAREN111 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_statement1409);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN111);
+				}
 
-				LBRACE112 = (Token) match(input, LBRACE,
+				LBRACE112 = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_statement1411);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LBRACE.add(LBRACE112);
+				}
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:37:
 				// ( caseStmt )+
 				int cnt27 = 0;
 				loop27: do {
 					int alt27 = 2;
-					int LA27_0 = input.LA(1);
+					int LA27_0 = this.input.LA(1);
 
 					if (((LA27_0 >= CASE && LA27_0 <= DEFAULT))) {
 						alt27 = 1;
@@ -5094,38 +5382,43 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 						// caseStmt
 					{
-						pushFollow(FOLLOW_caseStmt_in_statement1413);
-						caseStmt113 = caseStmt();
+						this.pushFollow(FOLLOW_caseStmt_in_statement1413);
+						caseStmt113 = this.caseStmt();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_caseStmt.add(caseStmt113.getTree());
+						}
 
 					}
 						break;
 
 					default:
-						if (cnt27 >= 1)
+						if (cnt27 >= 1) {
 							break loop27;
-						if (state.backtracking > 0) {
-							state.failed = true;
+						}
+						if (this.state.backtracking > 0) {
+							this.state.failed = true;
 							return retval;
 						}
 						EarlyExitException eee = new EarlyExitException(27,
-								input);
+								this.input);
 						throw eee;
 					}
 					cnt27++;
 				} while (true);
 
-				RBRACE114 = (Token) match(input, RBRACE,
+				RBRACE114 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_statement1416);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RBRACE.add(RBRACE114);
+				}
 
 				// AST REWRITE
 				// elements: expr, SWITCH, caseStmt
@@ -5134,29 +5427,28 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 176:55: -> ^( SWITCH ( expr )? ( caseStmt )+ )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:58:
 						// ^( SWITCH ( expr )? ( caseStmt )+ )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new SwitchNode(stream_SWITCH.nextToken()),
 									root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:176:79:
 							// ( expr )?
 							if (stream_expr.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_expr
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_expr
+										.nextTree());
 
 							}
 							stream_expr.reset();
@@ -5164,13 +5456,13 @@ public class TinyHaxeTry1Parser extends Parser {
 								throw new RewriteEarlyExitException();
 							}
 							while (stream_caseStmt.hasNext()) {
-								adaptor.addChild(root_1, stream_caseStmt
+								this.adaptor.addChild(root_1, stream_caseStmt
 										.nextTree());
 
 							}
 							stream_caseStmt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5183,17 +5475,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:177:4:
 				// RETURN ( expr )? SEMI
 			{
-				RETURN115 = (Token) match(input, RETURN,
+				RETURN115 = (Token) this.match(this.input, RETURN,
 						FOLLOW_RETURN_in_statement1437);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RETURN.add(RETURN115);
+				}
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:177:11:
 				// ( expr )?
 				int alt28 = 2;
-				int LA28_0 = input.LA(1);
+				int LA28_0 = this.input.LA(1);
 
 				if ((LA28_0 == IDENTIFIER
 						|| (LA28_0 >= QUES && LA28_0 <= LPAREN)
@@ -5202,9 +5496,9 @@ public class TinyHaxeTry1Parser extends Parser {
 						|| (LA28_0 >= ELLIPSIS && LA28_0 <= CAST) || (LA28_0 >= LONGLITERAL && LA28_0 <= FALSE))) {
 					alt28 = 1;
 				} else if ((LA28_0 == SEMI)) {
-					int LA28_2 = input.LA(2);
+					int LA28_2 = this.input.LA(2);
 
-					if ((synpred51_TinyHaxeTry1())) {
+					if ((this.synpred51_TinyHaxeTry1())) {
 						alt28 = 1;
 					}
 				}
@@ -5213,26 +5507,30 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:177:12:
 					// expr
 				{
-					pushFollow(FOLLOW_expr_in_statement1440);
-					expr116 = expr();
+					this.pushFollow(FOLLOW_expr_in_statement1440);
+					expr116 = this.expr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_expr.add(expr116.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				SEMI117 = (Token) match(input, SEMI,
+				SEMI117 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1444);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI117);
+				}
 
 				// AST REWRITE
 				// elements: expr, RETURN
@@ -5241,33 +5539,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 177:28: -> ^( RETURN ( expr )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:177:31:
 						// ^( RETURN ( expr )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_RETURN
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_RETURN.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:177:40:
 							// ( expr )?
 							if (stream_expr.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_expr
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_expr
+										.nextTree());
 
 							}
 							stream_expr.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5280,27 +5577,33 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:178:4:
 				// THROW expr SEMI
 			{
-				THROW118 = (Token) match(input, THROW,
+				THROW118 = (Token) this.match(this.input, THROW,
 						FOLLOW_THROW_in_statement1462);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_THROW.add(THROW118);
+				}
 
-				pushFollow(FOLLOW_expr_in_statement1464);
-				expr119 = expr();
+				this.pushFollow(FOLLOW_expr_in_statement1464);
+				expr119 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(expr119.getTree());
-				SEMI120 = (Token) match(input, SEMI,
+				}
+				SEMI120 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1466);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI120);
+				}
 
 				// AST REWRITE
 				// elements: expr, THROW
@@ -5309,33 +5612,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 178:25: -> ^( THROW ( expr )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:178:28:
 						// ^( THROW ( expr )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_THROW
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_THROW.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:178:36:
 							// ( expr )?
 							if (stream_expr.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_expr
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_expr
+										.nextTree());
 
 							}
 							stream_expr.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5348,17 +5650,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:179:4:
 				// BREAK ( IDENTIFIER )? SEMI
 			{
-				BREAK121 = (Token) match(input, BREAK,
+				BREAK121 = (Token) this.match(this.input, BREAK,
 						FOLLOW_BREAK_in_statement1485);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_BREAK.add(BREAK121);
+				}
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:179:10:
 				// ( IDENTIFIER )?
 				int alt29 = 2;
-				int LA29_0 = input.LA(1);
+				int LA29_0 = this.input.LA(1);
 
 				if ((LA29_0 == IDENTIFIER)) {
 					alt29 = 1;
@@ -5368,24 +5672,28 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:179:11:
 					// IDENTIFIER
 				{
-					IDENTIFIER122 = (Token) match(input, IDENTIFIER,
+					IDENTIFIER122 = (Token) this.match(this.input, IDENTIFIER,
 							FOLLOW_IDENTIFIER_in_statement1488);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_IDENTIFIER.add(IDENTIFIER122);
+					}
 
 				}
 					break;
 
 				}
 
-				SEMI123 = (Token) match(input, SEMI,
+				SEMI123 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1492);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI123);
+				}
 
 				// AST REWRITE
 				// elements: IDENTIFIER, BREAK
@@ -5394,32 +5702,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 179:32: -> ^( BREAK ( IDENTIFIER )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:179:35:
 						// ^( BREAK ( IDENTIFIER )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_BREAK
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_BREAK.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:179:43:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
 							stream_IDENTIFIER.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5432,17 +5740,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:180:4:
 				// CONTINUE ( IDENTIFIER )? SEMI
 			{
-				CONTINUE124 = (Token) match(input, CONTINUE,
+				CONTINUE124 = (Token) this.match(this.input, CONTINUE,
 						FOLLOW_CONTINUE_in_statement1509);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CONTINUE.add(CONTINUE124);
+				}
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:180:13:
 				// ( IDENTIFIER )?
 				int alt30 = 2;
-				int LA30_0 = input.LA(1);
+				int LA30_0 = this.input.LA(1);
 
 				if ((LA30_0 == IDENTIFIER)) {
 					alt30 = 1;
@@ -5452,24 +5762,28 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:180:14:
 					// IDENTIFIER
 				{
-					IDENTIFIER125 = (Token) match(input, IDENTIFIER,
+					IDENTIFIER125 = (Token) this.match(this.input, IDENTIFIER,
 							FOLLOW_IDENTIFIER_in_statement1512);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_IDENTIFIER.add(IDENTIFIER125);
+					}
 
 				}
 					break;
 
 				}
 
-				SEMI126 = (Token) match(input, SEMI,
+				SEMI126 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1516);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI126);
+				}
 
 				// AST REWRITE
 				// elements: CONTINUE, IDENTIFIER
@@ -5478,32 +5792,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 180:36: -> ^( CONTINUE ( IDENTIFIER )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:180:39:
 						// ^( CONTINUE ( IDENTIFIER )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									stream_CONTINUE.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:180:50:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
 							stream_IDENTIFIER.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5516,20 +5830,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:181:4:
 				// expr SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_expr_in_statement1534);
-				expr127 = expr();
+				this.pushFollow(FOLLOW_expr_in_statement1534);
+				expr127 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, expr127.getTree());
-				SEMI128 = (Token) match(input, SEMI,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, expr127.getTree());
+				}
+				SEMI128 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1537);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 				break;
@@ -5537,28 +5854,34 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:4:
 				// IDENTIFIER COLON statement
 			{
-				IDENTIFIER129 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER129 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_statement1543);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER129);
+				}
 
-				COLON130 = (Token) match(input, COLON,
+				COLON130 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_statement1545);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_COLON.add(COLON130);
+				}
 
-				pushFollow(FOLLOW_statement_in_statement1547);
-				statement131 = statement();
+				this.pushFollow(FOLLOW_statement_in_statement1547);
+				statement131 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(statement131.getTree());
+				}
 
 				// AST REWRITE
 				// elements: statement, COLON, IDENTIFIER
@@ -5567,26 +5890,26 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 182:35: -> ^( COLON ( IDENTIFIER )? ( statement )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:38:
 						// ^( COLON ( IDENTIFIER )? ( statement )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_COLON
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_COLON.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:46:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
@@ -5594,13 +5917,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:58:
 							// ( statement )?
 							if (stream_statement.hasNext()) {
-								adaptor.addChild(root_1, stream_statement
+								this.adaptor.addChild(root_1, stream_statement
 										.nextTree());
 
 							}
 							stream_statement.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5613,34 +5936,35 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:183:4:
 				// SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				SEMI132 = (Token) match(input, SEMI,
+				SEMI132 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_statement1568);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 26, statement_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 26, statement_StartIndex);
 			}
 		}
 		return retval;
@@ -5653,7 +5977,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -5663,8 +5987,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.parExpression_return parExpression()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.parExpression_return retval = new TinyHaxeTry1Parser.parExpression_return();
-		retval.start = input.LT(1);
-		int parExpression_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int parExpression_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LPAREN133 = null;
@@ -5675,7 +5999,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RPAREN135_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 27)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 27)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:187:5:
@@ -5683,44 +6008,48 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:187:9:
 			// LPAREN expr RPAREN
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				LPAREN133 = (Token) match(input, LPAREN,
+				LPAREN133 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_parExpression1589);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_expr_in_parExpression1592);
-				expr134 = expr();
+				}
+				this.pushFollow(FOLLOW_expr_in_parExpression1592);
+				expr134 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, expr134.getTree());
-				RPAREN135 = (Token) match(input, RPAREN,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, expr134.getTree());
+				}
+				RPAREN135 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_parExpression1594);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 27, parExpression_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 27, parExpression_StartIndex);
 			}
 		}
 		return retval;
@@ -5733,7 +6062,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -5745,8 +6074,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.block_return block()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.block_return retval = new TinyHaxeTry1Parser.block_return();
-		retval.start = input.LT(1);
-		int block_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int block_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LBRACE136 = null;
@@ -5758,13 +6087,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RBRACE138_tree = null;
 		Object SEMI139_tree = null;
 		RewriteRuleTokenStream stream_RBRACE = new RewriteRuleTokenStream(
-				adaptor, "token RBRACE");
+				this.adaptor, "token RBRACE");
 		RewriteRuleTokenStream stream_LBRACE = new RewriteRuleTokenStream(
-				adaptor, "token LBRACE");
+				this.adaptor, "token LBRACE");
 		RewriteRuleSubtreeStream stream_blockStmt = new RewriteRuleSubtreeStream(
-				adaptor, "rule blockStmt");
+				this.adaptor, "rule blockStmt");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 28)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 28)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:190:8:
@@ -5772,19 +6102,19 @@ public class TinyHaxeTry1Parser extends Parser {
 			// BLOCK_SCOPE[\"BLOCK_SCOPE\",true,$LBRACE] ( blockStmt )* RBRACE )
 			// | SEMI )
 			int alt33 = 2;
-			int LA33_0 = input.LA(1);
+			int LA33_0 = this.input.LA(1);
 
 			if ((LA33_0 == LBRACE)) {
 				alt33 = 1;
 			} else if ((LA33_0 == SEMI)) {
 				alt33 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 33, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -5793,18 +6123,20 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:190:10:
 				// LBRACE ( blockStmt )* RBRACE
 			{
-				LBRACE136 = (Token) match(input, LBRACE,
+				LBRACE136 = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_block1609);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LBRACE.add(LBRACE136);
+				}
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:190:17:
 				// ( blockStmt )*
 				loop32: do {
 					int alt32 = 2;
-					int LA32_0 = input.LA(1);
+					int LA32_0 = this.input.LA(1);
 
 					if (((LA32_0 >= SEMI && LA32_0 <= IDENTIFIER)
 							|| (LA32_0 >= PUBLIC && LA32_0 <= OVERRIDE)
@@ -5824,14 +6156,16 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:190:18:
 						// blockStmt
 					{
-						pushFollow(FOLLOW_blockStmt_in_block1612);
-						blockStmt137 = blockStmt();
+						this.pushFollow(FOLLOW_blockStmt_in_block1612);
+						blockStmt137 = this.blockStmt();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
+						}
+						if (this.state.backtracking == 0) {
 							stream_blockStmt.add(blockStmt137.getTree());
+						}
 
 					}
 						break;
@@ -5841,12 +6175,14 @@ public class TinyHaxeTry1Parser extends Parser {
 					}
 				} while (true);
 
-				RBRACE138 = (Token) match(input, RBRACE,
+				RBRACE138 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_block1616);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RBRACE.add(RBRACE138);
+				}
 
 				// AST REWRITE
 				// elements: RBRACE, blockStmt
@@ -5855,13 +6191,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 190:37: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true,$LBRACE] (
 					// blockStmt )* RBRACE )
 					{
@@ -5869,8 +6205,8 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true,$LBRACE] (
 						// blockStmt )* RBRACE )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new BlockScopeNode(BLOCK_SCOPE,
 											"BLOCK_SCOPE", true, LBRACE136),
 									root_1);
@@ -5878,7 +6214,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:190:97:
 							// ( blockStmt )*
 							while (stream_blockStmt.hasNext()) {
-								adaptor.addChild(root_1, stream_blockStmt
+								this.adaptor.addChild(root_1, stream_blockStmt
 										.nextTree());
 
 							}
@@ -5897,7 +6233,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// adaptor.addChild(root_1,
 							// stream_RBRACE.nextNode());
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -5910,33 +6246,35 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:191:4:
 				// SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				SEMI139 = (Token) match(input, SEMI, FOLLOW_SEMI_in_block1636);
-				if (state.failed)
+				SEMI139 = (Token) this.match(this.input, SEMI,
+						FOLLOW_SEMI_in_block1636);
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 28, block_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 28, block_StartIndex);
 			}
 		}
 		return retval;
@@ -5949,7 +6287,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -5959,8 +6297,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.blockStmt_return blockStmt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.blockStmt_return retval = new TinyHaxeTry1Parser.blockStmt_return();
-		retval.start = input.LT(1);
-		int blockStmt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int blockStmt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.varDecl_return varDecl140 = null;
@@ -5970,28 +6308,31 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.statement_return statement142 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 29)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 29)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:195:2:
 			// ( varDecl | classDecl | statement )
 			int alt34 = 3;
-			alt34 = dfa34.predict(input);
+			alt34 = this.dfa34.predict(this.input);
 			switch (alt34) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:195:4:
 				// varDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_varDecl_in_blockStmt1649);
-				varDecl140 = varDecl();
+				this.pushFollow(FOLLOW_varDecl_in_blockStmt1649);
+				varDecl140 = this.varDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDecl140.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDecl140.getTree());
+				}
 
 			}
 				break;
@@ -5999,16 +6340,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:196:4:
 				// classDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_classDecl_in_blockStmt1654);
-				classDecl141 = classDecl();
+				this.pushFollow(FOLLOW_classDecl_in_blockStmt1654);
+				classDecl141 = this.classDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, classDecl141.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, classDecl141.getTree());
+				}
 
 			}
 				break;
@@ -6016,38 +6359,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:197:4:
 				// statement
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_statement_in_blockStmt1659);
-				statement142 = statement();
+				this.pushFollow(FOLLOW_statement_in_blockStmt1659);
+				statement142 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, statement142.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, statement142.getTree());
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 29, blockStmt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 29, blockStmt_StartIndex);
 			}
 		}
 		return retval;
@@ -6060,7 +6405,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6070,8 +6415,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.breakStmt_return breakStmt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.breakStmt_return retval = new TinyHaxeTry1Parser.breakStmt_return();
-		retval.start = input.LT(1);
-		int breakStmt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int breakStmt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token BREAK143 = null;
@@ -6081,7 +6426,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object SEMI144_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 30)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 30)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:202:2:
@@ -6089,40 +6435,42 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:202:4:
 			// BREAK SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				BREAK143 = (Token) match(input, BREAK,
+				BREAK143 = (Token) this.match(this.input, BREAK,
 						FOLLOW_BREAK_in_breakStmt1692);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					BREAK143_tree = (Object) adaptor.create(BREAK143);
-					adaptor.addChild(root_0, BREAK143_tree);
 				}
-				SEMI144 = (Token) match(input, SEMI,
+				if (this.state.backtracking == 0) {
+					BREAK143_tree = (Object) this.adaptor.create(BREAK143);
+					this.adaptor.addChild(root_0, BREAK143_tree);
+				}
+				SEMI144 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_breakStmt1694);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 30, breakStmt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 30, breakStmt_StartIndex);
 			}
 		}
 		return retval;
@@ -6135,7 +6483,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6145,8 +6493,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.continueStmt_return continueStmt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.continueStmt_return retval = new TinyHaxeTry1Parser.continueStmt_return();
-		retval.start = input.LT(1);
-		int continueStmt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int continueStmt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token CONTINUE145 = null;
@@ -6156,7 +6504,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object SEMI146_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 31)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 31)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:206:2:
@@ -6164,40 +6513,43 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:206:4:
 			// CONTINUE SEMI
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				CONTINUE145 = (Token) match(input, CONTINUE,
+				CONTINUE145 = (Token) this.match(this.input, CONTINUE,
 						FOLLOW_CONTINUE_in_continueStmt1713);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					CONTINUE145_tree = (Object) adaptor.create(CONTINUE145);
-					adaptor.addChild(root_0, CONTINUE145_tree);
 				}
-				SEMI146 = (Token) match(input, SEMI,
+				if (this.state.backtracking == 0) {
+					CONTINUE145_tree = (Object) this.adaptor
+							.create(CONTINUE145);
+					this.adaptor.addChild(root_0, CONTINUE145_tree);
+				}
+				SEMI146 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_continueStmt1715);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 31, continueStmt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 31, continueStmt_StartIndex);
 			}
 		}
 		return retval;
@@ -6210,7 +6562,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6222,8 +6574,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.caseStmt_return caseStmt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.caseStmt_return retval = new TinyHaxeTry1Parser.caseStmt_return();
-		retval.start = input.LT(1);
-		int caseStmt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int caseStmt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token CASE147 = null;
@@ -6241,17 +6593,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object DEFAULT151_tree = null;
 		Object COLON152_tree = null;
 		RewriteRuleTokenStream stream_COLON = new RewriteRuleTokenStream(
-				adaptor, "token COLON");
+				this.adaptor, "token COLON");
 		RewriteRuleTokenStream stream_DEFAULT = new RewriteRuleTokenStream(
-				adaptor, "token DEFAULT");
+				this.adaptor, "token DEFAULT");
 		RewriteRuleTokenStream stream_CASE = new RewriteRuleTokenStream(
-				adaptor, "token CASE");
+				this.adaptor, "token CASE");
 		RewriteRuleSubtreeStream stream_statement = new RewriteRuleSubtreeStream(
-				adaptor, "rule statement");
+				this.adaptor, "rule statement");
 		RewriteRuleSubtreeStream stream_exprList = new RewriteRuleSubtreeStream(
-				adaptor, "rule exprList");
+				this.adaptor, "rule exprList");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 32)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 32)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:9:
@@ -6259,19 +6612,19 @@ public class TinyHaxeTry1Parser extends Parser {
 			// statement )? ) | DEFAULT COLON statement -> ^( DEFAULT (
 			// statement )? ) )
 			int alt35 = 2;
-			int LA35_0 = input.LA(1);
+			int LA35_0 = this.input.LA(1);
 
 			if ((LA35_0 == CASE)) {
 				alt35 = 1;
 			} else if ((LA35_0 == DEFAULT)) {
 				alt35 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 35, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -6280,36 +6633,44 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:11:
 				// CASE exprList COLON statement
 			{
-				CASE147 = (Token) match(input, CASE,
+				CASE147 = (Token) this.match(this.input, CASE,
 						FOLLOW_CASE_in_caseStmt1726);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CASE.add(CASE147);
+				}
 
-				pushFollow(FOLLOW_exprList_in_caseStmt1728);
-				exprList148 = exprList();
+				this.pushFollow(FOLLOW_exprList_in_caseStmt1728);
+				exprList148 = this.exprList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_exprList.add(exprList148.getTree());
-				COLON149 = (Token) match(input, COLON,
+				}
+				COLON149 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_caseStmt1730);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_COLON.add(COLON149);
+				}
 
-				pushFollow(FOLLOW_statement_in_caseStmt1732);
-				statement150 = statement();
+				this.pushFollow(FOLLOW_statement_in_caseStmt1732);
+				statement150 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(statement150.getTree());
+				}
 
 				// AST REWRITE
 				// elements: statement, CASE, exprList
@@ -6318,26 +6679,26 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 209:42: -> ^( CASE ( exprList )? ( statement )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:45:
 						// ^( CASE ( exprList )? ( statement )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_CASE
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_CASE.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:52:
 							// ( exprList )?
 							if (stream_exprList.hasNext()) {
-								adaptor.addChild(root_1, stream_exprList
+								this.adaptor.addChild(root_1, stream_exprList
 										.nextTree());
 
 							}
@@ -6345,13 +6706,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:209:62:
 							// ( statement )?
 							if (stream_statement.hasNext()) {
-								adaptor.addChild(root_1, stream_statement
+								this.adaptor.addChild(root_1, stream_statement
 										.nextTree());
 
 							}
 							stream_statement.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -6364,28 +6725,34 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:210:4:
 				// DEFAULT COLON statement
 			{
-				DEFAULT151 = (Token) match(input, DEFAULT,
+				DEFAULT151 = (Token) this.match(this.input, DEFAULT,
 						FOLLOW_DEFAULT_in_caseStmt1750);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_DEFAULT.add(DEFAULT151);
+				}
 
-				COLON152 = (Token) match(input, COLON,
+				COLON152 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_caseStmt1752);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_COLON.add(COLON152);
+				}
 
-				pushFollow(FOLLOW_statement_in_caseStmt1754);
-				statement153 = statement();
+				this.pushFollow(FOLLOW_statement_in_caseStmt1754);
+				statement153 = this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_statement.add(statement153.getTree());
+				}
 
 				// AST REWRITE
 				// elements: statement, DEFAULT
@@ -6394,32 +6761,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 210:29: -> ^( DEFAULT ( statement )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:210:32:
 						// ^( DEFAULT ( statement )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_DEFAULT
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_DEFAULT.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:210:42:
 							// ( statement )?
 							if (stream_statement.hasNext()) {
-								adaptor.addChild(root_1, stream_statement
+								this.adaptor.addChild(root_1, stream_statement
 										.nextTree());
 
 							}
 							stream_statement.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -6430,23 +6797,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 32, caseStmt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 32, caseStmt_StartIndex);
 			}
 		}
 		return retval;
@@ -6459,7 +6826,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6469,8 +6836,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.defaultStmt_return defaultStmt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.defaultStmt_return retval = new TinyHaxeTry1Parser.defaultStmt_return();
-		retval.start = input.LT(1);
-		int defaultStmt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int defaultStmt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token DEFAULT154 = null;
@@ -6480,7 +6847,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COLON155_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 33)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 33)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:214:9:
@@ -6488,40 +6856,42 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:214:11:
 			// DEFAULT COLON
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				DEFAULT154 = (Token) match(input, DEFAULT,
+				DEFAULT154 = (Token) this.match(this.input, DEFAULT,
 						FOLLOW_DEFAULT_in_defaultStmt1783);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					DEFAULT154_tree = (Object) adaptor.create(DEFAULT154);
-					adaptor.addChild(root_0, DEFAULT154_tree);
 				}
-				COLON155 = (Token) match(input, COLON,
+				if (this.state.backtracking == 0) {
+					DEFAULT154_tree = (Object) this.adaptor.create(DEFAULT154);
+					this.adaptor.addChild(root_0, DEFAULT154_tree);
+				}
+				COLON155 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_defaultStmt1785);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 33, defaultStmt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 33, defaultStmt_StartIndex);
 			}
 		}
 		return retval;
@@ -6534,7 +6904,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6544,8 +6914,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.catchStmtList_return catchStmtList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.catchStmtList_return retval = new TinyHaxeTry1Parser.catchStmtList_return();
-		retval.start = input.LT(1);
-		int catchStmtList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int catchStmtList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.catchStmt_return catchStmt156 = null;
@@ -6553,13 +6923,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.catchStmtList_return catchStmtList157 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 34)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 34)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:218:2:
 			// ( catchStmt catchStmtList | )
 			int alt36 = 2;
-			int LA36_0 = input.LA(1);
+			int LA36_0 = this.input.LA(1);
 
 			if ((LA36_0 == CATCH)) {
 				alt36 = 1;
@@ -6573,12 +6944,12 @@ public class TinyHaxeTry1Parser extends Parser {
 					|| (LA36_0 >= EXTENDS && LA36_0 <= IMPLEMENTS) || (LA36_0 >= LONGLITERAL && LA36_0 <= FALSE))) {
 				alt36 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 36, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -6587,53 +6958,57 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:218:4:
 				// catchStmt catchStmtList
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_catchStmt_in_catchStmtList1798);
-				catchStmt156 = catchStmt();
+				this.pushFollow(FOLLOW_catchStmt_in_catchStmtList1798);
+				catchStmt156 = this.catchStmt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, catchStmt156.getTree());
-				pushFollow(FOLLOW_catchStmtList_in_catchStmtList1800);
-				catchStmtList157 = catchStmtList();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, catchStmt156.getTree());
+				}
+				this.pushFollow(FOLLOW_catchStmtList_in_catchStmtList1800);
+				catchStmtList157 = this.catchStmtList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, catchStmtList157.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, catchStmtList157.getTree());
+				}
 
 			}
 				break;
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:220:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 34, catchStmtList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 34, catchStmtList_StartIndex);
 			}
 		}
 		return retval;
@@ -6646,7 +7021,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6657,8 +7032,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.catchStmt_return catchStmt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.catchStmt_return retval = new TinyHaxeTry1Parser.catchStmt_return();
-		retval.start = input.LT(1);
-		int catchStmt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int catchStmt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token CATCH158 = null;
@@ -6672,17 +7047,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LPAREN159_tree = null;
 		Object RPAREN161_tree = null;
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_CATCH = new RewriteRuleTokenStream(
-				adaptor, "token CATCH");
+				this.adaptor, "token CATCH");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_param = new RewriteRuleSubtreeStream(
-				adaptor, "rule param");
+				this.adaptor, "rule param");
 		RewriteRuleSubtreeStream stream_block = new RewriteRuleSubtreeStream(
-				adaptor, "rule block");
+				this.adaptor, "rule block");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 35)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 35)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:223:9:
@@ -6691,43 +7067,53 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:223:11:
 			// CATCH LPAREN param RPAREN block
 			{
-				CATCH158 = (Token) match(input, CATCH,
+				CATCH158 = (Token) this.match(this.input, CATCH,
 						FOLLOW_CATCH_in_catchStmt1829);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CATCH.add(CATCH158);
+				}
 
-				LPAREN159 = (Token) match(input, LPAREN,
+				LPAREN159 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_catchStmt1831);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN159);
+				}
 
-				pushFollow(FOLLOW_param_in_catchStmt1833);
-				param160 = param();
+				this.pushFollow(FOLLOW_param_in_catchStmt1833);
+				param160 = this.param();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_param.add(param160.getTree());
-				RPAREN161 = (Token) match(input, RPAREN,
+				}
+				RPAREN161 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_catchStmt1835);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN161);
+				}
 
-				pushFollow(FOLLOW_block_in_catchStmt1837);
-				block162 = block();
+				this.pushFollow(FOLLOW_block_in_catchStmt1837);
+				block162 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_block.add(block162.getTree());
+				}
 
 				// AST REWRITE
 				// elements: block, param, CATCH
@@ -6736,26 +7122,26 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 223:43: -> ^( CATCH ( param )? ( block )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:223:46:
 						// ^( CATCH ( param )? ( block )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_CATCH
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_CATCH.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:223:54:
 							// ( param )?
 							if (stream_param.hasNext()) {
-								adaptor.addChild(root_1, stream_param
+								this.adaptor.addChild(root_1, stream_param
 										.nextTree());
 
 							}
@@ -6763,13 +7149,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:223:61:
 							// ( block )?
 							if (stream_block.hasNext()) {
-								adaptor.addChild(root_1, stream_block
+								this.adaptor.addChild(root_1, stream_block
 										.nextTree());
 
 							}
 							stream_block.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -6778,23 +7164,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 35, catchStmt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 35, catchStmt_StartIndex);
 			}
 		}
 		return retval;
@@ -6807,7 +7193,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6817,20 +7203,21 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.exprListOpt_return exprListOpt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.exprListOpt_return retval = new TinyHaxeTry1Parser.exprListOpt_return();
-		retval.start = input.LT(1);
-		int exprListOpt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int exprListOpt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.exprList_return exprList163 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 36)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 36)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:229:2:
 			// ( exprList | )
 			int alt37 = 2;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case IDENTIFIER:
 			case COMMA:
 			case QUES:
@@ -6881,50 +7268,50 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			case RBRACKET: {
-				int LA37_2 = input.LA(2);
+				int LA37_2 = this.input.LA(2);
 
-				if ((synpred66_TinyHaxeTry1())) {
+				if ((this.synpred66_TinyHaxeTry1())) {
 					alt37 = 1;
 				} else if ((true)) {
 					alt37 = 2;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							37, 2, input);
+							37, 2, this.input);
 
 					throw nvae;
 				}
 			}
 				break;
 			case RPAREN: {
-				int LA37_3 = input.LA(2);
+				int LA37_3 = this.input.LA(2);
 
-				if ((synpred66_TinyHaxeTry1())) {
+				if ((this.synpred66_TinyHaxeTry1())) {
 					alt37 = 1;
 				} else if ((true)) {
 					alt37 = 2;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							37, 3, input);
+							37, 3, this.input);
 
 					throw nvae;
 				}
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 37, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -6934,45 +7321,47 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:229:4:
 				// exprList
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_exprList_in_exprListOpt1863);
-				exprList163 = exprList();
+				this.pushFollow(FOLLOW_exprList_in_exprListOpt1863);
+				exprList163 = this.exprList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, exprList163.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, exprList163.getTree());
+				}
 
 			}
 				break;
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:231:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 36, exprListOpt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 36, exprListOpt_StartIndex);
 			}
 		}
 		return retval;
@@ -6985,7 +7374,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -6995,8 +7384,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.exprList_return exprList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.exprList_return retval = new TinyHaxeTry1Parser.exprList_return();
-		retval.start = input.LT(1);
-		int exprList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int exprList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA165 = null;
@@ -7007,7 +7396,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA165_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 37)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 37)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:233:9:
@@ -7015,21 +7405,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:233:11:
 			// expr ( COMMA expr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_expr_in_exprList1883);
-				expr164 = expr();
+				this.pushFollow(FOLLOW_expr_in_exprList1883);
+				expr164 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, expr164.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, expr164.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:233:16:
 				// ( COMMA expr )*
 				loop38: do {
 					int alt38 = 2;
-					int LA38_0 = input.LA(1);
+					int LA38_0 = this.input.LA(1);
 
 					if ((LA38_0 == COMMA)) {
 						alt38 = 1;
@@ -7040,18 +7432,21 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:233:17:
 						// COMMA expr
 					{
-						COMMA165 = (Token) match(input, COMMA,
+						COMMA165 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_exprList1886);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_expr_in_exprList1889);
-						expr166 = expr();
+						}
+						this.pushFollow(FOLLOW_expr_in_exprList1889);
+						expr166 = this.expr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, expr166.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, expr166.getTree());
+						}
 
 					}
 						break;
@@ -7063,23 +7458,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 37, exprList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 37, exprList_StartIndex);
 			}
 		}
 		return retval;
@@ -7092,7 +7487,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7102,14 +7497,15 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.expr_return expr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.expr_return retval = new TinyHaxeTry1Parser.expr_return();
-		retval.start = input.LT(1);
-		int expr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int expr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.assignExpr_return assignExpr167 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 38)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 38)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:236:6:
@@ -7117,36 +7513,38 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:236:8:
 			// assignExpr
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_assignExpr_in_expr1902);
-				assignExpr167 = assignExpr();
+				this.pushFollow(FOLLOW_assignExpr_in_expr1902);
+				assignExpr167 = this.assignExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, assignExpr167.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, assignExpr167.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 38, expr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 38, expr_StartIndex);
 			}
 		}
 		return retval;
@@ -7159,7 +7557,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7169,8 +7567,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.assignExpr_return assignExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.assignExpr_return retval = new TinyHaxeTry1Parser.assignExpr_return();
-		retval.start = input.LT(1);
-		int assignExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int assignExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.iterExpr_return iterExpr168 = null;
@@ -7180,7 +7578,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.iterExpr_return iterExpr170 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 39)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 39)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:240:9:
@@ -7188,21 +7587,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:240:12:
 			// iterExpr ( assignOp iterExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_iterExpr_in_assignExpr1922);
-				iterExpr168 = iterExpr();
+				this.pushFollow(FOLLOW_iterExpr_in_assignExpr1922);
+				iterExpr168 = this.iterExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, iterExpr168.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, iterExpr168.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:240:21:
 				// ( assignOp iterExpr )*
 				loop39: do {
 					int alt39 = 2;
-					int LA39_0 = input.LA(1);
+					int LA39_0 = this.input.LA(1);
 
 					if (((LA39_0 >= EQ && LA39_0 <= AMPEQ))) {
 						alt39 = 1;
@@ -7213,23 +7614,28 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:240:22:
 						// assignOp iterExpr
 					{
-						pushFollow(FOLLOW_assignOp_in_assignExpr1925);
-						assignOp169 = assignOp();
+						this.pushFollow(FOLLOW_assignOp_in_assignExpr1925);
+						assignOp169 = this.assignOp();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							root_0 = (Object) adaptor.becomeRoot(assignOp169
-									.getTree(), root_0);
-						pushFollow(FOLLOW_iterExpr_in_assignExpr1928);
-						iterExpr170 = iterExpr();
+						}
+						if (this.state.backtracking == 0) {
+							root_0 = (Object) this.adaptor.becomeRoot(
+									assignOp169.getTree(), root_0);
+						}
+						this.pushFollow(FOLLOW_iterExpr_in_assignExpr1928);
+						iterExpr170 = this.iterExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, iterExpr170.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor
+									.addChild(root_0, iterExpr170.getTree());
+						}
 
 					}
 						break;
@@ -7241,23 +7647,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 39, assignExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 39, assignExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -7270,7 +7676,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7280,8 +7686,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.ternaryExpr_return ternaryExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.ternaryExpr_return retval = new TinyHaxeTry1Parser.ternaryExpr_return();
-		retval.start = input.LT(1);
-		int ternaryExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int ternaryExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token QUES172 = null;
@@ -7296,7 +7702,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COLON174_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 40)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 40)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:245:2:
@@ -7304,21 +7711,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:245:4:
 			// logicOrExpr ( QUES expr COLON logicOrExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr1951);
-				logicOrExpr171 = logicOrExpr();
+				this.pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr1951);
+				logicOrExpr171 = this.logicOrExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, logicOrExpr171.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, logicOrExpr171.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:245:16:
 				// ( QUES expr COLON logicOrExpr )*
 				loop40: do {
 					int alt40 = 2;
-					int LA40_0 = input.LA(1);
+					int LA40_0 = this.input.LA(1);
 
 					if ((LA40_0 == QUES)) {
 						alt40 = 1;
@@ -7329,35 +7738,43 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:245:17:
 						// QUES expr COLON logicOrExpr
 					{
-						QUES172 = (Token) match(input, QUES,
+						QUES172 = (Token) this.match(this.input, QUES,
 								FOLLOW_QUES_in_ternaryExpr1954);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							QUES172_tree = (Object) adaptor.create(QUES172);
-							root_0 = (Object) adaptor.becomeRoot(QUES172_tree,
-									root_0);
 						}
-						pushFollow(FOLLOW_expr_in_ternaryExpr1957);
-						expr173 = expr();
+						if (this.state.backtracking == 0) {
+							QUES172_tree = (Object) this.adaptor
+									.create(QUES172);
+							root_0 = (Object) this.adaptor.becomeRoot(
+									QUES172_tree, root_0);
+						}
+						this.pushFollow(FOLLOW_expr_in_ternaryExpr1957);
+						expr173 = this.expr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, expr173.getTree());
-						COLON174 = (Token) match(input, COLON,
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, expr173.getTree());
+						}
+						COLON174 = (Token) this.match(this.input, COLON,
 								FOLLOW_COLON_in_ternaryExpr1959);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr1962);
-						logicOrExpr175 = logicOrExpr();
+						}
+						this.pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr1962);
+						logicOrExpr175 = this.logicOrExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, logicOrExpr175.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, logicOrExpr175
+									.getTree());
+						}
 
 					}
 						break;
@@ -7369,23 +7786,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 40, ternaryExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 40, ternaryExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -7398,7 +7815,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7408,8 +7825,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.iterExpr_return iterExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.iterExpr_return retval = new TinyHaxeTry1Parser.iterExpr_return();
-		retval.start = input.LT(1);
-		int iterExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int iterExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token ELLIPSIS177 = null;
@@ -7420,7 +7837,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object ELLIPSIS177_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 41)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 41)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:248:9:
@@ -7428,21 +7846,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:248:11:
 			// ternaryExpr ( ELLIPSIS ternaryExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_ternaryExpr_in_iterExpr1974);
-				ternaryExpr176 = ternaryExpr();
+				this.pushFollow(FOLLOW_ternaryExpr_in_iterExpr1974);
+				ternaryExpr176 = this.ternaryExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, ternaryExpr176.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, ternaryExpr176.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:248:23:
 				// ( ELLIPSIS ternaryExpr )*
 				loop41: do {
 					int alt41 = 2;
-					int LA41_0 = input.LA(1);
+					int LA41_0 = this.input.LA(1);
 
 					if ((LA41_0 == ELLIPSIS)) {
 						alt41 = 1;
@@ -7453,24 +7873,28 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:248:24:
 						// ELLIPSIS ternaryExpr
 					{
-						ELLIPSIS177 = (Token) match(input, ELLIPSIS,
+						ELLIPSIS177 = (Token) this.match(this.input, ELLIPSIS,
 								FOLLOW_ELLIPSIS_in_iterExpr1977);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							ELLIPSIS177_tree = (Object) adaptor
+						}
+						if (this.state.backtracking == 0) {
+							ELLIPSIS177_tree = (Object) this.adaptor
 									.create(ELLIPSIS177);
-							root_0 = (Object) adaptor.becomeRoot(
+							root_0 = (Object) this.adaptor.becomeRoot(
 									ELLIPSIS177_tree, root_0);
 						}
-						pushFollow(FOLLOW_ternaryExpr_in_iterExpr1980);
-						ternaryExpr178 = ternaryExpr();
+						this.pushFollow(FOLLOW_ternaryExpr_in_iterExpr1980);
+						ternaryExpr178 = this.ternaryExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, ternaryExpr178.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, ternaryExpr178
+									.getTree());
+						}
 
 					}
 						break;
@@ -7482,23 +7906,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 41, iterExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 41, iterExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -7511,7 +7935,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7521,8 +7945,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.logicOrExpr_return logicOrExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.logicOrExpr_return retval = new TinyHaxeTry1Parser.logicOrExpr_return();
-		retval.start = input.LT(1);
-		int logicOrExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int logicOrExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token BARBAR180 = null;
@@ -7533,7 +7957,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object BARBAR180_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 42)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 42)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:252:2:
@@ -7541,21 +7966,24 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:252:4:
 			// ( logicAndExpr ) ( BARBAR logicAndExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:252:4:
 				// ( logicAndExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:252:5:
 				// logicAndExpr
 				{
-					pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr2009);
-					logicAndExpr179 = logicAndExpr();
+					this.pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr2009);
+					logicAndExpr179 = this.logicAndExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, logicAndExpr179.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor
+								.addChild(root_0, logicAndExpr179.getTree());
+					}
 
 				}
 
@@ -7563,7 +7991,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( BARBAR logicAndExpr )*
 				loop42: do {
 					int alt42 = 2;
-					int LA42_0 = input.LA(1);
+					int LA42_0 = this.input.LA(1);
 
 					if ((LA42_0 == BARBAR)) {
 						alt42 = 1;
@@ -7574,23 +8002,28 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:252:20:
 						// BARBAR logicAndExpr
 					{
-						BARBAR180 = (Token) match(input, BARBAR,
+						BARBAR180 = (Token) this.match(this.input, BARBAR,
 								FOLLOW_BARBAR_in_logicOrExpr2013);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							BARBAR180_tree = (Object) adaptor.create(BARBAR180);
-							root_0 = (Object) adaptor.becomeRoot(
+						}
+						if (this.state.backtracking == 0) {
+							BARBAR180_tree = (Object) this.adaptor
+									.create(BARBAR180);
+							root_0 = (Object) this.adaptor.becomeRoot(
 									BARBAR180_tree, root_0);
 						}
-						pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr2016);
-						logicAndExpr181 = logicAndExpr();
+						this.pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr2016);
+						logicAndExpr181 = this.logicAndExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, logicAndExpr181.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, logicAndExpr181
+									.getTree());
+						}
 
 					}
 						break;
@@ -7602,23 +8035,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 42, logicOrExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 42, logicOrExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -7631,7 +8064,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7641,8 +8074,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.logicAndExpr_return logicAndExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.logicAndExpr_return retval = new TinyHaxeTry1Parser.logicAndExpr_return();
-		retval.start = input.LT(1);
-		int logicAndExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int logicAndExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token AMPAMP183 = null;
@@ -7653,7 +8086,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object AMPAMP183_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 43)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 43)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:256:2:
@@ -7661,21 +8095,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:256:4:
 			// ( cmpExpr ) ( AMPAMP cmpExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:256:4:
 				// ( cmpExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:256:5:
 				// cmpExpr
 				{
-					pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2037);
-					cmpExpr182 = cmpExpr();
+					this.pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2037);
+					cmpExpr182 = this.cmpExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, cmpExpr182.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, cmpExpr182.getTree());
+					}
 
 				}
 
@@ -7683,7 +8119,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( AMPAMP cmpExpr )*
 				loop43: do {
 					int alt43 = 2;
-					int LA43_0 = input.LA(1);
+					int LA43_0 = this.input.LA(1);
 
 					if ((LA43_0 == AMPAMP)) {
 						alt43 = 1;
@@ -7694,23 +8130,27 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:256:15:
 						// AMPAMP cmpExpr
 					{
-						AMPAMP183 = (Token) match(input, AMPAMP,
+						AMPAMP183 = (Token) this.match(this.input, AMPAMP,
 								FOLLOW_AMPAMP_in_logicAndExpr2041);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							AMPAMP183_tree = (Object) adaptor.create(AMPAMP183);
-							root_0 = (Object) adaptor.becomeRoot(
+						}
+						if (this.state.backtracking == 0) {
+							AMPAMP183_tree = (Object) this.adaptor
+									.create(AMPAMP183);
+							root_0 = (Object) this.adaptor.becomeRoot(
 									AMPAMP183_tree, root_0);
 						}
-						pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2044);
-						cmpExpr184 = cmpExpr();
+						this.pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2044);
+						cmpExpr184 = this.cmpExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, cmpExpr184.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, cmpExpr184.getTree());
+						}
 
 					}
 						break;
@@ -7722,23 +8162,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 43, logicAndExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 43, logicAndExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -7751,7 +8191,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -7762,8 +8202,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.cmpExpr_return cmpExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.cmpExpr_return retval = new TinyHaxeTry1Parser.cmpExpr_return();
-		retval.start = input.LT(1);
-		int cmpExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int cmpExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token EQEQ186 = null;
@@ -7784,7 +8224,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LT191_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 44)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 44)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:9:
@@ -7794,21 +8235,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr
 			// )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:11:
 				// ( bitExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:12:
 				// bitExpr
 				{
-					pushFollow(FOLLOW_bitExpr_in_cmpExpr2058);
-					bitExpr185 = bitExpr();
+					this.pushFollow(FOLLOW_bitExpr_in_cmpExpr2058);
+					bitExpr185 = this.bitExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, bitExpr185.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, bitExpr185.getTree());
+					}
 
 				}
 
@@ -7816,7 +8259,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
 				loop45: do {
 					int alt45 = 2;
-					int LA45_0 = input.LA(1);
+					int LA45_0 = this.input.LA(1);
 
 					if (((LA45_0 >= LT && LA45_0 <= GT) || (LA45_0 >= EQEQ && LA45_0 <= LTEQ))) {
 						alt45 = 1;
@@ -7830,7 +8273,7 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:22:
 						// ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT )
 						int alt44 = 6;
-						switch (input.LA(1)) {
+						switch (this.input.LA(1)) {
 						case EQEQ: {
 							alt44 = 1;
 						}
@@ -7856,12 +8299,12 @@ public class TinyHaxeTry1Parser extends Parser {
 						}
 							break;
 						default:
-							if (state.backtracking > 0) {
-								state.failed = true;
+							if (this.state.backtracking > 0) {
+								this.state.failed = true;
 								return retval;
 							}
 							NoViableAltException nvae = new NoViableAltException(
-									"", 44, 0, input);
+									"", 44, 0, this.input);
 
 							throw nvae;
 						}
@@ -7871,13 +8314,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:23:
 							// EQEQ
 						{
-							EQEQ186 = (Token) match(input, EQEQ,
+							EQEQ186 = (Token) this.match(this.input, EQEQ,
 									FOLLOW_EQEQ_in_cmpExpr2063);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								EQEQ186_tree = (Object) adaptor.create(EQEQ186);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								EQEQ186_tree = (Object) this.adaptor
+										.create(EQEQ186);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										EQEQ186_tree, root_0);
 							}
 
@@ -7887,14 +8332,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:30:
 							// BANGEQ
 						{
-							BANGEQ187 = (Token) match(input, BANGEQ,
+							BANGEQ187 = (Token) this.match(this.input, BANGEQ,
 									FOLLOW_BANGEQ_in_cmpExpr2067);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								BANGEQ187_tree = (Object) adaptor
+							}
+							if (this.state.backtracking == 0) {
+								BANGEQ187_tree = (Object) this.adaptor
 										.create(BANGEQ187);
-								root_0 = (Object) adaptor.becomeRoot(
+								root_0 = (Object) this.adaptor.becomeRoot(
 										BANGEQ187_tree, root_0);
 							}
 
@@ -7904,13 +8350,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:40:
 							// GTEQ
 						{
-							GTEQ188 = (Token) match(input, GTEQ,
+							GTEQ188 = (Token) this.match(this.input, GTEQ,
 									FOLLOW_GTEQ_in_cmpExpr2072);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								GTEQ188_tree = (Object) adaptor.create(GTEQ188);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								GTEQ188_tree = (Object) this.adaptor
+										.create(GTEQ188);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										GTEQ188_tree, root_0);
 							}
 
@@ -7920,13 +8368,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:48:
 							// LTEQ
 						{
-							LTEQ189 = (Token) match(input, LTEQ,
+							LTEQ189 = (Token) this.match(this.input, LTEQ,
 									FOLLOW_LTEQ_in_cmpExpr2077);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								LTEQ189_tree = (Object) adaptor.create(LTEQ189);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								LTEQ189_tree = (Object) this.adaptor
+										.create(LTEQ189);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										LTEQ189_tree, root_0);
 							}
 
@@ -7936,13 +8386,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:56:
 							// GT
 						{
-							GT190 = (Token) match(input, GT,
+							GT190 = (Token) this.match(this.input, GT,
 									FOLLOW_GT_in_cmpExpr2082);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								GT190_tree = (Object) adaptor.create(GT190);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								GT190_tree = (Object) this.adaptor
+										.create(GT190);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										GT190_tree, root_0);
 							}
 
@@ -7952,13 +8404,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:259:62:
 							// LT
 						{
-							LT191 = (Token) match(input, LT,
+							LT191 = (Token) this.match(this.input, LT,
 									FOLLOW_LT_in_cmpExpr2087);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								LT191_tree = (Object) adaptor.create(LT191);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								LT191_tree = (Object) this.adaptor
+										.create(LT191);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										LT191_tree, root_0);
 							}
 
@@ -7967,14 +8421,16 @@ public class TinyHaxeTry1Parser extends Parser {
 
 						}
 
-						pushFollow(FOLLOW_bitExpr_in_cmpExpr2092);
-						bitExpr192 = bitExpr();
+						this.pushFollow(FOLLOW_bitExpr_in_cmpExpr2092);
+						bitExpr192 = this.bitExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, bitExpr192.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, bitExpr192.getTree());
+						}
 
 					}
 						break;
@@ -7986,23 +8442,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 44, cmpExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 44, cmpExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -8015,7 +8471,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -8026,8 +8482,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.bitExpr_return bitExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.bitExpr_return retval = new TinyHaxeTry1Parser.bitExpr_return();
-		retval.start = input.LT(1);
-		int bitExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int bitExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token BAR194 = null;
@@ -8046,7 +8502,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object CARET198_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 45)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 45)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:262:9:
@@ -8056,21 +8513,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr
 			// )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:262:11:
 				// ( shiftExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:262:12:
 				// shiftExpr
 				{
-					pushFollow(FOLLOW_shiftExpr_in_bitExpr2106);
-					shiftExpr193 = shiftExpr();
+					this.pushFollow(FOLLOW_shiftExpr_in_bitExpr2106);
+					shiftExpr193 = this.shiftExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, shiftExpr193.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, shiftExpr193.getTree());
+					}
 
 				}
 
@@ -8078,7 +8537,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
 				loop46: do {
 					int alt46 = 4;
-					switch (input.LA(1)) {
+					switch (this.input.LA(1)) {
 					case BAR: {
 						alt46 = 1;
 					}
@@ -8099,23 +8558,27 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:262:24:
 						// BAR shiftExpr
 					{
-						BAR194 = (Token) match(input, BAR,
+						BAR194 = (Token) this.match(this.input, BAR,
 								FOLLOW_BAR_in_bitExpr2110);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							BAR194_tree = (Object) adaptor.create(BAR194);
-							root_0 = (Object) adaptor.becomeRoot(BAR194_tree,
-									root_0);
 						}
-						pushFollow(FOLLOW_shiftExpr_in_bitExpr2113);
-						shiftExpr195 = shiftExpr();
+						if (this.state.backtracking == 0) {
+							BAR194_tree = (Object) this.adaptor.create(BAR194);
+							root_0 = (Object) this.adaptor.becomeRoot(
+									BAR194_tree, root_0);
+						}
+						this.pushFollow(FOLLOW_shiftExpr_in_bitExpr2113);
+						shiftExpr195 = this.shiftExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, shiftExpr195.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, shiftExpr195
+									.getTree());
+						}
 
 					}
 						break;
@@ -8123,23 +8586,27 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:262:41:
 						// AMP shiftExpr
 					{
-						AMP196 = (Token) match(input, AMP,
+						AMP196 = (Token) this.match(this.input, AMP,
 								FOLLOW_AMP_in_bitExpr2117);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							AMP196_tree = (Object) adaptor.create(AMP196);
-							root_0 = (Object) adaptor.becomeRoot(AMP196_tree,
-									root_0);
 						}
-						pushFollow(FOLLOW_shiftExpr_in_bitExpr2120);
-						shiftExpr197 = shiftExpr();
+						if (this.state.backtracking == 0) {
+							AMP196_tree = (Object) this.adaptor.create(AMP196);
+							root_0 = (Object) this.adaptor.becomeRoot(
+									AMP196_tree, root_0);
+						}
+						this.pushFollow(FOLLOW_shiftExpr_in_bitExpr2120);
+						shiftExpr197 = this.shiftExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, shiftExpr197.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, shiftExpr197
+									.getTree());
+						}
 
 					}
 						break;
@@ -8147,23 +8614,28 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:262:57:
 						// CARET shiftExpr
 					{
-						CARET198 = (Token) match(input, CARET,
+						CARET198 = (Token) this.match(this.input, CARET,
 								FOLLOW_CARET_in_bitExpr2123);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							CARET198_tree = (Object) adaptor.create(CARET198);
-							root_0 = (Object) adaptor.becomeRoot(CARET198_tree,
-									root_0);
 						}
-						pushFollow(FOLLOW_shiftExpr_in_bitExpr2126);
-						shiftExpr199 = shiftExpr();
+						if (this.state.backtracking == 0) {
+							CARET198_tree = (Object) this.adaptor
+									.create(CARET198);
+							root_0 = (Object) this.adaptor.becomeRoot(
+									CARET198_tree, root_0);
+						}
+						this.pushFollow(FOLLOW_shiftExpr_in_bitExpr2126);
+						shiftExpr199 = this.shiftExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, shiftExpr199.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, shiftExpr199
+									.getTree());
+						}
 
 					}
 						break;
@@ -8175,23 +8647,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 45, bitExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 45, bitExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -8204,7 +8676,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -8215,8 +8687,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.shiftExpr_return shiftExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.shiftExpr_return retval = new TinyHaxeTry1Parser.shiftExpr_return();
-		retval.start = input.LT(1);
-		int shiftExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int shiftExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LTLT201 = null;
@@ -8237,7 +8709,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object GTGTGT206_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 46)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 46)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:2:
@@ -8247,21 +8720,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr
 			// )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:4:
 				// ( addExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:5:
 				// addExpr
 				{
-					pushFollow(FOLLOW_addExpr_in_shiftExpr2140);
-					addExpr200 = addExpr();
+					this.pushFollow(FOLLOW_addExpr_in_shiftExpr2140);
+					addExpr200 = this.addExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, addExpr200.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, addExpr200.getTree());
+					}
 
 				}
 
@@ -8269,14 +8744,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
 				loop47: do {
 					int alt47 = 4;
-					switch (input.LA(1)) {
+					switch (this.input.LA(1)) {
 					case GT: {
-						int LA47_2 = input.LA(2);
+						int LA47_2 = this.input.LA(2);
 
 						if ((LA47_2 == GT)) {
-							int LA47_5 = input.LA(3);
+							int LA47_5 = this.input.LA(3);
 
-							if ((synpred83_TinyHaxeTry1())) {
+							if ((this.synpred83_TinyHaxeTry1())) {
 								alt47 = 2;
 							}
 
@@ -8300,23 +8775,27 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:15:
 						// LTLT addExpr
 					{
-						LTLT201 = (Token) match(input, LTLT,
+						LTLT201 = (Token) this.match(this.input, LTLT,
 								FOLLOW_LTLT_in_shiftExpr2144);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							LTLT201_tree = (Object) adaptor.create(LTLT201);
-							root_0 = (Object) adaptor.becomeRoot(LTLT201_tree,
-									root_0);
 						}
-						pushFollow(FOLLOW_addExpr_in_shiftExpr2148);
-						addExpr202 = addExpr();
+						if (this.state.backtracking == 0) {
+							LTLT201_tree = (Object) this.adaptor
+									.create(LTLT201);
+							root_0 = (Object) this.adaptor.becomeRoot(
+									LTLT201_tree, root_0);
+						}
+						this.pushFollow(FOLLOW_addExpr_in_shiftExpr2148);
+						addExpr202 = this.addExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, addExpr202.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, addExpr202.getTree());
+						}
 
 					}
 						break;
@@ -8329,33 +8808,39 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:33:
 						// GT GT
 						{
-							GT203 = (Token) match(input, GT,
+							GT203 = (Token) this.match(this.input, GT,
 									FOLLOW_GT_in_shiftExpr2153);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								GT203_tree = (Object) adaptor.create(GT203);
-								adaptor.addChild(root_0, GT203_tree);
 							}
-							GT204 = (Token) match(input, GT,
+							if (this.state.backtracking == 0) {
+								GT203_tree = (Object) this.adaptor
+										.create(GT203);
+								this.adaptor.addChild(root_0, GT203_tree);
+							}
+							GT204 = (Token) this.match(this.input, GT,
 									FOLLOW_GT_in_shiftExpr2155);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								GT204_tree = (Object) adaptor.create(GT204);
-								adaptor.addChild(root_0, GT204_tree);
+							}
+							if (this.state.backtracking == 0) {
+								GT204_tree = (Object) this.adaptor
+										.create(GT204);
+								this.adaptor.addChild(root_0, GT204_tree);
 							}
 
 						}
 
-						pushFollow(FOLLOW_addExpr_in_shiftExpr2160);
-						addExpr205 = addExpr();
+						this.pushFollow(FOLLOW_addExpr_in_shiftExpr2160);
+						addExpr205 = this.addExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, addExpr205.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, addExpr205.getTree());
+						}
 
 					}
 						break;
@@ -8363,23 +8848,27 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:52:
 						// GTGTGT addExpr
 					{
-						GTGTGT206 = (Token) match(input, GTGTGT,
+						GTGTGT206 = (Token) this.match(this.input, GTGTGT,
 								FOLLOW_GTGTGT_in_shiftExpr2164);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0) {
-							GTGTGT206_tree = (Object) adaptor.create(GTGTGT206);
-							root_0 = (Object) adaptor.becomeRoot(
+						}
+						if (this.state.backtracking == 0) {
+							GTGTGT206_tree = (Object) this.adaptor
+									.create(GTGTGT206);
+							root_0 = (Object) this.adaptor.becomeRoot(
 									GTGTGT206_tree, root_0);
 						}
-						pushFollow(FOLLOW_addExpr_in_shiftExpr2167);
-						addExpr207 = addExpr();
+						this.pushFollow(FOLLOW_addExpr_in_shiftExpr2167);
+						addExpr207 = this.addExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, addExpr207.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, addExpr207.getTree());
+						}
 
 					}
 						break;
@@ -8391,23 +8880,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 46, shiftExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 46, shiftExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -8420,7 +8909,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -8430,8 +8919,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.addExpr_return addExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.addExpr_return retval = new TinyHaxeTry1Parser.addExpr_return();
-		retval.start = input.LT(1);
-		int addExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int addExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token PLUS209 = null;
@@ -8444,7 +8933,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object SUB210_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 47)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 47)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:9:
@@ -8452,21 +8942,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:12:
 			// ( multExpr ) ( ( PLUS | SUB ) multExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:12:
 				// ( multExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:13:
 				// multExpr
 				{
-					pushFollow(FOLLOW_multExpr_in_addExpr2181);
-					multExpr208 = multExpr();
+					this.pushFollow(FOLLOW_multExpr_in_addExpr2181);
+					multExpr208 = this.multExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, multExpr208.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, multExpr208.getTree());
+					}
 
 				}
 
@@ -8474,7 +8966,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( ( PLUS | SUB ) multExpr )*
 				loop49: do {
 					int alt49 = 2;
-					int LA49_0 = input.LA(1);
+					int LA49_0 = this.input.LA(1);
 
 					if (((LA49_0 >= PLUS && LA49_0 <= SUB))) {
 						alt49 = 1;
@@ -8488,19 +8980,19 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:24:
 						// ( PLUS | SUB )
 						int alt48 = 2;
-						int LA48_0 = input.LA(1);
+						int LA48_0 = this.input.LA(1);
 
 						if ((LA48_0 == PLUS)) {
 							alt48 = 1;
 						} else if ((LA48_0 == SUB)) {
 							alt48 = 2;
 						} else {
-							if (state.backtracking > 0) {
-								state.failed = true;
+							if (this.state.backtracking > 0) {
+								this.state.failed = true;
 								return retval;
 							}
 							NoViableAltException nvae = new NoViableAltException(
-									"", 48, 0, input);
+									"", 48, 0, this.input);
 
 							throw nvae;
 						}
@@ -8509,13 +9001,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:25:
 							// PLUS
 						{
-							PLUS209 = (Token) match(input, PLUS,
+							PLUS209 = (Token) this.match(this.input, PLUS,
 									FOLLOW_PLUS_in_addExpr2186);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								PLUS209_tree = (Object) adaptor.create(PLUS209);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								PLUS209_tree = (Object) this.adaptor
+										.create(PLUS209);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										PLUS209_tree, root_0);
 							}
 
@@ -8525,13 +9019,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:269:33:
 							// SUB
 						{
-							SUB210 = (Token) match(input, SUB,
+							SUB210 = (Token) this.match(this.input, SUB,
 									FOLLOW_SUB_in_addExpr2191);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								SUB210_tree = (Object) adaptor.create(SUB210);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								SUB210_tree = (Object) this.adaptor
+										.create(SUB210);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										SUB210_tree, root_0);
 							}
 
@@ -8540,14 +9036,17 @@ public class TinyHaxeTry1Parser extends Parser {
 
 						}
 
-						pushFollow(FOLLOW_multExpr_in_addExpr2195);
-						multExpr211 = multExpr();
+						this.pushFollow(FOLLOW_multExpr_in_addExpr2195);
+						multExpr211 = this.multExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, multExpr211.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor
+									.addChild(root_0, multExpr211.getTree());
+						}
 
 					}
 						break;
@@ -8559,23 +9058,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 47, addExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 47, addExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -8588,7 +9087,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -8598,8 +9097,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.multExpr_return multExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.multExpr_return retval = new TinyHaxeTry1Parser.multExpr_return();
-		retval.start = input.LT(1);
-		int multExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int multExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token STAR213 = null;
@@ -8614,7 +9113,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object PERCENT215_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 48)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 48)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:9:
@@ -8622,21 +9122,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:11:
 			// ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:11:
 				// ( prefixExpr )
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:12:
 				// prefixExpr
 				{
-					pushFollow(FOLLOW_prefixExpr_in_multExpr2209);
-					prefixExpr212 = prefixExpr();
+					this.pushFollow(FOLLOW_prefixExpr_in_multExpr2209);
+					prefixExpr212 = this.prefixExpr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, prefixExpr212.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, prefixExpr212.getTree());
+					}
 
 				}
 
@@ -8644,7 +9146,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// ( ( STAR | SLASH | PERCENT ) prefixExpr )*
 				loop51: do {
 					int alt51 = 2;
-					int LA51_0 = input.LA(1);
+					int LA51_0 = this.input.LA(1);
 
 					if (((LA51_0 >= STAR && LA51_0 <= PERCENT))) {
 						alt51 = 1;
@@ -8658,7 +9160,7 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:25:
 						// ( STAR | SLASH | PERCENT )
 						int alt50 = 3;
-						switch (input.LA(1)) {
+						switch (this.input.LA(1)) {
 						case STAR: {
 							alt50 = 1;
 						}
@@ -8672,12 +9174,12 @@ public class TinyHaxeTry1Parser extends Parser {
 						}
 							break;
 						default:
-							if (state.backtracking > 0) {
-								state.failed = true;
+							if (this.state.backtracking > 0) {
+								this.state.failed = true;
 								return retval;
 							}
 							NoViableAltException nvae = new NoViableAltException(
-									"", 50, 0, input);
+									"", 50, 0, this.input);
 
 							throw nvae;
 						}
@@ -8687,13 +9189,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:26:
 							// STAR
 						{
-							STAR213 = (Token) match(input, STAR,
+							STAR213 = (Token) this.match(this.input, STAR,
 									FOLLOW_STAR_in_multExpr2214);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								STAR213_tree = (Object) adaptor.create(STAR213);
-								root_0 = (Object) adaptor.becomeRoot(
+							}
+							if (this.state.backtracking == 0) {
+								STAR213_tree = (Object) this.adaptor
+										.create(STAR213);
+								root_0 = (Object) this.adaptor.becomeRoot(
 										STAR213_tree, root_0);
 							}
 
@@ -8703,14 +9207,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:32:
 							// SLASH
 						{
-							SLASH214 = (Token) match(input, SLASH,
+							SLASH214 = (Token) this.match(this.input, SLASH,
 									FOLLOW_SLASH_in_multExpr2217);
-							if (state.failed)
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								SLASH214_tree = (Object) adaptor
+							}
+							if (this.state.backtracking == 0) {
+								SLASH214_tree = (Object) this.adaptor
 										.create(SLASH214);
-								root_0 = (Object) adaptor.becomeRoot(
+								root_0 = (Object) this.adaptor.becomeRoot(
 										SLASH214_tree, root_0);
 							}
 
@@ -8720,14 +9225,15 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:272:39:
 							// PERCENT
 						{
-							PERCENT215 = (Token) match(input, PERCENT,
-									FOLLOW_PERCENT_in_multExpr2220);
-							if (state.failed)
+							PERCENT215 = (Token) this.match(this.input,
+									PERCENT, FOLLOW_PERCENT_in_multExpr2220);
+							if (this.state.failed) {
 								return retval;
-							if (state.backtracking == 0) {
-								PERCENT215_tree = (Object) adaptor
+							}
+							if (this.state.backtracking == 0) {
+								PERCENT215_tree = (Object) this.adaptor
 										.create(PERCENT215);
-								root_0 = (Object) adaptor.becomeRoot(
+								root_0 = (Object) this.adaptor.becomeRoot(
 										PERCENT215_tree, root_0);
 							}
 
@@ -8736,14 +9242,17 @@ public class TinyHaxeTry1Parser extends Parser {
 
 						}
 
-						pushFollow(FOLLOW_prefixExpr_in_multExpr2224);
-						prefixExpr216 = prefixExpr();
+						this.pushFollow(FOLLOW_prefixExpr_in_multExpr2224);
+						prefixExpr216 = this.prefixExpr();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, prefixExpr216.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, prefixExpr216
+									.getTree());
+						}
 
 					}
 						break;
@@ -8755,23 +9264,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 48, multExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 48, multExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -8784,7 +9293,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -8795,8 +9304,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.prefixExpr_return prefixExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.prefixExpr_return retval = new TinyHaxeTry1Parser.prefixExpr_return();
-		retval.start = input.LT(1);
-		int prefixExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int prefixExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token set217 = null;
@@ -8811,28 +9320,29 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object set217_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 49)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 49)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:276:9:
 			// ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr
 			// | cast | suffixExpr )
 			int alt52 = 4;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case PLUSPLUS: {
-				int LA52_1 = input.LA(2);
+				int LA52_1 = this.input.LA(2);
 
-				if ((synpred94_TinyHaxeTry1())) {
+				if ((this.synpred94_TinyHaxeTry1())) {
 					alt52 = 1;
 				} else if ((true)) {
 					alt52 = 4;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							52, 1, input);
+							52, 1, this.input);
 
 					throw nvae;
 				}
@@ -8896,38 +9406,38 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			case SUBSUB: {
-				int LA52_5 = input.LA(2);
+				int LA52_5 = this.input.LA(2);
 
-				if ((synpred94_TinyHaxeTry1())) {
+				if ((this.synpred94_TinyHaxeTry1())) {
 					alt52 = 1;
 				} else if ((true)) {
 					alt52 = 4;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							52, 5, input);
+							52, 5, this.input);
 
 					throw nvae;
 				}
 			}
 				break;
 			case SUB: {
-				int LA52_6 = input.LA(2);
+				int LA52_6 = this.input.LA(2);
 
-				if ((synpred94_TinyHaxeTry1())) {
+				if ((this.synpred94_TinyHaxeTry1())) {
 					alt52 = 1;
 				} else if ((true)) {
 					alt52 = 4;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							52, 6, input);
+							52, 6, this.input);
 
 					throw nvae;
 				}
@@ -8939,12 +9449,12 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 52, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -8954,35 +9464,38 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:276:11:
 				// ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				set217 = (Token) input.LT(1);
-				if (input.LA(1) == SUB
-						|| (input.LA(1) >= SUBSUB && input.LA(1) <= TILDE)) {
-					input.consume();
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, (Object) adaptor
+				set217 = (Token) this.input.LT(1);
+				if (this.input.LA(1) == SUB
+						|| (this.input.LA(1) >= SUBSUB && this.input.LA(1) <= TILDE)) {
+					this.input.consume();
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, (Object) this.adaptor
 								.create(set217));
-					state.errorRecovery = false;
-					state.failed = false;
+					}
+					this.state.errorRecovery = false;
+					this.state.failed = false;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					MismatchedSetException mse = new MismatchedSetException(
-							null, input);
+							null, this.input);
 					throw mse;
 				}
 
-				pushFollow(FOLLOW_prefixExpr_in_prefixExpr2257);
-				prefixExpr218 = prefixExpr();
+				this.pushFollow(FOLLOW_prefixExpr_in_prefixExpr2257);
+				prefixExpr218 = this.prefixExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, prefixExpr218.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, prefixExpr218.getTree());
+				}
 
 			}
 				break;
@@ -8990,16 +9503,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:277:11:
 				// newExpr
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_newExpr_in_prefixExpr2269);
-				newExpr219 = newExpr();
+				this.pushFollow(FOLLOW_newExpr_in_prefixExpr2269);
+				newExpr219 = this.newExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, newExpr219.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, newExpr219.getTree());
+				}
 
 			}
 				break;
@@ -9007,16 +9522,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:278:11:
 				// cast
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_cast_in_prefixExpr2281);
-				cast220 = cast();
+				this.pushFollow(FOLLOW_cast_in_prefixExpr2281);
+				cast220 = this.cast();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, cast220.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, cast220.getTree());
+				}
 
 			}
 				break;
@@ -9024,38 +9541,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:279:11:
 				// suffixExpr
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_suffixExpr_in_prefixExpr2293);
-				suffixExpr221 = suffixExpr();
+				this.pushFollow(FOLLOW_suffixExpr_in_prefixExpr2293);
+				suffixExpr221 = this.suffixExpr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, suffixExpr221.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, suffixExpr221.getTree());
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 49, prefixExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 49, prefixExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -9068,7 +9587,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -9083,8 +9602,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.suffixExpr_return suffixExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.suffixExpr_return retval = new TinyHaxeTry1Parser.suffixExpr_return();
-		retval.start = input.LT(1);
-		int suffixExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int suffixExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LPAREN223 = null;
@@ -9116,19 +9635,20 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object PLUSPLUS231_tree = null;
 		Object SUBSUB233_tree = null;
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_SUBSUB = new RewriteRuleTokenStream(
-				adaptor, "token SUBSUB");
+				this.adaptor, "token SUBSUB");
 		RewriteRuleTokenStream stream_PLUSPLUS = new RewriteRuleTokenStream(
-				adaptor, "token PLUSPLUS");
+				this.adaptor, "token PLUSPLUS");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_exprListOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule exprListOpt");
+				this.adaptor, "rule exprListOpt");
 		RewriteRuleSubtreeStream stream_value = new RewriteRuleSubtreeStream(
-				adaptor, "rule value");
+				this.adaptor, "rule value");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 50)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 50)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:283:2:
@@ -9139,41 +9659,49 @@ public class TinyHaxeTry1Parser extends Parser {
 			// value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )?
 			// SUBSUB ) | value typeParamOpt )
 			int alt53 = 5;
-			alt53 = dfa53.predict(input);
+			alt53 = this.dfa53.predict(this.input);
 			switch (alt53) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:283:4:
 				// value LPAREN exprListOpt RPAREN
 			{
-				pushFollow(FOLLOW_value_in_suffixExpr2312);
-				value222 = value();
+				this.pushFollow(FOLLOW_value_in_suffixExpr2312);
+				value222 = this.value();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_value.add(value222.getTree());
-				LPAREN223 = (Token) match(input, LPAREN,
+				}
+				LPAREN223 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_suffixExpr2314);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN223);
+				}
 
-				pushFollow(FOLLOW_exprListOpt_in_suffixExpr2316);
-				exprListOpt224 = exprListOpt();
+				this.pushFollow(FOLLOW_exprListOpt_in_suffixExpr2316);
+				exprListOpt224 = this.exprListOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_exprListOpt.add(exprListOpt224.getTree());
-				RPAREN225 = (Token) match(input, RPAREN,
+				}
+				RPAREN225 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_suffixExpr2318);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN225);
+				}
 
 				// AST REWRITE
 				// elements: value, exprListOpt
@@ -9182,13 +9710,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 283:36: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value
 					// )? ( exprListOpt )? )
 					{
@@ -9196,15 +9724,15 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? (
 						// exprListOpt )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(SUFFIX_EXPR,
 											"SUFFIX_EXPR", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:283:93:
 							// ( value )?
 							if (stream_value.hasNext()) {
-								adaptor.addChild(root_1, stream_value
+								this.adaptor.addChild(root_1, stream_value
 										.nextTree());
 
 							}
@@ -9212,13 +9740,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:283:100:
 							// ( exprListOpt )?
 							if (stream_exprListOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_exprListOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_exprListOpt.nextTree());
 
 							}
 							stream_exprListOpt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -9231,39 +9759,47 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:284:4:
 				// value LBRACKET expr RBRACKET
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_value_in_suffixExpr2339);
-				value226 = value();
+				this.pushFollow(FOLLOW_value_in_suffixExpr2339);
+				value226 = this.value();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, value226.getTree());
-				LBRACKET227 = (Token) match(input, LBRACKET,
-						FOLLOW_LBRACKET_in_suffixExpr2341);
-				if (state.failed)
-					return retval;
-				if (state.backtracking == 0) {
-					LBRACKET227_tree = (Object) adaptor.create(LBRACKET227);
-					adaptor.addChild(root_0, LBRACKET227_tree);
 				}
-				pushFollow(FOLLOW_expr_in_suffixExpr2343);
-				expr228 = expr();
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, value226.getTree());
+				}
+				LBRACKET227 = (Token) this.match(this.input, LBRACKET,
+						FOLLOW_LBRACKET_in_suffixExpr2341);
+				if (this.state.failed) {
+					return retval;
+				}
+				if (this.state.backtracking == 0) {
+					LBRACKET227_tree = (Object) this.adaptor
+							.create(LBRACKET227);
+					this.adaptor.addChild(root_0, LBRACKET227_tree);
+				}
+				this.pushFollow(FOLLOW_expr_in_suffixExpr2343);
+				expr228 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, expr228.getTree());
-				RBRACKET229 = (Token) match(input, RBRACKET,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, expr228.getTree());
+				}
+				RBRACKET229 = (Token) this.match(this.input, RBRACKET,
 						FOLLOW_RBRACKET_in_suffixExpr2345);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					RBRACKET229_tree = (Object) adaptor.create(RBRACKET229);
-					adaptor.addChild(root_0, RBRACKET229_tree);
+				}
+				if (this.state.backtracking == 0) {
+					RBRACKET229_tree = (Object) this.adaptor
+							.create(RBRACKET229);
+					this.adaptor.addChild(root_0, RBRACKET229_tree);
 				}
 
 			}
@@ -9272,20 +9808,24 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:285:4:
 				// value PLUSPLUS
 			{
-				pushFollow(FOLLOW_value_in_suffixExpr2350);
-				value230 = value();
+				this.pushFollow(FOLLOW_value_in_suffixExpr2350);
+				value230 = this.value();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_value.add(value230.getTree());
-				PLUSPLUS231 = (Token) match(input, PLUSPLUS,
+				}
+				PLUSPLUS231 = (Token) this.match(this.input, PLUSPLUS,
 						FOLLOW_PLUSPLUS_in_suffixExpr2352);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_PLUSPLUS.add(PLUSPLUS231);
+				}
 
 				// AST REWRITE
 				// elements: value, PLUSPLUS
@@ -9294,13 +9834,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 285:22: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value
 					// )? ( PLUSPLUS )? )
 					{
@@ -9308,15 +9848,15 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? (
 						// PLUSPLUS )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(SUFFIX_EXPR,
 											"SUFFIX_EXPR", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:285:79:
 							// ( value )?
 							if (stream_value.hasNext()) {
-								adaptor.addChild(root_1, stream_value
+								this.adaptor.addChild(root_1, stream_value
 										.nextTree());
 
 							}
@@ -9324,13 +9864,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:285:86:
 							// ( PLUSPLUS )?
 							if (stream_PLUSPLUS.hasNext()) {
-								adaptor.addChild(root_1, stream_PLUSPLUS
+								this.adaptor.addChild(root_1, stream_PLUSPLUS
 										.nextNode());
 
 							}
 							stream_PLUSPLUS.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -9343,20 +9883,24 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:286:4:
 				// value SUBSUB
 			{
-				pushFollow(FOLLOW_value_in_suffixExpr2376);
-				value232 = value();
+				this.pushFollow(FOLLOW_value_in_suffixExpr2376);
+				value232 = this.value();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_value.add(value232.getTree());
-				SUBSUB233 = (Token) match(input, SUBSUB,
+				}
+				SUBSUB233 = (Token) this.match(this.input, SUBSUB,
 						FOLLOW_SUBSUB_in_suffixExpr2378);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SUBSUB.add(SUBSUB233);
+				}
 
 				// AST REWRITE
 				// elements: value, SUBSUB
@@ -9365,13 +9909,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 286:20: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value
 					// )? SUBSUB )
 					{
@@ -9379,22 +9923,23 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )?
 						// SUBSUB )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(SUFFIX_EXPR,
 											"SUFFIX_EXPR", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:286:77:
 							// ( value )?
 							if (stream_value.hasNext()) {
-								adaptor.addChild(root_1, stream_value
+								this.adaptor.addChild(root_1, stream_value
 										.nextTree());
 
 							}
 							stream_value.reset();
-							adaptor.addChild(root_1, stream_SUBSUB.nextNode());
+							this.adaptor.addChild(root_1, stream_SUBSUB
+									.nextNode());
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -9407,46 +9952,50 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:287:4:
 				// value typeParamOpt
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_value_in_suffixExpr2401);
-				value234 = value();
+				this.pushFollow(FOLLOW_value_in_suffixExpr2401);
+				value234 = this.value();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, value234.getTree());
-				pushFollow(FOLLOW_typeParamOpt_in_suffixExpr2403);
-				typeParamOpt235 = typeParamOpt();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, value234.getTree());
+				}
+				this.pushFollow(FOLLOW_typeParamOpt_in_suffixExpr2403);
+				typeParamOpt235 = this.typeParamOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, typeParamOpt235.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, typeParamOpt235.getTree());
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 50, suffixExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 50, suffixExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -9459,7 +10008,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -9470,8 +10019,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.value_return value()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.value_return retval = new TinyHaxeTry1Parser.value_return();
-		retval.start = input.LT(1);
-		int value_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int value_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token NULL239 = null;
@@ -9496,29 +10045,32 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RPAREN244_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 51)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 51)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:290:7:
 			// ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN
 			// ( expr | statement ) RPAREN | dotIdent | )
 			int alt55 = 8;
-			alt55 = dfa55.predict(input);
+			alt55 = this.dfa55.predict(this.input);
 			switch (alt55) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:290:9:
 				// funcLit
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_funcLit_in_value2412);
-				funcLit236 = funcLit();
+				this.pushFollow(FOLLOW_funcLit_in_value2412);
+				funcLit236 = this.funcLit();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcLit236.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcLit236.getTree());
+				}
 
 			}
 				break;
@@ -9526,16 +10078,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:291:4:
 				// arrayLit
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_arrayLit_in_value2418);
-				arrayLit237 = arrayLit();
+				this.pushFollow(FOLLOW_arrayLit_in_value2418);
+				arrayLit237 = this.arrayLit();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, arrayLit237.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, arrayLit237.getTree());
+				}
 
 			}
 				break;
@@ -9543,16 +10097,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:292:14:
 				// objLit
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_objLit_in_value2433);
-				objLit238 = objLit();
+				this.pushFollow(FOLLOW_objLit_in_value2433);
+				objLit238 = this.objLit();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, objLit238.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, objLit238.getTree());
+				}
 
 			}
 				break;
@@ -9560,14 +10116,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:293:14:
 				// NULL
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				NULL239 = (Token) match(input, NULL, FOLLOW_NULL_in_value2448);
-				if (state.failed)
+				NULL239 = (Token) this.match(this.input, NULL,
+						FOLLOW_NULL_in_value2448);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					NULL239_tree = (Object) adaptor.create(NULL239);
-					adaptor.addChild(root_0, NULL239_tree);
+				}
+				if (this.state.backtracking == 0) {
+					NULL239_tree = (Object) this.adaptor.create(NULL239);
+					this.adaptor.addChild(root_0, NULL239_tree);
 				}
 
 			}
@@ -9576,16 +10134,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:294:14:
 				// elementarySymbol
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_elementarySymbol_in_value2463);
-				elementarySymbol240 = elementarySymbol();
+				this.pushFollow(FOLLOW_elementarySymbol_in_value2463);
+				elementarySymbol240 = this.elementarySymbol();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, elementarySymbol240.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor
+							.addChild(root_0, elementarySymbol240.getTree());
+				}
 
 			}
 				break;
@@ -9593,29 +10154,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:14:
 				// LPAREN ( expr | statement ) RPAREN
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				LPAREN241 = (Token) match(input, LPAREN,
+				LPAREN241 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_value2478);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:22:
 				// ( expr | statement )
 				int alt54 = 2;
-				alt54 = dfa54.predict(input);
+				alt54 = this.dfa54.predict(this.input);
 				switch (alt54) {
 				case 1:
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:23:
 					// expr
 				{
-					pushFollow(FOLLOW_expr_in_value2482);
-					expr242 = expr();
+					this.pushFollow(FOLLOW_expr_in_value2482);
+					expr242 = this.expr();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, expr242.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, expr242.getTree());
+					}
 
 				}
 					break;
@@ -9623,24 +10187,27 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:28:
 					// statement
 				{
-					pushFollow(FOLLOW_statement_in_value2484);
-					statement243 = statement();
+					this.pushFollow(FOLLOW_statement_in_value2484);
+					statement243 = this.statement();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, statement243.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, statement243.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				RPAREN244 = (Token) match(input, RPAREN,
+				RPAREN244 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_value2487);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 				break;
@@ -9648,45 +10215,47 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:296:11:
 				// dotIdent
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_dotIdent_in_value2500);
-				dotIdent245 = dotIdent();
+				this.pushFollow(FOLLOW_dotIdent_in_value2500);
+				dotIdent245 = this.dotIdent();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, dotIdent245.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, dotIdent245.getTree());
+				}
 
 			}
 				break;
 			case 8:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:298:9:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 51, value_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 51, value_StartIndex);
 			}
 		}
 		return retval;
@@ -9699,7 +10268,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -9710,8 +10279,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.newExpr_return newExpr()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.newExpr_return retval = new TinyHaxeTry1Parser.newExpr_return();
-		retval.start = input.LT(1);
-		int newExpr_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int newExpr_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token NEW246 = null;
@@ -9724,18 +10293,19 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object NEW246_tree = null;
 		Object LPAREN248_tree = null;
 		Object RPAREN250_tree = null;
-		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(adaptor,
-				"token NEW");
+		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(
+				this.adaptor, "token NEW");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_exprListOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule exprListOpt");
+				this.adaptor, "rule exprListOpt");
 		RewriteRuleSubtreeStream stream_type = new RewriteRuleSubtreeStream(
-				adaptor, "rule type");
+				this.adaptor, "rule type");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 52)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 52)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:301:2:
@@ -9744,41 +10314,52 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:301:4:
 			// NEW type LPAREN exprListOpt RPAREN
 			{
-				NEW246 = (Token) match(input, NEW, FOLLOW_NEW_in_newExpr2547);
-				if (state.failed)
+				NEW246 = (Token) this.match(this.input, NEW,
+						FOLLOW_NEW_in_newExpr2547);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_NEW.add(NEW246);
+				}
 
-				pushFollow(FOLLOW_type_in_newExpr2549);
-				type247 = type();
+				this.pushFollow(FOLLOW_type_in_newExpr2549);
+				type247 = this.type();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_type.add(type247.getTree());
-				LPAREN248 = (Token) match(input, LPAREN,
+				}
+				LPAREN248 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_newExpr2551);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN248);
+				}
 
-				pushFollow(FOLLOW_exprListOpt_in_newExpr2553);
-				exprListOpt249 = exprListOpt();
+				this.pushFollow(FOLLOW_exprListOpt_in_newExpr2553);
+				exprListOpt249 = this.exprListOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_exprListOpt.add(exprListOpt249.getTree());
-				RPAREN250 = (Token) match(input, RPAREN,
+				}
+				RPAREN250 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_newExpr2555);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN250);
+				}
 
 				// AST REWRITE
 				// elements: exprListOpt, NEW, type
@@ -9787,41 +10368,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 301:39: -> ^( NEW ( type )? ( exprListOpt )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:301:42:
 						// ^( NEW ( type )? ( exprListOpt )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_NEW
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_NEW.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:301:48:
 							// ( type )?
 							if (stream_type.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_type
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_type
+										.nextTree());
 
 							}
 							stream_type.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:301:54:
 							// ( exprListOpt )?
 							if (stream_exprListOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_exprListOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_exprListOpt.nextTree());
 
 							}
 							stream_exprListOpt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -9830,23 +10410,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 52, newExpr_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 52, newExpr_StartIndex);
 			}
 		}
 		return retval;
@@ -9859,7 +10439,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -9870,8 +10450,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.cast_return cast()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.cast_return retval = new TinyHaxeTry1Parser.cast_return();
-		retval.start = input.LT(1);
-		int cast_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int cast_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token CAST251 = null;
@@ -9895,19 +10475,20 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LPAREN258_tree = null;
 		Object RPAREN260_tree = null;
 		RewriteRuleTokenStream stream_CAST = new RewriteRuleTokenStream(
-				adaptor, "token CAST");
+				this.adaptor, "token CAST");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_COMMA = new RewriteRuleTokenStream(
-				adaptor, "token COMMA");
+				this.adaptor, "token COMMA");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_funcType = new RewriteRuleSubtreeStream(
-				adaptor, "rule funcType");
+				this.adaptor, "rule funcType");
 		RewriteRuleSubtreeStream stream_expr = new RewriteRuleSubtreeStream(
-				adaptor, "rule expr");
+				this.adaptor, "rule expr");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 53)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 53)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:9:
@@ -9915,32 +10496,32 @@ public class TinyHaxeTry1Parser extends Parser {
 			// )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )?
 			// ) )
 			int alt57 = 2;
-			int LA57_0 = input.LA(1);
+			int LA57_0 = this.input.LA(1);
 
 			if ((LA57_0 == CAST)) {
-				int LA57_1 = input.LA(2);
+				int LA57_1 = this.input.LA(2);
 
-				if ((synpred110_TinyHaxeTry1())) {
+				if ((this.synpred110_TinyHaxeTry1())) {
 					alt57 = 1;
 				} else if ((true)) {
 					alt57 = 2;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							57, 1, input);
+							57, 1, this.input);
 
 					throw nvae;
 				}
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 57, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -9949,31 +10530,38 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:11:
 				// CAST LPAREN expr ( COMMA funcType )? RPAREN
 			{
-				CAST251 = (Token) match(input, CAST, FOLLOW_CAST_in_cast2581);
-				if (state.failed)
+				CAST251 = (Token) this.match(this.input, CAST,
+						FOLLOW_CAST_in_cast2581);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CAST.add(CAST251);
+				}
 
-				LPAREN252 = (Token) match(input, LPAREN,
+				LPAREN252 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_cast2583);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN252);
+				}
 
-				pushFollow(FOLLOW_expr_in_cast2585);
-				expr253 = expr();
+				this.pushFollow(FOLLOW_expr_in_cast2585);
+				expr253 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(expr253.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:28:
 				// ( COMMA funcType )?
 				int alt56 = 2;
-				int LA56_0 = input.LA(1);
+				int LA56_0 = this.input.LA(1);
 
 				if ((LA56_0 == COMMA)) {
 					alt56 = 1;
@@ -9983,33 +10571,39 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:29:
 					// COMMA funcType
 				{
-					COMMA254 = (Token) match(input, COMMA,
+					COMMA254 = (Token) this.match(this.input, COMMA,
 							FOLLOW_COMMA_in_cast2588);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_COMMA.add(COMMA254);
+					}
 
-					pushFollow(FOLLOW_funcType_in_cast2590);
-					funcType255 = funcType();
+					this.pushFollow(FOLLOW_funcType_in_cast2590);
+					funcType255 = this.funcType();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_funcType.add(funcType255.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				RPAREN256 = (Token) match(input, RPAREN,
+				RPAREN256 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_cast2594);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN256);
+				}
 
 				// AST REWRITE
 				// elements: CAST, funcType, expr
@@ -10018,41 +10612,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 304:54: -> ^( CAST ( expr )? ( funcType )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:57:
 						// ^( CAST ( expr )? ( funcType )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_CAST
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_CAST.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:64:
 							// ( expr )?
 							if (stream_expr.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_expr
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_expr
+										.nextTree());
 
 							}
 							stream_expr.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:70:
 							// ( funcType )?
 							if (stream_funcType.hasNext()) {
-								adaptor.addChild(root_1, stream_funcType
+								this.adaptor.addChild(root_1, stream_funcType
 										.nextTree());
 
 							}
 							stream_funcType.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -10065,33 +10658,42 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:305:4:
 				// CAST LPAREN expr RPAREN
 			{
-				CAST257 = (Token) match(input, CAST, FOLLOW_CAST_in_cast2612);
-				if (state.failed)
+				CAST257 = (Token) this.match(this.input, CAST,
+						FOLLOW_CAST_in_cast2612);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CAST.add(CAST257);
+				}
 
-				LPAREN258 = (Token) match(input, LPAREN,
+				LPAREN258 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_cast2614);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN258);
+				}
 
-				pushFollow(FOLLOW_expr_in_cast2616);
-				expr259 = expr();
+				this.pushFollow(FOLLOW_expr_in_cast2616);
+				expr259 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(expr259.getTree());
-				RPAREN260 = (Token) match(input, RPAREN,
+				}
+				RPAREN260 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_cast2618);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN260);
+				}
 
 				// AST REWRITE
 				// elements: CAST, expr
@@ -10100,33 +10702,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 305:31: -> ^( CAST ( expr )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:305:34:
 						// ^( CAST ( expr )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_CAST
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_CAST.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:305:41:
 							// ( expr )?
 							if (stream_expr.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_expr
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_expr
+										.nextTree());
 
 							}
 							stream_expr.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -10137,23 +10738,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 53, cast_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 53, cast_StartIndex);
 			}
 		}
 		return retval;
@@ -10166,7 +10767,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -10176,8 +10777,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.topLevelDecl_return topLevelDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.topLevelDecl_return retval = new TinyHaxeTry1Parser.topLevelDecl_return();
-		retval.start = input.LT(1);
-		int topLevelDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int topLevelDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.classDecl_return classDecl261 = null;
@@ -10189,13 +10790,14 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.typedefDecl_return typedefDecl264 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 54)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 54)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:311:2:
 			// ( classDecl | interfaceDecl | enumDecl | typedefDecl )
 			int alt58 = 4;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case EXTERN:
 			case CLASS: {
 				alt58 = 1;
@@ -10214,12 +10816,12 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 58, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -10229,16 +10831,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:311:4:
 				// classDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_classDecl_in_topLevelDecl2650);
-				classDecl261 = classDecl();
+				this.pushFollow(FOLLOW_classDecl_in_topLevelDecl2650);
+				classDecl261 = this.classDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, classDecl261.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, classDecl261.getTree());
+				}
 
 			}
 				break;
@@ -10246,16 +10850,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:312:4:
 				// interfaceDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_interfaceDecl_in_topLevelDecl2655);
-				interfaceDecl262 = interfaceDecl();
+				this.pushFollow(FOLLOW_interfaceDecl_in_topLevelDecl2655);
+				interfaceDecl262 = this.interfaceDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, interfaceDecl262.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, interfaceDecl262.getTree());
+				}
 
 			}
 				break;
@@ -10263,16 +10869,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:313:11:
 				// enumDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_enumDecl_in_topLevelDecl2667);
-				enumDecl263 = enumDecl();
+				this.pushFollow(FOLLOW_enumDecl_in_topLevelDecl2667);
+				enumDecl263 = this.enumDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, enumDecl263.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, enumDecl263.getTree());
+				}
 
 			}
 				break;
@@ -10280,38 +10888,40 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:314:4:
 				// typedefDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_typedefDecl_in_topLevelDecl2672);
-				typedefDecl264 = typedefDecl();
+				this.pushFollow(FOLLOW_typedefDecl_in_topLevelDecl2672);
+				typedefDecl264 = this.typedefDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, typedefDecl264.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, typedefDecl264.getTree());
+				}
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 54, topLevelDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 54, topLevelDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -10324,7 +10934,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -10335,8 +10945,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.enumDecl_return enumDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.enumDecl_return retval = new TinyHaxeTry1Parser.enumDecl_return();
-		retval.start = input.LT(1);
-		int enumDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int enumDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token ENUM265 = null;
@@ -10352,19 +10962,20 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LBRACE268_tree = null;
 		Object RBRACE270_tree = null;
 		RewriteRuleTokenStream stream_ENUM = new RewriteRuleTokenStream(
-				adaptor, "token ENUM");
+				this.adaptor, "token ENUM");
 		RewriteRuleTokenStream stream_RBRACE = new RewriteRuleTokenStream(
-				adaptor, "token RBRACE");
+				this.adaptor, "token RBRACE");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_LBRACE = new RewriteRuleTokenStream(
-				adaptor, "token LBRACE");
+				this.adaptor, "token LBRACE");
 		RewriteRuleSubtreeStream stream_enumBody = new RewriteRuleSubtreeStream(
-				adaptor, "rule enumBody");
+				this.adaptor, "rule enumBody");
 		RewriteRuleSubtreeStream stream_typeParamOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeParamOpt");
+				this.adaptor, "rule typeParamOpt");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 55)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 55)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:317:9:
@@ -10373,49 +10984,61 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:317:11:
 			// ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE
 			{
-				ENUM265 = (Token) match(input, ENUM,
+				ENUM265 = (Token) this.match(this.input, ENUM,
 						FOLLOW_ENUM_in_enumDecl2682);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_ENUM.add(ENUM265);
+				}
 
-				IDENTIFIER266 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER266 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_enumDecl2684);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER266);
+				}
 
-				pushFollow(FOLLOW_typeParamOpt_in_enumDecl2686);
-				typeParamOpt267 = typeParamOpt();
+				this.pushFollow(FOLLOW_typeParamOpt_in_enumDecl2686);
+				typeParamOpt267 = this.typeParamOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeParamOpt.add(typeParamOpt267.getTree());
-				LBRACE268 = (Token) match(input, LBRACE,
+				}
+				LBRACE268 = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_enumDecl2688);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LBRACE.add(LBRACE268);
+				}
 
-				pushFollow(FOLLOW_enumBody_in_enumDecl2690);
-				enumBody269 = enumBody();
+				this.pushFollow(FOLLOW_enumBody_in_enumDecl2690);
+				enumBody269 = this.enumBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_enumBody.add(enumBody269.getTree());
-				RBRACE270 = (Token) match(input, RBRACE,
+				}
+				RBRACE270 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_enumDecl2692);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RBRACE.add(RBRACE270);
+				}
 
 				// AST REWRITE
 				// elements: typeParamOpt, enumBody, IDENTIFIER, ENUM
@@ -10424,13 +11047,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 317:63: -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? (
 					// enumBody )? )
 					{
@@ -10438,14 +11061,14 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody
 						// )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_ENUM
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_ENUM.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:317:73:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
@@ -10453,21 +11076,21 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:317:85:
 							// ( typeParamOpt )?
 							if (stream_typeParamOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeParamOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_typeParamOpt.nextTree());
 
 							}
 							stream_typeParamOpt.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:317:99:
 							// ( enumBody )?
 							if (stream_enumBody.hasNext()) {
-								adaptor.addChild(root_1, stream_enumBody
+								this.adaptor.addChild(root_1, stream_enumBody
 										.nextTree());
 
 							}
 							stream_enumBody.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -10476,23 +11099,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 55, enumDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 55, enumDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -10505,7 +11128,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -10515,14 +11138,15 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.enumBody_return enumBody()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.enumBody_return retval = new TinyHaxeTry1Parser.enumBody_return();
-		retval.start = input.LT(1);
-		int enumBody_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int enumBody_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.enumValueDecl_return enumValueDecl271 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 56)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 56)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:320:9:
@@ -10530,13 +11154,13 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:320:11:
 			// ( enumValueDecl )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:320:11:
 				// ( enumValueDecl )*
 				loop59: do {
 					int alt59 = 2;
-					int LA59_0 = input.LA(1);
+					int LA59_0 = this.input.LA(1);
 
 					if ((LA59_0 == IDENTIFIER)) {
 						alt59 = 1;
@@ -10547,16 +11171,17 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:320:12:
 						// enumValueDecl
 					{
-						pushFollow(FOLLOW_enumValueDecl_in_enumBody2718);
-						enumValueDecl271 = enumValueDecl();
+						this.pushFollow(FOLLOW_enumValueDecl_in_enumBody2718);
+						enumValueDecl271 = this.enumValueDecl();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor
-									.addChild(root_0, enumValueDecl271
-											.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, enumValueDecl271
+									.getTree());
+						}
 
 					}
 						break;
@@ -10568,23 +11193,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 56, enumBody_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 56, enumBody_StartIndex);
 			}
 		}
 		return retval;
@@ -10597,7 +11222,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -10609,8 +11234,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.enumValueDecl_return enumValueDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.enumValueDecl_return retval = new TinyHaxeTry1Parser.enumValueDecl_return();
-		retval.start = input.LT(1);
-		int enumValueDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int enumValueDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IDENTIFIER272 = null;
@@ -10628,17 +11253,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object IDENTIFIER277_tree = null;
 		Object SEMI278_tree = null;
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_SEMI = new RewriteRuleTokenStream(
-				adaptor, "token SEMI");
+				this.adaptor, "token SEMI");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_paramList = new RewriteRuleSubtreeStream(
-				adaptor, "rule paramList");
+				this.adaptor, "rule paramList");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 57)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 57)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:324:2:
@@ -10646,32 +11272,32 @@ public class TinyHaxeTry1Parser extends Parser {
 			// IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) |
 			// IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) )
 			int alt60 = 2;
-			int LA60_0 = input.LA(1);
+			int LA60_0 = this.input.LA(1);
 
 			if ((LA60_0 == IDENTIFIER)) {
-				int LA60_1 = input.LA(2);
+				int LA60_1 = this.input.LA(2);
 
 				if ((LA60_1 == LPAREN)) {
 					alt60 = 1;
 				} else if ((LA60_1 == SEMI)) {
 					alt60 = 2;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							60, 1, input);
+							60, 1, this.input);
 
 					throw nvae;
 				}
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 60, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -10680,41 +11306,51 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:324:4:
 				// IDENTIFIER LPAREN paramList RPAREN SEMI
 			{
-				IDENTIFIER272 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER272 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_enumValueDecl2737);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER272);
+				}
 
-				LPAREN273 = (Token) match(input, LPAREN,
+				LPAREN273 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_enumValueDecl2739);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN273);
+				}
 
-				pushFollow(FOLLOW_paramList_in_enumValueDecl2741);
-				paramList274 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_enumValueDecl2741);
+				paramList274 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList274.getTree());
-				RPAREN275 = (Token) match(input, RPAREN,
+				}
+				RPAREN275 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_enumValueDecl2743);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN275);
+				}
 
-				SEMI276 = (Token) match(input, SEMI,
+				SEMI276 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_enumValueDecl2745);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI276);
+				}
 
 				// AST REWRITE
 				// elements: paramList, IDENTIFIER, IDENTIFIER
@@ -10723,13 +11359,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 324:44: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? (
 					// paramList )? )
 					{
@@ -10737,15 +11373,15 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? (
 						// paramList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new VarDeclaration(IDENTIFIER,
 											IDENTIFIER272), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:324:88:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, new VarUsage(
+								this.adaptor.addChild(root_1, new VarUsage(
 										stream_IDENTIFIER.nextToken()));
 
 							}
@@ -10753,13 +11389,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:324:110:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
 							stream_paramList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -10772,19 +11408,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:325:4:
 				// IDENTIFIER SEMI
 			{
-				IDENTIFIER277 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER277 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_enumValueDecl2770);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER277);
+				}
 
-				SEMI278 = (Token) match(input, SEMI,
+				SEMI278 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_enumValueDecl2772);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI278);
+				}
 
 				// AST REWRITE
 				// elements: IDENTIFIER, IDENTIFIER
@@ -10793,33 +11433,33 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 325:23: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:325:25:
 						// ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new VarDeclaration(IDENTIFIER,
 											IDENTIFIER277), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:325:67:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, new VarUsage(
+								this.adaptor.addChild(root_1, new VarUsage(
 										stream_IDENTIFIER.nextToken()));
 
 							}
 							stream_IDENTIFIER.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -10830,23 +11470,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 57, enumValueDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 57, enumValueDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -10859,7 +11499,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -10869,8 +11509,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.varDeclList_return varDeclList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.varDeclList_return retval = new TinyHaxeTry1Parser.varDeclList_return();
-		retval.start = input.LT(1);
-		int varDeclList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int varDeclList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.varDecl_return varDecl279 = null;
@@ -10878,7 +11518,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.varDeclList_return varDeclList280 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 58)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 58)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:330:2:
@@ -10886,44 +11527,48 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:330:4:
 			// varDecl varDeclList
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_varDecl_in_varDeclList2810);
-				varDecl279 = varDecl();
+				this.pushFollow(FOLLOW_varDecl_in_varDeclList2810);
+				varDecl279 = this.varDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDecl279.getTree());
-				pushFollow(FOLLOW_varDeclList_in_varDeclList2812);
-				varDeclList280 = varDeclList();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDecl279.getTree());
+				}
+				this.pushFollow(FOLLOW_varDeclList_in_varDeclList2812);
+				varDeclList280 = this.varDeclList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDeclList280.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDeclList280.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 58, varDeclList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 58, varDeclList_StartIndex);
 			}
 		}
 		return retval;
@@ -10936,7 +11581,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -10947,8 +11592,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.varDecl_return varDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.varDecl_return retval = new TinyHaxeTry1Parser.varDecl_return();
-		retval.start = input.LT(1);
-		int varDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int varDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token VAR282 = null;
@@ -10959,16 +11604,17 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		Object VAR282_tree = null;
 		Object SEMI284_tree = null;
-		RewriteRuleTokenStream stream_VAR = new RewriteRuleTokenStream(adaptor,
-				"token VAR");
+		RewriteRuleTokenStream stream_VAR = new RewriteRuleTokenStream(
+				this.adaptor, "token VAR");
 		RewriteRuleTokenStream stream_SEMI = new RewriteRuleTokenStream(
-				adaptor, "token SEMI");
+				this.adaptor, "token SEMI");
 		RewriteRuleSubtreeStream stream_declAttrList = new RewriteRuleSubtreeStream(
-				adaptor, "rule declAttrList");
+				this.adaptor, "rule declAttrList");
 		RewriteRuleSubtreeStream stream_varDeclPartList = new RewriteRuleSubtreeStream(
-				adaptor, "rule varDeclPartList");
+				this.adaptor, "rule varDeclPartList");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 59)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 59)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:333:9:
@@ -10980,7 +11626,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:333:11:
 				// ( declAttrList )?
 				int alt61 = 2;
-				int LA61_0 = input.LA(1);
+				int LA61_0 = this.input.LA(1);
 
 				if (((LA61_0 >= PUBLIC && LA61_0 <= OVERRIDE))) {
 					alt61 = 1;
@@ -10990,39 +11636,49 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:333:12:
 					// declAttrList
 				{
-					pushFollow(FOLLOW_declAttrList_in_varDecl2824);
-					declAttrList281 = declAttrList();
+					this.pushFollow(FOLLOW_declAttrList_in_varDecl2824);
+					declAttrList281 = this.declAttrList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_declAttrList.add(declAttrList281.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				VAR282 = (Token) match(input, VAR, FOLLOW_VAR_in_varDecl2828);
-				if (state.failed)
+				VAR282 = (Token) this.match(this.input, VAR,
+						FOLLOW_VAR_in_varDecl2828);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_VAR.add(VAR282);
+				}
 
-				pushFollow(FOLLOW_varDeclPartList_in_varDecl2830);
-				varDeclPartList283 = varDeclPartList();
+				this.pushFollow(FOLLOW_varDeclPartList_in_varDecl2830);
+				varDeclPartList283 = this.varDeclPartList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_varDeclPartList.add(varDeclPartList283.getTree());
-				SEMI284 = (Token) match(input, SEMI, FOLLOW_SEMI_in_varDecl2832);
-				if (state.failed)
+				}
+				SEMI284 = (Token) this.match(this.input, SEMI,
+						FOLLOW_SEMI_in_varDecl2832);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI284);
+				}
 
 				// AST REWRITE
 				// elements: declAttrList, varDeclPartList, VAR
@@ -11031,41 +11687,41 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 333:52: -> ^( VAR[$VAR] ( declAttrList )? (
 					// varDeclPartList )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:333:54:
 						// ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new VarDeclaration(VAR, VAR282), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:333:82:
 							// ( declAttrList )?
 							if (stream_declAttrList.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttrList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_declAttrList.nextTree());
 
 							}
 							stream_declAttrList.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:333:96:
 							// ( varDeclPartList )?
 							if (stream_varDeclPartList.hasNext()) {
-								adaptor.addChild(root_1, stream_varDeclPartList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_varDeclPartList.nextTree());
 
 							}
 							stream_varDeclPartList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -11074,23 +11730,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 59, varDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 59, varDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -11103,7 +11759,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11113,8 +11769,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.varDeclPartList_return varDeclPartList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.varDeclPartList_return retval = new TinyHaxeTry1Parser.varDeclPartList_return();
-		retval.start = input.LT(1);
-		int varDeclPartList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int varDeclPartList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA286 = null;
@@ -11125,7 +11781,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA286_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 60)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 60)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:337:2:
@@ -11133,21 +11790,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:337:4:
 			// varDeclPart ( COMMA varDeclPart )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2862);
-				varDeclPart285 = varDeclPart();
+				this.pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2862);
+				varDeclPart285 = this.varDeclPart();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDeclPart285.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDeclPart285.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:337:16:
 				// ( COMMA varDeclPart )*
 				loop62: do {
 					int alt62 = 2;
-					int LA62_0 = input.LA(1);
+					int LA62_0 = this.input.LA(1);
 
 					if ((LA62_0 == COMMA)) {
 						alt62 = 1;
@@ -11158,18 +11817,23 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:337:17:
 						// COMMA varDeclPart
 					{
-						COMMA286 = (Token) match(input, COMMA,
+						COMMA286 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_varDeclPartList2865);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2868);
-						varDeclPart287 = varDeclPart();
+						}
+						this
+								.pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2868);
+						varDeclPart287 = this.varDeclPart();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, varDeclPart287.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, varDeclPart287
+									.getTree());
+						}
 
 					}
 						break;
@@ -11181,23 +11845,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 60, varDeclPartList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 60, varDeclPartList_StartIndex);
 			}
 		}
 		return retval;
@@ -11210,7 +11874,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11220,8 +11884,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.varDeclPart_return varDeclPart()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.varDeclPart_return retval = new TinyHaxeTry1Parser.varDeclPart_return();
-		retval.start = input.LT(1);
-		int varDeclPart_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int varDeclPart_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IDENTIFIER288 = null;
@@ -11234,7 +11898,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object IDENTIFIER288_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 61)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 61)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:341:2:
@@ -11242,60 +11907,67 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:341:4:
 			// IDENTIFIER propDeclOpt typeTagOpt varInit
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				IDENTIFIER288 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER288 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_varDeclPart2882);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					IDENTIFIER288_tree = new VarUsage(IDENTIFIER288);
-					adaptor.addChild(root_0, IDENTIFIER288_tree);
 				}
-				pushFollow(FOLLOW_propDeclOpt_in_varDeclPart2887);
-				propDeclOpt289 = propDeclOpt();
+				if (this.state.backtracking == 0) {
+					IDENTIFIER288_tree = new VarUsage(IDENTIFIER288);
+					this.adaptor.addChild(root_0, IDENTIFIER288_tree);
+				}
+				this.pushFollow(FOLLOW_propDeclOpt_in_varDeclPart2887);
+				propDeclOpt289 = this.propDeclOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, propDeclOpt289.getTree());
-				pushFollow(FOLLOW_typeTagOpt_in_varDeclPart2889);
-				typeTagOpt290 = typeTagOpt();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, propDeclOpt289.getTree());
+				}
+				this.pushFollow(FOLLOW_typeTagOpt_in_varDeclPart2889);
+				typeTagOpt290 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, typeTagOpt290.getTree());
-				pushFollow(FOLLOW_varInit_in_varDeclPart2891);
-				varInit291 = varInit();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, typeTagOpt290.getTree());
+				}
+				this.pushFollow(FOLLOW_varInit_in_varDeclPart2891);
+				varInit291 = this.varInit();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varInit291.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varInit291.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 61, varDeclPart_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 61, varDeclPart_StartIndex);
 			}
 		}
 		return retval;
@@ -11308,7 +11980,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11319,8 +11991,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.propDecl_return propDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.propDecl_return retval = new TinyHaxeTry1Parser.propDecl_return();
-		retval.start = input.LT(1);
-		int propDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int propDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LPAREN292 = null;
@@ -11334,15 +12006,16 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA293_tree = null;
 		Object RPAREN294_tree = null;
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_COMMA = new RewriteRuleTokenStream(
-				adaptor, "token COMMA");
+				this.adaptor, "token COMMA");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_propAccessor = new RewriteRuleSubtreeStream(
-				adaptor, "rule propAccessor");
+				this.adaptor, "rule propAccessor");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 62)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 62)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:344:9:
@@ -11351,42 +12024,52 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:344:11:
 			// LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN
 			{
-				LPAREN292 = (Token) match(input, LPAREN,
+				LPAREN292 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_propDecl2901);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN292);
+				}
 
-				pushFollow(FOLLOW_propAccessor_in_propDecl2905);
-				a1 = propAccessor();
+				this.pushFollow(FOLLOW_propAccessor_in_propDecl2905);
+				a1 = this.propAccessor();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_propAccessor.add(a1.getTree());
-				COMMA293 = (Token) match(input, COMMA,
+				}
+				COMMA293 = (Token) this.match(this.input, COMMA,
 						FOLLOW_COMMA_in_propDecl2907);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_COMMA.add(COMMA293);
+				}
 
-				pushFollow(FOLLOW_propAccessor_in_propDecl2911);
-				a2 = propAccessor();
+				this.pushFollow(FOLLOW_propAccessor_in_propDecl2911);
+				a2 = this.propAccessor();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_propAccessor.add(a2.getTree());
-				RPAREN294 = (Token) match(input, RPAREN,
+				}
+				RPAREN294 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_propDecl2913);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN294);
+				}
 
 				// AST REWRITE
 				// elements: a2, a1
@@ -11395,17 +12078,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 					RewriteRuleSubtreeStream stream_a1 = new RewriteRuleSubtreeStream(
-							adaptor, "rule a1", a1 != null ? a1.tree : null);
+							this.adaptor, "rule a1", a1 != null ? a1.tree
+									: null);
 					RewriteRuleSubtreeStream stream_a2 = new RewriteRuleSubtreeStream(
-							adaptor, "rule a2", a2 != null ? a2.tree : null);
+							this.adaptor, "rule a2", a2 != null ? a2.tree
+									: null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 344:63: -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] (
 					// $a1)? ( $a2)? )
 					{
@@ -11413,27 +12098,29 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? (
 						// $a2)? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(PROPERTY_DECL,
 											"PROPERTY_DECL", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:344:124:
 							// ( $a1)?
 							if (stream_a1.hasNext()) {
-								adaptor.addChild(root_1, stream_a1.nextTree());
+								this.adaptor.addChild(root_1, stream_a1
+										.nextTree());
 
 							}
 							stream_a1.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:344:129:
 							// ( $a2)?
 							if (stream_a2.hasNext()) {
-								adaptor.addChild(root_1, stream_a2.nextTree());
+								this.adaptor.addChild(root_1, stream_a2
+										.nextTree());
 
 							}
 							stream_a2.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -11442,23 +12129,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 62, propDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 62, propDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -11471,7 +12158,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11481,8 +12168,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.propAccessor_return propAccessor()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.propAccessor_return retval = new TinyHaxeTry1Parser.propAccessor_return();
-		retval.start = input.LT(1);
-		int propAccessor_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int propAccessor_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token set295 = null;
@@ -11490,53 +12177,57 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object set295_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 63)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 63)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:348:2:
 			// ( IDENTIFIER | NULL | DEFAULT | DYNAMIC )
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				set295 = (Token) input.LT(1);
-				if (input.LA(1) == IDENTIFIER || input.LA(1) == DYNAMIC
-						|| input.LA(1) == DEFAULT || input.LA(1) == NULL) {
-					input.consume();
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, (Object) adaptor
+				set295 = (Token) this.input.LT(1);
+				if (this.input.LA(1) == IDENTIFIER
+						|| this.input.LA(1) == DYNAMIC
+						|| this.input.LA(1) == DEFAULT
+						|| this.input.LA(1) == NULL) {
+					this.input.consume();
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, (Object) this.adaptor
 								.create(set295));
-					state.errorRecovery = false;
-					state.failed = false;
+					}
+					this.state.errorRecovery = false;
+					this.state.failed = false;
 				} else {
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					MismatchedSetException mse = new MismatchedSetException(
-							null, input);
+							null, this.input);
 					throw mse;
 				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 63, propAccessor_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 63, propAccessor_StartIndex);
 			}
 		}
 		return retval;
@@ -11549,7 +12240,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11559,20 +12250,21 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.propDeclOpt_return propDeclOpt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.propDeclOpt_return retval = new TinyHaxeTry1Parser.propDeclOpt_return();
-		retval.start = input.LT(1);
-		int propDeclOpt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int propDeclOpt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.propDecl_return propDecl296 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 64)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 64)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:355:2:
 			// ( propDecl | )
 			int alt63 = 2;
-			int LA63_0 = input.LA(1);
+			int LA63_0 = this.input.LA(1);
 
 			if ((LA63_0 == LPAREN)) {
 				alt63 = 1;
@@ -11580,12 +12272,12 @@ public class TinyHaxeTry1Parser extends Parser {
 					|| LA63_0 == EQ || LA63_0 == RPAREN || LA63_0 == COLON || LA63_0 == LBRACE)) {
 				alt63 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 63, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -11594,45 +12286,47 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:355:4:
 				// propDecl
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_propDecl_in_propDeclOpt2973);
-				propDecl296 = propDecl();
+				this.pushFollow(FOLLOW_propDecl_in_propDeclOpt2973);
+				propDecl296 = this.propDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, propDecl296.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, propDecl296.getTree());
+				}
 
 			}
 				break;
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:357:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 64, propDeclOpt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 64, propDeclOpt_StartIndex);
 			}
 		}
 		return retval;
@@ -11645,7 +12339,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11655,38 +12349,39 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.varInit_return varInit()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.varInit_return retval = new TinyHaxeTry1Parser.varInit_return();
-		retval.start = input.LT(1);
-		int varInit_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int varInit_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token EQ297 = null;
 		TinyHaxeTry1Parser.expr_return expr298 = null;
 
 		Object EQ297_tree = null;
-		RewriteRuleTokenStream stream_EQ = new RewriteRuleTokenStream(adaptor,
-				"token EQ");
+		RewriteRuleTokenStream stream_EQ = new RewriteRuleTokenStream(
+				this.adaptor, "token EQ");
 		RewriteRuleSubtreeStream stream_expr = new RewriteRuleSubtreeStream(
-				adaptor, "rule expr");
+				this.adaptor, "rule expr");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 65)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 65)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:359:9:
 			// ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | )
 			int alt64 = 2;
-			int LA64_0 = input.LA(1);
+			int LA64_0 = this.input.LA(1);
 
 			if ((LA64_0 == EQ)) {
 				alt64 = 1;
 			} else if ((LA64_0 == EOF || LA64_0 == SEMI || LA64_0 == COMMA || LA64_0 == RPAREN)) {
 				alt64 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 64, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -11695,20 +12390,25 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:359:11:
 				// EQ expr
 			{
-				EQ297 = (Token) match(input, EQ, FOLLOW_EQ_in_varInit2988);
-				if (state.failed)
+				EQ297 = (Token) this.match(this.input, EQ,
+						FOLLOW_EQ_in_varInit2988);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_EQ.add(EQ297);
+				}
 
-				pushFollow(FOLLOW_expr_in_varInit2990);
-				expr298 = expr();
+				this.pushFollow(FOLLOW_expr_in_varInit2990);
+				expr298 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_expr.add(expr298.getTree());
+				}
 
 				// AST REWRITE
 				// elements: expr
@@ -11717,34 +12417,34 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 359:19: -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:359:21:
 						// ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(VAR_INIT,
 											"VAR_INIT", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:359:69:
 							// ( expr )?
 							if (stream_expr.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_expr
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_expr
+										.nextTree());
 
 							}
 							stream_expr.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, this
+									.setLeftRightPositions(root_1));
 						}
 
 					}
@@ -11756,29 +12456,29 @@ public class TinyHaxeTry1Parser extends Parser {
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:361:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 65, varInit_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 65, varInit_StartIndex);
 			}
 		}
 		return retval;
@@ -11791,7 +12491,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -11806,8 +12506,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.funcDecl_return funcDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.funcDecl_return retval = new TinyHaxeTry1Parser.funcDecl_return();
-		retval.start = input.LT(1);
-		int funcDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int funcDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token FUNCTION300 = null;
@@ -11845,27 +12545,28 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object LPAREN311_tree = null;
 		Object RPAREN313_tree = null;
 		RewriteRuleTokenStream stream_FUNCTION = new RewriteRuleTokenStream(
-				adaptor, "token FUNCTION");
-		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(adaptor,
-				"token NEW");
+				this.adaptor, "token FUNCTION");
+		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(
+				this.adaptor, "token NEW");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_declAttrList = new RewriteRuleSubtreeStream(
-				adaptor, "rule declAttrList");
+				this.adaptor, "rule declAttrList");
 		RewriteRuleSubtreeStream stream_paramList = new RewriteRuleSubtreeStream(
-				adaptor, "rule paramList");
+				this.adaptor, "rule paramList");
 		RewriteRuleSubtreeStream stream_typeTagOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeTagOpt");
+				this.adaptor, "rule typeTagOpt");
 		RewriteRuleSubtreeStream stream_block = new RewriteRuleSubtreeStream(
-				adaptor, "rule block");
+				this.adaptor, "rule block");
 		RewriteRuleSubtreeStream stream_typeParamOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeParamOpt");
+				this.adaptor, "rule typeParamOpt");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 66)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 66)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:363:9:
@@ -11876,7 +12577,7 @@ public class TinyHaxeTry1Parser extends Parser {
 			// -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? (
 			// typeTagOpt )? ( block )? ( typeParamOpt )? ) )
 			int alt67 = 2;
-			alt67 = dfa67.predict(input);
+			alt67 = this.dfa67.predict(this.input);
 			switch (alt67) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:363:11:
@@ -11886,7 +12587,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:363:11:
 				// ( declAttrList )?
 				int alt65 = 2;
-				int LA65_0 = input.LA(1);
+				int LA65_0 = this.input.LA(1);
 
 				if (((LA65_0 >= PUBLIC && LA65_0 <= OVERRIDE))) {
 					alt65 = 1;
@@ -11896,71 +12597,88 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// declAttrList
 				{
-					pushFollow(FOLLOW_declAttrList_in_funcDecl3016);
-					declAttrList299 = declAttrList();
+					this.pushFollow(FOLLOW_declAttrList_in_funcDecl3016);
+					declAttrList299 = this.declAttrList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_declAttrList.add(declAttrList299.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				FUNCTION300 = (Token) match(input, FUNCTION,
+				FUNCTION300 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcDecl3019);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION300);
+				}
 
-				NEW301 = (Token) match(input, NEW, FOLLOW_NEW_in_funcDecl3021);
-				if (state.failed)
+				NEW301 = (Token) this.match(this.input, NEW,
+						FOLLOW_NEW_in_funcDecl3021);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_NEW.add(NEW301);
+				}
 
-				LPAREN302 = (Token) match(input, LPAREN,
+				LPAREN302 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcDecl3023);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN302);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcDecl3025);
-				paramList303 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcDecl3025);
+				paramList303 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList303.getTree());
-				RPAREN304 = (Token) match(input, RPAREN,
+				}
+				RPAREN304 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcDecl3027);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN304);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_funcDecl3029);
-				typeTagOpt305 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_funcDecl3029);
+				typeTagOpt305 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt305.getTree());
-				pushFollow(FOLLOW_block_in_funcDecl3031);
-				block306 = block();
+				}
+				this.pushFollow(FOLLOW_block_in_funcDecl3031);
+				block306 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_block.add(block306.getTree());
+				}
 
 				// AST REWRITE
 				// elements: block, FUNCTION, typeTagOpt, NEW, paramList,
@@ -11970,13 +12688,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 364:4: -> ^( FUNCTION NEW ( declAttrList )? ( paramList
 					// )? ( typeTagOpt )? ( block )? )
 					{
@@ -11984,24 +12702,25 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION NEW ( declAttrList )? ( paramList )? (
 						// typeTagOpt )? ( block )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new FunctionNode(stream_FUNCTION
 											.nextToken()), root_1);
 
-							adaptor.addChild(root_1, stream_NEW.nextNode());
+							this.adaptor
+									.addChild(root_1, stream_NEW.nextNode());
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:364:36:
 							// ( declAttrList )?
 							if (stream_declAttrList.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttrList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_declAttrList.nextTree());
 
 							}
 							stream_declAttrList.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:364:50:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -12009,7 +12728,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:364:61:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -12017,13 +12736,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:364:73:
 							// ( block )?
 							if (stream_block.hasNext()) {
-								adaptor.addChild(root_1, stream_block
+								this.adaptor.addChild(root_1, stream_block
 										.nextTree());
 
 							}
 							stream_block.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -12040,7 +12759,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:365:4:
 				// ( declAttrList )?
 				int alt66 = 2;
-				int LA66_0 = input.LA(1);
+				int LA66_0 = this.input.LA(1);
 
 				if (((LA66_0 >= PUBLIC && LA66_0 <= OVERRIDE))) {
 					alt66 = 1;
@@ -12050,80 +12769,98 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// declAttrList
 				{
-					pushFollow(FOLLOW_declAttrList_in_funcDecl3064);
-					declAttrList307 = declAttrList();
+					this.pushFollow(FOLLOW_declAttrList_in_funcDecl3064);
+					declAttrList307 = this.declAttrList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_declAttrList.add(declAttrList307.getTree());
+					}
 
 				}
 					break;
 
 				}
 
-				FUNCTION308 = (Token) match(input, FUNCTION,
+				FUNCTION308 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcDecl3067);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION308);
+				}
 
-				IDENTIFIER309 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER309 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_funcDecl3069);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER309);
+				}
 
-				pushFollow(FOLLOW_typeParamOpt_in_funcDecl3071);
-				typeParamOpt310 = typeParamOpt();
+				this.pushFollow(FOLLOW_typeParamOpt_in_funcDecl3071);
+				typeParamOpt310 = this.typeParamOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeParamOpt.add(typeParamOpt310.getTree());
-				LPAREN311 = (Token) match(input, LPAREN,
+				}
+				LPAREN311 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcDecl3073);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN311);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcDecl3075);
-				paramList312 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcDecl3075);
+				paramList312 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList312.getTree());
-				RPAREN313 = (Token) match(input, RPAREN,
+				}
+				RPAREN313 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcDecl3077);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN313);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_funcDecl3079);
-				typeTagOpt314 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_funcDecl3079);
+				typeTagOpt314 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt314.getTree());
-				pushFollow(FOLLOW_block_in_funcDecl3081);
-				block315 = block();
+				}
+				this.pushFollow(FOLLOW_block_in_funcDecl3081);
+				block315 = this.block();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_block.add(block315.getTree());
+				}
 
 				// AST REWRITE
 				// elements: typeTagOpt, block, IDENTIFIER, typeParamOpt,
@@ -12133,13 +12870,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 366:4: -> ^( FUNCTION IDENTIFIER ( declAttrList )? (
 					// paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )?
 					// )
@@ -12148,25 +12885,25 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList
 						// )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new FunctionNode(stream_FUNCTION
 											.nextToken()), root_1);
 
-							adaptor.addChild(root_1, stream_IDENTIFIER
+							this.adaptor.addChild(root_1, stream_IDENTIFIER
 									.nextNode());
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:366:42:
 							// ( declAttrList )?
 							if (stream_declAttrList.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttrList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_declAttrList.nextTree());
 
 							}
 							stream_declAttrList.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:366:56:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -12174,7 +12911,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:366:67:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -12182,7 +12919,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:366:79:
 							// ( block )?
 							if (stream_block.hasNext()) {
-								adaptor.addChild(root_1, stream_block
+								this.adaptor.addChild(root_1, stream_block
 										.nextTree());
 
 							}
@@ -12190,13 +12927,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:366:86:
 							// ( typeParamOpt )?
 							if (stream_typeParamOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeParamOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_typeParamOpt.nextTree());
 
 							}
 							stream_typeParamOpt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -12207,23 +12944,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 66, funcDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 66, funcDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -12236,7 +12973,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -12254,8 +12991,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.funcProtoDecl_return funcProtoDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.funcProtoDecl_return retval = new TinyHaxeTry1Parser.funcProtoDecl_return();
-		retval.start = input.LT(1);
-		int funcProtoDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int funcProtoDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token FUNCTION317 = null;
@@ -12323,27 +13060,28 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RPAREN345_tree = null;
 		Object SEMI347_tree = null;
 		RewriteRuleTokenStream stream_FUNCTION = new RewriteRuleTokenStream(
-				adaptor, "token FUNCTION");
-		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(adaptor,
-				"token NEW");
+				this.adaptor, "token FUNCTION");
+		RewriteRuleTokenStream stream_NEW = new RewriteRuleTokenStream(
+				this.adaptor, "token NEW");
 		RewriteRuleTokenStream stream_RPAREN = new RewriteRuleTokenStream(
-				adaptor, "token RPAREN");
+				this.adaptor, "token RPAREN");
 		RewriteRuleTokenStream stream_SEMI = new RewriteRuleTokenStream(
-				adaptor, "token SEMI");
+				this.adaptor, "token SEMI");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_LPAREN = new RewriteRuleTokenStream(
-				adaptor, "token LPAREN");
+				this.adaptor, "token LPAREN");
 		RewriteRuleSubtreeStream stream_declAttrList = new RewriteRuleSubtreeStream(
-				adaptor, "rule declAttrList");
+				this.adaptor, "rule declAttrList");
 		RewriteRuleSubtreeStream stream_paramList = new RewriteRuleSubtreeStream(
-				adaptor, "rule paramList");
+				this.adaptor, "rule paramList");
 		RewriteRuleSubtreeStream stream_typeTagOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeTagOpt");
+				this.adaptor, "rule typeTagOpt");
 		RewriteRuleSubtreeStream stream_typeParamOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeParamOpt");
+				this.adaptor, "rule typeParamOpt");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 67)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 67)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:370:2:
@@ -12358,71 +13096,87 @@ public class TinyHaxeTry1Parser extends Parser {
 			// paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? (
 			// paramList )? ( typeTagOpt )? ( typeParamOpt )? ) )
 			int alt68 = 4;
-			alt68 = dfa68.predict(input);
+			alt68 = this.dfa68.predict(this.input);
 			switch (alt68) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:370:4:
 				// declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt
 				// SEMI
 			{
-				pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3122);
-				declAttrList316 = declAttrList();
+				this.pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3122);
+				declAttrList316 = this.declAttrList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_declAttrList.add(declAttrList316.getTree());
-				FUNCTION317 = (Token) match(input, FUNCTION,
+				}
+				FUNCTION317 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcProtoDecl3124);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION317);
+				}
 
-				NEW318 = (Token) match(input, NEW,
+				NEW318 = (Token) this.match(this.input, NEW,
 						FOLLOW_NEW_in_funcProtoDecl3126);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_NEW.add(NEW318);
+				}
 
-				LPAREN319 = (Token) match(input, LPAREN,
+				LPAREN319 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcProtoDecl3128);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN319);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcProtoDecl3130);
-				paramList320 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcProtoDecl3130);
+				paramList320 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList320.getTree());
-				RPAREN321 = (Token) match(input, RPAREN,
+				}
+				RPAREN321 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcProtoDecl3132);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN321);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3134);
-				typeTagOpt322 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3134);
+				typeTagOpt322 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt322.getTree());
-				SEMI323 = (Token) match(input, SEMI,
+				}
+				SEMI323 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_funcProtoDecl3136);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI323);
+				}
 
 				// AST REWRITE
 				// elements: declAttrList, FUNCTION, paramList, typeTagOpt, NEW
@@ -12431,13 +13185,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 371:4: -> ^( FUNCTION ( NEW )? ( paramList )? (
 					// typeTagOpt )? ( declAttrList )? )
 					{
@@ -12445,21 +13199,22 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? (
 						// declAttrList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									stream_FUNCTION.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:371:18:
 							// ( NEW )?
 							if (stream_NEW.hasNext()) {
-								adaptor.addChild(root_1, stream_NEW.nextNode());
+								this.adaptor.addChild(root_1, stream_NEW
+										.nextNode());
 
 							}
 							stream_NEW.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:371:23:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -12467,7 +13222,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:371:34:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -12475,13 +13230,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:371:46:
 							// ( declAttrList )?
 							if (stream_declAttrList.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttrList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_declAttrList.nextTree());
 
 							}
 							stream_declAttrList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -12495,72 +13250,90 @@ public class TinyHaxeTry1Parser extends Parser {
 				// declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN
 				// paramList RPAREN typeTagOpt SEMI
 			{
-				pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3163);
-				declAttrList324 = declAttrList();
+				this.pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3163);
+				declAttrList324 = this.declAttrList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_declAttrList.add(declAttrList324.getTree());
-				FUNCTION325 = (Token) match(input, FUNCTION,
+				}
+				FUNCTION325 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcProtoDecl3165);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION325);
+				}
 
-				IDENTIFIER326 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER326 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_funcProtoDecl3167);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER326);
+				}
 
-				pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3169);
-				typeParamOpt327 = typeParamOpt();
+				this.pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3169);
+				typeParamOpt327 = this.typeParamOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeParamOpt.add(typeParamOpt327.getTree());
-				LPAREN328 = (Token) match(input, LPAREN,
+				}
+				LPAREN328 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcProtoDecl3171);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN328);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcProtoDecl3173);
-				paramList329 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcProtoDecl3173);
+				paramList329 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList329.getTree());
-				RPAREN330 = (Token) match(input, RPAREN,
+				}
+				RPAREN330 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcProtoDecl3175);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN330);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3177);
-				typeTagOpt331 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3177);
+				typeTagOpt331 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt331.getTree());
-				SEMI332 = (Token) match(input, SEMI,
+				}
+				SEMI332 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_funcProtoDecl3179);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI332);
+				}
 
 				// AST REWRITE
 				// elements: typeParamOpt, typeTagOpt, paramList, declAttrList,
@@ -12570,13 +13343,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 373:4: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? (
 					// typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
 					{
@@ -12584,14 +13357,14 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION ( IDENTIFIER )? ( paramList )? (
 						// typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									stream_FUNCTION.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:17:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
@@ -12599,7 +13372,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:29:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -12607,7 +13380,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:40:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -12615,21 +13388,21 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:52:
 							// ( declAttrList )?
 							if (stream_declAttrList.hasNext()) {
-								adaptor.addChild(root_1, stream_declAttrList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_declAttrList.nextTree());
 
 							}
 							stream_declAttrList.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:373:66:
 							// ( typeParamOpt )?
 							if (stream_typeParamOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeParamOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_typeParamOpt.nextTree());
 
 							}
 							stream_typeParamOpt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -12642,56 +13415,70 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:374:4:
 				// FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
 			{
-				FUNCTION333 = (Token) match(input, FUNCTION,
+				FUNCTION333 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcProtoDecl3208);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION333);
+				}
 
-				NEW334 = (Token) match(input, NEW,
+				NEW334 = (Token) this.match(this.input, NEW,
 						FOLLOW_NEW_in_funcProtoDecl3210);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_NEW.add(NEW334);
+				}
 
-				LPAREN335 = (Token) match(input, LPAREN,
+				LPAREN335 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcProtoDecl3212);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN335);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcProtoDecl3214);
-				paramList336 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcProtoDecl3214);
+				paramList336 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList336.getTree());
-				RPAREN337 = (Token) match(input, RPAREN,
+				}
+				RPAREN337 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcProtoDecl3216);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN337);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3218);
-				typeTagOpt338 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3218);
+				typeTagOpt338 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt338.getTree());
-				SEMI339 = (Token) match(input, SEMI,
+				}
+				SEMI339 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_funcProtoDecl3220);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI339);
+				}
 
 				// AST REWRITE
 				// elements: paramList, FUNCTION, NEW, typeTagOpt
@@ -12700,34 +13487,35 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 375:4: -> ^( FUNCTION ( NEW )? ( paramList )? (
 					// typeTagOpt )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:375:7:
 						// ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									stream_FUNCTION.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:375:18:
 							// ( NEW )?
 							if (stream_NEW.hasNext()) {
-								adaptor.addChild(root_1, stream_NEW.nextNode());
+								this.adaptor.addChild(root_1, stream_NEW
+										.nextNode());
 
 							}
 							stream_NEW.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:375:23:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -12735,13 +13523,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:375:34:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
 							stream_typeTagOpt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -12755,64 +13543,80 @@ public class TinyHaxeTry1Parser extends Parser {
 				// FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN
 				// typeTagOpt SEMI
 			{
-				FUNCTION340 = (Token) match(input, FUNCTION,
+				FUNCTION340 = (Token) this.match(this.input, FUNCTION,
 						FOLLOW_FUNCTION_in_funcProtoDecl3244);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FUNCTION.add(FUNCTION340);
+				}
 
-				IDENTIFIER341 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER341 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_funcProtoDecl3246);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER341);
+				}
 
-				pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3248);
-				typeParamOpt342 = typeParamOpt();
+				this.pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3248);
+				typeParamOpt342 = this.typeParamOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeParamOpt.add(typeParamOpt342.getTree());
-				LPAREN343 = (Token) match(input, LPAREN,
+				}
+				LPAREN343 = (Token) this.match(this.input, LPAREN,
 						FOLLOW_LPAREN_in_funcProtoDecl3250);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LPAREN.add(LPAREN343);
+				}
 
-				pushFollow(FOLLOW_paramList_in_funcProtoDecl3252);
-				paramList344 = paramList();
+				this.pushFollow(FOLLOW_paramList_in_funcProtoDecl3252);
+				paramList344 = this.paramList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_paramList.add(paramList344.getTree());
-				RPAREN345 = (Token) match(input, RPAREN,
+				}
+				RPAREN345 = (Token) this.match(this.input, RPAREN,
 						FOLLOW_RPAREN_in_funcProtoDecl3254);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RPAREN.add(RPAREN345);
+				}
 
-				pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3256);
-				typeTagOpt346 = typeTagOpt();
+				this.pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3256);
+				typeTagOpt346 = this.typeTagOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeTagOpt.add(typeTagOpt346.getTree());
-				SEMI347 = (Token) match(input, SEMI,
+				}
+				SEMI347 = (Token) this.match(this.input, SEMI,
 						FOLLOW_SEMI_in_funcProtoDecl3258);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_SEMI.add(SEMI347);
+				}
 
 				// AST REWRITE
 				// elements: IDENTIFIER, FUNCTION, typeParamOpt, typeTagOpt,
@@ -12822,13 +13626,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 377:4: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? (
 					// typeTagOpt )? ( typeParamOpt )? )
 					{
@@ -12836,14 +13640,14 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( FUNCTION ( IDENTIFIER )? ( paramList )? (
 						// typeTagOpt )? ( typeParamOpt )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									stream_FUNCTION.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:377:17:
 							// ( IDENTIFIER )?
 							if (stream_IDENTIFIER.hasNext()) {
-								adaptor.addChild(root_1, stream_IDENTIFIER
+								this.adaptor.addChild(root_1, stream_IDENTIFIER
 										.nextNode());
 
 							}
@@ -12851,7 +13655,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:377:29:
 							// ( paramList )?
 							if (stream_paramList.hasNext()) {
-								adaptor.addChild(root_1, stream_paramList
+								this.adaptor.addChild(root_1, stream_paramList
 										.nextTree());
 
 							}
@@ -12859,7 +13663,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:377:40:
 							// ( typeTagOpt )?
 							if (stream_typeTagOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeTagOpt
+								this.adaptor.addChild(root_1, stream_typeTagOpt
 										.nextTree());
 
 							}
@@ -12867,13 +13671,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:377:52:
 							// ( typeParamOpt )?
 							if (stream_typeParamOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeParamOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_typeParamOpt.nextTree());
 
 							}
 							stream_typeParamOpt.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -12884,23 +13688,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 67, funcProtoDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 67, funcProtoDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -12913,7 +13717,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -12926,8 +13730,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.classDecl_return classDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.classDecl_return retval = new TinyHaxeTry1Parser.classDecl_return();
-		retval.start = input.LT(1);
-		int classDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int classDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token lb = null;
@@ -12947,23 +13751,24 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object IDENTIFIER350_tree = null;
 		Object RBRACE354_tree = null;
 		RewriteRuleTokenStream stream_EXTERN = new RewriteRuleTokenStream(
-				adaptor, "token EXTERN");
+				this.adaptor, "token EXTERN");
 		RewriteRuleTokenStream stream_CLASS = new RewriteRuleTokenStream(
-				adaptor, "token CLASS");
+				this.adaptor, "token CLASS");
 		RewriteRuleTokenStream stream_RBRACE = new RewriteRuleTokenStream(
-				adaptor, "token RBRACE");
+				this.adaptor, "token RBRACE");
 		RewriteRuleTokenStream stream_IDENTIFIER = new RewriteRuleTokenStream(
-				adaptor, "token IDENTIFIER");
+				this.adaptor, "token IDENTIFIER");
 		RewriteRuleTokenStream stream_LBRACE = new RewriteRuleTokenStream(
-				adaptor, "token LBRACE");
+				this.adaptor, "token LBRACE");
 		RewriteRuleSubtreeStream stream_classBodyScope = new RewriteRuleSubtreeStream(
-				adaptor, "rule classBodyScope");
+				this.adaptor, "rule classBodyScope");
 		RewriteRuleSubtreeStream stream_typeParamOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule typeParamOpt");
+				this.adaptor, "rule typeParamOpt");
 		RewriteRuleSubtreeStream stream_inheritListOpt = new RewriteRuleSubtreeStream(
-				adaptor, "rule inheritListOpt");
+				this.adaptor, "rule inheritListOpt");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 68)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 68)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:381:2:
@@ -12978,7 +13783,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:381:4:
 				// ( EXTERN )?
 				int alt69 = 2;
-				int LA69_0 = input.LA(1);
+				int LA69_0 = this.input.LA(1);
 
 				if ((LA69_0 == EXTERN)) {
 					alt69 = 1;
@@ -12988,69 +13793,85 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:0:0:
 					// EXTERN
 				{
-					EXTERN348 = (Token) match(input, EXTERN,
+					EXTERN348 = (Token) this.match(this.input, EXTERN,
 							FOLLOW_EXTERN_in_classDecl3291);
-					if (state.failed)
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
+					}
+					if (this.state.backtracking == 0) {
 						stream_EXTERN.add(EXTERN348);
+					}
 
 				}
 					break;
 
 				}
 
-				CLASS349 = (Token) match(input, CLASS,
+				CLASS349 = (Token) this.match(this.input, CLASS,
 						FOLLOW_CLASS_in_classDecl3294);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CLASS.add(CLASS349);
+				}
 
-				IDENTIFIER350 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER350 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_classDecl3296);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IDENTIFIER.add(IDENTIFIER350);
+				}
 
-				pushFollow(FOLLOW_typeParamOpt_in_classDecl3298);
-				typeParamOpt351 = typeParamOpt();
+				this.pushFollow(FOLLOW_typeParamOpt_in_classDecl3298);
+				typeParamOpt351 = this.typeParamOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_typeParamOpt.add(typeParamOpt351.getTree());
-				pushFollow(FOLLOW_inheritListOpt_in_classDecl3300);
-				inheritListOpt352 = inheritListOpt();
+				}
+				this.pushFollow(FOLLOW_inheritListOpt_in_classDecl3300);
+				inheritListOpt352 = this.inheritListOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_inheritListOpt.add(inheritListOpt352.getTree());
-				lb = (Token) match(input, LBRACE,
+				}
+				lb = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_classDecl3304);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LBRACE.add(lb);
+				}
 
-				pushFollow(FOLLOW_classBodyScope_in_classDecl3306);
-				classBodyScope353 = classBodyScope(lb);
+				this.pushFollow(FOLLOW_classBodyScope_in_classDecl3306);
+				classBodyScope353 = this.classBodyScope(lb);
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_classBodyScope.add(classBodyScope353.getTree());
-				RBRACE354 = (Token) match(input, RBRACE,
+				}
+				RBRACE354 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_classDecl3309);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_RBRACE.add(RBRACE354);
+				}
 
 				// AST REWRITE
 				// elements: inheritListOpt, classBodyScope, EXTERN,
@@ -13060,13 +13881,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 382:4: -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt
 					// )? ( inheritListOpt )? ( classBodyScope )?
 					// RBRACE[$RBRACE, true] )
@@ -13076,16 +13897,17 @@ public class TinyHaxeTry1Parser extends Parser {
 						// inheritListOpt )? ( classBodyScope )? RBRACE[$RBRACE,
 						// true] )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(new ClassNode(
-									stream_CLASS.nextToken()), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									new ClassNode(stream_CLASS.nextToken()),
+									root_1);
 
-							adaptor.addChild(root_1, stream_IDENTIFIER
+							this.adaptor.addChild(root_1, stream_IDENTIFIER
 									.nextNode());
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:382:37:
 							// ( EXTERN )?
 							if (stream_EXTERN.hasNext()) {
-								adaptor.addChild(root_1, stream_EXTERN
+								this.adaptor.addChild(root_1, stream_EXTERN
 										.nextNode());
 
 							}
@@ -13093,24 +13915,24 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:382:45:
 							// ( typeParamOpt )?
 							if (stream_typeParamOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_typeParamOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_typeParamOpt.nextTree());
 
 							}
 							stream_typeParamOpt.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:382:59:
 							// ( inheritListOpt )?
 							if (stream_inheritListOpt.hasNext()) {
-								adaptor.addChild(root_1, stream_inheritListOpt
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_inheritListOpt.nextTree());
 
 							}
 							stream_inheritListOpt.reset();
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:382:75:
 							// ( classBodyScope )?
 							if (stream_classBodyScope.hasNext()) {
-								adaptor.addChild(root_1, stream_classBodyScope
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_classBodyScope.nextTree());
 
 							}
 							stream_classBodyScope.reset();
@@ -13131,7 +13953,7 @@ public class TinyHaxeTry1Parser extends Parser {
 							// adaptor.addChild(root_1, new
 							// ExtendedCommonTree(RBRACE, RBRACE374, true));
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 
 						}
 
@@ -13141,23 +13963,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 68, classDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 68, classDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -13170,7 +13992,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13179,18 +14001,19 @@ public class TinyHaxeTry1Parser extends Parser {
 	// classBodyScope[Token lBracket] : classBody -> ^(
 	// BLOCK_SCOPE[\"BLOCK_SCOPE\",true, $lBracket] ( classBody )? ) ;
 	public final TinyHaxeTry1Parser.classBodyScope_return classBodyScope(
-			Token lBracket) throws RecognitionException {
+			final Token lBracket) throws RecognitionException {
 		TinyHaxeTry1Parser.classBodyScope_return retval = new TinyHaxeTry1Parser.classBodyScope_return();
-		retval.start = input.LT(1);
-		int classBodyScope_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int classBodyScope_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.classBody_return classBody355 = null;
 
 		RewriteRuleSubtreeStream stream_classBody = new RewriteRuleSubtreeStream(
-				adaptor, "rule classBody");
+				this.adaptor, "rule classBody");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 69)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 69)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:386:2:
@@ -13199,14 +14022,16 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:386:4:
 			// classBody
 			{
-				pushFollow(FOLLOW_classBody_in_classBodyScope3355);
-				classBody355 = classBody();
+				this.pushFollow(FOLLOW_classBody_in_classBodyScope3355);
+				classBody355 = this.classBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_classBody.add(classBody355.getTree());
+				}
 
 				// AST REWRITE
 				// elements: classBody
@@ -13215,13 +14040,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 386:14: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true,
 					// $lBracket] ( classBody )? )
 					{
@@ -13229,8 +14054,8 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( BLOCK_SCOPE[\"BLOCK_SCOPE\",true, $lBracket] (
 						// classBody )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new BlockScopeNode(BLOCK_SCOPE,
 											"BLOCK_SCOPE", true, lBracket),
 									root_1);
@@ -13238,13 +14063,13 @@ public class TinyHaxeTry1Parser extends Parser {
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:386:78:
 							// ( classBody )?
 							if (stream_classBody.hasNext()) {
-								adaptor.addChild(root_1, stream_classBody
+								this.adaptor.addChild(root_1, stream_classBody
 										.nextTree());
 
 							}
 							stream_classBody.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -13253,23 +14078,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 69, classBodyScope_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 69, classBodyScope_StartIndex);
 			}
 		}
 		return retval;
@@ -13282,7 +14107,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13293,8 +14118,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.classBody_return classBody()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.classBody_return retval = new TinyHaxeTry1Parser.classBody_return();
-		retval.start = input.LT(1);
-		int classBody_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int classBody_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.varDecl_return varDecl356 = null;
@@ -13310,36 +14135,41 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.classBody_return classBody361 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 70)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 70)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:390:2:
 			// ( varDecl classBody | funcDecl classBody | enumDecl classBody | )
 			int alt70 = 4;
-			alt70 = dfa70.predict(input);
+			alt70 = this.dfa70.predict(this.input);
 			switch (alt70) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:390:4:
 				// varDecl classBody
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_varDecl_in_classBody3379);
-				varDecl356 = varDecl();
+				this.pushFollow(FOLLOW_varDecl_in_classBody3379);
+				varDecl356 = this.varDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDecl356.getTree());
-				pushFollow(FOLLOW_classBody_in_classBody3381);
-				classBody357 = classBody();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDecl356.getTree());
+				}
+				this.pushFollow(FOLLOW_classBody_in_classBody3381);
+				classBody357 = this.classBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, classBody357.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, classBody357.getTree());
+				}
 
 			}
 				break;
@@ -13347,24 +14177,28 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:391:4:
 				// funcDecl classBody
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_funcDecl_in_classBody3386);
-				funcDecl358 = funcDecl();
+				this.pushFollow(FOLLOW_funcDecl_in_classBody3386);
+				funcDecl358 = this.funcDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcDecl358.getTree());
-				pushFollow(FOLLOW_classBody_in_classBody3388);
-				classBody359 = classBody();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcDecl358.getTree());
+				}
+				this.pushFollow(FOLLOW_classBody_in_classBody3388);
+				classBody359 = this.classBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, classBody359.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, classBody359.getTree());
+				}
 
 			}
 				break;
@@ -13372,53 +14206,57 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:393:4:
 				// enumDecl classBody
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_enumDecl_in_classBody3394);
-				enumDecl360 = enumDecl();
+				this.pushFollow(FOLLOW_enumDecl_in_classBody3394);
+				enumDecl360 = this.enumDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, enumDecl360.getTree());
-				pushFollow(FOLLOW_classBody_in_classBody3396);
-				classBody361 = classBody();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, enumDecl360.getTree());
+				}
+				this.pushFollow(FOLLOW_classBody_in_classBody3396);
+				classBody361 = this.classBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, classBody361.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, classBody361.getTree());
+				}
 
 			}
 				break;
 			case 4:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:395:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 70, classBody_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 70, classBody_StartIndex);
 			}
 		}
 		return retval;
@@ -13431,7 +14269,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13442,8 +14280,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.interfaceDecl_return interfaceDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.interfaceDecl_return retval = new TinyHaxeTry1Parser.interfaceDecl_return();
-		retval.start = input.LT(1);
-		int interfaceDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int interfaceDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token INTERFACE362 = null;
@@ -13460,7 +14298,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RBRACE367_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 71)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 71)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:398:2:
@@ -13468,68 +14307,78 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:398:4:
 			// INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				INTERFACE362 = (Token) match(input, INTERFACE,
+				INTERFACE362 = (Token) this.match(this.input, INTERFACE,
 						FOLLOW_INTERFACE_in_interfaceDecl3416);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					INTERFACE362_tree = (Object) adaptor.create(INTERFACE362);
-					adaptor.addChild(root_0, INTERFACE362_tree);
 				}
-				pushFollow(FOLLOW_type_in_interfaceDecl3418);
-				type363 = type();
+				if (this.state.backtracking == 0) {
+					INTERFACE362_tree = (Object) this.adaptor
+							.create(INTERFACE362);
+					this.adaptor.addChild(root_0, INTERFACE362_tree);
+				}
+				this.pushFollow(FOLLOW_type_in_interfaceDecl3418);
+				type363 = this.type();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, type363.getTree());
-				pushFollow(FOLLOW_inheritListOpt_in_interfaceDecl3420);
-				inheritListOpt364 = inheritListOpt();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, type363.getTree());
+				}
+				this.pushFollow(FOLLOW_inheritListOpt_in_interfaceDecl3420);
+				inheritListOpt364 = this.inheritListOpt();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, inheritListOpt364.getTree());
-				LBRACE365 = (Token) match(input, LBRACE,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, inheritListOpt364.getTree());
+				}
+				LBRACE365 = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_interfaceDecl3422);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_interfaceBody_in_interfaceDecl3425);
-				interfaceBody366 = interfaceBody();
+				}
+				this.pushFollow(FOLLOW_interfaceBody_in_interfaceDecl3425);
+				interfaceBody366 = this.interfaceBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, interfaceBody366.getTree());
-				RBRACE367 = (Token) match(input, RBRACE,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, interfaceBody366.getTree());
+				}
+				RBRACE367 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_interfaceDecl3427);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 71, interfaceDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 71, interfaceDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -13542,7 +14391,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13553,8 +14402,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.interfaceBody_return interfaceBody()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.interfaceBody_return retval = new TinyHaxeTry1Parser.interfaceBody_return();
-		retval.start = input.LT(1);
-		int interfaceBody_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int interfaceBody_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.varDecl_return varDecl368 = null;
@@ -13566,36 +14415,41 @@ public class TinyHaxeTry1Parser extends Parser {
 		TinyHaxeTry1Parser.interfaceBody_return interfaceBody371 = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 72)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 72)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:402:2:
 			// ( varDecl interfaceBody | funcProtoDecl interfaceBody | )
 			int alt71 = 3;
-			alt71 = dfa71.predict(input);
+			alt71 = this.dfa71.predict(this.input);
 			switch (alt71) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:402:4:
 				// varDecl interfaceBody
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_varDecl_in_interfaceBody3440);
-				varDecl368 = varDecl();
+				this.pushFollow(FOLLOW_varDecl_in_interfaceBody3440);
+				varDecl368 = this.varDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, varDecl368.getTree());
-				pushFollow(FOLLOW_interfaceBody_in_interfaceBody3442);
-				interfaceBody369 = interfaceBody();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, varDecl368.getTree());
+				}
+				this.pushFollow(FOLLOW_interfaceBody_in_interfaceBody3442);
+				interfaceBody369 = this.interfaceBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, interfaceBody369.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, interfaceBody369.getTree());
+				}
 
 			}
 				break;
@@ -13603,53 +14457,57 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:403:4:
 				// funcProtoDecl interfaceBody
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_funcProtoDecl_in_interfaceBody3447);
-				funcProtoDecl370 = funcProtoDecl();
+				this.pushFollow(FOLLOW_funcProtoDecl_in_interfaceBody3447);
+				funcProtoDecl370 = this.funcProtoDecl();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcProtoDecl370.getTree());
-				pushFollow(FOLLOW_interfaceBody_in_interfaceBody3449);
-				interfaceBody371 = interfaceBody();
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcProtoDecl370.getTree());
+				}
+				this.pushFollow(FOLLOW_interfaceBody_in_interfaceBody3449);
+				interfaceBody371 = this.interfaceBody();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, interfaceBody371.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, interfaceBody371.getTree());
+				}
 
 			}
 				break;
 			case 3:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:406:2:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 72, interfaceBody_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 72, interfaceBody_StartIndex);
 			}
 		}
 		return retval;
@@ -13662,7 +14520,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13672,8 +14530,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.inheritList_return inheritList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.inheritList_return retval = new TinyHaxeTry1Parser.inheritList_return();
-		retval.start = input.LT(1);
-		int inheritList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int inheritList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA373 = null;
@@ -13684,7 +14542,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA373_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 73)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 73)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:2:
@@ -13692,21 +14551,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:4:
 			// inherit ( COMMA inherit )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_inherit_in_inheritList3471);
-				inherit372 = inherit();
+				this.pushFollow(FOLLOW_inherit_in_inheritList3471);
+				inherit372 = this.inherit();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, inherit372.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, inherit372.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:12:
 				// ( COMMA inherit )*
 				loop72: do {
 					int alt72 = 2;
-					int LA72_0 = input.LA(1);
+					int LA72_0 = this.input.LA(1);
 
 					if ((LA72_0 == COMMA)) {
 						alt72 = 1;
@@ -13717,18 +14578,21 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:409:13:
 						// COMMA inherit
 					{
-						COMMA373 = (Token) match(input, COMMA,
+						COMMA373 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_inheritList3474);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_inherit_in_inheritList3477);
-						inherit374 = inherit();
+						}
+						this.pushFollow(FOLLOW_inherit_in_inheritList3477);
+						inherit374 = this.inherit();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, inherit374.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, inherit374.getTree());
+						}
 
 					}
 						break;
@@ -13740,23 +14604,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 73, inheritList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 73, inheritList_StartIndex);
 			}
 		}
 		return retval;
@@ -13769,7 +14633,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13780,35 +14644,36 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.inheritListOpt_return inheritListOpt()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.inheritListOpt_return retval = new TinyHaxeTry1Parser.inheritListOpt_return();
-		retval.start = input.LT(1);
-		int inheritListOpt_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int inheritListOpt_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		TinyHaxeTry1Parser.inheritList_return inheritList375 = null;
 
 		RewriteRuleSubtreeStream stream_inheritList = new RewriteRuleSubtreeStream(
-				adaptor, "rule inheritList");
+				this.adaptor, "rule inheritList");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 74)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 74)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:2:
 			// ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] (
 			// inheritList )? ) | )
 			int alt73 = 2;
-			int LA73_0 = input.LA(1);
+			int LA73_0 = this.input.LA(1);
 
 			if (((LA73_0 >= EXTENDS && LA73_0 <= IMPLEMENTS))) {
 				alt73 = 1;
 			} else if ((LA73_0 == LBRACE)) {
 				alt73 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 73, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -13817,14 +14682,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:4:
 				// inheritList
 			{
-				pushFollow(FOLLOW_inheritList_in_inheritListOpt3495);
-				inheritList375 = inheritList();
+				this.pushFollow(FOLLOW_inheritList_in_inheritListOpt3495);
+				inheritList375 = this.inheritList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_inheritList.add(inheritList375.getTree());
+				}
 
 				// AST REWRITE
 				// elements: inheritList
@@ -13833,13 +14700,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 413:16: -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true]
 					// ( inheritList )? )
 					{
@@ -13847,21 +14714,21 @@ public class TinyHaxeTry1Parser extends Parser {
 						// ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] (
 						// inheritList )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									new ExtendedCommonTree(INHERIT_LIST_OPT,
 											"INHERIT_LIST_OPT", true), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:413:82:
 							// ( inheritList )?
 							if (stream_inheritList.hasNext()) {
-								adaptor.addChild(root_1, stream_inheritList
-										.nextTree());
+								this.adaptor.addChild(root_1,
+										stream_inheritList.nextTree());
 
 							}
 							stream_inheritList.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -13873,29 +14740,29 @@ public class TinyHaxeTry1Parser extends Parser {
 			case 2:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:415:6:
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
 			}
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 74, inheritListOpt_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 74, inheritListOpt_StartIndex);
 			}
 		}
 		return retval;
@@ -13908,7 +14775,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -13919,8 +14786,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.inherit_return inherit()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.inherit_return retval = new TinyHaxeTry1Parser.inherit_return();
-		retval.start = input.LT(1);
-		int inherit_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int inherit_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token EXTENDS376 = null;
@@ -13932,32 +14799,33 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object EXTENDS376_tree = null;
 		Object IMPLEMENTS378_tree = null;
 		RewriteRuleTokenStream stream_IMPLEMENTS = new RewriteRuleTokenStream(
-				adaptor, "token IMPLEMENTS");
+				this.adaptor, "token IMPLEMENTS");
 		RewriteRuleTokenStream stream_EXTENDS = new RewriteRuleTokenStream(
-				adaptor, "token EXTENDS");
+				this.adaptor, "token EXTENDS");
 		RewriteRuleSubtreeStream stream_type = new RewriteRuleSubtreeStream(
-				adaptor, "rule type");
+				this.adaptor, "rule type");
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 75)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 75)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:9:
 			// ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^(
 			// IMPLEMENTS ( type )? ) )
 			int alt74 = 2;
-			int LA74_0 = input.LA(1);
+			int LA74_0 = this.input.LA(1);
 
 			if ((LA74_0 == EXTENDS)) {
 				alt74 = 1;
 			} else if ((LA74_0 == IMPLEMENTS)) {
 				alt74 = 2;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 74, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -13966,21 +14834,25 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:11:
 				// EXTENDS type
 			{
-				EXTENDS376 = (Token) match(input, EXTENDS,
+				EXTENDS376 = (Token) this.match(this.input, EXTENDS,
 						FOLLOW_EXTENDS_in_inherit3530);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_EXTENDS.add(EXTENDS376);
+				}
 
-				pushFollow(FOLLOW_type_in_inherit3532);
-				type377 = type();
+				this.pushFollow(FOLLOW_type_in_inherit3532);
+				type377 = this.type();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_type.add(type377.getTree());
+				}
 
 				// AST REWRITE
 				// elements: EXTENDS, type
@@ -13989,33 +14861,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 417:25: -> ^( EXTENDS ( type )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:28:
 						// ^( EXTENDS ( type )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(stream_EXTENDS
-									.nextNode(), root_1);
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
+									stream_EXTENDS.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:417:38:
 							// ( type )?
 							if (stream_type.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_type
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_type
+										.nextTree());
 
 							}
 							stream_type.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -14028,21 +14899,25 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:418:11:
 				// IMPLEMENTS type
 			{
-				IMPLEMENTS378 = (Token) match(input, IMPLEMENTS,
+				IMPLEMENTS378 = (Token) this.match(this.input, IMPLEMENTS,
 						FOLLOW_IMPLEMENTS_in_inherit3554);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_IMPLEMENTS.add(IMPLEMENTS378);
+				}
 
-				pushFollow(FOLLOW_type_in_inherit3556);
-				type379 = type();
+				this.pushFollow(FOLLOW_type_in_inherit3556);
+				type379 = this.type();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_type.add(type379.getTree());
+				}
 
 				// AST REWRITE
 				// elements: IMPLEMENTS, type
@@ -14051,33 +14926,32 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 418:27: -> ^( IMPLEMENTS ( type )? )
 					{
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:418:30:
 						// ^( IMPLEMENTS ( type )? )
 						{
-							Object root_1 = (Object) adaptor.nil();
-							root_1 = (Object) adaptor.becomeRoot(
+							Object root_1 = (Object) this.adaptor.nil();
+							root_1 = (Object) this.adaptor.becomeRoot(
 									stream_IMPLEMENTS.nextNode(), root_1);
 
 							// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:418:43:
 							// ( type )?
 							if (stream_type.hasNext()) {
-								adaptor
-										.addChild(root_1, stream_type
-												.nextTree());
+								this.adaptor.addChild(root_1, stream_type
+										.nextTree());
 
 							}
 							stream_type.reset();
 
-							adaptor.addChild(root_0, root_1);
+							this.adaptor.addChild(root_0, root_1);
 						}
 
 					}
@@ -14088,23 +14962,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 75, inherit_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 75, inherit_StartIndex);
 			}
 		}
 		return retval;
@@ -14117,7 +14991,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14127,8 +15001,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typedefDecl_return typedefDecl()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typedefDecl_return retval = new TinyHaxeTry1Parser.typedefDecl_return();
-		retval.start = input.LT(1);
-		int typedefDecl_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typedefDecl_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token TYPEDEF380 = null;
@@ -14141,7 +15015,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object EQ382_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 76)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 76)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:422:2:
@@ -14149,59 +15024,66 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:422:4:
 			// TYPEDEF IDENTIFIER EQ funcType
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				TYPEDEF380 = (Token) match(input, TYPEDEF,
+				TYPEDEF380 = (Token) this.match(this.input, TYPEDEF,
 						FOLLOW_TYPEDEF_in_typedefDecl3584);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					TYPEDEF380_tree = (Object) adaptor.create(TYPEDEF380);
-					adaptor.addChild(root_0, TYPEDEF380_tree);
 				}
-				IDENTIFIER381 = (Token) match(input, IDENTIFIER,
+				if (this.state.backtracking == 0) {
+					TYPEDEF380_tree = (Object) this.adaptor.create(TYPEDEF380);
+					this.adaptor.addChild(root_0, TYPEDEF380_tree);
+				}
+				IDENTIFIER381 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_typedefDecl3586);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					IDENTIFIER381_tree = (Object) adaptor.create(IDENTIFIER381);
-					adaptor.addChild(root_0, IDENTIFIER381_tree);
 				}
-				EQ382 = (Token) match(input, EQ, FOLLOW_EQ_in_typedefDecl3588);
-				if (state.failed)
+				if (this.state.backtracking == 0) {
+					IDENTIFIER381_tree = (Object) this.adaptor
+							.create(IDENTIFIER381);
+					this.adaptor.addChild(root_0, IDENTIFIER381_tree);
+				}
+				EQ382 = (Token) this.match(this.input, EQ,
+						FOLLOW_EQ_in_typedefDecl3588);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					EQ382_tree = (Object) adaptor.create(EQ382);
-					adaptor.addChild(root_0, EQ382_tree);
 				}
-				pushFollow(FOLLOW_funcType_in_typedefDecl3590);
-				funcType383 = funcType();
+				if (this.state.backtracking == 0) {
+					EQ382_tree = (Object) this.adaptor.create(EQ382);
+					this.adaptor.addChild(root_0, EQ382_tree);
+				}
+				this.pushFollow(FOLLOW_funcType_in_typedefDecl3590);
+				funcType383 = this.funcType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcType383.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcType383.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 76, typedefDecl_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 76, typedefDecl_StartIndex);
 			}
 		}
 		return retval;
@@ -14214,7 +15096,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14224,8 +15106,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.typeExtend_return typeExtend()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.typeExtend_return retval = new TinyHaxeTry1Parser.typeExtend_return();
-		retval.start = input.LT(1);
-		int typeExtend_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int typeExtend_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token GT384 = null;
@@ -14236,7 +15118,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA386_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 77)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 77)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:426:9:
@@ -14244,47 +15127,52 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:426:11:
 			// GT funcType COMMA
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				GT384 = (Token) match(input, GT, FOLLOW_GT_in_typeExtend3609);
-				if (state.failed)
+				GT384 = (Token) this.match(this.input, GT,
+						FOLLOW_GT_in_typeExtend3609);
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					GT384_tree = (Object) adaptor.create(GT384);
-					adaptor.addChild(root_0, GT384_tree);
 				}
-				pushFollow(FOLLOW_funcType_in_typeExtend3611);
-				funcType385 = funcType();
+				if (this.state.backtracking == 0) {
+					GT384_tree = (Object) this.adaptor.create(GT384);
+					this.adaptor.addChild(root_0, GT384_tree);
+				}
+				this.pushFollow(FOLLOW_funcType_in_typeExtend3611);
+				funcType385 = this.funcType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcType385.getTree());
-				COMMA386 = (Token) match(input, COMMA,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcType385.getTree());
+				}
+				COMMA386 = (Token) this.match(this.input, COMMA,
 						FOLLOW_COMMA_in_typeExtend3613);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 77, typeExtend_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 77, typeExtend_StartIndex);
 			}
 		}
 		return retval;
@@ -14297,7 +15185,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14308,8 +15196,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.anonType_return anonType()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.anonType_return retval = new TinyHaxeTry1Parser.anonType_return();
-		retval.start = input.LT(1);
-		int anonType_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int anonType_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LBRACE387 = null;
@@ -14328,7 +15216,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object RBRACE393_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 78)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 78)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:429:9:
@@ -14338,17 +15227,18 @@ public class TinyHaxeTry1Parser extends Parser {
 			// LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( |
 			// anonTypeFieldList | varDeclList ) ) RBRACE
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				LBRACE387 = (Token) match(input, LBRACE,
+				LBRACE387 = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_anonType3624);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:430:4:
 				// ( | anonTypeFieldList | varDeclList | typeExtend ( |
 				// anonTypeFieldList | varDeclList ) )
 				int alt76 = 4;
-				switch (input.LA(1)) {
+				switch (this.input.LA(1)) {
 				case RBRACE: {
 					alt76 = 1;
 				}
@@ -14372,12 +15262,12 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 					break;
 				default:
-					if (state.backtracking > 0) {
-						state.failed = true;
+					if (this.state.backtracking > 0) {
+						this.state.failed = true;
 						return retval;
 					}
 					NoViableAltException nvae = new NoViableAltException("",
-							76, 0, input);
+							76, 0, this.input);
 
 					throw nvae;
 				}
@@ -14392,16 +15282,17 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:431:27:
 					// anonTypeFieldList
 				{
-					pushFollow(FOLLOW_anonTypeFieldList_in_anonType3659);
-					anonTypeFieldList388 = anonTypeFieldList();
+					this.pushFollow(FOLLOW_anonTypeFieldList_in_anonType3659);
+					anonTypeFieldList388 = this.anonTypeFieldList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor
-								.addChild(root_0, anonTypeFieldList388
-										.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, anonTypeFieldList388
+								.getTree());
+					}
 
 				}
 					break;
@@ -14409,14 +15300,16 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:432:26:
 					// varDeclList
 				{
-					pushFollow(FOLLOW_varDeclList_in_anonType3687);
-					varDeclList389 = varDeclList();
+					this.pushFollow(FOLLOW_varDeclList_in_anonType3687);
+					varDeclList389 = this.varDeclList();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, varDeclList389.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, varDeclList389.getTree());
+					}
 
 				}
 					break;
@@ -14424,18 +15317,20 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:433:27:
 					// typeExtend ( | anonTypeFieldList | varDeclList )
 				{
-					pushFollow(FOLLOW_typeExtend_in_anonType3716);
-					typeExtend390 = typeExtend();
+					this.pushFollow(FOLLOW_typeExtend_in_anonType3716);
+					typeExtend390 = this.typeExtend();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return retval;
-					if (state.backtracking == 0)
-						adaptor.addChild(root_0, typeExtend390.getTree());
+					}
+					if (this.state.backtracking == 0) {
+						this.adaptor.addChild(root_0, typeExtend390.getTree());
+					}
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:433:38:
 					// ( | anonTypeFieldList | varDeclList )
 					int alt75 = 3;
-					switch (input.LA(1)) {
+					switch (this.input.LA(1)) {
 					case RBRACE: {
 						alt75 = 1;
 					}
@@ -14455,12 +15350,12 @@ public class TinyHaxeTry1Parser extends Parser {
 					}
 						break;
 					default:
-						if (state.backtracking > 0) {
-							state.failed = true;
+						if (this.state.backtracking > 0) {
+							this.state.failed = true;
 							return retval;
 						}
 						NoViableAltException nvae = new NoViableAltException(
-								"", 75, 0, input);
+								"", 75, 0, this.input);
 
 						throw nvae;
 					}
@@ -14475,15 +15370,18 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:434:25:
 						// anonTypeFieldList
 					{
-						pushFollow(FOLLOW_anonTypeFieldList_in_anonType3744);
-						anonTypeFieldList391 = anonTypeFieldList();
+						this
+								.pushFollow(FOLLOW_anonTypeFieldList_in_anonType3744);
+						anonTypeFieldList391 = this.anonTypeFieldList();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, anonTypeFieldList391
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, anonTypeFieldList391
 									.getTree());
+						}
 
 					}
 						break;
@@ -14491,14 +15389,17 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:435:25:
 						// varDeclList
 					{
-						pushFollow(FOLLOW_varDeclList_in_anonType3770);
-						varDeclList392 = varDeclList();
+						this.pushFollow(FOLLOW_varDeclList_in_anonType3770);
+						varDeclList392 = this.varDeclList();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, varDeclList392.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, varDeclList392
+									.getTree());
+						}
 
 					}
 						break;
@@ -14510,30 +15411,31 @@ public class TinyHaxeTry1Parser extends Parser {
 
 				}
 
-				RBRACE393 = (Token) match(input, RBRACE,
+				RBRACE393 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_anonType3814);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 78, anonType_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 78, anonType_StartIndex);
 			}
 		}
 		return retval;
@@ -14546,7 +15448,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14556,8 +15458,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.anonTypeFieldList_return anonTypeFieldList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.anonTypeFieldList_return retval = new TinyHaxeTry1Parser.anonTypeFieldList_return();
-		retval.start = input.LT(1);
-		int anonTypeFieldList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int anonTypeFieldList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA395 = null;
@@ -14568,7 +15470,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA395_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 79)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 79)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:441:2:
@@ -14576,21 +15479,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:441:4:
 			// anonTypeField ( COMMA anonTypeField )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3828);
-				anonTypeField394 = anonTypeField();
+				this.pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3828);
+				anonTypeField394 = this.anonTypeField();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, anonTypeField394.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, anonTypeField394.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:441:18:
 				// ( COMMA anonTypeField )*
 				loop77: do {
 					int alt77 = 2;
-					int LA77_0 = input.LA(1);
+					int LA77_0 = this.input.LA(1);
 
 					if ((LA77_0 == COMMA)) {
 						alt77 = 1;
@@ -14601,20 +15506,23 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:441:19:
 						// COMMA anonTypeField
 					{
-						COMMA395 = (Token) match(input, COMMA,
+						COMMA395 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_anonTypeFieldList3831);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3834);
-						anonTypeField396 = anonTypeField();
+						}
+						this
+								.pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3834);
+						anonTypeField396 = this.anonTypeField();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor
-									.addChild(root_0, anonTypeField396
-											.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, anonTypeField396
+									.getTree());
+						}
 
 					}
 						break;
@@ -14626,23 +15534,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 79, anonTypeFieldList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 79, anonTypeFieldList_StartIndex);
 			}
 		}
 		return retval;
@@ -14655,7 +15563,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14665,8 +15573,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.objLit_return objLit()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.objLit_return retval = new TinyHaxeTry1Parser.objLit_return();
-		retval.start = input.LT(1);
-		int objLit_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int objLit_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token char_literal397 = null;
@@ -14677,7 +15585,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object char_literal399_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 80)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 80)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:444:8:
@@ -14685,44 +15594,48 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:444:10:
 			// '{' objLitElemList '}'
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				char_literal397 = (Token) match(input, LBRACE,
+				char_literal397 = (Token) this.match(this.input, LBRACE,
 						FOLLOW_LBRACE_in_objLit3846);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_objLitElemList_in_objLit3849);
-				objLitElemList398 = objLitElemList();
+				}
+				this.pushFollow(FOLLOW_objLitElemList_in_objLit3849);
+				objLitElemList398 = this.objLitElemList();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, objLitElemList398.getTree());
-				char_literal399 = (Token) match(input, RBRACE,
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, objLitElemList398.getTree());
+				}
+				char_literal399 = (Token) this.match(this.input, RBRACE,
 						FOLLOW_RBRACE_in_objLit3851);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 80, objLit_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 80, objLit_StartIndex);
 			}
 		}
 		return retval;
@@ -14735,7 +15648,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14745,8 +15658,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.anonTypeField_return anonTypeField()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.anonTypeField_return retval = new TinyHaxeTry1Parser.anonTypeField_return();
-		retval.start = input.LT(1);
-		int anonTypeField_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int anonTypeField_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IDENTIFIER400 = null;
@@ -14757,7 +15670,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COLON401_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 81)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 81)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:448:2:
@@ -14765,48 +15679,53 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:448:4:
 			// IDENTIFIER COLON funcType
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				IDENTIFIER400 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER400 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_anonTypeField3863);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					IDENTIFIER400_tree = (Object) adaptor.create(IDENTIFIER400);
-					adaptor.addChild(root_0, IDENTIFIER400_tree);
 				}
-				COLON401 = (Token) match(input, COLON,
+				if (this.state.backtracking == 0) {
+					IDENTIFIER400_tree = (Object) this.adaptor
+							.create(IDENTIFIER400);
+					this.adaptor.addChild(root_0, IDENTIFIER400_tree);
+				}
+				COLON401 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_anonTypeField3865);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_funcType_in_anonTypeField3868);
-				funcType402 = funcType();
+				}
+				this.pushFollow(FOLLOW_funcType_in_anonTypeField3868);
+				funcType402 = this.funcType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, funcType402.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, funcType402.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 81, anonTypeField_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 81, anonTypeField_StartIndex);
 			}
 		}
 		return retval;
@@ -14819,7 +15738,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14829,8 +15748,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.objLitElemList_return objLitElemList()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.objLitElemList_return retval = new TinyHaxeTry1Parser.objLitElemList_return();
-		retval.start = input.LT(1);
-		int objLitElemList_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int objLitElemList_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token COMMA404 = null;
@@ -14841,7 +15760,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COMMA404_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 82)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 82)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:452:2:
@@ -14849,21 +15769,23 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:452:4:
 			// objLitElem ( COMMA objLitElem )*
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				pushFollow(FOLLOW_objLitElem_in_objLitElemList3884);
-				objLitElem403 = objLitElem();
+				this.pushFollow(FOLLOW_objLitElem_in_objLitElemList3884);
+				objLitElem403 = this.objLitElem();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, objLitElem403.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, objLitElem403.getTree());
+				}
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:452:15:
 				// ( COMMA objLitElem )*
 				loop78: do {
 					int alt78 = 2;
-					int LA78_0 = input.LA(1);
+					int LA78_0 = this.input.LA(1);
 
 					if ((LA78_0 == COMMA)) {
 						alt78 = 1;
@@ -14874,18 +15796,23 @@ public class TinyHaxeTry1Parser extends Parser {
 						// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:452:16:
 						// COMMA objLitElem
 					{
-						COMMA404 = (Token) match(input, COMMA,
+						COMMA404 = (Token) this.match(this.input, COMMA,
 								FOLLOW_COMMA_in_objLitElemList3887);
-						if (state.failed)
+						if (this.state.failed) {
 							return retval;
-						pushFollow(FOLLOW_objLitElem_in_objLitElemList3890);
-						objLitElem405 = objLitElem();
+						}
+						this
+								.pushFollow(FOLLOW_objLitElem_in_objLitElemList3890);
+						objLitElem405 = this.objLitElem();
 
-						state._fsp--;
-						if (state.failed)
+						this.state._fsp--;
+						if (this.state.failed) {
 							return retval;
-						if (state.backtracking == 0)
-							adaptor.addChild(root_0, objLitElem405.getTree());
+						}
+						if (this.state.backtracking == 0) {
+							this.adaptor.addChild(root_0, objLitElem405
+									.getTree());
+						}
 
 					}
 						break;
@@ -14897,23 +15824,23 @@ public class TinyHaxeTry1Parser extends Parser {
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 82, objLitElemList_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 82, objLitElemList_StartIndex);
 			}
 		}
 		return retval;
@@ -14926,7 +15853,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -14936,8 +15863,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.objLitElem_return objLitElem()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.objLitElem_return retval = new TinyHaxeTry1Parser.objLitElem_return();
-		retval.start = input.LT(1);
-		int objLitElem_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int objLitElem_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token IDENTIFIER406 = null;
@@ -14948,7 +15875,8 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object COLON407_tree = null;
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 83)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 83)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:456:9:
@@ -14956,48 +15884,53 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:456:11:
 			// IDENTIFIER COLON expr
 			{
-				root_0 = (Object) adaptor.nil();
+				root_0 = (Object) this.adaptor.nil();
 
-				IDENTIFIER406 = (Token) match(input, IDENTIFIER,
+				IDENTIFIER406 = (Token) this.match(this.input, IDENTIFIER,
 						FOLLOW_IDENTIFIER_in_objLitElem3911);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0) {
-					IDENTIFIER406_tree = (Object) adaptor.create(IDENTIFIER406);
-					adaptor.addChild(root_0, IDENTIFIER406_tree);
 				}
-				COLON407 = (Token) match(input, COLON,
+				if (this.state.backtracking == 0) {
+					IDENTIFIER406_tree = (Object) this.adaptor
+							.create(IDENTIFIER406);
+					this.adaptor.addChild(root_0, IDENTIFIER406_tree);
+				}
+				COLON407 = (Token) this.match(this.input, COLON,
 						FOLLOW_COLON_in_objLitElem3913);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				pushFollow(FOLLOW_expr_in_objLitElem3916);
-				expr408 = expr();
+				}
+				this.pushFollow(FOLLOW_expr_in_objLitElem3916);
+				expr408 = this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
-					adaptor.addChild(root_0, expr408.getTree());
+				}
+				if (this.state.backtracking == 0) {
+					this.adaptor.addChild(root_0, expr408.getTree());
+				}
 
 			}
 
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 83, objLitElem_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 83, objLitElem_StartIndex);
 			}
 		}
 		return retval;
@@ -15010,7 +15943,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 		@Override
 		public Object getTree() {
-			return tree;
+			return this.tree;
 		}
 	};
 
@@ -15025,8 +15958,8 @@ public class TinyHaxeTry1Parser extends Parser {
 	public final TinyHaxeTry1Parser.elementarySymbol_return elementarySymbol()
 			throws RecognitionException {
 		TinyHaxeTry1Parser.elementarySymbol_return retval = new TinyHaxeTry1Parser.elementarySymbol_return();
-		retval.start = input.LT(1);
-		int elementarySymbol_StartIndex = input.index();
+		retval.start = this.input.LT(1);
+		int elementarySymbol_StartIndex = this.input.index();
 		Object root_0 = null;
 
 		Token LONGLITERAL409 = null;
@@ -15045,22 +15978,23 @@ public class TinyHaxeTry1Parser extends Parser {
 		Object TRUE414_tree = null;
 		Object FALSE415_tree = null;
 		RewriteRuleTokenStream stream_INTLITERAL = new RewriteRuleTokenStream(
-				adaptor, "token INTLITERAL");
+				this.adaptor, "token INTLITERAL");
 		RewriteRuleTokenStream stream_FALSE = new RewriteRuleTokenStream(
-				adaptor, "token FALSE");
+				this.adaptor, "token FALSE");
 		RewriteRuleTokenStream stream_TRUE = new RewriteRuleTokenStream(
-				adaptor, "token TRUE");
+				this.adaptor, "token TRUE");
 		RewriteRuleTokenStream stream_FLOATNUM = new RewriteRuleTokenStream(
-				adaptor, "token FLOATNUM");
+				this.adaptor, "token FLOATNUM");
 		RewriteRuleTokenStream stream_STRINGLITERAL = new RewriteRuleTokenStream(
-				adaptor, "token STRINGLITERAL");
+				this.adaptor, "token STRINGLITERAL");
 		RewriteRuleTokenStream stream_CHARLITERAL = new RewriteRuleTokenStream(
-				adaptor, "token CHARLITERAL");
+				this.adaptor, "token CHARLITERAL");
 		RewriteRuleTokenStream stream_LONGLITERAL = new RewriteRuleTokenStream(
-				adaptor, "token LONGLITERAL");
+				this.adaptor, "token LONGLITERAL");
 
 		try {
-			if (state.backtracking > 0 && alreadyParsedRule(input, 84)) {
+			if (this.state.backtracking > 0
+					&& this.alreadyParsedRule(this.input, 84)) {
 				return retval;
 			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:460:2:
@@ -15071,7 +16005,7 @@ public class TinyHaxeTry1Parser extends Parser {
 			// FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] |
 			// FALSE -> FALSE[$FALSE,\"BOOL\"] )
 			int alt79 = 7;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case LONGLITERAL: {
 				alt79 = 1;
 			}
@@ -15101,12 +16035,12 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return retval;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 79, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -15116,12 +16050,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:460:4:
 				// LONGLITERAL
 			{
-				LONGLITERAL409 = (Token) match(input, LONGLITERAL,
+				LONGLITERAL409 = (Token) this.match(this.input, LONGLITERAL,
 						FOLLOW_LONGLITERAL_in_elementarySymbol3928);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_LONGLITERAL.add(LONGLITERAL409);
+				}
 
 				// AST REWRITE
 				// elements: LONGLITERAL
@@ -15130,16 +16066,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 460:16: -> LONGLITERAL[$LONGLITERAL, \"INT\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(LONGLITERAL,
+						this.adaptor.addChild(root_0, new VarUsage(LONGLITERAL,
 								LONGLITERAL409, "INT"));
 
 					}
@@ -15152,12 +16088,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:461:4:
 				// INTLITERAL
 			{
-				INTLITERAL410 = (Token) match(input, INTLITERAL,
+				INTLITERAL410 = (Token) this.match(this.input, INTLITERAL,
 						FOLLOW_INTLITERAL_in_elementarySymbol3941);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_INTLITERAL.add(INTLITERAL410);
+				}
 
 				// AST REWRITE
 				// elements: INTLITERAL
@@ -15166,16 +16104,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 461:15: -> INTLITERAL[$INTLITERAL, \"INT\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(INTLITERAL,
+						this.adaptor.addChild(root_0, new VarUsage(INTLITERAL,
 								INTLITERAL410, "INT"));
 
 					}
@@ -15188,12 +16126,15 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:462:4:
 				// STRINGLITERAL
 			{
-				STRINGLITERAL411 = (Token) match(input, STRINGLITERAL,
+				STRINGLITERAL411 = (Token) this.match(this.input,
+						STRINGLITERAL,
 						FOLLOW_STRINGLITERAL_in_elementarySymbol3954);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_STRINGLITERAL.add(STRINGLITERAL411);
+				}
 
 				// AST REWRITE
 				// elements: STRINGLITERAL
@@ -15202,17 +16143,17 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 462:18: -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(STRINGLITERAL,
-								STRINGLITERAL411, "STRING"));
+						this.adaptor.addChild(root_0, new VarUsage(
+								STRINGLITERAL, STRINGLITERAL411, "STRING"));
 
 					}
 
@@ -15224,12 +16165,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:463:4:
 				// CHARLITERAL
 			{
-				CHARLITERAL412 = (Token) match(input, CHARLITERAL,
+				CHARLITERAL412 = (Token) this.match(this.input, CHARLITERAL,
 						FOLLOW_CHARLITERAL_in_elementarySymbol3967);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_CHARLITERAL.add(CHARLITERAL412);
+				}
 
 				// AST REWRITE
 				// elements: CHARLITERAL
@@ -15238,16 +16181,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 463:16: -> CHARLITERAL[$CHARLITERAL, \"STRING\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(CHARLITERAL,
+						this.adaptor.addChild(root_0, new VarUsage(CHARLITERAL,
 								CHARLITERAL412, "STRING"));
 
 					}
@@ -15260,12 +16203,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:464:4:
 				// FLOATNUM
 			{
-				FLOATNUM413 = (Token) match(input, FLOATNUM,
+				FLOATNUM413 = (Token) this.match(this.input, FLOATNUM,
 						FOLLOW_FLOATNUM_in_elementarySymbol3980);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FLOATNUM.add(FLOATNUM413);
+				}
 
 				// AST REWRITE
 				// elements: FLOATNUM
@@ -15274,16 +16219,16 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 464:13: -> FLOATNUM[$FLOATNUM, \"FLOAT\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(FLOATNUM,
+						this.adaptor.addChild(root_0, new VarUsage(FLOATNUM,
 								FLOATNUM413, "FLOAT"));
 
 					}
@@ -15296,12 +16241,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:465:4:
 				// TRUE
 			{
-				TRUE414 = (Token) match(input, TRUE,
+				TRUE414 = (Token) this.match(this.input, TRUE,
 						FOLLOW_TRUE_in_elementarySymbol3993);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_TRUE.add(TRUE414);
+				}
 
 				// AST REWRITE
 				// elements: TRUE
@@ -15310,17 +16257,17 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 465:10: -> TRUE[$TRUE,\"BOOL\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(TRUE, TRUE414,
-								"BOOL"));
+						this.adaptor.addChild(root_0, new VarUsage(TRUE,
+								TRUE414, "BOOL"));
 
 					}
 
@@ -15332,12 +16279,14 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:466:4:
 				// FALSE
 			{
-				FALSE415 = (Token) match(input, FALSE,
+				FALSE415 = (Token) this.match(this.input, FALSE,
 						FOLLOW_FALSE_in_elementarySymbol4007);
-				if (state.failed)
+				if (this.state.failed) {
 					return retval;
-				if (state.backtracking == 0)
+				}
+				if (this.state.backtracking == 0) {
 					stream_FALSE.add(FALSE415);
+				}
 
 				// AST REWRITE
 				// elements: FALSE
@@ -15346,17 +16295,17 @@ public class TinyHaxeTry1Parser extends Parser {
 				// token list labels:
 				// rule list labels:
 				// wildcard labels:
-				if (state.backtracking == 0) {
+				if (this.state.backtracking == 0) {
 					retval.tree = root_0;
 					RewriteRuleSubtreeStream stream_retval = new RewriteRuleSubtreeStream(
-							adaptor, "rule retval",
+							this.adaptor, "rule retval",
 							retval != null ? retval.tree : null);
 
-					root_0 = (Object) adaptor.nil();
+					root_0 = (Object) this.adaptor.nil();
 					// 466:11: -> FALSE[$FALSE,\"BOOL\"]
 					{
-						adaptor.addChild(root_0, new VarUsage(FALSE, FALSE415,
-								"BOOL"));
+						this.adaptor.addChild(root_0, new VarUsage(FALSE,
+								FALSE415, "BOOL"));
 
 					}
 
@@ -15366,23 +16315,23 @@ public class TinyHaxeTry1Parser extends Parser {
 				break;
 
 			}
-			retval.stop = input.LT(-1);
+			retval.stop = this.input.LT(-1);
 
-			if (state.backtracking == 0) {
+			if (this.state.backtracking == 0) {
 
-				retval.tree = (Object) adaptor.rulePostProcessing(root_0);
-				adaptor.setTokenBoundaries(retval.tree, retval.start,
+				retval.tree = (Object) this.adaptor.rulePostProcessing(root_0);
+				this.adaptor.setTokenBoundaries(retval.tree, retval.start,
 						retval.stop);
 			}
 		} catch (RecognitionException re) {
-			reportError(re);
-			recover(input, re);
-			retval.tree = (Object) adaptor.errorNode(input, retval.start, input
-					.LT(-1), re);
+			this.reportError(re);
+			this.recover(this.input, re);
+			retval.tree = (Object) this.adaptor.errorNode(this.input,
+					retval.start, this.input.LT(-1), re);
 
 		} finally {
-			if (state.backtracking > 0) {
-				memoize(input, 84, elementarySymbol_StartIndex);
+			if (this.state.backtracking > 0) {
+				this.memoize(this.input, 84, elementarySymbol_StartIndex);
 			}
 		}
 		return retval;
@@ -15398,12 +16347,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:100:54:
 		// typeTagOpt
 		{
-			pushFollow(FOLLOW_typeTagOpt_in_synpred20_TinyHaxeTry1835);
-			typeTagOpt();
+			this.pushFollow(FOLLOW_typeTagOpt_in_synpred20_TinyHaxeTry1835);
+			this.typeTagOpt();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15418,15 +16368,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:21:
 		// COMMA funcType
 		{
-			match(input, COMMA, FOLLOW_COMMA_in_synpred22_TinyHaxeTry1941);
-			if (state.failed)
+			this.match(this.input, COMMA,
+					FOLLOW_COMMA_in_synpred22_TinyHaxeTry1941);
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_funcType_in_synpred22_TinyHaxeTry1944);
-			funcType();
+			}
+			this.pushFollow(FOLLOW_funcType_in_synpred22_TinyHaxeTry1944);
+			this.funcType();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15441,17 +16394,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:11:
 		// funcType ( COMMA funcType )*
 		{
-			pushFollow(FOLLOW_funcType_in_synpred23_TinyHaxeTry1938);
-			funcType();
+			this.pushFollow(FOLLOW_funcType_in_synpred23_TinyHaxeTry1938);
+			this.funcType();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:20:
 			// ( COMMA funcType )*
 			loop81: do {
 				int alt81 = 2;
-				int LA81_0 = input.LA(1);
+				int LA81_0 = this.input.LA(1);
 
 				if ((LA81_0 == COMMA)) {
 					alt81 = 1;
@@ -15462,16 +16416,19 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:137:21:
 					// COMMA funcType
 				{
-					match(input, COMMA,
+					this.match(this.input, COMMA,
 							FOLLOW_COMMA_in_synpred23_TinyHaxeTry1941);
-					if (state.failed)
+					if (this.state.failed) {
 						return;
-					pushFollow(FOLLOW_funcType_in_synpred23_TinyHaxeTry1944);
-					funcType();
+					}
+					this
+							.pushFollow(FOLLOW_funcType_in_synpred23_TinyHaxeTry1944);
+					this.funcType();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return;
+					}
 
 				}
 					break;
@@ -15494,15 +16451,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:138:20:
 		// COMMA typeConstraint
 		{
-			match(input, COMMA, FOLLOW_COMMA_in_synpred24_TinyHaxeTry1955);
-			if (state.failed)
+			this.match(this.input, COMMA,
+					FOLLOW_COMMA_in_synpred24_TinyHaxeTry1955);
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_typeConstraint_in_synpred24_TinyHaxeTry1958);
-			typeConstraint();
+			}
+			this.pushFollow(FOLLOW_typeConstraint_in_synpred24_TinyHaxeTry1958);
+			this.typeConstraint();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15517,16 +16477,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:19:
 		// MINUS_BIGGER type
 		{
-			match(input, MINUS_BIGGER,
+			this.match(this.input, MINUS_BIGGER,
 					FOLLOW_MINUS_BIGGER_in_synpred25_TinyHaxeTry1977);
-			if (state.failed)
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_type_in_synpred25_TinyHaxeTry1980);
-			type();
+			}
+			this.pushFollow(FOLLOW_type_in_synpred25_TinyHaxeTry1980);
+			this.type();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15546,12 +16508,13 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:12:
 			// type
 			{
-				pushFollow(FOLLOW_type_in_synpred26_TinyHaxeTry1973);
-				type();
+				this.pushFollow(FOLLOW_type_in_synpred26_TinyHaxeTry1973);
+				this.type();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 
@@ -15559,7 +16522,7 @@ public class TinyHaxeTry1Parser extends Parser {
 			// ( MINUS_BIGGER type )*
 			loop82: do {
 				int alt82 = 2;
-				int LA82_0 = input.LA(1);
+				int LA82_0 = this.input.LA(1);
 
 				if ((LA82_0 == MINUS_BIGGER)) {
 					alt82 = 1;
@@ -15570,16 +16533,18 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:141:19:
 					// MINUS_BIGGER type
 				{
-					match(input, MINUS_BIGGER,
+					this.match(this.input, MINUS_BIGGER,
 							FOLLOW_MINUS_BIGGER_in_synpred26_TinyHaxeTry1977);
-					if (state.failed)
+					if (this.state.failed) {
 						return;
-					pushFollow(FOLLOW_type_in_synpred26_TinyHaxeTry1980);
-					type();
+					}
+					this.pushFollow(FOLLOW_type_in_synpred26_TinyHaxeTry1980);
+					this.type();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return;
+					}
 
 				}
 					break;
@@ -15602,12 +16567,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:65:
 		// typeParam
 		{
-			pushFollow(FOLLOW_typeParam_in_synpred33_TinyHaxeTry11020);
-			typeParam();
+			this.pushFollow(FOLLOW_typeParam_in_synpred33_TinyHaxeTry11020);
+			this.typeParam();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15627,7 +16593,7 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:8:
 			// ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
 			int alt83 = 7;
-			switch (input.LA(1)) {
+			switch (this.input.LA(1)) {
 			case LBRACE: {
 				alt83 = 1;
 			}
@@ -15657,12 +16623,12 @@ public class TinyHaxeTry1Parser extends Parser {
 			}
 				break;
 			default:
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return;
 				}
 				NoViableAltException nvae = new NoViableAltException("", 83, 0,
-						input);
+						this.input);
 
 				throw nvae;
 			}
@@ -15672,12 +16638,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:9:
 				// anonType
 			{
-				pushFollow(FOLLOW_anonType_in_synpred34_TinyHaxeTry1999);
-				anonType();
+				this.pushFollow(FOLLOW_anonType_in_synpred34_TinyHaxeTry1999);
+				this.anonType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15685,12 +16652,13 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:20:
 				// dotIdent
 			{
-				pushFollow(FOLLOW_dotIdent_in_synpred34_TinyHaxeTry11003);
-				dotIdent();
+				this.pushFollow(FOLLOW_dotIdent_in_synpred34_TinyHaxeTry11003);
+				this.dotIdent();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15698,9 +16666,11 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:30:
 				// INT
 			{
-				match(input, INT, FOLLOW_INT_in_synpred34_TinyHaxeTry11006);
-				if (state.failed)
+				this.match(this.input, INT,
+						FOLLOW_INT_in_synpred34_TinyHaxeTry11006);
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15708,9 +16678,11 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:35:
 				// FLOAT
 			{
-				match(input, FLOAT, FOLLOW_FLOAT_in_synpred34_TinyHaxeTry11009);
-				if (state.failed)
+				this.match(this.input, FLOAT,
+						FOLLOW_FLOAT_in_synpred34_TinyHaxeTry11009);
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15718,10 +16690,11 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:42:
 				// DYNAMIC
 			{
-				match(input, DYNAMIC,
+				this.match(this.input, DYNAMIC,
 						FOLLOW_DYNAMIC_in_synpred34_TinyHaxeTry11012);
-				if (state.failed)
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15729,10 +16702,11 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:50:
 				// BOOLEAN
 			{
-				match(input, BOOLEAN,
+				this.match(this.input, BOOLEAN,
 						FOLLOW_BOOLEAN_in_synpred34_TinyHaxeTry11014);
-				if (state.failed)
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15740,9 +16714,11 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:58:
 				// VOID
 			{
-				match(input, VOID, FOLLOW_VOID_in_synpred34_TinyHaxeTry11016);
-				if (state.failed)
+				this.match(this.input, VOID,
+						FOLLOW_VOID_in_synpred34_TinyHaxeTry11016);
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -15753,7 +16729,7 @@ public class TinyHaxeTry1Parser extends Parser {
 			// ( typeParam )*
 			loop84: do {
 				int alt84 = 2;
-				int LA84_0 = input.LA(1);
+				int LA84_0 = this.input.LA(1);
 
 				if ((LA84_0 == LT)) {
 					alt84 = 1;
@@ -15764,12 +16740,14 @@ public class TinyHaxeTry1Parser extends Parser {
 					// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:145:65:
 					// typeParam
 				{
-					pushFollow(FOLLOW_typeParam_in_synpred34_TinyHaxeTry11020);
-					typeParam();
+					this
+							.pushFollow(FOLLOW_typeParam_in_synpred34_TinyHaxeTry11020);
+					this.typeParam();
 
-					state._fsp--;
-					if (state.failed)
+					this.state._fsp--;
+					if (this.state.failed) {
 						return;
+					}
 
 				}
 					break;
@@ -15792,12 +16770,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:9:
 		// type
 		{
-			pushFollow(FOLLOW_type_in_synpred35_TinyHaxeTry11042);
-			type();
+			this.pushFollow(FOLLOW_type_in_synpred35_TinyHaxeTry11042);
+			this.type();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15812,9 +16791,10 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:25:
 		// GT
 		{
-			match(input, GT, FOLLOW_GT_in_synpred36_TinyHaxeTry11048);
-			if (state.failed)
+			this.match(this.input, GT, FOLLOW_GT_in_synpred36_TinyHaxeTry11048);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15829,9 +16809,11 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:150:29:
 		// GTGT
 		{
-			match(input, GTGT, FOLLOW_GTGT_in_synpred37_TinyHaxeTry11051);
-			if (state.failed)
+			this.match(this.input, GTGT,
+					FOLLOW_GTGT_in_synpred37_TinyHaxeTry11051);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15846,12 +16828,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:155:4:
 		// typeParam
 		{
-			pushFollow(FOLLOW_typeParam_in_synpred38_TinyHaxeTry11073);
-			typeParam();
+			this.pushFollow(FOLLOW_typeParam_in_synpred38_TinyHaxeTry11073);
+			this.typeParam();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15866,12 +16849,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:168:4:
 		// block
 		{
-			pushFollow(FOLLOW_block_in_synpred40_TinyHaxeTry11201);
-			block();
+			this.pushFollow(FOLLOW_block_in_synpred40_TinyHaxeTry11201);
+			this.block();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15886,15 +16870,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:169:4:
 		// assignExpr SEMI
 		{
-			pushFollow(FOLLOW_assignExpr_in_synpred41_TinyHaxeTry11206);
-			assignExpr();
+			this.pushFollow(FOLLOW_assignExpr_in_synpred41_TinyHaxeTry11206);
+			this.assignExpr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, SEMI, FOLLOW_SEMI_in_synpred41_TinyHaxeTry11208);
-			if (state.failed)
+			}
+			this.match(this.input, SEMI,
+					FOLLOW_SEMI_in_synpred41_TinyHaxeTry11208);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15911,15 +16898,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:171:36:
 		// ELSE st2= statement
 		{
-			match(input, ELSE, FOLLOW_ELSE_in_synpred43_TinyHaxeTry11228);
-			if (state.failed)
+			this.match(this.input, ELSE,
+					FOLLOW_ELSE_in_synpred43_TinyHaxeTry11228);
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_statement_in_synpred43_TinyHaxeTry11232);
-			st2 = statement();
+			}
+			this.pushFollow(FOLLOW_statement_in_synpred43_TinyHaxeTry11232);
+			st2 = this.statement();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15934,12 +16924,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:177:12:
 		// expr
 		{
-			pushFollow(FOLLOW_expr_in_synpred51_TinyHaxeTry11440);
-			expr();
+			this.pushFollow(FOLLOW_expr_in_synpred51_TinyHaxeTry11440);
+			this.expr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15954,15 +16945,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:181:4:
 		// expr SEMI
 		{
-			pushFollow(FOLLOW_expr_in_synpred58_TinyHaxeTry11534);
-			expr();
+			this.pushFollow(FOLLOW_expr_in_synpred58_TinyHaxeTry11534);
+			this.expr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, SEMI, FOLLOW_SEMI_in_synpred58_TinyHaxeTry11537);
-			if (state.failed)
+			}
+			this.match(this.input, SEMI,
+					FOLLOW_SEMI_in_synpred58_TinyHaxeTry11537);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -15977,19 +16971,23 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:182:4:
 		// IDENTIFIER COLON statement
 		{
-			match(input, IDENTIFIER,
+			this.match(this.input, IDENTIFIER,
 					FOLLOW_IDENTIFIER_in_synpred59_TinyHaxeTry11543);
-			if (state.failed)
+			if (this.state.failed) {
 				return;
-			match(input, COLON, FOLLOW_COLON_in_synpred59_TinyHaxeTry11545);
-			if (state.failed)
+			}
+			this.match(this.input, COLON,
+					FOLLOW_COLON_in_synpred59_TinyHaxeTry11545);
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_statement_in_synpred59_TinyHaxeTry11547);
-			statement();
+			}
+			this.pushFollow(FOLLOW_statement_in_synpred59_TinyHaxeTry11547);
+			this.statement();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16004,12 +17002,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:195:4:
 		// varDecl
 		{
-			pushFollow(FOLLOW_varDecl_in_synpred62_TinyHaxeTry11649);
-			varDecl();
+			this.pushFollow(FOLLOW_varDecl_in_synpred62_TinyHaxeTry11649);
+			this.varDecl();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16024,12 +17023,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:229:4:
 		// exprList
 		{
-			pushFollow(FOLLOW_exprList_in_synpred66_TinyHaxeTry11863);
-			exprList();
+			this.pushFollow(FOLLOW_exprList_in_synpred66_TinyHaxeTry11863);
+			this.exprList();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16049,21 +17049,26 @@ public class TinyHaxeTry1Parser extends Parser {
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:266:33:
 			// GT GT
 			{
-				match(input, GT, FOLLOW_GT_in_synpred83_TinyHaxeTry12153);
-				if (state.failed)
+				this.match(this.input, GT,
+						FOLLOW_GT_in_synpred83_TinyHaxeTry12153);
+				if (this.state.failed) {
 					return;
-				match(input, GT, FOLLOW_GT_in_synpred83_TinyHaxeTry12155);
-				if (state.failed)
+				}
+				this.match(this.input, GT,
+						FOLLOW_GT_in_synpred83_TinyHaxeTry12155);
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 
-			pushFollow(FOLLOW_addExpr_in_synpred83_TinyHaxeTry12160);
-			addExpr();
+			this.pushFollow(FOLLOW_addExpr_in_synpred83_TinyHaxeTry12160);
+			this.addExpr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16078,27 +17083,28 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:276:11:
 		// ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
 		{
-			if (input.LA(1) == SUB
-					|| (input.LA(1) >= SUBSUB && input.LA(1) <= TILDE)) {
-				input.consume();
-				state.errorRecovery = false;
-				state.failed = false;
+			if (this.input.LA(1) == SUB
+					|| (this.input.LA(1) >= SUBSUB && this.input.LA(1) <= TILDE)) {
+				this.input.consume();
+				this.state.errorRecovery = false;
+				this.state.failed = false;
 			} else {
-				if (state.backtracking > 0) {
-					state.failed = true;
+				if (this.state.backtracking > 0) {
+					this.state.failed = true;
 					return;
 				}
 				MismatchedSetException mse = new MismatchedSetException(null,
-						input);
+						this.input);
 				throw mse;
 			}
 
-			pushFollow(FOLLOW_prefixExpr_in_synpred94_TinyHaxeTry12257);
-			prefixExpr();
+			this.pushFollow(FOLLOW_prefixExpr_in_synpred94_TinyHaxeTry12257);
+			this.prefixExpr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16113,24 +17119,30 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:283:4:
 		// value LPAREN exprListOpt RPAREN
 		{
-			pushFollow(FOLLOW_value_in_synpred97_TinyHaxeTry12312);
-			value();
+			this.pushFollow(FOLLOW_value_in_synpred97_TinyHaxeTry12312);
+			this.value();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, LPAREN, FOLLOW_LPAREN_in_synpred97_TinyHaxeTry12314);
-			if (state.failed)
+			}
+			this.match(this.input, LPAREN,
+					FOLLOW_LPAREN_in_synpred97_TinyHaxeTry12314);
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_exprListOpt_in_synpred97_TinyHaxeTry12316);
-			exprListOpt();
+			}
+			this.pushFollow(FOLLOW_exprListOpt_in_synpred97_TinyHaxeTry12316);
+			this.exprListOpt();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, RPAREN, FOLLOW_RPAREN_in_synpred97_TinyHaxeTry12318);
-			if (state.failed)
+			}
+			this.match(this.input, RPAREN,
+					FOLLOW_RPAREN_in_synpred97_TinyHaxeTry12318);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16145,26 +17157,30 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:284:4:
 		// value LBRACKET expr RBRACKET
 		{
-			pushFollow(FOLLOW_value_in_synpred98_TinyHaxeTry12339);
-			value();
+			this.pushFollow(FOLLOW_value_in_synpred98_TinyHaxeTry12339);
+			this.value();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, LBRACKET,
+			}
+			this.match(this.input, LBRACKET,
 					FOLLOW_LBRACKET_in_synpred98_TinyHaxeTry12341);
-			if (state.failed)
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_expr_in_synpred98_TinyHaxeTry12343);
-			expr();
+			}
+			this.pushFollow(FOLLOW_expr_in_synpred98_TinyHaxeTry12343);
+			this.expr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, RBRACKET,
+			}
+			this.match(this.input, RBRACKET,
 					FOLLOW_RBRACKET_in_synpred98_TinyHaxeTry12345);
-			if (state.failed)
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16179,16 +17195,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:285:4:
 		// value PLUSPLUS
 		{
-			pushFollow(FOLLOW_value_in_synpred99_TinyHaxeTry12350);
-			value();
+			this.pushFollow(FOLLOW_value_in_synpred99_TinyHaxeTry12350);
+			this.value();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, PLUSPLUS,
+			}
+			this.match(this.input, PLUSPLUS,
 					FOLLOW_PLUSPLUS_in_synpred99_TinyHaxeTry12352);
-			if (state.failed)
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16203,15 +17221,18 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:286:4:
 		// value SUBSUB
 		{
-			pushFollow(FOLLOW_value_in_synpred100_TinyHaxeTry12376);
-			value();
+			this.pushFollow(FOLLOW_value_in_synpred100_TinyHaxeTry12376);
+			this.value();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
-			match(input, SUBSUB, FOLLOW_SUBSUB_in_synpred100_TinyHaxeTry12378);
-			if (state.failed)
+			}
+			this.match(this.input, SUBSUB,
+					FOLLOW_SUBSUB_in_synpred100_TinyHaxeTry12378);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16226,12 +17247,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:291:4:
 		// arrayLit
 		{
-			pushFollow(FOLLOW_arrayLit_in_synpred102_TinyHaxeTry12418);
-			arrayLit();
+			this.pushFollow(FOLLOW_arrayLit_in_synpred102_TinyHaxeTry12418);
+			this.arrayLit();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16246,12 +17268,13 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:23:
 		// expr
 		{
-			pushFollow(FOLLOW_expr_in_synpred106_TinyHaxeTry12482);
-			expr();
+			this.pushFollow(FOLLOW_expr_in_synpred106_TinyHaxeTry12482);
+			this.expr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16266,24 +17289,27 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:14:
 		// LPAREN ( expr | statement ) RPAREN
 		{
-			match(input, LPAREN, FOLLOW_LPAREN_in_synpred107_TinyHaxeTry12478);
-			if (state.failed)
+			this.match(this.input, LPAREN,
+					FOLLOW_LPAREN_in_synpred107_TinyHaxeTry12478);
+			if (this.state.failed) {
 				return;
+			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:22:
 			// ( expr | statement )
 			int alt91 = 2;
-			alt91 = dfa91.predict(input);
+			alt91 = this.dfa91.predict(this.input);
 			switch (alt91) {
 			case 1:
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:23:
 				// expr
 			{
-				pushFollow(FOLLOW_expr_in_synpred107_TinyHaxeTry12482);
-				expr();
+				this.pushFollow(FOLLOW_expr_in_synpred107_TinyHaxeTry12482);
+				this.expr();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
@@ -16291,21 +17317,25 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:295:28:
 				// statement
 			{
-				pushFollow(FOLLOW_statement_in_synpred107_TinyHaxeTry12484);
-				statement();
+				this
+						.pushFollow(FOLLOW_statement_in_synpred107_TinyHaxeTry12484);
+				this.statement();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
 
 			}
 
-			match(input, RPAREN, FOLLOW_RPAREN_in_synpred107_TinyHaxeTry12487);
-			if (state.failed)
+			this.match(this.input, RPAREN,
+					FOLLOW_RPAREN_in_synpred107_TinyHaxeTry12487);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16320,22 +17350,27 @@ public class TinyHaxeTry1Parser extends Parser {
 		// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:11:
 		// CAST LPAREN expr ( COMMA funcType )? RPAREN
 		{
-			match(input, CAST, FOLLOW_CAST_in_synpred110_TinyHaxeTry12581);
-			if (state.failed)
+			this.match(this.input, CAST,
+					FOLLOW_CAST_in_synpred110_TinyHaxeTry12581);
+			if (this.state.failed) {
 				return;
-			match(input, LPAREN, FOLLOW_LPAREN_in_synpred110_TinyHaxeTry12583);
-			if (state.failed)
+			}
+			this.match(this.input, LPAREN,
+					FOLLOW_LPAREN_in_synpred110_TinyHaxeTry12583);
+			if (this.state.failed) {
 				return;
-			pushFollow(FOLLOW_expr_in_synpred110_TinyHaxeTry12585);
-			expr();
+			}
+			this.pushFollow(FOLLOW_expr_in_synpred110_TinyHaxeTry12585);
+			this.expr();
 
-			state._fsp--;
-			if (state.failed)
+			this.state._fsp--;
+			if (this.state.failed) {
 				return;
+			}
 			// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:28:
 			// ( COMMA funcType )?
 			int alt92 = 2;
-			int LA92_0 = input.LA(1);
+			int LA92_0 = this.input.LA(1);
 
 			if ((LA92_0 == COMMA)) {
 				alt92 = 1;
@@ -16345,24 +17380,29 @@ public class TinyHaxeTry1Parser extends Parser {
 				// C:\\dist\\eclipse\\workspace\\haXe-IDE\\src\\resources\\TinyHaxeTry1.g:304:29:
 				// COMMA funcType
 			{
-				match(input, COMMA, FOLLOW_COMMA_in_synpred110_TinyHaxeTry12588);
-				if (state.failed)
+				this.match(this.input, COMMA,
+						FOLLOW_COMMA_in_synpred110_TinyHaxeTry12588);
+				if (this.state.failed) {
 					return;
-				pushFollow(FOLLOW_funcType_in_synpred110_TinyHaxeTry12590);
-				funcType();
+				}
+				this.pushFollow(FOLLOW_funcType_in_synpred110_TinyHaxeTry12590);
+				this.funcType();
 
-				state._fsp--;
-				if (state.failed)
+				this.state._fsp--;
+				if (this.state.failed) {
 					return;
+				}
 
 			}
 				break;
 
 			}
 
-			match(input, RPAREN, FOLLOW_RPAREN_in_synpred110_TinyHaxeTry12594);
-			if (state.failed)
+			this.match(this.input, RPAREN,
+					FOLLOW_RPAREN_in_synpred110_TinyHaxeTry12594);
+			if (this.state.failed) {
 				return;
+			}
 
 		}
 	}
@@ -16372,452 +17412,457 @@ public class TinyHaxeTry1Parser extends Parser {
 	// Delegated rules
 
 	public final boolean synpred23_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred23_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred23_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred66_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred66_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred66_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred40_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred40_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred40_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred97_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred97_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred97_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred51_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred51_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred51_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred24_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred24_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred24_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred43_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred43_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred43_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred36_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred36_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred36_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred59_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred59_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred59_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred102_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred102_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred102_TinyHaxeTry1_fragment(); // can never throw
+			// exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred62_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred62_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred62_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred94_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred94_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred94_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred41_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred41_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred41_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred26_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred26_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred26_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred107_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred107_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred107_TinyHaxeTry1_fragment(); // can never throw
+			// exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred25_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred25_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred25_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred106_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred106_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred106_TinyHaxeTry1_fragment(); // can never throw
+			// exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred110_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred110_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred110_TinyHaxeTry1_fragment(); // can never throw
+			// exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred58_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred58_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred58_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred100_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred100_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred100_TinyHaxeTry1_fragment(); // can never throw
+			// exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred35_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred35_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred35_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred20_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred20_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred20_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred22_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred22_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred22_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred83_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred83_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred83_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred99_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred99_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred99_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred37_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred37_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred37_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred34_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred34_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred34_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred33_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred33_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred33_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred98_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred98_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred98_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
 	public final boolean synpred38_TinyHaxeTry1() {
-		state.backtracking++;
-		int start = input.mark();
+		this.state.backtracking++;
+		int start = this.input.mark();
 		try {
-			synpred38_TinyHaxeTry1_fragment(); // can never throw exception
+			this.synpred38_TinyHaxeTry1_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
+		boolean success = !this.state.failed;
+		this.input.rewind(start);
+		this.state.backtracking--;
+		this.state.failed = false;
 		return success;
 	}
 
@@ -16870,7 +17915,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA16 extends DFA {
 
-		public DFA16(BaseRecognizer recognizer) {
+		public DFA16(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 16;
 			this.eot = DFA16_eot;
@@ -16888,7 +17933,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -16899,7 +17944,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index16_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred23_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred23_TinyHaxeTry1())) {
 					s = 1;
 				}
 
@@ -16908,17 +17953,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index16_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 16, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 16, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -16958,7 +18004,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA15 extends DFA {
 
-		public DFA15(BaseRecognizer recognizer) {
+		public DFA15(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 15;
 			this.eot = DFA15_eot;
@@ -16976,7 +18022,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -16987,7 +18033,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index15_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred24_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred24_TinyHaxeTry1())) {
 					s = 47;
 				}
 
@@ -16996,17 +18042,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index15_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 15, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 15, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -17046,7 +18093,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA21 extends DFA {
 
-		public DFA21(BaseRecognizer recognizer) {
+		public DFA21(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 21;
 			this.eot = DFA21_eot;
@@ -17064,7 +18111,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -17075,7 +18122,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index21_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred34_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred34_TinyHaxeTry1())) {
 					s = 2;
 				}
 
@@ -17084,17 +18131,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index21_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 21, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 21, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -17148,7 +18196,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA22 extends DFA {
 
-		public DFA22(BaseRecognizer recognizer) {
+		public DFA22(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 22;
 			this.eot = DFA22_eot;
@@ -17166,7 +18214,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -17177,7 +18225,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_32 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17186,8 +18234,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_32);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA22_26 = input.LA(1);
@@ -17195,7 +18244,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_26 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17204,8 +18253,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_26);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 2:
 				int LA22_49 = input.LA(1);
@@ -17213,7 +18263,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_49 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17222,8 +18272,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_49);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 3:
 				int LA22_30 = input.LA(1);
@@ -17231,7 +18282,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_30 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17240,8 +18291,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_30);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 4:
 				int LA22_38 = input.LA(1);
@@ -17249,7 +18301,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_38 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17258,8 +18310,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_38);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 5:
 				int LA22_48 = input.LA(1);
@@ -17267,7 +18320,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_48 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17276,8 +18329,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_48);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 6:
 				int LA22_17 = input.LA(1);
@@ -17285,7 +18339,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_17 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17294,8 +18348,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_17);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 7:
 				int LA22_44 = input.LA(1);
@@ -17303,7 +18358,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_44 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17312,8 +18367,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_44);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 8:
 				int LA22_2 = input.LA(1);
@@ -17321,7 +18377,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17330,8 +18386,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 9:
 				int LA22_37 = input.LA(1);
@@ -17339,7 +18396,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_37 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17348,8 +18405,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_37);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 10:
 				int LA22_51 = input.LA(1);
@@ -17357,7 +18415,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_51 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17366,8 +18424,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_51);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 11:
 				int LA22_47 = input.LA(1);
@@ -17375,7 +18434,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_47 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17384,8 +18443,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_47);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 12:
 				int LA22_41 = input.LA(1);
@@ -17393,7 +18453,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_41 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17402,8 +18462,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_41);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 13:
 				int LA22_52 = input.LA(1);
@@ -17411,7 +18472,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_52 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17420,8 +18481,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_52);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 14:
 				int LA22_50 = input.LA(1);
@@ -17429,7 +18491,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_50 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17438,8 +18500,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_50);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 15:
 				int LA22_14 = input.LA(1);
@@ -17447,7 +18510,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_14 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17456,8 +18519,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_14);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 16:
 				int LA22_46 = input.LA(1);
@@ -17465,7 +18529,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_46 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17474,8 +18538,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_46);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 17:
 				int LA22_31 = input.LA(1);
@@ -17483,7 +18548,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_31 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17492,8 +18557,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_31);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 18:
 				int LA22_19 = input.LA(1);
@@ -17501,7 +18567,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_19 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17510,8 +18576,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_19);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 19:
 				int LA22_45 = input.LA(1);
@@ -17519,7 +18586,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_45 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17528,8 +18595,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_45);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 20:
 				int LA22_1 = input.LA(1);
@@ -17537,7 +18605,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17546,8 +18614,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 21:
 				int LA22_10 = input.LA(1);
@@ -17555,7 +18624,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_10 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17564,8 +18633,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_10);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 22:
 				int LA22_27 = input.LA(1);
@@ -17573,7 +18643,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_27 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17582,8 +18652,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_27);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 23:
 				int LA22_29 = input.LA(1);
@@ -17591,7 +18662,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_29 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17600,8 +18671,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_29);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 24:
 				int LA22_24 = input.LA(1);
@@ -17609,7 +18681,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_24 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17618,8 +18690,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_24);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 25:
 				int LA22_28 = input.LA(1);
@@ -17627,7 +18700,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_28 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17636,8 +18709,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_28);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 26:
 				int LA22_43 = input.LA(1);
@@ -17645,7 +18719,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_43 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17654,8 +18728,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_43);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 27:
 				int LA22_7 = input.LA(1);
@@ -17663,7 +18738,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_7 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17672,8 +18747,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_7);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 28:
 				int LA22_6 = input.LA(1);
@@ -17681,7 +18757,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_6 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17690,8 +18766,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_6);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 29:
 				int LA22_33 = input.LA(1);
@@ -17699,7 +18776,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_33 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17708,8 +18785,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_33);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 30:
 				int LA22_21 = input.LA(1);
@@ -17717,7 +18795,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_21 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17726,8 +18804,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_21);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 31:
 				int LA22_13 = input.LA(1);
@@ -17735,7 +18814,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_13 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17744,8 +18823,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_13);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 32:
 				int LA22_12 = input.LA(1);
@@ -17753,7 +18833,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_12 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17762,8 +18842,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_12);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 33:
 				int LA22_8 = input.LA(1);
@@ -17771,7 +18852,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_8 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17780,8 +18861,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_8);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 34:
 				int LA22_18 = input.LA(1);
@@ -17789,7 +18871,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_18 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17798,8 +18880,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_18);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 35:
 				int LA22_5 = input.LA(1);
@@ -17807,7 +18890,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17816,8 +18899,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 36:
 				int LA22_11 = input.LA(1);
@@ -17825,7 +18909,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_11 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17834,8 +18918,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_11);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 37:
 				int LA22_25 = input.LA(1);
@@ -17843,7 +18928,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_25 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17852,8 +18937,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_25);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 38:
 				int LA22_22 = input.LA(1);
@@ -17861,7 +18947,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_22 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17870,8 +18956,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_22);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 39:
 				int LA22_4 = input.LA(1);
@@ -17879,7 +18966,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_4 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17888,8 +18975,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_4);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 40:
 				int LA22_34 = input.LA(1);
@@ -17897,7 +18985,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_34 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17906,8 +18994,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_34);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 41:
 				int LA22_20 = input.LA(1);
@@ -17915,7 +19004,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_20 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17924,8 +19013,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_20);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 42:
 				int LA22_16 = input.LA(1);
@@ -17933,7 +19023,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_16 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17942,8 +19032,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_16);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 43:
 				int LA22_36 = input.LA(1);
@@ -17951,7 +19042,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_36 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17960,8 +19051,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_36);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 44:
 				int LA22_39 = input.LA(1);
@@ -17969,7 +19061,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_39 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17978,8 +19070,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_39);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 45:
 				int LA22_3 = input.LA(1);
@@ -17987,7 +19080,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_3 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -17996,8 +19089,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_3);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 46:
 				int LA22_40 = input.LA(1);
@@ -18005,7 +19099,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_40 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -18014,8 +19108,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_40);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 47:
 				int LA22_9 = input.LA(1);
@@ -18023,7 +19118,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_9 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -18032,8 +19127,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_9);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 48:
 				int LA22_23 = input.LA(1);
@@ -18041,7 +19137,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_23 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -18050,8 +19146,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_23);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 49:
 				int LA22_15 = input.LA(1);
@@ -18059,7 +19156,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_15 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -18068,8 +19165,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_15);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 50:
 				int LA22_35 = input.LA(1);
@@ -18077,7 +19175,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_35 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -18086,8 +19184,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_35);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 51:
 				int LA22_42 = input.LA(1);
@@ -18095,7 +19194,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index22_42 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred35_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred35_TinyHaxeTry1())) {
 					s = 53;
 				}
 
@@ -18104,17 +19203,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index22_42);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 22, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 22, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -18169,7 +19269,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA31 extends DFA {
 
-		public DFA31(BaseRecognizer recognizer) {
+		public DFA31(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 31;
 			this.eot = DFA31_eot;
@@ -18187,7 +19287,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -18198,21 +19298,22 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred40_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred40_TinyHaxeTry1())) {
 					s = 62;
 				}
 
-				else if ((synpred41_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA31_2 = input.LA(1);
@@ -18220,15 +19321,15 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred40_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred40_TinyHaxeTry1())) {
 					s = 62;
 				}
 
-				else if ((synpred41_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -18237,8 +19338,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index31_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 2:
 				int LA31_3 = input.LA(1);
@@ -18246,17 +19348,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_3 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_3);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 3:
 				int LA31_4 = input.LA(1);
@@ -18264,17 +19367,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_4 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_4);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 4:
 				int LA31_5 = input.LA(1);
@@ -18282,17 +19386,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 5:
 				int LA31_6 = input.LA(1);
@@ -18300,17 +19405,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_6 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_6);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 6:
 				int LA31_7 = input.LA(1);
@@ -18318,17 +19424,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_7 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_7);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 7:
 				int LA31_8 = input.LA(1);
@@ -18336,17 +19443,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_8 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_8);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 8:
 				int LA31_9 = input.LA(1);
@@ -18354,17 +19462,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_9 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_9);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 9:
 				int LA31_10 = input.LA(1);
@@ -18372,17 +19481,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_10 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_10);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 10:
 				int LA31_11 = input.LA(1);
@@ -18390,17 +19500,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_11 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_11);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 11:
 				int LA31_12 = input.LA(1);
@@ -18408,17 +19519,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_12 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_12);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 12:
 				int LA31_13 = input.LA(1);
@@ -18426,17 +19538,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_13 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_13);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 13:
 				int LA31_14 = input.LA(1);
@@ -18444,17 +19557,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_14 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_14);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 14:
 				int LA31_15 = input.LA(1);
@@ -18462,17 +19576,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_15 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_15);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 15:
 				int LA31_16 = input.LA(1);
@@ -18480,17 +19595,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_16 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_16);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 16:
 				int LA31_17 = input.LA(1);
@@ -18498,21 +19614,22 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_17 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
-				else if ((synpred59_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred59_TinyHaxeTry1())) {
 					s = 66;
 				}
 
 				input.seek(index31_17);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 17:
 				int LA31_18 = input.LA(1);
@@ -18520,17 +19637,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_18 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_18);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 18:
 				int LA31_19 = input.LA(1);
@@ -18538,17 +19656,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_19 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_19);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 19:
 				int LA31_20 = input.LA(1);
@@ -18556,17 +19675,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_20 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_20);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 20:
 				int LA31_21 = input.LA(1);
@@ -18574,17 +19694,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_21 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_21);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 21:
 				int LA31_22 = input.LA(1);
@@ -18592,17 +19713,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_22 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_22);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 22:
 				int LA31_23 = input.LA(1);
@@ -18610,17 +19732,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_23 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_23);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 23:
 				int LA31_24 = input.LA(1);
@@ -18628,17 +19751,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_24 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_24);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 24:
 				int LA31_25 = input.LA(1);
@@ -18646,17 +19770,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_25 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_25);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 25:
 				int LA31_26 = input.LA(1);
@@ -18664,17 +19789,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_26 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_26);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 26:
 				int LA31_27 = input.LA(1);
@@ -18682,17 +19808,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_27 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_27);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 27:
 				int LA31_28 = input.LA(1);
@@ -18700,17 +19827,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_28 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_28);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 28:
 				int LA31_29 = input.LA(1);
@@ -18718,17 +19846,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_29 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_29);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 29:
 				int LA31_30 = input.LA(1);
@@ -18736,17 +19865,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_30 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_30);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 30:
 				int LA31_31 = input.LA(1);
@@ -18754,17 +19884,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_31 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_31);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 31:
 				int LA31_32 = input.LA(1);
@@ -18772,17 +19903,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_32 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_32);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 32:
 				int LA31_33 = input.LA(1);
@@ -18790,17 +19922,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_33 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_33);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 33:
 				int LA31_34 = input.LA(1);
@@ -18808,17 +19941,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_34 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_34);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 34:
 				int LA31_35 = input.LA(1);
@@ -18826,17 +19960,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_35 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_35);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 35:
 				int LA31_36 = input.LA(1);
@@ -18844,17 +19979,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_36 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_36);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 36:
 				int LA31_37 = input.LA(1);
@@ -18862,17 +19998,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_37 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_37);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 37:
 				int LA31_38 = input.LA(1);
@@ -18880,17 +20017,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_38 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_38);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 38:
 				int LA31_39 = input.LA(1);
@@ -18898,17 +20036,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_39 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_39);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 39:
 				int LA31_40 = input.LA(1);
@@ -18916,17 +20055,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_40 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_40);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 40:
 				int LA31_41 = input.LA(1);
@@ -18934,17 +20074,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_41 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_41);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 41:
 				int LA31_42 = input.LA(1);
@@ -18952,17 +20093,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_42 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_42);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 42:
 				int LA31_43 = input.LA(1);
@@ -18970,17 +20112,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_43 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_43);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 43:
 				int LA31_44 = input.LA(1);
@@ -18988,17 +20131,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_44 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_44);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 44:
 				int LA31_45 = input.LA(1);
@@ -19006,26 +20150,27 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index31_45 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred41_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred41_TinyHaxeTry1())) {
 					s = 63;
 				}
 
-				else if ((synpred58_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred58_TinyHaxeTry1())) {
 					s = 64;
 				}
 
 				input.seek(index31_45);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 31, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 31, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -19067,7 +20212,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA34 extends DFA {
 
-		public DFA34(BaseRecognizer recognizer) {
+		public DFA34(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 34;
 			this.eot = DFA34_eot;
@@ -19085,7 +20230,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -19096,7 +20241,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index34_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred62_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred62_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -19105,8 +20250,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index34_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA34_2 = input.LA(1);
@@ -19114,7 +20260,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index34_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred62_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred62_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -19123,8 +20269,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index34_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 2:
 				int LA34_3 = input.LA(1);
@@ -19132,7 +20279,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index34_3 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred62_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred62_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -19141,8 +20288,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index34_3);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 3:
 				int LA34_4 = input.LA(1);
@@ -19150,7 +20298,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index34_4 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred62_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred62_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -19159,8 +20307,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index34_4);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 4:
 				int LA34_5 = input.LA(1);
@@ -19168,7 +20317,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index34_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred62_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred62_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -19177,8 +20326,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index34_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 5:
 				int LA34_6 = input.LA(1);
@@ -19186,7 +20336,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index34_6 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred62_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred62_TinyHaxeTry1())) {
 					s = 64;
 				}
 
@@ -19195,17 +20345,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index34_6);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 34, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 34, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -19248,7 +20399,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA53 extends DFA {
 
-		public DFA53(BaseRecognizer recognizer) {
+		public DFA53(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 53;
 			this.eot = DFA53_eot;
@@ -19266,7 +20417,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -19277,19 +20428,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19298,8 +20449,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA53_2 = input.LA(1);
@@ -19307,19 +20459,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19328,8 +20480,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 2:
 				int LA53_3 = input.LA(1);
@@ -19337,19 +20490,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_3 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19358,8 +20511,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_3);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 3:
 				int LA53_4 = input.LA(1);
@@ -19367,19 +20521,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_4 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19388,8 +20542,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_4);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 4:
 				int LA53_5 = input.LA(1);
@@ -19397,19 +20552,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19418,8 +20573,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 5:
 				int LA53_6 = input.LA(1);
@@ -19427,19 +20583,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_6 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19448,8 +20604,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_6);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 6:
 				int LA53_7 = input.LA(1);
@@ -19457,19 +20614,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_7 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19478,8 +20635,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_7);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 7:
 				int LA53_8 = input.LA(1);
@@ -19487,19 +20645,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_8 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19508,8 +20666,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_8);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 8:
 				int LA53_9 = input.LA(1);
@@ -19517,19 +20676,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_9 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19538,8 +20697,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_9);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 9:
 				int LA53_10 = input.LA(1);
@@ -19547,19 +20707,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_10 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19568,8 +20728,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_10);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 10:
 				int LA53_11 = input.LA(1);
@@ -19577,19 +20738,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_11 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19598,8 +20759,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_11);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 11:
 				int LA53_12 = input.LA(1);
@@ -19607,19 +20769,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_12 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19628,8 +20790,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_12);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 12:
 				int LA53_13 = input.LA(1);
@@ -19637,19 +20800,19 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index53_13 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred97_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred97_TinyHaxeTry1())) {
 					s = 50;
 				}
 
-				else if ((synpred98_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred98_TinyHaxeTry1())) {
 					s = 51;
 				}
 
-				else if ((synpred99_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred99_TinyHaxeTry1())) {
 					s = 14;
 				}
 
-				else if ((synpred100_TinyHaxeTry1())) {
+				else if ((TinyHaxeTry1Parser.this.synpred100_TinyHaxeTry1())) {
 					s = 15;
 				}
 
@@ -19658,17 +20821,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index53_13);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 53, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 53, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -19709,7 +20873,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA55 extends DFA {
 
-		public DFA55(BaseRecognizer recognizer) {
+		public DFA55(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 55;
 			this.eot = DFA55_eot;
@@ -19727,7 +20891,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -19738,7 +20902,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index55_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred102_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred102_TinyHaxeTry1())) {
 					s = 50;
 				}
 
@@ -19747,8 +20911,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index55_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA55_12 = input.LA(1);
@@ -19756,7 +20921,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index55_12 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred107_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred107_TinyHaxeTry1())) {
 					s = 51;
 				}
 
@@ -19765,17 +20930,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index55_12);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 55, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 55, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -19828,7 +20994,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA54 extends DFA {
 
-		public DFA54(BaseRecognizer recognizer) {
+		public DFA54(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 54;
 			this.eot = DFA54_eot;
@@ -19846,7 +21012,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -19857,7 +21023,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19866,8 +21032,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA54_2 = input.LA(1);
@@ -19875,7 +21042,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19884,8 +21051,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 2:
 				int LA54_3 = input.LA(1);
@@ -19893,7 +21061,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_3 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19902,8 +21070,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_3);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 3:
 				int LA54_4 = input.LA(1);
@@ -19911,7 +21080,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_4 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19920,8 +21089,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_4);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 4:
 				int LA54_5 = input.LA(1);
@@ -19929,7 +21099,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19938,8 +21108,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 5:
 				int LA54_6 = input.LA(1);
@@ -19947,7 +21118,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_6 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19956,8 +21127,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_6);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 6:
 				int LA54_7 = input.LA(1);
@@ -19965,7 +21137,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_7 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19974,8 +21146,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_7);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 7:
 				int LA54_8 = input.LA(1);
@@ -19983,7 +21156,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_8 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -19992,8 +21165,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_8);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 8:
 				int LA54_9 = input.LA(1);
@@ -20001,7 +21175,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_9 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20010,8 +21184,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_9);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 9:
 				int LA54_10 = input.LA(1);
@@ -20019,7 +21194,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_10 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20028,8 +21203,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_10);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 10:
 				int LA54_11 = input.LA(1);
@@ -20037,7 +21213,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_11 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20046,8 +21222,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_11);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 11:
 				int LA54_12 = input.LA(1);
@@ -20055,7 +21232,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_12 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20064,8 +21241,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_12);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 12:
 				int LA54_13 = input.LA(1);
@@ -20073,7 +21251,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_13 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20082,8 +21260,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_13);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 13:
 				int LA54_14 = input.LA(1);
@@ -20091,7 +21270,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_14 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20100,8 +21279,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_14);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 14:
 				int LA54_15 = input.LA(1);
@@ -20109,7 +21289,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_15 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20118,8 +21298,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_15);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 15:
 				int LA54_16 = input.LA(1);
@@ -20127,7 +21308,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_16 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20136,8 +21317,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_16);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 16:
 				int LA54_17 = input.LA(1);
@@ -20145,7 +21327,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_17 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20154,8 +21336,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_17);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 17:
 				int LA54_18 = input.LA(1);
@@ -20163,7 +21346,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_18 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20172,8 +21355,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_18);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 18:
 				int LA54_19 = input.LA(1);
@@ -20181,7 +21365,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_19 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20190,8 +21374,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_19);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 19:
 				int LA54_20 = input.LA(1);
@@ -20199,7 +21384,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_20 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20208,8 +21393,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_20);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 20:
 				int LA54_21 = input.LA(1);
@@ -20217,7 +21403,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_21 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20226,8 +21412,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_21);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 21:
 				int LA54_22 = input.LA(1);
@@ -20235,7 +21422,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_22 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20244,8 +21431,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_22);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 22:
 				int LA54_23 = input.LA(1);
@@ -20253,7 +21441,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_23 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20262,8 +21450,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_23);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 23:
 				int LA54_24 = input.LA(1);
@@ -20271,7 +21460,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_24 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20280,8 +21469,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_24);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 24:
 				int LA54_25 = input.LA(1);
@@ -20289,7 +21479,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_25 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20298,8 +21488,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_25);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 25:
 				int LA54_26 = input.LA(1);
@@ -20307,7 +21498,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_26 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20316,8 +21507,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_26);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 26:
 				int LA54_27 = input.LA(1);
@@ -20325,7 +21517,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_27 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20334,8 +21526,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_27);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 27:
 				int LA54_28 = input.LA(1);
@@ -20343,7 +21536,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_28 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20352,8 +21545,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_28);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 28:
 				int LA54_29 = input.LA(1);
@@ -20361,7 +21555,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_29 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20370,8 +21564,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_29);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 29:
 				int LA54_30 = input.LA(1);
@@ -20379,7 +21574,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_30 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20388,8 +21583,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_30);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 30:
 				int LA54_31 = input.LA(1);
@@ -20397,7 +21593,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_31 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20406,8 +21602,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_31);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 31:
 				int LA54_32 = input.LA(1);
@@ -20415,7 +21612,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_32 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20424,8 +21621,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_32);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 32:
 				int LA54_33 = input.LA(1);
@@ -20433,7 +21631,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_33 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20442,8 +21640,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_33);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 33:
 				int LA54_34 = input.LA(1);
@@ -20451,7 +21650,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_34 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20460,8 +21659,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_34);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 34:
 				int LA54_35 = input.LA(1);
@@ -20469,7 +21669,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_35 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20478,8 +21678,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_35);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 35:
 				int LA54_36 = input.LA(1);
@@ -20487,7 +21688,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_36 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20496,8 +21697,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_36);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 36:
 				int LA54_37 = input.LA(1);
@@ -20505,7 +21707,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_37 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20514,8 +21716,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_37);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 37:
 				int LA54_38 = input.LA(1);
@@ -20523,7 +21726,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_38 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20532,8 +21735,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_38);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 38:
 				int LA54_39 = input.LA(1);
@@ -20541,7 +21745,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_39 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20550,8 +21754,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_39);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 39:
 				int LA54_40 = input.LA(1);
@@ -20559,7 +21764,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_40 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20568,8 +21773,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_40);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 40:
 				int LA54_41 = input.LA(1);
@@ -20577,7 +21783,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_41 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20586,8 +21792,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_41);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 41:
 				int LA54_42 = input.LA(1);
@@ -20595,7 +21802,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_42 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20604,8 +21811,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_42);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 42:
 				int LA54_43 = input.LA(1);
@@ -20613,7 +21821,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_43 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20622,8 +21830,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_43);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 43:
 				int LA54_44 = input.LA(1);
@@ -20631,7 +21840,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index54_44 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20640,17 +21849,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index54_44);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 54, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 54, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}
@@ -20690,7 +21900,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA67 extends DFA {
 
-		public DFA67(BaseRecognizer recognizer) {
+		public DFA67(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 67;
 			this.eot = DFA67_eot;
@@ -20744,7 +21954,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA68 extends DFA {
 
-		public DFA68(BaseRecognizer recognizer) {
+		public DFA68(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 68;
 			this.eot = DFA68_eot;
@@ -20798,7 +22008,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA70 extends DFA {
 
-		public DFA70(BaseRecognizer recognizer) {
+		public DFA70(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 70;
 			this.eot = DFA70_eot;
@@ -20851,7 +22061,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA71 extends DFA {
 
-		public DFA71(BaseRecognizer recognizer) {
+		public DFA71(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 71;
 			this.eot = DFA71_eot;
@@ -20917,7 +22127,7 @@ public class TinyHaxeTry1Parser extends Parser {
 
 	class DFA91 extends DFA {
 
-		public DFA91(BaseRecognizer recognizer) {
+		public DFA91(final BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 91;
 			this.eot = DFA91_eot;
@@ -20935,7 +22145,7 @@ public class TinyHaxeTry1Parser extends Parser {
 		}
 
 		@Override
-		public int specialStateTransition(int s, IntStream _input)
+		public int specialStateTransition(int s, final IntStream _input)
 				throws NoViableAltException {
 			TokenStream input = (TokenStream) _input;
 			int _s = s;
@@ -20946,7 +22156,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_1 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20955,8 +22165,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_1);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 1:
 				int LA91_2 = input.LA(1);
@@ -20964,7 +22175,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_2 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20973,8 +22184,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_2);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 2:
 				int LA91_3 = input.LA(1);
@@ -20982,7 +22194,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_3 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -20991,8 +22203,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_3);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 3:
 				int LA91_4 = input.LA(1);
@@ -21000,7 +22213,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_4 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21009,8 +22222,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_4);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 4:
 				int LA91_5 = input.LA(1);
@@ -21018,7 +22232,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_5 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21027,8 +22241,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_5);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 5:
 				int LA91_6 = input.LA(1);
@@ -21036,7 +22251,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_6 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21045,8 +22260,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_6);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 6:
 				int LA91_7 = input.LA(1);
@@ -21054,7 +22270,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_7 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21063,8 +22279,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_7);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 7:
 				int LA91_8 = input.LA(1);
@@ -21072,7 +22289,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_8 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21081,8 +22298,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_8);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 8:
 				int LA91_9 = input.LA(1);
@@ -21090,7 +22308,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_9 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21099,8 +22317,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_9);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 9:
 				int LA91_10 = input.LA(1);
@@ -21108,7 +22327,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_10 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21117,8 +22336,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_10);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 10:
 				int LA91_11 = input.LA(1);
@@ -21126,7 +22346,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_11 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21135,8 +22355,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_11);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 11:
 				int LA91_12 = input.LA(1);
@@ -21144,7 +22365,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_12 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21153,8 +22374,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_12);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 12:
 				int LA91_13 = input.LA(1);
@@ -21162,7 +22384,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_13 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21171,8 +22393,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_13);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 13:
 				int LA91_14 = input.LA(1);
@@ -21180,7 +22403,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_14 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21189,8 +22412,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_14);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 14:
 				int LA91_15 = input.LA(1);
@@ -21198,7 +22422,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_15 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21207,8 +22431,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_15);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 15:
 				int LA91_16 = input.LA(1);
@@ -21216,7 +22441,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_16 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21225,8 +22450,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_16);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 16:
 				int LA91_17 = input.LA(1);
@@ -21234,7 +22460,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_17 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21243,8 +22469,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_17);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 17:
 				int LA91_18 = input.LA(1);
@@ -21252,7 +22479,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_18 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21261,8 +22488,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_18);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 18:
 				int LA91_19 = input.LA(1);
@@ -21270,7 +22498,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_19 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21279,8 +22507,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_19);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 19:
 				int LA91_20 = input.LA(1);
@@ -21288,7 +22517,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_20 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21297,8 +22526,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_20);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 20:
 				int LA91_21 = input.LA(1);
@@ -21306,7 +22536,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_21 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21315,8 +22545,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_21);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 21:
 				int LA91_22 = input.LA(1);
@@ -21324,7 +22555,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_22 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21333,8 +22564,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_22);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 22:
 				int LA91_23 = input.LA(1);
@@ -21342,7 +22574,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_23 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21351,8 +22583,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_23);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 23:
 				int LA91_24 = input.LA(1);
@@ -21360,7 +22593,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_24 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21369,8 +22602,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_24);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 24:
 				int LA91_25 = input.LA(1);
@@ -21378,7 +22612,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_25 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21387,8 +22621,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_25);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 25:
 				int LA91_26 = input.LA(1);
@@ -21396,7 +22631,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_26 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21405,8 +22640,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_26);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 26:
 				int LA91_27 = input.LA(1);
@@ -21414,7 +22650,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_27 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21423,8 +22659,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_27);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 27:
 				int LA91_28 = input.LA(1);
@@ -21432,7 +22669,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_28 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21441,8 +22678,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_28);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 28:
 				int LA91_29 = input.LA(1);
@@ -21450,7 +22688,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_29 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21459,8 +22697,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_29);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 29:
 				int LA91_30 = input.LA(1);
@@ -21468,7 +22707,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_30 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21477,8 +22716,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_30);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 30:
 				int LA91_31 = input.LA(1);
@@ -21486,7 +22726,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_31 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21495,8 +22735,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_31);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 31:
 				int LA91_32 = input.LA(1);
@@ -21504,7 +22745,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_32 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21513,8 +22754,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_32);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 32:
 				int LA91_33 = input.LA(1);
@@ -21522,7 +22764,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_33 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21531,8 +22773,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_33);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 33:
 				int LA91_34 = input.LA(1);
@@ -21540,7 +22783,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_34 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21549,8 +22792,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_34);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 34:
 				int LA91_35 = input.LA(1);
@@ -21558,7 +22802,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_35 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21567,8 +22811,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_35);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 35:
 				int LA91_36 = input.LA(1);
@@ -21576,7 +22821,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_36 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21585,8 +22830,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_36);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 36:
 				int LA91_37 = input.LA(1);
@@ -21594,7 +22840,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_37 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21603,8 +22849,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_37);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 37:
 				int LA91_38 = input.LA(1);
@@ -21612,7 +22859,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_38 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21621,8 +22868,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_38);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 38:
 				int LA91_39 = input.LA(1);
@@ -21630,7 +22878,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_39 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21639,8 +22887,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_39);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 39:
 				int LA91_40 = input.LA(1);
@@ -21648,7 +22897,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_40 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21657,8 +22906,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_40);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 40:
 				int LA91_41 = input.LA(1);
@@ -21666,7 +22916,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_41 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21675,8 +22925,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_41);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 41:
 				int LA91_42 = input.LA(1);
@@ -21684,7 +22935,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_42 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21693,8 +22944,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_42);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 42:
 				int LA91_43 = input.LA(1);
@@ -21702,7 +22954,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_43 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21711,8 +22963,9 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_43);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			case 43:
 				int LA91_44 = input.LA(1);
@@ -21720,7 +22973,7 @@ public class TinyHaxeTry1Parser extends Parser {
 				int index91_44 = input.index();
 				input.rewind();
 				s = -1;
-				if ((synpred106_TinyHaxeTry1())) {
+				if ((TinyHaxeTry1Parser.this.synpred106_TinyHaxeTry1())) {
 					s = 45;
 				}
 
@@ -21729,17 +22982,18 @@ public class TinyHaxeTry1Parser extends Parser {
 				}
 
 				input.seek(index91_44);
-				if (s >= 0)
+				if (s >= 0) {
 					return s;
+				}
 				break;
 			}
-			if (state.backtracking > 0) {
-				state.failed = true;
+			if (TinyHaxeTry1Parser.this.state.backtracking > 0) {
+				TinyHaxeTry1Parser.this.state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae = new NoViableAltException(
-					getDescription(), 91, _s, input);
-			error(nvae);
+			NoViableAltException nvae = new NoViableAltException(this
+					.getDescription(), 91, _s, input);
+			this.error(nvae);
 			throw nvae;
 		}
 	}

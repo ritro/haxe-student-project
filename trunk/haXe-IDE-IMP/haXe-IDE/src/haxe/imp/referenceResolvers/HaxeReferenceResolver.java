@@ -41,10 +41,10 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 	public String getLinkText(Object node) {
 		// TODO Replace the following with an implementation suitable to your
 		// language and reference types
-		if (node instanceof VarUsage) {
-			return ((VarUsage) node).getVarType().getFullTypeName();
-		}
-		return null;
+		// if (node instanceof VarUsage) {
+		// return ((VarUsage) node).getVarType().getFullTypeName();
+		// }
+		return "qwerqwerqwer";
 	}
 
 	/**

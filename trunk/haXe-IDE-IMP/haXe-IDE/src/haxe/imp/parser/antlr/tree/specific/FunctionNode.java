@@ -109,7 +109,7 @@ public class FunctionNode extends ExtendedCommonTree {
 		if (parameters != null) {
 			for (ExtendedCommonTree varDecl : parameters.getChildren()) {
 				VarDeclaration varDeclaration = (VarDeclaration) varDecl;
-				varDeclaration.getVarNameNode().setVarType(
+				varDeclaration.getVarNameNode().setHaxeType(
 						varDeclaration.getVarType());
 				VarUsage varUsage = varDeclaration.getVarNameNode().getClone();
 				list.add(varUsage);

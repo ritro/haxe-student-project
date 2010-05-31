@@ -98,7 +98,7 @@ public class ClassNode extends ExtendedCommonTree {
 					.getChildren()) {
 				if (tree instanceof VarDeclaration) {
 					VarDeclaration declarationTree = (VarDeclaration) tree;
-					declarationTree.getVarNameNode().setVarType(
+					declarationTree.getVarNameNode().setHaxeType(
 							declarationTree.getVarType());
 					VarUsage varUsage = declarationTree.getVarNameNode()
 							.getClone();
@@ -108,7 +108,7 @@ public class ClassNode extends ExtendedCommonTree {
 					VarUsage usage = new VarUsage(
 							((ExtendedCommonTree) functionTree.getChild(0))
 									.getToken());
-					usage.setVarType(functionTree.getFunctionReturnType());
+					usage.setHaxeType(functionTree.getFunctionReturnType());
 					list.add(usage);
 				} else if (tree instanceof ClassNode) {
 					ClassNode classTree = (ClassNode) tree;
@@ -118,7 +118,7 @@ public class ClassNode extends ExtendedCommonTree {
 					 * FIXME нужно создавать тип, используя всю информацию о
 					 * классе
 					 */
-					usage.setVarType(new HaxeType(classTree.getChild(0)
+					usage.setHaxeType(new HaxeType(classTree.getChild(0)
 							.getToken().getText()));
 					list.add(usage);
 				}

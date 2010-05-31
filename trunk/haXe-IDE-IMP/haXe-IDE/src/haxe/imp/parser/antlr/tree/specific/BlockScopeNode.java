@@ -52,7 +52,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<VarUsage> getDeclaredVarsClone() {
-		return (ArrayList<VarUsage>) this.declaredVars.clone();
+		return this.declaredVars;
+		// return (ArrayList<VarUsage>) this.declaredVars.clone();
 	}
 
 	/**
@@ -61,7 +62,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @return the declaredVars
 	 */
 	public ArrayList<VarUsage> getDeclaredVars() {
-		return declaredVars;
+		return this.declaredVars;
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param declaredVars
 	 *            the declaredVars to set
 	 */
-	public void setDeclaredVars(ArrayList<VarUsage> declaredVars) {
+	public void setDeclaredVars(final ArrayList<VarUsage> declaredVars) {
 		this.declaredVars = declaredVars;
 	}
 
@@ -80,7 +81,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @return the l bracket position
 	 */
 	public int getlBracketPosition() {
-		return lBracketPosition;
+		return this.lBracketPosition;
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @return the r bracket position
 	 */
 	public int getrBracketPosition() {
-		return rBracketPosition;
+		return this.rBracketPosition;
 	}
 
 	/**
@@ -98,7 +99,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param rBracketPosition
 	 *            the new r bracket position
 	 */
-	public void setrBracketPosition(int rBracketPosition) {
+	public void setrBracketPosition(final int rBracketPosition) {
 		this.rBracketPosition = rBracketPosition;
 	}
 
@@ -115,7 +116,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public BlockScopeNode(CommonTree node) {
+	public BlockScopeNode(final CommonTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -126,7 +127,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param t
 	 *            the t
 	 */
-	public BlockScopeNode(Token t) {
+	public BlockScopeNode(final Token t) {
 		super(t);
 		// TODO Auto-generated constructor stub
 	}
@@ -141,7 +142,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public BlockScopeNode(int ttype, Token t, boolean auxiliary) {
+	public BlockScopeNode(final int ttype, final Token t,
+			final boolean auxiliary) {
 		super(ttype, t, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -156,7 +158,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public BlockScopeNode(int ttype, String type, boolean auxiliary) {
+	public BlockScopeNode(final int ttype, final String type,
+			final boolean auxiliary) {
 		super(ttype, type, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -169,7 +172,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public BlockScopeNode(int ttype, boolean auxiliary) {
+	public BlockScopeNode(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -180,7 +183,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param ttype
 	 *            the ttype
 	 */
-	public BlockScopeNode(int ttype) {
+	public BlockScopeNode(final int ttype) {
 		super(ttype);
 		// TODO Auto-generated constructor stub
 	}
@@ -197,8 +200,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @param lBracket
 	 *            the l bracket
 	 */
-	public BlockScopeNode(int blockScope, String string, boolean b,
-			Token lBracket) {
+	public BlockScopeNode(final int blockScope, final String string,
+			final boolean b, final Token lBracket) {
 		super(blockScope, string, b);
 		CommonToken lb = (CommonToken) lBracket;
 		this.lBracketPosition = lb.getStartIndex();
@@ -211,8 +214,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 *            the var name
 	 * @return true, if successful
 	 */
-	public boolean doScopeContainsVarName(String varName) {
-		for (VarUsage usage : declaredVars) {
+	public boolean doScopeContainsVarName(final String varName) {
+		for (ExtendedCommonTree usage : this.declaredVars) {
 			if (usage.getText().equals(varName)) {
 				return true;
 			}
@@ -227,10 +230,10 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 *            the var name
 	 * @return the var in scope type
 	 */
-	public HaxeType getVarInScopeType(String varName) {
-		for (VarUsage usage : declaredVars) {
+	public HaxeType getVarInScopeType(final String varName) {
+		for (ExtendedCommonTree usage : this.declaredVars) {
 			if (usage.getText().equals(varName)) {
-				return usage.getVarType();
+				return ((VarUsage) usage).getHaxeType();
 			}
 		}
 		return HaxeType.haxeUndefined;

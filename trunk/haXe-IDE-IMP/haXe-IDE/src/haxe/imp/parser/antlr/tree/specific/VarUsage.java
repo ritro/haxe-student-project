@@ -26,7 +26,7 @@ import org.antlr.runtime.tree.CommonTree;
 public class VarUsage extends ExtendedCommonTree {
 
 	/** The var type. */
-	private HaxeType varType = HaxeType.haxeNotYetRecognized;
+	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
 
 	/**
 	 * Sets the var type.
@@ -34,8 +34,8 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param varType
 	 *            the varType to set
 	 */
-	public void setVarType(HaxeType varType) {
-		this.varType = varType;
+	public void setHaxeType(final HaxeType varType) {
+		this.haxeType = varType;
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class VarUsage extends ExtendedCommonTree {
 	 * 
 	 * @return the varType
 	 */
-	public HaxeType getVarType() {
-		return varType;
+	public HaxeType getHaxeType() {
+		return this.haxeType;
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public VarUsage(CommonTree node) {
+	public VarUsage(final CommonTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -71,7 +71,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param t
 	 *            the t
 	 */
-	public VarUsage(Token t) {
+	public VarUsage(final Token t) {
 		super(t);
 		// TODO Auto-generated constructor stub
 	}
@@ -86,23 +86,23 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param varType
 	 *            the var type
 	 */
-	public VarUsage(int ttype, Token t, String varType) {
+	public VarUsage(final int ttype, final Token t, final String varType) {
 		// System.out.println(varType);
 		this.token = t;
 		if (varType.equals("INT")) {
-			this.setVarType(HaxeType.haxeInt);
+			this.setHaxeType(HaxeType.haxeInt);
 		} else if (varType.equals("FLOAT")) {
-			this.setVarType(HaxeType.haxeFloat);
+			this.setHaxeType(HaxeType.haxeFloat);
 		} else if (varType.equals("STRING")) {
-			this.setVarType(HaxeType.haxeString);
+			this.setHaxeType(HaxeType.haxeString);
 		} else if (varType.equals("VOID")) {
-			this.setVarType(HaxeType.haxeVoid);
+			this.setHaxeType(HaxeType.haxeVoid);
 		} else if (varType.equals("BOOL")) {
-			this.setVarType(HaxeType.haxeBool);
+			this.setHaxeType(HaxeType.haxeBool);
 		} else if (varType.equals("DYNAMIC")) {
-			this.setVarType(HaxeType.haxeDynamic);
+			this.setHaxeType(HaxeType.haxeDynamic);
 		} else {
-			this.setVarType(HaxeType.haxeUndefined);
+			this.setHaxeType(HaxeType.haxeUndefined);
 		}
 	}
 
@@ -116,7 +116,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public VarUsage(int ttype, Token t, boolean auxiliary) {
+	public VarUsage(final int ttype, final Token t, final boolean auxiliary) {
 		super(ttype, t, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -131,7 +131,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public VarUsage(int ttype, String type, boolean auxiliary) {
+	public VarUsage(final int ttype, final String type, final boolean auxiliary) {
 		super(ttype, type, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -144,7 +144,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
-	public VarUsage(int ttype, boolean auxiliary) {
+	public VarUsage(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
 		// TODO Auto-generated constructor stub
 	}
@@ -155,7 +155,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param ttype
 	 *            the ttype
 	 */
-	public VarUsage(int ttype) {
+	public VarUsage(final int ttype) {
 		super(ttype);
 		// TODO Auto-generated constructor stub
 	}
@@ -168,7 +168,7 @@ public class VarUsage extends ExtendedCommonTree {
 	 * @param t
 	 *            the t
 	 */
-	public VarUsage(int ttype, Token t) {
+	public VarUsage(final int ttype, final Token t) {
 		this.token = new CommonToken(ttype);
 	}
 
@@ -179,8 +179,16 @@ public class VarUsage extends ExtendedCommonTree {
 	 */
 	public VarUsage getClone() {
 		VarUsage varUsage = new VarUsage(this.getToken());
-		varUsage.setVarType(this.getVarType());
+		varUsage.setHaxeType(this.getHaxeType());
 		return varUsage;
+	}
+
+	public String getTextWithType() {
+		if (this.getParent() instanceof FunctionNode) {
+			return ((FunctionNode) this.getParent())
+					.getFullNameWithParameters();
+		}
+		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 
 }

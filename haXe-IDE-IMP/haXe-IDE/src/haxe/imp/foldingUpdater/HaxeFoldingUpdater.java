@@ -82,17 +82,22 @@ public class HaxeFoldingUpdater extends FolderBase {
 			if (n instanceof ClassNode) {
 				ClassNode classNode = (ClassNode) n;
 				BlockScopeNode blockScopeNode = classNode.getBlockScope();
-				start = blockScopeNode.getlBracketPosition();
-				len = blockScopeNode.getrBracketPosition() - start;
-				HaxeFoldingUpdater.this.makeAnnotation(start, len);
-				return true;
+				if (blockScopeNode != null) {
+					start = blockScopeNode.getlBracketPosition();
+					len = blockScopeNode.getrBracketPosition() - start; 
+					assert(len > 0);
+					HaxeFoldingUpdater.this.makeAnnotation(start, len);
+					return true;
+				}
 			} else if (n instanceof FunctionNode) {
 				FunctionNode functionNode = (FunctionNode) n;
 				BlockScopeNode blockScopeNode = functionNode.getBlockScope();
-				start = blockScopeNode.getlBracketPosition();
-				len = blockScopeNode.getrBracketPosition() - start;
-				HaxeFoldingUpdater.this.makeAnnotation(start, len + 1);
-				return true;
+				if (blockScopeNode != null) {
+					start = blockScopeNode.getlBracketPosition();
+					len = blockScopeNode.getrBracketPosition() - start;
+					HaxeFoldingUpdater.this.makeAnnotation(start, len + 1);
+					return true;
+				} 
 			}
 			return false;
 

@@ -61,7 +61,7 @@ public class CheckParser {
 			fail("Exception on EmptyModuleRecognition");
 		}
 		printTree(tree);
-		assertEquals(3, (tree).getChildren().size());
+		assertEquals(3, tree.getChildren().size());
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals(2, (tree).getChildren().size());
+		assertEquals(2, tree.getChildren().size());
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For Function01", 2, (tree).getChildren().size());
+		assertEquals("For Function01", 2, tree.getChildren().size());
 
 		path = "./src/test/testFunction02.txt";
 		parser = this.createParserLexerForFile(path);
@@ -114,7 +114,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		Assert.assertEquals("For Function02", 4, (tree).getChildren().size());
+		Assert.assertEquals("For Function02", 4, tree.getChildren().size());
 
 		path = "./src/test/testFunction03.txt";
 		parser = this.createParserLexerForFile(path);
@@ -127,7 +127,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		Assert.assertEquals("For Function03", 5, (tree).getChildren().size());
+		Assert.assertEquals("For Function03", 5, tree.getChildren().size());
 
 		path = "./src/test/testFunction04";
 		parser = this.createParserLexerForFile(path);
@@ -140,7 +140,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		Assert.assertEquals("For Function04", 4, (tree).getChildren().size());
+		Assert.assertEquals("For Function04", 4, tree.getChildren().size());
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For Class01", 2, (tree).getChildren().size());
+		assertEquals("For Class01", 2, tree.getChildren().size()); 
 
 		path = "./src/test/testClass02.txt";
 		parser = this.createParserLexerForFile(path);
@@ -176,7 +176,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For Class02", 3, (tree).getChildren().size());
+		assertEquals("For Class02", 3, tree.getChildren().size());
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For if01", 2, (tree).getChildren().size());
+		assertEquals("For if01", 2, tree.getChildren().size());
 
 		path = "./src/test/testIf02";
 		parser = this.createParserLexerForFile(path);
@@ -212,7 +212,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For if02", 3, (tree).getChildren().size());
+		assertEquals("For if02", 3, tree.getChildren().size());
 
 		path = "./src/test/testIf03";
 		parser = this.createParserLexerForFile(path);
@@ -227,7 +227,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For if03", 3, (tree).getChildren().size());
+		assertEquals("For if03", 3, tree.getChildren().size());
 	}
 
 	/**
@@ -248,7 +248,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For For01", 2, (tree).getChildren().size());
+		assertEquals("For For01", 2, tree.getChildren().size());
 
 		path = "./src/test/testFor02";
 		parser = this.createParserLexerForFile(path);
@@ -263,7 +263,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For for02", 2, (tree).getChildren().size());
+		assertEquals("For for02", 2, tree.getChildren().size());
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For While01", 2, (tree).getChildren().size());
+		assertEquals("For While01", 2, tree.getChildren().size());
 
 		path = "./src/test/testWhile02";
 		parser = this.createParserLexerForFile(path);
@@ -299,7 +299,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For While02", 2, (tree).getChildren().size());
+		assertEquals("For While02", 2, tree.getChildren().size());
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class CheckParser {
 		}
 		printTree(tree);
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		assertEquals("For Switch01", 5, (tree).getChildren().size());
+		assertEquals("For Switch01", 5, tree.getChildren().size());
 	}
 
 	/**

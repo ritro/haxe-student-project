@@ -1,3 +1,9 @@
+// TinyHaxeTry1.g
+// HaXe parser
+//
+//
+// PP inspired by http://antlrcsharp.codeplex.com
+
 grammar TinyHaxeTry1;
 
 options {
@@ -23,7 +29,20 @@ tokens {
 
 @lexer::header{
 package haxe.imp.parser.antlr.main;
+
+import java.util.HashMap;
+//import java.util.Stack; // imported by ANTLR
 }
+
+@lexer::members {
+	// Preprocessor Data Structures - see lexer section below and PreProcessor.cs
+	protected HashMap<String,String> macroDefines = new HashMap<String,String>();	
+	protected Stack<Boolean> processing = new Stack<Boolean>();
+
+	// Uggh, lexer rules don't return values, so use a stack to return values.
+	protected Stack<Boolean> returns = new Stack<Boolean>();
+}
+
 
 @header{
 package haxe.imp.parser.antlr.main;
@@ -43,7 +62,7 @@ import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
-module            : myPackage? topLevelList ->^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList?)
+module            : myPackage? topLevelList -> ^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList?)
    ;
 	
 topLevelList      :  (topLevel)*
@@ -56,7 +75,7 @@ myPackage           : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent?)
 	;
 	
 qualifiedIdentifier
-    :   (  a= IDENTIFIER  ->  $a)   (   DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
+    :   (a=IDENTIFIER  ->  $a)   (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
     ;
 	
 myImport            : IMPORT^ dotIdent SEMI!
@@ -72,19 +91,19 @@ declAttr          : STATIC
                     |   OVERRIDE
                     |   access
 	;
-declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_ATTR_LIST",true] declAttr+)
+declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_ATTR_LIST", true] declAttr+)
          ;
 
-paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST",true] param+)
+paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST", true] param+)
 	|	
 	;
-param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER,true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
+param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
 	;
 	
 id	:	IDENTIFIER<VarUsage>
 	;
 	
-dotIdent:	(id -> id) (DOT ident=id ->^(DOT $dotIdent $ident))*
+dotIdent:	(id -> id) (DOT ident=id -> ^(DOT $dotIdent $ident))*
 	;
 	
 assignOp:	EQ	-> EQ<AssignOperationNode>[$EQ]
@@ -122,7 +141,8 @@ ppElse            : PP_ELSE
 ppEnd             : PP_END
 	;
 ppError           : PP_ERROR
-	;*/
+	;
+*/
 	
 //! -------- Types
 
@@ -152,7 +172,7 @@ typeParam
 	;
 	
 typeParamOpt      
-	:	typeParam->^(TYPE_PARAM_OPT<ExtendedCommonTree>["TYPE_PARAM_OPT",true] typeParam?)
+	:	typeParam-> ^(TYPE_PARAM_OPT<ExtendedCommonTree>["TYPE_PARAM_OPT",true] typeParam?)
 	|	
        	;
        
@@ -187,7 +207,7 @@ parExpression
     :   LPAREN! expr RPAREN!
     ;
 
-block 	:	LBRACE (blockStmt)* RBRACE ->^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true,$LBRACE] blockStmt* RBRACE) 
+block 	:	LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<ExtendedCommonTree>[$RBRACE, true]) 
 	|	SEMI!
 	;
 	
@@ -321,8 +341,8 @@ enumBody:	(enumValueDecl)*
 	;
 	
 enumValueDecl     
-	:	IDENTIFIER LPAREN paramList RPAREN SEMI ->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>? paramList? )	
-	|	IDENTIFIER SEMI				->^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>?)
+	:	IDENTIFIER LPAREN paramList RPAREN SEMI -> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>? paramList? )	
+	|	IDENTIFIER SEMI				-> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>?)
 //	|	pp
 	;
 	
@@ -330,7 +350,7 @@ varDeclList
 	:	varDecl varDeclList
 	;
 	
-varDecl :	(declAttrList)? VAR varDeclPartList SEMI ->^(VAR<VarDeclaration>[$VAR] declAttrList? varDeclPartList?)
+varDecl :	(declAttrList)? VAR varDeclPartList SEMI -> ^(VAR<VarDeclaration>[$VAR] declAttrList? varDeclPartList?)
 	;
 	
 varDeclPartList   
@@ -356,42 +376,41 @@ propDeclOpt
 	|
 	;
 	
-varInit :	EQ expr ->^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr?)
+varInit :	EQ expr -> ^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr?)
 	|	
 	;
 	
 funcDecl:	declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block 
 			-> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block? )
 	|	declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block 
-			->^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTagOpt? block? typeParamOpt?)
+			-> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTagOpt? block? typeParamOpt?)
 	;
 	
 funcProtoDecl
 	:	declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI 
 			-> ^(FUNCTION NEW? paramList? typeTagOpt? declAttrList?)
 	|	declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI 
-			->^(FUNCTION IDENTIFIER? paramList? typeTagOpt? declAttrList? typeParamOpt?)
+			-> ^(FUNCTION IDENTIFIER? paramList? typeTagOpt? declAttrList? typeParamOpt?)
 	|	FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI 
 			-> ^(FUNCTION NEW? paramList? typeTagOpt?)
 	|	FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI 
-			->^(FUNCTION IDENTIFIER? paramList? typeTagOpt? typeParamOpt?)
+			-> ^(FUNCTION IDENTIFIER? paramList? typeTagOpt? typeParamOpt?)
 	;
 	
 classDecl
-	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt lb=LBRACE classBodyScope[$lb] RBRACE 
-			-> ^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope? RBRACE<ExtendedCommonTree>[$RBRACE, true])
+	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
+			-> ^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope?)
 	;
 	
-classBodyScope[Token lBracket]
-	:	classBody -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE",true, $lBracket] classBody?)
+classBodyScope
+	:	LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] classMember* RBRACE<ExtendedCommonTree>[$RBRACE, true])
 	;
 
-classBody
-	:	varDecl classBody
-	|	funcDecl classBody
+classMember
+	:	varDecl 
+	|	funcDecl 
 //	|	pp classBody
-	|	enumDecl classBody
-	|
+	|	enumDecl 
 	;
 	
 interfaceDecl     
@@ -410,7 +429,7 @@ inheritList
 	;
 	
 inheritListOpt    
-	:	inheritList ->^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList?)
+	:	inheritList -> ^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList?)
 	|	
     	;
     	
@@ -1005,10 +1024,6 @@ COMMENT
     :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
-    
-PROCESSORCOMMAND
-	:  '#if' ( options {greedy=false;} : . )* '#end' {$channel=HIDDEN;}
-	;
 
 STRINGLITERAL
     :   '"' 
@@ -1017,9 +1032,15 @@ STRINGLITERAL
         )* 
         '"' 
     ;
+
+/*    
+PROCESSORCOMMAND
+	:  '#if' ( options {greedy=false;} : . )* '#end' {$channel=HIDDEN;}
+	;
+
     
 //For Prepoccecor
-/*PP_IF	:	'#if'
+PP_IF	:	'#if'
 	;
 PP_ELSEIF
 	:	'#elseif'
@@ -1031,6 +1052,122 @@ PP_END	:	'#end'
 PP_ERROR:	'#error'
 	;
 */
+
+
+//------------
+
+fragment
+TS:
+    (' '  |  '\t'  ) 
+    { skip(); } ;
+
+PREPROCESSOR_DIRECTIVE:
+	| PP_CONDITIONAL;
+
+fragment
+PP_CONDITIONAL:
+	(IF_TOKEN
+	| ELSE_TOKEN
+	| ENDIF_TOKEN); //  TS*   (LINE_COMMENT?  |  ('\r' | '\n')+) ;
+
+fragment
+IF_TOKEN
+	@init { boolean process = true; }:
+	('#'   TS*  'if'   TS+   ppe = PP_EXPRESSION)
+{
+    // if our parent is processing check this if
+    //Debug.Assert(Processing.Count > 0, "Stack underflow preprocessing.  IF_TOKEN");
+    if (!processing.empty() && processing.peek())
+        processing.push(returns.pop());
+    else
+        processing.push(false);
+} ;
+fragment
+ELSE_TOKEN:
+	( '#'   TS*   e = 'else'
+	| '#'   TS*   'elseif'   TS+   PP_EXPRESSION)
+	{
+		// We are in elseif
+       	if ($e == null)
+	{
+	    //Debug.Assert(Processing.Count > 0, "Stack underflow preprocessing.  ELIF_TOKEN");
+		if (!processing.empty() && !processing.peek())
+		{
+			processing.pop();
+			// if our parent was processing, do else logic
+		    //Debug.Assert(Processing.Count > 0, "Stack underflow preprocessing.  ELIF_TOKEN2");
+			if (!processing.empty() && processing.peek())
+				processing.push(returns.pop());
+			else
+				processing.push(false);
+		}
+		else
+		{
+			processing.pop();
+			processing.push(false);
+		}
+	}
+	else
+	{
+		// we are in a else
+		if (!processing.empty())
+		{
+			boolean bDoElse = !processing.pop();
+
+			// if our parent was processing				
+		    //Debug.Assert(Processing.Count > 0, "Stack underflow preprocessing, ELSE_TOKEN");
+			if (!processing.empty() && processing.peek())
+				processing.push(bDoElse);
+			else
+				processing.push(false);
+		}
+	}
+	skip();
+	} ;
+fragment
+ENDIF_TOKEN:
+	'#'   'end'
+	{
+		if (!processing.empty())
+			processing.pop();
+		skip();
+	} ;
+	
+	
+	
+	
+fragment
+PP_EXPRESSION:
+	PP_OR_EXPRESSION;
+
+fragment
+PP_OR_EXPRESSION:
+	PP_AND_EXPRESSION   TS*   ('||'   TS*   PP_AND_EXPRESSION   TS* )* ;
+
+fragment
+PP_AND_EXPRESSION:
+	PP_UNARY_EXPRESSION   TS*   ('&&'   TS*   PP_UNARY_EXPRESSION   TS* )* ;
+
+fragment
+PP_UNARY_EXPRESSION:
+	pe = PP_PRIMARY_EXPRESSION
+	| '!'   TS*   ue = PP_UNARY_EXPRESSION  { returns.push(!returns.pop()); } 
+	;
+
+fragment
+PP_PRIMARY_EXPRESSION:
+	IDENTIFIER	
+	{ 
+		//returns.push(MacroDefines.ContainsKey($IDENTIFIER.Text));
+		returns.push(false); // TODO
+	}
+	| '('   PP_EXPRESSION   ')'
+	;
+
+
+//-------------
+
+
 fragment
 EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
 

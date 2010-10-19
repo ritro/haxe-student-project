@@ -26,7 +26,6 @@ import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -77,34 +76,23 @@ public class ExtendedCommonTree extends CommonTree {
 	};
 
 	/** The Constant PARAM_LIST_TYPE. */
-	public static final int PARAM_LIST_TYPE = (new ArrayList<String>(Arrays
-			.asList(TinyHaxeTry1Parser.tokenNames)))
-			.indexOf(TreeTokens.PARAM_LIST.toString());
+	public static final int PARAM_LIST_TYPE = TinyHaxeTry1Parser.PARAM_LIST; 
 
 	/** The Constant TYPE_TAG_TYPE. */
-	public static final int TYPE_TAG_TYPE = (new ArrayList<String>(Arrays
-			.asList(TinyHaxeTry1Parser.tokenNames)))
-			.indexOf(TreeTokens.TYPE_TAG.toString());
+	public static final int TYPE_TAG_TYPE = TinyHaxeTry1Parser.TYPE_TAG;
 
 	/** The Constant SUFFIX_EXPR_TYPE. */
-	public static final int SUFFIX_EXPR_TYPE = (new ArrayList<String>(Arrays
-			.asList(TinyHaxeTry1Parser.tokenNames)))
-			.indexOf(TreeTokens.SUFFIX_EXPR.toString());
+	public static final int SUFFIX_EXPR_TYPE = TinyHaxeTry1Parser.SUFFIX_EXPR;
 
 	/** The Constant VAR_INIT_TYPE. */
-	public static final int VAR_INIT_TYPE = (new ArrayList<String>(Arrays
-			.asList(TinyHaxeTry1Parser.tokenNames)))
-			.indexOf(TreeTokens.VAR_INIT.toString());
+	public static final int VAR_INIT_TYPE = TinyHaxeTry1Parser.VAR_INIT;
 
 	/** The Constant MODULE_TYPE. */
-	public static final int MODULE_TYPE = (new ArrayList<String>(Arrays
-			.asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.MODULE
-			.toString());
+	public static final int MODULE_TYPE = TinyHaxeTry1Parser.MODULE;
 
 	/** The Constant ENUM_TYPE. */
-	public static final int ENUM_TYPE = (new ArrayList<String>(Arrays
-			.asList(TinyHaxeTry1Parser.tokenNames))).indexOf(TreeTokens.ENUM
-			.toString());
+	public static final int ENUM_TYPE = TinyHaxeTry1Parser.ENUM;
+		
 
 	/**
 	 * Checks if is auxiliary.
@@ -150,9 +138,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 * @return the most left position
 	 */
 	public int getMostLeftPosition() {
-		if (this instanceof BlockScopeNode) {
-			return ((BlockScopeNode) this).getlBracketPosition();
-		} else if (this.auxiliary == true) {
+		if (this.auxiliary == true) {
 			if (this.mostLeftPosition == -1 && this.getChildCount() > 0) {
 				this.mostLeftPosition = this.getChild(0).getMostLeftPosition();
 			}
@@ -186,13 +172,12 @@ public class ExtendedCommonTree extends CommonTree {
 
 	/**
 	 * Gets the most right position.
+	 * Overidden for some nodes
 	 * 
 	 * @return the most right position
 	 */
 	public int getMostRightPosition() {
-		if (this instanceof BlockScopeNode) {
-			return ((BlockScopeNode) this).getrBracketPosition();
-		} else if (this.auxiliary == true) {
+		if (this.auxiliary == true) {
 			if (this.mostRightPosition == -1 && this.getChildCount() > 0) {
 				this.mostRightPosition = this
 						.getChild(this.getChildCount() - 1)
@@ -200,8 +185,9 @@ public class ExtendedCommonTree extends CommonTree {
 			}
 			return this.mostRightPosition;
 		} else {
-
 			if (this.mostRightPosition == -1) {
+				assert(this.getToken() != null);
+				
 				this.mostRightPosition = this.getToken().getStartIndex()
 						+ this.getToken().getText().length();
 				if (this.getChildCount() > 0) {
@@ -338,8 +324,10 @@ public class ExtendedCommonTree extends CommonTree {
 		if (this.getChildCount() > 0) {
 			for (ExtendedCommonTree tree : this.getChildren()) {
 				if (tree instanceof ClassNode) {
-					((ClassNode) tree).getBlockScope().calculateScopes(
-							((ClassNode) tree).getBlockScope());
+					BlockScopeNode blockScope = ((ClassNode) tree).getBlockScope();
+					if (blockScope != null) {
+						blockScope.calculateScopes(blockScope);
+					}
 					break;
 				}
 			}
@@ -355,13 +343,7 @@ public class ExtendedCommonTree extends CommonTree {
 
 	public void accept(final HaxeModelVisitor visitor) {
 		try {
-			if (this.token.getType() == MODULE_TYPE) {
-				visitor.visit(this);
-				for (ExtendedCommonTree child : this.getChildren()) {
-					child.accept(visitor);
-				}
-				visitor.endVisit(this);
-			} else if (this instanceof FunctionNode) {
+			if (this instanceof FunctionNode) {
 				visitor.visit(this);
 				visitor.endVisit(this);
 			} else if (this instanceof ClassNode) {
@@ -386,16 +368,26 @@ public class ExtendedCommonTree extends CommonTree {
 						child.accept(visitor);
 					}
 				}
-			} else if (this.token.getType() == ENUM_TYPE) {
-				visitor.visit(this);
-				for (ExtendedCommonTree child : this.getChildren()) {
-					child.accept(visitor);
+			} else if (this.token != null) {
+				if (this.token.getType() == MODULE_TYPE) {
+					visitor.visit(this);
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+					visitor.endVisit(this);
+				} else if (this.token.getType() == ENUM_TYPE) {
+					visitor.visit(this);
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+					visitor.endVisit(this);
 				}
-				visitor.endVisit(this);
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out
 					.println("Exception caught from invocation of language-specific tree model builder implementation");
+			nullPointerException.printStackTrace();
+			//throw nullPointerException;
 		}
 	}
 
@@ -407,11 +399,7 @@ public class ExtendedCommonTree extends CommonTree {
 	 */
 	public void accept(final HaxeFoldingVisitor visitor) {
 		try {
-			if (this.token.getType() == MODULE_TYPE) {
-				for (ExtendedCommonTree child : this.getChildren()) {
-					child.accept(visitor);
-				}
-			} else if (this instanceof FunctionNode) {
+			if (this instanceof FunctionNode) {
 				visitor.visit(this);
 				// visitor.endVisit(this);
 			} else if (this instanceof ClassNode) {
@@ -433,18 +421,25 @@ public class ExtendedCommonTree extends CommonTree {
 						child.accept(visitor);
 					}
 				}
-			} else if (this.token.getType() == ENUM_TYPE) {
-				visitor.visit(this);
-				for (ExtendedCommonTree child : this.getChildren()) {
-					child.accept(visitor);
+			} else if (this.token != null) {
+				if (this.token.getType() == MODULE_TYPE) {
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+				} else if (this.token.getType() == ENUM_TYPE) {
+					visitor.visit(this);
+					for (ExtendedCommonTree child : this.getChildren()) {
+						child.accept(visitor);
+					}
+					// visitor.endVisit(this);
+				} else if (this.token.getType() == TinyHaxeTry1Lexer.COMMENT) {
+					visitor.visit(this);
 				}
-				// visitor.endVisit(this);
-			} else if (this.token.getType() == TinyHaxeTry1Lexer.COMMENT) {
-				visitor.visit(this);
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out
 					.println("Exception caught from invocation of language-specific tree model builder implementation");
+			nullPointerException.printStackTrace();
 		}
 	}
 
@@ -453,6 +448,8 @@ public class ExtendedCommonTree extends CommonTree {
 	 * should be also used before most operations on code (hyperlinking,
 	 * help-covering, autocompletion)
 	 * 
+	 *  TODO: rewrite using override
+	 *  
 	 * @param blockScope
 	 *            the block scope
 	 * @throws HaxeCastException
@@ -752,7 +749,7 @@ public class ExtendedCommonTree extends CommonTree {
 
 	/**
 	 * Метод нужен для подсчета отступа и длины узла для тех узлов, которые
-	 * <code>auxilary==true</code>. Для обычных узлов я прост осмотрю
+	 * <code>auxilary==true</code>. Для обычных узлов я просто смотрю
 	 * соответсвующий токен, для дополнительных - смотрю первого и последнего
 	 * сына. Считается, что дополнительные узлы не могут быть листьями.
 	 * 
@@ -814,7 +811,7 @@ public class ExtendedCommonTree extends CommonTree {
 	/**
 	 * Gets the node by position.
 	 * 
-	 * Use <code>getNodeByPosition(Int offset)</code> instead
+	 * Use <code>getNodeByPosition(int offset)</code> instead
 	 * 
 	 * @param line
 	 *            the line
@@ -822,12 +819,11 @@ public class ExtendedCommonTree extends CommonTree {
 	 *            the pos in line
 	 * @return the node by position
 	 */
-	@SuppressWarnings("unchecked")
 	@Deprecated
 	public ExtendedCommonTree getNodeByPosition(final int line,
 			final int posInLine) {
-		ArrayList<ExtendedCommonTree> nodes = (ArrayList<ExtendedCommonTree>) (this
-				.getChildren()).clone();
+		List<ExtendedCommonTree> nodes = new ArrayList<ExtendedCommonTree>(
+				this.getChildren());
 
 		if (this.getLine() != line) {
 			Collections.sort(nodes, new ComparatorByLines());
@@ -1073,8 +1069,7 @@ public class ExtendedCommonTree extends CommonTree {
 		public int compare(final CommonTree arg0, final CommonTree arg1) {
 			if (arg0.getCharPositionInLine() < arg1.getCharPositionInLine()) {
 				return -1;
-			} else if (arg0.getCharPositionInLine() > arg1
-					.getCharPositionInLine()) {
+			} else if (arg0.getCharPositionInLine() > arg1.getCharPositionInLine()) {
 				return 1;
 			} else {
 				return 0;
@@ -1089,8 +1084,12 @@ public class ExtendedCommonTree extends CommonTree {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public ArrayList<ExtendedCommonTree> getChildren() {
-		return (ArrayList<ExtendedCommonTree>) super.getChildren();
+	public List<ExtendedCommonTree> getChildren() {
+		List<ExtendedCommonTree> res = (List<ExtendedCommonTree>)super.getChildren();
+		
+		if (res == null) return new ArrayList<ExtendedCommonTree>();
+		
+		return res;
 	}
 
 	/*

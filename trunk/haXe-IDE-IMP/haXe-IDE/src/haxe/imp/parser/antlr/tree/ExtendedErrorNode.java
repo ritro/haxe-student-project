@@ -15,6 +15,8 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.CommonErrorNode;
 
+import org.antlr.runtime.CommonToken;
+
 /**
  * The Class ExtendedErrorNode.
  * 
@@ -80,5 +82,15 @@ public class ExtendedErrorNode extends ExtendedCommonTree {
 	@Override
 	public String toString() {
 		return this.delegate.toString();
+	}
+	
+	@Override
+	public int getMostLeftPosition() {
+		return ((CommonToken)delegate.start).getStartIndex();
+	}
+	
+	@Override
+	public int getMostRightPosition() {
+		return ((CommonToken)delegate.stop).getStopIndex();
 	}
 }

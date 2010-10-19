@@ -68,8 +68,8 @@ public interface HaxeParsersym {
 	/** The Constant COMMENT. */
 	public static final int COMMENT = TinyHaxeTry1Lexer.COMMENT;
 
-	/** The Constant PROCESSORCOMMAND. */
-	public static final int PROCESSORCOMMAND = TinyHaxeTry1Lexer.PROCESSORCOMMAND;
+	/** The Constant PREPROCESSOR_DIRECTIVE. */
+	public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
 
 	/** The Constant STATIC. */
 	public static final int STATIC = TinyHaxeTry1Lexer.STATIC;

@@ -51,6 +51,7 @@ public class testGOTODefinition {
 	/**
 	 * Test get declaration node.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetDeclarationNode() {
 		String path = "./src/test/testGOTODef01";
@@ -97,6 +98,7 @@ public class testGOTODefinition {
 	/**
 	 * Test get function declaration node.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetFunctionDeclarationNode() {
 		String path = "./src/test/testGOTODef02";
@@ -130,6 +132,7 @@ public class testGOTODefinition {
 	/**
 	 * Test get class declaration node.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetClassDeclarationNode() {
 		String path = "./src/test/testGOTODef03";

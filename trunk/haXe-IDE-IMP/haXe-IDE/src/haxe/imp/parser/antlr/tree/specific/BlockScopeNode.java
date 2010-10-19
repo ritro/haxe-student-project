@@ -10,6 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
@@ -72,7 +73,18 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @return the r bracket position
 	 */
 	public int getrBracketPosition() {
-		return this.rBracketPosition;
+		if (this.getChildCount() > 0) {
+			//return this.rBracketPosition;
+			ExtendedCommonTree lastchild = getChildren().get(getChildCount()-1);
+			if (lastchild.getType() == TinyHaxeTry1Parser.RBRACE) {
+				return lastchild.getToken().getStopIndex();
+			} else {
+				// no right brace - return something
+				return lastchild.getMostRightPosition();
+			}
+		} else {
+			return this.lBracketPosition;
+		}
 	}
 
 	/**
@@ -83,6 +95,16 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 */
 	public void setrBracketPosition(final int rBracketPosition) {
 		this.rBracketPosition = rBracketPosition;
+	}
+	
+	@Override
+	public int getMostLeftPosition() {
+		return this.getlBracketPosition();
+	}
+	
+	@Override
+	public int getMostRightPosition() {
+		return this.getrBracketPosition();
 	}
 
 	/**
@@ -185,8 +207,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	public BlockScopeNode(final int blockScope, final String string,
 			final boolean b, final Token lBracket) {
 		super(blockScope, string, b);
-		CommonToken lb = (CommonToken) lBracket;
-		this.lBracketPosition = lb.getStartIndex();
+		this.lBracketPosition = ((CommonToken) lBracket).getStartIndex();
 	}
 
 	/**

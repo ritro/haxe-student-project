@@ -94,8 +94,7 @@ public class ClassNode extends ExtendedCommonTree {
 		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
 		BlockScopeNode blockScopeNode = this.getBlockScope();
 		if (blockScopeNode != null) {
-			for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) blockScopeNode
-					.getChildren()) {
+			for (ExtendedCommonTree tree : blockScopeNode.getChildren()) {
 				if (tree instanceof VarDeclaration) {
 					VarDeclaration declarationTree = (VarDeclaration) tree;
 					declarationTree.getVarNameNode().setHaxeType(

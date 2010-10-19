@@ -29,6 +29,7 @@ import org.eclipse.imp.services.IHoverHelper;
 import org.eclipse.imp.services.IReferenceResolver;
 import org.eclipse.imp.services.base.HoverHelperBase;
 import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 
 /**
@@ -63,7 +64,7 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		// If there are any annotations associated with the line that contains
 		// the given offset, return those
 		try {
-			List annotations = AnnotationHoverBase.getSourceAnnotationsForLine(
+			List<Annotation> annotations = AnnotationHoverBase.getSourceAnnotationsForLine(
 					srcViewer, srcViewer.getDocument().getLineOfOffset(offset));
 			if (annotations != null && annotations.size() > 0) {
 				// Some annotations have no text, such as breakpoint

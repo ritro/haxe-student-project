@@ -108,7 +108,7 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 			return this.numberAttribute;
 		case COMMENT:
 			return this.commentAttribute;
-		case PROCESSORCOMMAND:
+		case PREPROCESSOR_DIRECTIVE:
 			return this.processorCommand;
 		default:
 			return this.defaultAttribute;

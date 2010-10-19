@@ -75,10 +75,10 @@
          id="haXe-IDE.referenceResolver"
          name="haxe Reference Resolver"
          point="org.eclipse.imp.runtime.referenceResolvers">
-      <docProvider
-            class="haxe.imp.hoverHelper.HelperReferenceResolver"
-            language="haxe">
-      </docProvider>
+         <referenceResolver
+               class="haxe.imp.hoverHelper.HelperReferenceResolver"
+               language="haXe">
+         </referenceResolver>
    </extension>
    <extension
          id="haXe-IDE.documentationProvider"

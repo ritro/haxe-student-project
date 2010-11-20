@@ -1,11 +1,11 @@
 /**
- * ArcticWrite useful functions
+ * Several useful functions
  * @author Victor Polozov
  */
 
-package write;
+package pkg;
 
-class Helper {
+class TestModule2 {
     /* A way to deal with Xml.elements(), which returns Iterator<Xml> instead of Iterable<> */
     public static function makeIterable<T>(it: Void -> Iterator<T>): Iterable<T> {
         return { iterator: it };
@@ -43,21 +43,6 @@ class Helper {
         return ch == " ";
     }
 
-    public static function splitByWords(string : String) : List<String> {
-        var res = new List<String>();
-        var last = 0; // 0...last-1 already saved
-        var i = 0;
-
-        while (i < string.length) {
-            while (string.charAt(i) != " " && i < string.length) i++;
-            while (string.charAt(i) == " " && i < string.length) i++;
-            res.add(string.substr(last, i-last));
-            last = i;
-        }
-
-        return res;
-    }
-
     public static function sum( it : Iterable<Float> ) : Float {
          return Lambda.fold(it, function (f, a) { return f + a; }, 0);
     }
@@ -69,8 +54,4 @@ class Helper {
     public static function min( it : Iterable<Float> ) : Float {
          return Lambda.fold(it, Math.min, Math.POSITIVE_INFINITY);
     }
-	
-	public static function parseBool(val: String): Bool {
-		return (val == "true" || val == "True");
-	}
 }

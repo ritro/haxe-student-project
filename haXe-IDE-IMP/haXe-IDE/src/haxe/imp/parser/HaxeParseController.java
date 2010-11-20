@@ -294,8 +294,7 @@ public class HaxeParseController implements IParseController {
 	 *            the contents
 	 */
 	private void doParse(final String contents) {
-		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(new ANTLRStringStream(
-				contents));
+		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(new ANTLRStringStream(contents));
 		this.tokenStream = new CommonTokenStream(lexer);
 		this.tokenStream.getTokens();
 		System.out.print("Parsing file...");

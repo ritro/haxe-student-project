@@ -124,17 +124,20 @@ class Client implements ClientApi {
 		Lib.current.addChild(field);
 	}
 
-	public function userMakeMove(mark:Bool,x:Float, y:Float) {
-		if (mark){
-			mc.x = x +5;
-			mc.y = y +5;
+	public function userMakeMove(mark:Bool, x:Float, y:Float) {
+		x = x + start_crd + 10;
+		y = y + start_crd + 10;
+		
+		if (mark) {
 			mc.graphics.lineStyle(3, 0);
-			mc.graphics.lineTo(x - 10 + hght_wdth, y - 10 + hght_wdth);
-			mc.x = x + hght_wdth - 5;
-			mc.graphics.lineTo(x - hght_wdth - 10, y - 5 );
+			mc.graphics.moveTo(x,y);
+			mc.graphics.lineTo(x + hght_wdth - 20, y + hght_wdth - 20);
+			mc.graphics.moveTo(x,y + hght_wdth - 20);
+			mc.graphics.lineTo(x + hght_wdth - 20, y);
 		}
 		else {
-			mc.graphics.drawCircle(x+hght_wdth/2, y +hght_wdth/2, hght_wdth/2 - 7);
+			mc.graphics.moveTo(x,y);
+			mc.graphics.drawEllipse(x, y, hght_wdth-20, hght_wdth - 20);
 		}
 	}
 	
@@ -148,16 +151,12 @@ class Client implements ClientApi {
 	}
 
 	function onMouseDown(e:MouseEvent) {
-		var x:Float = (e.localX % hght_wdth) * hght_wdth;
-		var y:Float = (e.localY % hght_wdth) * hght_wdth;
+		var x:Float = Std.int(e.localX / hght_wdth) * hght_wdth;
+		var y:Float = Std.int(e.localY / hght_wdth) * hght_wdth;
 		
-		api.say(x+":"+y);
-		
-		if ( e.buttonDown && (x < hght_wdth * 3 + start_crd && y < hght_wdth * 3 + start_crd
-							&& x > start_crd && y>start_crd) )
-		{
-			api.makeMove(x,y);			
-		}
+		if ( e.buttonDown && (x < hght_wdth * 2 +1 && y < hght_wdth * 2 + 1
+							&& x >= 0 && y>=0) )
+			api.makeMove(x, y, Std.int(e.localX / hght_wdth), Std.int(e.localY / hght_wdth));
 	}
 
 	function send( text : String ) {

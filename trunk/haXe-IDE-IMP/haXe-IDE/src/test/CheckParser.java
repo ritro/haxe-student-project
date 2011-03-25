@@ -35,7 +35,7 @@ public class CheckParser {
 		assertTreeSize(2, parseHaxeFile("testModule2.hx"));
 	}
 
-	public static ExtendedCommonTree parseFunction(final String filename) throws RecognitionException {
+	public static ExtendedCommonTree parseFunctionFile(final String filename) throws RecognitionException {
 		TinyHaxeTry1Parser parser = createHaxeParser(pathToTests + filename);
 		TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
@@ -44,10 +44,10 @@ public class CheckParser {
 	
 	@Test
 	public void testFunction() throws RecognitionException {
-		assertTreeSize(2, parseFunction("testFunction01"));
-		assertTreeSize(4, parseFunction("testFunction02"));
-		assertTreeSize(5, parseFunction("testFunction03"));
-		assertTreeSize(4, parseFunction("testFunction04"));
+		assertTreeSize(2, parseFunctionFile("testFunction01"));
+		assertTreeSize(4, parseFunctionFile("testFunction02"));
+		assertTreeSize(5, parseFunctionFile("testFunction03"));
+		assertTreeSize(4, parseFunctionFile("testFunction04"));
 	}
 
 	public static ExtendedCommonTree parseClass(final String filename) throws RecognitionException {

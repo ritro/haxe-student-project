@@ -62,42 +62,72 @@ import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
-module            : myPackage? topLevelList -> ^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList?)
-   ;
-	
-topLevelList      :  (topLevel)*
-;
-topLevel          : myImport
-//                    |   pp
-                    |   topLevelDecl
+module
+	: myPackage? topLevelList -> ^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList?)
 	;
-myPackage           : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent?)
+	
+topLevelList
+	: (topLevel)*
+	;
+
+topLevel
+	: myImport
+//	|   pp
+	| topLevelDecl
+	;
+
+myPackage
+	: PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent?)
+	;
+
+meta	: MONKEYS_AT meta
+	;
+
+metaName
+	: IDENTIFIER
+	| primitiveType
+//	| keyword ?
+	| COLON metaName
+	;
+
+typeDeclFlags
+	: (meta)* (EXTERN | PRIVATE)*
 	;
 	
 qualifiedIdentifier
-    :   (a=IDENTIFIER  ->  $a)   (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
-    ;
+	: (a=IDENTIFIER  ->  $a)   (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
+	;
 	
-myImport            : IMPORT^ dotIdent SEMI!
+myImport
+	: IMPORT^ dotIdent SEMI!
+	| USING^ dotIdent SEMI!
 	;
 // -------- Basics
                     
-access            : PUBLIC
-                    |   PRIVATE
+access
+	: PUBLIC
+	| PRIVATE
 	;
-declAttr          : STATIC
-                    |  INLINE
-                    |   DYNAMIC
-                    |   OVERRIDE
-                    |   access
-	;
-declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_ATTR_LIST", true] declAttr+)
-         ;
 
-paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST", true] param+)
+declAttr
+	: STATIC
+	| INLINE
+	| DYNAMIC
+	| OVERRIDE
+	| access
+	;
+
+declAttrList
+	: (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_ATTR_LIST", true] declAttr+)
+	;
+
+paramList
+	: param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST", true] param+)
 	|	
 	;
-param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
+
+param
+	: QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
 	;
 	
 id	:	IDENTIFIER<VarUsage>
@@ -106,19 +136,19 @@ id	:	IDENTIFIER<VarUsage>
 dotIdent:	(id -> id) (DOT ident=id -> ^(DOT $dotIdent $ident))*
 	;
 	
-assignOp:	EQ	-> EQ<AssignOperationNode>[$EQ]
-        |	PLUSEQ 	-> PLUSEQ<AssignOperationNode>[$PLUSEQ]
-        |	SUBEQ	-> SUBEQ<AssignOperationNode>[$SUBEQ]
-        |	SLASHEQ	-> SLASHEQ<AssignOperationNode>[$SLASHEQ]
-	|	PERCENTEQ
-			-> PERCENTEQ<AssignOperationNode>[$PERCENTEQ]
-	|	AMPEQ	-> AMPEQ<AssignOperationNode>[$AMPEQ]
+assignOp:	EQ		-> EQ<AssignOperationNode>[$EQ]
+        |	PLUSEQ 		-> PLUSEQ<AssignOperationNode>[$PLUSEQ]
+        |	SUBEQ		-> SUBEQ<AssignOperationNode>[$SUBEQ]
+        |	SLASHEQ		-> SLASHEQ<AssignOperationNode>[$SLASHEQ]
+	|	PERCENTEQ	-> PERCENTEQ<AssignOperationNode>[$PERCENTEQ]
+	|	AMPEQ		-> AMPEQ<AssignOperationNode>[$AMPEQ]
+	;
+	
+funcLit	: FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList? typeTagOpt? block?)
 	;
 
-	
-funcLit           : FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList? typeTagOpt? block?)
-	;
-arrayLit         : LBRACKET! exprListOpt RBRACKET!
+arrayLit
+	: LBRACKET! exprListOpt RBRACKET!
 	;
 	/*
 ! -------- Preprocessor
@@ -162,7 +192,11 @@ funcType:	(type) (MINUS_BIGGER! type)*
 	|	VOID
 	;
 	
-type	:	(anonType | dotIdent |INT |FLOAT |DYNAMIC|BOOLEAN|VOID) (typeParam)*
+primitiveType
+	: INT | FLOAT | DYNAMIC | BOOLEAN | VOID
+	;
+
+type	:	(anonType | dotIdent | primitiveType ) (typeParam)*
 	|	
 	;
 	
@@ -185,27 +219,49 @@ functionReturn
 	;	
 
 statement 
-	:	block
-	|	assignExpr SEMI!
-	|	varDecl
-	|	IF parExpression st1=statement (ELSE st2=statement)? 	-> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)          
+	:	varDecl
+	|	block
+	|	IDENTIFIER COLON statement 				-> ^(COLON IDENTIFIER? statement?)
+	|	ifStmt
 	|	FOR LPAREN exp1=expr IN exp2=expr RPAREN statement 	-> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement?)
 	|	WHILE parExpression statement 				-> ^(WHILE<WhileNode> parExpression? statement?)
-	|	DO statement WHILE parExpression SEMI 			-> ^(DO<DoWhileNode> parExpression? statement?)
+	|	DO statement WHILE parExpression 			-> ^(DO<DoWhileNode> parExpression? statement?)
 	|	TRY block catchStmtList 				-> ^(TRY<TryNode> block? catchStmtList?)
-	|	SWITCH LPAREN expr RPAREN LBRACE caseStmt+ RBRACE 	-> ^(SWITCH<SwitchNode> expr? caseStmt+)
-	|	RETURN (expr)? SEMI					-> ^(RETURN expr?)
-	|	THROW expr SEMI 					-> ^(THROW expr?)
-	|	BREAK (IDENTIFIER)? SEMI				-> ^(BREAK IDENTIFIER?)
+	|	switchStmt
+	|	RETURN (expr)? SEMI 					-> ^(RETURN expr?)
+	|	THROW expr SEMI  					-> ^(THROW expr?)
+	|	BREAK (IDENTIFIER)? SEMI 				-> ^(BREAK IDENTIFIER?)
 	|	CONTINUE (IDENTIFIER)? SEMI 				-> ^(CONTINUE IDENTIFIER?)
-	|	expr  SEMI!
-	|	IDENTIFIER COLON statement 				-> ^(COLON IDENTIFIER? statement?)
+	|	expr SEMI!
 	|	SEMI!
 	;
-   
+
+
+// duplicate some statements here
+// it is still buggy
+expr
+	:	assignExpr 
+	|	block
+	|	switchStmt
+	|	ifExpr
+	;
+
+switchStmt
+	:	SWITCH LPAREN expr RPAREN LBRACE caseStmt+ RBRACE 	-> ^(SWITCH<SwitchNode> expr? caseStmt+)
+	;
+
+ifExpr
+	:	IF parExpression st1=expr (ELSE st2=expr)? 	-> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)
+	;
+
+ifStmt
+	:	IF parExpression st1=statement (ELSE st2=statement)? 	-> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)
+	|	IF parExpression st1=statement (ELSE st2=statement)? 	-> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)
+	;
+
 parExpression 
-    :   LPAREN! expr RPAREN!
-    ;
+	:   LPAREN! expr RPAREN!
+	;
 
 block 	:	LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<ExtendedCommonTree>[$RBRACE, true]) 
 	|	SEMI!
@@ -240,34 +296,38 @@ catchStmtList
 	;
 	
 catchStmt
-        :	CATCH LPAREN param RPAREN block -> ^(CATCH param? block?)
+	:	CATCH LPAREN param RPAREN block -> ^(CATCH param? block?)
 	;
 	
 //! -------- Expressions
 
 exprListOpt
 	:	exprList
-        |
+	|
 	;
 	
 exprList:	expr (COMMA! expr)*
 	;
 	
-expr	:	assignExpr
-	;
-	
-assignExpr
-        : 	iterExpr (assignOp^ iterExpr)* 
-	;
-	
+//expr	:	assignExpr
+//	;
 
-ternaryExpr       
-	:	logicOrExpr (QUES^ expr COLON! logicOrExpr)*
+assignExpr
+	:	assignExprEx
+	|	UNTYPED assignExprEx	-> ^(UNTYPED assignExprEx)
 	;
-	
+
+assignExprEx
+	: 	iterExpr (assignOp^ iterExpr)* 
+	;
+
 iterExpr:	ternaryExpr (ELLIPSIS^ ternaryExpr)*
 	;
-       	
+
+ternaryExpr
+	:	logicOrExpr (QUES^ expr COLON! logicOrExpr)*
+	;
+
 logicOrExpr       
 	:	(logicAndExpr) (BARBAR^ logicAndExpr)*
 	;
@@ -299,24 +359,33 @@ prefixExpr
         |	suffixExpr
         ;
 	
+//TODO: create correct tree for function call and slice
 suffixExpr
-	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? exprListOpt?)
-	|	value LBRACKET expr RBRACKET
-	|	value PLUSPLUS 			-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
-	|	value SUBSUB 			-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? SUBSUB)
+	:	value callOrSliceList 	-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? callOrSliceList?)
+	|	value PLUSPLUS 		-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
+	|	value SUBSUB 		-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? SUBSUB?)
 	|	value typeParamOpt
-;
+	;
+
+callOrSliceList
+	: (callOrSlice)+
+	;
+
+callOrSlice
+	: LPAREN exprListOpt RPAREN
+	| LBRACKET expr RBRACKET
+	;
 
 value	:	funcLit 
 	|	arrayLit
         |   	objLit
         |   	NULL
         |   	elementarySymbol
-        |   	LPAREN! (expr|statement) RPAREN!
+        |   	LPAREN! expr RPAREN!
         |	dotIdent
         |
         ;
-        
+
 newExpr           
 	:	NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)
 	;
@@ -334,7 +403,7 @@ topLevelDecl
 	|	typedefDecl
 	;
 	
-enumDecl:	ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER? typeParamOpt? enumBody?)
+enumDecl:	typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER? typeParamOpt? enumBody?)
 	;
 	
 enumBody:	(enumValueDecl)*
@@ -398,8 +467,8 @@ funcProtoDecl
 	;
 	
 classDecl
-	:	EXTERN? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
-			-> ^(CLASS<ClassNode> IDENTIFIER EXTERN? typeParamOpt? inheritListOpt? classBodyScope?)
+	:	typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
+			-> ^(CLASS<ClassNode> IDENTIFIER typeDeclFlags? typeParamOpt? inheritListOpt? classBodyScope?)
 	;
 	
 classBodyScope
@@ -414,7 +483,7 @@ classMember
 	;
 	
 interfaceDecl     
-	:	INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
+	:	typeDeclFlags INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
 	;
 	
 interfaceBody
@@ -561,237 +630,70 @@ EscapeSequence
              )          
 ;     
 
-ABSTRACT
-    :   'abstract'
-    ;
-      
-BOOLEAN
-    :   'Bool'
-    ;
-    
-BREAK
-    :   'break'
-    ;
-    
-BYTE
-    :   'byte'
-    ;
-    
-CASE
-    :   'case'
-    ;
-    
-CATCH
-    :   'catch'
-    ;
-    
-CHAR
-    :   'char'
-    ;
-    
-CLASS
-    :   'class'
-    ;
-    
-CONST
-    :   'const'
-    ;
+ABSTRACT:	'abstract';
+BOOLEAN:	'Bool';
+BREAK:		'break';
+BYTE:		'byte';
+CASE:		'case';
+CATCH:		'catch';
+CHAR:		'char';
+CLASS:		'class';
+CONST:		'const';
+CONTINUE:	'continue';
+DEFAULT:	'default';
+DO:		'do';
+DOUBLE:		'double';
+ELSE:		'else';
+ENUM:		'enum';
+EXTENDS:	'extends';
+EXTERN:		'extern';
+FINAL:		'final';
+FINALLY:	'finally';
+FLOAT:		'Float';
+FOR:		'for';
+GOTO:		'goto';
+IF:		'if';
+IMPLEMENTS:	'implements';
+IMPORT:		'import';
+INSTANCEOF:	'instanceof';
+INT:		'Int';
+INTERFACE:	'interface';
+LONG:		'long';
+NATIVE:		'native';
+NEW:		'new';
+PACKAGE:	'package';
+PRIVATE:	'private';
+PROTECTED:	'protected';
+PUBLIC:		'public';
+RETURN:		'return';
+SHORT:		'short';
+STATIC:		'static';
+INLINE:		'inline';
+DYNAMIC:	'dynamic';
+OVERRIDE:	'override';
+STRICTFP:	'strictfp';
+SUPER:		'super';
+SWITCH:		'switch';
+THIS:		'this';
+THROW:		'throw';
+THROWS:		'throws';
+TRANSIENT:	'transient';
+TRY:		'try';
+TYPEDEF:	'typedef';
+UNTYPED:	'untyped';
+USING:		'using';
+VAR:		'var';
+VOID:		'Void';
+VOLATILE:	'volatile';
+WHILE:		'while';
 
-CONTINUE
-    :   'continue'
-    ;
+TRUE:		'true';
+FALSE:		'false';
+NULL:		'null';
+CAST:		'cast';
+FUNCTION:	'function';
+IN:		'in';
 
-DEFAULT
-    :   'default'
-    ;
-
-DO
-    :   'do'
-    ;
-
-DOUBLE
-    :   'double'
-    ;
-
-ELSE
-    :   'else'
-    ;
-
-ENUM
-    :   'enum'
-    ;             
-
-EXTENDS
-    :   'extends'
-    ;
-
-FINAL
-    :   'final'
-    ;
-
-FINALLY
-    :   'finally'
-    ;
-
-FLOAT
-    :   'Float'
-    ;
-
-FOR
-    :   'for'
-    ;
-
-GOTO
-    :   'goto'
-    ;
-
-IF
-    :   'if'
-    ;
-
-IMPLEMENTS
-    :   'implements'
-    ;
-
-IMPORT
-    :   'import'
-    ;
-
-INSTANCEOF
-    :   'instanceof'
-    ;
-
-INT
-    :   'Int'
-    ;
-
-INTERFACE
-    :   'interface'
-    ;
-
-LONG
-    :   'long'
-    ;
-
-NATIVE
-    :   'native'
-    ;
-
-NEW
-    :   'new'
-    ;
-
-PACKAGE
-    :   'package'
-    ;
-
-PRIVATE
-    :   'private'
-    ;
-
-PROTECTED
-    :   'protected'
-    ;
-
-PUBLIC
-    :   'public'
-    ;
-
-RETURN
-    :   'return'
-    ;
-
-SHORT
-    :   'short'
-    ;
-
-STATIC
-    :   'static'
-    ;
-
-INLINE
-	: 'inline'
-	;
-
-DYNAMIC
-	:'dynamic'
-	;
-	
-OVERRIDE
-	:'override'
-	;
-	
-STRICTFP
-    :   'strictfp'
-    ;
-
-SUPER
-    :   'super'
-    ;
-
-SWITCH
-    :   'switch'
-    ;
-
-THIS
-    :   'this'
-    ;
-
-THROW
-    :   'throw'
-    ;
-
-THROWS
-    :   'throws'
-    ;
-
-TRANSIENT
-    :   'transient'
-    ;
-
-TRY
-    :   'try'
-    ;
-
-VOID
-    :   'Void'
-    ;
-
-VOLATILE
-    :   'volatile'
-    ;
-
-WHILE
-    :   'while'
-    ;
-
-TRUE
-    :   'true'
-    ;
-
-FALSE
-    :   'false'
-    ;
-
-NULL
-    :   'null'
-    ;
-CAST	:	'cast'
-	;
-    
-FUNCTION
-	: 'function'
-	;
-	
-IN	:	'in'
-	;
-VAR	:	'var'
-	;
-TYPEDEF	:	'typedef'
-	;
-EXTERN	:	'extern'
-	;
-	
 LPAREN
     :   '('
     ;

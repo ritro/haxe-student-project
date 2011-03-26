@@ -17,15 +17,12 @@ import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
 
 /**
- * The Class HaxeReferenceResolver.
+ * Class for resolving referances to other languages
  * 
  * @author Anatoly Kondratyev
  */
 public class HaxeReferenceResolver implements IReferenceResolver {
 
-	/**
-	 * Instantiates a new haxe reference resolver.
-	 */
 	public HaxeReferenceResolver() {
 	}
 

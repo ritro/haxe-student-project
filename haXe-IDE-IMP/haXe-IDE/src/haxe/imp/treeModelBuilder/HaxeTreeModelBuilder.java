@@ -68,6 +68,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 * @return true, if successful
 		 */
 		public boolean visit(final Object n) {
+			//pushSubItem(n);//???why not this
 			HaxeTreeModelBuilder.this.pushSubItem(n);
 			return true;
 		}
@@ -98,6 +99,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 *            the n
 		 */
 		public void endVisit(final Object n) {
+			//popSubItem();//???why not this
 			HaxeTreeModelBuilder.this.popSubItem();
 		}
 	}

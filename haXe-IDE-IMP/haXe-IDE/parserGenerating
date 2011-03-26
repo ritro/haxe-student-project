@@ -29,6 +29,19 @@
 То же самое будет для Block-скопов функций:
 В методе public final TinyHaxeTry1Parser.block_return block()
 			throws RecognitionException
+	
+	Token RBRACE354 = null;		
+			Object RBRACE354_tree = null;
+        RewriteRuleTokenStream stream_RBRACE = new RewriteRuleTokenStream(adaptor, "token RBRACE");
+			
+			RBRACE354 = (Token) this.match(this.input, RBRACE,
+                    FOLLOW_RBRACE_in_classDecl3309);
+            if (this.state.failed) {
+                return retval;
+            }
+            if (this.state.backtracking == 0) {
+                stream_RBRACE.add(RBRACE354);
+            }
 
 							stream_blockStmt.reset();
 
@@ -46,3 +59,11 @@
 							// stream_RBRACE.nextNode());
 
 							adaptor.addChild(root_0, root_1);
+							
+							
+							
+							
+							
+    /** The Constant FOLLOW_RBRACE_in_classDecl3309. */
+    public static final BitSet FOLLOW_RBRACE_in_classDecl3309 = new BitSet(
+            new long[] { 0x0000000000000002L });

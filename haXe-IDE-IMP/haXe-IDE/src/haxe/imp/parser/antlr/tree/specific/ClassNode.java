@@ -10,6 +10,9 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser.inheritListOpt_return;
+import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser.inherit_return;
+import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser.typeTagOpt_return;
 import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
@@ -80,6 +83,16 @@ public class ClassNode extends ExtendedCommonTree {
 				.getChildren()) {
 			if (tree instanceof BlockScopeNode) {
 				return (BlockScopeNode) tree;
+			}
+		}
+		return null;
+	}
+	
+	public ExtendedCommonTree getInherits() {
+		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
+				.getChildren()) {
+			if (tree.getType() == 11) {
+				return (ExtendedCommonTree) tree;
 			}
 		}
 		return null;

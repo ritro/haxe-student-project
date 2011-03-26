@@ -127,5 +127,19 @@
             value="true">
       </persistent>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="haxe.imp.preferences.HaxePreferencesInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Haxe"
+            class="haxe.imp.preferences.HaxePreferencePage"
+            id="haxe.imp.preferences.Haxe">
+      </page>
+   </extension>
 
 </plugin>

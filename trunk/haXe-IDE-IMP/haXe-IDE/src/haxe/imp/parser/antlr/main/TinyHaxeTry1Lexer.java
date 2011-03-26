@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 TinyHaxeTry1.g 2011-03-25 15:58:17
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g 2011-03-26 13:10:57
 
 package haxe.imp.parser.antlr.main;
 
@@ -12,169 +12,169 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class TinyHaxeTry1Lexer extends Lexer {
-    public static final int PACKAGE=15;
-    public static final int FUNCTION=38;
-    public static final int CAST=92;
-    public static final int EXPONENT=149;
-    public static final int LT=48;
-    public static final int STAR=84;
-    public static final int WHILE=54;
-    public static final int PP_OR_EXPRESSION=158;
-    public static final int FLOATNUM=104;
-    public static final int CONST=117;
-    public static final int OCTAL_ESC=164;
-    public static final int CASE=66;
-    public static final int CHAR=116;
-    public static final int NEW=51;
-    public static final int EXTERN=20;
-    public static final int DO=55;
-    public static final int GTGT=50;
     public static final int EOF=-1;
-    public static final int BREAK=59;
-    public static final int LBRACKET=41;
-    public static final int ELSE_TOKEN=155;
-    public static final int RPAREN=40;
-    public static final int FINAL=119;
+    public static final int PROPERTY_DECL=4;
+    public static final int MODULE=5;
+    public static final int SUFFIX_EXPR=6;
+    public static final int BLOCK_SCOPE=7;
+    public static final int PARAM_LIST=8;
+    public static final int TYPE_TAG=9;
+    public static final int TYPE_PARAM_OPT=10;
+    public static final int INHERIT_LIST_OPT=11;
+    public static final int DECL_ATTR_LIST=12;
+    public static final int VAR_INIT=13;
+    public static final int ASSIGN_OPERATOR=14;
+    public static final int PACKAGE=15;
+    public static final int SEMI=16;
+    public static final int MONKEYS_AT=17;
+    public static final int IDENTIFIER=18;
+    public static final int COLON=19;
+    public static final int EXTERN=20;
+    public static final int PRIVATE=21;
+    public static final int DOT=22;
     public static final int IMPORT=23;
     public static final int USING=24;
-    public static final int SUBSUB=87;
-    public static final int STAREQ=133;
-    public static final int CARET=79;
-    public static final int PP_AND_EXPRESSION=159;
-    public static final int RETURN=57;
-    public static final int THIS=129;
-    public static final int DOUBLE=118;
-    public static final int MONKEYS_AT=17;
-    public static final int BARBAR=71;
-    public static final int VAR=94;
-    public static final int VOID=44;
-    public static final int SUPER=128;
-    public static final int EQ=32;
-    public static final int GOTO=121;
-    public static final int AMPAMP=72;
-    public static final int COMMENT=150;
-    public static final int VAR_INIT=13;
-    public static final int LTLTEQ=145;
-    public static final int QUES=31;
-    public static final int EQEQ=73;
-    public static final int HexPrefix=110;
-    public static final int PERCENTDBBQ=138;
-    public static final int RBRACE=63;
-    public static final int STATIC=26;
-    public static final int PRIVATE=21;
-    public static final int BLOCK_SCOPE=7;
-    public static final int SWITCH=61;
-    public static final int NULL=91;
-    public static final int GTGTEQ=146;
-    public static final int STRICTFP=127;
-    public static final int ELSE=65;
-    public static final int NATIVE=124;
-    public static final int ELLIPSIS=70;
-    public static final int THROWS=130;
-    public static final int INT=45;
-    public static final int SLASHEQ=35;
-    public static final int INTLITERAL=101;
-    public static final int PERCENTBB=143;
-    public static final int TRY=56;
-    public static final int IF_TOKEN=154;
-    public static final int LongSuffix=109;
-    public static final int LONGLITERAL=100;
-    public static final int ENDIF_TOKEN=156;
-    public static final int PERCENTLL=142;
-    public static final int BANGEQQ=141;
-    public static final int WS=107;
-    public static final int PP_PRIMARY_EXPRESSION=161;
-    public static final int PERCENTDLQ=136;
-    public static final int INHERIT_LIST_OPT=11;
-    public static final int UNTYPED=69;
-    public static final int CHARLITERAL=103;
-    public static final int GT=49;
-    public static final int PP_CONDITIONAL=152;
-    public static final int INLINE=27;
-    public static final int CATCH=68;
-    public static final int FALSE=106;
-    public static final int EscapeSequence=113;
-    public static final int THROW=58;
-    public static final int DYNAMIC=28;
-    public static final int PROTECTED=125;
-    public static final int CLASS=95;
-    public static final int BAREQ=134;
-    public static final int IntegerNumber=108;
-    public static final int AMP=78;
-    public static final int PP_EXPRESSION=157;
-    public static final int PLUSPLUS=88;
-    public static final int LBRACE=62;
-    public static final int LTEQ=76;
-    public static final int TYPE_PARAM_OPT=10;
-    public static final int GTGTGT=81;
-    public static final int SUBEQ=34;
-    public static final int FOR=52;
-    public static final int Exponent=112;
-    public static final int SUB=83;
-    public static final int SUFFIX_EXPR=6;
-    public static final int FLOAT=46;
-    public static final int ABSTRACT=114;
-    public static final int MINUS_BIGGER=43;
-    public static final int PERCENTDBQ=137;
-    public static final int HexDigit=111;
-    public static final int PLUSEQ=33;
-    public static final int LPAREN=39;
-    public static final int IF=64;
-    public static final int INTNUM=148;
-    public static final int SLASH=85;
-    public static final int BOOLEAN=47;
-    public static final int ESC_SEQ=165;
-    public static final int IN=53;
-    public static final int IMPLEMENTS=98;
-    public static final int GTGTGTEQ=147;
-    public static final int CONTINUE=60;
-    public static final int COMMA=30;
-    public static final int AMPEQ=37;
-    public static final int PREPROCESSOR_DIRECTIVE=153;
-    public static final int IDENTIFIER=18;
-    public static final int TRANSIENT=131;
-    public static final int TILDE=90;
-    public static final int BANGEQ=74;
-    public static final int PLUS=82;
-    public static final int RBRACKET=42;
-    public static final int DOT=22;
-    public static final int LTLT=80;
-    public static final int BYTE=115;
-    public static final int PERCENT=86;
-    public static final int VOLATILE=132;
-    public static final int DECL_ATTR_LIST=12;
-    public static final int ASSIGN_OPERATOR=14;
-    public static final int TYPEDEF=99;
-    public static final int TS=151;
-    public static final int UNICODE_ESC=163;
-    public static final int DEFAULT=67;
-    public static final int EQEQEQ=139;
-    public static final int HEX_DIGIT=162;
-    public static final int SHORT=126;
-    public static final int BANG=89;
-    public static final int INSTANCEOF=122;
-    public static final int GTEQ=75;
-    public static final int MODULE=5;
-    public static final int SEMI=16;
-    public static final int TRUE=105;
-    public static final int COLON=19;
-    public static final int PARAM_LIST=8;
-    public static final int PERCENTLESQ=140;
-    public static final int ENUM=93;
-    public static final int PERCENTEQ=36;
-    public static final int FINALLY=120;
-    public static final int PROPERTY_DECL=4;
-    public static final int OVERRIDE=29;
-    public static final int STRINGLITERAL=102;
-    public static final int CARETEQ=135;
-    public static final int PERCENTBBB=144;
-    public static final int INTERFACE=96;
-    public static final int PP_UNARY_EXPRESSION=160;
-    public static final int LONG=123;
     public static final int PUBLIC=25;
-    public static final int EXTENDS=97;
-    public static final int TYPE_TAG=9;
+    public static final int STATIC=26;
+    public static final int INLINE=27;
+    public static final int DYNAMIC=28;
+    public static final int OVERRIDE=29;
+    public static final int COMMA=30;
+    public static final int QUES=31;
+    public static final int EQ=32;
+    public static final int PLUSEQ=33;
+    public static final int SUBEQ=34;
+    public static final int SLASHEQ=35;
+    public static final int PERCENTEQ=36;
+    public static final int AMPEQ=37;
+    public static final int FUNCTION=38;
+    public static final int LPAREN=39;
+    public static final int RPAREN=40;
+    public static final int LBRACKET=41;
+    public static final int RBRACKET=42;
+    public static final int MINUS_BIGGER=43;
+    public static final int VOID=44;
+    public static final int INT=45;
+    public static final int FLOAT=46;
+    public static final int BOOLEAN=47;
+    public static final int LT=48;
+    public static final int GT=49;
+    public static final int GTGT=50;
+    public static final int NEW=51;
+    public static final int FOR=52;
+    public static final int IN=53;
+    public static final int WHILE=54;
+    public static final int DO=55;
+    public static final int TRY=56;
+    public static final int RETURN=57;
+    public static final int THROW=58;
+    public static final int BREAK=59;
+    public static final int CONTINUE=60;
+    public static final int SWITCH=61;
+    public static final int LBRACE=62;
+    public static final int RBRACE=63;
+    public static final int IF=64;
+    public static final int ELSE=65;
+    public static final int CASE=66;
+    public static final int DEFAULT=67;
+    public static final int CATCH=68;
+    public static final int UNTYPED=69;
+    public static final int ELLIPSIS=70;
+    public static final int BARBAR=71;
+    public static final int AMPAMP=72;
+    public static final int EQEQ=73;
+    public static final int BANGEQ=74;
+    public static final int GTEQ=75;
+    public static final int LTEQ=76;
     public static final int BAR=77;
+    public static final int AMP=78;
+    public static final int CARET=79;
+    public static final int LTLT=80;
+    public static final int GTGTGT=81;
+    public static final int PLUS=82;
+    public static final int SUB=83;
+    public static final int STAR=84;
+    public static final int SLASH=85;
+    public static final int PERCENT=86;
+    public static final int SUBSUB=87;
+    public static final int PLUSPLUS=88;
+    public static final int BANG=89;
+    public static final int TILDE=90;
+    public static final int NULL=91;
+    public static final int CAST=92;
+    public static final int ENUM=93;
+    public static final int VAR=94;
+    public static final int CLASS=95;
+    public static final int INTERFACE=96;
+    public static final int EXTENDS=97;
+    public static final int IMPLEMENTS=98;
+    public static final int TYPEDEF=99;
+    public static final int LONGLITERAL=100;
+    public static final int INTLITERAL=101;
+    public static final int STRINGLITERAL=102;
+    public static final int CHARLITERAL=103;
+    public static final int FLOATNUM=104;
+    public static final int TRUE=105;
+    public static final int FALSE=106;
+    public static final int WS=107;
+    public static final int IntegerNumber=108;
+    public static final int LongSuffix=109;
+    public static final int HexPrefix=110;
+    public static final int HexDigit=111;
+    public static final int Exponent=112;
+    public static final int EscapeSequence=113;
+    public static final int ABSTRACT=114;
+    public static final int BYTE=115;
+    public static final int CHAR=116;
+    public static final int CONST=117;
+    public static final int DOUBLE=118;
+    public static final int FINAL=119;
+    public static final int FINALLY=120;
+    public static final int GOTO=121;
+    public static final int INSTANCEOF=122;
+    public static final int LONG=123;
+    public static final int NATIVE=124;
+    public static final int PROTECTED=125;
+    public static final int SHORT=126;
+    public static final int STRICTFP=127;
+    public static final int SUPER=128;
+    public static final int THIS=129;
+    public static final int THROWS=130;
+    public static final int TRANSIENT=131;
+    public static final int VOLATILE=132;
+    public static final int STAREQ=133;
+    public static final int BAREQ=134;
+    public static final int CARETEQ=135;
+    public static final int PERCENTDLQ=136;
+    public static final int PERCENTDBQ=137;
+    public static final int PERCENTDBBQ=138;
+    public static final int EQEQEQ=139;
+    public static final int PERCENTLESQ=140;
+    public static final int BANGEQQ=141;
+    public static final int PERCENTLL=142;
+    public static final int PERCENTBB=143;
+    public static final int PERCENTBBB=144;
+    public static final int LTLTEQ=145;
+    public static final int GTGTEQ=146;
+    public static final int GTGTGTEQ=147;
+    public static final int INTNUM=148;
+    public static final int EXPONENT=149;
+    public static final int COMMENT=150;
+    public static final int TS=151;
+    public static final int PP_CONDITIONAL=152;
+    public static final int PREPROCESSOR_DIRECTIVE=153;
+    public static final int IF_TOKEN=154;
+    public static final int ELSE_TOKEN=155;
+    public static final int ENDIF_TOKEN=156;
+    public static final int PP_EXPRESSION=157;
+    public static final int PP_OR_EXPRESSION=158;
+    public static final int PP_AND_EXPRESSION=159;
+    public static final int PP_UNARY_EXPRESSION=160;
+    public static final int PP_PRIMARY_EXPRESSION=161;
+    public static final int HEX_DIGIT=162;
+    public static final int UNICODE_ESC=163;
+    public static final int OCTAL_ESC=164;
+    public static final int ESC_SEQ=165;
 
     	// Preprocessor Data Structures - see lexer section below and PreProcessor.cs
     	protected HashMap<String,String> macroDefines = new HashMap<String,String>();	
@@ -195,15 +195,15 @@ public class TinyHaxeTry1Lexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "TinyHaxeTry1.g"; }
+    public String getGrammarFileName() { return "F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g"; }
 
     // $ANTLR start "WS"
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:557:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // TinyHaxeTry1.g:557:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:558:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:558:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -231,8 +231,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:568:5: ( IntegerNumber LongSuffix )
-            // TinyHaxeTry1.g:568:9: IntegerNumber LongSuffix
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:569:5: ( IntegerNumber LongSuffix )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:569:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
             mLongSuffix(); 
@@ -252,8 +252,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:573:5: ( IntegerNumber )
-            // TinyHaxeTry1.g:573:9: IntegerNumber
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:574:5: ( IntegerNumber )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:574:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -270,7 +270,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:578:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:579:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
             int alt4=4;
             int LA4_0 = input.LA(1);
 
@@ -309,17 +309,17 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // TinyHaxeTry1.g:578:9: '0'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:579:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:579:9: '1' .. '9' ( '0' .. '9' )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:580:9: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // TinyHaxeTry1.g:579:18: ( '0' .. '9' )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:580:18: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -332,7 +332,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:579:19: '0' .. '9'
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:580:19: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -348,10 +348,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // TinyHaxeTry1.g:580:9: '0' ( '0' .. '7' )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:581:9: '0' ( '0' .. '7' )+
                     {
                     match('0'); 
-                    // TinyHaxeTry1.g:580:13: ( '0' .. '7' )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:581:13: ( '0' .. '7' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -365,7 +365,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:580:14: '0' .. '7'
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:581:14: '0' .. '7'
                     	    {
                     	    matchRange('0','7'); 
 
@@ -385,10 +385,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // TinyHaxeTry1.g:581:9: HexPrefix ( HexDigit )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:582:9: HexPrefix ( HexDigit )+
                     {
                     mHexPrefix(); 
-                    // TinyHaxeTry1.g:581:19: ( HexDigit )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:582:19: ( HexDigit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -402,7 +402,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:581:19: HexDigit
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:582:19: HexDigit
                     	    {
                     	    mHexDigit(); 
 
@@ -432,7 +432,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HexPrefix"
     public final void mHexPrefix() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:586:5: ( '0x' | '0X' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:587:5: ( '0x' | '0X' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -460,7 +460,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // TinyHaxeTry1.g:586:9: '0x'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:587:9: '0x'
                     {
                     match("0x"); 
 
@@ -468,7 +468,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:586:16: '0X'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:587:16: '0X'
                     {
                     match("0X"); 
 
@@ -486,8 +486,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:591:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // TinyHaxeTry1.g:591:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:592:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:592:9: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -510,8 +510,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:596:5: ( 'l' | 'L' )
-            // TinyHaxeTry1.g:
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:597:5: ( 'l' | 'L' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -534,8 +534,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:601:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // TinyHaxeTry1.g:601:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:602:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:602:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -546,7 +546,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // TinyHaxeTry1.g:601:23: ( '+' | '-' )?
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:602:23: ( '+' | '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -555,7 +555,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // TinyHaxeTry1.g:
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -572,7 +572,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             }
 
-            // TinyHaxeTry1.g:601:38: ( '0' .. '9' )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:602:38: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -586,7 +586,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // TinyHaxeTry1.g:601:40: '0' .. '9'
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:602:40: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -616,11 +616,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:605:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // TinyHaxeTry1.g:605:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:606:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:606:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
-            // TinyHaxeTry1.g:606:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:607:9: ( EscapeSequence | ~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -638,14 +638,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // TinyHaxeTry1.g:606:13: EscapeSequence
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:607:13: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:607:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:608:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -677,89 +677,89 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:615:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
-            // TinyHaxeTry1.g:615:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:616:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:616:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             {
             match('\\'); 
-            // TinyHaxeTry1.g:615:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:616:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             int alt9=11;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // TinyHaxeTry1.g:616:18: 'b'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:617:18: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:617:18: 't'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:618:18: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 3 :
-                    // TinyHaxeTry1.g:618:18: 'n'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:619:18: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 4 :
-                    // TinyHaxeTry1.g:619:18: 'f'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:620:18: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 5 :
-                    // TinyHaxeTry1.g:620:18: 'r'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:621:18: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 6 :
-                    // TinyHaxeTry1.g:621:18: '\\\"'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:622:18: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 7 :
-                    // TinyHaxeTry1.g:622:18: '\\''
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:623:18: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 8 :
-                    // TinyHaxeTry1.g:623:18: '\\\\'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:624:18: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 9 :
-                    // TinyHaxeTry1.g:625:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
-                    // TinyHaxeTry1.g:625:18: ( '0' .. '3' )
-                    // TinyHaxeTry1.g:625:19: '0' .. '3'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:18: ( '0' .. '3' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:19: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // TinyHaxeTry1.g:625:29: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:625:30: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:29: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:30: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // TinyHaxeTry1.g:625:40: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:625:41: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:40: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:626:41: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -769,17 +769,17 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 10 :
-                    // TinyHaxeTry1.g:627:18: ( '0' .. '7' ) ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:628:18: ( '0' .. '7' ) ( '0' .. '7' )
                     {
-                    // TinyHaxeTry1.g:627:18: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:627:19: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:628:18: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:628:19: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // TinyHaxeTry1.g:627:29: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:627:30: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:628:29: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:628:30: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -789,10 +789,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 11 :
-                    // TinyHaxeTry1.g:629:18: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:630:18: ( '0' .. '7' )
                     {
-                    // TinyHaxeTry1.g:629:18: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:629:19: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:630:18: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:630:19: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -818,8 +818,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ABSTRACT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:633:9: ( 'abstract' )
-            // TinyHaxeTry1.g:633:11: 'abstract'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:634:9: ( 'abstract' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:634:11: 'abstract'
             {
             match("abstract"); 
 
@@ -839,8 +839,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:634:8: ( 'Bool' )
-            // TinyHaxeTry1.g:634:10: 'Bool'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:635:8: ( 'Bool' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:635:10: 'Bool'
             {
             match("Bool"); 
 
@@ -860,8 +860,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:635:6: ( 'break' )
-            // TinyHaxeTry1.g:635:9: 'break'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:636:6: ( 'break' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:636:9: 'break'
             {
             match("break"); 
 
@@ -881,8 +881,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:636:5: ( 'byte' )
-            // TinyHaxeTry1.g:636:8: 'byte'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:637:5: ( 'byte' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:637:8: 'byte'
             {
             match("byte"); 
 
@@ -902,8 +902,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CASE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:637:5: ( 'case' )
-            // TinyHaxeTry1.g:637:8: 'case'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:638:5: ( 'case' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:638:8: 'case'
             {
             match("case"); 
 
@@ -923,8 +923,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CATCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:638:6: ( 'catch' )
-            // TinyHaxeTry1.g:638:9: 'catch'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:639:6: ( 'catch' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:639:9: 'catch'
             {
             match("catch"); 
 
@@ -944,8 +944,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:639:5: ( 'char' )
-            // TinyHaxeTry1.g:639:8: 'char'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:640:5: ( 'char' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:640:8: 'char'
             {
             match("char"); 
 
@@ -965,8 +965,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:640:6: ( 'class' )
-            // TinyHaxeTry1.g:640:9: 'class'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:641:6: ( 'class' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:641:9: 'class'
             {
             match("class"); 
 
@@ -986,8 +986,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CONST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:641:6: ( 'const' )
-            // TinyHaxeTry1.g:641:9: 'const'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:642:6: ( 'const' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:642:9: 'const'
             {
             match("const"); 
 
@@ -1007,8 +1007,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CONTINUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:642:9: ( 'continue' )
-            // TinyHaxeTry1.g:642:11: 'continue'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:643:9: ( 'continue' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:643:11: 'continue'
             {
             match("continue"); 
 
@@ -1028,8 +1028,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DEFAULT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:643:8: ( 'default' )
-            // TinyHaxeTry1.g:643:10: 'default'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:644:8: ( 'default' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:644:10: 'default'
             {
             match("default"); 
 
@@ -1049,8 +1049,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:644:3: ( 'do' )
-            // TinyHaxeTry1.g:644:6: 'do'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:645:3: ( 'do' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:645:6: 'do'
             {
             match("do"); 
 
@@ -1070,8 +1070,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:645:7: ( 'double' )
-            // TinyHaxeTry1.g:645:10: 'double'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:646:7: ( 'double' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:646:10: 'double'
             {
             match("double"); 
 
@@ -1091,8 +1091,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:646:5: ( 'else' )
-            // TinyHaxeTry1.g:646:8: 'else'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:647:5: ( 'else' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:647:8: 'else'
             {
             match("else"); 
 
@@ -1112,8 +1112,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ENUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:647:5: ( 'enum' )
-            // TinyHaxeTry1.g:647:8: 'enum'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:648:5: ( 'enum' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:648:8: 'enum'
             {
             match("enum"); 
 
@@ -1133,8 +1133,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:648:8: ( 'extends' )
-            // TinyHaxeTry1.g:648:10: 'extends'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:649:8: ( 'extends' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:649:10: 'extends'
             {
             match("extends"); 
 
@@ -1154,8 +1154,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EXTERN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:649:7: ( 'extern' )
-            // TinyHaxeTry1.g:649:10: 'extern'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:650:7: ( 'extern' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:650:10: 'extern'
             {
             match("extern"); 
 
@@ -1175,8 +1175,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FINAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:650:6: ( 'final' )
-            // TinyHaxeTry1.g:650:9: 'final'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:651:6: ( 'final' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:651:9: 'final'
             {
             match("final"); 
 
@@ -1196,8 +1196,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FINALLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:651:8: ( 'finally' )
-            // TinyHaxeTry1.g:651:10: 'finally'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:652:8: ( 'finally' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:652:10: 'finally'
             {
             match("finally"); 
 
@@ -1217,8 +1217,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:652:6: ( 'Float' )
-            // TinyHaxeTry1.g:652:9: 'Float'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:653:6: ( 'Float' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:653:9: 'Float'
             {
             match("Float"); 
 
@@ -1238,8 +1238,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:653:4: ( 'for' )
-            // TinyHaxeTry1.g:653:7: 'for'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:654:4: ( 'for' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:654:7: 'for'
             {
             match("for"); 
 
@@ -1259,8 +1259,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GOTO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:654:5: ( 'goto' )
-            // TinyHaxeTry1.g:654:8: 'goto'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:655:5: ( 'goto' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:655:8: 'goto'
             {
             match("goto"); 
 
@@ -1280,8 +1280,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:655:3: ( 'if' )
-            // TinyHaxeTry1.g:655:6: 'if'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:656:3: ( 'if' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:656:6: 'if'
             {
             match("if"); 
 
@@ -1301,8 +1301,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IMPLEMENTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:656:11: ( 'implements' )
-            // TinyHaxeTry1.g:656:13: 'implements'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:657:11: ( 'implements' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:657:13: 'implements'
             {
             match("implements"); 
 
@@ -1322,8 +1322,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IMPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:657:7: ( 'import' )
-            // TinyHaxeTry1.g:657:10: 'import'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:658:7: ( 'import' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:658:10: 'import'
             {
             match("import"); 
 
@@ -1343,8 +1343,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:658:11: ( 'instanceof' )
-            // TinyHaxeTry1.g:658:13: 'instanceof'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:659:11: ( 'instanceof' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:659:13: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1364,8 +1364,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:659:4: ( 'Int' )
-            // TinyHaxeTry1.g:659:7: 'Int'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:660:4: ( 'Int' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:660:7: 'Int'
             {
             match("Int"); 
 
@@ -1385,8 +1385,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTERFACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:660:10: ( 'interface' )
-            // TinyHaxeTry1.g:660:12: 'interface'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:661:10: ( 'interface' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:661:12: 'interface'
             {
             match("interface"); 
 
@@ -1406,8 +1406,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:661:5: ( 'long' )
-            // TinyHaxeTry1.g:661:8: 'long'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:662:5: ( 'long' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:662:8: 'long'
             {
             match("long"); 
 
@@ -1427,8 +1427,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NATIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:662:7: ( 'native' )
-            // TinyHaxeTry1.g:662:10: 'native'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:663:7: ( 'native' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:663:10: 'native'
             {
             match("native"); 
 
@@ -1448,8 +1448,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:663:4: ( 'new' )
-            // TinyHaxeTry1.g:663:7: 'new'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:664:4: ( 'new' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:664:7: 'new'
             {
             match("new"); 
 
@@ -1469,8 +1469,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PACKAGE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:664:8: ( 'package' )
-            // TinyHaxeTry1.g:664:10: 'package'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:665:8: ( 'package' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:665:10: 'package'
             {
             match("package"); 
 
@@ -1490,8 +1490,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:665:8: ( 'private' )
-            // TinyHaxeTry1.g:665:10: 'private'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:666:8: ( 'private' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:666:10: 'private'
             {
             match("private"); 
 
@@ -1511,8 +1511,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PROTECTED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:666:10: ( 'protected' )
-            // TinyHaxeTry1.g:666:12: 'protected'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:667:10: ( 'protected' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:667:12: 'protected'
             {
             match("protected"); 
 
@@ -1532,8 +1532,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:667:7: ( 'public' )
-            // TinyHaxeTry1.g:667:10: 'public'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:668:7: ( 'public' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:668:10: 'public'
             {
             match("public"); 
 
@@ -1553,8 +1553,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:668:7: ( 'return' )
-            // TinyHaxeTry1.g:668:10: 'return'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:669:7: ( 'return' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:669:10: 'return'
             {
             match("return"); 
 
@@ -1574,8 +1574,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:669:6: ( 'short' )
-            // TinyHaxeTry1.g:669:9: 'short'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:670:6: ( 'short' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:670:9: 'short'
             {
             match("short"); 
 
@@ -1595,8 +1595,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STATIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:670:7: ( 'static' )
-            // TinyHaxeTry1.g:670:10: 'static'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:671:7: ( 'static' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:671:10: 'static'
             {
             match("static"); 
 
@@ -1616,8 +1616,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:671:7: ( 'inline' )
-            // TinyHaxeTry1.g:671:10: 'inline'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:672:7: ( 'inline' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:672:10: 'inline'
             {
             match("inline"); 
 
@@ -1637,8 +1637,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DYNAMIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:672:8: ( 'dynamic' )
-            // TinyHaxeTry1.g:672:10: 'dynamic'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:673:8: ( 'dynamic' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:673:10: 'dynamic'
             {
             match("dynamic"); 
 
@@ -1658,8 +1658,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = OVERRIDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:673:9: ( 'override' )
-            // TinyHaxeTry1.g:673:11: 'override'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:674:9: ( 'override' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:674:11: 'override'
             {
             match("override"); 
 
@@ -1679,8 +1679,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STRICTFP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:674:9: ( 'strictfp' )
-            // TinyHaxeTry1.g:674:11: 'strictfp'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:675:9: ( 'strictfp' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:675:11: 'strictfp'
             {
             match("strictfp"); 
 
@@ -1700,8 +1700,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:675:6: ( 'super' )
-            // TinyHaxeTry1.g:675:9: 'super'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:676:6: ( 'super' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:676:9: 'super'
             {
             match("super"); 
 
@@ -1721,8 +1721,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:676:7: ( 'switch' )
-            // TinyHaxeTry1.g:676:10: 'switch'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:677:7: ( 'switch' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:677:10: 'switch'
             {
             match("switch"); 
 
@@ -1742,8 +1742,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:677:5: ( 'this' )
-            // TinyHaxeTry1.g:677:8: 'this'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:678:5: ( 'this' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:678:8: 'this'
             {
             match("this"); 
 
@@ -1763,8 +1763,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:678:6: ( 'throw' )
-            // TinyHaxeTry1.g:678:9: 'throw'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:679:6: ( 'throw' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:679:9: 'throw'
             {
             match("throw"); 
 
@@ -1784,8 +1784,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = THROWS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:679:7: ( 'throws' )
-            // TinyHaxeTry1.g:679:10: 'throws'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:680:7: ( 'throws' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:680:10: 'throws'
             {
             match("throws"); 
 
@@ -1805,8 +1805,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRANSIENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:680:10: ( 'transient' )
-            // TinyHaxeTry1.g:680:12: 'transient'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:681:10: ( 'transient' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:681:12: 'transient'
             {
             match("transient"); 
 
@@ -1826,8 +1826,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:681:4: ( 'try' )
-            // TinyHaxeTry1.g:681:7: 'try'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:682:4: ( 'try' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:682:7: 'try'
             {
             match("try"); 
 
@@ -1847,8 +1847,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TYPEDEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:682:8: ( 'typedef' )
-            // TinyHaxeTry1.g:682:10: 'typedef'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:683:8: ( 'typedef' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:683:10: 'typedef'
             {
             match("typedef"); 
 
@@ -1868,8 +1868,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = UNTYPED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:683:8: ( 'untyped' )
-            // TinyHaxeTry1.g:683:10: 'untyped'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:684:8: ( 'untyped' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:684:10: 'untyped'
             {
             match("untyped"); 
 
@@ -1889,8 +1889,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = USING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:684:6: ( 'using' )
-            // TinyHaxeTry1.g:684:9: 'using'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:685:6: ( 'using' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:685:9: 'using'
             {
             match("using"); 
 
@@ -1910,8 +1910,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:685:4: ( 'var' )
-            // TinyHaxeTry1.g:685:7: 'var'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:686:4: ( 'var' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:686:7: 'var'
             {
             match("var"); 
 
@@ -1931,8 +1931,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:686:5: ( 'Void' )
-            // TinyHaxeTry1.g:686:8: 'Void'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:687:5: ( 'Void' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:687:8: 'Void'
             {
             match("Void"); 
 
@@ -1952,8 +1952,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = VOLATILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:687:9: ( 'volatile' )
-            // TinyHaxeTry1.g:687:11: 'volatile'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:688:9: ( 'volatile' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:688:11: 'volatile'
             {
             match("volatile"); 
 
@@ -1973,8 +1973,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:688:6: ( 'while' )
-            // TinyHaxeTry1.g:688:9: 'while'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:689:6: ( 'while' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:689:9: 'while'
             {
             match("while"); 
 
@@ -1994,8 +1994,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:690:5: ( 'true' )
-            // TinyHaxeTry1.g:690:8: 'true'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:691:5: ( 'true' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:691:8: 'true'
             {
             match("true"); 
 
@@ -2015,8 +2015,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:691:6: ( 'false' )
-            // TinyHaxeTry1.g:691:9: 'false'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:692:6: ( 'false' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:692:9: 'false'
             {
             match("false"); 
 
@@ -2036,8 +2036,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:692:5: ( 'null' )
-            // TinyHaxeTry1.g:692:8: 'null'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:693:5: ( 'null' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:693:8: 'null'
             {
             match("null"); 
 
@@ -2057,8 +2057,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CAST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:693:5: ( 'cast' )
-            // TinyHaxeTry1.g:693:8: 'cast'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:694:5: ( 'cast' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:694:8: 'cast'
             {
             match("cast"); 
 
@@ -2078,8 +2078,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:694:9: ( 'function' )
-            // TinyHaxeTry1.g:694:11: 'function'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:695:9: ( 'function' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:695:11: 'function'
             {
             match("function"); 
 
@@ -2099,8 +2099,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:695:3: ( 'in' )
-            // TinyHaxeTry1.g:695:6: 'in'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:696:3: ( 'in' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:696:6: 'in'
             {
             match("in"); 
 
@@ -2120,8 +2120,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:698:5: ( '(' )
-            // TinyHaxeTry1.g:698:9: '('
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:699:5: ( '(' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:699:9: '('
             {
             match('('); 
 
@@ -2140,8 +2140,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:702:5: ( ')' )
-            // TinyHaxeTry1.g:702:9: ')'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:703:5: ( ')' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:703:9: ')'
             {
             match(')'); 
 
@@ -2160,8 +2160,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:706:5: ( '{' )
-            // TinyHaxeTry1.g:706:9: '{'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:707:5: ( '{' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:707:9: '{'
             {
             match('{'); 
 
@@ -2180,8 +2180,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:710:5: ( '}' )
-            // TinyHaxeTry1.g:710:9: '}'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:711:5: ( '}' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:711:9: '}'
             {
             match('}'); 
 
@@ -2200,8 +2200,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:714:5: ( '[' )
-            // TinyHaxeTry1.g:714:9: '['
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:715:5: ( '[' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:715:9: '['
             {
             match('['); 
 
@@ -2220,8 +2220,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:718:5: ( ']' )
-            // TinyHaxeTry1.g:718:9: ']'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:719:5: ( ']' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:719:9: ']'
             {
             match(']'); 
 
@@ -2240,8 +2240,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SEMI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:722:5: ( ';' )
-            // TinyHaxeTry1.g:722:9: ';'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:723:5: ( ';' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:723:9: ';'
             {
             match(';'); 
 
@@ -2260,8 +2260,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:726:5: ( ',' )
-            // TinyHaxeTry1.g:726:9: ','
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:727:5: ( ',' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:727:9: ','
             {
             match(','); 
 
@@ -2280,8 +2280,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:730:5: ( '.' )
-            // TinyHaxeTry1.g:730:9: '.'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:731:5: ( '.' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:731:9: '.'
             {
             match('.'); 
 
@@ -2300,8 +2300,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = ELLIPSIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:734:5: ( '...' )
-            // TinyHaxeTry1.g:734:9: '...'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:735:5: ( '...' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:735:9: '...'
             {
             match("..."); 
 
@@ -2321,8 +2321,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:738:5: ( '=' )
-            // TinyHaxeTry1.g:738:9: '='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:739:5: ( '=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:739:9: '='
             {
             match('='); 
 
@@ -2341,8 +2341,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:742:5: ( '!' )
-            // TinyHaxeTry1.g:742:9: '!'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:743:5: ( '!' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:743:9: '!'
             {
             match('!'); 
 
@@ -2361,8 +2361,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = TILDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:746:5: ( '~' )
-            // TinyHaxeTry1.g:746:9: '~'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:747:5: ( '~' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:747:9: '~'
             {
             match('~'); 
 
@@ -2381,8 +2381,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = QUES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:750:5: ( '?' )
-            // TinyHaxeTry1.g:750:9: '?'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:751:5: ( '?' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:751:9: '?'
             {
             match('?'); 
 
@@ -2401,8 +2401,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:754:5: ( ':' )
-            // TinyHaxeTry1.g:754:9: ':'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:755:5: ( ':' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:755:9: ':'
             {
             match(':'); 
 
@@ -2421,8 +2421,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:758:5: ( '==' )
-            // TinyHaxeTry1.g:758:9: '=='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:759:5: ( '==' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:759:9: '=='
             {
             match("=="); 
 
@@ -2442,8 +2442,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMPAMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:762:5: ( '&&' )
-            // TinyHaxeTry1.g:762:9: '&&'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:763:5: ( '&&' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:763:9: '&&'
             {
             match("&&"); 
 
@@ -2463,8 +2463,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BARBAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:766:5: ( '||' )
-            // TinyHaxeTry1.g:766:9: '||'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:767:5: ( '||' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:767:9: '||'
             {
             match("||"); 
 
@@ -2484,8 +2484,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUSPLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:770:5: ( '++' )
-            // TinyHaxeTry1.g:770:9: '++'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:771:5: ( '++' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:771:9: '++'
             {
             match("++"); 
 
@@ -2505,8 +2505,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUBSUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:774:5: ( '--' )
-            // TinyHaxeTry1.g:774:9: '--'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:775:5: ( '--' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:775:9: '--'
             {
             match("--"); 
 
@@ -2526,8 +2526,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:778:5: ( '+' )
-            // TinyHaxeTry1.g:778:9: '+'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:779:5: ( '+' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:779:9: '+'
             {
             match('+'); 
 
@@ -2546,8 +2546,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:782:5: ( '-' )
-            // TinyHaxeTry1.g:782:9: '-'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:783:5: ( '-' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:783:9: '-'
             {
             match('-'); 
 
@@ -2566,8 +2566,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:786:5: ( '*' )
-            // TinyHaxeTry1.g:786:9: '*'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:787:5: ( '*' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:787:9: '*'
             {
             match('*'); 
 
@@ -2586,8 +2586,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:790:5: ( '/' )
-            // TinyHaxeTry1.g:790:9: '/'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:791:5: ( '/' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:791:9: '/'
             {
             match('/'); 
 
@@ -2606,8 +2606,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:794:5: ( '&' )
-            // TinyHaxeTry1.g:794:9: '&'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:795:5: ( '&' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:795:9: '&'
             {
             match('&'); 
 
@@ -2626,8 +2626,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:798:5: ( '|' )
-            // TinyHaxeTry1.g:798:9: '|'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:799:5: ( '|' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:799:9: '|'
             {
             match('|'); 
 
@@ -2646,8 +2646,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CARET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:802:5: ( '^' )
-            // TinyHaxeTry1.g:802:9: '^'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:803:5: ( '^' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:803:9: '^'
             {
             match('^'); 
 
@@ -2666,8 +2666,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:806:5: ( '%' )
-            // TinyHaxeTry1.g:806:9: '%'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:807:5: ( '%' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:807:9: '%'
             {
             match('%'); 
 
@@ -2686,8 +2686,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PLUSEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:810:5: ( '+=' )
-            // TinyHaxeTry1.g:810:9: '+='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:811:5: ( '+=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:811:9: '+='
             {
             match("+="); 
 
@@ -2707,8 +2707,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SUBEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:814:5: ( '-=' )
-            // TinyHaxeTry1.g:814:9: '-='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:815:5: ( '-=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:815:9: '-='
             {
             match("-="); 
 
@@ -2728,8 +2728,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:818:5: ( '*=' )
-            // TinyHaxeTry1.g:818:9: '*='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:819:5: ( '*=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:819:9: '*='
             {
             match("*="); 
 
@@ -2749,8 +2749,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = SLASHEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:822:5: ( '/=' )
-            // TinyHaxeTry1.g:822:9: '/='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:823:5: ( '/=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:823:9: '/='
             {
             match("/="); 
 
@@ -2770,8 +2770,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = AMPEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:826:5: ( '&=' )
-            // TinyHaxeTry1.g:826:9: '&='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:827:5: ( '&=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:827:9: '&='
             {
             match("&="); 
 
@@ -2791,8 +2791,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:830:5: ( '|=' )
-            // TinyHaxeTry1.g:830:9: '|='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:831:5: ( '|=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:831:9: '|='
             {
             match("|="); 
 
@@ -2812,8 +2812,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = CARETEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:834:5: ( '^=' )
-            // TinyHaxeTry1.g:834:9: '^='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:835:5: ( '^=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:835:9: '^='
             {
             match("^="); 
 
@@ -2833,8 +2833,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:838:5: ( '%=' )
-            // TinyHaxeTry1.g:838:9: '%='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:839:5: ( '%=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:839:9: '%='
             {
             match("%="); 
 
@@ -2854,8 +2854,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDLQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:842:2: ( '%%<<%%=' )
-            // TinyHaxeTry1.g:842:4: '%%<<%%='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:843:2: ( '%%<<%%=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:843:4: '%%<<%%='
             {
             match("%%<<%%="); 
 
@@ -2875,8 +2875,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDBQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:845:2: ( '%%>>%%=' )
-            // TinyHaxeTry1.g:845:4: '%%>>%%='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:846:2: ( '%%>>%%=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:846:4: '%%>>%%='
             {
             match("%%>>%%="); 
 
@@ -2896,8 +2896,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTDBBQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:848:2: ( '%%>>>%%=' )
-            // TinyHaxeTry1.g:848:4: '%%>>>%%='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:849:2: ( '%%>>>%%=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:849:4: '%%>>>%%='
             {
             match("%%>>>%%="); 
 
@@ -2917,8 +2917,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = EQEQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:851:2: ( '===' )
-            // TinyHaxeTry1.g:851:3: '==='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:852:2: ( '===' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:852:3: '==='
             {
             match("==="); 
 
@@ -2938,8 +2938,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTLESQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:855:1: ( '%%<=%%' )
-            // TinyHaxeTry1.g:855:3: '%%<=%%'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:856:1: ( '%%<=%%' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:856:3: '%%<=%%'
             {
             match("%%<=%%"); 
 
@@ -2959,8 +2959,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANGEQQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:859:2: ( '!==' )
-            // TinyHaxeTry1.g:859:3: '!=='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:860:2: ( '!==' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:860:3: '!=='
             {
             match("!=="); 
 
@@ -2980,8 +2980,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = MONKEYS_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:863:5: ( '@' )
-            // TinyHaxeTry1.g:863:9: '@'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:864:5: ( '@' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:864:9: '@'
             {
             match('@'); 
 
@@ -3000,8 +3000,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = BANGEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:866:8: ( '!=' )
-            // TinyHaxeTry1.g:866:10: '!='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:867:8: ( '!=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:867:10: '!='
             {
             match("!="); 
 
@@ -3021,8 +3021,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = MINUS_BIGGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:870:2: ( '->' )
-            // TinyHaxeTry1.g:870:4: '->'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:871:2: ( '->' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:871:4: '->'
             {
             match("->"); 
 
@@ -3042,8 +3042,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTLL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:874:2: ( '%%<<%%' )
-            // TinyHaxeTry1.g:874:3: '%%<<%%'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:875:2: ( '%%<<%%' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:875:3: '%%<<%%'
             {
             match("%%<<%%"); 
 
@@ -3063,8 +3063,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTBB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:877:2: ( '%%>>%%' )
-            // TinyHaxeTry1.g:877:3: '%%>>%%'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:878:2: ( '%%>>%%' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:878:3: '%%>>%%'
             {
             match("%%>>%%"); 
 
@@ -3084,8 +3084,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PERCENTBBB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:880:2: ( '%%>>>%%' )
-            // TinyHaxeTry1.g:880:3: '%%>>>%%'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:881:2: ( '%%>>>%%' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:881:3: '%%>>>%%'
             {
             match("%%>>>%%"); 
 
@@ -3105,8 +3105,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:883:4: ( '>' )
-            // TinyHaxeTry1.g:883:6: '>'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:884:4: ( '>' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:884:6: '>'
             {
             match('>'); 
 
@@ -3125,8 +3125,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:886:6: ( '>>' )
-            // TinyHaxeTry1.g:886:8: '>>'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:887:6: ( '>>' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:887:8: '>>'
             {
             match(">>"); 
 
@@ -3146,8 +3146,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTLT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:889:6: ( '<<' )
-            // TinyHaxeTry1.g:889:8: '<<'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:890:6: ( '<<' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:890:8: '<<'
             {
             match("<<"); 
 
@@ -3167,8 +3167,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:891:8: ( '>>>' )
-            // TinyHaxeTry1.g:891:10: '>>>'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:892:8: ( '>>>' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:892:10: '>>>'
             {
             match(">>>"); 
 
@@ -3188,8 +3188,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTLTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:894:8: ( '<<=' )
-            // TinyHaxeTry1.g:894:10: '<<='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:895:8: ( '<<=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:895:10: '<<='
             {
             match("<<="); 
 
@@ -3209,8 +3209,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:897:8: ( '>>=' )
-            // TinyHaxeTry1.g:897:10: '>>='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:898:8: ( '>>=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:898:10: '>>='
             {
             match(">>="); 
 
@@ -3230,8 +3230,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTGTGTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:900:9: ( '>>>=' )
-            // TinyHaxeTry1.g:900:11: '>>>='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:901:9: ( '>>>=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:901:11: '>>>='
             {
             match(">>>="); 
 
@@ -3251,8 +3251,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = GTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:903:6: ( '>=' )
-            // TinyHaxeTry1.g:903:8: '>='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:904:6: ( '>=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:904:8: '>='
             {
             match(">="); 
 
@@ -3272,8 +3272,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:905:6: ( '<=' )
-            // TinyHaxeTry1.g:905:8: '<='
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:906:6: ( '<=' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:906:8: '<='
             {
             match("<="); 
 
@@ -3293,8 +3293,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:909:5: ( '<' )
-            // TinyHaxeTry1.g:909:9: '<'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:910:5: ( '<' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:910:9: '<'
             {
             match('<'); 
 
@@ -3313,8 +3313,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:913:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // TinyHaxeTry1.g:913:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:914:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:914:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3325,7 +3325,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // TinyHaxeTry1.g:913:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:914:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop10:
             do {
                 int alt10=2;
@@ -3338,7 +3338,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // TinyHaxeTry1.g:
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -3374,10 +3374,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = INTNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:916:8: ( ( '0' .. '9' )+ )
-            // TinyHaxeTry1.g:916:10: ( '0' .. '9' )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:917:8: ( ( '0' .. '9' )+ )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:917:10: ( '0' .. '9' )+
             {
-            // TinyHaxeTry1.g:916:10: ( '0' .. '9' )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:917:10: ( '0' .. '9' )+
             int cnt11=0;
             loop11:
             do {
@@ -3391,7 +3391,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // TinyHaxeTry1.g:916:10: '0' .. '9'
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:917:10: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -3423,14 +3423,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = FLOATNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:920:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
             int alt18=3;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // TinyHaxeTry1.g:920:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
                     {
-                    // TinyHaxeTry1.g:920:9: ( '0' .. '9' )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:9: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -3444,7 +3444,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:920:10: '0' .. '9'
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3461,7 +3461,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // TinyHaxeTry1.g:920:25: ( '0' .. '9' )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:25: ( '0' .. '9' )*
                     loop13:
                     do {
                         int alt13=2;
@@ -3474,7 +3474,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:920:26: '0' .. '9'
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3486,7 +3486,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         }
                     } while (true);
 
-                    // TinyHaxeTry1.g:920:37: ( EXPONENT )?
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:37: ( EXPONENT )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -3495,7 +3495,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // TinyHaxeTry1.g:920:37: EXPONENT
+                            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:921:37: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -3508,10 +3508,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:921:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:922:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
                     {
                     match('.'); 
-                    // TinyHaxeTry1.g:921:13: ( '0' .. '9' )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:922:13: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -3525,7 +3525,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:921:14: '0' .. '9'
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:922:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3541,7 +3541,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         cnt15++;
                     } while (true);
 
-                    // TinyHaxeTry1.g:921:25: ( EXPONENT )?
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:922:25: ( EXPONENT )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -3550,7 +3550,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // TinyHaxeTry1.g:921:25: EXPONENT
+                            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:922:25: EXPONENT
                             {
                             mEXPONENT(); 
 
@@ -3563,9 +3563,9 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // TinyHaxeTry1.g:922:9: ( '0' .. '9' )+ EXPONENT
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:923:9: ( '0' .. '9' )+ EXPONENT
                     {
-                    // TinyHaxeTry1.g:922:9: ( '0' .. '9' )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:923:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -3579,7 +3579,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:922:10: '0' .. '9'
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:923:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -3614,7 +3614,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:926:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:927:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3642,11 +3642,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt22) {
                 case 1 :
-                    // TinyHaxeTry1.g:926:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:927:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                     {
                     match("//"); 
 
-                    // TinyHaxeTry1.g:926:14: (~ ( '\\n' | '\\r' ) )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:927:14: (~ ( '\\n' | '\\r' ) )*
                     loop19:
                     do {
                         int alt19=2;
@@ -3659,7 +3659,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:926:14: ~ ( '\\n' | '\\r' )
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:927:14: ~ ( '\\n' | '\\r' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -3679,7 +3679,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                         }
                     } while (true);
 
-                    // TinyHaxeTry1.g:926:28: ( '\\r' )?
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:927:28: ( '\\r' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3688,7 +3688,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     switch (alt20) {
                         case 1 :
-                            // TinyHaxeTry1.g:926:28: '\\r'
+                            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:927:28: '\\r'
                             {
                             match('\r'); 
 
@@ -3703,11 +3703,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:927:9: '/*' ( options {greedy=false; } : . )* '*/'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:928:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
-                    // TinyHaxeTry1.g:927:14: ( options {greedy=false; } : . )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:928:14: ( options {greedy=false; } : . )*
                     loop21:
                     do {
                         int alt21=2;
@@ -3732,7 +3732,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt21) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:927:42: .
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:928:42: .
                     	    {
                     	    matchAny(); 
 
@@ -3765,11 +3765,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:931:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // TinyHaxeTry1.g:931:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:932:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:932:9: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // TinyHaxeTry1.g:932:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:933:9: ( EscapeSequence | ~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
             loop23:
             do {
                 int alt23=3;
@@ -3785,14 +3785,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt23) {
             	case 1 :
-            	    // TinyHaxeTry1.g:932:13: EscapeSequence
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:933:13: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // TinyHaxeTry1.g:933:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:934:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3827,8 +3827,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "TS"
     public final void mTS() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:962:3: ( ( ' ' | '\\t' ) )
-            // TinyHaxeTry1.g:963:5: ( ' ' | '\\t' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:963:3: ( ( ' ' | '\\t' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:964:5: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -3854,7 +3854,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DIRECTIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // TinyHaxeTry1.g:966:23: ( | PP_CONDITIONAL )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:967:23: ( | PP_CONDITIONAL )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3865,12 +3865,12 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 alt24=1;}
             switch (alt24) {
                 case 1 :
-                    // TinyHaxeTry1.g:967:2: 
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:968:2: 
                     {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:967:4: PP_CONDITIONAL
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:968:4: PP_CONDITIONAL
                     {
                     mPP_CONDITIONAL(); 
 
@@ -3889,29 +3889,29 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "PP_CONDITIONAL"
     public final void mPP_CONDITIONAL() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:970:15: ( ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN ) )
-            // TinyHaxeTry1.g:971:2: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:971:15: ( ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:972:2: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
             {
-            // TinyHaxeTry1.g:971:2: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:972:2: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
             int alt25=3;
             alt25 = dfa25.predict(input);
             switch (alt25) {
                 case 1 :
-                    // TinyHaxeTry1.g:971:3: IF_TOKEN
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:972:3: IF_TOKEN
                     {
                     mIF_TOKEN(); 
 
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:972:4: ELSE_TOKEN
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:973:4: ELSE_TOKEN
                     {
                     mELSE_TOKEN(); 
 
                     }
                     break;
                 case 3 :
-                    // TinyHaxeTry1.g:973:4: ENDIF_TOKEN
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:974:4: ENDIF_TOKEN
                     {
                     mENDIF_TOKEN(); 
 
@@ -3935,14 +3935,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
             CommonToken ppe=null;
 
              boolean process = true; 
-            // TinyHaxeTry1.g:977:35: ( ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION ) )
-            // TinyHaxeTry1.g:978:2: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:978:35: ( ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:2: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
             {
-            // TinyHaxeTry1.g:978:2: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
-            // TinyHaxeTry1.g:978:3: '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:2: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:3: '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION
             {
             match('#'); 
-            // TinyHaxeTry1.g:978:9: ( TS )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:9: ( TS )*
             loop26:
             do {
                 int alt26=2;
@@ -3955,7 +3955,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt26) {
             	case 1 :
-            	    // TinyHaxeTry1.g:978:9: TS
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:9: TS
             	    {
             	    mTS(); 
 
@@ -3969,7 +3969,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             match("if"); 
 
-            // TinyHaxeTry1.g:978:21: ( TS )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:21: ( TS )+
             int cnt27=0;
             loop27:
             do {
@@ -3983,7 +3983,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt27) {
             	case 1 :
-            	    // TinyHaxeTry1.g:978:21: TS
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:979:21: TS
             	    {
             	    mTS(); 
 
@@ -4000,8 +4000,12 @@ public class TinyHaxeTry1Lexer extends Lexer {
             } while (true);
 
             int ppeStart2749 = getCharIndex();
+            int ppeStartLine2749 = getLine();
+            int ppeStartCharPos2749 = getCharPositionInLine();
             mPP_EXPRESSION(); 
             ppe = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, ppeStart2749, getCharIndex()-1);
+            ppe.setLine(ppeStartLine2749);
+            ppe.setCharPositionInLine(ppeStartCharPos2749);
 
             }
 
@@ -4027,18 +4031,18 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             CommonToken e=null;
 
-            // TinyHaxeTry1.g:988:11: ( ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION ) )
-            // TinyHaxeTry1.g:989:2: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:989:11: ( ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:990:2: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
             {
-            // TinyHaxeTry1.g:989:2: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:990:2: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
             int alt31=2;
             alt31 = dfa31.predict(input);
             switch (alt31) {
                 case 1 :
-                    // TinyHaxeTry1.g:989:4: '#' ( TS )* e= 'else'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:990:4: '#' ( TS )* e= 'else'
                     {
                     match('#'); 
-                    // TinyHaxeTry1.g:989:10: ( TS )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:990:10: ( TS )*
                     loop28:
                     do {
                         int alt28=2;
@@ -4051,7 +4055,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt28) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:989:10: TS
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:990:10: TS
                     	    {
                     	    mTS(); 
 
@@ -4065,15 +4069,19 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                     int eStart = getCharIndex();
                     match("else"); 
+                    int eStartLine2778 = getLine();
+                    int eStartCharPos2778 = getCharPositionInLine();
                     e = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, eStart, getCharIndex()-1);
+                    e.setLine(eStartLine2778);
+                    e.setCharPositionInLine(eStartCharPos2778);
 
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:990:4: '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:991:4: '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION
                     {
                     match('#'); 
-                    // TinyHaxeTry1.g:990:10: ( TS )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:991:10: ( TS )*
                     loop29:
                     do {
                         int alt29=2;
@@ -4086,7 +4094,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt29) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:990:10: TS
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:991:10: TS
                     	    {
                     	    mTS(); 
 
@@ -4100,7 +4108,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                     match("elseif"); 
 
-                    // TinyHaxeTry1.g:990:27: ( TS )+
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:991:27: ( TS )+
                     int cnt30=0;
                     loop30:
                     do {
@@ -4114,7 +4122,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt30) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:990:27: TS
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:991:27: TS
                     	    {
                     	    mTS(); 
 
@@ -4187,8 +4195,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "ENDIF_TOKEN"
     public final void mENDIF_TOKEN() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1030:12: ( '#' 'end' )
-            // TinyHaxeTry1.g:1031:2: '#' 'end'
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1031:12: ( '#' 'end' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1032:2: '#' 'end'
             {
             match('#'); 
             match("end"); 
@@ -4210,8 +4218,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "PP_EXPRESSION"
     public final void mPP_EXPRESSION() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1042:14: ( PP_OR_EXPRESSION )
-            // TinyHaxeTry1.g:1043:2: PP_OR_EXPRESSION
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1043:14: ( PP_OR_EXPRESSION )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1044:2: PP_OR_EXPRESSION
             {
             mPP_OR_EXPRESSION(); 
 
@@ -4226,11 +4234,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "PP_OR_EXPRESSION"
     public final void mPP_OR_EXPRESSION() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1046:17: ( PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )* )
-            // TinyHaxeTry1.g:1047:2: PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1047:17: ( PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )* )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:2: PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
             {
             mPP_AND_EXPRESSION(); 
-            // TinyHaxeTry1.g:1047:22: ( TS )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:22: ( TS )*
             loop32:
             do {
                 int alt32=2;
@@ -4243,7 +4251,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt32) {
             	case 1 :
-            	    // TinyHaxeTry1.g:1047:22: TS
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:22: TS
             	    {
             	    mTS(); 
 
@@ -4255,7 +4263,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 }
             } while (true);
 
-            // TinyHaxeTry1.g:1047:28: ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:28: ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
             loop35:
             do {
                 int alt35=2;
@@ -4268,11 +4276,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt35) {
             	case 1 :
-            	    // TinyHaxeTry1.g:1047:29: '||' ( TS )* PP_AND_EXPRESSION ( TS )*
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:29: '||' ( TS )* PP_AND_EXPRESSION ( TS )*
             	    {
             	    match("||"); 
 
-            	    // TinyHaxeTry1.g:1047:36: ( TS )*
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:36: ( TS )*
             	    loop33:
             	    do {
             	        int alt33=2;
@@ -4285,7 +4293,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             	        switch (alt33) {
             	    	case 1 :
-            	    	    // TinyHaxeTry1.g:1047:36: TS
+            	    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:36: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4298,7 +4306,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             	    } while (true);
 
             	    mPP_AND_EXPRESSION(); 
-            	    // TinyHaxeTry1.g:1047:62: ( TS )*
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:62: ( TS )*
             	    loop34:
             	    do {
             	        int alt34=2;
@@ -4311,7 +4319,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             	        switch (alt34) {
             	    	case 1 :
-            	    	    // TinyHaxeTry1.g:1047:62: TS
+            	    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1048:62: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4344,11 +4352,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "PP_AND_EXPRESSION"
     public final void mPP_AND_EXPRESSION() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1050:18: ( PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )* )
-            // TinyHaxeTry1.g:1051:2: PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1051:18: ( PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )* )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:2: PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
             {
             mPP_UNARY_EXPRESSION(); 
-            // TinyHaxeTry1.g:1051:24: ( TS )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:24: ( TS )*
             loop36:
             do {
                 int alt36=2;
@@ -4361,7 +4369,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt36) {
             	case 1 :
-            	    // TinyHaxeTry1.g:1051:24: TS
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:24: TS
             	    {
             	    mTS(); 
 
@@ -4373,7 +4381,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 }
             } while (true);
 
-            // TinyHaxeTry1.g:1051:30: ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:30: ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
             loop39:
             do {
                 int alt39=2;
@@ -4386,11 +4394,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt39) {
             	case 1 :
-            	    // TinyHaxeTry1.g:1051:31: '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )*
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:31: '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )*
             	    {
             	    match("&&"); 
 
-            	    // TinyHaxeTry1.g:1051:38: ( TS )*
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:38: ( TS )*
             	    loop37:
             	    do {
             	        int alt37=2;
@@ -4403,7 +4411,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             	        switch (alt37) {
             	    	case 1 :
-            	    	    // TinyHaxeTry1.g:1051:38: TS
+            	    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:38: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4416,7 +4424,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             	    } while (true);
 
             	    mPP_UNARY_EXPRESSION(); 
-            	    // TinyHaxeTry1.g:1051:66: ( TS )*
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:66: ( TS )*
             	    loop38:
             	    do {
             	        int alt38=2;
@@ -4429,7 +4437,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             	        switch (alt38) {
             	    	case 1 :
-            	    	    // TinyHaxeTry1.g:1051:66: TS
+            	    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1052:66: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4465,7 +4473,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             CommonToken pe=null;
             CommonToken ue=null;
 
-            // TinyHaxeTry1.g:1054:20: (pe= PP_PRIMARY_EXPRESSION | '!' ( TS )* ue= PP_UNARY_EXPRESSION )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1055:20: (pe= PP_PRIMARY_EXPRESSION | '!' ( TS )* ue= PP_UNARY_EXPRESSION )
             int alt41=2;
             int LA41_0 = input.LA(1);
 
@@ -4483,19 +4491,23 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt41) {
                 case 1 :
-                    // TinyHaxeTry1.g:1055:2: pe= PP_PRIMARY_EXPRESSION
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1056:2: pe= PP_PRIMARY_EXPRESSION
                     {
                     int peStart2935 = getCharIndex();
+                    int peStartLine2935 = getLine();
+                    int peStartCharPos2935 = getCharPositionInLine();
                     mPP_PRIMARY_EXPRESSION(); 
                     pe = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, peStart2935, getCharIndex()-1);
+                    pe.setLine(peStartLine2935);
+                    pe.setCharPositionInLine(peStartCharPos2935);
 
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:1056:4: '!' ( TS )* ue= PP_UNARY_EXPRESSION
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1057:4: '!' ( TS )* ue= PP_UNARY_EXPRESSION
                     {
                     match('!'); 
-                    // TinyHaxeTry1.g:1056:10: ( TS )*
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1057:10: ( TS )*
                     loop40:
                     do {
                         int alt40=2;
@@ -4508,7 +4520,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                         switch (alt40) {
                     	case 1 :
-                    	    // TinyHaxeTry1.g:1056:10: TS
+                    	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1057:10: TS
                     	    {
                     	    mTS(); 
 
@@ -4521,8 +4533,12 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     } while (true);
 
                     int ueStart2953 = getCharIndex();
+                    int ueStartLine2953 = getLine();
+                    int ueStartCharPos2953 = getCharPositionInLine();
                     mPP_UNARY_EXPRESSION(); 
                     ue = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, ueStart2953, getCharIndex()-1);
+                    ue.setLine(ueStartLine2953);
+                    ue.setCharPositionInLine(ueStartCharPos2953);
                      returns.push(!returns.pop()); 
 
                     }
@@ -4540,7 +4556,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
         try {
             CommonToken IDENTIFIER1=null;
 
-            // TinyHaxeTry1.g:1060:22: ( IDENTIFIER | '(' PP_EXPRESSION ')' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1061:22: ( IDENTIFIER | '(' PP_EXPRESSION ')' )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -4558,11 +4574,15 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt42) {
                 case 1 :
-                    // TinyHaxeTry1.g:1061:2: IDENTIFIER
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1062:2: IDENTIFIER
                     {
                     int IDENTIFIER1Start2970 = getCharIndex();
+                    int IDENTIFIER1StartLine2970 = getLine();
+                    int IDENTIFIER1StartCharPos2970 = getCharPositionInLine();
                     mIDENTIFIER(); 
                     IDENTIFIER1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, IDENTIFIER1Start2970, getCharIndex()-1);
+                    IDENTIFIER1.setLine(IDENTIFIER1StartLine2970);
+                    IDENTIFIER1.setCharPositionInLine(IDENTIFIER1StartCharPos2970);
                      
                     		//returns.push(MacroDefines.ContainsKey(IDENTIFIER1.Text));
                     		returns.push(false); // TODO
@@ -4571,7 +4591,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:1066:4: '(' PP_EXPRESSION ')'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1067:4: '(' PP_EXPRESSION ')'
                     {
                     match('('); 
                     mPP_EXPRESSION(); 
@@ -4590,8 +4610,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1074:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // TinyHaxeTry1.g:1074:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1075:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1075:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -4602,7 +4622,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // TinyHaxeTry1.g:1074:22: ( '+' | '-' )?
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1075:22: ( '+' | '-' )?
             int alt43=2;
             int LA43_0 = input.LA(1);
 
@@ -4611,7 +4631,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt43) {
                 case 1 :
-                    // TinyHaxeTry1.g:
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -4628,7 +4648,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
             }
 
-            // TinyHaxeTry1.g:1074:33: ( '0' .. '9' )+
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1075:33: ( '0' .. '9' )+
             int cnt44=0;
             loop44:
             do {
@@ -4642,7 +4662,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
 
                 switch (alt44) {
             	case 1 :
-            	    // TinyHaxeTry1.g:1074:34: '0' .. '9'
+            	    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1075:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -4670,8 +4690,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1077:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // TinyHaxeTry1.g:1077:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1078:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1078:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -4694,7 +4714,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1081:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1082:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt45=3;
             int LA45_0 = input.LA(1);
 
@@ -4745,7 +4765,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt45) {
                 case 1 :
-                    // TinyHaxeTry1.g:1081:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1082:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -4761,14 +4781,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:1082:9: UNICODE_ESC
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1083:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
                     }
                     break;
                 case 3 :
-                    // TinyHaxeTry1.g:1083:9: OCTAL_ESC
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1084:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -4785,7 +4805,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1088:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt46=3;
             int LA46_0 = input.LA(1);
 
@@ -4796,9 +4816,9 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     int LA46_2 = input.LA(3);
 
                     if ( ((LA46_2>='0' && LA46_2<='7')) ) {
-                        int LA46_5 = input.LA(4);
+                        int LA46_4 = input.LA(4);
 
-                        if ( ((LA46_5>='0' && LA46_5<='7')) ) {
+                        if ( ((LA46_4>='0' && LA46_4<='7')) ) {
                             alt46=1;
                         }
                         else {
@@ -4831,25 +4851,25 @@ public class TinyHaxeTry1Lexer extends Lexer {
             }
             switch (alt46) {
                 case 1 :
-                    // TinyHaxeTry1.g:1088:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // TinyHaxeTry1.g:1088:14: ( '0' .. '3' )
-                    // TinyHaxeTry1.g:1088:15: '0' .. '3'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:14: ( '0' .. '3' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // TinyHaxeTry1.g:1088:25: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:1088:26: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:25: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // TinyHaxeTry1.g:1088:36: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:1088:37: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:36: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1089:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4859,18 +4879,18 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // TinyHaxeTry1.g:1089:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1090:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // TinyHaxeTry1.g:1089:14: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:1089:15: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1090:14: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1090:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // TinyHaxeTry1.g:1089:25: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:1089:26: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1090:25: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1090:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4880,11 +4900,11 @@ public class TinyHaxeTry1Lexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // TinyHaxeTry1.g:1090:9: '\\\\' ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1091:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // TinyHaxeTry1.g:1090:14: ( '0' .. '7' )
-                    // TinyHaxeTry1.g:1090:15: '0' .. '7'
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1091:14: ( '0' .. '7' )
+                    // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1091:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -4904,8 +4924,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // TinyHaxeTry1.g:1095:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // TinyHaxeTry1.g:1095:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1096:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1096:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
             match('u'); 
@@ -4923,915 +4943,915 @@ public class TinyHaxeTry1Lexer extends Lexer {
     // $ANTLR end "UNICODE_ESC"
 
     public void mTokens() throws RecognitionException {
-        // TinyHaxeTry1.g:1:8: ( WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | EXTERN | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | TYPEDEF | UNTYPED | USING | VAR | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | PERCENTDLQ | PERCENTDBQ | PERCENTDBBQ | EQEQEQ | PERCENTLESQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | PERCENTLL | PERCENTBB | PERCENTBBB | GT | GTGT | LTLT | GTGTGT | LTLTEQ | GTGTEQ | GTGTGTEQ | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PREPROCESSOR_DIRECTIVE )
+        // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:8: ( WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | EXTERN | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | TYPEDEF | UNTYPED | USING | VAR | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | PERCENTDLQ | PERCENTDBQ | PERCENTDBBQ | EQEQEQ | PERCENTLESQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | PERCENTLL | PERCENTBB | PERCENTBBB | GT | GTGT | LTLT | GTGTGT | LTLTEQ | GTGTEQ | GTGTGTEQ | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PREPROCESSOR_DIRECTIVE )
         int alt47=130;
         alt47 = dfa47.predict(input);
         switch (alt47) {
             case 1 :
-                // TinyHaxeTry1.g:1:10: WS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:10: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 2 :
-                // TinyHaxeTry1.g:1:13: LONGLITERAL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:13: LONGLITERAL
                 {
                 mLONGLITERAL(); 
 
                 }
                 break;
             case 3 :
-                // TinyHaxeTry1.g:1:25: INTLITERAL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:25: INTLITERAL
                 {
                 mINTLITERAL(); 
 
                 }
                 break;
             case 4 :
-                // TinyHaxeTry1.g:1:36: CHARLITERAL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:36: CHARLITERAL
                 {
                 mCHARLITERAL(); 
 
                 }
                 break;
             case 5 :
-                // TinyHaxeTry1.g:1:48: ABSTRACT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:48: ABSTRACT
                 {
                 mABSTRACT(); 
 
                 }
                 break;
             case 6 :
-                // TinyHaxeTry1.g:1:57: BOOLEAN
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:57: BOOLEAN
                 {
                 mBOOLEAN(); 
 
                 }
                 break;
             case 7 :
-                // TinyHaxeTry1.g:1:65: BREAK
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:65: BREAK
                 {
                 mBREAK(); 
 
                 }
                 break;
             case 8 :
-                // TinyHaxeTry1.g:1:71: BYTE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:71: BYTE
                 {
                 mBYTE(); 
 
                 }
                 break;
             case 9 :
-                // TinyHaxeTry1.g:1:76: CASE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:76: CASE
                 {
                 mCASE(); 
 
                 }
                 break;
             case 10 :
-                // TinyHaxeTry1.g:1:81: CATCH
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:81: CATCH
                 {
                 mCATCH(); 
 
                 }
                 break;
             case 11 :
-                // TinyHaxeTry1.g:1:87: CHAR
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:87: CHAR
                 {
                 mCHAR(); 
 
                 }
                 break;
             case 12 :
-                // TinyHaxeTry1.g:1:92: CLASS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:92: CLASS
                 {
                 mCLASS(); 
 
                 }
                 break;
             case 13 :
-                // TinyHaxeTry1.g:1:98: CONST
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:98: CONST
                 {
                 mCONST(); 
 
                 }
                 break;
             case 14 :
-                // TinyHaxeTry1.g:1:104: CONTINUE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:104: CONTINUE
                 {
                 mCONTINUE(); 
 
                 }
                 break;
             case 15 :
-                // TinyHaxeTry1.g:1:113: DEFAULT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:113: DEFAULT
                 {
                 mDEFAULT(); 
 
                 }
                 break;
             case 16 :
-                // TinyHaxeTry1.g:1:121: DO
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:121: DO
                 {
                 mDO(); 
 
                 }
                 break;
             case 17 :
-                // TinyHaxeTry1.g:1:124: DOUBLE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:124: DOUBLE
                 {
                 mDOUBLE(); 
 
                 }
                 break;
             case 18 :
-                // TinyHaxeTry1.g:1:131: ELSE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:131: ELSE
                 {
                 mELSE(); 
 
                 }
                 break;
             case 19 :
-                // TinyHaxeTry1.g:1:136: ENUM
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:136: ENUM
                 {
                 mENUM(); 
 
                 }
                 break;
             case 20 :
-                // TinyHaxeTry1.g:1:141: EXTENDS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:141: EXTENDS
                 {
                 mEXTENDS(); 
 
                 }
                 break;
             case 21 :
-                // TinyHaxeTry1.g:1:149: EXTERN
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:149: EXTERN
                 {
                 mEXTERN(); 
 
                 }
                 break;
             case 22 :
-                // TinyHaxeTry1.g:1:156: FINAL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:156: FINAL
                 {
                 mFINAL(); 
 
                 }
                 break;
             case 23 :
-                // TinyHaxeTry1.g:1:162: FINALLY
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:162: FINALLY
                 {
                 mFINALLY(); 
 
                 }
                 break;
             case 24 :
-                // TinyHaxeTry1.g:1:170: FLOAT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:170: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
             case 25 :
-                // TinyHaxeTry1.g:1:176: FOR
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:176: FOR
                 {
                 mFOR(); 
 
                 }
                 break;
             case 26 :
-                // TinyHaxeTry1.g:1:180: GOTO
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:180: GOTO
                 {
                 mGOTO(); 
 
                 }
                 break;
             case 27 :
-                // TinyHaxeTry1.g:1:185: IF
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:185: IF
                 {
                 mIF(); 
 
                 }
                 break;
             case 28 :
-                // TinyHaxeTry1.g:1:188: IMPLEMENTS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:188: IMPLEMENTS
                 {
                 mIMPLEMENTS(); 
 
                 }
                 break;
             case 29 :
-                // TinyHaxeTry1.g:1:199: IMPORT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:199: IMPORT
                 {
                 mIMPORT(); 
 
                 }
                 break;
             case 30 :
-                // TinyHaxeTry1.g:1:206: INSTANCEOF
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:206: INSTANCEOF
                 {
                 mINSTANCEOF(); 
 
                 }
                 break;
             case 31 :
-                // TinyHaxeTry1.g:1:217: INT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:217: INT
                 {
                 mINT(); 
 
                 }
                 break;
             case 32 :
-                // TinyHaxeTry1.g:1:221: INTERFACE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:221: INTERFACE
                 {
                 mINTERFACE(); 
 
                 }
                 break;
             case 33 :
-                // TinyHaxeTry1.g:1:231: LONG
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:231: LONG
                 {
                 mLONG(); 
 
                 }
                 break;
             case 34 :
-                // TinyHaxeTry1.g:1:236: NATIVE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:236: NATIVE
                 {
                 mNATIVE(); 
 
                 }
                 break;
             case 35 :
-                // TinyHaxeTry1.g:1:243: NEW
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:243: NEW
                 {
                 mNEW(); 
 
                 }
                 break;
             case 36 :
-                // TinyHaxeTry1.g:1:247: PACKAGE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:247: PACKAGE
                 {
                 mPACKAGE(); 
 
                 }
                 break;
             case 37 :
-                // TinyHaxeTry1.g:1:255: PRIVATE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:255: PRIVATE
                 {
                 mPRIVATE(); 
 
                 }
                 break;
             case 38 :
-                // TinyHaxeTry1.g:1:263: PROTECTED
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:263: PROTECTED
                 {
                 mPROTECTED(); 
 
                 }
                 break;
             case 39 :
-                // TinyHaxeTry1.g:1:273: PUBLIC
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:273: PUBLIC
                 {
                 mPUBLIC(); 
 
                 }
                 break;
             case 40 :
-                // TinyHaxeTry1.g:1:280: RETURN
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:280: RETURN
                 {
                 mRETURN(); 
 
                 }
                 break;
             case 41 :
-                // TinyHaxeTry1.g:1:287: SHORT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:287: SHORT
                 {
                 mSHORT(); 
 
                 }
                 break;
             case 42 :
-                // TinyHaxeTry1.g:1:293: STATIC
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:293: STATIC
                 {
                 mSTATIC(); 
 
                 }
                 break;
             case 43 :
-                // TinyHaxeTry1.g:1:300: INLINE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:300: INLINE
                 {
                 mINLINE(); 
 
                 }
                 break;
             case 44 :
-                // TinyHaxeTry1.g:1:307: DYNAMIC
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:307: DYNAMIC
                 {
                 mDYNAMIC(); 
 
                 }
                 break;
             case 45 :
-                // TinyHaxeTry1.g:1:315: OVERRIDE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:315: OVERRIDE
                 {
                 mOVERRIDE(); 
 
                 }
                 break;
             case 46 :
-                // TinyHaxeTry1.g:1:324: STRICTFP
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:324: STRICTFP
                 {
                 mSTRICTFP(); 
 
                 }
                 break;
             case 47 :
-                // TinyHaxeTry1.g:1:333: SUPER
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:333: SUPER
                 {
                 mSUPER(); 
 
                 }
                 break;
             case 48 :
-                // TinyHaxeTry1.g:1:339: SWITCH
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:339: SWITCH
                 {
                 mSWITCH(); 
 
                 }
                 break;
             case 49 :
-                // TinyHaxeTry1.g:1:346: THIS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:346: THIS
                 {
                 mTHIS(); 
 
                 }
                 break;
             case 50 :
-                // TinyHaxeTry1.g:1:351: THROW
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:351: THROW
                 {
                 mTHROW(); 
 
                 }
                 break;
             case 51 :
-                // TinyHaxeTry1.g:1:357: THROWS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:357: THROWS
                 {
                 mTHROWS(); 
 
                 }
                 break;
             case 52 :
-                // TinyHaxeTry1.g:1:364: TRANSIENT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:364: TRANSIENT
                 {
                 mTRANSIENT(); 
 
                 }
                 break;
             case 53 :
-                // TinyHaxeTry1.g:1:374: TRY
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:374: TRY
                 {
                 mTRY(); 
 
                 }
                 break;
             case 54 :
-                // TinyHaxeTry1.g:1:378: TYPEDEF
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:378: TYPEDEF
                 {
                 mTYPEDEF(); 
 
                 }
                 break;
             case 55 :
-                // TinyHaxeTry1.g:1:386: UNTYPED
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:386: UNTYPED
                 {
                 mUNTYPED(); 
 
                 }
                 break;
             case 56 :
-                // TinyHaxeTry1.g:1:394: USING
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:394: USING
                 {
                 mUSING(); 
 
                 }
                 break;
             case 57 :
-                // TinyHaxeTry1.g:1:400: VAR
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:400: VAR
                 {
                 mVAR(); 
 
                 }
                 break;
             case 58 :
-                // TinyHaxeTry1.g:1:404: VOID
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:404: VOID
                 {
                 mVOID(); 
 
                 }
                 break;
             case 59 :
-                // TinyHaxeTry1.g:1:409: VOLATILE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:409: VOLATILE
                 {
                 mVOLATILE(); 
 
                 }
                 break;
             case 60 :
-                // TinyHaxeTry1.g:1:418: WHILE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:418: WHILE
                 {
                 mWHILE(); 
 
                 }
                 break;
             case 61 :
-                // TinyHaxeTry1.g:1:424: TRUE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:424: TRUE
                 {
                 mTRUE(); 
 
                 }
                 break;
             case 62 :
-                // TinyHaxeTry1.g:1:429: FALSE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:429: FALSE
                 {
                 mFALSE(); 
 
                 }
                 break;
             case 63 :
-                // TinyHaxeTry1.g:1:435: NULL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:435: NULL
                 {
                 mNULL(); 
 
                 }
                 break;
             case 64 :
-                // TinyHaxeTry1.g:1:440: CAST
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:440: CAST
                 {
                 mCAST(); 
 
                 }
                 break;
             case 65 :
-                // TinyHaxeTry1.g:1:445: FUNCTION
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:445: FUNCTION
                 {
                 mFUNCTION(); 
 
                 }
                 break;
             case 66 :
-                // TinyHaxeTry1.g:1:454: IN
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:454: IN
                 {
                 mIN(); 
 
                 }
                 break;
             case 67 :
-                // TinyHaxeTry1.g:1:457: LPAREN
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:457: LPAREN
                 {
                 mLPAREN(); 
 
                 }
                 break;
             case 68 :
-                // TinyHaxeTry1.g:1:464: RPAREN
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:464: RPAREN
                 {
                 mRPAREN(); 
 
                 }
                 break;
             case 69 :
-                // TinyHaxeTry1.g:1:471: LBRACE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:471: LBRACE
                 {
                 mLBRACE(); 
 
                 }
                 break;
             case 70 :
-                // TinyHaxeTry1.g:1:478: RBRACE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:478: RBRACE
                 {
                 mRBRACE(); 
 
                 }
                 break;
             case 71 :
-                // TinyHaxeTry1.g:1:485: LBRACKET
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:485: LBRACKET
                 {
                 mLBRACKET(); 
 
                 }
                 break;
             case 72 :
-                // TinyHaxeTry1.g:1:494: RBRACKET
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:494: RBRACKET
                 {
                 mRBRACKET(); 
 
                 }
                 break;
             case 73 :
-                // TinyHaxeTry1.g:1:503: SEMI
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:503: SEMI
                 {
                 mSEMI(); 
 
                 }
                 break;
             case 74 :
-                // TinyHaxeTry1.g:1:508: COMMA
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:508: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
             case 75 :
-                // TinyHaxeTry1.g:1:514: DOT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:514: DOT
                 {
                 mDOT(); 
 
                 }
                 break;
             case 76 :
-                // TinyHaxeTry1.g:1:518: ELLIPSIS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:518: ELLIPSIS
                 {
                 mELLIPSIS(); 
 
                 }
                 break;
             case 77 :
-                // TinyHaxeTry1.g:1:527: EQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:527: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
             case 78 :
-                // TinyHaxeTry1.g:1:530: BANG
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:530: BANG
                 {
                 mBANG(); 
 
                 }
                 break;
             case 79 :
-                // TinyHaxeTry1.g:1:535: TILDE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:535: TILDE
                 {
                 mTILDE(); 
 
                 }
                 break;
             case 80 :
-                // TinyHaxeTry1.g:1:541: QUES
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:541: QUES
                 {
                 mQUES(); 
 
                 }
                 break;
             case 81 :
-                // TinyHaxeTry1.g:1:546: COLON
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:546: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
             case 82 :
-                // TinyHaxeTry1.g:1:552: EQEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:552: EQEQ
                 {
                 mEQEQ(); 
 
                 }
                 break;
             case 83 :
-                // TinyHaxeTry1.g:1:557: AMPAMP
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:557: AMPAMP
                 {
                 mAMPAMP(); 
 
                 }
                 break;
             case 84 :
-                // TinyHaxeTry1.g:1:564: BARBAR
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:564: BARBAR
                 {
                 mBARBAR(); 
 
                 }
                 break;
             case 85 :
-                // TinyHaxeTry1.g:1:571: PLUSPLUS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:571: PLUSPLUS
                 {
                 mPLUSPLUS(); 
 
                 }
                 break;
             case 86 :
-                // TinyHaxeTry1.g:1:580: SUBSUB
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:580: SUBSUB
                 {
                 mSUBSUB(); 
 
                 }
                 break;
             case 87 :
-                // TinyHaxeTry1.g:1:587: PLUS
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:587: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
             case 88 :
-                // TinyHaxeTry1.g:1:592: SUB
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:592: SUB
                 {
                 mSUB(); 
 
                 }
                 break;
             case 89 :
-                // TinyHaxeTry1.g:1:596: STAR
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:596: STAR
                 {
                 mSTAR(); 
 
                 }
                 break;
             case 90 :
-                // TinyHaxeTry1.g:1:601: SLASH
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:601: SLASH
                 {
                 mSLASH(); 
 
                 }
                 break;
             case 91 :
-                // TinyHaxeTry1.g:1:607: AMP
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:607: AMP
                 {
                 mAMP(); 
 
                 }
                 break;
             case 92 :
-                // TinyHaxeTry1.g:1:611: BAR
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:611: BAR
                 {
                 mBAR(); 
 
                 }
                 break;
             case 93 :
-                // TinyHaxeTry1.g:1:615: CARET
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:615: CARET
                 {
                 mCARET(); 
 
                 }
                 break;
             case 94 :
-                // TinyHaxeTry1.g:1:621: PERCENT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:621: PERCENT
                 {
                 mPERCENT(); 
 
                 }
                 break;
             case 95 :
-                // TinyHaxeTry1.g:1:629: PLUSEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:629: PLUSEQ
                 {
                 mPLUSEQ(); 
 
                 }
                 break;
             case 96 :
-                // TinyHaxeTry1.g:1:636: SUBEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:636: SUBEQ
                 {
                 mSUBEQ(); 
 
                 }
                 break;
             case 97 :
-                // TinyHaxeTry1.g:1:642: STAREQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:642: STAREQ
                 {
                 mSTAREQ(); 
 
                 }
                 break;
             case 98 :
-                // TinyHaxeTry1.g:1:649: SLASHEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:649: SLASHEQ
                 {
                 mSLASHEQ(); 
 
                 }
                 break;
             case 99 :
-                // TinyHaxeTry1.g:1:657: AMPEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:657: AMPEQ
                 {
                 mAMPEQ(); 
 
                 }
                 break;
             case 100 :
-                // TinyHaxeTry1.g:1:663: BAREQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:663: BAREQ
                 {
                 mBAREQ(); 
 
                 }
                 break;
             case 101 :
-                // TinyHaxeTry1.g:1:669: CARETEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:669: CARETEQ
                 {
                 mCARETEQ(); 
 
                 }
                 break;
             case 102 :
-                // TinyHaxeTry1.g:1:677: PERCENTEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:677: PERCENTEQ
                 {
                 mPERCENTEQ(); 
 
                 }
                 break;
             case 103 :
-                // TinyHaxeTry1.g:1:687: PERCENTDLQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:687: PERCENTDLQ
                 {
                 mPERCENTDLQ(); 
 
                 }
                 break;
             case 104 :
-                // TinyHaxeTry1.g:1:698: PERCENTDBQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:698: PERCENTDBQ
                 {
                 mPERCENTDBQ(); 
 
                 }
                 break;
             case 105 :
-                // TinyHaxeTry1.g:1:709: PERCENTDBBQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:709: PERCENTDBBQ
                 {
                 mPERCENTDBBQ(); 
 
                 }
                 break;
             case 106 :
-                // TinyHaxeTry1.g:1:721: EQEQEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:721: EQEQEQ
                 {
                 mEQEQEQ(); 
 
                 }
                 break;
             case 107 :
-                // TinyHaxeTry1.g:1:728: PERCENTLESQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:728: PERCENTLESQ
                 {
                 mPERCENTLESQ(); 
 
                 }
                 break;
             case 108 :
-                // TinyHaxeTry1.g:1:740: BANGEQQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:740: BANGEQQ
                 {
                 mBANGEQQ(); 
 
                 }
                 break;
             case 109 :
-                // TinyHaxeTry1.g:1:748: MONKEYS_AT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:748: MONKEYS_AT
                 {
                 mMONKEYS_AT(); 
 
                 }
                 break;
             case 110 :
-                // TinyHaxeTry1.g:1:759: BANGEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:759: BANGEQ
                 {
                 mBANGEQ(); 
 
                 }
                 break;
             case 111 :
-                // TinyHaxeTry1.g:1:766: MINUS_BIGGER
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:766: MINUS_BIGGER
                 {
                 mMINUS_BIGGER(); 
 
                 }
                 break;
             case 112 :
-                // TinyHaxeTry1.g:1:779: PERCENTLL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:779: PERCENTLL
                 {
                 mPERCENTLL(); 
 
                 }
                 break;
             case 113 :
-                // TinyHaxeTry1.g:1:789: PERCENTBB
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:789: PERCENTBB
                 {
                 mPERCENTBB(); 
 
                 }
                 break;
             case 114 :
-                // TinyHaxeTry1.g:1:799: PERCENTBBB
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:799: PERCENTBBB
                 {
                 mPERCENTBBB(); 
 
                 }
                 break;
             case 115 :
-                // TinyHaxeTry1.g:1:810: GT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:810: GT
                 {
                 mGT(); 
 
                 }
                 break;
             case 116 :
-                // TinyHaxeTry1.g:1:813: GTGT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:813: GTGT
                 {
                 mGTGT(); 
 
                 }
                 break;
             case 117 :
-                // TinyHaxeTry1.g:1:818: LTLT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:818: LTLT
                 {
                 mLTLT(); 
 
                 }
                 break;
             case 118 :
-                // TinyHaxeTry1.g:1:823: GTGTGT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:823: GTGTGT
                 {
                 mGTGTGT(); 
 
                 }
                 break;
             case 119 :
-                // TinyHaxeTry1.g:1:830: LTLTEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:830: LTLTEQ
                 {
                 mLTLTEQ(); 
 
                 }
                 break;
             case 120 :
-                // TinyHaxeTry1.g:1:837: GTGTEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:837: GTGTEQ
                 {
                 mGTGTEQ(); 
 
                 }
                 break;
             case 121 :
-                // TinyHaxeTry1.g:1:844: GTGTGTEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:844: GTGTGTEQ
                 {
                 mGTGTGTEQ(); 
 
                 }
                 break;
             case 122 :
-                // TinyHaxeTry1.g:1:853: GTEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:853: GTEQ
                 {
                 mGTEQ(); 
 
                 }
                 break;
             case 123 :
-                // TinyHaxeTry1.g:1:858: LTEQ
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:858: LTEQ
                 {
                 mLTEQ(); 
 
                 }
                 break;
             case 124 :
-                // TinyHaxeTry1.g:1:863: LT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:863: LT
                 {
                 mLT(); 
 
                 }
                 break;
             case 125 :
-                // TinyHaxeTry1.g:1:866: IDENTIFIER
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:866: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
                 }
                 break;
             case 126 :
-                // TinyHaxeTry1.g:1:877: INTNUM
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:877: INTNUM
                 {
                 mINTNUM(); 
 
                 }
                 break;
             case 127 :
-                // TinyHaxeTry1.g:1:884: FLOATNUM
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:884: FLOATNUM
                 {
                 mFLOATNUM(); 
 
                 }
                 break;
             case 128 :
-                // TinyHaxeTry1.g:1:893: COMMENT
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:893: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 129 :
-                // TinyHaxeTry1.g:1:901: STRINGLITERAL
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:901: STRINGLITERAL
                 {
                 mSTRINGLITERAL(); 
 
                 }
                 break;
             case 130 :
-                // TinyHaxeTry1.g:1:915: PREPROCESSOR_DIRECTIVE
+                // F:\\Programming\\!Proekt\\ANTLR\\TinyHaxeTry1.g:1:915: PREPROCESSOR_DIRECTIVE
                 {
                 mPREPROCESSOR_DIRECTIVE(); 
 
@@ -5909,7 +5929,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "615:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )";
+            return "616:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )";
         }
     }
     static final String DFA18_eotS =
@@ -5921,12 +5941,12 @@ public class TinyHaxeTry1Lexer extends Lexer {
     static final String DFA18_maxS =
         "\1\71\1\145\3\uffff";
     static final String DFA18_acceptS =
-        "\2\uffff\1\2\1\3\1\1";
+        "\2\uffff\1\2\1\1\1\3";
     static final String DFA18_specialS =
         "\5\uffff}>";
     static final String[] DFA18_transitionS = {
             "\1\2\1\uffff\12\1",
-            "\1\4\1\uffff\12\1\13\uffff\1\3\37\uffff\1\3",
+            "\1\3\1\uffff\12\1\13\uffff\1\4\37\uffff\1\4",
             "",
             "",
             ""
@@ -5962,7 +5982,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "919:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
+            return "920:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
         }
     }
     static final String DFA25_eotS =
@@ -6017,7 +6037,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA25_transition;
         }
         public String getDescription() {
-            return "971:2: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )";
+            return "972:2: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )";
         }
     }
     static final String DFA31_eotS =
@@ -6074,74 +6094,74 @@ public class TinyHaxeTry1Lexer extends Lexer {
             this.transition = DFA31_transition;
         }
         public String getDescription() {
-            return "989:2: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )";
+            return "990:2: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )";
         }
     }
     static final String DFA47_eotS =
-        "\1\66\1\uffff\2\74\1\uffff\26\64\10\uffff\1\156\1\160\1\162\3\uffff"+
+        "\1\66\1\uffff\2\71\1\uffff\26\64\10\uffff\1\156\1\160\1\162\3\uffff"+
         "\1\165\1\170\1\173\1\177\1\u0081\1\u0084\1\u0086\1\u0089\1\uffff"+
-        "\1\u008c\1\u008f\5\uffff\1\74\1\uffff\1\u0091\2\uffff\1\74\11\64"+
-        "\1\u009d\12\64\1\u00a8\1\64\1\u00ad\27\64\2\uffff\1\u00cb\1\uffff"+
-        "\1\u00cd\30\uffff\1\u00d2\2\uffff\1\u00d4\2\uffff\1\74\1\uffff\13"+
-        "\64\1\uffff\5\64\1\u00e7\4\64\1\uffff\4\64\1\uffff\1\u00f1\2\64"+
-        "\1\u00f4\17\64\1\u0104\4\64\1\u0109\3\64\6\uffff\1\u0111\4\uffff"+
-        "\1\64\1\u0113\1\64\1\u0115\1\u0116\1\u0117\1\64\1\u0119\6\64\1\u0120"+
-        "\1\u0121\2\64\1\uffff\3\64\1\u0128\5\64\1\uffff\1\u012e\1\64\1\uffff"+
-        "\1\u0130\13\64\1\u013c\2\64\1\uffff\1\u013f\3\64\1\uffff\1\64\1"+
-        "\u0144\1\64\5\uffff\1\64\1\uffff\1\u014a\3\uffff\1\u014b\1\uffff"+
-        "\1\u014c\1\u014d\4\64\2\uffff\2\64\1\u0155\1\u0156\1\64\1\u0158"+
-        "\1\uffff\5\64\1\uffff\1\64\1\uffff\5\64\1\u0164\2\64\1\u0167\2\64"+
-        "\1\uffff\1\u016b\1\64\1\uffff\2\64\1\u016f\1\64\1\uffff\1\u0171"+
-        "\3\uffff\1\64\4\uffff\2\64\1\u0178\2\64\1\u017b\1\64\2\uffff\1\64"+
-        "\1\uffff\1\64\1\u017f\2\64\1\u0182\1\u0183\3\64\1\u0187\1\u0188"+
-        "\1\uffff\1\u0189\1\64\1\uffff\1\u018b\1\64\1\u018d\1\uffff\3\64"+
-        "\1\uffff\1\64\1\uffff\1\u0193\1\u0195\1\uffff\2\64\1\u0199\1\uffff"+
-        "\1\u019a\1\u019b\1\uffff\1\u019c\2\64\1\uffff\2\64\2\uffff\1\u01a1"+
-        "\1\u01a2\1\64\3\uffff\1\64\1\uffff\1\64\1\uffff\1\64\1\u01a7\1\u01a8"+
-        "\1\64\4\uffff\1\u01ab\1\u01ac\1\u01ad\4\uffff\1\u01ae\3\64\2\uffff"+
-        "\1\64\1\u01b3\1\u01b4\1\64\2\uffff\1\u01b6\5\uffff\2\64\1\u01b9"+
-        "\1\u01ba\2\uffff\1\u01bb\1\uffff\1\u01bc\1\u01bd\5\uffff";
+        "\1\u008c\1\u008f\7\uffff\1\71\1\u0091\1\uffff\1\71\11\64\1\u009d"+
+        "\12\64\1\u00a8\1\64\1\u00ad\27\64\2\uffff\1\u00cb\1\uffff\1\u00cd"+
+        "\30\uffff\1\u00d2\2\uffff\1\u00d4\2\uffff\1\71\1\uffff\13\64\1\uffff"+
+        "\5\64\1\u00e7\4\64\1\uffff\4\64\1\uffff\1\u00f1\2\64\1\u00f4\17"+
+        "\64\1\u0104\4\64\1\u0109\3\64\6\uffff\1\u0111\4\uffff\1\64\1\u0113"+
+        "\1\64\1\u0115\1\u0116\1\u0117\1\64\1\u0119\6\64\1\u0120\1\u0121"+
+        "\2\64\1\uffff\3\64\1\u0128\5\64\1\uffff\1\u012e\1\64\1\uffff\1\u0130"+
+        "\13\64\1\u013c\2\64\1\uffff\1\u013f\3\64\1\uffff\1\64\1\u0144\1"+
+        "\64\5\uffff\1\64\1\uffff\1\u014a\3\uffff\1\u014b\1\uffff\1\u014c"+
+        "\1\u014d\4\64\2\uffff\2\64\1\u0155\1\u0156\1\64\1\u0158\1\uffff"+
+        "\5\64\1\uffff\1\64\1\uffff\5\64\1\u0164\2\64\1\u0167\2\64\1\uffff"+
+        "\1\u016b\1\64\1\uffff\2\64\1\u016f\1\64\1\uffff\1\u0171\3\uffff"+
+        "\1\64\4\uffff\2\64\1\u0178\2\64\1\u017b\1\64\2\uffff\1\64\1\uffff"+
+        "\1\64\1\u017f\2\64\1\u0182\1\u0183\3\64\1\u0187\1\u0188\1\uffff"+
+        "\1\u0189\1\64\1\uffff\1\u018b\1\64\1\u018d\1\uffff\3\64\1\uffff"+
+        "\1\64\1\uffff\1\u0193\1\u0195\1\uffff\2\64\1\u0199\1\uffff\1\u019a"+
+        "\1\u019b\1\uffff\1\u019c\2\64\1\uffff\2\64\2\uffff\1\u01a1\1\u01a2"+
+        "\1\64\3\uffff\1\64\1\uffff\1\64\1\uffff\1\64\1\u01a7\1\u01a8\1\64"+
+        "\4\uffff\1\u01ab\1\u01ac\1\u01ad\4\uffff\1\u01ae\3\64\2\uffff\1"+
+        "\64\1\u01b3\1\u01b4\1\64\2\uffff\1\u01b6\5\uffff\2\64\1\u01b9\1"+
+        "\u01ba\2\uffff\1\u01bb\1\uffff\1\u01bc\1\u01bd\5\uffff";
     static final String DFA47_eofS =
         "\u01be\uffff";
     static final String DFA47_minS =
         "\1\11\1\uffff\2\56\1\uffff\1\142\1\157\1\162\1\141\1\145\1\154"+
         "\1\141\1\154\1\157\1\146\1\156\1\157\2\141\1\145\1\150\1\166\1\150"+
         "\1\156\1\141\1\157\1\150\10\uffff\1\56\2\75\3\uffff\1\46\1\75\1"+
-        "\53\1\55\1\75\1\52\1\75\1\45\1\uffff\1\75\1\74\3\uffff\2\60\1\56"+
-        "\1\uffff\1\56\2\uffff\1\56\1\163\1\157\1\145\1\164\1\163\2\141\1"+
-        "\156\1\146\1\60\1\156\1\163\1\165\1\164\1\156\1\162\1\154\1\156"+
-        "\1\157\1\164\1\60\1\160\1\60\1\164\1\156\1\164\1\167\1\154\1\143"+
-        "\1\151\1\142\1\164\1\157\1\141\1\160\1\151\1\145\1\151\1\141\1\160"+
-        "\1\164\1\151\1\162\1\154\2\151\2\uffff\1\75\1\uffff\1\75\26\uffff"+
-        "\1\74\1\uffff\1\75\2\uffff\1\75\2\uffff\1\60\1\uffff\1\164\1\154"+
-        "\1\141\2\145\1\143\1\162\2\163\1\141\1\142\1\uffff\1\141\1\145\1"+
-        "\155\1\145\1\141\1\60\1\163\1\143\1\141\1\157\1\uffff\1\154\1\164"+
-        "\1\145\1\151\1\uffff\1\60\1\147\1\151\1\60\1\154\1\153\1\166\1\164"+
-        "\1\154\1\165\1\162\1\164\1\151\1\145\1\164\1\162\1\163\1\157\1\156"+
-        "\1\60\2\145\1\171\1\156\1\60\1\141\1\144\1\154\4\uffff\1\74\1\76"+
-        "\1\75\4\uffff\1\162\1\60\1\153\3\60\1\150\1\60\1\163\1\164\1\151"+
-        "\1\165\1\154\1\155\2\60\1\156\1\154\1\uffff\1\145\2\164\1\60\1\145"+
-        "\1\162\1\141\1\162\1\156\1\uffff\1\60\1\166\1\uffff\1\60\2\141\1"+
-        "\145\1\151\1\162\1\164\1\151\1\143\1\162\1\143\1\162\1\60\1\167"+
-        "\1\163\1\uffff\1\60\1\144\1\160\1\147\1\uffff\1\164\1\60\1\145\1"+
-        "\45\1\uffff\1\45\2\uffff\1\141\1\uffff\1\60\3\uffff\1\60\1\uffff"+
-        "\2\60\1\156\1\154\1\145\1\151\2\uffff\1\144\1\156\2\60\1\151\1\60"+
-        "\1\uffff\1\155\1\164\1\156\1\146\1\145\1\uffff\1\145\1\uffff\1\147"+
-        "\1\164\2\143\1\156\1\60\1\143\1\164\1\60\1\150\1\151\1\uffff\1\60"+
-        "\1\151\1\uffff\2\145\1\60\1\151\1\uffff\1\60\3\45\1\143\4\uffff"+
-        "\1\165\1\164\1\60\1\143\1\163\1\60\1\171\2\uffff\1\157\1\uffff\1"+
-        "\145\1\60\1\143\1\141\2\60\2\145\1\164\2\60\1\uffff\1\60\1\146\1"+
-        "\uffff\1\60\1\144\1\60\1\uffff\1\145\1\146\1\144\1\uffff\1\154\1"+
-        "\uffff\2\75\1\45\1\164\1\145\1\60\1\uffff\2\60\1\uffff\1\60\2\156"+
-        "\1\uffff\1\145\1\143\2\uffff\2\60\1\145\3\uffff\1\160\1\uffff\1"+
-        "\145\1\uffff\1\156\2\60\1\145\4\uffff\1\75\2\60\4\uffff\1\60\1\164"+
-        "\1\157\1\145\2\uffff\1\144\2\60\1\164\2\uffff\1\60\5\uffff\1\163"+
-        "\1\146\2\60\2\uffff\1\60\1\uffff\2\60\5\uffff";
+        "\53\1\55\1\75\1\52\1\75\1\45\1\uffff\1\75\1\74\3\uffff\2\60\2\uffff"+
+        "\2\56\1\uffff\1\56\1\163\1\157\1\145\1\164\1\163\2\141\1\156\1\146"+
+        "\1\60\1\156\1\163\1\165\1\164\1\156\1\162\1\154\1\156\1\157\1\164"+
+        "\1\60\1\160\1\60\1\164\1\156\1\164\1\167\1\154\1\143\1\151\1\142"+
+        "\1\164\1\157\1\141\1\160\1\151\1\145\1\151\1\141\1\160\1\164\1\151"+
+        "\1\162\1\154\2\151\2\uffff\1\75\1\uffff\1\75\26\uffff\1\74\1\uffff"+
+        "\1\75\2\uffff\1\75\2\uffff\1\60\1\uffff\1\164\1\154\1\141\2\145"+
+        "\1\143\1\162\2\163\1\141\1\142\1\uffff\1\141\1\145\1\155\1\145\1"+
+        "\141\1\60\1\163\1\143\1\141\1\157\1\uffff\1\154\1\164\1\145\1\151"+
+        "\1\uffff\1\60\1\147\1\151\1\60\1\154\1\153\1\166\1\164\1\154\1\165"+
+        "\1\162\1\164\1\151\1\145\1\164\1\162\1\163\1\157\1\156\1\60\2\145"+
+        "\1\171\1\156\1\60\1\141\1\144\1\154\4\uffff\1\74\1\76\1\75\4\uffff"+
+        "\1\162\1\60\1\153\3\60\1\150\1\60\1\163\1\164\1\151\1\165\1\154"+
+        "\1\155\2\60\1\156\1\154\1\uffff\1\145\2\164\1\60\1\145\1\162\1\141"+
+        "\1\162\1\156\1\uffff\1\60\1\166\1\uffff\1\60\2\141\1\145\1\151\1"+
+        "\162\1\164\1\151\1\143\1\162\1\143\1\162\1\60\1\167\1\163\1\uffff"+
+        "\1\60\1\144\1\160\1\147\1\uffff\1\164\1\60\1\145\1\45\1\uffff\1"+
+        "\45\2\uffff\1\141\1\uffff\1\60\3\uffff\1\60\1\uffff\2\60\1\156\1"+
+        "\154\1\145\1\151\2\uffff\1\144\1\156\2\60\1\151\1\60\1\uffff\1\155"+
+        "\1\164\1\156\1\146\1\145\1\uffff\1\145\1\uffff\1\147\1\164\2\143"+
+        "\1\156\1\60\1\143\1\164\1\60\1\150\1\151\1\uffff\1\60\1\151\1\uffff"+
+        "\2\145\1\60\1\151\1\uffff\1\60\3\45\1\143\4\uffff\1\165\1\164\1"+
+        "\60\1\143\1\163\1\60\1\171\2\uffff\1\157\1\uffff\1\145\1\60\1\143"+
+        "\1\141\2\60\2\145\1\164\2\60\1\uffff\1\60\1\146\1\uffff\1\60\1\144"+
+        "\1\60\1\uffff\1\145\1\146\1\144\1\uffff\1\154\1\uffff\2\75\1\45"+
+        "\1\164\1\145\1\60\1\uffff\2\60\1\uffff\1\60\2\156\1\uffff\1\145"+
+        "\1\143\2\uffff\2\60\1\145\3\uffff\1\160\1\uffff\1\145\1\uffff\1"+
+        "\156\2\60\1\145\4\uffff\1\75\2\60\4\uffff\1\60\1\164\1\157\1\145"+
+        "\2\uffff\1\144\2\60\1\164\2\uffff\1\60\5\uffff\1\163\1\146\2\60"+
+        "\2\uffff\1\60\1\uffff\2\60\5\uffff";
     static final String DFA47_maxS =
         "\1\176\1\uffff\1\170\1\154\1\uffff\1\142\1\157\1\171\1\157\1\171"+
         "\1\170\1\165\1\154\1\157\2\156\1\157\2\165\1\145\1\167\1\166\1\171"+
         "\1\163\2\157\1\150\10\uffff\1\71\2\75\3\uffff\1\75\1\174\1\75\1"+
-        "\76\4\75\1\uffff\1\76\1\75\3\uffff\2\146\1\154\1\uffff\1\145\2\uffff"+
+        "\76\4\75\1\uffff\1\76\1\75\3\uffff\2\146\2\uffff\1\154\1\145\1\uffff"+
         "\1\154\1\163\1\157\1\145\2\164\2\141\1\156\1\146\1\172\1\156\1\163"+
         "\1\165\1\164\1\156\1\162\1\154\1\156\1\157\1\164\1\172\1\160\1\172"+
         "\1\164\1\156\1\164\1\167\1\154\1\143\1\157\1\142\1\164\1\157\1\162"+
@@ -6174,7 +6194,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
     static final String DFA47_acceptS =
         "\1\uffff\1\1\2\uffff\1\4\26\uffff\1\103\1\104\1\105\1\106\1\107"+
         "\1\110\1\111\1\112\3\uffff\1\117\1\120\1\121\10\uffff\1\155\2\uffff"+
-        "\1\175\1\u0081\1\u0082\3\uffff\1\177\1\uffff\1\3\1\2\57\uffff\1"+
+        "\1\175\1\u0081\1\u0082\2\uffff\1\3\1\2\2\uffff\1\177\57\uffff\1"+
         "\114\1\113\1\uffff\1\115\1\uffff\1\116\1\123\1\143\1\133\1\124\1"+
         "\144\1\134\1\125\1\137\1\127\1\126\1\140\1\157\1\130\1\141\1\131"+
         "\1\142\1\u0080\1\132\1\145\1\135\1\146\1\uffff\1\136\1\uffff\1\172"+
@@ -6201,10 +6221,10 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "\1\11\1\12\1\13\1\15\1\64\1\16\2\64\1\20\1\64\1\21\1\25\1\22"+
             "\1\64\1\23\1\24\1\26\1\27\1\30\1\32\3\64\1\35\1\52\1\36\1\46",
             "",
-            "\1\72\1\uffff\10\71\2\73\13\uffff\1\72\6\uffff\1\75\13\uffff"+
-            "\1\70\14\uffff\1\72\6\uffff\1\75\13\uffff\1\67",
-            "\1\72\1\uffff\12\76\13\uffff\1\72\6\uffff\1\75\30\uffff\1"+
-            "\72\6\uffff\1\75",
+            "\1\75\1\uffff\10\73\2\74\13\uffff\1\75\6\uffff\1\72\13\uffff"+
+            "\1\70\14\uffff\1\75\6\uffff\1\72\13\uffff\1\67",
+            "\1\75\1\uffff\12\76\13\uffff\1\75\6\uffff\1\72\30\uffff\1"+
+            "\75\6\uffff\1\72",
             "",
             "\1\77",
             "\1\100",
@@ -6236,7 +6256,7 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "",
             "",
             "",
-            "\1\155\1\uffff\12\72",
+            "\1\155\1\uffff\12\75",
             "\1\157",
             "\1\161",
             "",
@@ -6258,14 +6278,14 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "",
             "\12\u0090\7\uffff\6\u0090\32\uffff\6\u0090",
             "\12\u0090\7\uffff\6\u0090\32\uffff\6\u0090",
-            "\1\72\1\uffff\10\71\2\73\13\uffff\1\72\6\uffff\1\75\30\uffff"+
-            "\1\72\6\uffff\1\75",
-            "",
-            "\1\72\1\uffff\12\73\13\uffff\1\72\37\uffff\1\72",
             "",
             "",
-            "\1\72\1\uffff\12\76\13\uffff\1\72\6\uffff\1\75\30\uffff\1"+
-            "\72\6\uffff\1\75",
+            "\1\75\1\uffff\10\73\2\74\13\uffff\1\75\6\uffff\1\72\30\uffff"+
+            "\1\75\6\uffff\1\72",
+            "\1\75\1\uffff\12\74\13\uffff\1\75\37\uffff\1\75",
+            "",
+            "\1\75\1\uffff\12\76\13\uffff\1\75\6\uffff\1\72\30\uffff\1"+
+            "\75\6\uffff\1\72",
             "\1\u0092",
             "\1\u0093",
             "\1\u0094",
@@ -6349,8 +6369,8 @@ public class TinyHaxeTry1Lexer extends Lexer {
             "\1\u00d3",
             "",
             "",
-            "\12\u0090\7\uffff\6\u0090\5\uffff\1\75\24\uffff\6\u0090\5"+
-            "\uffff\1\75",
+            "\12\u0090\7\uffff\6\u0090\5\uffff\1\72\24\uffff\6\u0090\5"+
+            "\uffff\1\72",
             "",
             "\1\u00d5",
             "\1\u00d6",

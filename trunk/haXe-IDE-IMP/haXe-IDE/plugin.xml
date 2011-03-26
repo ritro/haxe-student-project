@@ -75,10 +75,10 @@
          id="haXe-IDE.referenceResolver"
          name="haxe Reference Resolver"
          point="org.eclipse.imp.runtime.referenceResolvers">
-         <referenceResolver
-               class="haxe.imp.hoverHelper.HelperReferenceResolver"
-               language="haXe">
-         </referenceResolver>
+      <referenceResolver
+            class="haxe.imp.hoverHelper.HelperReferenceResolver"
+            language="haXe">
+      </referenceResolver>
    </extension>
    <extension
          id="haXe-IDE.documentationProvider"
@@ -88,6 +88,44 @@
             class="haxe.imp.documentationProvider.HelperDocumentationProvider"
             language="haxe">
       </docProvider>
+   </extension>
+   <extension
+         id="haxe.imp.builder"
+         name="Haxe builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="haxe.imp.builders.HaxeBuilder">
+            <parameter
+                  name="foo"
+                  value="bar">
+            </parameter>
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="imp.nature"
+         name="haxe Nature"
+         point="org.eclipse.core.resources.natures">
+      <builder
+            id="haXe_IDE.haxe.imp.builder">
+      </builder>
+      <runtime>
+         <run
+               class="haxe.imp.builders.HaxeNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         id="haxe.imp.builder.problem"
+         name="haxe Error"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
    </extension>
 
 </plugin>

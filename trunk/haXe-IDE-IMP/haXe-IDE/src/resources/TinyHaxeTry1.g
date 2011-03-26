@@ -392,6 +392,7 @@ newExpr
 	
 cast    :	CAST LPAREN expr (COMMA funcType)? RPAREN 	-> ^(CAST expr? funcType?)
 	|	CAST LPAREN expr RPAREN 			-> ^(CAST expr?)
+	|	CAST expr					-> ^(CAST expr)
 	;
 	
 //! -------- Declarations

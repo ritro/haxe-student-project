@@ -16,9 +16,13 @@ import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.ModelException;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.runtime.PluginBase;
+import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 
 import haxe_ide.Activator;
 import haxe.imp.parser.HaxeParseController;
+import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
 
 /**
  * A builder may be activated on a file containing haxe code every time it
@@ -75,15 +79,16 @@ public class HaxeBuilder extends BuilderBase {
 	 * @return true iff an arbitrary file is a haxe source file.
 	 */
 	protected boolean isSourceFile(IFile file) {
-		IPath path = file.getRawLocation();
-		if (path == null)
-			return false;
+		//IPath path = file.getRawLocation();
+		//if (path == null)
+		//	return false;
 
-		String pathString = path.toString();
+		return !file.isDerived() && file.getFileExtension().equals("hx");
+		/*String pathString = path.toString();
 		if (pathString.indexOf("/bin/") != -1)
 			return false;
 
-		return LANGUAGE.hasExtension(path.getFileExtension());
+		return LANGUAGE.hasExtension(path.getFileExtension());*/
 	}
 
 	/**
@@ -97,7 +102,9 @@ public class HaxeBuilder extends BuilderBase {
 	 * 
 	 */
 	protected boolean isNonRootSourceFile(IFile resource) {
-		return false;
+		return !resource.isDerived() &&
+		resource.getFileExtension().equals("hxml");
+		//return false;
 	}
 
 	/**
@@ -107,12 +114,12 @@ public class HaxeBuilder extends BuilderBase {
 	protected void collectDependencies(IFile file) {
 		String fromPath = file.getFullPath().toString();
 
-		getPlugin().writeInfoMsg(
+		getPlugin().writeInfoMsg( 
 				"Collecting dependencies from haxe file: " + file.getName());
 
 		// TODO: implement dependency collector
 		// E.g. for each dependency:
-		fDependencyInfo.addDependency(fromPath, uponPath);
+		//fDependencyInfo.addDependency(fromPath, uponPath);
 	}
 
 	/**

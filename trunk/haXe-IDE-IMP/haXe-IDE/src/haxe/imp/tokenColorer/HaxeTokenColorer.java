@@ -87,8 +87,8 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case EXTENDS:
 		case RETURN:
 		case DEFAULT:
-		case CASE:
 		case CAST:
+		case THROW:
 		case INTERFACE:
 		case VAR:
 		case NULL:
@@ -99,6 +99,14 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case TRUE:
 		case FALSE:
 			return this.functionAttribute;
+		case CASE:
+		case FOR:
+		case IF:
+		case ELSE:
+		case TRY:
+		case CATCH:
+		case WHILE:
+			return this.keywordAttribute;
 		case CHARLITERAL:
 		case STRINGLITERAL:
 			return this.stringAttribute;
@@ -108,8 +116,8 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 			return this.numberAttribute;
 		case COMMENT:
 			return this.commentAttribute;
-		case PREPROCESSOR_DIRECTIVE:
-			return this.processorCommand;
+		//case PREPROCESSOR_DIRECTIVE:
+		//	return this.processorCommand;
 		default:
 			return this.defaultAttribute;
 		}

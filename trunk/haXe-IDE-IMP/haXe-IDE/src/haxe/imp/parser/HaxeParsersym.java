@@ -49,6 +49,13 @@ public interface HaxeParsersym {
 
 	/** The Constant CASE. */
 	public static final int CASE = TinyHaxeTry1Lexer.CASE;
+	public static final int THROW = TinyHaxeTry1Lexer.THROW;
+	
+	public static final int FOR = TinyHaxeTry1Lexer.FOR;
+	public static final int IF = TinyHaxeTry1Lexer.IF;
+	public static final int ELSE = TinyHaxeTry1Lexer.ELSE;
+	public static final int TRY = TinyHaxeTry1Lexer.TRY;
+	public static final int CATCH = TinyHaxeTry1Lexer.CATCH;
 
 	/** The Constant NEW. */
 	public static final int NEW = TinyHaxeTry1Lexer.NEW;
@@ -69,7 +76,7 @@ public interface HaxeParsersym {
 	public static final int COMMENT = TinyHaxeTry1Lexer.COMMENT;
 
 	/** The Constant PREPROCESSOR_DIRECTIVE. */
-	public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
+	//public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
 
 	/** The Constant STATIC. */
 	public static final int STATIC = TinyHaxeTry1Lexer.STATIC;

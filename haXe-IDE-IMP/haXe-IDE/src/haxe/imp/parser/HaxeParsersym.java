@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser;
 
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
+import haxe.imp.parser.antlr.main.HaxeLexer;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -21,114 +21,114 @@ import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
 public interface HaxeParsersym {
 
 	/** The Constant PACKAGE. */
-	public static final int PACKAGE = TinyHaxeTry1Lexer.PACKAGE;
+	public static final int PACKAGE = HaxeLexer.PACKAGE;
 
 	/** The Constant FUNCTION. */
-	public static final int FUNCTION = TinyHaxeTry1Lexer.FUNCTION;
+	public static final int FUNCTION = HaxeLexer.FUNCTION;
 
 	/** The Constant CAST. */
-	public static final int CAST = TinyHaxeTry1Lexer.CAST;
+	public static final int CAST = HaxeLexer.CAST;
 
 	/** The Constant EXPONENT. */
-	public static final int EXPONENT = TinyHaxeTry1Lexer.EXPONENT;
+	public static final int EXPONENT = HaxeLexer.EXPONENT;
 
 	/** The Constant LT. */
-	public static final int LT = TinyHaxeTry1Lexer.LT;
+	public static final int LT = HaxeLexer.LT;
 
 	/** The Constant STAR. */
-	public static final int STAR = TinyHaxeTry1Lexer.STAR;
+	public static final int STAR = HaxeLexer.STAR;
 
 	/** The Constant WHILE. */
-	public static final int WHILE = TinyHaxeTry1Lexer.WHILE;
+	public static final int WHILE = HaxeLexer.WHILE;
 
 	/** The Constant FLOATNUM. */
-	public static final int FLOATNUM = TinyHaxeTry1Lexer.FLOATNUM;
+	public static final int FLOATNUM = HaxeLexer.FLOATNUM;
 
 	/** The Constant CONST. */
-	public static final int CONST = TinyHaxeTry1Lexer.CONST;
+	public static final int CONST = HaxeLexer.CONST;
 
 	/** The Constant CASE. */
-	public static final int CASE = TinyHaxeTry1Lexer.CASE;
-	public static final int THROW = TinyHaxeTry1Lexer.THROW;
+	public static final int CASE = HaxeLexer.CASE;
+	public static final int THROW = HaxeLexer.THROW;
 	
-	public static final int FOR = TinyHaxeTry1Lexer.FOR;
-	public static final int IF = TinyHaxeTry1Lexer.IF;
-	public static final int ELSE = TinyHaxeTry1Lexer.ELSE;
-	public static final int TRY = TinyHaxeTry1Lexer.TRY;
-	public static final int CATCH = TinyHaxeTry1Lexer.CATCH;
+	public static final int FOR = HaxeLexer.FOR;
+	public static final int IF = HaxeLexer.IF;
+	public static final int ELSE = HaxeLexer.ELSE;
+	public static final int TRY = HaxeLexer.TRY;
+	public static final int CATCH = HaxeLexer.CATCH;
 
 	/** The Constant NEW. */
-	public static final int NEW = TinyHaxeTry1Lexer.NEW;
+	public static final int NEW = HaxeLexer.NEW;
 
 	/** The Constant IMPORT. */
-	public static final int IMPORT = TinyHaxeTry1Lexer.IMPORT;
+	public static final int IMPORT = HaxeLexer.IMPORT;
 
 	/** The Constant RETURN. */
-	public static final int RETURN = TinyHaxeTry1Lexer.RETURN;
+	public static final int RETURN = HaxeLexer.RETURN;
 
 	/** The Constant VAR. */
-	public static final int VAR = TinyHaxeTry1Lexer.VAR;
+	public static final int VAR = HaxeLexer.VAR;
 
 	/** The Constant VOID. */
-	public static final int VOID = TinyHaxeTry1Lexer.VOID;
+	public static final int VOID = HaxeLexer.VOID;
 
 	/** The Constant COMMENT. */
-	public static final int COMMENT = TinyHaxeTry1Lexer.COMMENT;
+	public static final int COMMENT = HaxeLexer.COMMENT;
 
 	/** The Constant PREPROCESSOR_DIRECTIVE. */
 	//public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
 
 	/** The Constant STATIC. */
-	public static final int STATIC = TinyHaxeTry1Lexer.STATIC;
+	public static final int STATIC = HaxeLexer.STATIC;
 
 	/** The Constant PRIVATE. */
-	public static final int PRIVATE = TinyHaxeTry1Lexer.PRIVATE;
+	public static final int PRIVATE = HaxeLexer.PRIVATE;
 
 	/** The Constant NULL. */
-	public static final int NULL = TinyHaxeTry1Lexer.NULL;
+	public static final int NULL = HaxeLexer.NULL;
 	/** The Constant INT. */
-	public static final int INT = TinyHaxeTry1Lexer.INT;
+	public static final int INT = HaxeLexer.INT;
 
 	/** The Constant CHARLITERAL. */
-	public static final int CHARLITERAL = TinyHaxeTry1Lexer.CHARLITERAL;
+	public static final int CHARLITERAL = HaxeLexer.CHARLITERAL;
 
 	/** The Constant CLASS. */
-	public static final int CLASS = TinyHaxeTry1Lexer.CLASS;
+	public static final int CLASS = HaxeLexer.CLASS;
 
 	/** The Constant FLOAT. */
-	public static final int FLOAT = TinyHaxeTry1Lexer.FLOAT;
+	public static final int FLOAT = HaxeLexer.FLOAT;
 
 	/** The Constant IN. */
-	public static final int IN = TinyHaxeTry1Lexer.IN;
+	public static final int IN = HaxeLexer.IN;
 
 	/** The Constant IMPLEMENTS. */
-	public static final int IMPLEMENTS = TinyHaxeTry1Lexer.IMPLEMENTS;
+	public static final int IMPLEMENTS = HaxeLexer.IMPLEMENTS;
 
 	/** The Constant DEFAULT. */
-	public static final int DEFAULT = TinyHaxeTry1Lexer.DEFAULT;
+	public static final int DEFAULT = HaxeLexer.DEFAULT;
 
 	/** The Constant TRUE. */
-	public static final int TRUE = TinyHaxeTry1Lexer.TRUE;
+	public static final int TRUE = HaxeLexer.TRUE;
 
 	/** The Constant FALSE. */
-	public static final int FALSE = TinyHaxeTry1Lexer.FALSE;
+	public static final int FALSE = HaxeLexer.FALSE;
 
 	/** The Constant ENUM. */
-	public static final int ENUM = TinyHaxeTry1Lexer.ENUM;
+	public static final int ENUM = HaxeLexer.ENUM;
 
 	/** The Constant STRINGLITERAL. */
-	public static final int STRINGLITERAL = TinyHaxeTry1Lexer.STRINGLITERAL;
+	public static final int STRINGLITERAL = HaxeLexer.STRINGLITERAL;
 	/** The Constant INTERFACE. */
-	public static final int INTERFACE = TinyHaxeTry1Lexer.INTERFACE;
+	public static final int INTERFACE = HaxeLexer.INTERFACE;
 
 	/** The Constant PUBLIC. */
-	public static final int PUBLIC = TinyHaxeTry1Lexer.PUBLIC;
+	public static final int PUBLIC = HaxeLexer.PUBLIC;
 
 	/** The Constant EXTENDS. */
-	public static final int EXTENDS = TinyHaxeTry1Lexer.EXTENDS;
+	public static final int EXTENDS = HaxeLexer.EXTENDS;
 
 	/** The Constant BOOLEAN. */
-	public static final int BOOLEAN = TinyHaxeTry1Lexer.BOOLEAN;
+	public static final int BOOLEAN = HaxeLexer.BOOLEAN;
 
 	/** The Constant TK_ERROR_TOKEN. */
 	public final static int

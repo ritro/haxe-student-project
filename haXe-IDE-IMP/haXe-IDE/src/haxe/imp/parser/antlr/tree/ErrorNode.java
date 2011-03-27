@@ -22,7 +22,7 @@ import org.antlr.runtime.CommonToken;
  * 
  * @author Anatoly Kondratyev
  */
-public class ExtendedErrorNode extends ExtendedCommonTree {
+public class ErrorNode extends HaxeTree {
 
 	/** The delegate. */
 	org.antlr.runtime.tree.CommonErrorNode delegate;
@@ -39,7 +39,7 @@ public class ExtendedErrorNode extends ExtendedCommonTree {
 	 * @param e
 	 *            the e
 	 */
-	public ExtendedErrorNode(final TokenStream input, final Token start,
+	public ErrorNode(final TokenStream input, final Token start,
 			final Token stop, final RecognitionException e) {
 		this.delegate = new CommonErrorNode(input, start, stop, e);
 	}

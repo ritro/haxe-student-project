@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.treeModelBuilder;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
@@ -35,7 +35,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		if (root == null) {
 			return;
 		}
-		ExtendedCommonTree rootNode = (ExtendedCommonTree) root;
+		HaxeTree rootNode = (HaxeTree) root;
 		HaxeModelVisitor visitor = new HaxeModelVisitor();
 
 		rootNode.accept(visitor);
@@ -82,7 +82,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 		 *            the do create sub item
 		 * @return true, if successful
 		 */
-		public boolean visit(final ExtendedCommonTree node,
+		public boolean visit(final HaxeTree node,
 				final boolean doCreateSubItem) {
 			if (doCreateSubItem) {
 				HaxeTreeModelBuilder.this.createSubItem(node);

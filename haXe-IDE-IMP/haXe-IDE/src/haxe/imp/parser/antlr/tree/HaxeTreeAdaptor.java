@@ -20,7 +20,7 @@ import org.antlr.runtime.tree.CommonTreeAdaptor;
  * 
  * @author Anatoly Kondratyev
  */
-public class ExtendedTreeAdaptor extends CommonTreeAdaptor {
+public class HaxeTreeAdaptor extends CommonTreeAdaptor {
 
 	/*
 	 * (non-Javadoc)
@@ -30,7 +30,7 @@ public class ExtendedTreeAdaptor extends CommonTreeAdaptor {
 	 */
 	@Override
 	public Object create(final Token token) {
-		return new ExtendedCommonTree(token);
+		return new HaxeTree(token);
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class ExtendedTreeAdaptor extends CommonTreeAdaptor {
 		if (t == null) {
 			return null;
 		}
-		return this.create(((ExtendedCommonTree) t).token);
+		return this.create(((HaxeTree) t).token);
 	}
 
 	/*
@@ -56,7 +56,7 @@ public class ExtendedTreeAdaptor extends CommonTreeAdaptor {
 	@Override
 	public Object errorNode(final TokenStream input, final Token start,
 			final Token stop, final RecognitionException e) {
-		ExtendedErrorNode t = new ExtendedErrorNode(input, start, stop, e);
+		ErrorNode t = new ErrorNode(input, start, stop, e);
 		return t;
 	}
 }

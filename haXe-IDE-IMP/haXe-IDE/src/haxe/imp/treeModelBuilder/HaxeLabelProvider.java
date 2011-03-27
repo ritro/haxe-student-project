@@ -10,8 +10,8 @@
  *******************************************************************************/
 package haxe.imp.treeModelBuilder;
 
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.main.HaxeLexer;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
@@ -85,9 +85,9 @@ public class HaxeLabelProvider implements ILabelProvider {
 				return FILE_IMAGE;
 			}
 		}
-		ExtendedCommonTree n = (element instanceof ModelTreeNode) ? (ExtendedCommonTree) ((ModelTreeNode) element)
+		HaxeTree n = (element instanceof ModelTreeNode) ? (HaxeTree) ((ModelTreeNode) element)
 				.getASTNode()
-				: (ExtendedCommonTree) element;
+				: (HaxeTree) element;
 		return getImageFor(n);
 	}
 
@@ -98,7 +98,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 *            the n
 	 * @return the image for
 	 */
-	public static Image getImageFor(final ExtendedCommonTree n) {
+	public static Image getImageFor(final HaxeTree n) {
 		return DEFAULT_IMAGE;
 	}
 
@@ -108,9 +108,9 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 */
 	public String getText(final Object element) {
-		ExtendedCommonTree n = (element instanceof ModelTreeNode) ? (ExtendedCommonTree) ((ModelTreeNode) element)
+		HaxeTree n = (element instanceof ModelTreeNode) ? (HaxeTree) ((ModelTreeNode) element)
 				.getASTNode()
-				: (ExtendedCommonTree) element;
+				: (HaxeTree) element;
 
 		return getLabelFor(n);
 	}
@@ -122,11 +122,11 @@ public class HaxeLabelProvider implements ILabelProvider {
 	 *            passed node
 	 * @return the label for node in outline tree
 	 */
-	public static String getLabelFor(final ExtendedCommonTree n) {
+	public static String getLabelFor(final HaxeTree n) {
 		// START_HERE
-		if (n.token.getType() == TinyHaxeTry1Lexer.MODULE) {
+		if (n.token.getType() == HaxeLexer.MODULE) {
 			return "Module";
-		} else if (n.token.getType() == TinyHaxeTry1Lexer.ENUM) {
+		} else if (n.token.getType() == HaxeLexer.ENUM) {
 			String enumReturn = "Enum ";
 			if (n.getChildCount() > 0) {
 				if (!(n.getChild(0) instanceof VarDeclaration)) {

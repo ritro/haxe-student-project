@@ -11,8 +11,8 @@
 package haxe.imp.contentProposer;
 
 import haxe.imp.parser.HaxeParseController;
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.main.HaxeLexer;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 
 import java.util.ArrayList;
@@ -46,12 +46,12 @@ public class HaxeContentProposer implements IContentProposer {
 	public ICompletionProposal[] getContentProposals(
 			final IParseController controller, final int offset,
 			final ITextViewer viewer) {
-		ExtendedCommonTree sourceNode = null;
+		HaxeTree sourceNode = null;
 		String sourceString = null;
 
 		HaxeParseController haxeController = (HaxeParseController) controller;
 		try {
-			sourceNode = ((ExtendedCommonTree) controller.getCurrentAst())
+			sourceNode = ((HaxeTree) controller.getCurrentAst())
 					.getNodeByPosition(offset);
 			sourceString = "";
 			System.out.println(sourceNode);
@@ -59,13 +59,13 @@ public class HaxeContentProposer implements IContentProposer {
 			CommonToken sourceToken = this.getTokenAtPosition(haxeController
 					.getTokenStream(), offset);
 			sourceString = sourceToken.getText();
-			if (sourceToken.getType() == TinyHaxeTry1Lexer.COMMENT) {
+			if (sourceToken.getType() == HaxeLexer.COMMENT) {
 				return null;
 			}
 			int shiftedOffset = offset - 1;
 			while (sourceNode == null && shiftedOffset > 0) {
 				try {
-					sourceNode = ((ExtendedCommonTree) controller
+					sourceNode = ((HaxeTree) controller
 							.getCurrentAst()).getNodeByPosition(shiftedOffset);
 				} catch (NullPointerException e) {
 					shiftedOffset--;
@@ -75,7 +75,7 @@ public class HaxeContentProposer implements IContentProposer {
 				return null;
 			}
 		}
-		ArrayList<ExtendedCommonTree> availableVars = this.filterVars(
+		ArrayList<HaxeTree> availableVars = this.filterVars(
 				sourceNode.getAvailableVars(), sourceString);
 		return this.createSourceProposals(availableVars, sourceString, offset);
 	}
@@ -112,10 +112,10 @@ public class HaxeContentProposer implements IContentProposer {
 	 *            the prefix
 	 * @return the array list
 	 */
-	private ArrayList<ExtendedCommonTree> filterVars(
-			final ArrayList<ExtendedCommonTree> vars, final String prefix) {
-		ArrayList<ExtendedCommonTree> result = new ArrayList<ExtendedCommonTree>();
-		for (ExtendedCommonTree commonTree : vars) {
+	private ArrayList<HaxeTree> filterVars(
+			final ArrayList<HaxeTree> vars, final String prefix) {
+		ArrayList<HaxeTree> result = new ArrayList<HaxeTree>();
+		for (HaxeTree commonTree : vars) {
 			if (commonTree.getText().startsWith(prefix)) {
 				result.add(commonTree);
 			}
@@ -135,11 +135,11 @@ public class HaxeContentProposer implements IContentProposer {
 	 * @return the source proposal[]
 	 */
 	private SourceProposal[] createSourceProposals(
-			final ArrayList<ExtendedCommonTree> availableVars,
+			final ArrayList<HaxeTree> availableVars,
 			final String prefix, final int offset) {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
-		for (ExtendedCommonTree commonTree : availableVars) {
+		for (HaxeTree commonTree : availableVars) {
 			VarUsage usage = (VarUsage) commonTree;
 			result.add(new ComparableSourceProposal(usage.getTextWithType(),
 					usage.getText(), prefix, offset));

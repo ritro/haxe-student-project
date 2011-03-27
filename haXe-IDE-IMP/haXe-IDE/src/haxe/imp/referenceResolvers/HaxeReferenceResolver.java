@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.referenceResolvers;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 
 import org.eclipse.imp.parser.IParseController;
@@ -57,10 +57,10 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 		// language and reference types
 
 		if (node instanceof VarUsage && controller.getCurrentAst() != null) {
-			ExtendedCommonTree result;
+			HaxeTree result;
 			try {
-				result = ((ExtendedCommonTree) node)
-						.getDeclarationNode((ExtendedCommonTree) node);
+				result = ((HaxeTree) node)
+						.getDeclarationNode((HaxeTree) node);
 			} catch (Exception e) {
 				return null;
 			}

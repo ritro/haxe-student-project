@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.Token;
 
@@ -19,7 +19,7 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class SwitchNode extends ExtendedCommonTree {
+public class SwitchNode extends HaxeTree {
 
 	/**
 	 * Instantiates a new switch node.
@@ -35,7 +35,7 @@ public class SwitchNode extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public SwitchNode(final ExtendedCommonTree node) {
+	public SwitchNode(final HaxeTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}

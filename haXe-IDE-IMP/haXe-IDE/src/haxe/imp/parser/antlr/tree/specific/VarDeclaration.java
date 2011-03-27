@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import org.antlr.runtime.tree.CommonTree;
  * 
  * @author Anatoly Kondratyev
  */
-public class VarDeclaration extends ExtendedCommonTree {
+public class VarDeclaration extends HaxeTree {
 
 	/** The name with type. */
 	private String nameWithType = "";
@@ -134,7 +134,7 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * @return the var name node
 	 */
 	public VarUsage getVarNameNode() {
-		for (ExtendedCommonTree child : this.getChildren()) {
+		for (HaxeTree child : this.getChildren()) {
 			if (child instanceof VarUsage) {
 				return (VarUsage) child;
 			}
@@ -160,7 +160,7 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 */
 	public HaxeType getVarType() {
 		try {
-			for (ExtendedCommonTree tree : this.getChildren()) {
+			for (HaxeTree tree : this.getChildren()) {
 				Token token = (CommonToken) tree.getToken();
 				if (token.getType() == TYPE_TAG_TYPE) {
 					/**
@@ -185,8 +185,8 @@ public class VarDeclaration extends ExtendedCommonTree {
 	 * 
 	 * @return the vA r_ ini t_ node
 	 */
-	public ExtendedCommonTree getVAR_INIT_NODE() {
-		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
+	public HaxeTree getVAR_INIT_NODE() {
+		for (HaxeTree tree : (ArrayList<HaxeTree>) this
 				.getChildren()) {
 			Token token = (CommonToken) tree.getToken();
 			if (token.getType() == VAR_INIT_TYPE) {

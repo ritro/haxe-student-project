@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.foldingUpdater;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -76,7 +76,7 @@ public class HaxeFoldingUpdater extends FolderBase {
 		 *            the n
 		 * @return true, if successful
 		 */
-		public boolean visit(final ExtendedCommonTree n) {
+		public boolean visit(final HaxeTree n) {
 			int start = 0;
 			int len = 0;
 			if (n instanceof ClassNode) {
@@ -116,7 +116,7 @@ public class HaxeFoldingUpdater extends FolderBase {
 			final HashMap<Annotation, Position> newAnnotations,
 			final List<Annotation> annotations, final Object ast) {
 		HaxeFoldingVisitor visitor = new HaxeFoldingVisitor();
-		ExtendedCommonTree node = (ExtendedCommonTree) ast;
+		HaxeTree node = (HaxeTree) ast;
 		node.accept(visitor);
 	}
 }

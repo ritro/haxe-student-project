@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class FunctionNode extends ExtendedCommonTree {
+public class FunctionNode extends HaxeTree {
 
 	/** The full name with parameters. */
 	private String fullNameWithParameters = "";
@@ -35,11 +35,11 @@ public class FunctionNode extends ExtendedCommonTree {
 	 */
 	public String getFullNameWithParameters() {
 		if (this.fullNameWithParameters.equals("")) {
-			ExtendedCommonTree paramList = this.getParamListNode();
+			HaxeTree paramList = this.getParamListNode();
 			String parameters = "";
 			String comma = "";
 			if (paramList != null && paramList.getChildCount() != 0) {
-				for (ExtendedCommonTree commonTree : paramList.getChildren()) {
+				for (HaxeTree commonTree : paramList.getChildren()) {
 					parameters += comma
 							+ ((VarDeclaration) commonTree).getVarType()
 									.getTypeName();
@@ -66,7 +66,7 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public FunctionNode(final ExtendedCommonTree node) {
+	public FunctionNode(final HaxeTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -87,8 +87,8 @@ public class FunctionNode extends ExtendedCommonTree {
 	 * 
 	 * @return the param list node
 	 */
-	public ExtendedCommonTree getParamListNode() {
-		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
+	public HaxeTree getParamListNode() {
+		for (HaxeTree tree : (ArrayList<HaxeTree>) this
 				.getChildren()) {
 			Token token = (CommonToken) tree.getToken();
 			if (token.getType() == PARAM_LIST_TYPE) {
@@ -105,9 +105,9 @@ public class FunctionNode extends ExtendedCommonTree {
 	 */
 	public ArrayList<VarUsage> getParametersAsVarUsage() {
 		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
-		ExtendedCommonTree parameters = this.getParamListNode();
+		HaxeTree parameters = this.getParamListNode();
 		if (parameters != null) {
-			for (ExtendedCommonTree varDecl : parameters.getChildren()) {
+			for (HaxeTree varDecl : parameters.getChildren()) {
 				VarDeclaration varDeclaration = (VarDeclaration) varDecl;
 				varDeclaration.getVarNameNode().setHaxeType(
 						varDeclaration.getVarType());
@@ -134,7 +134,7 @@ public class FunctionNode extends ExtendedCommonTree {
 	 */
 	public HaxeType getFunctionReturnType() {
 		try {
-			for (ExtendedCommonTree tree : this.getChildren()) {
+			for (HaxeTree tree : this.getChildren()) {
 				if (tree.getToken().getType() == TYPE_TAG_TYPE) {
 					return new HaxeType(tree.getChild(0).getText());
 				}
@@ -152,7 +152,7 @@ public class FunctionNode extends ExtendedCommonTree {
 	 */
 	public BlockScopeNode getBlockScope() {
 		if (this.getChildCount() > 0) {
-			for (ExtendedCommonTree tree : this.getChildren()) {
+			for (HaxeTree tree : this.getChildren()) {
 				if (tree instanceof BlockScopeNode) {
 					return (BlockScopeNode) tree;
 				}

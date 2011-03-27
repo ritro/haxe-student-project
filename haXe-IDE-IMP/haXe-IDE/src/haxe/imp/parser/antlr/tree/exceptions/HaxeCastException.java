@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.exceptions;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 /**
  * The Class HaxeCastException.
@@ -23,7 +23,7 @@ public class HaxeCastException extends ClassCastException {
 	private static final long serialVersionUID = -4817818239298337408L;
 
 	/** The node with exception. */
-	private ExtendedCommonTree nodeWithException;
+	private HaxeTree nodeWithException;
 
 	/**
 	 * Instantiates a new haxe cast exception.
@@ -37,7 +37,7 @@ public class HaxeCastException extends ClassCastException {
 	 * 
 	 * @return the nodeWithException
 	 */
-	public ExtendedCommonTree getNodeWithException() {
+	public HaxeTree getNodeWithException() {
 		return this.nodeWithException;
 	}
 
@@ -47,7 +47,7 @@ public class HaxeCastException extends ClassCastException {
 	 * @param nodeWithException
 	 *            the nodeWithException to set
 	 */
-	public void setNodeWithException(final ExtendedCommonTree nodeWithException) {
+	public void setNodeWithException(final HaxeTree nodeWithException) {
 		this.nodeWithException = nodeWithException;
 	}
 
@@ -57,7 +57,7 @@ public class HaxeCastException extends ClassCastException {
 	 * @param commonTree
 	 *            the common tree
 	 */
-	public HaxeCastException(final ExtendedCommonTree commonTree) {
+	public HaxeCastException(final HaxeTree commonTree) {
 		super();
 		this.nodeWithException = commonTree;
 	}

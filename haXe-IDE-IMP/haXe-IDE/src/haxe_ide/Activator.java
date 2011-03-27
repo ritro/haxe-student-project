@@ -38,7 +38,7 @@ public class Activator extends PluginBase {
 	 */
 	public static Activator getInstance() {
 		if (sPlugin == null) {
-			new Activator();
+			sPlugin = new Activator();
 		}
 		return sPlugin;
 	}
@@ -46,8 +46,7 @@ public class Activator extends PluginBase {
 	/**
 	 * Instantiates a new activator.
 	 */
-	public Activator() {
-		super();
+	public Activator() { 
 		sPlugin = this;
 	}
 

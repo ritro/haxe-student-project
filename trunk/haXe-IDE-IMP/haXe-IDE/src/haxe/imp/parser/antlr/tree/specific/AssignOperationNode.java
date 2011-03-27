@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -21,7 +21,7 @@ import org.antlr.runtime.tree.CommonTree;
  * 
  * @author kondratyev
  */
-public class AssignOperationNode extends ExtendedCommonTree {
+public class AssignOperationNode extends HaxeTree {
 
 	/**
 	 * Instantiates a new assign operation node.

@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.hoverHelper;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe_ide.Activator;
@@ -47,7 +47,7 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	 * 
 	 * @return the extended common tree
 	 */
-	public ExtendedCommonTree tmp() {
+	public HaxeTree tmp() {
 		return null;
 	}
 
@@ -165,9 +165,9 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 			VarUsage def = (VarUsage) helpNode;
 			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
 		} else if (helpNode instanceof FunctionNode
-				|| ((ExtendedCommonTree) helpNode).getParent() instanceof FunctionNode) {
+				|| ((HaxeTree) helpNode).getParent() instanceof FunctionNode) {
 			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode
-					: ((ExtendedCommonTree) helpNode).getParent());
+					: ((HaxeTree) helpNode).getParent());
 			msg = def.getFullNameWithParameters();
 		}
 		return msg;

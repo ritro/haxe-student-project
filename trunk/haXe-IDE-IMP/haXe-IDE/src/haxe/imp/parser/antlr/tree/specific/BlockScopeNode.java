@@ -10,8 +10,8 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import org.antlr.runtime.tree.CommonTree;
  * 
  * @author kondratyev
  */
-public class BlockScopeNode extends ExtendedCommonTree {
+public class BlockScopeNode extends HaxeTree {
 
 	/**
 	 * Each BlockScope contains Nodes representing vars, that could be used in
@@ -75,8 +75,8 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	public int getrBracketPosition() {
 		if (this.getChildCount() > 0) {
 			//return this.rBracketPosition;
-			ExtendedCommonTree lastchild = getChildren().get(getChildCount()-1);
-			if (lastchild.getType() == TinyHaxeTry1Parser.RBRACE) {
+			HaxeTree lastchild = getChildren().get(getChildCount()-1);
+			if (lastchild.getType() == HaxeParser.RBRACE) {
 				return lastchild.getToken().getStopIndex();
 			} else {
 				// no right brace - return something
@@ -218,7 +218,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @return true, if successful
 	 */
 	public boolean doScopeContainsVarName(final String varName) {
-		for (ExtendedCommonTree usage : this.declaredVars) {
+		for (HaxeTree usage : this.declaredVars) {
 			if (usage.getText().equals(varName)) {
 				return true;
 			}
@@ -234,7 +234,7 @@ public class BlockScopeNode extends ExtendedCommonTree {
 	 * @return the var in scope type
 	 */
 	public HaxeType getVarInScopeType(final String varName) {
-		for (ExtendedCommonTree usage : this.declaredVars) {
+		for (HaxeTree usage : this.declaredVars) {
 			if (usage.getText().equals(varName)) {
 				return ((VarUsage) usage).getHaxeType();
 			}

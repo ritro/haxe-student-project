@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import lpg.runtime.IAst;
 
 import org.antlr.runtime.CommonToken;
@@ -64,7 +64,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 */
 	@Override
 	public Object findNode(final Object astRoot, final int offset) {
-		return ((ExtendedCommonTree) astRoot).getNodeByPosition(offset);
+		return ((HaxeTree) astRoot).getNodeByPosition(offset);
 	}
 
 	/*
@@ -78,7 +78,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	public Object findNode(final Object astRoot, final int startOffset,
 			final int endOffset) {
 		// TODO use endOffset
-		return ((ExtendedCommonTree) astRoot).getNodeByPosition(startOffset);
+		return ((HaxeTree) astRoot).getNodeByPosition(startOffset);
 	}
 
 	/*
@@ -93,8 +93,8 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getStartIndex()
 					+ ((CommonToken) entity).getText().length() - 1;
-		} else if (entity instanceof ExtendedCommonTree) {
-			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
+		} else if (entity instanceof HaxeTree) {
+			CommonToken commonToken = (CommonToken) ((HaxeTree) entity)
 					.getToken();
 			return commonToken.getStartIndex() + commonToken.getText().length()
 					- 1;
@@ -113,8 +113,8 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	public int getLength(final Object entity) {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getText().length();
-		} else if (entity instanceof ExtendedCommonTree) {
-			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
+		} else if (entity instanceof HaxeTree) {
+			CommonToken commonToken = (CommonToken) ((HaxeTree) entity)
 					.getToken();
 			return commonToken.getText().length();
 		} else {
@@ -140,7 +140,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 			ICompilationUnit cu = (ICompilationUnit) node;
 			return cu.getPath();
 		}
-		if (node instanceof ExtendedCommonTree) {
+		if (node instanceof HaxeTree) {
 			ISourceProject iSourceProject = this.fParseController.getProject();
 			IPath result = this.fParseController.getPath();
 			Path tmp = new Path(this.fParseController.getProject().getName()
@@ -161,8 +161,8 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	public int getStartOffset(final Object entity) {
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getStartIndex();
-		} else if (entity instanceof ExtendedCommonTree) {
-			CommonToken commonToken = (CommonToken) ((ExtendedCommonTree) entity)
+		} else if (entity instanceof HaxeTree) {
+			CommonToken commonToken = (CommonToken) ((HaxeTree) entity)
 					.getToken();
 			return commonToken.getStartIndex();
 		} else if (entity instanceof ModelTreeNode) {

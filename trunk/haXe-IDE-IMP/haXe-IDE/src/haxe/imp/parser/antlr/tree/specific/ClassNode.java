@@ -10,10 +10,10 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser.inheritListOpt_return;
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser.inherit_return;
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser.typeTagOpt_return;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.main.HaxeParser.inheritListOpt_return;
+import haxe.imp.parser.antlr.main.HaxeParser.inherit_return;
+import haxe.imp.parser.antlr.main.HaxeParser.typeTagOpt_return;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class ClassNode extends ExtendedCommonTree {
+public class ClassNode extends HaxeTree {
 
 	/** The class name. */
 	private String className = "";
@@ -57,7 +57,7 @@ public class ClassNode extends ExtendedCommonTree {
 	 * @param node
 	 *            the node
 	 */
-	public ClassNode(final ExtendedCommonTree node) {
+	public ClassNode(final HaxeTree node) {
 		super(node);
 		// TODO Auto-generated constructor stub
 	}
@@ -79,7 +79,7 @@ public class ClassNode extends ExtendedCommonTree {
 	 * @return the block scope
 	 */
 	public BlockScopeNode getBlockScope() {
-		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
+		for (HaxeTree tree : (ArrayList<HaxeTree>) this
 				.getChildren()) {
 			if (tree instanceof BlockScopeNode) {
 				return (BlockScopeNode) tree;
@@ -88,11 +88,11 @@ public class ClassNode extends ExtendedCommonTree {
 		return null;
 	}
 	
-	public ExtendedCommonTree getInherits() {
-		for (ExtendedCommonTree tree : (ArrayList<ExtendedCommonTree>) this
+	public HaxeTree getInherits() {
+		for (HaxeTree tree : (ArrayList<HaxeTree>) this
 				.getChildren()) {
 			if (tree.getType() == 11) {
-				return (ExtendedCommonTree) tree;
+				return (HaxeTree) tree;
 			}
 		}
 		return null;
@@ -107,7 +107,7 @@ public class ClassNode extends ExtendedCommonTree {
 		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
 		BlockScopeNode blockScopeNode = this.getBlockScope();
 		if (blockScopeNode != null) {
-			for (ExtendedCommonTree tree : blockScopeNode.getChildren()) {
+			for (HaxeTree tree : blockScopeNode.getChildren()) {
 				if (tree instanceof VarDeclaration) {
 					VarDeclaration declarationTree = (VarDeclaration) tree;
 					declarationTree.getVarNameNode().setHaxeType(
@@ -118,7 +118,7 @@ public class ClassNode extends ExtendedCommonTree {
 				} else if (tree instanceof FunctionNode) {
 					FunctionNode functionTree = (FunctionNode) tree;
 					VarUsage usage = new VarUsage(
-							((ExtendedCommonTree) functionTree.getChild(0))
+							((HaxeTree) functionTree.getChild(0))
 									.getToken());
 					usage.setHaxeType(functionTree.getFunctionReturnType());
 					list.add(usage);

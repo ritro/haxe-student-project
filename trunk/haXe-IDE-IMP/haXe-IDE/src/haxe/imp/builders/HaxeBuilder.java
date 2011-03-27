@@ -20,7 +20,7 @@ import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 
 import haxe_ide.Activator;
 import haxe.imp.parser.HaxeParseController;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 

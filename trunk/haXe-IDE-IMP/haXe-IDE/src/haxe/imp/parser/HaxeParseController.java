@@ -10,10 +10,10 @@
  *******************************************************************************/
 package haxe.imp.parser;
 
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
-import haxe.imp.parser.antlr.tree.ExtendedTreeAdaptor;
+import haxe.imp.parser.antlr.main.HaxeLexer;
+import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe_ide.Activator;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ import org.eclipse.jface.text.IRegion;
 public class HaxeParseController implements IParseController {
 
 	/** The current ast. */
-	private ExtendedCommonTree currentAST = new ExtendedCommonTree();
+	private HaxeTree currentAST = new HaxeTree();
 
 	/** The token stream. */
 	private CommonTokenStream tokenStream = new CommonTokenStream();
@@ -294,19 +294,19 @@ public class HaxeParseController implements IParseController {
 	 *            the contents
 	 */
 	private void doParse(final String contents) {
-		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(new ANTLRStringStream(contents));
+		HaxeLexer lexer = new HaxeLexer(new ANTLRStringStream(contents));
 		this.tokenStream = new CommonTokenStream(lexer);
 		this.tokenStream.getTokens();
 		System.out.print("Parsing file...");
-		TinyHaxeTry1Parser parser = new TinyHaxeTry1Parser(this.tokenStream);
-		parser.setTreeAdaptor(new ExtendedTreeAdaptor());
-		this.currentAST = new ExtendedCommonTree();
+		HaxeParser parser = new HaxeParser(this.tokenStream);
+		parser.setTreeAdaptor(new HaxeTreeAdaptor());
+		this.currentAST = new HaxeTree();
 
 		try {
-			TinyHaxeTry1Parser.module_return parserResult = parser.module();
-			this.currentAST = (ExtendedCommonTree) parserResult.getTree();
+			HaxeParser.module_return parserResult = parser.module();
+			this.currentAST = (HaxeTree) parserResult.getTree();
 			System.out.println("success!");
-			ExtendedCommonTree.setMessageHandler(this.handler);
+			HaxeTree.setMessageHandler(this.handler);
 			this.handler.clearMessages();
 			this.currentAST.calculateScopes();
 

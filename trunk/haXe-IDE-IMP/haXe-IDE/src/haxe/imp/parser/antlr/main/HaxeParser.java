@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 F:\\Programming\\!Proekt\\ANTLR\\Haxe.g 2011-03-27 23:48:28
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 Haxe.g 2011-03-28 14:21:53
 
 package haxe.imp.parser.antlr.main;
 
@@ -222,7 +222,7 @@ public class HaxeParser extends Parser {
     }
 
     public String[] getTokenNames() { return HaxeParser.tokenNames; }
-    public String getGrammarFileName() { return "F:\\Programming\\!Proekt\\ANTLR\\Haxe.g"; }
+    public String getGrammarFileName() { return "Haxe.g"; }
 
 
     public static class module_return extends ParserRuleReturnScope {
@@ -231,7 +231,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "module"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:1: module : ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? ) ;
+    // Haxe.g:59:1: module : ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? ) ;
     public final HaxeParser.module_return module() throws RecognitionException {
         HaxeParser.module_return retval = new HaxeParser.module_return();
         retval.start = input.LT(1);
@@ -247,10 +247,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_topLevelList=new RewriteRuleSubtreeStream(adaptor,"rule topLevelList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:19: ( ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:21: ( myPackage )? topLevelList
+            // Haxe.g:59:19: ( ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? ) )
+            // Haxe.g:59:21: ( myPackage )? topLevelList
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:21: ( myPackage )?
+            // Haxe.g:59:21: ( myPackage )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -259,7 +259,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: myPackage
+                    // Haxe.g:0:0: myPackage
                     {
                     pushFollow(FOLLOW_myPackage_in_module129);
                     myPackage1=myPackage();
@@ -295,18 +295,18 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 59:45: -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:48: ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
+                // Haxe.g:59:48: ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new HaxeTree(MODULE, "MODULE", true), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:92: ( myPackage )?
+                // Haxe.g:59:82: ( myPackage )?
                 if ( stream_myPackage.hasNext() ) {
                     adaptor.addChild(root_1, stream_myPackage.nextTree());
 
                 }
                 stream_myPackage.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:59:103: ( topLevelList )?
+                // Haxe.g:59:93: ( topLevelList )?
                 if ( stream_topLevelList.hasNext() ) {
                     adaptor.addChild(root_1, stream_topLevelList.nextTree());
 
@@ -348,7 +348,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "topLevelList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:62:1: topLevelList : ( topLevel )* ;
+    // Haxe.g:62:1: topLevelList : ( topLevel )* ;
     public final HaxeParser.topLevelList_return topLevelList() throws RecognitionException {
         HaxeParser.topLevelList_return retval = new HaxeParser.topLevelList_return();
         retval.start = input.LT(1);
@@ -361,12 +361,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:62:19: ( ( topLevel )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:62:22: ( topLevel )*
+            // Haxe.g:62:19: ( ( topLevel )* )
+            // Haxe.g:62:22: ( topLevel )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:62:22: ( topLevel )*
+            // Haxe.g:62:22: ( topLevel )*
             loop2:
             do {
                 int alt2=2;
@@ -379,7 +379,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:62:23: topLevel
+            	    // Haxe.g:62:23: topLevel
             	    {
             	    pushFollow(FOLLOW_topLevel_in_topLevelList168);
             	    topLevel3=topLevel();
@@ -426,7 +426,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "topLevel"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:64:1: topLevel : ( myImport | topLevelDecl );
+    // Haxe.g:64:1: topLevel : ( myImport | topLevelDecl );
     public final HaxeParser.topLevel_return topLevel() throws RecognitionException {
         HaxeParser.topLevel_return retval = new HaxeParser.topLevel_return();
         retval.start = input.LT(1);
@@ -441,7 +441,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:64:19: ( myImport | topLevelDecl )
+            // Haxe.g:64:19: ( myImport | topLevelDecl )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -460,7 +460,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:64:21: myImport
+                    // Haxe.g:64:21: myImport
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -474,7 +474,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:66:25: topLevelDecl
+                    // Haxe.g:66:25: topLevelDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -516,7 +516,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "myPackage"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:68:1: myPackage : PACKAGE dotIdent SEMI -> ^( PACKAGE ( dotIdent )? ) ;
+    // Haxe.g:68:1: myPackage : PACKAGE dotIdent SEMI -> ^( PACKAGE ( dotIdent )? ) ;
     public final HaxeParser.myPackage_return myPackage() throws RecognitionException {
         HaxeParser.myPackage_return retval = new HaxeParser.myPackage_return();
         retval.start = input.LT(1);
@@ -535,8 +535,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_dotIdent=new RewriteRuleSubtreeStream(adaptor,"rule dotIdent");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:68:21: ( PACKAGE dotIdent SEMI -> ^( PACKAGE ( dotIdent )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:68:23: PACKAGE dotIdent SEMI
+            // Haxe.g:68:21: ( PACKAGE dotIdent SEMI -> ^( PACKAGE ( dotIdent )? ) )
+            // Haxe.g:68:23: PACKAGE dotIdent SEMI
             {
             PACKAGE6=(Token)match(input,PACKAGE,FOLLOW_PACKAGE_in_myPackage233); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_PACKAGE.add(PACKAGE6);
@@ -566,12 +566,12 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 68:45: -> ^( PACKAGE ( dotIdent )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:68:48: ^( PACKAGE ( dotIdent )? )
+                // Haxe.g:68:48: ^( PACKAGE ( dotIdent )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_PACKAGE.nextNode(), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:68:58: ( dotIdent )?
+                // Haxe.g:68:58: ( dotIdent )?
                 if ( stream_dotIdent.hasNext() ) {
                     adaptor.addChild(root_1, stream_dotIdent.nextTree());
 
@@ -613,7 +613,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "qualifiedIdentifier"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:71:1: qualifiedIdentifier : (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* ;
+    // Haxe.g:71:1: qualifiedIdentifier : (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* ;
     public final HaxeParser.qualifiedIdentifier_return qualifiedIdentifier() throws RecognitionException {
         HaxeParser.qualifiedIdentifier_return retval = new HaxeParser.qualifiedIdentifier_return();
         retval.start = input.LT(1);
@@ -632,11 +632,11 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:5: ( (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:9: (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
+            // Haxe.g:72:5: ( (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* )
+            // Haxe.g:72:9: (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:9: (a= IDENTIFIER -> $a)
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:10: a= IDENTIFIER
+            // Haxe.g:72:9: (a= IDENTIFIER -> $a)
+            // Haxe.g:72:10: a= IDENTIFIER
             {
             a=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_qualifiedIdentifier266); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(a);
@@ -665,7 +665,7 @@ public class HaxeParser extends Parser {
             retval.tree = root_0;}
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:34: ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
+            // Haxe.g:72:34: ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
             loop4:
             do {
                 int alt4=2;
@@ -678,7 +678,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt4) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:35: DOT ident= IDENTIFIER
+            	    // Haxe.g:72:35: DOT ident= IDENTIFIER
             	    {
             	    DOT9=(Token)match(input,DOT,FOLLOW_DOT_in_qualifiedIdentifier279); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_DOT.add(DOT9);
@@ -689,7 +689,7 @@ public class HaxeParser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: ident, qualifiedIdentifier, DOT
+            	    // elements: DOT, ident, qualifiedIdentifier
             	    // token labels: ident
             	    // rule labels: retval
             	    // token list labels: 
@@ -703,7 +703,7 @@ public class HaxeParser extends Parser {
             	    root_0 = (Object)adaptor.nil();
             	    // 72:57: -> ^( DOT $qualifiedIdentifier $ident)
             	    {
-            	        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:72:61: ^( DOT $qualifiedIdentifier $ident)
+            	        // Haxe.g:72:61: ^( DOT $qualifiedIdentifier $ident)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(stream_DOT.nextNode(), root_1);
@@ -755,7 +755,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "myImport"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:75:1: myImport : IMPORT dotIdent SEMI ;
+    // Haxe.g:75:1: myImport : IMPORT dotIdent SEMI ;
     public final HaxeParser.myImport_return myImport() throws RecognitionException {
         HaxeParser.myImport_return retval = new HaxeParser.myImport_return();
         retval.start = input.LT(1);
@@ -772,8 +772,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:75:21: ( IMPORT dotIdent SEMI )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:75:23: IMPORT dotIdent SEMI
+            // Haxe.g:75:21: ( IMPORT dotIdent SEMI )
+            // Haxe.g:75:23: IMPORT dotIdent SEMI
             {
             root_0 = (Object)adaptor.nil();
 
@@ -819,7 +819,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "access"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:79:1: access : ( PUBLIC | PRIVATE );
+    // Haxe.g:79:1: access : ( PUBLIC | PRIVATE );
     public final HaxeParser.access_return access() throws RecognitionException {
         HaxeParser.access_return retval = new HaxeParser.access_return();
         retval.start = input.LT(1);
@@ -832,8 +832,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:79:19: ( PUBLIC | PRIVATE )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:
+            // Haxe.g:79:19: ( PUBLIC | PRIVATE )
+            // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -879,7 +879,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "declAttr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:82:1: declAttr : ( STATIC | INLINE | DYNAMIC | OVERRIDE | access );
+    // Haxe.g:82:1: declAttr : ( STATIC | INLINE | DYNAMIC | OVERRIDE | access );
     public final HaxeParser.declAttr_return declAttr() throws RecognitionException {
         HaxeParser.declAttr_return retval = new HaxeParser.declAttr_return();
         retval.start = input.LT(1);
@@ -900,7 +900,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:82:19: ( STATIC | INLINE | DYNAMIC | OVERRIDE | access )
+            // Haxe.g:82:19: ( STATIC | INLINE | DYNAMIC | OVERRIDE | access )
             int alt5=5;
             switch ( input.LA(1) ) {
             case STATIC:
@@ -939,7 +939,7 @@ public class HaxeParser extends Parser {
 
             switch (alt5) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:82:21: STATIC
+                    // Haxe.g:82:21: STATIC
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -952,7 +952,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:83:24: INLINE
+                    // Haxe.g:83:24: INLINE
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -965,7 +965,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:84:25: DYNAMIC
+                    // Haxe.g:84:25: DYNAMIC
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -978,7 +978,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:85:25: OVERRIDE
+                    // Haxe.g:85:25: OVERRIDE
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -991,7 +991,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:86:25: access
+                    // Haxe.g:86:25: access
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1033,7 +1033,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "declAttrList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:88:1: declAttrList : ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ ) ;
+    // Haxe.g:88:1: declAttrList : ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ ) ;
     public final HaxeParser.declAttrList_return declAttrList() throws RecognitionException {
         HaxeParser.declAttrList_return retval = new HaxeParser.declAttrList_return();
         retval.start = input.LT(1);
@@ -1046,10 +1046,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_declAttr=new RewriteRuleSubtreeStream(adaptor,"rule declAttr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:88:19: ( ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:88:21: ( declAttr )+
+            // Haxe.g:88:19: ( ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ ) )
+            // Haxe.g:88:21: ( declAttr )+
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:88:21: ( declAttr )+
+            // Haxe.g:88:21: ( declAttr )+
             int cnt6=0;
             loop6:
             do {
@@ -1063,7 +1063,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:88:22: declAttr
+            	    // Haxe.g:88:22: declAttr
             	    {
             	    pushFollow(FOLLOW_declAttr_in_declAttrList535);
             	    declAttr19=declAttr();
@@ -1101,7 +1101,7 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 88:33: -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:88:36: ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
+                // Haxe.g:88:36: ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new HaxeTree(DECL_ATTR_LIST, "DECL_ATTR_LIST", true), root_1);
@@ -1150,7 +1150,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "paramList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:91:1: paramList : ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ ) | );
+    // Haxe.g:91:1: paramList : ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ ) | );
     public final HaxeParser.paramList_return paramList() throws RecognitionException {
         HaxeParser.paramList_return retval = new HaxeParser.paramList_return();
         retval.start = input.LT(1);
@@ -1168,7 +1168,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_param=new RewriteRuleSubtreeStream(adaptor,"rule param");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:91:19: ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ ) | )
+            // Haxe.g:91:19: ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ ) | )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1187,7 +1187,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:91:21: param ( COMMA param )*
+                    // Haxe.g:91:21: param ( COMMA param )*
                     {
                     pushFollow(FOLLOW_param_in_paramList576);
                     param20=param();
@@ -1195,7 +1195,7 @@ public class HaxeParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_param.add(param20.getTree());
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:91:27: ( COMMA param )*
+                    // Haxe.g:91:27: ( COMMA param )*
                     loop7:
                     do {
                         int alt7=2;
@@ -1208,7 +1208,7 @@ public class HaxeParser extends Parser {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:91:28: COMMA param
+                    	    // Haxe.g:91:28: COMMA param
                     	    {
                     	    COMMA21=(Token)match(input,COMMA,FOLLOW_COMMA_in_paramList579); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA21);
@@ -1244,7 +1244,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 91:42: -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:91:45: ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
+                        // Haxe.g:91:45: ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(PARAM_LIST, "PARAM_LIST", true), root_1);
@@ -1267,7 +1267,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:93:2: 
+                    // Haxe.g:93:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1302,7 +1302,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "param"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:1: param : ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? ) ;
+    // Haxe.g:94:1: param : ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? ) ;
     public final HaxeParser.param_return param() throws RecognitionException {
         HaxeParser.param_return retval = new HaxeParser.param_return();
         retval.start = input.LT(1);
@@ -1324,10 +1324,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_varInit=new RewriteRuleSubtreeStream(adaptor,"rule varInit");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:19: ( ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:20: ( QUES )? IDENTIFIER typeTagOpt varInit
+            // Haxe.g:94:19: ( ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? ) )
+            // Haxe.g:94:20: ( QUES )? IDENTIFIER typeTagOpt varInit
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:20: ( QUES )?
+            // Haxe.g:94:20: ( QUES )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1336,7 +1336,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: QUES
+                    // Haxe.g:0:0: QUES
                     {
                     QUES23=(Token)match(input,QUES,FOLLOW_QUES_in_param620); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_QUES.add(QUES23);
@@ -1365,7 +1365,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: varInit, IDENTIFIER, typeTagOpt, QUES
+            // elements: varInit, IDENTIFIER, QUES, typeTagOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1378,30 +1378,30 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 94:56: -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:59: ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
+                // Haxe.g:94:59: ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, IDENTIFIER24, true), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:100: ( IDENTIFIER )?
+                // Haxe.g:94:100: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
                     adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
 
                 }
                 stream_IDENTIFIER.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:122: ( typeTagOpt )?
+                // Haxe.g:94:122: ( typeTagOpt )?
                 if ( stream_typeTagOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                 }
                 stream_typeTagOpt.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:134: ( varInit )?
+                // Haxe.g:94:134: ( varInit )?
                 if ( stream_varInit.hasNext() ) {
                     adaptor.addChild(root_1, stream_varInit.nextTree());
 
                 }
                 stream_varInit.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:94:143: ( QUES )?
+                // Haxe.g:94:143: ( QUES )?
                 if ( stream_QUES.hasNext() ) {
                     adaptor.addChild(root_1, stream_QUES.nextNode());
 
@@ -1443,7 +1443,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "id"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:97:1: id : ( IDENTIFIER | THIS );
+    // Haxe.g:97:1: id : ( IDENTIFIER | THIS );
     public final HaxeParser.id_return id() throws RecognitionException {
         HaxeParser.id_return retval = new HaxeParser.id_return();
         retval.start = input.LT(1);
@@ -1456,8 +1456,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:97:4: ( IDENTIFIER | THIS )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:
+            // Haxe.g:97:4: ( IDENTIFIER | THIS )
+            // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -1503,7 +1503,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "dotIdent"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:1: dotIdent : ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )* ;
+    // Haxe.g:101:1: dotIdent : ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )* ;
     public final HaxeParser.dotIdent_return dotIdent() throws RecognitionException {
         HaxeParser.dotIdent_return retval = new HaxeParser.dotIdent_return();
         retval.start = input.LT(1);
@@ -1521,11 +1521,11 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_id=new RewriteRuleSubtreeStream(adaptor,"rule id");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:9: ( ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:11: ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )*
+            // Haxe.g:101:9: ( ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )* )
+            // Haxe.g:101:11: ( id -> id ) ( DOT ident= id -> ^( DOT $dotIdent $ident) )*
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:11: ( id -> id )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:12: id
+            // Haxe.g:101:11: ( id -> id )
+            // Haxe.g:101:12: id
             {
             pushFollow(FOLLOW_id_in_dotIdent682);
             id28=id();
@@ -1556,7 +1556,7 @@ public class HaxeParser extends Parser {
             retval.tree = root_0;}
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:22: ( DOT ident= id -> ^( DOT $dotIdent $ident) )*
+            // Haxe.g:101:22: ( DOT ident= id -> ^( DOT $dotIdent $ident) )*
             loop10:
             do {
                 int alt10=2;
@@ -1569,7 +1569,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt10) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:23: DOT ident= id
+            	    // Haxe.g:101:23: DOT ident= id
             	    {
             	    DOT29=(Token)match(input,DOT,FOLLOW_DOT_in_dotIdent690); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_DOT.add(DOT29);
@@ -1583,7 +1583,7 @@ public class HaxeParser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: dotIdent, DOT, ident
+            	    // elements: dotIdent, ident, DOT
             	    // token labels: 
             	    // rule labels: retval, ident
             	    // token list labels: 
@@ -1597,7 +1597,7 @@ public class HaxeParser extends Parser {
             	    root_0 = (Object)adaptor.nil();
             	    // 101:36: -> ^( DOT $dotIdent $ident)
             	    {
-            	        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:101:39: ^( DOT $dotIdent $ident)
+            	        // Haxe.g:101:39: ^( DOT $dotIdent $ident)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(stream_DOT.nextNode(), root_1);
@@ -1649,7 +1649,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "assignOp"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:104:1: assignOp : ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] );
+    // Haxe.g:104:1: assignOp : ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] );
     public final HaxeParser.assignOp_return assignOp() throws RecognitionException {
         HaxeParser.assignOp_return retval = new HaxeParser.assignOp_return();
         retval.start = input.LT(1);
@@ -1678,7 +1678,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:104:9: ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] )
+            // Haxe.g:104:9: ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] )
             int alt11=6;
             switch ( input.LA(1) ) {
             case EQ:
@@ -1721,7 +1721,7 @@ public class HaxeParser extends Parser {
 
             switch (alt11) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:104:11: EQ
+                    // Haxe.g:104:11: EQ
                     {
                     EQ30=(Token)match(input,EQ,FOLLOW_EQ_in_assignOp718); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EQ.add(EQ30);
@@ -1750,7 +1750,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:105:11: PLUSEQ
+                    // Haxe.g:105:11: PLUSEQ
                     {
                     PLUSEQ31=(Token)match(input,PLUSEQ,FOLLOW_PLUSEQ_in_assignOp738); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PLUSEQ.add(PLUSEQ31);
@@ -1779,7 +1779,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:106:11: SUBEQ
+                    // Haxe.g:106:11: SUBEQ
                     {
                     SUBEQ32=(Token)match(input,SUBEQ,FOLLOW_SUBEQ_in_assignOp759); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SUBEQ.add(SUBEQ32);
@@ -1808,7 +1808,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:107:11: SLASHEQ
+                    // Haxe.g:107:11: SLASHEQ
                     {
                     SLASHEQ33=(Token)match(input,SLASHEQ,FOLLOW_SLASHEQ_in_assignOp779); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SLASHEQ.add(SLASHEQ33);
@@ -1837,7 +1837,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:108:4: PERCENTEQ
+                    // Haxe.g:108:4: PERCENTEQ
                     {
                     PERCENTEQ34=(Token)match(input,PERCENTEQ,FOLLOW_PERCENTEQ_in_assignOp792); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PERCENTEQ.add(PERCENTEQ34);
@@ -1866,7 +1866,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:110:4: AMPEQ
+                    // Haxe.g:110:4: AMPEQ
                     {
                     AMPEQ35=(Token)match(input,AMPEQ,FOLLOW_AMPEQ_in_assignOp808); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_AMPEQ.add(AMPEQ35);
@@ -1923,7 +1923,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "funcLit"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:1: funcLit : FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block -> ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? ) ;
+    // Haxe.g:114:1: funcLit : FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block -> ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? ) ;
     public final HaxeParser.funcLit_return funcLit() throws RecognitionException {
         HaxeParser.funcLit_return retval = new HaxeParser.funcLit_return();
         retval.start = input.LT(1);
@@ -1951,8 +1951,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:19: ( FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block -> ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:21: FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block
+            // Haxe.g:114:19: ( FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block -> ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? ) )
+            // Haxe.g:114:21: FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block
             {
             FUNCTION36=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcLit838); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION36);
@@ -1969,7 +1969,7 @@ public class HaxeParser extends Parser {
             RPAREN39=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcLit844); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN39);
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:54: ( typeTagOpt )?
+            // Haxe.g:114:54: ( typeTagOpt )?
             int alt12=2;
             switch ( input.LA(1) ) {
                 case COLON:
@@ -1999,7 +1999,7 @@ public class HaxeParser extends Parser {
 
             switch (alt12) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: typeTagOpt
+                    // Haxe.g:0:0: typeTagOpt
                     {
                     pushFollow(FOLLOW_typeTagOpt_in_funcLit846);
                     typeTagOpt40=typeTagOpt();
@@ -2022,7 +2022,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: paramList, typeTagOpt, block, FUNCTION
+            // elements: FUNCTION, typeTagOpt, paramList, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2035,24 +2035,24 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 114:72: -> ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:75: ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? )
+                // Haxe.g:114:75: ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:100: ( paramList )?
+                // Haxe.g:114:100: ( paramList )?
                 if ( stream_paramList.hasNext() ) {
                     adaptor.addChild(root_1, stream_paramList.nextTree());
 
                 }
                 stream_paramList.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:111: ( typeTagOpt )?
+                // Haxe.g:114:111: ( typeTagOpt )?
                 if ( stream_typeTagOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                 }
                 stream_typeTagOpt.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:123: ( block )?
+                // Haxe.g:114:123: ( block )?
                 if ( stream_block.hasNext() ) {
                     adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -2094,7 +2094,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "arrayLit"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:116:1: arrayLit : LBRACKET exprListOpt RBRACKET ;
+    // Haxe.g:116:1: arrayLit : LBRACKET exprListOpt RBRACKET ;
     public final HaxeParser.arrayLit_return arrayLit() throws RecognitionException {
         HaxeParser.arrayLit_return retval = new HaxeParser.arrayLit_return();
         retval.start = input.LT(1);
@@ -2111,8 +2111,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:116:18: ( LBRACKET exprListOpt RBRACKET )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:116:20: LBRACKET exprListOpt RBRACKET
+            // Haxe.g:116:18: ( LBRACKET exprListOpt RBRACKET )
+            // Haxe.g:116:20: LBRACKET exprListOpt RBRACKET
             {
             root_0 = (Object)adaptor.nil();
 
@@ -2154,7 +2154,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeTag"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:144:1: typeTag : COLON funcType ;
+    // Haxe.g:144:1: typeTag : COLON funcType ;
     public final HaxeParser.typeTag_return typeTag() throws RecognitionException {
         HaxeParser.typeTag_return retval = new HaxeParser.typeTag_return();
         retval.start = input.LT(1);
@@ -2169,8 +2169,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:144:9: ( COLON funcType )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:144:11: COLON funcType
+            // Haxe.g:144:9: ( COLON funcType )
+            // Haxe.g:144:11: COLON funcType
             {
             root_0 = (Object)adaptor.nil();
 
@@ -2211,7 +2211,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeTagOpt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:147:1: typeTagOpt : ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | );
+    // Haxe.g:147:1: typeTagOpt : ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | );
     public final HaxeParser.typeTagOpt_return typeTagOpt() throws RecognitionException {
         HaxeParser.typeTagOpt_return retval = new HaxeParser.typeTagOpt_return();
         retval.start = input.LT(1);
@@ -2224,7 +2224,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeTag=new RewriteRuleSubtreeStream(adaptor,"rule typeTag");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:148:2: ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | )
+            // Haxe.g:148:2: ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2243,7 +2243,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:148:4: typeTag
+                    // Haxe.g:148:4: typeTag
                     {
                     pushFollow(FOLLOW_typeTag_in_typeTagOpt923);
                     typeTag47=typeTag();
@@ -2267,12 +2267,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 148:12: -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:148:15: ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
+                        // Haxe.g:148:15: ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(TYPE_TAG, "TYPE_TAG", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:148:63: ( typeTag )?
+                        // Haxe.g:148:53: ( typeTag )?
                         if ( stream_typeTag.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTag.nextTree());
 
@@ -2288,7 +2288,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:150:2: 
+                    // Haxe.g:150:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2323,7 +2323,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:1: typeList : ( funcType ( COMMA funcType )* | typeConstraint ( COMMA typeConstraint )* );
+    // Haxe.g:152:1: typeList : ( funcType ( COMMA funcType )* | typeConstraint ( COMMA typeConstraint )* );
     public final HaxeParser.typeList_return typeList() throws RecognitionException {
         HaxeParser.typeList_return retval = new HaxeParser.typeList_return();
         retval.start = input.LT(1);
@@ -2346,12 +2346,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:9: ( funcType ( COMMA funcType )* | typeConstraint ( COMMA typeConstraint )* )
+            // Haxe.g:152:9: ( funcType ( COMMA funcType )* | typeConstraint ( COMMA typeConstraint )* )
             int alt16=2;
             alt16 = dfa16.predict(input);
             switch (alt16) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:11: funcType ( COMMA funcType )*
+                    // Haxe.g:152:11: funcType ( COMMA funcType )*
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2361,7 +2361,7 @@ public class HaxeParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType48.getTree());
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:20: ( COMMA funcType )*
+                    // Haxe.g:152:20: ( COMMA funcType )*
                     loop14:
                     do {
                         int alt14=2;
@@ -2380,7 +2380,7 @@ public class HaxeParser extends Parser {
 
                         switch (alt14) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:21: COMMA funcType
+                    	    // Haxe.g:152:21: COMMA funcType
                     	    {
                     	    COMMA49=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeList952); if (state.failed) return retval;
                     	    pushFollow(FOLLOW_funcType_in_typeList955);
@@ -2402,7 +2402,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:153:4: typeConstraint ( COMMA typeConstraint )*
+                    // Haxe.g:153:4: typeConstraint ( COMMA typeConstraint )*
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2412,14 +2412,14 @@ public class HaxeParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeConstraint51.getTree());
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:153:19: ( COMMA typeConstraint )*
+                    // Haxe.g:153:19: ( COMMA typeConstraint )*
                     loop15:
                     do {
                         int alt15=2;
                         alt15 = dfa15.predict(input);
                         switch (alt15) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:153:20: COMMA typeConstraint
+                    	    // Haxe.g:153:20: COMMA typeConstraint
                     	    {
                     	    COMMA52=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeList966); if (state.failed) return retval;
                     	    pushFollow(FOLLOW_typeConstraint_in_typeList969);
@@ -2469,7 +2469,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "funcType"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:1: funcType : ( ( type ) ( MINUS_BIGGER type )* | VOID );
+    // Haxe.g:156:1: funcType : ( ( type ) ( MINUS_BIGGER type )* | VOID );
     public final HaxeParser.funcType_return funcType() throws RecognitionException {
         HaxeParser.funcType_return retval = new HaxeParser.funcType_return();
         retval.start = input.LT(1);
@@ -2488,7 +2488,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:9: ( ( type ) ( MINUS_BIGGER type )* | VOID )
+            // Haxe.g:156:9: ( ( type ) ( MINUS_BIGGER type )* | VOID )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2521,12 +2521,12 @@ public class HaxeParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:11: ( type ) ( MINUS_BIGGER type )*
+                    // Haxe.g:156:11: ( type ) ( MINUS_BIGGER type )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:11: ( type )
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:12: type
+                    // Haxe.g:156:11: ( type )
+                    // Haxe.g:156:12: type
                     {
                     pushFollow(FOLLOW_type_in_funcType984);
                     type54=type();
@@ -2537,7 +2537,7 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:18: ( MINUS_BIGGER type )*
+                    // Haxe.g:156:18: ( MINUS_BIGGER type )*
                     loop17:
                     do {
                         int alt17=2;
@@ -2556,7 +2556,7 @@ public class HaxeParser extends Parser {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:19: MINUS_BIGGER type
+                    	    // Haxe.g:156:19: MINUS_BIGGER type
                     	    {
                     	    MINUS_BIGGER55=(Token)match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_funcType988); if (state.failed) return retval;
                     	    pushFollow(FOLLOW_type_in_funcType991);
@@ -2578,7 +2578,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:157:4: VOID
+                    // Haxe.g:157:4: VOID
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2619,7 +2619,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:1: type : ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* | );
+    // Haxe.g:160:1: type : ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* | );
     public final HaxeParser.type_return type() throws RecognitionException {
         HaxeParser.type_return retval = new HaxeParser.type_return();
         retval.start = input.LT(1);
@@ -2646,16 +2646,16 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:6: ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* | )
+            // Haxe.g:160:6: ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* | )
             int alt21=2;
             alt21 = dfa21.predict(input);
             switch (alt21) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )*
+                    // Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
+                    // Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
                     int alt19=7;
                     switch ( input.LA(1) ) {
                     case LBRACE:
@@ -2704,7 +2704,7 @@ public class HaxeParser extends Parser {
 
                     switch (alt19) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:9: anonType
+                            // Haxe.g:160:9: anonType
                             {
                             pushFollow(FOLLOW_anonType_in_type1010);
                             anonType58=anonType();
@@ -2716,7 +2716,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:20: dotIdent
+                            // Haxe.g:160:20: dotIdent
                             {
                             pushFollow(FOLLOW_dotIdent_in_type1014);
                             dotIdent59=dotIdent();
@@ -2728,7 +2728,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:30: INT
+                            // Haxe.g:160:30: INT
                             {
                             INT60=(Token)match(input,INT,FOLLOW_INT_in_type1017); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -2739,7 +2739,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:35: FLOAT
+                            // Haxe.g:160:35: FLOAT
                             {
                             FLOAT61=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_type1020); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -2750,7 +2750,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 5 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:42: DYNAMIC
+                            // Haxe.g:160:42: DYNAMIC
                             {
                             DYNAMIC62=(Token)match(input,DYNAMIC,FOLLOW_DYNAMIC_in_type1023); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -2761,7 +2761,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 6 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:50: BOOLEAN
+                            // Haxe.g:160:50: BOOLEAN
                             {
                             BOOLEAN63=(Token)match(input,BOOLEAN,FOLLOW_BOOLEAN_in_type1025); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -2772,7 +2772,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 7 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:58: VOID
+                            // Haxe.g:160:58: VOID
                             {
                             VOID64=(Token)match(input,VOID,FOLLOW_VOID_in_type1027); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
@@ -2785,7 +2785,7 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:64: ( typeParam )*
+                    // Haxe.g:160:64: ( typeParam )*
                     loop20:
                     do {
                         int alt20=2;
@@ -2804,7 +2804,7 @@ public class HaxeParser extends Parser {
 
                         switch (alt20) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:65: typeParam
+                    	    // Haxe.g:160:65: typeParam
                     	    {
                     	    pushFollow(FOLLOW_typeParam_in_type1031);
                     	    typeParam65=typeParam();
@@ -2825,7 +2825,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:162:2: 
+                    // Haxe.g:162:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2860,7 +2860,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeParam"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:164:1: typeParam : LT ( type | typeList ) ( GT | GTGT | ) ;
+    // Haxe.g:164:1: typeParam : LT ( type | typeList ) ( GT | GTGT | ) ;
     public final HaxeParser.typeParam_return typeParam() throws RecognitionException {
         HaxeParser.typeParam_return retval = new HaxeParser.typeParam_return();
         retval.start = input.LT(1);
@@ -2881,18 +2881,18 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:2: ( LT ( type | typeList ) ( GT | GTGT | ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:4: LT ( type | typeList ) ( GT | GTGT | )
+            // Haxe.g:165:2: ( LT ( type | typeList ) ( GT | GTGT | ) )
+            // Haxe.g:165:4: LT ( type | typeList ) ( GT | GTGT | )
             {
             root_0 = (Object)adaptor.nil();
 
             LT66=(Token)match(input,LT,FOLLOW_LT_in_typeParam1049); if (state.failed) return retval;
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:8: ( type | typeList )
+            // Haxe.g:165:8: ( type | typeList )
             int alt22=2;
             alt22 = dfa22.predict(input);
             switch (alt22) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:9: type
+                    // Haxe.g:165:9: type
                     {
                     pushFollow(FOLLOW_type_in_typeParam1053);
                     type67=type();
@@ -2904,7 +2904,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:14: typeList
+                    // Haxe.g:165:14: typeList
                     {
                     pushFollow(FOLLOW_typeList_in_typeParam1055);
                     typeList68=typeList();
@@ -2918,7 +2918,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:24: ( GT | GTGT | )
+            // Haxe.g:165:24: ( GT | GTGT | )
             int alt23=3;
             switch ( input.LA(1) ) {
             case GT:
@@ -3017,21 +3017,21 @@ public class HaxeParser extends Parser {
 
             switch (alt23) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:25: GT
+                    // Haxe.g:165:25: GT
                     {
                     GT69=(Token)match(input,GT,FOLLOW_GT_in_typeParam1059); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:29: GTGT
+                    // Haxe.g:165:29: GTGT
                     {
                     GTGT70=(Token)match(input,GTGT,FOLLOW_GTGT_in_typeParam1062); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:35: 
+                    // Haxe.g:165:35: 
                     {
                     }
                     break;
@@ -3068,7 +3068,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeParamOpt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:169:1: typeParamOpt : ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? ) | );
+    // Haxe.g:169:1: typeParamOpt : ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? ) | );
     public final HaxeParser.typeParamOpt_return typeParamOpt() throws RecognitionException {
         HaxeParser.typeParamOpt_return retval = new HaxeParser.typeParamOpt_return();
         retval.start = input.LT(1);
@@ -3081,7 +3081,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeParam=new RewriteRuleSubtreeStream(adaptor,"rule typeParam");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:170:2: ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? ) | )
+            // Haxe.g:170:2: ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? ) | )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3114,7 +3114,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt24) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:170:4: typeParam
+                    // Haxe.g:170:4: typeParam
                     {
                     pushFollow(FOLLOW_typeParam_in_typeParamOpt1084);
                     typeParam71=typeParam();
@@ -3138,12 +3138,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 170:13: -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:170:16: ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
+                        // Haxe.g:170:16: ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(TYPE_PARAM_OPT, "TYPE_PARAM_OPT", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:170:76: ( typeParam )?
+                        // Haxe.g:170:66: ( typeParam )?
                         if ( stream_typeParam.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParam.nextTree());
 
@@ -3159,7 +3159,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:172:9: 
+                    // Haxe.g:172:9: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3194,7 +3194,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeConstraint"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:174:1: typeConstraint : IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? ) ;
+    // Haxe.g:174:1: typeConstraint : IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? ) ;
     public final HaxeParser.typeConstraint_return typeConstraint() throws RecognitionException {
         HaxeParser.typeConstraint_return retval = new HaxeParser.typeConstraint_return();
         retval.start = input.LT(1);
@@ -3219,8 +3219,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeList=new RewriteRuleSubtreeStream(adaptor,"rule typeList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:174:19: ( IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:174:21: IDENTIFIER COLON LPAREN typeList RPAREN
+            // Haxe.g:174:19: ( IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? ) )
+            // Haxe.g:174:21: IDENTIFIER COLON LPAREN typeList RPAREN
             {
             IDENTIFIER72=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typeConstraint1127); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER72);
@@ -3243,7 +3243,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: typeList, typeConstraint, IDENTIFIER
+            // elements: typeList, IDENTIFIER, typeConstraint
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3256,18 +3256,18 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 174:61: -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:174:64: ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
+                // Haxe.g:174:64: ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_retval.nextNode(), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:174:82: ( IDENTIFIER )?
+                // Haxe.g:174:82: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
                     adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                 }
                 stream_IDENTIFIER.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:174:94: ( typeList )?
+                // Haxe.g:174:94: ( typeList )?
                 if ( stream_typeList.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeList.nextTree());
 
@@ -3309,7 +3309,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "functionReturn"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:178:1: functionReturn : ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) ;
+    // Haxe.g:178:1: functionReturn : ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) ;
     public final HaxeParser.functionReturn_return functionReturn() throws RecognitionException {
         HaxeParser.functionReturn_return retval = new HaxeParser.functionReturn_return();
         retval.start = input.LT(1);
@@ -3343,10 +3343,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:2: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:4: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
+            // Haxe.g:179:2: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) )
+            // Haxe.g:179:4: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:4: ( declAttrList )?
+            // Haxe.g:179:4: ( declAttrList )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3355,7 +3355,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt25) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: declAttrList
+                    // Haxe.g:0:0: declAttrList
                     {
                     pushFollow(FOLLOW_declAttrList_in_functionReturn1161);
                     declAttrList77=declAttrList();
@@ -3402,7 +3402,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: paramList, FUNCTION, block, declAttrList, NEW, typeTagOpt
+            // elements: paramList, block, FUNCTION, NEW, typeTagOpt, declAttrList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3415,31 +3415,31 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 179:72: -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:75: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
+                // Haxe.g:179:75: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
                 adaptor.addChild(root_1, stream_NEW.nextNode());
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:104: ( declAttrList )?
+                // Haxe.g:179:104: ( declAttrList )?
                 if ( stream_declAttrList.hasNext() ) {
                     adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                 }
                 stream_declAttrList.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:118: ( paramList )?
+                // Haxe.g:179:118: ( paramList )?
                 if ( stream_paramList.hasNext() ) {
                     adaptor.addChild(root_1, stream_paramList.nextTree());
 
                 }
                 stream_paramList.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:129: ( typeTagOpt )?
+                // Haxe.g:179:129: ( typeTagOpt )?
                 if ( stream_typeTagOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                 }
                 stream_typeTagOpt.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:179:141: ( block )?
+                // Haxe.g:179:141: ( block )?
                 if ( stream_block.hasNext() ) {
                     adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -3481,7 +3481,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "statement"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:182:1: statement : ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) ( statement )? ) | WHILE parExpression statement -> ^( WHILE ( parExpression )? ( statement )? ) | DO statement WHILE parExpression SEMI -> ^( DO ( parExpression )? ( statement )? ) | TRY block catchStmtList -> ^( TRY ( block )? ( catchStmtList )? ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH ( expr )? ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW ( expr )? ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI );
+    // Haxe.g:182:1: statement : ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) ( statement )? ) | WHILE parExpression statement -> ^( WHILE ( parExpression )? ( statement )? ) | DO statement WHILE parExpression SEMI -> ^( DO ( parExpression )? ( statement )? ) | TRY block catchStmtList -> ^( TRY ( block )? ( catchStmtList )? ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH ( expr )? ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW ( expr )? ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI );
     public final HaxeParser.statement_return statement() throws RecognitionException {
         HaxeParser.statement_return retval = new HaxeParser.statement_return();
         retval.start = input.LT(1);
@@ -3620,12 +3620,12 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:183:2: ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) ( statement )? ) | WHILE parExpression statement -> ^( WHILE ( parExpression )? ( statement )? ) | DO statement WHILE parExpression SEMI -> ^( DO ( parExpression )? ( statement )? ) | TRY block catchStmtList -> ^( TRY ( block )? ( catchStmtList )? ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH ( expr )? ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW ( expr )? ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI )
+            // Haxe.g:183:2: ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) ( statement )? ) | WHILE parExpression statement -> ^( WHILE ( parExpression )? ( statement )? ) | DO statement WHILE parExpression SEMI -> ^( DO ( parExpression )? ( statement )? ) | TRY block catchStmtList -> ^( TRY ( block )? ( catchStmtList )? ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH ( expr )? ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW ( expr )? ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI )
             int alt31=16;
             alt31 = dfa31.predict(input);
             switch (alt31) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:183:4: block
+                    // Haxe.g:183:4: block
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3639,7 +3639,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:184:4: assignExpr SEMI
+                    // Haxe.g:184:4: assignExpr SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3654,7 +3654,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:185:4: varDecl
+                    // Haxe.g:185:4: varDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3668,7 +3668,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:4: IF parExpression st1= statement ( ELSE st2= statement )?
+                    // Haxe.g:186:4: IF parExpression st1= statement ( ELSE st2= statement )?
                     {
                     IF89=(Token)match(input,IF,FOLLOW_IF_in_statement1231); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IF.add(IF89);
@@ -3685,7 +3685,7 @@ public class HaxeParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statement.add(st1.getTree());
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:35: ( ELSE st2= statement )?
+                    // Haxe.g:186:35: ( ELSE st2= statement )?
                     int alt26=2;
                     int LA26_0 = input.LA(1);
 
@@ -3698,7 +3698,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt26) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:36: ELSE st2= statement
+                            // Haxe.g:186:36: ELSE st2= statement
                             {
                             ELSE91=(Token)match(input,ELSE,FOLLOW_ELSE_in_statement1240); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_ELSE.add(ELSE91);
@@ -3718,7 +3718,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, st1, IF, ELSE, st2
+                    // elements: st1, parExpression, st2, ELSE, IF
                     // token labels: 
                     // rule labels: retval, st1, st2
                     // token list labels: 
@@ -3733,16 +3733,16 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 186:58: -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:61: ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
+                        // Haxe.g:186:61: ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new IfNode(stream_IF.nextToken()), root_1);
 
                         adaptor.addChild(root_1, stream_parExpression.nextTree());
                         adaptor.addChild(root_1, stream_st1.nextTree());
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:93: ( ^( ELSE $st2) )?
-                        if ( stream_ELSE.hasNext()||stream_st2.hasNext() ) {
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:93: ^( ELSE $st2)
+                        // Haxe.g:186:93: ( ^( ELSE $st2) )?
+                        if ( stream_st2.hasNext()||stream_ELSE.hasNext() ) {
+                            // Haxe.g:186:93: ^( ELSE $st2)
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot(stream_ELSE.nextNode(), root_2);
@@ -3753,8 +3753,8 @@ public class HaxeParser extends Parser {
                             }
 
                         }
-                        stream_ELSE.reset();
                         stream_st2.reset();
+                        stream_ELSE.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -3765,7 +3765,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:187:4: FOR LPAREN exp1= expr IN exp2= expr RPAREN statement
+                    // Haxe.g:187:4: FOR LPAREN exp1= expr IN exp2= expr RPAREN statement
                     {
                     FOR92=(Token)match(input,FOR,FOLLOW_FOR_in_statement1284); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FOR.add(FOR92);
@@ -3800,7 +3800,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: FOR, exp2, IN, exp1, statement
+                    // elements: IN, exp2, exp1, FOR, statement
                     // token labels: 
                     // rule labels: retval, exp2, exp1
                     // token list labels: 
@@ -3815,12 +3815,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 187:56: -> ^( FOR ^( IN $exp1 $exp2) ( statement )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:187:59: ^( FOR ^( IN $exp1 $exp2) ( statement )? )
+                        // Haxe.g:187:59: ^( FOR ^( IN $exp1 $exp2) ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new ForNode(stream_FOR.nextToken()), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:187:74: ^( IN $exp1 $exp2)
+                        // Haxe.g:187:74: ^( IN $exp1 $exp2)
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot(stream_IN.nextNode(), root_2);
@@ -3830,7 +3830,7 @@ public class HaxeParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:187:92: ( statement )?
+                        // Haxe.g:187:92: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -3846,7 +3846,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:188:4: WHILE parExpression statement
+                    // Haxe.g:188:4: WHILE parExpression statement
                     {
                     WHILE97=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1328); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_WHILE.add(WHILE97);
@@ -3879,18 +3879,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 188:38: -> ^( WHILE ( parExpression )? ( statement )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:188:41: ^( WHILE ( parExpression )? ( statement )? )
+                        // Haxe.g:188:41: ^( WHILE ( parExpression )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new WhileNode(stream_WHILE.nextToken()), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:188:60: ( parExpression )?
+                        // Haxe.g:188:60: ( parExpression )?
                         if ( stream_parExpression.hasNext() ) {
                             adaptor.addChild(root_1, stream_parExpression.nextTree());
 
                         }
                         stream_parExpression.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:188:75: ( statement )?
+                        // Haxe.g:188:75: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -3906,7 +3906,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:189:4: DO statement WHILE parExpression SEMI
+                    // Haxe.g:189:4: DO statement WHILE parExpression SEMI
                     {
                     DO100=(Token)match(input,DO,FOLLOW_DO_in_statement1356); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_DO.add(DO100);
@@ -3945,18 +3945,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 189:45: -> ^( DO ( parExpression )? ( statement )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:189:48: ^( DO ( parExpression )? ( statement )? )
+                        // Haxe.g:189:48: ^( DO ( parExpression )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new DoWhileNode(stream_DO.nextToken()), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:189:66: ( parExpression )?
+                        // Haxe.g:189:66: ( parExpression )?
                         if ( stream_parExpression.hasNext() ) {
                             adaptor.addChild(root_1, stream_parExpression.nextTree());
 
                         }
                         stream_parExpression.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:189:81: ( statement )?
+                        // Haxe.g:189:81: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -3972,7 +3972,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:190:4: TRY block catchStmtList
+                    // Haxe.g:190:4: TRY block catchStmtList
                     {
                     TRY105=(Token)match(input,TRY,FOLLOW_TRY_in_statement1387); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_TRY.add(TRY105);
@@ -3992,7 +3992,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: block, catchStmtList, TRY
+                    // elements: block, TRY, catchStmtList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4005,18 +4005,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 190:32: -> ^( TRY ( block )? ( catchStmtList )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:190:35: ^( TRY ( block )? ( catchStmtList )? )
+                        // Haxe.g:190:35: ^( TRY ( block )? ( catchStmtList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new TryNode(stream_TRY.nextToken()), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:190:50: ( block )?
+                        // Haxe.g:190:50: ( block )?
                         if ( stream_block.hasNext() ) {
                             adaptor.addChild(root_1, stream_block.nextTree());
 
                         }
                         stream_block.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:190:57: ( catchStmtList )?
+                        // Haxe.g:190:57: ( catchStmtList )?
                         if ( stream_catchStmtList.hasNext() ) {
                             adaptor.addChild(root_1, stream_catchStmtList.nextTree());
 
@@ -4032,7 +4032,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:191:4: SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE
+                    // Haxe.g:191:4: SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE
                     {
                     SWITCH108=(Token)match(input,SWITCH,FOLLOW_SWITCH_in_statement1415); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SWITCH.add(SWITCH108);
@@ -4052,7 +4052,7 @@ public class HaxeParser extends Parser {
                     LBRACE112=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_statement1423); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE112);
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:191:37: ( caseStmt )+
+                    // Haxe.g:191:37: ( caseStmt )+
                     int cnt27=0;
                     loop27:
                     do {
@@ -4066,7 +4066,7 @@ public class HaxeParser extends Parser {
 
                         switch (alt27) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: caseStmt
+                    	    // Haxe.g:0:0: caseStmt
                     	    {
                     	    pushFollow(FOLLOW_caseStmt_in_statement1425);
                     	    caseStmt113=caseStmt();
@@ -4094,7 +4094,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: SWITCH, caseStmt, expr
+                    // elements: caseStmt, expr, SWITCH
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4107,12 +4107,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 191:55: -> ^( SWITCH ( expr )? ( caseStmt )+ )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:191:58: ^( SWITCH ( expr )? ( caseStmt )+ )
+                        // Haxe.g:191:58: ^( SWITCH ( expr )? ( caseStmt )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new SwitchNode(stream_SWITCH.nextToken()), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:191:79: ( expr )?
+                        // Haxe.g:191:79: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -4136,12 +4136,12 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 10 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:4: RETURN ( expr )? SEMI
+                    // Haxe.g:192:4: RETURN ( expr )? SEMI
                     {
                     RETURN115=(Token)match(input,RETURN,FOLLOW_RETURN_in_statement1449); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RETURN.add(RETURN115);
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:11: ( expr )?
+                    // Haxe.g:192:11: ( expr )?
                     int alt28=2;
                     int LA28_0 = input.LA(1);
 
@@ -4157,7 +4157,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt28) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:12: expr
+                            // Haxe.g:192:12: expr
                             {
                             pushFollow(FOLLOW_expr_in_statement1452);
                             expr116=expr();
@@ -4177,7 +4177,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, RETURN
+                    // elements: RETURN, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4190,12 +4190,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 192:28: -> ^( RETURN ( expr )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:31: ^( RETURN ( expr )? )
+                        // Haxe.g:192:31: ^( RETURN ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_RETURN.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:40: ( expr )?
+                        // Haxe.g:192:40: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -4211,7 +4211,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 11 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:193:4: THROW expr SEMI
+                    // Haxe.g:193:4: THROW expr SEMI
                     {
                     THROW118=(Token)match(input,THROW,FOLLOW_THROW_in_statement1474); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_THROW.add(THROW118);
@@ -4228,7 +4228,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, THROW
+                    // elements: THROW, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4241,12 +4241,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 193:25: -> ^( THROW ( expr )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:193:28: ^( THROW ( expr )? )
+                        // Haxe.g:193:28: ^( THROW ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_THROW.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:193:36: ( expr )?
+                        // Haxe.g:193:36: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -4262,12 +4262,12 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 12 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:194:4: BREAK ( IDENTIFIER )? SEMI
+                    // Haxe.g:194:4: BREAK ( IDENTIFIER )? SEMI
                     {
                     BREAK121=(Token)match(input,BREAK,FOLLOW_BREAK_in_statement1497); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_BREAK.add(BREAK121);
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:194:10: ( IDENTIFIER )?
+                    // Haxe.g:194:10: ( IDENTIFIER )?
                     int alt29=2;
                     int LA29_0 = input.LA(1);
 
@@ -4276,7 +4276,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt29) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:194:11: IDENTIFIER
+                            // Haxe.g:194:11: IDENTIFIER
                             {
                             IDENTIFIER122=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1500); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER122);
@@ -4306,12 +4306,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 194:32: -> ^( BREAK ( IDENTIFIER )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:194:35: ^( BREAK ( IDENTIFIER )? )
+                        // Haxe.g:194:35: ^( BREAK ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_BREAK.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:194:43: ( IDENTIFIER )?
+                        // Haxe.g:194:43: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
@@ -4327,12 +4327,12 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 13 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:195:4: CONTINUE ( IDENTIFIER )? SEMI
+                    // Haxe.g:195:4: CONTINUE ( IDENTIFIER )? SEMI
                     {
                     CONTINUE124=(Token)match(input,CONTINUE,FOLLOW_CONTINUE_in_statement1521); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CONTINUE.add(CONTINUE124);
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:195:13: ( IDENTIFIER )?
+                    // Haxe.g:195:13: ( IDENTIFIER )?
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
@@ -4341,7 +4341,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt30) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:195:14: IDENTIFIER
+                            // Haxe.g:195:14: IDENTIFIER
                             {
                             IDENTIFIER125=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1524); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER125);
@@ -4358,7 +4358,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: CONTINUE, IDENTIFIER
+                    // elements: IDENTIFIER, CONTINUE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4371,12 +4371,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 195:36: -> ^( CONTINUE ( IDENTIFIER )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:195:39: ^( CONTINUE ( IDENTIFIER )? )
+                        // Haxe.g:195:39: ^( CONTINUE ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CONTINUE.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:195:50: ( IDENTIFIER )?
+                        // Haxe.g:195:50: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
@@ -4392,7 +4392,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 14 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:196:4: expr SEMI
+                    // Haxe.g:196:4: expr SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4407,7 +4407,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 15 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:197:4: IDENTIFIER COLON statement
+                    // Haxe.g:197:4: IDENTIFIER COLON statement
                     {
                     IDENTIFIER129=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1555); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER129);
@@ -4424,7 +4424,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, IDENTIFIER, COLON
+                    // elements: statement, COLON, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4437,18 +4437,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 197:35: -> ^( COLON ( IDENTIFIER )? ( statement )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:197:38: ^( COLON ( IDENTIFIER )? ( statement )? )
+                        // Haxe.g:197:38: ^( COLON ( IDENTIFIER )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_COLON.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:197:46: ( IDENTIFIER )?
+                        // Haxe.g:197:46: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         }
                         stream_IDENTIFIER.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:197:58: ( statement )?
+                        // Haxe.g:197:58: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -4464,7 +4464,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 16 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:198:4: SEMI
+                    // Haxe.g:198:4: SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4501,7 +4501,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "parExpression"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:201:1: parExpression : LPAREN expr RPAREN ;
+    // Haxe.g:201:1: parExpression : LPAREN expr RPAREN ;
     public final HaxeParser.parExpression_return parExpression() throws RecognitionException {
         HaxeParser.parExpression_return retval = new HaxeParser.parExpression_return();
         retval.start = input.LT(1);
@@ -4518,8 +4518,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:202:5: ( LPAREN expr RPAREN )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:202:9: LPAREN expr RPAREN
+            // Haxe.g:202:5: ( LPAREN expr RPAREN )
+            // Haxe.g:202:9: LPAREN expr RPAREN
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4569,7 +4569,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "block"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:1: block : ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] ) | SEMI );
+    // Haxe.g:205:1: block : ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] ) | SEMI );
     public final HaxeParser.block_return block() throws RecognitionException {
         HaxeParser.block_return retval = new HaxeParser.block_return();
         retval.start = input.LT(1);
@@ -4590,7 +4590,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_blockStmt=new RewriteRuleSubtreeStream(adaptor,"rule blockStmt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:8: ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] ) | SEMI )
+            // Haxe.g:205:8: ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] ) | SEMI )
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -4609,12 +4609,12 @@ public class HaxeParser extends Parser {
             }
             switch (alt33) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:10: LBRACE ( blockStmt )* RBRACE
+                    // Haxe.g:205:10: LBRACE ( blockStmt )* RBRACE
                     {
                     LBRACE136=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_block1619); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE136);
 
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:17: ( blockStmt )*
+                    // Haxe.g:205:17: ( blockStmt )*
                     loop32:
                     do {
                         int alt32=2;
@@ -4627,7 +4627,7 @@ public class HaxeParser extends Parser {
 
                         switch (alt32) {
                     	case 1 :
-                    	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:18: blockStmt
+                    	    // Haxe.g:205:18: blockStmt
                     	    {
                     	    pushFollow(FOLLOW_blockStmt_in_block1622);
                     	    blockStmt137=blockStmt();
@@ -4663,12 +4663,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 205:37: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:40: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
+                        // Haxe.g:205:40: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new BlockScopeNode(BLOCK_SCOPE, "BLOCK_SCOPE", true, LBRACE136), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:205:100: ( blockStmt )*
+                        // Haxe.g:205:100: ( blockStmt )*
                         while ( stream_blockStmt.hasNext() ) {
                             adaptor.addChild(root_1, stream_blockStmt.nextTree());
 
@@ -4685,7 +4685,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:206:4: SEMI
+                    // Haxe.g:206:4: SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4722,7 +4722,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "blockStmt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:209:1: blockStmt : ( varDecl | classDecl | statement );
+    // Haxe.g:209:1: blockStmt : ( varDecl | classDecl | statement );
     public final HaxeParser.blockStmt_return blockStmt() throws RecognitionException {
         HaxeParser.blockStmt_return retval = new HaxeParser.blockStmt_return();
         retval.start = input.LT(1);
@@ -4739,12 +4739,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:210:2: ( varDecl | classDecl | statement )
+            // Haxe.g:210:2: ( varDecl | classDecl | statement )
             int alt34=3;
             alt34 = dfa34.predict(input);
             switch (alt34) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:210:4: varDecl
+                    // Haxe.g:210:4: varDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4758,7 +4758,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:211:4: classDecl
+                    // Haxe.g:211:4: classDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4772,7 +4772,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:212:4: statement
+                    // Haxe.g:212:4: statement
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -4814,7 +4814,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "breakStmt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:216:1: breakStmt : BREAK SEMI ;
+    // Haxe.g:216:1: breakStmt : BREAK SEMI ;
     public final HaxeParser.breakStmt_return breakStmt() throws RecognitionException {
         HaxeParser.breakStmt_return retval = new HaxeParser.breakStmt_return();
         retval.start = input.LT(1);
@@ -4829,8 +4829,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:217:2: ( BREAK SEMI )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:217:4: BREAK SEMI
+            // Haxe.g:217:2: ( BREAK SEMI )
+            // Haxe.g:217:4: BREAK SEMI
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4870,7 +4870,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "continueStmt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:220:1: continueStmt : CONTINUE SEMI ;
+    // Haxe.g:220:1: continueStmt : CONTINUE SEMI ;
     public final HaxeParser.continueStmt_return continueStmt() throws RecognitionException {
         HaxeParser.continueStmt_return retval = new HaxeParser.continueStmt_return();
         retval.start = input.LT(1);
@@ -4885,8 +4885,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:221:2: ( CONTINUE SEMI )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:221:4: CONTINUE SEMI
+            // Haxe.g:221:2: ( CONTINUE SEMI )
+            // Haxe.g:221:4: CONTINUE SEMI
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4926,7 +4926,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "caseStmt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:224:1: caseStmt : ( CASE exprList COLON statement -> ^( CASE ( exprList )? ( statement )? ) | DEFAULT COLON statement -> ^( DEFAULT ( statement )? ) );
+    // Haxe.g:224:1: caseStmt : ( CASE exprList COLON statement -> ^( CASE ( exprList )? ( statement )? ) | DEFAULT COLON statement -> ^( DEFAULT ( statement )? ) );
     public final HaxeParser.caseStmt_return caseStmt() throws RecognitionException {
         HaxeParser.caseStmt_return retval = new HaxeParser.caseStmt_return();
         retval.start = input.LT(1);
@@ -4955,7 +4955,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_exprList=new RewriteRuleSubtreeStream(adaptor,"rule exprList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 32) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:224:9: ( CASE exprList COLON statement -> ^( CASE ( exprList )? ( statement )? ) | DEFAULT COLON statement -> ^( DEFAULT ( statement )? ) )
+            // Haxe.g:224:9: ( CASE exprList COLON statement -> ^( CASE ( exprList )? ( statement )? ) | DEFAULT COLON statement -> ^( DEFAULT ( statement )? ) )
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -4974,7 +4974,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt35) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:224:11: CASE exprList COLON statement
+                    // Haxe.g:224:11: CASE exprList COLON statement
                     {
                     CASE147=(Token)match(input,CASE,FOLLOW_CASE_in_caseStmt1741); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CASE.add(CASE147);
@@ -4997,7 +4997,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: exprList, CASE, statement
+                    // elements: statement, CASE, exprList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5010,18 +5010,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 224:42: -> ^( CASE ( exprList )? ( statement )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:224:45: ^( CASE ( exprList )? ( statement )? )
+                        // Haxe.g:224:45: ^( CASE ( exprList )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CASE.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:224:52: ( exprList )?
+                        // Haxe.g:224:52: ( exprList )?
                         if ( stream_exprList.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprList.nextTree());
 
                         }
                         stream_exprList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:224:62: ( statement )?
+                        // Haxe.g:224:62: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -5037,7 +5037,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:225:4: DEFAULT COLON statement
+                    // Haxe.g:225:4: DEFAULT COLON statement
                     {
                     DEFAULT151=(Token)match(input,DEFAULT,FOLLOW_DEFAULT_in_caseStmt1765); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_DEFAULT.add(DEFAULT151);
@@ -5054,7 +5054,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: DEFAULT, statement
+                    // elements: statement, DEFAULT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5067,12 +5067,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 225:29: -> ^( DEFAULT ( statement )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:225:32: ^( DEFAULT ( statement )? )
+                        // Haxe.g:225:32: ^( DEFAULT ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_DEFAULT.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:225:42: ( statement )?
+                        // Haxe.g:225:42: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -5116,7 +5116,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "defaultStmt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:228:1: defaultStmt : DEFAULT COLON ;
+    // Haxe.g:228:1: defaultStmt : DEFAULT COLON ;
     public final HaxeParser.defaultStmt_return defaultStmt() throws RecognitionException {
         HaxeParser.defaultStmt_return retval = new HaxeParser.defaultStmt_return();
         retval.start = input.LT(1);
@@ -5131,8 +5131,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:229:9: ( DEFAULT COLON )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:229:11: DEFAULT COLON
+            // Haxe.g:229:9: ( DEFAULT COLON )
+            // Haxe.g:229:11: DEFAULT COLON
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5172,7 +5172,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "catchStmtList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:232:1: catchStmtList : ( catchStmt catchStmtList | );
+    // Haxe.g:232:1: catchStmtList : ( catchStmt catchStmtList | );
     public final HaxeParser.catchStmtList_return catchStmtList() throws RecognitionException {
         HaxeParser.catchStmtList_return retval = new HaxeParser.catchStmtList_return();
         retval.start = input.LT(1);
@@ -5187,7 +5187,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 34) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:233:2: ( catchStmt catchStmtList | )
+            // Haxe.g:233:2: ( catchStmt catchStmtList | )
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -5206,7 +5206,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt36) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:233:4: catchStmt catchStmtList
+                    // Haxe.g:233:4: catchStmt catchStmtList
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5226,7 +5226,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:235:2: 
+                    // Haxe.g:235:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5261,7 +5261,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "catchStmt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:237:1: catchStmt : CATCH LPAREN param RPAREN block -> ^( CATCH ( param )? ( block )? ) ;
+    // Haxe.g:237:1: catchStmt : CATCH LPAREN param RPAREN block -> ^( CATCH ( param )? ( block )? ) ;
     public final HaxeParser.catchStmt_return catchStmt() throws RecognitionException {
         HaxeParser.catchStmt_return retval = new HaxeParser.catchStmt_return();
         retval.start = input.LT(1);
@@ -5286,8 +5286,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 35) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:238:9: ( CATCH LPAREN param RPAREN block -> ^( CATCH ( param )? ( block )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:238:11: CATCH LPAREN param RPAREN block
+            // Haxe.g:238:9: ( CATCH LPAREN param RPAREN block -> ^( CATCH ( param )? ( block )? ) )
+            // Haxe.g:238:11: CATCH LPAREN param RPAREN block
             {
             CATCH158=(Token)match(input,CATCH,FOLLOW_CATCH_in_catchStmt1844); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CATCH.add(CATCH158);
@@ -5313,7 +5313,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, param, CATCH
+            // elements: param, block, CATCH
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5326,18 +5326,18 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 238:43: -> ^( CATCH ( param )? ( block )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:238:46: ^( CATCH ( param )? ( block )? )
+                // Haxe.g:238:46: ^( CATCH ( param )? ( block )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_CATCH.nextNode(), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:238:54: ( param )?
+                // Haxe.g:238:54: ( param )?
                 if ( stream_param.hasNext() ) {
                     adaptor.addChild(root_1, stream_param.nextTree());
 
                 }
                 stream_param.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:238:61: ( block )?
+                // Haxe.g:238:61: ( block )?
                 if ( stream_block.hasNext() ) {
                     adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -5379,7 +5379,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "exprListOpt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:243:1: exprListOpt : ( exprList | );
+    // Haxe.g:243:1: exprListOpt : ( exprList | );
     public final HaxeParser.exprListOpt_return exprListOpt() throws RecognitionException {
         HaxeParser.exprListOpt_return retval = new HaxeParser.exprListOpt_return();
         retval.start = input.LT(1);
@@ -5392,7 +5392,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 36) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:244:2: ( exprList | )
+            // Haxe.g:244:2: ( exprList | )
             int alt37=2;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
@@ -5495,7 +5495,7 @@ public class HaxeParser extends Parser {
 
             switch (alt37) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:244:4: exprList
+                    // Haxe.g:244:4: exprList
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5509,7 +5509,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:246:2: 
+                    // Haxe.g:246:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5544,7 +5544,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "exprList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:248:1: exprList : expr ( COMMA expr )* ;
+    // Haxe.g:248:1: exprList : expr ( COMMA expr )* ;
     public final HaxeParser.exprList_return exprList() throws RecognitionException {
         HaxeParser.exprList_return retval = new HaxeParser.exprList_return();
         retval.start = input.LT(1);
@@ -5561,8 +5561,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 37) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:248:9: ( expr ( COMMA expr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:248:11: expr ( COMMA expr )*
+            // Haxe.g:248:9: ( expr ( COMMA expr )* )
+            // Haxe.g:248:11: expr ( COMMA expr )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5572,7 +5572,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr164.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:248:16: ( COMMA expr )*
+            // Haxe.g:248:16: ( COMMA expr )*
             loop38:
             do {
                 int alt38=2;
@@ -5585,7 +5585,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt38) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:248:17: COMMA expr
+            	    // Haxe.g:248:17: COMMA expr
             	    {
             	    COMMA165=(Token)match(input,COMMA,FOLLOW_COMMA_in_exprList1901); if (state.failed) return retval;
             	    pushFollow(FOLLOW_expr_in_exprList1904);
@@ -5633,7 +5633,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "expr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:251:1: expr : ( assignExpr | UNTYPED assignExpr -> ^( UNTYPED assignExpr ) );
+    // Haxe.g:251:1: expr : ( assignExpr | UNTYPED assignExpr -> ^( UNTYPED assignExpr ) );
     public final HaxeParser.expr_return expr() throws RecognitionException {
         HaxeParser.expr_return retval = new HaxeParser.expr_return();
         retval.start = input.LT(1);
@@ -5651,7 +5651,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_assignExpr=new RewriteRuleSubtreeStream(adaptor,"rule assignExpr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 38) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:251:6: ( assignExpr | UNTYPED assignExpr -> ^( UNTYPED assignExpr ) )
+            // Haxe.g:251:6: ( assignExpr | UNTYPED assignExpr -> ^( UNTYPED assignExpr ) )
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -5670,7 +5670,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt39) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:251:8: assignExpr
+                    // Haxe.g:251:8: assignExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5684,7 +5684,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:252:4: UNTYPED assignExpr
+                    // Haxe.g:252:4: UNTYPED assignExpr
                     {
                     UNTYPED168=(Token)match(input,UNTYPED,FOLLOW_UNTYPED_in_expr1922); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_UNTYPED.add(UNTYPED168);
@@ -5698,7 +5698,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: assignExpr, UNTYPED
+                    // elements: UNTYPED, assignExpr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5711,7 +5711,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 252:23: -> ^( UNTYPED assignExpr )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:252:26: ^( UNTYPED assignExpr )
+                        // Haxe.g:252:26: ^( UNTYPED assignExpr )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_UNTYPED.nextNode(), root_1);
@@ -5755,7 +5755,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "assignExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:255:1: assignExpr : iterExpr ( assignOp iterExpr )* ;
+    // Haxe.g:255:1: assignExpr : iterExpr ( assignOp iterExpr )* ;
     public final HaxeParser.assignExpr_return assignExpr() throws RecognitionException {
         HaxeParser.assignExpr_return retval = new HaxeParser.assignExpr_return();
         retval.start = input.LT(1);
@@ -5772,8 +5772,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 39) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:256:9: ( iterExpr ( assignOp iterExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:256:12: iterExpr ( assignOp iterExpr )*
+            // Haxe.g:256:9: ( iterExpr ( assignOp iterExpr )* )
+            // Haxe.g:256:12: iterExpr ( assignOp iterExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5783,7 +5783,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, iterExpr170.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:256:21: ( assignOp iterExpr )*
+            // Haxe.g:256:21: ( assignOp iterExpr )*
             loop40:
             do {
                 int alt40=2;
@@ -5796,7 +5796,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:256:22: assignOp iterExpr
+            	    // Haxe.g:256:22: assignOp iterExpr
             	    {
             	    pushFollow(FOLLOW_assignOp_in_assignExpr1955);
             	    assignOp171=assignOp();
@@ -5849,7 +5849,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "iterExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:259:1: iterExpr : ternaryExpr ( ELLIPSIS ternaryExpr )* ;
+    // Haxe.g:259:1: iterExpr : ternaryExpr ( ELLIPSIS ternaryExpr )* ;
     public final HaxeParser.iterExpr_return iterExpr() throws RecognitionException {
         HaxeParser.iterExpr_return retval = new HaxeParser.iterExpr_return();
         retval.start = input.LT(1);
@@ -5866,8 +5866,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 40) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:259:9: ( ternaryExpr ( ELLIPSIS ternaryExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:259:11: ternaryExpr ( ELLIPSIS ternaryExpr )*
+            // Haxe.g:259:9: ( ternaryExpr ( ELLIPSIS ternaryExpr )* )
+            // Haxe.g:259:11: ternaryExpr ( ELLIPSIS ternaryExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5877,7 +5877,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, ternaryExpr173.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:259:23: ( ELLIPSIS ternaryExpr )*
+            // Haxe.g:259:23: ( ELLIPSIS ternaryExpr )*
             loop41:
             do {
                 int alt41=2;
@@ -5890,7 +5890,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt41) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:259:24: ELLIPSIS ternaryExpr
+            	    // Haxe.g:259:24: ELLIPSIS ternaryExpr
             	    {
             	    ELLIPSIS174=(Token)match(input,ELLIPSIS,FOLLOW_ELLIPSIS_in_iterExpr1974); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -5942,7 +5942,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "ternaryExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:262:1: ternaryExpr : logicOrExpr ( QUES expr COLON logicOrExpr )* ;
+    // Haxe.g:262:1: ternaryExpr : logicOrExpr ( QUES expr COLON logicOrExpr )* ;
     public final HaxeParser.ternaryExpr_return ternaryExpr() throws RecognitionException {
         HaxeParser.ternaryExpr_return retval = new HaxeParser.ternaryExpr_return();
         retval.start = input.LT(1);
@@ -5963,8 +5963,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 41) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:263:2: ( logicOrExpr ( QUES expr COLON logicOrExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:263:4: logicOrExpr ( QUES expr COLON logicOrExpr )*
+            // Haxe.g:263:2: ( logicOrExpr ( QUES expr COLON logicOrExpr )* )
+            // Haxe.g:263:4: logicOrExpr ( QUES expr COLON logicOrExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -5974,7 +5974,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, logicOrExpr176.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:263:16: ( QUES expr COLON logicOrExpr )*
+            // Haxe.g:263:16: ( QUES expr COLON logicOrExpr )*
             loop42:
             do {
                 int alt42=2;
@@ -5987,7 +5987,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt42) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:263:17: QUES expr COLON logicOrExpr
+            	    // Haxe.g:263:17: QUES expr COLON logicOrExpr
             	    {
             	    QUES177=(Token)match(input,QUES,FOLLOW_QUES_in_ternaryExpr2000); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6046,7 +6046,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "logicOrExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:266:1: logicOrExpr : logicAndExpr ( BARBAR logicAndExpr )* ;
+    // Haxe.g:266:1: logicOrExpr : logicAndExpr ( BARBAR logicAndExpr )* ;
     public final HaxeParser.logicOrExpr_return logicOrExpr() throws RecognitionException {
         HaxeParser.logicOrExpr_return retval = new HaxeParser.logicOrExpr_return();
         retval.start = input.LT(1);
@@ -6063,8 +6063,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 42) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:267:2: ( logicAndExpr ( BARBAR logicAndExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:267:4: logicAndExpr ( BARBAR logicAndExpr )*
+            // Haxe.g:267:2: ( logicAndExpr ( BARBAR logicAndExpr )* )
+            // Haxe.g:267:4: logicAndExpr ( BARBAR logicAndExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -6074,7 +6074,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, logicAndExpr181.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:267:17: ( BARBAR logicAndExpr )*
+            // Haxe.g:267:17: ( BARBAR logicAndExpr )*
             loop43:
             do {
                 int alt43=2;
@@ -6087,7 +6087,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt43) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:267:18: BARBAR logicAndExpr
+            	    // Haxe.g:267:18: BARBAR logicAndExpr
             	    {
             	    BARBAR182=(Token)match(input,BARBAR,FOLLOW_BARBAR_in_logicOrExpr2039); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6139,7 +6139,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "logicAndExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:270:1: logicAndExpr : ( cmpExpr ) ( AMPAMP cmpExpr )* ;
+    // Haxe.g:270:1: logicAndExpr : ( cmpExpr ) ( AMPAMP cmpExpr )* ;
     public final HaxeParser.logicAndExpr_return logicAndExpr() throws RecognitionException {
         HaxeParser.logicAndExpr_return retval = new HaxeParser.logicAndExpr_return();
         retval.start = input.LT(1);
@@ -6156,13 +6156,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:271:2: ( ( cmpExpr ) ( AMPAMP cmpExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:271:4: ( cmpExpr ) ( AMPAMP cmpExpr )*
+            // Haxe.g:271:2: ( ( cmpExpr ) ( AMPAMP cmpExpr )* )
+            // Haxe.g:271:4: ( cmpExpr ) ( AMPAMP cmpExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:271:4: ( cmpExpr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:271:5: cmpExpr
+            // Haxe.g:271:4: ( cmpExpr )
+            // Haxe.g:271:5: cmpExpr
             {
             pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2063);
             cmpExpr184=cmpExpr();
@@ -6173,7 +6173,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:271:14: ( AMPAMP cmpExpr )*
+            // Haxe.g:271:14: ( AMPAMP cmpExpr )*
             loop44:
             do {
                 int alt44=2;
@@ -6186,7 +6186,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt44) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:271:15: AMPAMP cmpExpr
+            	    // Haxe.g:271:15: AMPAMP cmpExpr
             	    {
             	    AMPAMP185=(Token)match(input,AMPAMP,FOLLOW_AMPAMP_in_logicAndExpr2067); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6238,7 +6238,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "cmpExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:1: cmpExpr : ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )* ;
+    // Haxe.g:274:1: cmpExpr : ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )* ;
     public final HaxeParser.cmpExpr_return cmpExpr() throws RecognitionException {
         HaxeParser.cmpExpr_return retval = new HaxeParser.cmpExpr_return();
         retval.start = input.LT(1);
@@ -6265,13 +6265,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:9: ( ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:11: ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
+            // Haxe.g:274:9: ( ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )* )
+            // Haxe.g:274:11: ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:11: ( bitExpr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:12: bitExpr
+            // Haxe.g:274:11: ( bitExpr )
+            // Haxe.g:274:12: bitExpr
             {
             pushFollow(FOLLOW_bitExpr_in_cmpExpr2084);
             bitExpr187=bitExpr();
@@ -6282,7 +6282,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:21: ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
+            // Haxe.g:274:21: ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
             loop46:
             do {
                 int alt46=2;
@@ -6295,9 +6295,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt46) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:22: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr
+            	    // Haxe.g:274:22: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr
             	    {
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:22: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT )
+            	    // Haxe.g:274:22: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT )
             	    int alt45=6;
             	    switch ( input.LA(1) ) {
             	    case EQEQ:
@@ -6340,7 +6340,7 @@ public class HaxeParser extends Parser {
 
             	    switch (alt45) {
             	        case 1 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:23: EQEQ
+            	            // Haxe.g:274:23: EQEQ
             	            {
             	            EQEQ188=(Token)match(input,EQEQ,FOLLOW_EQEQ_in_cmpExpr2089); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6351,7 +6351,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:30: BANGEQ
+            	            // Haxe.g:274:30: BANGEQ
             	            {
             	            BANGEQ189=(Token)match(input,BANGEQ,FOLLOW_BANGEQ_in_cmpExpr2093); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6362,7 +6362,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:40: GTEQ
+            	            // Haxe.g:274:40: GTEQ
             	            {
             	            GTEQ190=(Token)match(input,GTEQ,FOLLOW_GTEQ_in_cmpExpr2098); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6373,7 +6373,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 4 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:48: LTEQ
+            	            // Haxe.g:274:48: LTEQ
             	            {
             	            LTEQ191=(Token)match(input,LTEQ,FOLLOW_LTEQ_in_cmpExpr2103); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6384,7 +6384,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 5 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:56: GT
+            	            // Haxe.g:274:56: GT
             	            {
             	            GT192=(Token)match(input,GT,FOLLOW_GT_in_cmpExpr2108); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6395,7 +6395,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 6 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:274:62: LT
+            	            // Haxe.g:274:62: LT
             	            {
             	            LT193=(Token)match(input,LT,FOLLOW_LT_in_cmpExpr2113); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6453,7 +6453,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "bitExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:1: bitExpr : ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )* ;
+    // Haxe.g:277:1: bitExpr : ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )* ;
     public final HaxeParser.bitExpr_return bitExpr() throws RecognitionException {
         HaxeParser.bitExpr_return retval = new HaxeParser.bitExpr_return();
         retval.start = input.LT(1);
@@ -6478,13 +6478,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:9: ( ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:11: ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
+            // Haxe.g:277:9: ( ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )* )
+            // Haxe.g:277:11: ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:11: ( shiftExpr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:12: shiftExpr
+            // Haxe.g:277:11: ( shiftExpr )
+            // Haxe.g:277:12: shiftExpr
             {
             pushFollow(FOLLOW_shiftExpr_in_bitExpr2132);
             shiftExpr195=shiftExpr();
@@ -6495,7 +6495,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:23: ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
+            // Haxe.g:277:23: ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
             loop47:
             do {
                 int alt47=4;
@@ -6520,7 +6520,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt47) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:24: BAR shiftExpr
+            	    // Haxe.g:277:24: BAR shiftExpr
             	    {
             	    BAR196=(Token)match(input,BAR,FOLLOW_BAR_in_bitExpr2136); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6537,7 +6537,7 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:41: AMP shiftExpr
+            	    // Haxe.g:277:41: AMP shiftExpr
             	    {
             	    AMP198=(Token)match(input,AMP,FOLLOW_AMP_in_bitExpr2143); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6554,7 +6554,7 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:277:57: CARET shiftExpr
+            	    // Haxe.g:277:57: CARET shiftExpr
             	    {
             	    CARET200=(Token)match(input,CARET,FOLLOW_CARET_in_bitExpr2149); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6606,7 +6606,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "shiftExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:280:1: shiftExpr : ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* ;
+    // Haxe.g:280:1: shiftExpr : ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* ;
     public final HaxeParser.shiftExpr_return shiftExpr() throws RecognitionException {
         HaxeParser.shiftExpr_return retval = new HaxeParser.shiftExpr_return();
         retval.start = input.LT(1);
@@ -6633,13 +6633,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:2: ( ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:4: ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
+            // Haxe.g:281:2: ( ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* )
+            // Haxe.g:281:4: ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:4: ( addExpr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:5: addExpr
+            // Haxe.g:281:4: ( addExpr )
+            // Haxe.g:281:5: addExpr
             {
             pushFollow(FOLLOW_addExpr_in_shiftExpr2166);
             addExpr202=addExpr();
@@ -6650,7 +6650,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:14: ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
+            // Haxe.g:281:14: ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
             loop48:
             do {
                 int alt48=4;
@@ -6687,7 +6687,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt48) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:15: LTLT addExpr
+            	    // Haxe.g:281:15: LTLT addExpr
             	    {
             	    LTLT203=(Token)match(input,LTLT,FOLLOW_LTLT_in_shiftExpr2170); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6704,10 +6704,10 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:32: ( GT GT ) addExpr
+            	    // Haxe.g:281:32: ( GT GT ) addExpr
             	    {
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:32: ( GT GT )
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:33: GT GT
+            	    // Haxe.g:281:32: ( GT GT )
+            	    // Haxe.g:281:33: GT GT
             	    {
             	    GT205=(Token)match(input,GT,FOLLOW_GT_in_shiftExpr2179); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6732,7 +6732,7 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:52: GTGTGT addExpr
+            	    // Haxe.g:281:52: GTGTGT addExpr
             	    {
             	    GTGTGT208=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_shiftExpr2190); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
@@ -6784,7 +6784,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "addExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:1: addExpr : ( multExpr ) ( ( PLUS | SUB ) multExpr )* ;
+    // Haxe.g:284:1: addExpr : ( multExpr ) ( ( PLUS | SUB ) multExpr )* ;
     public final HaxeParser.addExpr_return addExpr() throws RecognitionException {
         HaxeParser.addExpr_return retval = new HaxeParser.addExpr_return();
         retval.start = input.LT(1);
@@ -6803,13 +6803,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:9: ( ( multExpr ) ( ( PLUS | SUB ) multExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:12: ( multExpr ) ( ( PLUS | SUB ) multExpr )*
+            // Haxe.g:284:9: ( ( multExpr ) ( ( PLUS | SUB ) multExpr )* )
+            // Haxe.g:284:12: ( multExpr ) ( ( PLUS | SUB ) multExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:12: ( multExpr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:13: multExpr
+            // Haxe.g:284:12: ( multExpr )
+            // Haxe.g:284:13: multExpr
             {
             pushFollow(FOLLOW_multExpr_in_addExpr2207);
             multExpr210=multExpr();
@@ -6820,7 +6820,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:23: ( ( PLUS | SUB ) multExpr )*
+            // Haxe.g:284:23: ( ( PLUS | SUB ) multExpr )*
             loop50:
             do {
                 int alt50=2;
@@ -6833,9 +6833,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt50) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:24: ( PLUS | SUB ) multExpr
+            	    // Haxe.g:284:24: ( PLUS | SUB ) multExpr
             	    {
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:24: ( PLUS | SUB )
+            	    // Haxe.g:284:24: ( PLUS | SUB )
             	    int alt49=2;
             	    int LA49_0 = input.LA(1);
 
@@ -6854,7 +6854,7 @@ public class HaxeParser extends Parser {
             	    }
             	    switch (alt49) {
             	        case 1 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:25: PLUS
+            	            // Haxe.g:284:25: PLUS
             	            {
             	            PLUS211=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr2212); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6865,7 +6865,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:284:33: SUB
+            	            // Haxe.g:284:33: SUB
             	            {
             	            SUB212=(Token)match(input,SUB,FOLLOW_SUB_in_addExpr2217); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -6923,7 +6923,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "multExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:1: multExpr : ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )* ;
+    // Haxe.g:287:1: multExpr : ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )* ;
     public final HaxeParser.multExpr_return multExpr() throws RecognitionException {
         HaxeParser.multExpr_return retval = new HaxeParser.multExpr_return();
         retval.start = input.LT(1);
@@ -6944,13 +6944,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:9: ( ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:11: ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )*
+            // Haxe.g:287:9: ( ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )* )
+            // Haxe.g:287:11: ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:11: ( prefixExpr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:12: prefixExpr
+            // Haxe.g:287:11: ( prefixExpr )
+            // Haxe.g:287:12: prefixExpr
             {
             pushFollow(FOLLOW_prefixExpr_in_multExpr2235);
             prefixExpr214=prefixExpr();
@@ -6961,7 +6961,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:24: ( ( STAR | SLASH | PERCENT ) prefixExpr )*
+            // Haxe.g:287:24: ( ( STAR | SLASH | PERCENT ) prefixExpr )*
             loop52:
             do {
                 int alt52=2;
@@ -6974,9 +6974,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt52) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:25: ( STAR | SLASH | PERCENT ) prefixExpr
+            	    // Haxe.g:287:25: ( STAR | SLASH | PERCENT ) prefixExpr
             	    {
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:25: ( STAR | SLASH | PERCENT )
+            	    // Haxe.g:287:25: ( STAR | SLASH | PERCENT )
             	    int alt51=3;
             	    switch ( input.LA(1) ) {
             	    case STAR:
@@ -7004,7 +7004,7 @@ public class HaxeParser extends Parser {
 
             	    switch (alt51) {
             	        case 1 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:26: STAR
+            	            // Haxe.g:287:26: STAR
             	            {
             	            STAR215=(Token)match(input,STAR,FOLLOW_STAR_in_multExpr2240); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -7015,7 +7015,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:32: SLASH
+            	            // Haxe.g:287:32: SLASH
             	            {
             	            SLASH216=(Token)match(input,SLASH,FOLLOW_SLASH_in_multExpr2243); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -7026,7 +7026,7 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:287:39: PERCENT
+            	            // Haxe.g:287:39: PERCENT
             	            {
             	            PERCENT217=(Token)match(input,PERCENT,FOLLOW_PERCENT_in_multExpr2246); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
@@ -7084,7 +7084,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "prefixExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:290:1: prefixExpr : ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr );
+    // Haxe.g:290:1: prefixExpr : ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr );
     public final HaxeParser.prefixExpr_return prefixExpr() throws RecognitionException {
         HaxeParser.prefixExpr_return retval = new HaxeParser.prefixExpr_return();
         retval.start = input.LT(1);
@@ -7105,7 +7105,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:291:9: ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr )
+            // Haxe.g:291:9: ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr )
             int alt53=4;
             switch ( input.LA(1) ) {
             case PLUSPLUS:
@@ -7242,7 +7242,7 @@ public class HaxeParser extends Parser {
 
             switch (alt53) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:291:11: ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
+                    // Haxe.g:291:11: ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7268,7 +7268,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:292:11: newExpr
+                    // Haxe.g:292:11: newExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7282,7 +7282,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:293:11: cast
+                    // Haxe.g:293:11: cast
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7296,7 +7296,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:294:11: suffixExpr
+                    // Haxe.g:294:11: suffixExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7338,7 +7338,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "suffixExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:297:1: suffixExpr : ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt );
+    // Haxe.g:297:1: suffixExpr : ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt );
     public final HaxeParser.suffixExpr_return suffixExpr() throws RecognitionException {
         HaxeParser.suffixExpr_return retval = new HaxeParser.suffixExpr_return();
         retval.start = input.LT(1);
@@ -7382,12 +7382,12 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_value=new RewriteRuleSubtreeStream(adaptor,"rule value");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:2: ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt )
+            // Haxe.g:298:2: ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt )
             int alt54=5;
             alt54 = dfa54.predict(input);
             switch (alt54) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:4: value LPAREN exprListOpt RPAREN
+                    // Haxe.g:298:4: value LPAREN exprListOpt RPAREN
                     {
                     pushFollow(FOLLOW_value_in_suffixExpr2338);
                     value224=value();
@@ -7423,18 +7423,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 298:36: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:39: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? )
+                        // Haxe.g:298:39: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "SUFFIX_EXPR", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:93: ( value )?
+                        // Haxe.g:298:83: ( value )?
                         if ( stream_value.hasNext() ) {
                             adaptor.addChild(root_1, stream_value.nextTree());
 
                         }
                         stream_value.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:100: ( exprListOpt )?
+                        // Haxe.g:298:90: ( exprListOpt )?
                         if ( stream_exprListOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprListOpt.nextTree());
 
@@ -7450,7 +7450,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:299:4: value LBRACKET expr RBRACKET
+                    // Haxe.g:299:4: value LBRACKET expr RBRACKET
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7480,7 +7480,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:300:4: value PLUSPLUS
+                    // Haxe.g:300:4: value PLUSPLUS
                     {
                     pushFollow(FOLLOW_value_in_suffixExpr2376);
                     value232=value();
@@ -7494,7 +7494,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: value, PLUSPLUS
+                    // elements: PLUSPLUS, value
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7507,18 +7507,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 300:22: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:300:25: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
+                        // Haxe.g:300:25: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "SUFFIX_EXPR", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:300:79: ( value )?
+                        // Haxe.g:300:69: ( value )?
                         if ( stream_value.hasNext() ) {
                             adaptor.addChild(root_1, stream_value.nextTree());
 
                         }
                         stream_value.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:300:86: ( PLUSPLUS )?
+                        // Haxe.g:300:76: ( PLUSPLUS )?
                         if ( stream_PLUSPLUS.hasNext() ) {
                             adaptor.addChild(root_1, stream_PLUSPLUS.nextNode());
 
@@ -7534,7 +7534,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:301:4: value SUBSUB
+                    // Haxe.g:301:4: value SUBSUB
                     {
                     pushFollow(FOLLOW_value_in_suffixExpr2402);
                     value234=value();
@@ -7548,7 +7548,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: SUBSUB, value
+                    // elements: value, SUBSUB
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7561,12 +7561,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 301:20: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:301:23: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
+                        // Haxe.g:301:23: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "SUFFIX_EXPR", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:301:77: ( value )?
+                        // Haxe.g:301:67: ( value )?
                         if ( stream_value.hasNext() ) {
                             adaptor.addChild(root_1, stream_value.nextTree());
 
@@ -7583,7 +7583,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:302:4: value typeParamOpt
+                    // Haxe.g:302:4: value typeParamOpt
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7631,7 +7631,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "value"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:305:1: value : ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent | );
+    // Haxe.g:305:1: value : ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent | );
     public final HaxeParser.value_return value() throws RecognitionException {
         HaxeParser.value_return retval = new HaxeParser.value_return();
         retval.start = input.LT(1);
@@ -7662,12 +7662,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:305:7: ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent | )
+            // Haxe.g:305:7: ( funcLit | arrayLit | objLit | NULL | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent | )
             int alt56=8;
             alt56 = dfa56.predict(input);
             switch (alt56) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:305:9: funcLit
+                    // Haxe.g:305:9: funcLit
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7681,7 +7681,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:306:4: arrayLit
+                    // Haxe.g:306:4: arrayLit
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7695,7 +7695,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:307:14: objLit
+                    // Haxe.g:307:14: objLit
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7709,7 +7709,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:308:14: NULL
+                    // Haxe.g:308:14: NULL
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7722,7 +7722,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:309:14: elementarySymbol
+                    // Haxe.g:309:14: elementarySymbol
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7736,17 +7736,17 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:14: LPAREN ( expr | statement ) RPAREN
+                    // Haxe.g:310:14: LPAREN ( expr | statement ) RPAREN
                     {
                     root_0 = (Object)adaptor.nil();
 
                     LPAREN243=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_value2504); if (state.failed) return retval;
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:22: ( expr | statement )
+                    // Haxe.g:310:22: ( expr | statement )
                     int alt55=2;
                     alt55 = dfa55.predict(input);
                     switch (alt55) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:23: expr
+                            // Haxe.g:310:23: expr
                             {
                             pushFollow(FOLLOW_expr_in_value2508);
                             expr244=expr();
@@ -7758,7 +7758,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:28: statement
+                            // Haxe.g:310:28: statement
                             {
                             pushFollow(FOLLOW_statement_in_value2510);
                             statement245=statement();
@@ -7777,7 +7777,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:311:11: dotIdent
+                    // Haxe.g:311:11: dotIdent
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7791,7 +7791,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:313:9: 
+                    // Haxe.g:313:9: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -7826,7 +7826,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "newExpr"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:315:1: newExpr : NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) ;
+    // Haxe.g:315:1: newExpr : NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) ;
     public final HaxeParser.newExpr_return newExpr() throws RecognitionException {
         HaxeParser.newExpr_return retval = new HaxeParser.newExpr_return();
         retval.start = input.LT(1);
@@ -7851,8 +7851,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:316:2: ( NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:316:4: NEW type LPAREN exprListOpt RPAREN
+            // Haxe.g:316:2: ( NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) )
+            // Haxe.g:316:4: NEW type LPAREN exprListOpt RPAREN
             {
             NEW248=(Token)match(input,NEW,FOLLOW_NEW_in_newExpr2573); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_NEW.add(NEW248);
@@ -7878,7 +7878,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: type, exprListOpt, NEW
+            // elements: NEW, type, exprListOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -7891,18 +7891,18 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 316:39: -> ^( NEW ( type )? ( exprListOpt )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:316:42: ^( NEW ( type )? ( exprListOpt )? )
+                // Haxe.g:316:42: ^( NEW ( type )? ( exprListOpt )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_NEW.nextNode(), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:316:48: ( type )?
+                // Haxe.g:316:48: ( type )?
                 if ( stream_type.hasNext() ) {
                     adaptor.addChild(root_1, stream_type.nextTree());
 
                 }
                 stream_type.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:316:54: ( exprListOpt )?
+                // Haxe.g:316:54: ( exprListOpt )?
                 if ( stream_exprListOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_exprListOpt.nextTree());
 
@@ -7944,7 +7944,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "cast"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:1: cast : ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) );
+    // Haxe.g:319:1: cast : ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) );
     public final HaxeParser.cast_return cast() throws RecognitionException {
         HaxeParser.cast_return retval = new HaxeParser.cast_return();
         retval.start = input.LT(1);
@@ -7980,7 +7980,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:9: ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) )
+            // Haxe.g:319:9: ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) )
             int alt58=2;
             int LA58_0 = input.LA(1);
 
@@ -8010,7 +8010,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt58) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
+                    // Haxe.g:319:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
                     {
                     CAST253=(Token)match(input,CAST,FOLLOW_CAST_in_cast2607); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CAST.add(CAST253);
@@ -8024,7 +8024,7 @@ public class HaxeParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expr.add(expr255.getTree());
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:28: ( COMMA funcType )?
+                    // Haxe.g:319:28: ( COMMA funcType )?
                     int alt57=2;
                     int LA57_0 = input.LA(1);
 
@@ -8033,7 +8033,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt57) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:29: COMMA funcType
+                            // Haxe.g:319:29: COMMA funcType
                             {
                             COMMA256=(Token)match(input,COMMA,FOLLOW_COMMA_in_cast2614); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_COMMA.add(COMMA256);
@@ -8056,7 +8056,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: CAST, expr, funcType
+                    // elements: funcType, CAST, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8069,18 +8069,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 319:54: -> ^( CAST ( expr )? ( funcType )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:57: ^( CAST ( expr )? ( funcType )? )
+                        // Haxe.g:319:57: ^( CAST ( expr )? ( funcType )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CAST.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:64: ( expr )?
+                        // Haxe.g:319:64: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
                         }
                         stream_expr.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:70: ( funcType )?
+                        // Haxe.g:319:70: ( funcType )?
                         if ( stream_funcType.hasNext() ) {
                             adaptor.addChild(root_1, stream_funcType.nextTree());
 
@@ -8096,7 +8096,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:320:4: CAST LPAREN expr RPAREN
+                    // Haxe.g:320:4: CAST LPAREN expr RPAREN
                     {
                     CAST259=(Token)match(input,CAST,FOLLOW_CAST_in_cast2638); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CAST.add(CAST259);
@@ -8116,7 +8116,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: CAST, expr
+                    // elements: expr, CAST
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8129,12 +8129,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 320:31: -> ^( CAST ( expr )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:320:34: ^( CAST ( expr )? )
+                        // Haxe.g:320:34: ^( CAST ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CAST.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:320:41: ( expr )?
+                        // Haxe.g:320:41: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -8178,7 +8178,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "topLevelDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:326:1: topLevelDecl : ( classDecl | interfaceDecl | enumDecl | typedefDecl );
+    // Haxe.g:326:1: topLevelDecl : ( classDecl | interfaceDecl | enumDecl | typedefDecl );
     public final HaxeParser.topLevelDecl_return topLevelDecl() throws RecognitionException {
         HaxeParser.topLevelDecl_return retval = new HaxeParser.topLevelDecl_return();
         retval.start = input.LT(1);
@@ -8197,7 +8197,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:327:2: ( classDecl | interfaceDecl | enumDecl | typedefDecl )
+            // Haxe.g:327:2: ( classDecl | interfaceDecl | enumDecl | typedefDecl )
             int alt59=4;
             switch ( input.LA(1) ) {
             case EXTERN:
@@ -8231,7 +8231,7 @@ public class HaxeParser extends Parser {
 
             switch (alt59) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:327:4: classDecl
+                    // Haxe.g:327:4: classDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -8245,7 +8245,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:328:4: interfaceDecl
+                    // Haxe.g:328:4: interfaceDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -8259,7 +8259,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:329:11: enumDecl
+                    // Haxe.g:329:11: enumDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -8273,7 +8273,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:330:4: typedefDecl
+                    // Haxe.g:330:4: typedefDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -8315,7 +8315,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "enumDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:1: enumDecl : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) ;
+    // Haxe.g:333:1: enumDecl : ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) ;
     public final HaxeParser.enumDecl_return enumDecl() throws RecognitionException {
         HaxeParser.enumDecl_return retval = new HaxeParser.enumDecl_return();
         retval.start = input.LT(1);
@@ -8343,8 +8343,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:9: ( ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:11: ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE
+            // Haxe.g:333:9: ( ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) )
+            // Haxe.g:333:11: ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE
             {
             ENUM267=(Token)match(input,ENUM,FOLLOW_ENUM_in_enumDecl2710); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ENUM.add(ENUM267);
@@ -8373,7 +8373,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, ENUM, typeParamOpt, enumBody
+            // elements: typeParamOpt, IDENTIFIER, enumBody, ENUM
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8386,24 +8386,24 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 333:63: -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:66: ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
+                // Haxe.g:333:66: ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_ENUM.nextNode(), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:73: ( IDENTIFIER )?
+                // Haxe.g:333:73: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
                     adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                 }
                 stream_IDENTIFIER.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:85: ( typeParamOpt )?
+                // Haxe.g:333:85: ( typeParamOpt )?
                 if ( stream_typeParamOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
                 }
                 stream_typeParamOpt.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:333:99: ( enumBody )?
+                // Haxe.g:333:99: ( enumBody )?
                 if ( stream_enumBody.hasNext() ) {
                     adaptor.addChild(root_1, stream_enumBody.nextTree());
 
@@ -8445,7 +8445,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "enumBody"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:336:1: enumBody : ( enumValueDecl )* ;
+    // Haxe.g:336:1: enumBody : ( enumValueDecl )* ;
     public final HaxeParser.enumBody_return enumBody() throws RecognitionException {
         HaxeParser.enumBody_return retval = new HaxeParser.enumBody_return();
         retval.start = input.LT(1);
@@ -8458,12 +8458,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:336:9: ( ( enumValueDecl )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:336:11: ( enumValueDecl )*
+            // Haxe.g:336:9: ( ( enumValueDecl )* )
+            // Haxe.g:336:11: ( enumValueDecl )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:336:11: ( enumValueDecl )*
+            // Haxe.g:336:11: ( enumValueDecl )*
             loop60:
             do {
                 int alt60=2;
@@ -8476,7 +8476,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt60) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:336:12: enumValueDecl
+            	    // Haxe.g:336:12: enumValueDecl
             	    {
             	    pushFollow(FOLLOW_enumValueDecl_in_enumBody2746);
             	    enumValueDecl273=enumValueDecl();
@@ -8523,7 +8523,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "enumValueDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:339:1: enumValueDecl : ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) );
+    // Haxe.g:339:1: enumValueDecl : ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) );
     public final HaxeParser.enumValueDecl_return enumValueDecl() throws RecognitionException {
         HaxeParser.enumValueDecl_return retval = new HaxeParser.enumValueDecl_return();
         retval.start = input.LT(1);
@@ -8552,7 +8552,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_paramList=new RewriteRuleSubtreeStream(adaptor,"rule paramList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:340:2: ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) )
+            // Haxe.g:340:2: ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) )
             int alt61=2;
             int LA61_0 = input.LA(1);
 
@@ -8582,7 +8582,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt61) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:340:4: IDENTIFIER LPAREN paramList RPAREN SEMI
+                    // Haxe.g:340:4: IDENTIFIER LPAREN paramList RPAREN SEMI
                     {
                     IDENTIFIER274=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl2765); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER274);
@@ -8605,7 +8605,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: paramList, IDENTIFIER, IDENTIFIER
+                    // elements: IDENTIFIER, IDENTIFIER, paramList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8618,18 +8618,18 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 340:44: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:340:47: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
+                        // Haxe.g:340:47: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER274), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:340:89: ( IDENTIFIER )?
+                        // Haxe.g:340:89: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
 
                         }
                         stream_IDENTIFIER.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:340:111: ( paramList )?
+                        // Haxe.g:340:111: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
@@ -8645,7 +8645,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:341:4: IDENTIFIER SEMI
+                    // Haxe.g:341:4: IDENTIFIER SEMI
                     {
                     IDENTIFIER279=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl2799); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER279);
@@ -8669,12 +8669,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 341:23: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:341:26: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
+                        // Haxe.g:341:26: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER279), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:341:68: ( IDENTIFIER )?
+                        // Haxe.g:341:68: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
 
@@ -8718,7 +8718,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDeclList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:345:1: varDeclList : varDecl varDeclList ;
+    // Haxe.g:345:1: varDeclList : varDecl varDeclList ;
     public final HaxeParser.varDeclList_return varDeclList() throws RecognitionException {
         HaxeParser.varDeclList_return retval = new HaxeParser.varDeclList_return();
         retval.start = input.LT(1);
@@ -8733,8 +8733,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:346:2: ( varDecl varDeclList )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:346:4: varDecl varDeclList
+            // Haxe.g:346:2: ( varDecl varDeclList )
+            // Haxe.g:346:4: varDecl varDeclList
             {
             root_0 = (Object)adaptor.nil();
 
@@ -8780,7 +8780,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:1: varDecl : ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) ;
+    // Haxe.g:349:1: varDecl : ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) ;
     public final HaxeParser.varDecl_return varDecl() throws RecognitionException {
         HaxeParser.varDecl_return retval = new HaxeParser.varDecl_return();
         retval.start = input.LT(1);
@@ -8802,10 +8802,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_varDeclPartList=new RewriteRuleSubtreeStream(adaptor,"rule varDeclPartList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:9: ( ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:11: ( declAttrList )? VAR varDeclPartList SEMI
+            // Haxe.g:349:9: ( ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) )
+            // Haxe.g:349:11: ( declAttrList )? VAR varDeclPartList SEMI
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:11: ( declAttrList )?
+            // Haxe.g:349:11: ( declAttrList )?
             int alt62=2;
             int LA62_0 = input.LA(1);
 
@@ -8814,7 +8814,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt62) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:12: declAttrList
+                    // Haxe.g:349:12: declAttrList
                     {
                     pushFollow(FOLLOW_declAttrList_in_varDecl2854);
                     declAttrList283=declAttrList();
@@ -8843,7 +8843,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: VAR, declAttrList, varDeclPartList
+            // elements: declAttrList, varDeclPartList, VAR
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8856,18 +8856,18 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 349:52: -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:55: ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
+                // Haxe.g:349:55: ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, VAR284), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:83: ( declAttrList )?
+                // Haxe.g:349:83: ( declAttrList )?
                 if ( stream_declAttrList.hasNext() ) {
                     adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                 }
                 stream_declAttrList.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:349:97: ( varDeclPartList )?
+                // Haxe.g:349:97: ( varDeclPartList )?
                 if ( stream_varDeclPartList.hasNext() ) {
                     adaptor.addChild(root_1, stream_varDeclPartList.nextTree());
 
@@ -8909,7 +8909,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDeclPartList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:352:1: varDeclPartList : varDeclPart ( COMMA varDeclPart )* ;
+    // Haxe.g:352:1: varDeclPartList : varDeclPart ( COMMA varDeclPart )* ;
     public final HaxeParser.varDeclPartList_return varDeclPartList() throws RecognitionException {
         HaxeParser.varDeclPartList_return retval = new HaxeParser.varDeclPartList_return();
         retval.start = input.LT(1);
@@ -8926,8 +8926,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:353:2: ( varDeclPart ( COMMA varDeclPart )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:353:4: varDeclPart ( COMMA varDeclPart )*
+            // Haxe.g:353:2: ( varDeclPart ( COMMA varDeclPart )* )
+            // Haxe.g:353:4: varDeclPart ( COMMA varDeclPart )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -8937,7 +8937,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclPart287.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:353:16: ( COMMA varDeclPart )*
+            // Haxe.g:353:16: ( COMMA varDeclPart )*
             loop63:
             do {
                 int alt63=2;
@@ -8950,7 +8950,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt63) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:353:17: COMMA varDeclPart
+            	    // Haxe.g:353:17: COMMA varDeclPart
             	    {
             	    COMMA288=(Token)match(input,COMMA,FOLLOW_COMMA_in_varDeclPartList2896); if (state.failed) return retval;
             	    pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2899);
@@ -8998,7 +8998,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDeclPart"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:356:1: varDeclPart : IDENTIFIER propDeclOpt typeTagOpt varInit ;
+    // Haxe.g:356:1: varDeclPart : IDENTIFIER propDeclOpt typeTagOpt varInit ;
     public final HaxeParser.varDeclPart_return varDeclPart() throws RecognitionException {
         HaxeParser.varDeclPart_return retval = new HaxeParser.varDeclPart_return();
         retval.start = input.LT(1);
@@ -9017,8 +9017,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:357:2: ( IDENTIFIER propDeclOpt typeTagOpt varInit )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:357:4: IDENTIFIER propDeclOpt typeTagOpt varInit
+            // Haxe.g:357:2: ( IDENTIFIER propDeclOpt typeTagOpt varInit )
+            // Haxe.g:357:4: IDENTIFIER propDeclOpt typeTagOpt varInit
             {
             root_0 = (Object)adaptor.nil();
 
@@ -9075,7 +9075,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "propDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:360:1: propDecl : LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) ;
+    // Haxe.g:360:1: propDecl : LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) ;
     public final HaxeParser.propDecl_return propDecl() throws RecognitionException {
         HaxeParser.propDecl_return retval = new HaxeParser.propDecl_return();
         retval.start = input.LT(1);
@@ -9099,8 +9099,8 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_propAccessor=new RewriteRuleSubtreeStream(adaptor,"rule propAccessor");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:360:9: ( LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:360:11: LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN
+            // Haxe.g:360:9: ( LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) )
+            // Haxe.g:360:11: LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN
             {
             LPAREN294=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_propDecl2932); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN294);
@@ -9141,18 +9141,18 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 360:63: -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:360:66: ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
+                // Haxe.g:360:66: ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new HaxeTree(PROPERTY_DECL, "PROPERTY_DECL", true), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:360:124: ( $a1)?
+                // Haxe.g:360:114: ( $a1)?
                 if ( stream_a1.hasNext() ) {
                     adaptor.addChild(root_1, stream_a1.nextTree());
 
                 }
                 stream_a1.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:360:129: ( $a2)?
+                // Haxe.g:360:119: ( $a2)?
                 if ( stream_a2.hasNext() ) {
                     adaptor.addChild(root_1, stream_a2.nextTree());
 
@@ -9194,7 +9194,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "propAccessor"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:363:1: propAccessor : ( IDENTIFIER | NULL | DEFAULT | DYNAMIC );
+    // Haxe.g:363:1: propAccessor : ( IDENTIFIER | NULL | DEFAULT | DYNAMIC );
     public final HaxeParser.propAccessor_return propAccessor() throws RecognitionException {
         HaxeParser.propAccessor_return retval = new HaxeParser.propAccessor_return();
         retval.start = input.LT(1);
@@ -9207,8 +9207,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:364:2: ( IDENTIFIER | NULL | DEFAULT | DYNAMIC )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:
+            // Haxe.g:364:2: ( IDENTIFIER | NULL | DEFAULT | DYNAMIC )
+            // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -9254,7 +9254,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "propDeclOpt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:370:1: propDeclOpt : ( propDecl | );
+    // Haxe.g:370:1: propDeclOpt : ( propDecl | );
     public final HaxeParser.propDeclOpt_return propDeclOpt() throws RecognitionException {
         HaxeParser.propDeclOpt_return retval = new HaxeParser.propDeclOpt_return();
         retval.start = input.LT(1);
@@ -9267,7 +9267,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:371:2: ( propDecl | )
+            // Haxe.g:371:2: ( propDecl | )
             int alt64=2;
             int LA64_0 = input.LA(1);
 
@@ -9286,7 +9286,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt64) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:371:4: propDecl
+                    // Haxe.g:371:4: propDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -9300,7 +9300,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:373:2: 
+                    // Haxe.g:373:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -9335,7 +9335,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varInit"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:375:1: varInit : ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | );
+    // Haxe.g:375:1: varInit : ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | );
     public final HaxeParser.varInit_return varInit() throws RecognitionException {
         HaxeParser.varInit_return retval = new HaxeParser.varInit_return();
         retval.start = input.LT(1);
@@ -9351,7 +9351,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:375:9: ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | )
+            // Haxe.g:375:9: ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | )
             int alt65=2;
             int LA65_0 = input.LA(1);
 
@@ -9370,7 +9370,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt65) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:375:11: EQ expr
+                    // Haxe.g:375:11: EQ expr
                     {
                     EQ299=(Token)match(input,EQ,FOLLOW_EQ_in_varInit3019); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EQ.add(EQ299);
@@ -9397,12 +9397,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 375:19: -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:375:22: ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
+                        // Haxe.g:375:22: ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(VAR_INIT, "VAR_INIT", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:375:70: ( expr )?
+                        // Haxe.g:375:60: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -9418,7 +9418,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:377:2: 
+                    // Haxe.g:377:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -9453,7 +9453,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "funcDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:379:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) );
+    // Haxe.g:379:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) );
     public final HaxeParser.funcDecl_return funcDecl() throws RecognitionException {
         HaxeParser.funcDecl_return retval = new HaxeParser.funcDecl_return();
         retval.start = input.LT(1);
@@ -9507,14 +9507,14 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:379:9: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) )
+            // Haxe.g:379:9: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) )
             int alt68=2;
             alt68 = dfa68.predict(input);
             switch (alt68) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:379:11: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
+                    // Haxe.g:379:11: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
                     {
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:379:11: ( declAttrList )?
+                    // Haxe.g:379:11: ( declAttrList )?
                     int alt66=2;
                     int LA66_0 = input.LA(1);
 
@@ -9523,7 +9523,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt66) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: declAttrList
+                            // Haxe.g:0:0: declAttrList
                             {
                             pushFollow(FOLLOW_declAttrList_in_funcDecl3048);
                             declAttrList301=declAttrList();
@@ -9570,7 +9570,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: paramList, NEW, FUNCTION, declAttrList, block, typeTagOpt
+                    // elements: typeTagOpt, declAttrList, NEW, block, paramList, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9583,31 +9583,31 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 380:4: -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:380:7: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
+                        // Haxe.g:380:7: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
                         adaptor.addChild(root_1, stream_NEW.nextNode());
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:380:36: ( declAttrList )?
+                        // Haxe.g:380:36: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                         }
                         stream_declAttrList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:380:50: ( paramList )?
+                        // Haxe.g:380:50: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:380:61: ( typeTagOpt )?
+                        // Haxe.g:380:61: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:380:73: ( block )?
+                        // Haxe.g:380:73: ( block )?
                         if ( stream_block.hasNext() ) {
                             adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -9623,9 +9623,9 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:381:4: ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block
+                    // Haxe.g:381:4: ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block
                     {
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:381:4: ( declAttrList )?
+                    // Haxe.g:381:4: ( declAttrList )?
                     int alt67=2;
                     int LA67_0 = input.LA(1);
 
@@ -9634,7 +9634,7 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt67) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: declAttrList
+                            // Haxe.g:0:0: declAttrList
                             {
                             pushFollow(FOLLOW_declAttrList_in_funcDecl3096);
                             declAttrList309=declAttrList();
@@ -9687,7 +9687,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: FUNCTION, paramList, typeParamOpt, block, IDENTIFIER, typeTagOpt, declAttrList
+                    // elements: typeTagOpt, block, IDENTIFIER, typeParamOpt, paramList, FUNCTION, declAttrList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9700,37 +9700,37 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 382:4: -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:382:7: ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
+                        // Haxe.g:382:7: ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:382:43: ( declAttrList )?
+                        // Haxe.g:382:43: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                         }
                         stream_declAttrList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:382:57: ( paramList )?
+                        // Haxe.g:382:57: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:382:68: ( typeTagOpt )?
+                        // Haxe.g:382:68: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:382:80: ( block )?
+                        // Haxe.g:382:80: ( block )?
                         if ( stream_block.hasNext() ) {
                             adaptor.addChild(root_1, stream_block.nextTree());
 
                         }
                         stream_block.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:382:87: ( typeParamOpt )?
+                        // Haxe.g:382:87: ( typeParamOpt )?
                         if ( stream_typeParamOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
@@ -9774,7 +9774,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "funcProtoDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:385:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) );
+    // Haxe.g:385:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) );
     public final HaxeParser.funcProtoDecl_return funcProtoDecl() throws RecognitionException {
         HaxeParser.funcProtoDecl_return retval = new HaxeParser.funcProtoDecl_return();
         retval.start = input.LT(1);
@@ -9858,12 +9858,12 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:386:2: ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) )
+            // Haxe.g:386:2: ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) )
             int alt69=4;
             alt69 = dfa69.predict(input);
             switch (alt69) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:386:4: declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:386:4: declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
                     {
                     pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3155);
                     declAttrList318=declAttrList();
@@ -9901,7 +9901,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, paramList, declAttrList, NEW, FUNCTION
+                    // elements: FUNCTION, declAttrList, paramList, typeTagOpt, NEW
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9914,30 +9914,30 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 387:4: -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:387:7: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
+                        // Haxe.g:387:7: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:387:18: ( NEW )?
+                        // Haxe.g:387:18: ( NEW )?
                         if ( stream_NEW.hasNext() ) {
                             adaptor.addChild(root_1, stream_NEW.nextNode());
 
                         }
                         stream_NEW.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:387:23: ( paramList )?
+                        // Haxe.g:387:23: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:387:34: ( typeTagOpt )?
+                        // Haxe.g:387:34: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:387:46: ( declAttrList )?
+                        // Haxe.g:387:46: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
@@ -9953,7 +9953,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:388:4: declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:388:4: declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
                     {
                     pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3196);
                     declAttrList326=declAttrList();
@@ -9997,7 +9997,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, paramList, IDENTIFIER, typeParamOpt, FUNCTION, declAttrList
+                    // elements: paramList, declAttrList, typeParamOpt, typeTagOpt, IDENTIFIER, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10010,36 +10010,36 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 389:4: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:389:7: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
+                        // Haxe.g:389:7: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:389:18: ( IDENTIFIER )?
+                        // Haxe.g:389:18: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         }
                         stream_IDENTIFIER.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:389:30: ( paramList )?
+                        // Haxe.g:389:30: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:389:41: ( typeTagOpt )?
+                        // Haxe.g:389:41: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:389:53: ( declAttrList )?
+                        // Haxe.g:389:53: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                         }
                         stream_declAttrList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:389:67: ( typeParamOpt )?
+                        // Haxe.g:389:67: ( typeParamOpt )?
                         if ( stream_typeParamOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
@@ -10055,7 +10055,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:390:4: FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:390:4: FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
                     {
                     FUNCTION335=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3242); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION335);
@@ -10087,7 +10087,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: NEW, typeTagOpt, paramList, FUNCTION
+                    // elements: FUNCTION, paramList, NEW, typeTagOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10100,24 +10100,24 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 391:4: -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:391:7: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
+                        // Haxe.g:391:7: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:391:18: ( NEW )?
+                        // Haxe.g:391:18: ( NEW )?
                         if ( stream_NEW.hasNext() ) {
                             adaptor.addChild(root_1, stream_NEW.nextNode());
 
                         }
                         stream_NEW.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:391:23: ( paramList )?
+                        // Haxe.g:391:23: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:391:34: ( typeTagOpt )?
+                        // Haxe.g:391:34: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
@@ -10133,7 +10133,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:392:4: FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:392:4: FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
                     {
                     FUNCTION342=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3278); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION342);
@@ -10171,7 +10171,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, FUNCTION, paramList, typeParamOpt, IDENTIFIER
+                    // elements: typeParamOpt, FUNCTION, paramList, IDENTIFIER, typeTagOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10184,30 +10184,30 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 393:4: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:393:7: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
+                        // Haxe.g:393:7: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:393:18: ( IDENTIFIER )?
+                        // Haxe.g:393:18: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         }
                         stream_IDENTIFIER.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:393:30: ( paramList )?
+                        // Haxe.g:393:30: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:393:41: ( typeTagOpt )?
+                        // Haxe.g:393:41: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:393:53: ( typeParamOpt )?
+                        // Haxe.g:393:53: ( typeParamOpt )?
                         if ( stream_typeParamOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
@@ -10251,7 +10251,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "classDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:396:1: classDecl : ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) ;
+    // Haxe.g:396:1: classDecl : ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) ;
     public final HaxeParser.classDecl_return classDecl() throws RecognitionException {
         HaxeParser.classDecl_return retval = new HaxeParser.classDecl_return();
         retval.start = input.LT(1);
@@ -10279,10 +10279,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_inheritListOpt=new RewriteRuleSubtreeStream(adaptor,"rule inheritListOpt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:397:2: ( ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:397:4: ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
+            // Haxe.g:397:2: ( ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) )
+            // Haxe.g:397:4: ( EXTERN )? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
             {
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:397:4: ( EXTERN )?
+            // Haxe.g:397:4: ( EXTERN )?
             int alt70=2;
             int LA70_0 = input.LA(1);
 
@@ -10291,7 +10291,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt70) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:0:0: EXTERN
+                    // Haxe.g:0:0: EXTERN
                     {
                     EXTERN350=(Token)match(input,EXTERN,FOLLOW_EXTERN_in_classDecl3326); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EXTERN.add(EXTERN350);
@@ -10329,7 +10329,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: inheritListOpt, classBodyScope, typeParamOpt, EXTERN, IDENTIFIER, CLASS
+            // elements: typeParamOpt, inheritListOpt, IDENTIFIER, CLASS, classBodyScope, EXTERN
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10342,31 +10342,31 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 398:4: -> ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:398:7: ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
+                // Haxe.g:398:7: ^( CLASS IDENTIFIER ( EXTERN )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new ClassNode(stream_CLASS.nextToken()), root_1);
 
                 adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:398:37: ( EXTERN )?
+                // Haxe.g:398:37: ( EXTERN )?
                 if ( stream_EXTERN.hasNext() ) {
                     adaptor.addChild(root_1, stream_EXTERN.nextNode());
 
                 }
                 stream_EXTERN.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:398:45: ( typeParamOpt )?
+                // Haxe.g:398:45: ( typeParamOpt )?
                 if ( stream_typeParamOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
                 }
                 stream_typeParamOpt.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:398:59: ( inheritListOpt )?
+                // Haxe.g:398:59: ( inheritListOpt )?
                 if ( stream_inheritListOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_inheritListOpt.nextTree());
 
                 }
                 stream_inheritListOpt.reset();
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:398:75: ( classBodyScope )?
+                // Haxe.g:398:75: ( classBodyScope )?
                 if ( stream_classBodyScope.hasNext() ) {
                     adaptor.addChild(root_1, stream_classBodyScope.nextTree());
 
@@ -10408,7 +10408,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "classBodyScope"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:401:1: classBodyScope : LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) ;
+    // Haxe.g:401:1: classBodyScope : LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) ;
     public final HaxeParser.classBodyScope_return classBodyScope() throws RecognitionException {
         HaxeParser.classBodyScope_return retval = new HaxeParser.classBodyScope_return();
         retval.start = input.LT(1);
@@ -10427,13 +10427,13 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_classMember=new RewriteRuleSubtreeStream(adaptor,"rule classMember");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:402:2: ( LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:402:4: LBRACE ( classMember )* RBRACE
+            // Haxe.g:402:2: ( LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) )
+            // Haxe.g:402:4: LBRACE ( classMember )* RBRACE
             {
             LBRACE356=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_classBodyScope3375); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE356);
 
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:402:11: ( classMember )*
+            // Haxe.g:402:11: ( classMember )*
             loop71:
             do {
                 int alt71=2;
@@ -10446,7 +10446,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt71) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:402:12: classMember
+            	    // Haxe.g:402:12: classMember
             	    {
             	    pushFollow(FOLLOW_classMember_in_classBodyScope3378);
             	    classMember357=classMember();
@@ -10482,12 +10482,12 @@ public class HaxeParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 402:33: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
             {
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:402:36: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
+                // Haxe.g:402:36: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new BlockScopeNode(BLOCK_SCOPE, "BLOCK_SCOPE", true, LBRACE356), root_1);
 
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:402:96: ( classMember )*
+                // Haxe.g:402:96: ( classMember )*
                 while ( stream_classMember.hasNext() ) {
                     adaptor.addChild(root_1, stream_classMember.nextTree());
 
@@ -10530,7 +10530,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "classMember"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:405:1: classMember : ( varDecl | funcDecl | enumDecl );
+    // Haxe.g:405:1: classMember : ( varDecl | funcDecl | enumDecl );
     public final HaxeParser.classMember_return classMember() throws RecognitionException {
         HaxeParser.classMember_return retval = new HaxeParser.classMember_return();
         retval.start = input.LT(1);
@@ -10547,12 +10547,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:406:2: ( varDecl | funcDecl | enumDecl )
+            // Haxe.g:406:2: ( varDecl | funcDecl | enumDecl )
             int alt72=3;
             alt72 = dfa72.predict(input);
             switch (alt72) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:406:4: varDecl
+                    // Haxe.g:406:4: varDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -10566,7 +10566,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:407:4: funcDecl
+                    // Haxe.g:407:4: funcDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -10580,7 +10580,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:409:4: enumDecl
+                    // Haxe.g:409:4: enumDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -10622,7 +10622,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "interfaceDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:412:1: interfaceDecl : INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE ;
+    // Haxe.g:412:1: interfaceDecl : INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE ;
     public final HaxeParser.interfaceDecl_return interfaceDecl() throws RecognitionException {
         HaxeParser.interfaceDecl_return retval = new HaxeParser.interfaceDecl_return();
         retval.start = input.LT(1);
@@ -10645,8 +10645,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:413:2: ( INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:413:4: INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
+            // Haxe.g:413:2: ( INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE )
+            // Haxe.g:413:4: INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
             {
             root_0 = (Object)adaptor.nil();
 
@@ -10705,7 +10705,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "interfaceBody"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:416:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | );
+    // Haxe.g:416:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | );
     public final HaxeParser.interfaceBody_return interfaceBody() throws RecognitionException {
         HaxeParser.interfaceBody_return retval = new HaxeParser.interfaceBody_return();
         retval.start = input.LT(1);
@@ -10724,12 +10724,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:417:2: ( varDecl interfaceBody | funcProtoDecl interfaceBody | )
+            // Haxe.g:417:2: ( varDecl interfaceBody | funcProtoDecl interfaceBody | )
             int alt73=3;
             alt73 = dfa73.predict(input);
             switch (alt73) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:417:4: varDecl interfaceBody
+                    // Haxe.g:417:4: varDecl interfaceBody
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -10749,7 +10749,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:418:4: funcProtoDecl interfaceBody
+                    // Haxe.g:418:4: funcProtoDecl interfaceBody
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -10769,7 +10769,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:421:2: 
+                    // Haxe.g:421:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -10804,7 +10804,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "inheritList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:423:1: inheritList : inherit ( COMMA inherit )* ;
+    // Haxe.g:423:1: inheritList : inherit ( COMMA inherit )* ;
     public final HaxeParser.inheritList_return inheritList() throws RecognitionException {
         HaxeParser.inheritList_return retval = new HaxeParser.inheritList_return();
         retval.start = input.LT(1);
@@ -10821,8 +10821,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:424:2: ( inherit ( COMMA inherit )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:424:4: inherit ( COMMA inherit )*
+            // Haxe.g:424:2: ( inherit ( COMMA inherit )* )
+            // Haxe.g:424:4: inherit ( COMMA inherit )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -10832,7 +10832,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit372.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:424:12: ( COMMA inherit )*
+            // Haxe.g:424:12: ( COMMA inherit )*
             loop74:
             do {
                 int alt74=2;
@@ -10845,7 +10845,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt74) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:424:13: COMMA inherit
+            	    // Haxe.g:424:13: COMMA inherit
             	    {
             	    COMMA373=(Token)match(input,COMMA,FOLLOW_COMMA_in_inheritList3501); if (state.failed) return retval;
             	    pushFollow(FOLLOW_inherit_in_inheritList3504);
@@ -10893,7 +10893,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "inheritListOpt"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:427:1: inheritListOpt : ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | );
+    // Haxe.g:427:1: inheritListOpt : ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | );
     public final HaxeParser.inheritListOpt_return inheritListOpt() throws RecognitionException {
         HaxeParser.inheritListOpt_return retval = new HaxeParser.inheritListOpt_return();
         retval.start = input.LT(1);
@@ -10906,7 +10906,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_inheritList=new RewriteRuleSubtreeStream(adaptor,"rule inheritList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:428:2: ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | )
+            // Haxe.g:428:2: ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | )
             int alt75=2;
             int LA75_0 = input.LA(1);
 
@@ -10925,7 +10925,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt75) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:428:4: inheritList
+                    // Haxe.g:428:4: inheritList
                     {
                     pushFollow(FOLLOW_inheritList_in_inheritListOpt3522);
                     inheritList375=inheritList();
@@ -10949,12 +10949,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 428:16: -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:428:19: ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
+                        // Haxe.g:428:19: ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(INHERIT_LIST_OPT, "INHERIT_LIST_OPT", true), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:428:83: ( inheritList )?
+                        // Haxe.g:428:73: ( inheritList )?
                         if ( stream_inheritList.hasNext() ) {
                             adaptor.addChild(root_1, stream_inheritList.nextTree());
 
@@ -10970,7 +10970,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:430:6: 
+                    // Haxe.g:430:6: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -11005,7 +11005,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "inherit"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:432:1: inherit : ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) );
+    // Haxe.g:432:1: inherit : ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) );
     public final HaxeParser.inherit_return inherit() throws RecognitionException {
         HaxeParser.inherit_return retval = new HaxeParser.inherit_return();
         retval.start = input.LT(1);
@@ -11026,7 +11026,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:432:9: ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) )
+            // Haxe.g:432:9: ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) )
             int alt76=2;
             int LA76_0 = input.LA(1);
 
@@ -11045,7 +11045,7 @@ public class HaxeParser extends Parser {
             }
             switch (alt76) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:432:11: EXTENDS type
+                    // Haxe.g:432:11: EXTENDS type
                     {
                     EXTENDS376=(Token)match(input,EXTENDS,FOLLOW_EXTENDS_in_inherit3558); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EXTENDS.add(EXTENDS376);
@@ -11072,12 +11072,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 432:25: -> ^( EXTENDS ( type )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:432:28: ^( EXTENDS ( type )? )
+                        // Haxe.g:432:28: ^( EXTENDS ( type )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_EXTENDS.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:432:38: ( type )?
+                        // Haxe.g:432:38: ( type )?
                         if ( stream_type.hasNext() ) {
                             adaptor.addChild(root_1, stream_type.nextTree());
 
@@ -11093,7 +11093,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:433:11: IMPLEMENTS type
+                    // Haxe.g:433:11: IMPLEMENTS type
                     {
                     IMPLEMENTS378=(Token)match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_inherit3582); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IMPLEMENTS.add(IMPLEMENTS378);
@@ -11120,12 +11120,12 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 433:27: -> ^( IMPLEMENTS ( type )? )
                     {
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:433:30: ^( IMPLEMENTS ( type )? )
+                        // Haxe.g:433:30: ^( IMPLEMENTS ( type )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_IMPLEMENTS.nextNode(), root_1);
 
-                        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:433:43: ( type )?
+                        // Haxe.g:433:43: ( type )?
                         if ( stream_type.hasNext() ) {
                             adaptor.addChild(root_1, stream_type.nextTree());
 
@@ -11169,7 +11169,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typedefDecl"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:436:1: typedefDecl : TYPEDEF IDENTIFIER EQ funcType ;
+    // Haxe.g:436:1: typedefDecl : TYPEDEF IDENTIFIER EQ funcType ;
     public final HaxeParser.typedefDecl_return typedefDecl() throws RecognitionException {
         HaxeParser.typedefDecl_return retval = new HaxeParser.typedefDecl_return();
         retval.start = input.LT(1);
@@ -11188,8 +11188,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:437:2: ( TYPEDEF IDENTIFIER EQ funcType )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:437:4: TYPEDEF IDENTIFIER EQ funcType
+            // Haxe.g:437:2: ( TYPEDEF IDENTIFIER EQ funcType )
+            // Haxe.g:437:4: TYPEDEF IDENTIFIER EQ funcType
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11244,7 +11244,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeExtend"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:440:1: typeExtend : GT funcType COMMA ;
+    // Haxe.g:440:1: typeExtend : GT funcType COMMA ;
     public final HaxeParser.typeExtend_return typeExtend() throws RecognitionException {
         HaxeParser.typeExtend_return retval = new HaxeParser.typeExtend_return();
         retval.start = input.LT(1);
@@ -11261,8 +11261,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:441:9: ( GT funcType COMMA )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:441:11: GT funcType COMMA
+            // Haxe.g:441:9: ( GT funcType COMMA )
+            // Haxe.g:441:11: GT funcType COMMA
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11308,7 +11308,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "anonType"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:444:1: anonType : LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE ;
+    // Haxe.g:444:1: anonType : LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE ;
     public final HaxeParser.anonType_return anonType() throws RecognitionException {
         HaxeParser.anonType_return retval = new HaxeParser.anonType_return();
         retval.start = input.LT(1);
@@ -11333,13 +11333,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:444:9: ( LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:444:11: LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE
+            // Haxe.g:444:9: ( LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE )
+            // Haxe.g:444:11: LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE
             {
             root_0 = (Object)adaptor.nil();
 
             LBRACE387=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_anonType3652); if (state.failed) return retval;
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:445:4: ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) )
+            // Haxe.g:445:4: ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) )
             int alt78=4;
             switch ( input.LA(1) ) {
             case RBRACE:
@@ -11378,12 +11378,12 @@ public class HaxeParser extends Parser {
 
             switch (alt78) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:446:22: 
+                    // Haxe.g:446:22: 
                     {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:446:27: anonTypeFieldList
+                    // Haxe.g:446:27: anonTypeFieldList
                     {
                     pushFollow(FOLLOW_anonTypeFieldList_in_anonType3687);
                     anonTypeFieldList388=anonTypeFieldList();
@@ -11395,7 +11395,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:447:26: varDeclList
+                    // Haxe.g:447:26: varDeclList
                     {
                     pushFollow(FOLLOW_varDeclList_in_anonType3715);
                     varDeclList389=varDeclList();
@@ -11407,7 +11407,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:448:27: typeExtend ( | anonTypeFieldList | varDeclList )
+                    // Haxe.g:448:27: typeExtend ( | anonTypeFieldList | varDeclList )
                     {
                     pushFollow(FOLLOW_typeExtend_in_anonType3744);
                     typeExtend390=typeExtend();
@@ -11415,7 +11415,7 @@ public class HaxeParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeExtend390.getTree());
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:448:38: ( | anonTypeFieldList | varDeclList )
+                    // Haxe.g:448:38: ( | anonTypeFieldList | varDeclList )
                     int alt77=3;
                     switch ( input.LA(1) ) {
                     case RBRACE:
@@ -11449,12 +11449,12 @@ public class HaxeParser extends Parser {
 
                     switch (alt77) {
                         case 1 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:449:24: 
+                            // Haxe.g:449:24: 
                             {
                             }
                             break;
                         case 2 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:449:25: anonTypeFieldList
+                            // Haxe.g:449:25: anonTypeFieldList
                             {
                             pushFollow(FOLLOW_anonTypeFieldList_in_anonType3772);
                             anonTypeFieldList391=anonTypeFieldList();
@@ -11466,7 +11466,7 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:450:25: varDeclList
+                            // Haxe.g:450:25: varDeclList
                             {
                             pushFollow(FOLLOW_varDeclList_in_anonType3798);
                             varDeclList392=varDeclList();
@@ -11517,7 +11517,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "anonTypeFieldList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:455:1: anonTypeFieldList : anonTypeField ( COMMA anonTypeField )* ;
+    // Haxe.g:455:1: anonTypeFieldList : anonTypeField ( COMMA anonTypeField )* ;
     public final HaxeParser.anonTypeFieldList_return anonTypeFieldList() throws RecognitionException {
         HaxeParser.anonTypeFieldList_return retval = new HaxeParser.anonTypeFieldList_return();
         retval.start = input.LT(1);
@@ -11534,8 +11534,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:456:2: ( anonTypeField ( COMMA anonTypeField )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:456:4: anonTypeField ( COMMA anonTypeField )*
+            // Haxe.g:456:2: ( anonTypeField ( COMMA anonTypeField )* )
+            // Haxe.g:456:4: anonTypeField ( COMMA anonTypeField )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11545,7 +11545,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField394.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:456:18: ( COMMA anonTypeField )*
+            // Haxe.g:456:18: ( COMMA anonTypeField )*
             loop79:
             do {
                 int alt79=2;
@@ -11558,7 +11558,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt79) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:456:19: COMMA anonTypeField
+            	    // Haxe.g:456:19: COMMA anonTypeField
             	    {
             	    COMMA395=(Token)match(input,COMMA,FOLLOW_COMMA_in_anonTypeFieldList3859); if (state.failed) return retval;
             	    pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3862);
@@ -11606,7 +11606,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "objLit"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:459:1: objLit : '{' objLitElemList '}' ;
+    // Haxe.g:459:1: objLit : '{' objLitElemList '}' ;
     public final HaxeParser.objLit_return objLit() throws RecognitionException {
         HaxeParser.objLit_return retval = new HaxeParser.objLit_return();
         retval.start = input.LT(1);
@@ -11623,8 +11623,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 80) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:459:8: ( '{' objLitElemList '}' )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:459:10: '{' objLitElemList '}'
+            // Haxe.g:459:8: ( '{' objLitElemList '}' )
+            // Haxe.g:459:10: '{' objLitElemList '}'
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11666,7 +11666,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "anonTypeField"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:462:1: anonTypeField : IDENTIFIER COLON funcType ;
+    // Haxe.g:462:1: anonTypeField : IDENTIFIER COLON funcType ;
     public final HaxeParser.anonTypeField_return anonTypeField() throws RecognitionException {
         HaxeParser.anonTypeField_return retval = new HaxeParser.anonTypeField_return();
         retval.start = input.LT(1);
@@ -11683,8 +11683,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 81) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:463:2: ( IDENTIFIER COLON funcType )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:463:4: IDENTIFIER COLON funcType
+            // Haxe.g:463:2: ( IDENTIFIER COLON funcType )
+            // Haxe.g:463:4: IDENTIFIER COLON funcType
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11730,7 +11730,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "objLitElemList"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:466:1: objLitElemList : objLitElem ( COMMA objLitElem )* ;
+    // Haxe.g:466:1: objLitElemList : objLitElem ( COMMA objLitElem )* ;
     public final HaxeParser.objLitElemList_return objLitElemList() throws RecognitionException {
         HaxeParser.objLitElemList_return retval = new HaxeParser.objLitElemList_return();
         retval.start = input.LT(1);
@@ -11747,8 +11747,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 82) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:467:2: ( objLitElem ( COMMA objLitElem )* )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:467:4: objLitElem ( COMMA objLitElem )*
+            // Haxe.g:467:2: ( objLitElem ( COMMA objLitElem )* )
+            // Haxe.g:467:4: objLitElem ( COMMA objLitElem )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11758,7 +11758,7 @@ public class HaxeParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem403.getTree());
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:467:15: ( COMMA objLitElem )*
+            // Haxe.g:467:15: ( COMMA objLitElem )*
             loop80:
             do {
                 int alt80=2;
@@ -11771,7 +11771,7 @@ public class HaxeParser extends Parser {
 
                 switch (alt80) {
             	case 1 :
-            	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:467:16: COMMA objLitElem
+            	    // Haxe.g:467:16: COMMA objLitElem
             	    {
             	    COMMA404=(Token)match(input,COMMA,FOLLOW_COMMA_in_objLitElemList3915); if (state.failed) return retval;
             	    pushFollow(FOLLOW_objLitElem_in_objLitElemList3918);
@@ -11819,7 +11819,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "objLitElem"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:470:1: objLitElem : IDENTIFIER COLON expr ;
+    // Haxe.g:470:1: objLitElem : IDENTIFIER COLON expr ;
     public final HaxeParser.objLitElem_return objLitElem() throws RecognitionException {
         HaxeParser.objLitElem_return retval = new HaxeParser.objLitElem_return();
         retval.start = input.LT(1);
@@ -11836,8 +11836,8 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 83) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:471:9: ( IDENTIFIER COLON expr )
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:471:11: IDENTIFIER COLON expr
+            // Haxe.g:471:9: ( IDENTIFIER COLON expr )
+            // Haxe.g:471:11: IDENTIFIER COLON expr
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11883,7 +11883,7 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "elementarySymbol"
-    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:474:1: elementarySymbol : ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] );
+    // Haxe.g:474:1: elementarySymbol : ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] );
     public final HaxeParser.elementarySymbol_return elementarySymbol() throws RecognitionException {
         HaxeParser.elementarySymbol_return retval = new HaxeParser.elementarySymbol_return();
         retval.start = input.LT(1);
@@ -11915,7 +11915,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 84) ) { return retval; }
-            // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:475:2: ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] )
+            // Haxe.g:475:2: ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] )
             int alt81=7;
             switch ( input.LA(1) ) {
             case LONGLITERAL:
@@ -11963,7 +11963,7 @@ public class HaxeParser extends Parser {
 
             switch (alt81) {
                 case 1 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:475:4: LONGLITERAL
+                    // Haxe.g:475:4: LONGLITERAL
                     {
                     LONGLITERAL409=(Token)match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_elementarySymbol3956); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LONGLITERAL.add(LONGLITERAL409);
@@ -11992,7 +11992,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:476:4: INTLITERAL
+                    // Haxe.g:476:4: INTLITERAL
                     {
                     INTLITERAL410=(Token)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_elementarySymbol3969); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INTLITERAL.add(INTLITERAL410);
@@ -12021,7 +12021,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:477:4: STRINGLITERAL
+                    // Haxe.g:477:4: STRINGLITERAL
                     {
                     STRINGLITERAL411=(Token)match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_elementarySymbol3982); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_STRINGLITERAL.add(STRINGLITERAL411);
@@ -12050,7 +12050,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:478:4: CHARLITERAL
+                    // Haxe.g:478:4: CHARLITERAL
                     {
                     CHARLITERAL412=(Token)match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_elementarySymbol3995); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CHARLITERAL.add(CHARLITERAL412);
@@ -12079,7 +12079,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:479:4: FLOATNUM
+                    // Haxe.g:479:4: FLOATNUM
                     {
                     FLOATNUM413=(Token)match(input,FLOATNUM,FOLLOW_FLOATNUM_in_elementarySymbol4008); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FLOATNUM.add(FLOATNUM413);
@@ -12108,7 +12108,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:480:4: TRUE
+                    // Haxe.g:480:4: TRUE
                     {
                     TRUE414=(Token)match(input,TRUE,FOLLOW_TRUE_in_elementarySymbol4021); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_TRUE.add(TRUE414);
@@ -12137,7 +12137,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:481:4: FALSE
+                    // Haxe.g:481:4: FALSE
                     {
                     FALSE415=(Token)match(input,FALSE,FOLLOW_FALSE_in_elementarySymbol4035); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FALSE.add(FALSE415);
@@ -12190,8 +12190,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred21_Haxe
     public final void synpred21_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:54: ( typeTagOpt )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:114:54: typeTagOpt
+        // Haxe.g:114:54: ( typeTagOpt )
+        // Haxe.g:114:54: typeTagOpt
         {
         pushFollow(FOLLOW_typeTagOpt_in_synpred21_Haxe846);
         typeTagOpt();
@@ -12205,8 +12205,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred23_Haxe
     public final void synpred23_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:21: ( COMMA funcType )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:21: COMMA funcType
+        // Haxe.g:152:21: ( COMMA funcType )
+        // Haxe.g:152:21: COMMA funcType
         {
         match(input,COMMA,FOLLOW_COMMA_in_synpred23_Haxe952); if (state.failed) return ;
         pushFollow(FOLLOW_funcType_in_synpred23_Haxe955);
@@ -12221,15 +12221,15 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred24_Haxe
     public final void synpred24_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:11: ( funcType ( COMMA funcType )* )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:11: funcType ( COMMA funcType )*
+        // Haxe.g:152:11: ( funcType ( COMMA funcType )* )
+        // Haxe.g:152:11: funcType ( COMMA funcType )*
         {
         pushFollow(FOLLOW_funcType_in_synpred24_Haxe949);
         funcType();
 
         state._fsp--;
         if (state.failed) return ;
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:20: ( COMMA funcType )*
+        // Haxe.g:152:20: ( COMMA funcType )*
         loop83:
         do {
             int alt83=2;
@@ -12242,7 +12242,7 @@ public class HaxeParser extends Parser {
 
             switch (alt83) {
         	case 1 :
-        	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:152:21: COMMA funcType
+        	    // Haxe.g:152:21: COMMA funcType
         	    {
         	    match(input,COMMA,FOLLOW_COMMA_in_synpred24_Haxe952); if (state.failed) return ;
         	    pushFollow(FOLLOW_funcType_in_synpred24_Haxe955);
@@ -12266,8 +12266,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred25_Haxe
     public final void synpred25_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:153:20: ( COMMA typeConstraint )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:153:20: COMMA typeConstraint
+        // Haxe.g:153:20: ( COMMA typeConstraint )
+        // Haxe.g:153:20: COMMA typeConstraint
         {
         match(input,COMMA,FOLLOW_COMMA_in_synpred25_Haxe966); if (state.failed) return ;
         pushFollow(FOLLOW_typeConstraint_in_synpred25_Haxe969);
@@ -12282,8 +12282,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred26_Haxe
     public final void synpred26_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:19: ( MINUS_BIGGER type )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:19: MINUS_BIGGER type
+        // Haxe.g:156:19: ( MINUS_BIGGER type )
+        // Haxe.g:156:19: MINUS_BIGGER type
         {
         match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_synpred26_Haxe988); if (state.failed) return ;
         pushFollow(FOLLOW_type_in_synpred26_Haxe991);
@@ -12298,11 +12298,11 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred27_Haxe
     public final void synpred27_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:11: ( ( type ) ( MINUS_BIGGER type )* )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:11: ( type ) ( MINUS_BIGGER type )*
+        // Haxe.g:156:11: ( ( type ) ( MINUS_BIGGER type )* )
+        // Haxe.g:156:11: ( type ) ( MINUS_BIGGER type )*
         {
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:11: ( type )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:12: type
+        // Haxe.g:156:11: ( type )
+        // Haxe.g:156:12: type
         {
         pushFollow(FOLLOW_type_in_synpred27_Haxe984);
         type();
@@ -12312,7 +12312,7 @@ public class HaxeParser extends Parser {
 
         }
 
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:18: ( MINUS_BIGGER type )*
+        // Haxe.g:156:18: ( MINUS_BIGGER type )*
         loop84:
         do {
             int alt84=2;
@@ -12325,7 +12325,7 @@ public class HaxeParser extends Parser {
 
             switch (alt84) {
         	case 1 :
-        	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:156:19: MINUS_BIGGER type
+        	    // Haxe.g:156:19: MINUS_BIGGER type
         	    {
         	    match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_synpred27_Haxe988); if (state.failed) return ;
         	    pushFollow(FOLLOW_type_in_synpred27_Haxe991);
@@ -12349,8 +12349,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred34_Haxe
     public final void synpred34_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:65: ( typeParam )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:65: typeParam
+        // Haxe.g:160:65: ( typeParam )
+        // Haxe.g:160:65: typeParam
         {
         pushFollow(FOLLOW_typeParam_in_synpred34_Haxe1031);
         typeParam();
@@ -12364,10 +12364,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred35_Haxe
     public final void synpred35_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:8: ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )*
+        // Haxe.g:160:8: ( ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )* )
+        // Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID ) ( typeParam )*
         {
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
+        // Haxe.g:160:8: ( anonType | dotIdent | INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
         int alt85=7;
         switch ( input.LA(1) ) {
         case LBRACE:
@@ -12416,7 +12416,7 @@ public class HaxeParser extends Parser {
 
         switch (alt85) {
             case 1 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:9: anonType
+                // Haxe.g:160:9: anonType
                 {
                 pushFollow(FOLLOW_anonType_in_synpred35_Haxe1010);
                 anonType();
@@ -12427,7 +12427,7 @@ public class HaxeParser extends Parser {
                 }
                 break;
             case 2 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:20: dotIdent
+                // Haxe.g:160:20: dotIdent
                 {
                 pushFollow(FOLLOW_dotIdent_in_synpred35_Haxe1014);
                 dotIdent();
@@ -12438,35 +12438,35 @@ public class HaxeParser extends Parser {
                 }
                 break;
             case 3 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:30: INT
+                // Haxe.g:160:30: INT
                 {
                 match(input,INT,FOLLOW_INT_in_synpred35_Haxe1017); if (state.failed) return ;
 
                 }
                 break;
             case 4 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:35: FLOAT
+                // Haxe.g:160:35: FLOAT
                 {
                 match(input,FLOAT,FOLLOW_FLOAT_in_synpred35_Haxe1020); if (state.failed) return ;
 
                 }
                 break;
             case 5 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:42: DYNAMIC
+                // Haxe.g:160:42: DYNAMIC
                 {
                 match(input,DYNAMIC,FOLLOW_DYNAMIC_in_synpred35_Haxe1023); if (state.failed) return ;
 
                 }
                 break;
             case 6 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:50: BOOLEAN
+                // Haxe.g:160:50: BOOLEAN
                 {
                 match(input,BOOLEAN,FOLLOW_BOOLEAN_in_synpred35_Haxe1025); if (state.failed) return ;
 
                 }
                 break;
             case 7 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:58: VOID
+                // Haxe.g:160:58: VOID
                 {
                 match(input,VOID,FOLLOW_VOID_in_synpred35_Haxe1027); if (state.failed) return ;
 
@@ -12475,7 +12475,7 @@ public class HaxeParser extends Parser {
 
         }
 
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:64: ( typeParam )*
+        // Haxe.g:160:64: ( typeParam )*
         loop86:
         do {
             int alt86=2;
@@ -12488,7 +12488,7 @@ public class HaxeParser extends Parser {
 
             switch (alt86) {
         	case 1 :
-        	    // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:160:65: typeParam
+        	    // Haxe.g:160:65: typeParam
         	    {
         	    pushFollow(FOLLOW_typeParam_in_synpred35_Haxe1031);
         	    typeParam();
@@ -12511,8 +12511,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred36_Haxe
     public final void synpred36_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:9: ( type )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:9: type
+        // Haxe.g:165:9: ( type )
+        // Haxe.g:165:9: type
         {
         pushFollow(FOLLOW_type_in_synpred36_Haxe1053);
         type();
@@ -12526,8 +12526,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred37_Haxe
     public final void synpred37_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:25: ( GT )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:25: GT
+        // Haxe.g:165:25: ( GT )
+        // Haxe.g:165:25: GT
         {
         match(input,GT,FOLLOW_GT_in_synpred37_Haxe1059); if (state.failed) return ;
 
@@ -12537,8 +12537,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred38_Haxe
     public final void synpred38_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:29: ( GTGT )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:165:29: GTGT
+        // Haxe.g:165:29: ( GTGT )
+        // Haxe.g:165:29: GTGT
         {
         match(input,GTGT,FOLLOW_GTGT_in_synpred38_Haxe1062); if (state.failed) return ;
 
@@ -12548,8 +12548,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred39_Haxe
     public final void synpred39_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:170:4: ( typeParam )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:170:4: typeParam
+        // Haxe.g:170:4: ( typeParam )
+        // Haxe.g:170:4: typeParam
         {
         pushFollow(FOLLOW_typeParam_in_synpred39_Haxe1084);
         typeParam();
@@ -12563,8 +12563,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred41_Haxe
     public final void synpred41_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:183:4: ( block )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:183:4: block
+        // Haxe.g:183:4: ( block )
+        // Haxe.g:183:4: block
         {
         pushFollow(FOLLOW_block_in_synpred41_Haxe1213);
         block();
@@ -12578,8 +12578,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred42_Haxe
     public final void synpred42_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:184:4: ( assignExpr SEMI )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:184:4: assignExpr SEMI
+        // Haxe.g:184:4: ( assignExpr SEMI )
+        // Haxe.g:184:4: assignExpr SEMI
         {
         pushFollow(FOLLOW_assignExpr_in_synpred42_Haxe1218);
         assignExpr();
@@ -12597,8 +12597,8 @@ public class HaxeParser extends Parser {
         HaxeParser.statement_return st2 = null;
 
 
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:36: ( ELSE st2= statement )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:186:36: ELSE st2= statement
+        // Haxe.g:186:36: ( ELSE st2= statement )
+        // Haxe.g:186:36: ELSE st2= statement
         {
         match(input,ELSE,FOLLOW_ELSE_in_synpred44_Haxe1240); if (state.failed) return ;
         pushFollow(FOLLOW_statement_in_synpred44_Haxe1244);
@@ -12613,8 +12613,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred52_Haxe
     public final void synpred52_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:12: ( expr )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:192:12: expr
+        // Haxe.g:192:12: ( expr )
+        // Haxe.g:192:12: expr
         {
         pushFollow(FOLLOW_expr_in_synpred52_Haxe1452);
         expr();
@@ -12628,8 +12628,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred59_Haxe
     public final void synpred59_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:196:4: ( expr SEMI )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:196:4: expr SEMI
+        // Haxe.g:196:4: ( expr SEMI )
+        // Haxe.g:196:4: expr SEMI
         {
         pushFollow(FOLLOW_expr_in_synpred59_Haxe1546);
         expr();
@@ -12644,8 +12644,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred60_Haxe
     public final void synpred60_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:197:4: ( IDENTIFIER COLON statement )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:197:4: IDENTIFIER COLON statement
+        // Haxe.g:197:4: ( IDENTIFIER COLON statement )
+        // Haxe.g:197:4: IDENTIFIER COLON statement
         {
         match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_synpred60_Haxe1555); if (state.failed) return ;
         match(input,COLON,FOLLOW_COLON_in_synpred60_Haxe1557); if (state.failed) return ;
@@ -12661,8 +12661,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred63_Haxe
     public final void synpred63_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:210:4: ( varDecl )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:210:4: varDecl
+        // Haxe.g:210:4: ( varDecl )
+        // Haxe.g:210:4: varDecl
         {
         pushFollow(FOLLOW_varDecl_in_synpred63_Haxe1664);
         varDecl();
@@ -12676,8 +12676,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred67_Haxe
     public final void synpred67_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:244:4: ( exprList )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:244:4: exprList
+        // Haxe.g:244:4: ( exprList )
+        // Haxe.g:244:4: exprList
         {
         pushFollow(FOLLOW_exprList_in_synpred67_Haxe1878);
         exprList();
@@ -12691,11 +12691,11 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred85_Haxe
     public final void synpred85_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:32: ( ( GT GT ) addExpr )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:32: ( GT GT ) addExpr
+        // Haxe.g:281:32: ( ( GT GT ) addExpr )
+        // Haxe.g:281:32: ( GT GT ) addExpr
         {
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:32: ( GT GT )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:281:33: GT GT
+        // Haxe.g:281:32: ( GT GT )
+        // Haxe.g:281:33: GT GT
         {
         match(input,GT,FOLLOW_GT_in_synpred85_Haxe2179); if (state.failed) return ;
         match(input,GT,FOLLOW_GT_in_synpred85_Haxe2181); if (state.failed) return ;
@@ -12714,8 +12714,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred96_Haxe
     public final void synpred96_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:291:11: ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:291:11: ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
+        // Haxe.g:291:11: ( ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr )
+        // Haxe.g:291:11: ( SUB | SUBSUB | PLUSPLUS | BANG | TILDE ) prefixExpr
         {
         if ( input.LA(1)==SUB||(input.LA(1)>=SUBSUB && input.LA(1)<=TILDE) ) {
             input.consume();
@@ -12739,8 +12739,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred99_Haxe
     public final void synpred99_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:4: ( value LPAREN exprListOpt RPAREN )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:298:4: value LPAREN exprListOpt RPAREN
+        // Haxe.g:298:4: ( value LPAREN exprListOpt RPAREN )
+        // Haxe.g:298:4: value LPAREN exprListOpt RPAREN
         {
         pushFollow(FOLLOW_value_in_synpred99_Haxe2338);
         value();
@@ -12761,8 +12761,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred100_Haxe
     public final void synpred100_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:299:4: ( value LBRACKET expr RBRACKET )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:299:4: value LBRACKET expr RBRACKET
+        // Haxe.g:299:4: ( value LBRACKET expr RBRACKET )
+        // Haxe.g:299:4: value LBRACKET expr RBRACKET
         {
         pushFollow(FOLLOW_value_in_synpred100_Haxe2365);
         value();
@@ -12783,8 +12783,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred101_Haxe
     public final void synpred101_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:300:4: ( value PLUSPLUS )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:300:4: value PLUSPLUS
+        // Haxe.g:300:4: ( value PLUSPLUS )
+        // Haxe.g:300:4: value PLUSPLUS
         {
         pushFollow(FOLLOW_value_in_synpred101_Haxe2376);
         value();
@@ -12799,8 +12799,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred102_Haxe
     public final void synpred102_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:301:4: ( value SUBSUB )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:301:4: value SUBSUB
+        // Haxe.g:301:4: ( value SUBSUB )
+        // Haxe.g:301:4: value SUBSUB
         {
         pushFollow(FOLLOW_value_in_synpred102_Haxe2402);
         value();
@@ -12815,8 +12815,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred104_Haxe
     public final void synpred104_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:306:4: ( arrayLit )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:306:4: arrayLit
+        // Haxe.g:306:4: ( arrayLit )
+        // Haxe.g:306:4: arrayLit
         {
         pushFollow(FOLLOW_arrayLit_in_synpred104_Haxe2444);
         arrayLit();
@@ -12830,8 +12830,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred108_Haxe
     public final void synpred108_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:23: ( expr )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:23: expr
+        // Haxe.g:310:23: ( expr )
+        // Haxe.g:310:23: expr
         {
         pushFollow(FOLLOW_expr_in_synpred108_Haxe2508);
         expr();
@@ -12845,16 +12845,16 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred109_Haxe
     public final void synpred109_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:14: ( LPAREN ( expr | statement ) RPAREN )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:14: LPAREN ( expr | statement ) RPAREN
+        // Haxe.g:310:14: ( LPAREN ( expr | statement ) RPAREN )
+        // Haxe.g:310:14: LPAREN ( expr | statement ) RPAREN
         {
         match(input,LPAREN,FOLLOW_LPAREN_in_synpred109_Haxe2504); if (state.failed) return ;
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:22: ( expr | statement )
+        // Haxe.g:310:22: ( expr | statement )
         int alt93=2;
         alt93 = dfa93.predict(input);
         switch (alt93) {
             case 1 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:23: expr
+                // Haxe.g:310:23: expr
                 {
                 pushFollow(FOLLOW_expr_in_synpred109_Haxe2508);
                 expr();
@@ -12865,7 +12865,7 @@ public class HaxeParser extends Parser {
                 }
                 break;
             case 2 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:310:28: statement
+                // Haxe.g:310:28: statement
                 {
                 pushFollow(FOLLOW_statement_in_synpred109_Haxe2510);
                 statement();
@@ -12886,8 +12886,8 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred112_Haxe
     public final void synpred112_Haxe_fragment() throws RecognitionException {   
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:11: ( CAST LPAREN expr ( COMMA funcType )? RPAREN )
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
+        // Haxe.g:319:11: ( CAST LPAREN expr ( COMMA funcType )? RPAREN )
+        // Haxe.g:319:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
         {
         match(input,CAST,FOLLOW_CAST_in_synpred112_Haxe2607); if (state.failed) return ;
         match(input,LPAREN,FOLLOW_LPAREN_in_synpred112_Haxe2609); if (state.failed) return ;
@@ -12896,7 +12896,7 @@ public class HaxeParser extends Parser {
 
         state._fsp--;
         if (state.failed) return ;
-        // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:28: ( COMMA funcType )?
+        // Haxe.g:319:28: ( COMMA funcType )?
         int alt94=2;
         int LA94_0 = input.LA(1);
 
@@ -12905,7 +12905,7 @@ public class HaxeParser extends Parser {
         }
         switch (alt94) {
             case 1 :
-                // F:\\Programming\\!Proekt\\ANTLR\\Haxe.g:319:29: COMMA funcType
+                // Haxe.g:319:29: COMMA funcType
                 {
                 match(input,COMMA,FOLLOW_COMMA_in_synpred112_Haxe2614); if (state.failed) return ;
                 pushFollow(FOLLOW_funcType_in_synpred112_Haxe2616);

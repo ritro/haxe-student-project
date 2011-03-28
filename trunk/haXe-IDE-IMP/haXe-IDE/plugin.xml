@@ -130,7 +130,7 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="haxe.imp.preferences.HaxePreferencesInitializer">
+            class="haxe.imp.preferences.HaxeInitializer">
       </initializer>
    </extension>
    <extension

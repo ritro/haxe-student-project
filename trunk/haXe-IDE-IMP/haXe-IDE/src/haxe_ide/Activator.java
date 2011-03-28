@@ -47,6 +47,7 @@ public class Activator extends PluginBase {
 	 * Instantiates a new activator.
 	 */
 	public Activator() { 
+		super();
 		sPlugin = this;
 	}
 

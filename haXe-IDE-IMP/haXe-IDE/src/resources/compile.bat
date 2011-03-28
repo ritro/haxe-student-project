@@ -1,1 +1,0 @@
-java -jar ..\..\antlr-3.2.jar  TinyHaxeTry1.g  -o ..\haxe\imp\parser\antlr\main

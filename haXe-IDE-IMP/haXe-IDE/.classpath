@@ -4,7 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry excluding="test/" kind="src" path="src"/>
-	<classpathentry kind="lib" path="antlrworks-1.3.1.jar" sourcepath="/antlr-runtime-src"/>
-	<classpathentry kind="lib" path="F:/Program Files/Kursovaya/trunk/haXe-IDE-IMP/haXe-IDE/antlr-3.3-complete.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr-3.3-complete.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

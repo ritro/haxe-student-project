@@ -41,7 +41,7 @@ import java.util.HashMap;
 @header{
 package haxe.imp.parser.antlr.main;
 
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
@@ -56,7 +56,7 @@ import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
-module            : myPackage? topLevelList -> ^(MODULE<ExtendedCommonTree>["MODULE",true] myPackage? topLevelList?)
+module            : myPackage? topLevelList -> ^(MODULE<HaxeTree>["MODULE",true] myPackage? topLevelList?)
    ;
 	
 topLevelList      :  (topLevel)*
@@ -85,10 +85,10 @@ declAttr          : STATIC
                     |   OVERRIDE
                     |   access
 	;
-declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<ExtendedCommonTree>["DECL_ATTR_LIST", true] declAttr+)
+declAttrList      : (declAttr)+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST", true] declAttr+)
          ;
 
-paramList         : param (COMMA param)* -> ^(PARAM_LIST<ExtendedCommonTree>["PARAM_LIST", true] param+)
+paramList         : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST", true] param+)
 	|	
 	;
 param             :QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
@@ -145,7 +145,7 @@ typeTag	:	COLON! funcType
 	;
 	
 typeTagOpt
-	:	typeTag -> ^(TYPE_TAG<ExtendedCommonTree>["TYPE_TAG",true] typeTag?)
+	:	typeTag -> ^(TYPE_TAG<HaxeTree>["TYPE_TAG",true] typeTag?)
 	|
 	;
 	
@@ -167,7 +167,7 @@ typeParam
 	;
 	
 typeParamOpt      
-	:	typeParam-> ^(TYPE_PARAM_OPT<ExtendedCommonTree>["TYPE_PARAM_OPT",true] typeParam?)
+	:	typeParam-> ^(TYPE_PARAM_OPT<HaxeTree>["TYPE_PARAM_OPT",true] typeParam?)
 	|	
        	;
        
@@ -202,7 +202,7 @@ parExpression
     :   LPAREN expr RPAREN
     ;
 
-block 	:	LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<ExtendedCommonTree>[$RBRACE, true]) 
+block 	:	LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<HaxeTree>[$RBRACE, true]) 
 	|	SEMI!
 	;
 	
@@ -295,10 +295,10 @@ prefixExpr
         ;
 	
 suffixExpr
-	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? exprListOpt?)
+	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? exprListOpt?)
 	|	value LBRACKET expr RBRACKET
-	|	value PLUSPLUS 			-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
-	|	value SUBSUB 			-> ^(SUFFIX_EXPR<ExtendedCommonTree>["SUFFIX_EXPR",true] value? SUBSUB)
+	|	value PLUSPLUS 			-> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
+	|	value SUBSUB 			-> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? SUBSUB)
 	|	value typeParamOpt
 ;
 
@@ -357,7 +357,7 @@ varDeclPart
 	:	IDENTIFIER<VarUsage> propDeclOpt typeTagOpt varInit
 	;
 	
-propDecl:	LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<ExtendedCommonTree>["PROPERTY_DECL",true] $a1? $a2?)
+propDecl:	LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL",true] $a1? $a2?)
 	;
 	
 propAccessor	
@@ -372,7 +372,7 @@ propDeclOpt
 	|
 	;
 	
-varInit :	EQ expr -> ^(VAR_INIT<ExtendedCommonTree>["VAR_INIT",true] expr?)
+varInit :	EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT",true] expr?)
 	|	
 	;
 	
@@ -399,7 +399,7 @@ classDecl
 	;
 	
 classBodyScope
-	:	LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] classMember* RBRACE<ExtendedCommonTree>[$RBRACE, true])
+	:	LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] classMember* RBRACE<HaxeTree>[$RBRACE, true])
 	;
 
 classMember
@@ -425,7 +425,7 @@ inheritList
 	;
 	
 inheritListOpt    
-	:	inheritList -> ^(INHERIT_LIST_OPT<ExtendedCommonTree>["INHERIT_LIST_OPT",true] inheritList?)
+	:	inheritList -> ^(INHERIT_LIST_OPT<HaxeTree>["INHERIT_LIST_OPT",true] inheritList?)
 	|	
     	;
     	

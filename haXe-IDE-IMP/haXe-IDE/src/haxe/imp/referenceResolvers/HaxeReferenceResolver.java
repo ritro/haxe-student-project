@@ -59,8 +59,7 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 		if (node instanceof VarUsage && controller.getCurrentAst() != null) {
 			HaxeTree result;
 			try {
-				result = ((HaxeTree) node)
-						.getDeclarationNode((HaxeTree) node);
+				result = ((HaxeTree) node).getDeclarationNode((HaxeTree) node);
 			} catch (Exception e) {
 				return null;
 			}

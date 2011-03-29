@@ -20,120 +20,57 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
  */
 public interface HaxeParsersym {
 
-	/** The Constant PACKAGE. */
-	public static final int PACKAGE = HaxeLexer.PACKAGE;
-
-	/** The Constant FUNCTION. */
+	//Function Attributes
 	public static final int FUNCTION = HaxeLexer.FUNCTION;
-
-	/** The Constant CAST. */
+	public static final int CLASS = HaxeLexer.CLASS;
+	public static final int PACKAGE = HaxeLexer.PACKAGE;
+	public static final int STATIC = HaxeLexer.STATIC;
+	public static final int VOID = HaxeLexer.VOID;
+	public static final int NEW = HaxeLexer.NEW;
+	public static final int IMPORT = HaxeLexer.IMPORT;
+	public static final int IMPLEMENTS = HaxeLexer.IMPLEMENTS;
+	public static final int EXTENDS = HaxeLexer.EXTENDS;
+	public static final int RETURN = HaxeLexer.RETURN;
+	public static final int DEFAULT = HaxeLexer.DEFAULT;
 	public static final int CAST = HaxeLexer.CAST;
-
-	/** The Constant EXPONENT. */
-	public static final int EXPONENT = HaxeLexer.EXPONENT;
-
-	/** The Constant LT. */
-	public static final int LT = HaxeLexer.LT;
-
-	/** The Constant STAR. */
-	public static final int STAR = HaxeLexer.STAR;
-
-	/** The Constant WHILE. */
-	public static final int WHILE = HaxeLexer.WHILE;
-
-	/** The Constant FLOATNUM. */
-	public static final int FLOATNUM = HaxeLexer.FLOATNUM;
-
-	/** The Constant CONST. */
-	public static final int CONST = HaxeLexer.CONST;
-
-	/** The Constant CASE. */
-	public static final int CASE = HaxeLexer.CASE;
 	public static final int THROW = HaxeLexer.THROW;
-	
+	public static final int INTERFACE = HaxeLexer.INTERFACE;
+	public static final int VAR = HaxeLexer.VAR;
+	public static final int PUBLIC = HaxeLexer.PUBLIC;
+	public static final int PRIVATE = HaxeLexer.PRIVATE;
+	public static final int IN = HaxeLexer.IN;
+	public static final int ENUM = HaxeLexer.ENUM;
+	public static final int TRUE = HaxeLexer.TRUE;
+	public static final int FALSE = HaxeLexer.FALSE;
+	public static final int CASE = HaxeLexer.CASE;
 	public static final int FOR = HaxeLexer.FOR;
 	public static final int IF = HaxeLexer.IF;
 	public static final int ELSE = HaxeLexer.ELSE;
 	public static final int TRY = HaxeLexer.TRY;
 	public static final int CATCH = HaxeLexer.CATCH;
-
-	/** The Constant NEW. */
-	public static final int NEW = HaxeLexer.NEW;
-
-	/** The Constant IMPORT. */
-	public static final int IMPORT = HaxeLexer.IMPORT;
-
-	/** The Constant RETURN. */
-	public static final int RETURN = HaxeLexer.RETURN;
-
-	/** The Constant VAR. */
-	public static final int VAR = HaxeLexer.VAR;
-
-	/** The Constant VOID. */
-	public static final int VOID = HaxeLexer.VOID;
-
-	/** The Constant COMMENT. */
-	public static final int COMMENT = HaxeLexer.COMMENT;
-
-	/** The Constant PREPROCESSOR_DIRECTIVE. */
-	//public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
-
-	/** The Constant STATIC. */
-	public static final int STATIC = HaxeLexer.STATIC;
-
-	/** The Constant PRIVATE. */
-	public static final int PRIVATE = HaxeLexer.PRIVATE;
-
-	/** The Constant NULL. */
+	public static final int WHILE = HaxeLexer.WHILE;
+	//Primary Types
 	public static final int NULL = HaxeLexer.NULL;
-	/** The Constant INT. */
 	public static final int INT = HaxeLexer.INT;
-
-	/** The Constant CHARLITERAL. */
-	public static final int CHARLITERAL = HaxeLexer.CHARLITERAL;
-
-	/** The Constant CLASS. */
-	public static final int CLASS = HaxeLexer.CLASS;
-
-	/** The Constant FLOAT. */
 	public static final int FLOAT = HaxeLexer.FLOAT;
-
-	/** The Constant IN. */
-	public static final int IN = HaxeLexer.IN;
-
-	/** The Constant IMPLEMENTS. */
-	public static final int IMPLEMENTS = HaxeLexer.IMPLEMENTS;
-
-	/** The Constant DEFAULT. */
-	public static final int DEFAULT = HaxeLexer.DEFAULT;
-
-	/** The Constant TRUE. */
-	public static final int TRUE = HaxeLexer.TRUE;
-
-	/** The Constant FALSE. */
-	public static final int FALSE = HaxeLexer.FALSE;
-
-	/** The Constant ENUM. */
-	public static final int ENUM = HaxeLexer.ENUM;
-
-	/** The Constant STRINGLITERAL. */
-	public static final int STRINGLITERAL = HaxeLexer.STRINGLITERAL;
-	/** The Constant INTERFACE. */
-	public static final int INTERFACE = HaxeLexer.INTERFACE;
-
-	/** The Constant PUBLIC. */
-	public static final int PUBLIC = HaxeLexer.PUBLIC;
-
-	/** The Constant EXTENDS. */
-	public static final int EXTENDS = HaxeLexer.EXTENDS;
-
-	/** The Constant BOOLEAN. */
+	public static final int FLOATNUM = HaxeLexer.FLOATNUM;
 	public static final int BOOLEAN = HaxeLexer.BOOLEAN;
+	//Preprocessor
+	//public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
+	//String Literal
+	public static final int CHARLITERAL = HaxeLexer.CHARLITERAL;
+	public static final int STRINGLITERAL = HaxeLexer.STRINGLITERAL;
+	//Comment
+	public static final int COMMENT = HaxeLexer.COMMENT;
+	//Other uncolored
+	public static final int EXPONENT = HaxeLexer.EXPONENT;
+	public static final int LT = HaxeLexer.LT;
+	public static final int STAR = HaxeLexer.STAR;
+	public static final int CONST = HaxeLexer.CONST;
 
 	/** The Constant TK_ERROR_TOKEN. */
 	public final static int
-
-	TK_COMMA = 21, TK_SEMICOLON = 1, TK_PLUS = 2, TK_MINUS = 3, TK_ASSIGN = 22,
+			TK_COMMA = 21, TK_SEMICOLON = 1, TK_PLUS = 2, TK_MINUS = 3, TK_ASSIGN = 22,
 			TK_TIMES = 4, TK_DIVIDE = 5, TK_GREATER = 6, TK_LESS = 7,
 			TK_EQUAL = 8, TK_NOTEQUAL = 9, TK_LEFTPAREN = 11,
 			TK_RIGHTPAREN = 15, TK_LEFTBRACE = 16, TK_RIGHTBRACE = 26,

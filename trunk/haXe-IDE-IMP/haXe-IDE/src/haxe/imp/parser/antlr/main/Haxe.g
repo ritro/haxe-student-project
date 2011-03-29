@@ -17,6 +17,7 @@ tokens {
 	INHERIT_LIST_OPT;
 	DECL_ATTR_LIST;
 	VAR_INIT;
+	IDENT;
 	ASSIGN_OPERATOR;
 	PACKAGE;
 }
@@ -124,7 +125,7 @@ param
 	: QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
 	;
 	
-id	:	IDENTIFIER<VarUsage>
+id	:	IDENTIFIER
 	|	THIS
 	;
 	
@@ -346,12 +347,12 @@ suffixExpr
 ;
 
 value	:	funcLit 
-	|	arrayLit
-        |   	objLit
-        |   	NULL
-        |   	elementarySymbol
-        |   	LPAREN! (expr|statement) RPAREN!
-        |	dotIdent
+		|	arrayLit
+        |   objLit
+        |   NULL
+        |   elementarySymbol
+        |   LPAREN! (expr|statement) RPAREN!
+        |	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent) //dotIdent
         |
         ;
 

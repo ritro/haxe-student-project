@@ -21,12 +21,6 @@ import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class HaxeTokenColorer.
- * 
- * @author Anatoly Kondratyev
- */
 public class HaxeTokenColorer extends TokenColorerBase implements
 		HaxeParsersym, ITokenColorer {
 
@@ -36,12 +30,12 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 			defaultAttribute, processorCommand;
 
 	/**
-	 * Instantiates a new haxe token colorer.
+	 * Define text attributes for the various token types that will
+	 * have their text colored
 	 */
 	public HaxeTokenColorer() {
 		super();
-		// TODO Define text attributes for the various token types that will
-		// have their text colored
+		
 		Display display = Display.getDefault();
 		this.keywordAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_MAGENTA), null, SWT.BOLD);
@@ -58,30 +52,22 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		this.processorCommand = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_GRAY));
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.services.base.TokenColorerBase#getColoring(org.eclipse
-	 * .imp.parser.IParseController, java.lang.Object)
-	 */
+	
 	@Override
 	public TextAttribute getColoring(final IParseController controller,
-			final Object o) {
+									final Object o) {
 		if (o == null) {
 			return null;
 		}
 
 		CommonToken token = (CommonToken) o;
 		switch (token.getType()) {
-		// START_HERE
 		case FUNCTION:
-		case STATIC:
 		case CLASS:
+		case PACKAGE:
+		case STATIC:
 		case VOID:
 		case NEW:
-		case PACKAGE:
 		case IMPORT:
 		case IMPLEMENTS:
 		case EXTENDS:
@@ -91,14 +77,12 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case THROW:
 		case INTERFACE:
 		case VAR:
-		case NULL:
 		case PUBLIC:
 		case PRIVATE:
 		case IN:
 		case ENUM:
 		case TRUE:
 		case FALSE:
-			return this.functionAttribute;
 		case CASE:
 		case FOR:
 		case IF:
@@ -106,13 +90,15 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case TRY:
 		case CATCH:
 		case WHILE:
-			return this.keywordAttribute;
+			return this.functionAttribute;
 		case CHARLITERAL:
 		case STRINGLITERAL:
 			return this.stringAttribute;
 		case INT:
 		case FLOAT:
 		case BOOLEAN:
+		case NULL:
+		case FLOATNUM:
 			return this.numberAttribute;
 		case COMMENT:
 			return this.commentAttribute;

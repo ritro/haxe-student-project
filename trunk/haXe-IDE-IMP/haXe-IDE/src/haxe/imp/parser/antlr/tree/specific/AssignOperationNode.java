@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -22,23 +23,22 @@ import org.antlr.runtime.tree.CommonTree;
  * @author kondratyev
  */
 public class AssignOperationNode extends HaxeTree {
-
-	/**
-	 * Instantiates a new assign operation node.
-	 */
+	
 	public AssignOperationNode() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-
+	
+	@Override
+	public void printTree(){
+		System.out.println("AssignOperation"+ "{name=" +this.getText()+'}');
+	}
+//MB при создании - уже ищем тип -> залазим в вар декларатион и присваиваем там?
 	/**
-	 * Instantiates a new assign operation node.
-	 * 
 	 * @param node
 	 *            the node
 	 */
 	public AssignOperationNode(final CommonTree node) {
 		super(node);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -49,44 +49,9 @@ public class AssignOperationNode extends HaxeTree {
 	 */
 	public AssignOperationNode(final Token t) {
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new assign operation node.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param t
-	 *            the t
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public AssignOperationNode(final int ttype, final Token t,
-			final boolean auxiliary) {
-		super(ttype, t, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new assign operation node.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param type
-	 *            the type
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public AssignOperationNode(final int ttype, final String type,
-			final boolean auxiliary) {
-		super(ttype, type, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new assign operation node.
-	 * 
 	 * @param ttype
 	 *            the ttype
 	 * @param type
@@ -97,8 +62,6 @@ public class AssignOperationNode extends HaxeTree {
 	}
 
 	/**
-	 * Instantiates a new assign operation node.
-	 * 
 	 * @param ttype
 	 *            the ttype
 	 * @param token
@@ -109,8 +72,6 @@ public class AssignOperationNode extends HaxeTree {
 	}
 
 	/**
-	 * Instantiates a new assign operation node.
-	 * 
 	 * @param ttype
 	 *            the ttype
 	 * @param auxiliary
@@ -122,8 +83,6 @@ public class AssignOperationNode extends HaxeTree {
 	}
 
 	/**
-	 * Instantiates a new assign operation node.
-	 * 
 	 * @param ttype
 	 *            the ttype
 	 */

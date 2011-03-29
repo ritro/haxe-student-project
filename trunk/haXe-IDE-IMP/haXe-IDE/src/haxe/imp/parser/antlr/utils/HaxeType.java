@@ -20,55 +20,30 @@ import java.util.Arrays;
  */
 public class HaxeType {
 
-	/** The Constant HAXE_PRIMARY_TYPES_PATH. */
 	private static final String HAXE_PRIMARY_TYPES_PATH = "haxe.primaryTypes";
-
-	/** The class hierarchy. */
 	private ArrayList<HaxeType> classHierarchy = new ArrayList<HaxeType>();
-
-	/** The implemented types. */
 	private ArrayList<HaxeType> implementedTypes = new ArrayList<HaxeType>();
 
-	/** The type name. */
 	private String typeName;
-
-	/** The full type name. */
 	private String fullTypeName;
 
-	/** The primary types. */
 	public static ArrayList<String> primaryTypes = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
 			this.addAll(Arrays.asList(new String[] { "Int", "Number", "Float",
-					"String", "Void", "Object", "Bool" }));
+					"String", "Void", "Object", "Bool", "Undefined", "Dynamic" }));
 		}
 	};
 
-	/** The Constant haxeFloat. */
+	/** Primary Haxe Types. */
 	public static final HaxeType haxeFloat;
-
-	/** The Constant haxeInt. */
 	public static final HaxeType haxeInt;
-
-	/** The Constant haxeVoid. */
 	public static final HaxeType haxeVoid;
-
-	/** The Constant haxeBool. */
 	public static final HaxeType haxeBool;
-
-	/** The Constant haxeString. */
 	public static final HaxeType haxeString;
-
-	/** The Constant haxeDynamic. */
 	public static final HaxeType haxeDynamic;
-
-	/** The Constant haxeObject. */
 	public static final HaxeType haxeObject;
-
-	/** The Constant haxeNotYetRecognized. */
 	public static final HaxeType haxeNotYetRecognized;
-
-	/** The Constant haxeUndefined. */
 	public static final HaxeType haxeUndefined;
 
 	static {
@@ -90,8 +65,6 @@ public class HaxeType {
 	}
 
 	/**
-	 * Are both numbers.
-	 * 
 	 * @param type
 	 *            the type
 	 * @param type2
@@ -252,7 +225,9 @@ public class HaxeType {
 			this.setIdenticalProperties(haxeBool);
 		} else if (fullTypeName.equals("void")) {
 			this.setIdenticalProperties(haxeVoid);
-		} else {
+		} else if (fullTypeName.equals("Undefined")) {
+			this.setIdenticalProperties(haxeUndefined);
+		} {
 			this.fullTypeName = fullTypeName;
 			this.typeName = (fullTypeName.lastIndexOf(".") == -1) ? fullTypeName
 					: fullTypeName.substring(fullTypeName.lastIndexOf(".") + 1);
@@ -272,28 +247,15 @@ public class HaxeType {
 		this.typeName = type.typeName;
 	}
 
-	/**
-	 * Instantiates a new haxe type.
-	 */
 	public HaxeType() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return this.getFullTypeName().length() != 0 ? this.getFullTypeName()
 				: this.getTypeName();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(final Object arg0) {
 		/**

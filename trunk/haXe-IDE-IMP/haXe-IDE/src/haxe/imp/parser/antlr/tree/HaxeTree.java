@@ -71,7 +71,7 @@ public class HaxeTree extends CommonTree {
 		MULTY,
 		/** The DIV. */
 		DIV,
-		/** The PERCENT. */
+		EQ,
 		PERCENT
 	};
 
@@ -187,7 +187,7 @@ public class HaxeTree extends CommonTree {
 		} else {
 			if (this.mostRightPosition == -1) {
 				assert(this.getToken() != null);
-				
+
 				this.mostRightPosition = this.getToken().getStartIndex()
 						+ this.getToken().getText().length();
 				if (this.getChildCount() > 0) {
@@ -221,6 +221,13 @@ public class HaxeTree extends CommonTree {
 	public HaxeTree() {
 		// TODO Auto-generated constructor stub
 	}
+	/*
+	@Override
+	public String getText(){
+		if (super.getText()==null)
+			return "";
+		else return super.getText();
+	}*/
 
 	/**
 	 * Instantiates a new extended common tree.
@@ -284,7 +291,6 @@ public class HaxeTree extends CommonTree {
 	 *            the auxiliary
 	 */
 	public HaxeTree(final int ttype, final boolean auxiliary) {
-		System.out.println("Extended: " + ttype);
 		this.token = new CommonToken(ttype);
 		this.auxiliary = auxiliary;
 	}
@@ -495,7 +501,7 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 			if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
-				// Trying to calculate type
+				//TODO Trying to calculate type
 			}
 			if (blockScope.getDeclaredVars().contains(varUsage)) {
 				this.commitError("Var is already declared",
@@ -509,35 +515,55 @@ public class HaxeTree extends CommonTree {
 				blockScope.setDeclaredVars(united);
 			}
 		} else if (this instanceof AssignOperationNode) {
-			//TODO: this is incorrect
 			if (this.getChildCount() > 0) {
 				for (HaxeTree tree : this.getChildren()) {
 					tree.calculateScopes(blockScope);
 				}
-			
-				HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
-				HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
-				if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
-					this.commitError(this.getText() + ": cast problems", this
-							.getToken().getStartIndex(), this.getToken().getText()
-							.length());
-					return;
-				}
+			}
+			HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
+			HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
+			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
+				//длинна and offset is right, проверять всплыв подск где то в другом месте
+				this.commitError("cast problems", this.getToken().getStartIndex(), 
+												this.getToken().getText().length());
+				return;
 			}
 		} else if (this instanceof VarUsage) {
 			VarUsage thisAsVarUsage = (VarUsage) this;
 			if (thisAsVarUsage.getHaxeType().equals(
 					HaxeType.haxeNotYetRecognized)) {
-				if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
-					thisAsVarUsage.setHaxeType(blockScope
-							.getVarInScopeType(thisAsVarUsage.getText()));
-				} else {
-					this.commitError(thisAsVarUsage.getText()
-							+ " is not declared", ((CommonToken) thisAsVarUsage
-							.getToken()).getStartIndex(),
-							((CommonToken) thisAsVarUsage.getToken()).getText()
-									.length());
-					return;
+				if (!thisAsVarUsage.isAuxiliary()){					
+					if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
+						thisAsVarUsage.setHaxeType(blockScope
+								.getVarInScopeType(thisAsVarUsage.getText()));
+					} else {
+						this.commitError(thisAsVarUsage.getText()
+								+ " is not declared", ((CommonToken) thisAsVarUsage
+								.getToken()).getStartIndex(),
+								((CommonToken) thisAsVarUsage.getToken()).getText()
+										.length());
+						return;
+					}
+				}
+				else{
+					//simple identifier
+					if (thisAsVarUsage.getChildCount()==1 &&
+						thisAsVarUsage.getChild(0).getChildCount()==0){
+						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getChild(0).getText())) {
+							thisAsVarUsage.setHaxeType(blockScope
+									.getVarInScopeType(thisAsVarUsage.getChild(0).getText()));
+							System.out.print("@"+thisAsVarUsage.getType()+"@");//TODO:SYSTEM.out
+						} else {
+							this.commitError(thisAsVarUsage.getChild(0).getText()
+									+ " is not declared", ((CommonToken) thisAsVarUsage
+											.getChild(0).getToken()).getStartIndex(),
+									((CommonToken) thisAsVarUsage.getChild(0).getToken()).getText()
+											.length());
+							return;
+						}}
+					else{
+						//TODO здесь искать по пакетам, параметрам других классов и тп
+					}
 				}
 			}
 		} else if (this instanceof FunctionNode) {
@@ -574,6 +600,7 @@ public class HaxeTree extends CommonTree {
 		HaxeType leftType = this.getTypeOfOperation(leftNode);
 		HaxeType rightType = this.getTypeOfOperation(rightNode);
 		switch (operator) {
+		case EQ:
 		case PLUS: {
 			if (leftType.equals(HaxeType.haxeString)
 					|| rightType.equals(HaxeType.haxeString)) {
@@ -660,7 +687,10 @@ public class HaxeTree extends CommonTree {
 			} else if (node.getText().equals("/")) {
 				return this.getTypeOfOperation(node.getChild(0), node
 						.getChild(1), boolOperations.DIV);
-			}
+			} else if (node.getText().equals("=")) {
+				return this.getTypeOfOperation(node.getChild(0), node
+						.getChild(1), boolOperations.EQ);
+			} 
 		}
 		return HaxeType.haxeUndefined;
 	}
@@ -892,42 +922,32 @@ public class HaxeTree extends CommonTree {
 			final HaxeTree usageNode) {
 		HaxeTree parent = (HaxeTree) this.getParent();
 		if (parent != null) {
-			HaxeTree declaration = null;
-			if (this instanceof VarDeclaration) {
-				if (this.isDeclaration(usageNode)) {
-					return declaration = this;
-				}
-			} else if (this instanceof FunctionNode) {
-				if (((FunctionNode) this).getFunctionName().equals(
-						usageNode.getText())) {
+			if (this.isVarDeclaration(usageNode) ||
+				this.isClassDeclaration(usageNode)) {
+				return this;
+			} else 
+				if (this instanceof FunctionNode){
+				if (this.isFuncDeclaration(usageNode))
 					return this;
-				} else {
-					HaxeTree params = ((FunctionNode) this)
-							.getParamListNode();
+				else {
+					HaxeTree params = ((FunctionNode) this).getParamListNode();
 					if (params != null) {
-						declaration = usageNode.isDeclaredIn(params
+						HaxeTree declaration = usageNode.isDeclaredIn(params
 								.getChildren());
+						if (declaration != null) return declaration;
 					}
 				}
-			} else if (this instanceof ClassNode) {
-				if (this.isClassDeclaration(usageNode)) {
-					declaration = this;
-				}
 			}
-			if (declaration != null) {
-				return declaration;
-			}
+//think about INSTANCES later ------------>uncheked code
 			int index = parent.getChildren().indexOf(this);
 			if (index > 0) {
-				return (parent.getChild(index - 1))
-						.getDeclarationNode(usageNode);
+				return (parent.getChild(index - 1)).getDeclarationNode(usageNode);
 			} else {
 				if (parent instanceof BlockScopeNode) {
 					if (parent.getParent() instanceof ClassNode) {
-						HaxeTree paramDeclaration = usageNode
-								.isDeclaredIn((parent).getChildren());
-						if (paramDeclaration != null) {
-							return paramDeclaration;
+						HaxeTree declaration = usageNode.isDeclaredIn((parent).getChildren());
+						if (declaration != null) {
+							return declaration;
 						}
 					}
 				}
@@ -936,6 +956,7 @@ public class HaxeTree extends CommonTree {
 		} else {
 			return new HaxeTree(0);
 		}
+//think about INSTANCES later ------------>
 	}
 
 	/**
@@ -946,11 +967,11 @@ public class HaxeTree extends CommonTree {
 	 *            the declarations
 	 * @return the extended common tree
 	 */
-	private HaxeTree isDeclaredIn(
-			final List<HaxeTree> declarations) {
+	private HaxeTree isDeclaredIn(final List<HaxeTree> declarations) {
 		for (HaxeTree tree : declarations) {
-			if (tree.isDeclaration(this) || tree.isFuncDeclaration(this)
-					|| tree.isClassDeclaration(this)) {
+			if (tree.isVarDeclaration(this) || 
+				tree.isFuncDeclaration(this)|| 
+				tree.isClassDeclaration(this)) {
 				return tree;
 			}
 		}
@@ -964,10 +985,10 @@ public class HaxeTree extends CommonTree {
 	 *            the usage
 	 * @return true, if is declaration
 	 */
-	private boolean isDeclaration(final HaxeTree usage) {
-		return ((this instanceof VarDeclaration)
-				&& (this.getChildren() != null) && (this.getChild(0).getText()
-				.equals(usage.getText())));
+	private boolean isVarDeclaration(final HaxeTree usage) {
+		return ((this instanceof VarDeclaration)&& 
+				(this.getChildren() != null) && 
+				(this.getChild(0).getText().equals(usage.getText())));
 	}
 
 	/**
@@ -978,8 +999,8 @@ public class HaxeTree extends CommonTree {
 	 * @return true, if is func declaration
 	 */
 	private boolean isFuncDeclaration(final HaxeTree usage) {
-		return ((this instanceof FunctionNode) && (this.getChild(0).getText()
-				.equals(usage.getText())));
+		return ((this instanceof FunctionNode)&&
+				(this.getChild(0).getText().equals(usage.getText()))); //getFunctonName?
 	}
 
 	/**
@@ -1153,8 +1174,14 @@ public class HaxeTree extends CommonTree {
 				sb = sb.append("   ");
 			}
 			for (int i = 0; i < t.getChildCount(); i++) {
-				System.out.println(sb.toString() + t.getChild(i).toString()
-						+ t.getChild(i).getText());
+					System.out.print(sb.toString());
+				if (t.getChild(i) instanceof AssignOperationNode)
+					((AssignOperationNode)t.getChild(i)).printTree();
+				else
+				if (t.getChild(i) instanceof VarUsage)
+					((VarUsage)t.getChild(i)).printTree();
+				else
+					System.out.println(t.getChild(i).getText());
 				this.printTree(t.getChild(i), indent + 1);
 			}
 		}

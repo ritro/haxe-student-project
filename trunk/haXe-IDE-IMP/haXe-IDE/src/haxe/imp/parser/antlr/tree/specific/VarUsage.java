@@ -23,6 +23,10 @@ import org.antlr.runtime.tree.CommonTree;
  * @author kondratyev
  */
 public class VarUsage extends HaxeTree {
+	
+	public static enum varTypes {SIMPLE,COMPLEX};
+	
+	//private String varName = "Undefined";
 
 	/** The var type. */
 	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
@@ -36,7 +40,7 @@ public class VarUsage extends HaxeTree {
 	public void setHaxeType(final HaxeType varType) {
 		this.haxeType = varType;
 	}
-
+	
 	/**
 	 * Gets the var type.
 	 * 
@@ -45,23 +49,10 @@ public class VarUsage extends HaxeTree {
 	public HaxeType getHaxeType() {
 		return this.haxeType;
 	}
-
-	/**
-	 * Instantiates a new var usage.
-	 */
-	public VarUsage() {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public VarUsage(final CommonTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
+	
+	@Override
+	public void printTree(){
+		System.out.println("VarUsage"+ "{name=" +this.getText()+'}');
 	}
 
 	/**
@@ -71,8 +62,35 @@ public class VarUsage extends HaxeTree {
 	 *            the t
 	 */
 	public VarUsage(final Token t) {
-		super(t);
-		// TODO Auto-generated constructor stub
+		this.token = t;
+	}
+	
+	public String getVarName() {
+		if (this.getChildCount() == 0) 
+			return super.getText();
+		
+		//Else we have Something.something...
+		return "dotIdent";
+		/*String text = "";
+		for (HaxeTree node: this.getChildren())
+			for (HaxeTree n: node.getChildren())
+				text += getNodeChildreText(n)+node.getText();
+		if (this.getChildCount() == 1)
+		return getNodeChildreText(this.getChild(0).getChild(0))+
+				"."+getNodeChildreText(this.getChild(0).getChild(1));
+			
+		return getNodeChildreText(this.getChild(0).getChild(0))+
+						"."+getNodeChildreText(this.getChild(0).getChild(1));*/
+	}
+	
+	private String getNodeChildreText(HaxeTree node){
+		if (node.getChildCount() == 0) return node.getText();
+		
+		if (node.getChildCount() == 1)
+			return "."+getNodeChildreText(node.getChild(0));
+		else 
+			return getNodeChildreText(node.getChild(0))+
+			"."+getNodeChildreText(node.getChild(1));
 	}
 
 	/**
@@ -109,36 +127,6 @@ public class VarUsage extends HaxeTree {
 	 * 
 	 * @param ttype
 	 *            the ttype
-	 * @param t
-	 *            the t
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public VarUsage(final int ttype, final Token t, final boolean auxiliary) {
-		super(ttype, t, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param type
-	 *            the type
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public VarUsage(final int ttype, final String type, final boolean auxiliary) {
-		super(ttype, type, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
 	 * @param auxiliary
 	 *            the auxiliary
 	 */
@@ -155,7 +143,6 @@ public class VarUsage extends HaxeTree {
 	 */
 	public VarUsage(final int ttype) {
 		super(ttype);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

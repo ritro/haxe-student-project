@@ -10,9 +10,6 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.main.HaxeParser.inheritListOpt_return;
-import haxe.imp.parser.antlr.main.HaxeParser.inherit_return;
-import haxe.imp.parser.antlr.main.HaxeParser.typeTagOpt_return;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
@@ -48,18 +45,14 @@ public class ClassNode extends HaxeTree {
 	 */
 	public ClassNode() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new class node.
-	 * 
 	 * @param node
 	 *            the node
 	 */
 	public ClassNode(final HaxeTree node) {
 		super(node);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -70,7 +63,6 @@ public class ClassNode extends HaxeTree {
 	 */
 	public ClassNode(final Token t) {
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

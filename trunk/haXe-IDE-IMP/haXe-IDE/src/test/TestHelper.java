@@ -8,10 +8,10 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import junit.framework.Assert;
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Lexer;
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
-import haxe.imp.parser.antlr.tree.ExtendedTreeAdaptor;
+import haxe.imp.parser.antlr.main.HaxeLexer;
+import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRInputStream;
@@ -27,7 +27,7 @@ public final class TestHelper {
 	 * @param path  
 	 * @return parser
 	 */
-	public static TinyHaxeTry1Parser createHaxeParser(final String path) {
+	public static HaxeParser createHaxeParser(final String path) {
 		ANTLRFileStream charStream = null;
 		try {
 			charStream = new ANTLRFileStream(path);
@@ -35,21 +35,21 @@ public final class TestHelper {
 			e1.printStackTrace();
 			Assert.fail("Exception on reading file");
 		}
-		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(charStream);
+		HaxeLexer lexer = new HaxeLexer(charStream);
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-		TinyHaxeTry1Parser parser = new TinyHaxeTry1Parser(tokenStream);
-		parser.setTreeAdaptor(new ExtendedTreeAdaptor());
+		HaxeParser parser = new HaxeParser(tokenStream);
+		parser.setTreeAdaptor(new HaxeTreeAdaptor());
 		return parser;
 	}	
 
-	public static ExtendedCommonTree parseHaxeFile(final String filename) throws RecognitionException {
-		TinyHaxeTry1Parser parser = createHaxeParser(pathToTests + filename);
-		TinyHaxeTry1Parser.module_return parserResult = parser.module();
+	public static HaxeTree parseHaxeFile(final String filename) throws RecognitionException {
+		HaxeParser parser = createHaxeParser(pathToTests + filename);
+		HaxeParser.module_return parserResult = parser.module();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 
-	public static TinyHaxeTry1Parser createHaxeParser(final InputStream input) throws RecognitionException {
+	public static HaxeParser createHaxeParser(final InputStream input) throws RecognitionException {
 		ANTLRInputStream charStream = null;
 		try {
 			charStream = new ANTLRInputStream(input);
@@ -57,14 +57,14 @@ public final class TestHelper {
 			e.printStackTrace();
 			Assert.fail("Exception on reading input");
 		}		
-		TinyHaxeTry1Lexer lexer = new TinyHaxeTry1Lexer(charStream);
+		HaxeLexer lexer = new HaxeLexer(charStream);
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-		TinyHaxeTry1Parser parser = new TinyHaxeTry1Parser(tokenStream);
-		parser.setTreeAdaptor(new ExtendedTreeAdaptor());
+		HaxeParser parser = new HaxeParser(tokenStream);
+		parser.setTreeAdaptor(new HaxeTreeAdaptor());
 		return parser;
 	}
 	
-	public static ExtendedCommonTree parseFunction(final String text) throws RecognitionException {
+	public static HaxeTree parseFunction(final String text) throws RecognitionException {
 		InputStream is = null;
 		try {
 			is = new ByteArrayInputStream(text.getBytes("UTF-8"));
@@ -72,14 +72,14 @@ public final class TestHelper {
 			e.printStackTrace();
 			Assert.fail("UnsupportedEncodingException");
 		} 
-		TinyHaxeTry1Parser parser = createHaxeParser(is);
-		TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
+		HaxeParser parser = createHaxeParser(is);
+		HaxeParser.funcDecl_return parserResult = parser.funcDecl();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
 		Assert.assertNotNull(parserResult.getTree());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 
-	public static ExtendedCommonTree parseExpression(final String text) throws RecognitionException {
+	public static HaxeTree parseExpression(final String text) throws RecognitionException {
 		InputStream is = null;
 		try {
 			is = new ByteArrayInputStream(text.getBytes("UTF-8"));
@@ -87,14 +87,14 @@ public final class TestHelper {
 			e.printStackTrace();
 			Assert.fail("UnsupportedEncodingException");
 		} 
-		TinyHaxeTry1Parser parser = createHaxeParser(is);
-		TinyHaxeTry1Parser.expr_return parserResult = parser.expr();
+		HaxeParser parser = createHaxeParser(is);
+		HaxeParser.expr_return parserResult = parser.expr();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
 		Assert.assertNotNull(parserResult.getTree());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 
-	public static ExtendedCommonTree parseStatement(final String text) throws RecognitionException {
+	public static HaxeTree parseStatement(final String text) throws RecognitionException {
 		InputStream is = null;
 		try {
 			is = new ByteArrayInputStream(text.getBytes("UTF-8"));
@@ -102,14 +102,14 @@ public final class TestHelper {
 			e.printStackTrace();
 			Assert.fail("UnsupportedEncodingException");
 		} 
-		TinyHaxeTry1Parser parser = createHaxeParser(is);
-		TinyHaxeTry1Parser.statement_return parserResult = parser.statement();
+		HaxeParser parser = createHaxeParser(is);
+		HaxeParser.statement_return parserResult = parser.statement();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
 		Assert.assertNotNull(parserResult.getTree());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 
-	public static ExtendedCommonTree parseModule(final String text) throws RecognitionException {
+	public static HaxeTree parseModule(final String text) throws RecognitionException {
 		InputStream is = null;
 		try {
 			is = new ByteArrayInputStream(text.getBytes("UTF-8"));
@@ -117,14 +117,14 @@ public final class TestHelper {
 			e.printStackTrace();
 			Assert.fail("UnsupportedEncodingException");
 		} 
-		TinyHaxeTry1Parser parser = createHaxeParser(is);
-		TinyHaxeTry1Parser.module_return parserResult = parser.module();
+		HaxeParser parser = createHaxeParser(is);
+		HaxeParser.module_return parserResult = parser.module();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
 		Assert.assertNotNull(parserResult.getTree());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 	
-	public static void assertTreeSize(int size, ExtendedCommonTree tree) {
+	public static void assertTreeSize(int size, HaxeTree tree) {
 		assertEquals(size, tree.getChildCount());
 		//assertEquals(size, tree.getChildren().size());
 	}	
@@ -134,7 +134,7 @@ public final class TestHelper {
 	 * @param t
 	 *            the t
 	 */
-	public static void printTree(final ExtendedCommonTree t) {
+	public static void printTree(final HaxeTree t) {
 		System.out.println();
 		System.out.println("                    Tree: " + t.toString());
 		printTree(t, 0);
@@ -147,7 +147,7 @@ public final class TestHelper {
 	 * @param t       tree
 	 * @param indent  indentation
 	 */
-	private static void printTree(final ExtendedCommonTree t, final int indent) {
+	private static void printTree(final HaxeTree t, final int indent) {
 		if (t != null) {
 			StringBuffer sb = new StringBuffer(indent);
 			for (int i = 0; i < indent; i++) {

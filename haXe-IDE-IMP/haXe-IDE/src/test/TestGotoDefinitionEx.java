@@ -12,7 +12,7 @@ package test;
 
 import static junit.framework.Assert.assertEquals;
 import static test.TestHelper.parseHaxeFile;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
@@ -25,8 +25,8 @@ public class TestGotoDefinitionEx {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetDeclarationNode() throws RecognitionException {
-		ExtendedCommonTree tree = parseHaxeFile("testGOTODef01.hx");
-		ExtendedCommonTree iDecl = tree.getNodeByPosition(12, 23)
+		HaxeTree tree = parseHaxeFile("testGOTODef01.hx");
+		HaxeTree iDecl = tree.getNodeByPosition(12, 23)
 				.getDeclarationNode(tree.getNodeByPosition(12, 23));
 		assertEquals(11, iDecl.getLine());
 		assertEquals(2, iDecl.getCharPositionInLine());
@@ -62,8 +62,8 @@ public class TestGotoDefinitionEx {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetFunctionDeclarationNode() throws RecognitionException {
-		ExtendedCommonTree tree = parseHaxeFile("testGOTODef02.hx");
-		ExtendedCommonTree iDecl = tree.getNodeByPosition(9, 2)
+		HaxeTree tree = parseHaxeFile("testGOTODef02.hx");
+		HaxeTree iDecl = tree.getNodeByPosition(9, 2)
 				.getDeclarationNode(tree.getNodeByPosition(9, 2));
 		assertEquals(12, iDecl.getLine());
 		assertEquals(1, iDecl.getCharPositionInLine());
@@ -86,9 +86,9 @@ public class TestGotoDefinitionEx {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetClassDeclarationNode() throws RecognitionException {
-		ExtendedCommonTree tree = parseHaxeFile("testGOTODef03.hx");
+		HaxeTree tree = parseHaxeFile("testGOTODef03.hx");
 
-		ExtendedCommonTree iDecl = tree.getNodeByPosition(9, 2)
+		HaxeTree iDecl = tree.getNodeByPosition(9, 2)
 				.getDeclarationNode(tree.getNodeByPosition(9, 2));
 		System.out.println(iDecl);
 		assertEquals(3, iDecl.getLine());

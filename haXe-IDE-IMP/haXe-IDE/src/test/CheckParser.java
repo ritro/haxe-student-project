@@ -12,8 +12,8 @@ package test;
 
 import static junit.framework.Assert.assertEquals;
 
-import haxe.imp.parser.antlr.main.TinyHaxeTry1Parser;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -35,11 +35,11 @@ public class CheckParser {
 		assertTreeSize(2, parseHaxeFile("testModule2.hx"));
 	}
 
-	public static ExtendedCommonTree parseFunctionFile(final String filename) throws RecognitionException {
-		TinyHaxeTry1Parser parser = createHaxeParser(pathToTests + filename);
-		TinyHaxeTry1Parser.funcDecl_return parserResult = parser.funcDecl();
+	public static HaxeTree parseFunctionFile(final String filename) throws RecognitionException {
+		HaxeParser parser = createHaxeParser(pathToTests + filename);
+		HaxeParser.funcDecl_return parserResult = parser.funcDecl();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 	
 	@Test
@@ -50,11 +50,11 @@ public class CheckParser {
 		assertTreeSize(4, parseFunctionFile("testFunction04"));
 	}
 
-	public static ExtendedCommonTree parseClass(final String filename) throws RecognitionException {
-		TinyHaxeTry1Parser parser = createHaxeParser(pathToTests + filename);
-		TinyHaxeTry1Parser.classDecl_return parserResult = parser.classDecl();
+	public static HaxeTree parseClass(final String filename) throws RecognitionException {
+		HaxeParser parser = createHaxeParser(pathToTests + filename);
+		HaxeParser.classDecl_return parserResult = parser.classDecl();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 	
 	@Test
@@ -63,18 +63,18 @@ public class CheckParser {
 		assertTreeSize(3, parseClass("testClass02"));
 	}
 
-	public static ExtendedCommonTree parseStatement(final String filename) throws RecognitionException {
-		TinyHaxeTry1Parser parser = createHaxeParser(pathToTests + filename);
-		TinyHaxeTry1Parser.statement_return parserResult = parser.statement();
+	public static HaxeTree parseStatement(final String filename) throws RecognitionException {
+		HaxeParser parser = createHaxeParser(pathToTests + filename);
+		HaxeParser.statement_return parserResult = parser.statement();
 		assertEquals(0, parser.getNumberOfSyntaxErrors());
-		return (ExtendedCommonTree) parserResult.getTree();
+		return (HaxeTree) parserResult.getTree();
 	}
 	
 	@Test
 	public void testIfStatement() throws RecognitionException {
-		assertTreeSize(2, parseStatement("testIf01"));
-		assertTreeSize(3, parseStatement("testIf02"));
-		assertTreeSize(3, parseStatement("testIf03"));
+		assertTreeSize(2+2, parseStatement("testIf01"));
+		assertTreeSize(3+2, parseStatement("testIf02"));
+		assertTreeSize(3+2, parseStatement("testIf03"));
 	}
 
 	@Test
@@ -85,8 +85,9 @@ public class CheckParser {
 
 	@Test
 	public void testWhileStatement() throws RecognitionException {
-		assertTreeSize(2, parseStatement("testWhile01"));
-		assertTreeSize(2, parseStatement("testWhile02"));
+		parseStatement("testWhile01").printTree();
+		assertTreeSize(2+2, parseStatement("testWhile01"));
+		assertTreeSize(2+2, parseStatement("testWhile02"));
 	}
 
 	@Test

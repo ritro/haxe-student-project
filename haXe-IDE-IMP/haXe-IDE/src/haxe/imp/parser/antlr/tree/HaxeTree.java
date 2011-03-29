@@ -509,18 +509,20 @@ public class HaxeTree extends CommonTree {
 				blockScope.setDeclaredVars(united);
 			}
 		} else if (this instanceof AssignOperationNode) {
+			//TODO: this is incorrect
 			if (this.getChildCount() > 0) {
 				for (HaxeTree tree : this.getChildren()) {
 					tree.calculateScopes(blockScope);
 				}
-			}
-			HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
-			HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
-			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
-				this.commitError(this.getText() + ": cast problems", this
-						.getToken().getStartIndex(), this.getToken().getText()
-						.length());
-				return;
+			
+				HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
+				HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
+				if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
+					this.commitError(this.getText() + ": cast problems", this
+							.getToken().getStartIndex(), this.getToken().getText()
+							.length());
+					return;
+				}
 			}
 		} else if (this instanceof VarUsage) {
 			VarUsage thisAsVarUsage = (VarUsage) this;

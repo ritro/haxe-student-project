@@ -12,7 +12,7 @@ package test;
 
 import static test.TestHelper.assertTreeSize;
 import static test.TestHelper.parseHaxeFile;
-import haxe.imp.parser.antlr.tree.ExtendedCommonTree;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class TestNodeLookUp {
 	 */
 	@Test
 	public void testGetNodeByOffset() throws RecognitionException {
-		ExtendedCommonTree tree = parseHaxeFile("getNodeByOffset.hx");
+		HaxeTree tree = parseHaxeFile("getNodeByOffset.hx");
 
 		System.out.println("");		
 		for (int i = 0; i < 173; i++) {

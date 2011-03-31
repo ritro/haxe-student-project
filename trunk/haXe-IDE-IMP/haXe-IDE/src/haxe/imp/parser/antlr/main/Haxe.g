@@ -90,7 +90,7 @@ typeDeclFlags
 	;
 	
 qualifiedIdentifier
-	: (a=IDENTIFIER  ->  $a)   (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
+	:	(a=IDENTIFIER  ->  $a)   (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
 	;
 	
 myImport
@@ -129,7 +129,7 @@ id	:	IDENTIFIER
 	|	THIS
 	;
 	
-dotIdent:	(id -> id) (DOT ident=id -> ^(DOT $dotIdent $ident))*
+dotIdent:	(id -> id) (DOT ident=id -> ^($ident $dotIdent))* //(id -> id) (DOT ident=id -> ^(DOT $dotIdent $ident))*
 	;
 	
 assignOp
@@ -352,10 +352,10 @@ value	:	funcLit
         |   NULL
         |   elementarySymbol
         |   LPAREN! (expr|statement) RPAREN!
-        |	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent) //dotIdent
+        |	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
         |
         ;
-
+		
 newExpr           
 	:	NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)
 	;

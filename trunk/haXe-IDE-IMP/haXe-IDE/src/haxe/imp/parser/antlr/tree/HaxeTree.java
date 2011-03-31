@@ -501,7 +501,7 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 			if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
-				//TODO Trying to calculate type
+					//TODO Trying to calculate type
 			}
 			if (blockScope.getDeclaredVars().contains(varUsage)) {
 				this.commitError("Var is already declared",
@@ -514,21 +514,7 @@ public class HaxeTree extends CommonTree {
 				united.add(varUsage);
 				blockScope.setDeclaredVars(united);
 			}
-		} else if (this instanceof AssignOperationNode) {
-			if (this.getChildCount() > 0) {
-				for (HaxeTree tree : this.getChildren()) {
-					tree.calculateScopes(blockScope);
-				}
-			}
-			HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
-			HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
-			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
-				//длинна and offset is right, проверять всплыв подск где то в другом месте
-				this.commitError("cast problems", this.getToken().getStartIndex(), 
-												this.getToken().getText().length());
-				return;
-			}
-		} else if (this instanceof VarUsage) {
+		}else if (this instanceof VarUsage) {
 			VarUsage thisAsVarUsage = (VarUsage) this;
 			if (thisAsVarUsage.getHaxeType().equals(
 					HaxeType.haxeNotYetRecognized)) {
@@ -547,24 +533,44 @@ public class HaxeTree extends CommonTree {
 				}
 				else{
 					//simple identifier
-					if (thisAsVarUsage.getChildCount()==1 &&
+					if (//thisAsVarUsage.getChildCount()==1 &&
 						thisAsVarUsage.getChild(0).getChildCount()==0){
-						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getChild(0).getText())) {
+						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getVarName())) {
 							thisAsVarUsage.setHaxeType(blockScope
-									.getVarInScopeType(thisAsVarUsage.getChild(0).getText()));
-							System.out.print("@"+thisAsVarUsage.getType()+"@");//TODO:SYSTEM.out
+									.getVarInScopeType(thisAsVarUsage.getVarName()));
 						} else {
-							this.commitError(thisAsVarUsage.getChild(0).getText()
-									+ " is not declared", ((CommonToken) thisAsVarUsage
-											.getChild(0).getToken()).getStartIndex(),
-									((CommonToken) thisAsVarUsage.getChild(0).getToken()).getText()
-											.length());
+							this.commitError(thisAsVarUsage.getVarName()
+									+ " is not declared", thisAsVarUsage.getMostLeftPosition(),
+									thisAsVarUsage.getMostRightPosition()-
+															thisAsVarUsage.getMostLeftPosition());
 							return;
 						}}
 					else{
 						//TODO здесь искать по пакетам, параметрам других классов и тп
+						this.commitError(thisAsVarUsage.getVarName()+ " can't yet define Those", 
+								thisAsVarUsage.getMostLeftPosition(),
+								thisAsVarUsage.getMostRightPosition()-
+															thisAsVarUsage.getMostLeftPosition());
+						return;
 					}
 				}
+			}
+		}else if (this instanceof AssignOperationNode) {
+			if (this.getChildCount() > 0) {
+				for (HaxeTree tree : this.getChildren()) {
+					tree.calculateScopes(blockScope);
+				}
+			}
+			HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
+			HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
+			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
+				//длинна and offset is right, проверять всплыв подск где то в другом месте
+				this.commitError("Can't cast "+
+						((VarUsage)this.getChild(1)).getVarName()+" of type "+ rightPart.getTypeName()
+						+" to type "+leftPart.getTypeName(), 
+						this.getToken().getStartIndex(), 
+												this.getToken().getText().length());
+				return;
 			}
 		} else if (this instanceof FunctionNode) {
 			BlockScopeNode funcBlockScopeNode = ((FunctionNode) this)
@@ -938,7 +944,7 @@ public class HaxeTree extends CommonTree {
 					}
 				}
 			}
-//think about INSTANCES later ------------>uncheked code
+//TODO:think about INSTANCES later ------------>however seems to work well
 			int index = parent.getChildren().indexOf(this);
 			if (index > 0) {
 				return (parent.getChild(index - 1)).getDeclarationNode(usageNode);
@@ -956,7 +962,6 @@ public class HaxeTree extends CommonTree {
 		} else {
 			return new HaxeTree(0);
 		}
-//think about INSTANCES later ------------>
 	}
 
 	/**

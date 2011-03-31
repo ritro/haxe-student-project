@@ -35,8 +35,9 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 	 * @return the link text
 	 */
 	public String getLinkText(final Object node) {
-		// TODO Replace the following with an implementation suitable to your
-		// language and reference types
+		if (((HaxeTree)node).getText()!=null)
+			return ((HaxeTree)node).getText();
+
 		return node.toString();
 	}
 

@@ -15,7 +15,6 @@ import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-import org.antlr.runtime.tree.CommonTree;
 
 /**
  * The Class VarUsage.
@@ -65,32 +64,24 @@ public class VarUsage extends HaxeTree {
 		this.token = t;
 	}
 	
+	/**
+	 * 
+	 * @return Ectual parametr got or beeing set
+	 */
 	public String getVarName() {
 		if (this.getChildCount() == 0) 
 			return super.getText();
 		
-		//Else we have Something.something...
-		return "dotIdent";
-		/*String text = "";
-		for (HaxeTree node: this.getChildren())
-			for (HaxeTree n: node.getChildren())
-				text += getNodeChildreText(n)+node.getText();
-		if (this.getChildCount() == 1)
-		return getNodeChildreText(this.getChild(0).getChild(0))+
-				"."+getNodeChildreText(this.getChild(0).getChild(1));
-			
-		return getNodeChildreText(this.getChild(0).getChild(0))+
-						"."+getNodeChildreText(this.getChild(0).getChild(1));*/
+		return this.getChild(0).getText();
 	}
 	
-	private String getNodeChildreText(HaxeTree node){
-		if (node.getChildCount() == 0) return node.getText();
-		
-		if (node.getChildCount() == 1)
-			return "."+getNodeChildreText(node.getChild(0));
-		else 
-			return getNodeChildreText(node.getChild(0))+
-			"."+getNodeChildreText(node.getChild(1));
+	/**
+	 * Get Node by index
+	 * @return Node at required deph or null if index is greater than max deph
+	 */
+	public HaxeTree getNodePart(int i){
+		int lenth = this.getAllChildren().size();
+		return (lenth>i)? this.getAllChildren().get(lenth-1 - i): null;
 	}
 
 	/**

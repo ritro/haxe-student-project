@@ -181,9 +181,9 @@ public class VarDeclaration extends HaxeTree {
 	}
 
 	/**
-	 * Gets the vA r_ ini t_ node.
+	 * ???
 	 * 
-	 * @return the vA r_ ini t_ node
+	 * @return the var init node
 	 */
 	public HaxeTree getVAR_INIT_NODE() {
 		for (HaxeTree tree : (ArrayList<HaxeTree>) this

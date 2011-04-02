@@ -138,7 +138,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 			return "Block";
 		} else if (n instanceof AssignOperationNode) {
 			AssignOperationNode stmt = (AssignOperationNode) n;
-			return stmt.getText() + "=";
+			return stmt.getText() + "=";//;+ stmt.getText() ??????????
 		} else if (n instanceof ClassNode) {
 			return "Class " + ((ClassNode) n).getClassName();
 		} else if (n instanceof FunctionNode) {

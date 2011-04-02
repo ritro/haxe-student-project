@@ -10,6 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
@@ -83,11 +84,35 @@ public class ClassNode extends HaxeTree {
 	public HaxeTree getInherits() {
 		for (HaxeTree tree : (ArrayList<HaxeTree>) this
 				.getChildren()) {
-			if (tree.getType() == 11) {
+			if (tree.getType() == HaxeParser.INHERIT_LIST_OPT) {
 				return (HaxeTree) tree;
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * class D extends A, implements B, implements C {} 
+	 * Каждый экземпляр D будет иметь тип D, но также имеет типы A , B и C.
+	 * 
+	 * @return Class Name type with implemented types record for each class/interface  
+	 * it extended/implemented
+	 */
+	@Override
+	public HaxeType getHaxeType(){
+		//FIXME That's just name, not full name (missing packege declaration)
+		HaxeType type = new HaxeType(this.getClassName()); 
+		
+		if (getInherits() == null)
+			return type;
+
+		ArrayList<HaxeType> list = new ArrayList<HaxeType>();
+		for (HaxeTree i : getInherits().getChildren())
+			list.add(new HaxeType(i.getChild(0).getText()));
+		
+		//FIXME not sure if I understood right - types from class Hierarhy and here are the same?????
+		type.setImplementedTypes(list);
+		return type;
 	}
 
 	/**
@@ -103,7 +128,7 @@ public class ClassNode extends HaxeTree {
 				if (tree instanceof VarDeclaration) {
 					VarDeclaration declarationTree = (VarDeclaration) tree;
 					declarationTree.getVarNameNode().setHaxeType(
-							declarationTree.getVarType());
+							declarationTree.getHaxeType());
 					VarUsage varUsage = declarationTree.getVarNameNode()
 							.getClone();
 					list.add(varUsage);

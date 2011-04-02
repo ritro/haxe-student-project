@@ -66,9 +66,10 @@ public class VarUsage extends HaxeTree {
 	
 	/**
 	 * 
-	 * @return Ectual parametr got or beeing set
+	 * @return if getText != null then getText, else child(0).getText
 	 */
-	public String getVarName() {
+	@Override
+	public String getText() {
 		if (this.getChildCount() == 0) 
 			return super.getText();
 		

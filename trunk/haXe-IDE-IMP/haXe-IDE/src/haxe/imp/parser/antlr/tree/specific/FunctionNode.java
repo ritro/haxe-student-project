@@ -41,7 +41,7 @@ public class FunctionNode extends HaxeTree {
 			if (paramList != null && paramList.getChildCount() != 0) {
 				for (HaxeTree commonTree : paramList.getChildren()) {
 					parameters += comma
-							+ ((VarDeclaration) commonTree).getVarType()
+							+ ((VarDeclaration) commonTree).getHaxeType()
 									.getTypeName();
 					comma = ", ";
 				}
@@ -110,7 +110,7 @@ public class FunctionNode extends HaxeTree {
 			for (HaxeTree varDecl : parameters.getChildren()) {
 				VarDeclaration varDeclaration = (VarDeclaration) varDecl;
 				varDeclaration.getVarNameNode().setHaxeType(
-						varDeclaration.getVarType());
+						varDeclaration.getHaxeType());
 				VarUsage varUsage = varDeclaration.getVarNameNode().getClone();
 				list.add(varUsage);
 			}

@@ -37,7 +37,7 @@ public class VarDeclaration extends HaxeTree {
 	public String getNameWithType() {
 		if (this.nameWithType.equals("")) {
 			this.nameWithType = this.getVarName() + " : "
-					+ this.getVarType().getTypeName();
+					+ this.getHaxeType().getTypeName();
 		}
 		return this.nameWithType;
 	}
@@ -158,20 +158,14 @@ public class VarDeclaration extends HaxeTree {
 	 * 
 	 * @return the var type
 	 */
-	public HaxeType getVarType() {
+	@Override
+	public HaxeType getHaxeType() {
 		try {
 			for (HaxeTree tree : this.getChildren()) {
-				Token token = (CommonToken) tree.getToken();
-				if (token.getType() == TYPE_TAG_TYPE) {
-					/**
-					 * FIXME Нужно находить название этого класса в объявлениях,
-					 * если он не примитивный, и возвращать его копию.
-					 */
-					// if
-					// (HaxeType.primaryTypes.contains(tree.getChild(0).getText())){
-					// return HaxeType
-					// }
-					return new HaxeType(tree.getChild(0).getText());
+				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
+					return (HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
+							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
+							new HaxeType(tree.getChild(0).getText());
 				}
 			}
 		} catch (NullPointerException nullPointerException) {

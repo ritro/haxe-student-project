@@ -21,33 +21,15 @@ import org.antlr.runtime.Token;
  */
 public class DoWhileNode extends HaxeTree {
 
-	/**
-	 * Instantiates a new do while node.
-	 */
 	public DoWhileNode() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Instantiates a new do while node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
 	public DoWhileNode(final HaxeTree node) {
 		super(node);
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Instantiates a new do while node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
 	public DoWhileNode(final Token t) {
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 }

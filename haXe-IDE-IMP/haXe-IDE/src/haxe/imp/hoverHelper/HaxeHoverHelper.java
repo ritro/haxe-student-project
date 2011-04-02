@@ -91,8 +91,7 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		// Declare variables used in formulating the message
 		Object sourceNode = null; // node at current hover point
 		Object targetNode = null; // node referenced from current hover point
-		Object helpNode = null; // node for which a help message is to be
-		// constructed
+		Object helpNode = null; // node for which a help message is to be constructed
 		String msg = null; // the help message for helpNode
 
 		// Get the node at the given offset; no node implies no message

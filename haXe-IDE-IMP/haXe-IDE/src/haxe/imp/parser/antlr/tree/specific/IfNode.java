@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -21,34 +22,56 @@ import org.antlr.runtime.Token;
  */
 public class IfNode extends HaxeTree {
 
-	/**
-	 * Instantiates a new if node.
-	 */
 	public IfNode() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Instantiates a new if node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
 	public IfNode(final HaxeTree node) {
 		super(node);
-		// TODO Auto-generated constructor stub
+	}
+
+	public IfNode(final Token t) {
+		super(t);
 	}
 
 	/**
-	 * Instantiates a new if node.
-	 * 
-	 * @param t
-	 *            the t
+	 * f( expr-cond ) expr-1 [else expr-2]
+	 * @return expr-cond
 	 */
-	public IfNode(final Token t) {
-		super(t);
-		// TODO Auto-generated constructor stub
+	public HaxeTree getCondition(){
+		return this.getChild(0);
 	}
-
+	
+	/**
+	 * f( expr-cond ) expr-1 [else expr-2]
+	 * @return expr-1
+	 */
+	public HaxeTree getIfTrue(){
+		return this.getChild(1);
+	}
+	
+	/**
+	 * f( expr-cond ) expr-1 [else expr-2]
+	 * @return expr-2
+	 */
+	public HaxeTree getIfFalse(){
+		return (this.getChildCount() == 3)? 
+			this.getChild(2).getChild(0) : //currently ElSe word is the third node
+			null;
+	}
+	/**
+	 * If there is no else, and the if expression is false, then the entire expression has type Void. 
+	 * If there is an else, then expr-1 and expr-2 must be of the same type and 
+	 * this will be the type of the if expression 
+	 * As an exception, if an if block is not supposed to return any value (like in the middle of a Block)
+	 * then both expr-1 and expr-2 can have different types and the if block type will be Void.
+	 */
+	@Override
+	public HaxeType getHaxeType(){
+		//TODO Should check if IF is the last in scope block(->have no ifFalse) in another place
+		if (getIfFalse() != null && 
+			getIfFalse().getHaxeType().equals(getIfTrue().getHaxeType()))
+			return getIfFalse().getHaxeType();
+		else return HaxeType.haxeVoid;
+	}
 }

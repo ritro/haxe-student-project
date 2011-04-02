@@ -221,13 +221,6 @@ public class HaxeTree extends CommonTree {
 	public HaxeTree() {
 		// TODO Auto-generated constructor stub
 	}
-	/*
-	@Override
-	public String getText(){
-		if (super.getText()==null)
-			return "";
-		else return super.getText();
-	}*/
 
 	/**
 	 * Instantiates a new extended common tree.
@@ -489,7 +482,7 @@ public class HaxeTree extends CommonTree {
 		} else if (this instanceof VarDeclaration) {
 			VarDeclaration declarationTree = (VarDeclaration) this;
 			declarationTree.getVarNameNode().setHaxeType(
-					declarationTree.getVarType());
+					declarationTree.getHaxeType());
 			VarUsage varUsage = declarationTree.getVarNameNode().getClone();
 
 			HaxeTree varInitNode = declarationTree.getVAR_INIT_NODE();
@@ -535,11 +528,11 @@ public class HaxeTree extends CommonTree {
 					//simple identifier
 					if (//thisAsVarUsage.getChildCount()==1 &&
 						thisAsVarUsage.getChild(0).getChildCount()==0){
-						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getVarName())) {
+						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
 							thisAsVarUsage.setHaxeType(blockScope
-									.getVarInScopeType(thisAsVarUsage.getVarName()));
+									.getVarInScopeType(thisAsVarUsage.getText()));
 						} else {
-							this.commitError(thisAsVarUsage.getVarName()
+							this.commitError(thisAsVarUsage.getText()
 									+ " is not declared", thisAsVarUsage.getMostLeftPosition(),
 									thisAsVarUsage.getMostRightPosition()-
 															thisAsVarUsage.getMostLeftPosition());
@@ -547,7 +540,7 @@ public class HaxeTree extends CommonTree {
 						}}
 					else{
 						//TODO здесь искать по пакетам, параметрам других классов и тп
-						this.commitError(thisAsVarUsage.getVarName()+ " can't yet define Those", 
+						this.commitError(thisAsVarUsage.getText()+ " can't yet define Those", 
 								thisAsVarUsage.getMostLeftPosition(),
 								thisAsVarUsage.getMostRightPosition()-
 															thisAsVarUsage.getMostLeftPosition());
@@ -566,7 +559,7 @@ public class HaxeTree extends CommonTree {
 			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
 				//длинна and offset is right, проверять всплыв подск где то в другом месте
 				this.commitError("Can't cast "+
-						((VarUsage)this.getChild(1)).getVarName()+" of type "+ rightPart.getTypeName()
+						((VarUsage)this.getChild(1)).getText()+" of type "+ rightPart.getTypeName()
 						+" to type "+leftPart.getTypeName(), 
 						this.getToken().getStartIndex(), 
 												this.getToken().getText().length());
@@ -669,7 +662,6 @@ public class HaxeTree extends CommonTree {
 	 *            the node
 	 * @return the type of operation
 	 * @throws HaxeCastException
-	 *             the haxe cast exception
 	 */
 	private HaxeType getTypeOfOperation(final HaxeTree node)
 			throws HaxeCastException {
@@ -702,84 +694,41 @@ public class HaxeTree extends CommonTree {
 	}
 
 	/**
-	 * The Class Pair.
-	 * 
+	 * The Pair Class.
 	 * @author Anatoly Kondratyev
 	 */
 	public class Pair {
 
-		/** The begin. */
 		private int begin = -1;
-
-		/** The end. */
 		private int end = -1;
 
-		/**
-		 * Gets the begin.
-		 * 
-		 * @return the begin
-		 */
+
 		public int getBegin() {
 			return this.begin;
 		}
 
-		/**
-		 * Sets the begin.
-		 * 
-		 * @param begin
-		 *            the new begin
-		 */
 		public void setBegin(final int begin) {
 			this.begin = begin;
 		}
 
-		/**
-		 * Gets the end.
-		 * 
-		 * @return the end
-		 */
 		public int getEnd() {
 			return this.end;
 		}
 
-		/**
-		 * Sets the end.
-		 * 
-		 * @param end
-		 *            the new end
-		 */
 		public void setEnd(final int end) {
 			this.end = end;
 		}
 
-		/**
-		 * Instantiates a new pair.
-		 * 
-		 * @param begin
-		 *            the begin
-		 * @param end
-		 *            the end
-		 */
 		public Pair(final int begin, final int end) {
 			super();
 			this.begin = begin;
 			this.end = end;
 		}
 
-		/**
-		 * Instantiates a new pair.
-		 */
 		public Pair() {
 			super();
 		}
 
-		/**
-		 * Surrounds.
-		 * 
-		 * @param value
-		 *            the value
-		 * @return true, if successful
-		 */
 		public boolean surrounds(final int value) {
 			return (this.begin <= value && this.end > value) ? true : false;
 		}
@@ -794,7 +743,7 @@ public class HaxeTree extends CommonTree {
 	 * Use getMostLeft/Right instead
 	 * 
 	 * @return the region for node
-	 */
+	 *//*
 	@Deprecated
 	public Pair getRegionForNode() {
 		int begin;
@@ -825,7 +774,7 @@ public class HaxeTree extends CommonTree {
 			}
 		}
 		return new Pair(begin, end);
-	}
+	}*/
 
 	/**
 	 * Get most-inner node of AST tree by it's offset.
@@ -856,7 +805,7 @@ public class HaxeTree extends CommonTree {
 	 * @param posInLine
 	 *            the pos in line
 	 * @return the node by position
-	 */
+	 *//*
 	@Deprecated
 	public HaxeTree getNodeByPosition(final int line,
 			final int posInLine) {
@@ -915,7 +864,7 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 		}
-	}
+	}*/
 
 	/**
 	 * Gets the declaration node.
@@ -1146,7 +1095,7 @@ public class HaxeTree extends CommonTree {
 	 * (non-Javadoc)
 	 * 
 	 * @see org.antlr.runtime.tree.CommonTree#toString()
-	 */
+	 
 	@Override
 	public String toString() {
 		int startOffset = this.getMostLeftPosition();
@@ -1155,7 +1104,7 @@ public class HaxeTree extends CommonTree {
 				+ "-" + endOffset;
 
 		// return "intValue haxe.primaryTypes.Int";
-	}
+	}*/
 
 	/**
 	 * Prints full tree into console.
@@ -1190,6 +1139,20 @@ public class HaxeTree extends CommonTree {
 				this.printTree(t.getChild(i), indent + 1);
 			}
 		}
+	}
+
+	//FIXME not all special nodes have their own functions
+	public HaxeType getHaxeType() {
+		if (this instanceof BlockScopeNode)
+			return ((BlockScopeNode)this).getHaxeType();
+		else if (this instanceof VarUsage)
+			return ((VarUsage)this).getHaxeType();
+		else if (this instanceof VarDeclaration)
+			return ((VarDeclaration)this).getHaxeType();
+		else if (this instanceof ClassNode)
+			return ((ClassNode)this).getHaxeType();
+		
+		return HaxeType.haxeNotYetRecognized;
 	}
 
 }

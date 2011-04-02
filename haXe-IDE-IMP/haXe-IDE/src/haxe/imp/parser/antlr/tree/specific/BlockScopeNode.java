@@ -21,8 +21,7 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 
 /**
- * The Class BlockScopeNode.
- * 
+ * Blocks can execute several expressions.
  * @author kondratyev
  */
 public class BlockScopeNode extends HaxeTree {
@@ -106,10 +105,26 @@ public class BlockScopeNode extends HaxeTree {
 	public int getMostRightPosition() {
 		return this.getrBracketPosition();
 	}
-
+	
 	/**
-	 * Instantiates a new block scope node.
+	 * A block evaluates to the TYPE of the last expression of the block.
+	 * As an exception, the empty block { } evaluates to Void.
 	 */
+	@Override
+	public HaxeType getHaxeType(){
+		return (this.getChildCount()>0)? 
+				this.getChild(this.getChildCount()-1).getHaxeType() :
+					HaxeType.haxeVoid;
+	}
+	
+	/*
+	 * A block evaluates to the VALUE of the last expression of the block
+	 
+	@Override
+	public HaxeTree getValue(){
+		return this.getChild(this.getChildCount()-1);
+	}*/
+
 	public BlockScopeNode() {
 		// TODO Auto-generated constructor stub
 	}

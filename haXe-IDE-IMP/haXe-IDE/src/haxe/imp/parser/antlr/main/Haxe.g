@@ -238,7 +238,7 @@ statement
 	;
    
 parExpression 
-	:   LPAREN expr RPAREN
+	:   LPAREN! expr RPAREN!
 	;
 
 block 	:	LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<HaxeTree>[$RBRACE, true]) 

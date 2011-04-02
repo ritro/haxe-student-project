@@ -21,7 +21,7 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 public class TestGotoDefinitionEx {
-	
+/*
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetDeclarationNode() throws RecognitionException {
@@ -55,10 +55,6 @@ public class TestGotoDefinitionEx {
 		assertEquals(VarDeclaration.class, iDecl.getClass());
 	}
 
-	/**
-	 * Test get function declaration node.
-	 * @throws RecognitionException 
-	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetFunctionDeclarationNode() throws RecognitionException {
@@ -79,10 +75,6 @@ public class TestGotoDefinitionEx {
 		assertEquals(FunctionNode.class, iDecl.getClass());
 	}
 
-	/**
-	 * Test get class declaration node.
-	 * @throws RecognitionException 
-	 */
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetClassDeclarationNode() throws RecognitionException {
@@ -95,5 +87,5 @@ public class TestGotoDefinitionEx {
 		assertEquals(0, iDecl.getCharPositionInLine());
 		assertEquals("Main", iDecl.getChild(0).getText());
 		assertEquals(ClassNode.class, iDecl.getClass());
-	}
+	}*/
 }

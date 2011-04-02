@@ -31,7 +31,7 @@ public class HaxeType {
 		private static final long serialVersionUID = 1L;
 		{
 			this.addAll(Arrays.asList(new String[] { "Int", "Number", "Float",
-					"String", "Void", "Object", "Bool", "Undefined", "Dynamic" }));
+					"String", "Void", "Object", "Bool"}));//, "Undefined", "Dynamic" 
 		}
 	};
 
@@ -45,6 +45,9 @@ public class HaxeType {
 	public static final HaxeType haxeObject;
 	public static final HaxeType haxeNotYetRecognized;
 	public static final HaxeType haxeUndefined;
+	//Unknown<0> - special value usable for any type with behavior diff from Dynamic
+	//NULL have this type and it used only(?) for it
+	public static final HaxeType haxeUnknown;
 
 	static {
 		haxeFloat = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Float");
@@ -62,6 +65,7 @@ public class HaxeType {
 		haxeObject = new HaxeType("haxe.Object");
 		haxeNotYetRecognized = new HaxeType("haxe.notYetRecognized");
 		haxeUndefined = new HaxeType("haxe.Undefined");
+		haxeUnknown = new HaxeType("haxe.Unknown<0>"); //should it be added to all types hierarhy?
 	}
 
 	/**
@@ -215,22 +219,39 @@ public class HaxeType {
 	 *            the full type name
 	 */
 	public HaxeType(final String fullTypeName) {
-		if (fullTypeName.equals("Int")) {
+		if (fullTypeName.equalsIgnoreCase("Int")) {
 			this.setIdenticalProperties(haxeInt);
-		} else if (fullTypeName.equals("FLOAT")) {
+		} else if (fullTypeName.equalsIgnoreCase("FLOAT")) {
 			this.setIdenticalProperties(haxeFloat);
-		} else if (fullTypeName.equals("STRING")) {
+		} else if (fullTypeName.equalsIgnoreCase("STRING")) {
 			this.setIdenticalProperties(haxeString);
-		} else if (fullTypeName.equals("BOOL")) {
+		} else if (fullTypeName.equalsIgnoreCase("BOOL")) {
 			this.setIdenticalProperties(haxeBool);
-		} else if (fullTypeName.equals("void")) {
+		} else if (fullTypeName.equalsIgnoreCase("void")) {
 			this.setIdenticalProperties(haxeVoid);
-		} else if (fullTypeName.equals("Undefined")) {
+		} else if (fullTypeName.equalsIgnoreCase("Undefined")) {
 			this.setIdenticalProperties(haxeUndefined);
 		} {
 			this.fullTypeName = fullTypeName;
 			this.typeName = (fullTypeName.lastIndexOf(".") == -1) ? fullTypeName
 					: fullTypeName.substring(fullTypeName.lastIndexOf(".") + 1);
+		}
+	}
+	
+	public static HaxeType tryGetPrimaryType(final String typeName){
+		//FIXME "Object"?? "Number"??
+		if (typeName.equalsIgnoreCase("Int")) {
+			return haxeInt;
+		} else if (typeName.equalsIgnoreCase("Float")) {
+			return haxeFloat;
+		} else if (typeName.equalsIgnoreCase("String")) {
+			return haxeString;
+		} else if (typeName.equalsIgnoreCase("Bool")) {
+			return haxeBool;
+		} else if (typeName.equalsIgnoreCase("Void")) {
+			return haxeVoid;
+		}{
+			return null;
 		}
 	}
 

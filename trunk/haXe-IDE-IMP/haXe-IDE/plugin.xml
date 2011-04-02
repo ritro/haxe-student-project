@@ -76,7 +76,7 @@
          name="haxe Reference Resolver"
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="haxe.imp.hoverHelper.HelperReferenceResolver"
+            class="haxe.imp.hoverHelper.HaxeHoverHelper"
             language="haXe">
       </referenceResolver>
    </extension>

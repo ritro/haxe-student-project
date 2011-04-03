@@ -72,9 +72,9 @@ public class CheckParser {
 	
 	@Test
 	public void testIfStatement() throws RecognitionException {
-		assertTreeSize(2+2, parseStatement("testIf01"));
-		assertTreeSize(3+2, parseStatement("testIf02"));
-		assertTreeSize(3+2, parseStatement("testIf03"));
+		assertTreeSize(2, parseStatement("testIf01"));
+		assertTreeSize(3, parseStatement("testIf02"));
+		assertTreeSize(3, parseStatement("testIf03"));
 	}
 
 	@Test
@@ -86,8 +86,8 @@ public class CheckParser {
 	@Test
 	public void testWhileStatement() throws RecognitionException {
 		parseStatement("testWhile01").printTree();
-		assertTreeSize(2+2, parseStatement("testWhile01"));
-		assertTreeSize(2+2, parseStatement("testWhile02"));
+		assertTreeSize(2, parseStatement("testWhile01"));
+		assertTreeSize(2, parseStatement("testWhile02"));
 	}
 
 	@Test

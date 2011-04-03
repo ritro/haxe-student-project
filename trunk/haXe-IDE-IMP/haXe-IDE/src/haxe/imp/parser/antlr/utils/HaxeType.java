@@ -31,7 +31,7 @@ public class HaxeType {
 		private static final long serialVersionUID = 1L;
 		{
 			this.addAll(Arrays.asList(new String[] { "Int", "Number", "Float",
-					"String", "Void", "Object", "Bool"}));//, "Undefined", "Dynamic" 
+					"String", "Void", "Object", "Bool"}));//,, "Unknown<0>" "Undefined", "Dynamic" 
 		}
 	};
 
@@ -50,7 +50,14 @@ public class HaxeType {
 	public static final HaxeType haxeUnknown;
 
 	static {
+		haxeString = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".String");
 		haxeFloat = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Float");
+		haxeFloat.setClassHierarchy(new ArrayList<HaxeType>() {
+			private static final long serialVersionUID = 1L;
+			{
+				this.add(haxeString);
+			}
+		});
 		haxeInt = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Int");
 		haxeInt.setClassHierarchy(new ArrayList<HaxeType>() {
 			private static final long serialVersionUID = 1L;
@@ -60,12 +67,18 @@ public class HaxeType {
 		});
 		haxeVoid = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Void");
 		haxeBool = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Bool");
-		haxeString = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".String");
 		haxeDynamic = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Dynamic");
 		haxeObject = new HaxeType("haxe.Object");
 		haxeNotYetRecognized = new HaxeType("haxe.notYetRecognized");
 		haxeUndefined = new HaxeType("haxe.Undefined");
-		haxeUnknown = new HaxeType("haxe.Unknown<0>"); //should it be added to all types hierarhy?
+		haxeUnknown = new HaxeType("haxe.Unknown<0>");
+		haxeUnknown.setClassHierarchy(new ArrayList<HaxeType>() {
+			private static final long serialVersionUID = 1L;
+			{
+				this.add(haxeString);
+				this.add(haxeObject);
+			}
+		});
 	}
 
 	/**
@@ -84,17 +97,11 @@ public class HaxeType {
 	/**
 	 * Checks if is available assignement.
 	 * 
-	 * @param type1
-	 *            the type1
-	 * @param type2
-	 *            the type2
 	 * @return true, if is available assignement
 	 */
 	public static boolean isAvailableAssignement(final HaxeType type1,
 			final HaxeType type2) {
-		if (type1.equals(type2)) {
-			return true;
-		} else if (isExtendedClass(type1, type2)) {
+		if (type1.equals(type2) || isExtendedClass(type1, type2)) {
 			return true;
 		}
 		return false;
@@ -103,17 +110,19 @@ public class HaxeType {
 	/**
 	 * Checks if is extended class.
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param child
-	 *            the child
 	 * @return true, if is extended class
 	 */
 	public static boolean isExtendedClass(final HaxeType parent,
 			final HaxeType child) {
-		if (child.getClassHierarchy().contains(parent)) {
-			return true;
+		if (child.getClassHierarchy() != null){
+			if (child.getClassHierarchy().contains(parent)) {
+				return true;
+			} else
+				for (HaxeType i : child.getClassHierarchy())
+					if (isExtendedClass(parent, i))
+						return true;
 		}
+		
 		return false;
 	}
 
@@ -121,10 +130,6 @@ public class HaxeType {
 	 * Applied in case when user is sure, that both of parameters are numbers. (
 	 * <code>areBothNumbers</code> returning true)
 	 * 
-	 * @param type1
-	 *            the type1
-	 * @param type2
-	 *            the type2
 	 * @return the common number type
 	 */
 	public static HaxeType getCommonNumberType(final HaxeType type1,
@@ -159,7 +164,7 @@ public class HaxeType {
 	 * Gets the implemented types.
 	 * 
 	 * @return the implementedTypes
-	 */
+	 *//*
 	public ArrayList<HaxeType> getImplementedTypes() {
 		return this.implementedTypes;
 	}
@@ -169,10 +174,10 @@ public class HaxeType {
 	 * 
 	 * @param implementedTypes
 	 *            the implementedTypes to set
-	 */
+	 *//*
 	public void setImplementedTypes(final ArrayList<HaxeType> implementedTypes) {
 		this.implementedTypes = implementedTypes;
-	}
+	}*/
 
 	/**
 	 * Gets the type name.
@@ -250,9 +255,8 @@ public class HaxeType {
 			return haxeBool;
 		} else if (typeName.equalsIgnoreCase("Void")) {
 			return haxeVoid;
-		}{
-			return null;
 		}
+		return null;
 	}
 
 	/**
@@ -280,7 +284,7 @@ public class HaxeType {
 	@Override
 	public boolean equals(final Object arg0) {
 		/**
-		 * FIXME ÐŸÑ€Ð¾Ð²ÐµÑ€Ñ�Ñ‚ÑŒ Ð¸ Ð¿Ð¾Ð»Ð½Ñ‹Ð¹ Ð¿ÑƒÑ‚ÑŒ Ñ‚Ð¾Ð¶Ðµ
+		 * FIXME 
 		 */
 		return ((HaxeType) arg0).getTypeName().equals(this.getTypeName());
 	}

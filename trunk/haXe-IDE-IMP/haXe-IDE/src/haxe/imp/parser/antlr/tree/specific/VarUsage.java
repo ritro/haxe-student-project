@@ -51,7 +51,8 @@ public class VarUsage extends HaxeTree {
 	
 	@Override
 	public void printTree(){
-		System.out.println("VarUsage"+ "{name=" +this.getText()+'}');
+		System.out.println("VarUsage"+ "(name=" +this.getText()+")" +
+				"{"+getHaxeType().getTypeName()+'}');
 	}
 
 	/**
@@ -109,45 +110,17 @@ public class VarUsage extends HaxeTree {
 			this.setHaxeType(HaxeType.haxeBool);
 		} else if (varType.equals("DYNAMIC")) {
 			this.setHaxeType(HaxeType.haxeDynamic);
-		} else {
+		} else if (varType.equals("Unknown<0>")){
+			this.setHaxeType(HaxeType.haxeUnknown);
+		}else{
 			this.setHaxeType(HaxeType.haxeUndefined);
 		}
 	}
 
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
 	public VarUsage(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 */
-	public VarUsage(final int ttype) {
-		super(ttype);
-	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param t
-	 *            the t
-	 */
-	public VarUsage(final int ttype, final Token t) {
-		this.token = new CommonToken(ttype);
-	}
+	
 
 	/**
 	 * Gets the clone.

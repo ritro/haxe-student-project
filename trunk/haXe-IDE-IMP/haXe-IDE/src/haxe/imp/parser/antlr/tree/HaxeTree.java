@@ -44,8 +44,6 @@ public class HaxeTree extends CommonTree {
 
 	/** The auxiliary. */
 	private boolean auxiliary = false;
-
-	/** The message handler. */
 	private static IMessageHandler messageHandler;
 
 	/**
@@ -56,78 +54,34 @@ public class HaxeTree extends CommonTree {
 	/** The most right position. */
 	private int mostRightPosition = -1;
 
-	/**
-	 * The Enum boolOperations.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
 	private enum boolOperations {
-
-		/** The PLUS. */
 		PLUS,
-		/** The MINUS. */
 		MINUS,
-		/** The MULTY. */
 		MULTY,
-		/** The DIV. */
 		DIV,
 		EQ,
 		PERCENT
 	};
 
-	/** The Constant PARAM_LIST_TYPE. */
 	public static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST; 
-
-	/** The Constant TYPE_TAG_TYPE. */
 	public static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
-
-	/** The Constant SUFFIX_EXPR_TYPE. */
 	public static final int SUFFIX_EXPR_TYPE = HaxeParser.SUFFIX_EXPR;
-
-	/** The Constant VAR_INIT_TYPE. */
 	public static final int VAR_INIT_TYPE = HaxeParser.VAR_INIT;
-
-	/** The Constant MODULE_TYPE. */
 	public static final int MODULE_TYPE = HaxeParser.MODULE;
-
-	/** The Constant ENUM_TYPE. */
 	public static final int ENUM_TYPE = HaxeParser.ENUM;
 		
-
-	/**
-	 * Checks if is auxiliary.
-	 * 
-	 * @return the auxiliary
-	 */
-	public boolean isAuxiliary() {
+	public boolean isAuxiliary() { 
 		return this.auxiliary;
 	}
 
-	/**
-	 * Sets the auxiliary.
-	 * 
-	 * @param auxiliary
-	 *            the auxiliary to set
-	 */
 	public void setAuxiliary(final boolean auxiliary) {
 		this.auxiliary = auxiliary;
 	}
 
-	/**
-	 * Sets the message handler.
-	 * 
-	 * @param messageHandler
-	 *            the messageHandler to set
-	 */
 	public static void setMessageHandler(final IMessageHandler messageHandler) {
 		HaxeTree.messageHandler = messageHandler;
 	}
 
-	/**
-	 * Gets the message handler.
-	 * 
-	 * @return the messageHandler
-	 */
 	public static IMessageHandler getMessageHandler() {
 		return messageHandler;
 	}
@@ -554,8 +508,9 @@ public class HaxeTree extends CommonTree {
 					tree.calculateScopes(blockScope);
 				}
 			}
-			HaxeType leftPart = ((VarUsage) this.getChild(0)).getHaxeType();
-			HaxeType rightPart = this.getTypeOfOperation(this.getChild(1));
+			AssignOperationNode thisAsAssignNode = (AssignOperationNode)this;
+			HaxeType leftPart = (thisAsAssignNode.getLeftOperand()).getHaxeType();			
+			HaxeType rightPart = this.getTypeOfOperation(thisAsAssignNode.getRightOperand());
 			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
 				//длинна and offset is right, проверять всплыв подск где то в другом месте
 				this.commitError("Can't cast "+
@@ -666,7 +621,7 @@ public class HaxeTree extends CommonTree {
 	private HaxeType getTypeOfOperation(final HaxeTree node)
 			throws HaxeCastException {
 		if (node instanceof VarUsage) {
-			return ((VarUsage) node).getHaxeType();
+			return node.getHaxeType();
 		} else if (node instanceof HaxeTree) {
 			if (node.getType() == SUFFIX_EXPR_TYPE) {
 				/**

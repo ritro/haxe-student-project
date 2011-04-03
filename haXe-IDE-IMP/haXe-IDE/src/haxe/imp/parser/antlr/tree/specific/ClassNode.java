@@ -110,8 +110,8 @@ public class ClassNode extends HaxeTree {
 		for (HaxeTree i : getInherits().getChildren())
 			list.add(new HaxeType(i.getChild(0).getText()));
 		
-		//FIXME not sure if I understood right - types from class Hierarhy and here are the same?????
-		type.setImplementedTypes(list);
+		//FIXME not sure if I understood right - types from  Hierarhy and Implemented are the same?????
+		type.setClassHierarchy(list);
 		return type;
 	}
 

@@ -290,13 +290,8 @@ exprList:	expr (COMMA! expr)*
 expr	:	assignExpr
 	|	UNTYPED assignExpr	-> ^(UNTYPED assignExpr)
 	;
-	
-assignExpr
-	:	assignExprEx
-	|	UNTYPED assignExprEx	-> ^(UNTYPED assignExprEx)
-	;
 
-assignExprEx
+assignExpr
 	: 	iterExpr (assignOp^ iterExpr)* 
 	;
 
@@ -332,7 +327,7 @@ multExpr:	(prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
 	;
 	
 prefixExpr
-        :	(SUB|SUBSUB|PLUSPLUS|BANG|TILDE) prefixExpr
+        :	(SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
         |	newExpr
         |	cast
         |	suffixExpr
@@ -340,7 +335,7 @@ prefixExpr
 	
 suffixExpr
 	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? exprListOpt?)
-	|	value LBRACKET expr RBRACKET
+	|	value LBRACKET! expr RBRACKET!
 	|	value PLUSPLUS 			-> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
 	|	value SUBSUB 			-> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? SUBSUB)
 	|	value typeParamOpt
@@ -349,7 +344,7 @@ suffixExpr
 value	:	funcLit 
 		|	arrayLit
         |   objLit
-        |   NULL
+        |   NULL -> ^(NULL<VarUsage>[$NULL,"Unknown<0>"])
         |   elementarySymbol
         |   LPAREN! (expr|statement) RPAREN!
         |	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)

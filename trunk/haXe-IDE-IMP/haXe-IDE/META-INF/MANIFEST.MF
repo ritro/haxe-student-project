@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  lpg.runtime,
  org.eclipse.ui.editors,
  org.eclipse.ui.workbench.texteditor,
- org.eclipse.imp.smapifier
+ org.eclipse.imp.smapifier,
+ org.eclipse.jdt.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-LazyStart: true

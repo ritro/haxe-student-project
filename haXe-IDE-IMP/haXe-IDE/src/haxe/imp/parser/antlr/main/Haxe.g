@@ -54,6 +54,7 @@ import haxe.imp.parser.antlr.tree.specific.SwitchNode;
 import haxe.imp.parser.antlr.tree.specific.TryNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
+import haxe.imp.parser.antlr.tree.specific.Constant;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
@@ -327,12 +328,12 @@ multExpr:	(prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
 	;
 	
 prefixExpr
-	:	(SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
-	|	newExpr
-	|	cast
-	|	suffixExpr
-	;
-
+        :	(SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
+        |	newExpr
+        |	cast
+        |	suffixExpr
+        ;
+	
 suffixExpr
 	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? exprListOpt?)
 	|	value LBRACKET! expr RBRACKET!
@@ -342,14 +343,13 @@ suffixExpr
 ;
 
 value	:	funcLit 
-	|	arrayLit
-	|	objLit
-	|	NULL -> ^(NULL<VarUsage>[$NULL,"Unknown<0>"])
-	|	elementarySymbol
-	|	LPAREN! (expr|statement) RPAREN!
-	|	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
-	|
-	;
+		|	arrayLit
+        |   objLit
+        |   elementarySymbol
+        |   LPAREN! (expr|statement) RPAREN!
+        |	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
+        |
+        ;
 		
 newExpr           
 	:	NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)
@@ -511,13 +511,14 @@ objLitElem
 	;
 	
 elementarySymbol
-	:	LONGLITERAL	-> LONGLITERAL<VarUsage>[$LONGLITERAL, "INT"]
-	|	INTLITERAL	-> INTLITERAL<VarUsage>[$INTLITERAL, "INT"]
-	|	STRINGLITERAL	-> STRINGLITERAL<VarUsage>[$STRINGLITERAL,"STRING"]
-	|	CHARLITERAL	-> CHARLITERAL<VarUsage>[$CHARLITERAL, "STRING"]
-	|	FLOATNUM	-> FLOATNUM<VarUsage>[$FLOATNUM, "FLOAT"]
-	|	TRUE		-> TRUE<VarUsage>[$TRUE,"BOOL"]
-	|	FALSE		-> FALSE<VarUsage>[$FALSE,"BOOL"]
+	:	LONGLITERAL	-> LONGLITERAL<Constant>[$LONGLITERAL, "INT"]
+	|   NULL -> ^(NULL<Constant>[$NULL,"Unknown<0>"])
+	|	INTLITERAL	-> INTLITERAL<Constant>[$INTLITERAL, "INT"]
+	|	STRINGLITERAL	-> STRINGLITERAL<Constant>[$STRINGLITERAL,"STRING"]
+	|	CHARLITERAL	-> CHARLITERAL<Constant>[$CHARLITERAL, "STRING"]
+	|	FLOATNUM	-> FLOATNUM<Constant>[$FLOATNUM, "FLOAT"]
+	|	TRUE		-> TRUE<Constant>[$TRUE,"BOOL"]
+	|	FALSE		-> FALSE<Constant>[$FALSE,"BOOL"]
 	;    
 
 WS  :   ( ' '

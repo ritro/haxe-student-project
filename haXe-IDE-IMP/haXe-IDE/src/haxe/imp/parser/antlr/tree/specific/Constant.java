@@ -1,28 +1,13 @@
-/*******************************************************************************
- * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU General Public License, version 2
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl-2.0.html
- *
- * Contributors:
- *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
- *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
-import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
-/**
- * The Class VarUsage.
- * 
- * @author kondratyev
- */
-public class VarUsage extends HaxeTree {
+public class Constant extends HaxeTree {
 	
+	/** The var type. */
 	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
 
 	/**
@@ -46,8 +31,8 @@ public class VarUsage extends HaxeTree {
 	
 	@Override
 	public void printTree(){
-		System.out.println("VarUsage"+ "(name=" +this.getText()+")" +
-				"{"+getHaxeType().getTypeName()+'}');
+		System.out.println("Const"+"(name="+this.getText() +")"
+				+"{"+getHaxeType().getTypeName()+'}');
 	}
 
 	/**
@@ -56,20 +41,8 @@ public class VarUsage extends HaxeTree {
 	 * @param t
 	 *            the t
 	 */
-	public VarUsage(final Token t) {
+	public Constant(final Token t) {
 		this.token = t;
-	}
-	
-	/**
-	 * 
-	 * @return if getText != null then getText, else child(0).getText
-	 */
-	@Override
-	public String getText() {
-		if (this.getChildCount() == 0) 
-			return super.getText();
-		
-		return this.getChild(0).getText();
 	}
 	
 	/**
@@ -91,7 +64,7 @@ public class VarUsage extends HaxeTree {
 	 * @param varType
 	 *            the var type
 	 */
-	public VarUsage(final int ttype, final Token t, final String varType) {
+	public Constant(final int ttype, final Token t, final String varType) {
 		this.token = t;
 		if (varType.equals("INT")) {
 			this.setHaxeType(HaxeType.haxeInt);
@@ -112,33 +85,14 @@ public class VarUsage extends HaxeTree {
 		}
 	}
 
-	public VarUsage(final int ttype, final boolean auxiliary) {
+	public Constant(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
 	}
 	
-
-	/**
-	 * Gets the clone.
-	 * 
-	 * @return the clone
-	 */
-	public VarUsage getClone() {
-		VarUsage varUsage = new VarUsage(this.getToken());
+	public Constant getClone() {
+		Constant varUsage = new Constant(this.getToken());
 		varUsage.setHaxeType(this.getHaxeType());
 		return varUsage;
-	}
-
-	/**
-	 * Gets the text with type.
-	 * 
-	 * @return the text with type
-	 */
-	public String getTextWithType() {
-		if (this.getParent() instanceof FunctionNode) {
-			return ((FunctionNode) this.getParent())
-					.getFullNameWithParameters();
-		}
-		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 
 }

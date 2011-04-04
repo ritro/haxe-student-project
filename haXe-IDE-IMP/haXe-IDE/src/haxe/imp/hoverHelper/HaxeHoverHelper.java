@@ -163,11 +163,14 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		if (helpNode instanceof VarUsage) {
 			VarUsage def = (VarUsage) helpNode;
 			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
-		} else if (helpNode instanceof FunctionNode
+		}else if (helpNode instanceof FunctionNode
 				|| ((HaxeTree) helpNode).getParent() instanceof FunctionNode) {
 			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode
 					: ((HaxeTree) helpNode).getParent());
 			msg = def.getFullNameWithParameters();
+		}else if (helpNode instanceof HaxeTree && ((HaxeTree)helpNode).parent instanceof VarUsage){
+			VarUsage def = (VarUsage)((HaxeTree)helpNode).parent;
+			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
 		}
 		return msg;
 	}

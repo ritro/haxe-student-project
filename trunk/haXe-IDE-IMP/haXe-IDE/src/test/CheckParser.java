@@ -43,6 +43,13 @@ public class CheckParser {
 	}
 	
 	@Test
+	public void testAssignment() throws RecognitionException{
+		parseClass("testSimpleAssignmentGlobal");
+		parseClass("testSimpleAssignmentLocal");
+		parseClass("testSimpleAssignmentLocal2");
+	}
+	
+	@Test
 	public void testFunction() throws RecognitionException {
 		assertTreeSize(2, parseFunctionFile("testFunction01"));
 		assertTreeSize(4, parseFunctionFile("testFunction02"));

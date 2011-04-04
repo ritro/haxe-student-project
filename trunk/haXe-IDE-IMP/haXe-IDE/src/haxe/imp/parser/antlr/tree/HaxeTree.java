@@ -19,6 +19,7 @@ import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.Constant;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
@@ -514,7 +515,7 @@ public class HaxeTree extends CommonTree {
 			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
 				//длинна and offset is right, проверять всплыв подск где то в другом месте
 				this.commitError("Can't cast "+
-						((VarUsage)this.getChild(1)).getText()+" of type "+ rightPart.getTypeName()
+						thisAsAssignNode.getRightOperand().getText()+" of type "+ rightPart.getTypeName()
 						+" to type "+leftPart.getTypeName(), 
 						this.getToken().getStartIndex(), 
 												this.getToken().getText().length());
@@ -620,14 +621,14 @@ public class HaxeTree extends CommonTree {
 	 */
 	private HaxeType getTypeOfOperation(final HaxeTree node)
 			throws HaxeCastException {
-		if (node instanceof VarUsage) {
+		if (node instanceof VarUsage | node instanceof Constant) {
 			return node.getHaxeType();
 		} else if (node instanceof HaxeTree) {
 			if (node.getType() == SUFFIX_EXPR_TYPE) {
 				/**
 				 * TODO check types of arguments
 				 */
-				return ((VarUsage) node.getChild(0)).getHaxeType();
+				return node.getChild(0).getHaxeType();
 			} else if (node.getText().equals("+")) {
 				return this.getTypeOfOperation(node.getChild(0), node
 						.getChild(1), boolOperations.PLUS);
@@ -1090,6 +1091,9 @@ public class HaxeTree extends CommonTree {
 				if (t.getChild(i) instanceof VarUsage)
 					((VarUsage)t.getChild(i)).printTree();
 				else
+				if (t.getChild(i) instanceof Constant)
+					((Constant)t.getChild(i)).printTree();
+				else
 					System.out.println(t.getChild(i).getText());
 				this.printTree(t.getChild(i), indent + 1);
 			}
@@ -1102,6 +1106,8 @@ public class HaxeTree extends CommonTree {
 			return ((BlockScopeNode)this).getHaxeType();
 		else if (this instanceof VarUsage)
 			return ((VarUsage)this).getHaxeType();
+		else if (this instanceof Constant)
+			return ((Constant)this).getHaxeType();
 		else if (this instanceof VarDeclaration)
 			return ((VarDeclaration)this).getHaxeType();
 		else if (this instanceof ClassNode)

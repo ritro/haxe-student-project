@@ -141,5 +141,20 @@
             id="haxe.imp.preferences.Haxe">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            adaptable="true"
+            nameFilter="*"
+            id="haxe.imp.projectContextMenu">
+         <action
+               label="Enable haxe Builder"
+               tooltip="Enable the haxe builder for this project"
+               class="haxe.imp.actions.EnableHaxeNature"
+               id="haxe.imp.actions.enableNatureAction">
+         </action>
+      </objectContribution>
+   </extension>
 
 </plugin>

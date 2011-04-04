@@ -51,8 +51,7 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 	 *            the controller
 	 * @return the link target
 	 */
-	public Object getLinkTarget(final Object node,
-			final IParseController controller) {
+	public Object getLinkTarget(final Object node, final IParseController controller) {
 		// START_HERE
 		// TODO Replace the following with an implementation suitable for your
 		// language and reference types

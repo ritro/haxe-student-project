@@ -327,12 +327,12 @@ multExpr:	(prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
 	;
 	
 prefixExpr
-        :	(SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
-        |	newExpr
-        |	cast
-        |	suffixExpr
-        ;
-	
+	:	(SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
+	|	newExpr
+	|	cast
+	|	suffixExpr
+	;
+
 suffixExpr
 	:	value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? exprListOpt?)
 	|	value LBRACKET! expr RBRACKET!
@@ -342,14 +342,14 @@ suffixExpr
 ;
 
 value	:	funcLit 
-		|	arrayLit
-        |   objLit
-        |   NULL -> ^(NULL<VarUsage>[$NULL,"Unknown<0>"])
-        |   elementarySymbol
-        |   LPAREN! (expr|statement) RPAREN!
-        |	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
-        |
-        ;
+	|	arrayLit
+	|	objLit
+	|	NULL -> ^(NULL<VarUsage>[$NULL,"Unknown<0>"])
+	|	elementarySymbol
+	|	LPAREN! (expr|statement) RPAREN!
+	|	dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
+	|
+	;
 		
 newExpr           
 	:	NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)

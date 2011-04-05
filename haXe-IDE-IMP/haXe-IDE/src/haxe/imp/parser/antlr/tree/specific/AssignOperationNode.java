@@ -35,7 +35,8 @@ public class AssignOperationNode extends HaxeTree {
 //MB при создании - уже ищем тип -> залазим в вар декларатион и присваиваем там?
 
 	public HaxeTree getLeftOperand(){
-		return (VarUsage)this.getChild(0);
+		// it could be not only VarUsage but also field access or slice
+		return this.getChild(0);
 	}
 	
 	public HaxeTree getRightOperand(){

@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 Haxe.g 2011-04-04 20:48:04
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 Haxe.g 2011-04-05 14:11:39
 
 package haxe.imp.parser.antlr.main;
 
@@ -210,7 +210,7 @@ public class HaxeParser extends Parser {
         }
         public HaxeParser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-            this.state.ruleMemo = new HashMap[246+1];
+            this.state.ruleMemo = new HashMap[248+1];
              
              
         }
@@ -250,10 +250,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_topLevelList=new RewriteRuleSubtreeStream(adaptor,"rule topLevelList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-            // Haxe.g:62:2: ( ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? ) )
-            // Haxe.g:62:4: ( myPackage )? topLevelList
+            // Haxe.g:62:5: ( ( myPackage )? topLevelList -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? ) )
+            // Haxe.g:62:7: ( myPackage )? topLevelList
             {
-            // Haxe.g:62:4: ( myPackage )?
+            // Haxe.g:62:7: ( myPackage )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -264,7 +264,7 @@ public class HaxeParser extends Parser {
                 case 1 :
                     // Haxe.g:0:0: myPackage
                     {
-                    pushFollow(FOLLOW_myPackage_in_module123);
+                    pushFollow(FOLLOW_myPackage_in_module165);
                     myPackage1=myPackage();
 
                     state._fsp--;
@@ -276,7 +276,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            pushFollow(FOLLOW_topLevelList_in_module126);
+            pushFollow(FOLLOW_topLevelList_in_module168);
             topLevelList2=topLevelList();
 
             state._fsp--;
@@ -285,7 +285,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: topLevelList, myPackage
+            // elements: myPackage, topLevelList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -296,20 +296,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 62:28: -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
+            // 62:31: -> ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
             {
-                // Haxe.g:62:31: ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
+                // Haxe.g:62:34: ^( MODULE[\"MODULE\",true] ( myPackage )? ( topLevelList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new HaxeTree(MODULE, "MODULE", true), root_1);
 
-                // Haxe.g:62:65: ( myPackage )?
+                // Haxe.g:62:68: ( myPackage )?
                 if ( stream_myPackage.hasNext() ) {
                     adaptor.addChild(root_1, stream_myPackage.nextTree());
 
                 }
                 stream_myPackage.reset();
-                // Haxe.g:62:76: ( topLevelList )?
+                // Haxe.g:62:79: ( topLevelList )?
                 if ( stream_topLevelList.hasNext() ) {
                     adaptor.addChild(root_1, stream_topLevelList.nextTree());
 
@@ -364,12 +364,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
-            // Haxe.g:66:2: ( ( topLevel )* )
-            // Haxe.g:66:4: ( topLevel )*
+            // Haxe.g:66:5: ( ( topLevel )* )
+            // Haxe.g:66:7: ( topLevel )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:66:4: ( topLevel )*
+            // Haxe.g:66:7: ( topLevel )*
             loop2:
             do {
                 int alt2=2;
@@ -382,9 +382,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // Haxe.g:66:5: topLevel
+            	    // Haxe.g:66:8: topLevel
             	    {
-            	    pushFollow(FOLLOW_topLevel_in_topLevelList155);
+            	    pushFollow(FOLLOW_topLevel_in_topLevelList206);
             	    topLevel3=topLevel();
 
             	    state._fsp--;
@@ -444,7 +444,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
-            // Haxe.g:70:2: ( myImport | topLevelDecl )
+            // Haxe.g:70:5: ( myImport | topLevelDecl )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -463,11 +463,11 @@ public class HaxeParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // Haxe.g:70:4: myImport
+                    // Haxe.g:70:7: myImport
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_myImport_in_topLevel168);
+                    pushFollow(FOLLOW_myImport_in_topLevel225);
                     myImport4=myImport();
 
                     state._fsp--;
@@ -477,11 +477,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:72:4: topLevelDecl
+                    // Haxe.g:72:7: topLevelDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_topLevelDecl_in_topLevel174);
+                    pushFollow(FOLLOW_topLevelDecl_in_topLevel234);
                     topLevelDecl5=topLevelDecl();
 
                     state._fsp--;
@@ -538,19 +538,19 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_dotIdent=new RewriteRuleSubtreeStream(adaptor,"rule dotIdent");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
-            // Haxe.g:76:2: ( PACKAGE dotIdent SEMI -> ^( PACKAGE ( dotIdent )? ) )
-            // Haxe.g:76:4: PACKAGE dotIdent SEMI
+            // Haxe.g:76:5: ( PACKAGE dotIdent SEMI -> ^( PACKAGE ( dotIdent )? ) )
+            // Haxe.g:76:7: PACKAGE dotIdent SEMI
             {
-            PACKAGE6=(Token)match(input,PACKAGE,FOLLOW_PACKAGE_in_myPackage185); if (state.failed) return retval; 
+            PACKAGE6=(Token)match(input,PACKAGE,FOLLOW_PACKAGE_in_myPackage251); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_PACKAGE.add(PACKAGE6);
 
-            pushFollow(FOLLOW_dotIdent_in_myPackage187);
+            pushFollow(FOLLOW_dotIdent_in_myPackage253);
             dotIdent7=dotIdent();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_dotIdent.add(dotIdent7.getTree());
-            SEMI8=(Token)match(input,SEMI,FOLLOW_SEMI_in_myPackage189); if (state.failed) return retval; 
+            SEMI8=(Token)match(input,SEMI,FOLLOW_SEMI_in_myPackage255); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_SEMI.add(SEMI8);
 
 
@@ -567,14 +567,14 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 76:26: -> ^( PACKAGE ( dotIdent )? )
+            // 76:29: -> ^( PACKAGE ( dotIdent )? )
             {
-                // Haxe.g:76:29: ^( PACKAGE ( dotIdent )? )
+                // Haxe.g:76:32: ^( PACKAGE ( dotIdent )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_PACKAGE.nextNode(), root_1);
 
-                // Haxe.g:76:39: ( dotIdent )?
+                // Haxe.g:76:42: ( dotIdent )?
                 if ( stream_dotIdent.hasNext() ) {
                     adaptor.addChild(root_1, stream_dotIdent.nextTree());
 
@@ -637,23 +637,23 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
-            // Haxe.g:79:6: ( MONKEYS_AT metaName ( LPAREN paramList RPAREN )? )
-            // Haxe.g:79:8: MONKEYS_AT metaName ( LPAREN paramList RPAREN )?
+            // Haxe.g:79:9: ( MONKEYS_AT metaName ( LPAREN paramList RPAREN )? )
+            // Haxe.g:79:11: MONKEYS_AT metaName ( LPAREN paramList RPAREN )?
             {
             root_0 = (Object)adaptor.nil();
 
-            MONKEYS_AT9=(Token)match(input,MONKEYS_AT,FOLLOW_MONKEYS_AT_in_meta208); if (state.failed) return retval;
+            MONKEYS_AT9=(Token)match(input,MONKEYS_AT,FOLLOW_MONKEYS_AT_in_meta280); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             MONKEYS_AT9_tree = (Object)adaptor.create(MONKEYS_AT9);
             adaptor.addChild(root_0, MONKEYS_AT9_tree);
             }
-            pushFollow(FOLLOW_metaName_in_meta210);
+            pushFollow(FOLLOW_metaName_in_meta282);
             metaName10=metaName();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, metaName10.getTree());
-            // Haxe.g:79:28: ( LPAREN paramList RPAREN )?
+            // Haxe.g:79:31: ( LPAREN paramList RPAREN )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -662,20 +662,20 @@ public class HaxeParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // Haxe.g:79:29: LPAREN paramList RPAREN
+                    // Haxe.g:79:32: LPAREN paramList RPAREN
                     {
-                    LPAREN11=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_meta213); if (state.failed) return retval;
+                    LPAREN11=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_meta285); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     LPAREN11_tree = (Object)adaptor.create(LPAREN11);
                     adaptor.addChild(root_0, LPAREN11_tree);
                     }
-                    pushFollow(FOLLOW_paramList_in_meta215);
+                    pushFollow(FOLLOW_paramList_in_meta287);
                     paramList12=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, paramList12.getTree());
-                    RPAREN13=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_meta217); if (state.failed) return retval;
+                    RPAREN13=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_meta289); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     RPAREN13_tree = (Object)adaptor.create(RPAREN13);
                     adaptor.addChild(root_0, RPAREN13_tree);
@@ -735,7 +735,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-            // Haxe.g:83:2: ( IDENTIFIER | primitiveType | COLON metaName )
+            // Haxe.g:83:5: ( IDENTIFIER | primitiveType | COLON metaName )
             int alt5=3;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
@@ -767,11 +767,11 @@ public class HaxeParser extends Parser {
 
             switch (alt5) {
                 case 1 :
-                    // Haxe.g:83:4: IDENTIFIER
+                    // Haxe.g:83:7: IDENTIFIER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    IDENTIFIER14=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_metaName230); if (state.failed) return retval;
+                    IDENTIFIER14=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_metaName308); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER14_tree = (Object)adaptor.create(IDENTIFIER14);
                     adaptor.addChild(root_0, IDENTIFIER14_tree);
@@ -780,11 +780,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:84:4: primitiveType
+                    // Haxe.g:84:7: primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_metaName235);
+                    pushFollow(FOLLOW_primitiveType_in_metaName316);
                     primitiveType15=primitiveType();
 
                     state._fsp--;
@@ -794,16 +794,16 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:86:4: COLON metaName
+                    // Haxe.g:86:7: COLON metaName
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    COLON16=(Token)match(input,COLON,FOLLOW_COLON_in_metaName241); if (state.failed) return retval;
+                    COLON16=(Token)match(input,COLON,FOLLOW_COLON_in_metaName325); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     COLON16_tree = (Object)adaptor.create(COLON16);
                     adaptor.addChild(root_0, COLON16_tree);
                     }
-                    pushFollow(FOLLOW_metaName_in_metaName243);
+                    pushFollow(FOLLOW_metaName_in_metaName327);
                     metaName17=metaName();
 
                     state._fsp--;
@@ -856,12 +856,12 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-            // Haxe.g:90:2: ( ( meta )* ( EXTERN | PRIVATE )* )
-            // Haxe.g:90:4: ( meta )* ( EXTERN | PRIVATE )*
+            // Haxe.g:90:5: ( ( meta )* ( EXTERN | PRIVATE )* )
+            // Haxe.g:90:7: ( meta )* ( EXTERN | PRIVATE )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:90:4: ( meta )*
+            // Haxe.g:90:7: ( meta )*
             loop6:
             do {
                 int alt6=2;
@@ -874,9 +874,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // Haxe.g:90:5: meta
+            	    // Haxe.g:90:8: meta
             	    {
-            	    pushFollow(FOLLOW_meta_in_typeDeclFlags255);
+            	    pushFollow(FOLLOW_meta_in_typeDeclFlags345);
             	    meta18=meta();
 
             	    state._fsp--;
@@ -891,7 +891,7 @@ public class HaxeParser extends Parser {
                 }
             } while (true);
 
-            // Haxe.g:90:12: ( EXTERN | PRIVATE )*
+            // Haxe.g:90:15: ( EXTERN | PRIVATE )*
             loop7:
             do {
                 int alt7=2;
@@ -976,13 +976,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-            // Haxe.g:94:2: ( (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* )
-            // Haxe.g:94:4: (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
+            // Haxe.g:94:5: ( (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )* )
+            // Haxe.g:94:10: (a= IDENTIFIER -> $a) ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
             {
-            // Haxe.g:94:4: (a= IDENTIFIER -> $a)
-            // Haxe.g:94:5: a= IDENTIFIER
+            // Haxe.g:94:10: (a= IDENTIFIER -> $a)
+            // Haxe.g:94:11: a= IDENTIFIER
             {
-            a=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_qualifiedIdentifier281); if (state.failed) return retval; 
+            a=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_qualifiedIdentifier383); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(a);
 
 
@@ -1000,7 +1000,7 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 94:19: -> $a
+            // 94:25: -> $a
             {
                 adaptor.addChild(root_0, stream_a.nextNode());
 
@@ -1009,7 +1009,7 @@ public class HaxeParser extends Parser {
             retval.tree = root_0;}
             }
 
-            // Haxe.g:94:29: ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
+            // Haxe.g:94:35: ( DOT ident= IDENTIFIER -> ^( DOT $qualifiedIdentifier $ident) )*
             loop8:
             do {
                 int alt8=2;
@@ -1022,12 +1022,12 @@ public class HaxeParser extends Parser {
 
                 switch (alt8) {
             	case 1 :
-            	    // Haxe.g:94:30: DOT ident= IDENTIFIER
+            	    // Haxe.g:94:36: DOT ident= IDENTIFIER
             	    {
-            	    DOT20=(Token)match(input,DOT,FOLLOW_DOT_in_qualifiedIdentifier294); if (state.failed) return retval; 
+            	    DOT20=(Token)match(input,DOT,FOLLOW_DOT_in_qualifiedIdentifier396); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_DOT.add(DOT20);
 
-            	    ident=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_qualifiedIdentifier298); if (state.failed) return retval; 
+            	    ident=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_qualifiedIdentifier400); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_IDENTIFIER.add(ident);
 
 
@@ -1045,9 +1045,9 @@ public class HaxeParser extends Parser {
             	    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             	    root_0 = (Object)adaptor.nil();
-            	    // 94:52: -> ^( DOT $qualifiedIdentifier $ident)
+            	    // 94:58: -> ^( DOT $qualifiedIdentifier $ident)
             	    {
-            	        // Haxe.g:94:56: ^( DOT $qualifiedIdentifier $ident)
+            	        // Haxe.g:94:62: ^( DOT $qualifiedIdentifier $ident)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(stream_DOT.nextNode(), root_1);
@@ -1122,7 +1122,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-            // Haxe.g:98:2: ( IMPORT dotIdent SEMI | USING dotIdent SEMI )
+            // Haxe.g:98:5: ( IMPORT dotIdent SEMI | USING dotIdent SEMI )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1141,42 +1141,42 @@ public class HaxeParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // Haxe.g:98:4: IMPORT dotIdent SEMI
+                    // Haxe.g:98:7: IMPORT dotIdent SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    IMPORT21=(Token)match(input,IMPORT,FOLLOW_IMPORT_in_myImport327); if (state.failed) return retval;
+                    IMPORT21=(Token)match(input,IMPORT,FOLLOW_IMPORT_in_myImport438); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IMPORT21_tree = (Object)adaptor.create(IMPORT21);
                     root_0 = (Object)adaptor.becomeRoot(IMPORT21_tree, root_0);
                     }
-                    pushFollow(FOLLOW_dotIdent_in_myImport330);
+                    pushFollow(FOLLOW_dotIdent_in_myImport441);
                     dotIdent22=dotIdent();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, dotIdent22.getTree());
-                    SEMI23=(Token)match(input,SEMI,FOLLOW_SEMI_in_myImport332); if (state.failed) return retval;
+                    SEMI23=(Token)match(input,SEMI,FOLLOW_SEMI_in_myImport443); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:99:4: USING dotIdent SEMI
+                    // Haxe.g:99:7: USING dotIdent SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    USING24=(Token)match(input,USING,FOLLOW_USING_in_myImport338); if (state.failed) return retval;
+                    USING24=(Token)match(input,USING,FOLLOW_USING_in_myImport452); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     USING24_tree = (Object)adaptor.create(USING24);
                     root_0 = (Object)adaptor.becomeRoot(USING24_tree, root_0);
                     }
-                    pushFollow(FOLLOW_dotIdent_in_myImport341);
+                    pushFollow(FOLLOW_dotIdent_in_myImport455);
                     dotIdent25=dotIdent();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, dotIdent25.getTree());
-                    SEMI26=(Token)match(input,SEMI,FOLLOW_SEMI_in_myImport343); if (state.failed) return retval;
+                    SEMI26=(Token)match(input,SEMI,FOLLOW_SEMI_in_myImport457); if (state.failed) return retval;
 
                     }
                     break;
@@ -1222,7 +1222,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
-            // Haxe.g:104:2: ( PUBLIC | PRIVATE )
+            // Haxe.g:104:5: ( PUBLIC | PRIVATE )
             // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -1290,7 +1290,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
-            // Haxe.g:109:2: ( STATIC | INLINE | DYNAMIC | OVERRIDE | access )
+            // Haxe.g:109:5: ( STATIC | INLINE | DYNAMIC | OVERRIDE | access )
             int alt10=5;
             switch ( input.LA(1) ) {
             case STATIC:
@@ -1329,11 +1329,11 @@ public class HaxeParser extends Parser {
 
             switch (alt10) {
                 case 1 :
-                    // Haxe.g:109:4: STATIC
+                    // Haxe.g:109:7: STATIC
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    STATIC28=(Token)match(input,STATIC,FOLLOW_STATIC_in_declAttr392); if (state.failed) return retval;
+                    STATIC28=(Token)match(input,STATIC,FOLLOW_STATIC_in_declAttr521); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     STATIC28_tree = (Object)adaptor.create(STATIC28);
                     adaptor.addChild(root_0, STATIC28_tree);
@@ -1342,11 +1342,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:110:4: INLINE
+                    // Haxe.g:110:7: INLINE
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    INLINE29=(Token)match(input,INLINE,FOLLOW_INLINE_in_declAttr397); if (state.failed) return retval;
+                    INLINE29=(Token)match(input,INLINE,FOLLOW_INLINE_in_declAttr529); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     INLINE29_tree = (Object)adaptor.create(INLINE29);
                     adaptor.addChild(root_0, INLINE29_tree);
@@ -1355,11 +1355,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:111:4: DYNAMIC
+                    // Haxe.g:111:7: DYNAMIC
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    DYNAMIC30=(Token)match(input,DYNAMIC,FOLLOW_DYNAMIC_in_declAttr402); if (state.failed) return retval;
+                    DYNAMIC30=(Token)match(input,DYNAMIC,FOLLOW_DYNAMIC_in_declAttr537); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     DYNAMIC30_tree = (Object)adaptor.create(DYNAMIC30);
                     adaptor.addChild(root_0, DYNAMIC30_tree);
@@ -1368,11 +1368,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:112:4: OVERRIDE
+                    // Haxe.g:112:7: OVERRIDE
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    OVERRIDE31=(Token)match(input,OVERRIDE,FOLLOW_OVERRIDE_in_declAttr407); if (state.failed) return retval;
+                    OVERRIDE31=(Token)match(input,OVERRIDE,FOLLOW_OVERRIDE_in_declAttr545); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     OVERRIDE31_tree = (Object)adaptor.create(OVERRIDE31);
                     adaptor.addChild(root_0, OVERRIDE31_tree);
@@ -1381,11 +1381,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // Haxe.g:113:4: access
+                    // Haxe.g:113:7: access
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_access_in_declAttr412);
+                    pushFollow(FOLLOW_access_in_declAttr553);
                     access32=access();
 
                     state._fsp--;
@@ -1436,10 +1436,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_declAttr=new RewriteRuleSubtreeStream(adaptor,"rule declAttr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // Haxe.g:117:2: ( ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ ) )
-            // Haxe.g:117:4: ( declAttr )+
+            // Haxe.g:117:5: ( ( declAttr )+ -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ ) )
+            // Haxe.g:117:7: ( declAttr )+
             {
-            // Haxe.g:117:4: ( declAttr )+
+            // Haxe.g:117:7: ( declAttr )+
             int cnt11=0;
             loop11:
             do {
@@ -1453,9 +1453,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // Haxe.g:117:5: declAttr
+            	    // Haxe.g:117:8: declAttr
             	    {
-            	    pushFollow(FOLLOW_declAttr_in_declAttrList424);
+            	    pushFollow(FOLLOW_declAttr_in_declAttrList571);
             	    declAttr33=declAttr();
 
             	    state._fsp--;
@@ -1489,9 +1489,9 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 117:16: -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
+            // 117:19: -> ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
             {
-                // Haxe.g:117:19: ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
+                // Haxe.g:117:22: ^( DECL_ATTR_LIST[\"DECL_ATTR_LIST\", true] ( declAttr )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new HaxeTree(DECL_ATTR_LIST, "DECL_ATTR_LIST", true), root_1);
@@ -1558,7 +1558,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_param=new RewriteRuleSubtreeStream(adaptor,"rule param");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-            // Haxe.g:121:2: ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ ) | )
+            // Haxe.g:121:5: ( param ( COMMA param )* -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ ) | )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1577,15 +1577,15 @@ public class HaxeParser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // Haxe.g:121:4: param ( COMMA param )*
+                    // Haxe.g:121:7: param ( COMMA param )*
                     {
-                    pushFollow(FOLLOW_param_in_paramList450);
+                    pushFollow(FOLLOW_param_in_paramList603);
                     param34=param();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_param.add(param34.getTree());
-                    // Haxe.g:121:10: ( COMMA param )*
+                    // Haxe.g:121:13: ( COMMA param )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1598,12 +1598,12 @@ public class HaxeParser extends Parser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // Haxe.g:121:11: COMMA param
+                    	    // Haxe.g:121:14: COMMA param
                     	    {
-                    	    COMMA35=(Token)match(input,COMMA,FOLLOW_COMMA_in_paramList453); if (state.failed) return retval; 
+                    	    COMMA35=(Token)match(input,COMMA,FOLLOW_COMMA_in_paramList606); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_COMMA.add(COMMA35);
 
-                    	    pushFollow(FOLLOW_param_in_paramList455);
+                    	    pushFollow(FOLLOW_param_in_paramList608);
                     	    param36=param();
 
                     	    state._fsp--;
@@ -1632,9 +1632,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 121:25: -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
+                    // 121:28: -> ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
                     {
-                        // Haxe.g:121:28: ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
+                        // Haxe.g:121:31: ^( PARAM_LIST[\"PARAM_LIST\", true] ( param )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(PARAM_LIST, "PARAM_LIST", true), root_1);
@@ -1657,7 +1657,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:123:2: 
+                    // Haxe.g:123:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1714,10 +1714,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_varInit=new RewriteRuleSubtreeStream(adaptor,"rule varInit");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-            // Haxe.g:126:2: ( ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? ) )
-            // Haxe.g:126:4: ( QUES )? IDENTIFIER typeTagOpt varInit
+            // Haxe.g:126:5: ( ( QUES )? IDENTIFIER typeTagOpt varInit -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? ) )
+            // Haxe.g:126:7: ( QUES )? IDENTIFIER typeTagOpt varInit
             {
-            // Haxe.g:126:4: ( QUES )?
+            // Haxe.g:126:7: ( QUES )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1728,7 +1728,7 @@ public class HaxeParser extends Parser {
                 case 1 :
                     // Haxe.g:0:0: QUES
                     {
-                    QUES37=(Token)match(input,QUES,FOLLOW_QUES_in_param485); if (state.failed) return retval; 
+                    QUES37=(Token)match(input,QUES,FOLLOW_QUES_in_param650); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_QUES.add(QUES37);
 
 
@@ -1737,16 +1737,16 @@ public class HaxeParser extends Parser {
 
             }
 
-            IDENTIFIER38=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_param488); if (state.failed) return retval; 
+            IDENTIFIER38=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_param653); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER38);
 
-            pushFollow(FOLLOW_typeTagOpt_in_param490);
+            pushFollow(FOLLOW_typeTagOpt_in_param655);
             typeTagOpt39=typeTagOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt39.getTree());
-            pushFollow(FOLLOW_varInit_in_param492);
+            pushFollow(FOLLOW_varInit_in_param657);
             varInit40=varInit();
 
             state._fsp--;
@@ -1755,7 +1755,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, varInit, QUES, typeTagOpt
+            // elements: typeTagOpt, QUES, varInit, IDENTIFIER
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1766,32 +1766,32 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 126:40: -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
+            // 126:43: -> ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
             {
-                // Haxe.g:126:43: ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
+                // Haxe.g:126:46: ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, IDENTIFIER38, true), root_1);
 
-                // Haxe.g:126:84: ( IDENTIFIER )?
+                // Haxe.g:126:87: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
                     adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
 
                 }
                 stream_IDENTIFIER.reset();
-                // Haxe.g:126:106: ( typeTagOpt )?
+                // Haxe.g:126:109: ( typeTagOpt )?
                 if ( stream_typeTagOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                 }
                 stream_typeTagOpt.reset();
-                // Haxe.g:126:118: ( varInit )?
+                // Haxe.g:126:121: ( varInit )?
                 if ( stream_varInit.hasNext() ) {
                     adaptor.addChild(root_1, stream_varInit.nextTree());
 
                 }
                 stream_varInit.reset();
-                // Haxe.g:126:127: ( QUES )?
+                // Haxe.g:126:130: ( QUES )?
                 if ( stream_QUES.hasNext() ) {
                     adaptor.addChild(root_1, stream_QUES.nextNode());
 
@@ -1846,7 +1846,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
-            // Haxe.g:129:4: ( IDENTIFIER | THIS )
+            // Haxe.g:129:7: ( IDENTIFIER | THIS )
             // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -1912,12 +1912,12 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
             // Haxe.g:133:9: ( ( id -> id ) ( DOT ident= id -> ^( $ident $dotIdent) )* )
-            // Haxe.g:133:11: ( id -> id ) ( DOT ident= id -> ^( $ident $dotIdent) )*
+            // Haxe.g:133:14: ( id -> id ) ( DOT ident= id -> ^( $ident $dotIdent) )*
             {
-            // Haxe.g:133:11: ( id -> id )
-            // Haxe.g:133:12: id
+            // Haxe.g:133:14: ( id -> id )
+            // Haxe.g:133:15: id
             {
-            pushFollow(FOLLOW_id_in_dotIdent544);
+            pushFollow(FOLLOW_id_in_dotIdent736);
             id42=id();
 
             state._fsp--;
@@ -1937,7 +1937,7 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 133:15: -> id
+            // 133:18: -> id
             {
                 adaptor.addChild(root_0, stream_id.nextTree());
 
@@ -1946,7 +1946,7 @@ public class HaxeParser extends Parser {
             retval.tree = root_0;}
             }
 
-            // Haxe.g:133:22: ( DOT ident= id -> ^( $ident $dotIdent) )*
+            // Haxe.g:133:25: ( DOT ident= id -> ^( $ident $dotIdent) )*
             loop15:
             do {
                 int alt15=2;
@@ -1959,12 +1959,12 @@ public class HaxeParser extends Parser {
 
                 switch (alt15) {
             	case 1 :
-            	    // Haxe.g:133:23: DOT ident= id
+            	    // Haxe.g:133:26: DOT ident= id
             	    {
-            	    DOT43=(Token)match(input,DOT,FOLLOW_DOT_in_dotIdent552); if (state.failed) return retval; 
+            	    DOT43=(Token)match(input,DOT,FOLLOW_DOT_in_dotIdent744); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_DOT.add(DOT43);
 
-            	    pushFollow(FOLLOW_id_in_dotIdent556);
+            	    pushFollow(FOLLOW_id_in_dotIdent748);
             	    ident=id();
 
             	    state._fsp--;
@@ -1985,9 +1985,9 @@ public class HaxeParser extends Parser {
             	    RewriteRuleSubtreeStream stream_ident=new RewriteRuleSubtreeStream(adaptor,"rule ident",ident!=null?ident.tree:null);
 
             	    root_0 = (Object)adaptor.nil();
-            	    // 133:36: -> ^( $ident $dotIdent)
+            	    // 133:39: -> ^( $ident $dotIdent)
             	    {
-            	        // Haxe.g:133:39: ^( $ident $dotIdent)
+            	        // Haxe.g:133:42: ^( $ident $dotIdent)
             	        {
             	        Object root_1 = (Object)adaptor.nil();
             	        root_1 = (Object)adaptor.becomeRoot(stream_ident.nextNode(), root_1);
@@ -2067,7 +2067,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
-            // Haxe.g:137:2: ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] )
+            // Haxe.g:137:5: ( EQ -> EQ[$EQ] | PLUSEQ -> PLUSEQ[$PLUSEQ] | SUBEQ -> SUBEQ[$SUBEQ] | SLASHEQ -> SLASHEQ[$SLASHEQ] | PERCENTEQ -> PERCENTEQ[$PERCENTEQ] | AMPEQ -> AMPEQ[$AMPEQ] )
             int alt16=6;
             switch ( input.LA(1) ) {
             case EQ:
@@ -2110,9 +2110,9 @@ public class HaxeParser extends Parser {
 
             switch (alt16) {
                 case 1 :
-                    // Haxe.g:137:4: EQ
+                    // Haxe.g:137:10: EQ
                     {
-                    EQ44=(Token)match(input,EQ,FOLLOW_EQ_in_assignOp581); if (state.failed) return retval; 
+                    EQ44=(Token)match(input,EQ,FOLLOW_EQ_in_assignOp785); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_EQ.add(EQ44);
 
 
@@ -2129,7 +2129,7 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 137:8: -> EQ[$EQ]
+                    // 137:20: -> EQ[$EQ]
                     {
                         adaptor.addChild(root_0, new AssignOperationNode(EQ, EQ44));
 
@@ -2139,9 +2139,9 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:138:4: PLUSEQ
+                    // Haxe.g:138:10: PLUSEQ
                     {
-                    PLUSEQ45=(Token)match(input,PLUSEQ,FOLLOW_PLUSEQ_in_assignOp595); if (state.failed) return retval; 
+                    PLUSEQ45=(Token)match(input,PLUSEQ,FOLLOW_PLUSEQ_in_assignOp811); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PLUSEQ.add(PLUSEQ45);
 
 
@@ -2158,7 +2158,7 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 138:12: -> PLUSEQ[$PLUSEQ]
+                    // 138:21: -> PLUSEQ[$PLUSEQ]
                     {
                         adaptor.addChild(root_0, new AssignOperationNode(PLUSEQ, PLUSEQ45));
 
@@ -2168,9 +2168,9 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:139:4: SUBEQ
+                    // Haxe.g:139:10: SUBEQ
                     {
-                    SUBEQ46=(Token)match(input,SUBEQ,FOLLOW_SUBEQ_in_assignOp609); if (state.failed) return retval; 
+                    SUBEQ46=(Token)match(input,SUBEQ,FOLLOW_SUBEQ_in_assignOp834); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SUBEQ.add(SUBEQ46);
 
 
@@ -2187,7 +2187,7 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 139:10: -> SUBEQ[$SUBEQ]
+                    // 139:19: -> SUBEQ[$SUBEQ]
                     {
                         adaptor.addChild(root_0, new AssignOperationNode(SUBEQ, SUBEQ46));
 
@@ -2197,9 +2197,9 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:140:4: SLASHEQ
+                    // Haxe.g:140:10: SLASHEQ
                     {
-                    SLASHEQ47=(Token)match(input,SLASHEQ,FOLLOW_SLASHEQ_in_assignOp622); if (state.failed) return retval; 
+                    SLASHEQ47=(Token)match(input,SLASHEQ,FOLLOW_SLASHEQ_in_assignOp856); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SLASHEQ.add(SLASHEQ47);
 
 
@@ -2216,7 +2216,7 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 140:12: -> SLASHEQ[$SLASHEQ]
+                    // 140:21: -> SLASHEQ[$SLASHEQ]
                     {
                         adaptor.addChild(root_0, new AssignOperationNode(SLASHEQ, SLASHEQ47));
 
@@ -2226,9 +2226,9 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // Haxe.g:141:4: PERCENTEQ
+                    // Haxe.g:141:10: PERCENTEQ
                     {
-                    PERCENTEQ48=(Token)match(input,PERCENTEQ,FOLLOW_PERCENTEQ_in_assignOp635); if (state.failed) return retval; 
+                    PERCENTEQ48=(Token)match(input,PERCENTEQ,FOLLOW_PERCENTEQ_in_assignOp878); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_PERCENTEQ.add(PERCENTEQ48);
 
 
@@ -2245,7 +2245,7 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 141:14: -> PERCENTEQ[$PERCENTEQ]
+                    // 141:23: -> PERCENTEQ[$PERCENTEQ]
                     {
                         adaptor.addChild(root_0, new AssignOperationNode(PERCENTEQ, PERCENTEQ48));
 
@@ -2255,9 +2255,9 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // Haxe.g:142:4: AMPEQ
+                    // Haxe.g:142:10: AMPEQ
                     {
-                    AMPEQ49=(Token)match(input,AMPEQ,FOLLOW_AMPEQ_in_assignOp648); if (state.failed) return retval; 
+                    AMPEQ49=(Token)match(input,AMPEQ,FOLLOW_AMPEQ_in_assignOp900); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_AMPEQ.add(AMPEQ49);
 
 
@@ -2274,7 +2274,7 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 142:10: -> AMPEQ[$AMPEQ]
+                    // 142:19: -> AMPEQ[$AMPEQ]
                     {
                         adaptor.addChild(root_0, new AssignOperationNode(AMPEQ, AMPEQ49));
 
@@ -2343,19 +2343,19 @@ public class HaxeParser extends Parser {
             // Haxe.g:146:8: ( FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block -> ^( FUNCTION ( paramList )? ( typeTagOpt )? ( block )? ) )
             // Haxe.g:146:10: FUNCTION LPAREN paramList RPAREN ( typeTagOpt )? block
             {
-            FUNCTION50=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcLit667); if (state.failed) return retval; 
+            FUNCTION50=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcLit928); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION50);
 
-            LPAREN51=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcLit669); if (state.failed) return retval; 
+            LPAREN51=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcLit930); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN51);
 
-            pushFollow(FOLLOW_paramList_in_funcLit671);
+            pushFollow(FOLLOW_paramList_in_funcLit932);
             paramList52=paramList();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_paramList.add(paramList52.getTree());
-            RPAREN53=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcLit673); if (state.failed) return retval; 
+            RPAREN53=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcLit934); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN53);
 
             // Haxe.g:146:43: ( typeTagOpt )?
@@ -2390,7 +2390,7 @@ public class HaxeParser extends Parser {
                 case 1 :
                     // Haxe.g:0:0: typeTagOpt
                     {
-                    pushFollow(FOLLOW_typeTagOpt_in_funcLit675);
+                    pushFollow(FOLLOW_typeTagOpt_in_funcLit936);
                     typeTagOpt54=typeTagOpt();
 
                     state._fsp--;
@@ -2402,7 +2402,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            pushFollow(FOLLOW_block_in_funcLit678);
+            pushFollow(FOLLOW_block_in_funcLit939);
             block55=block();
 
             state._fsp--;
@@ -2411,7 +2411,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: FUNCTION, typeTagOpt, paramList, block
+            // elements: block, FUNCTION, paramList, typeTagOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2505,14 +2505,14 @@ public class HaxeParser extends Parser {
             {
             root_0 = (Object)adaptor.nil();
 
-            LBRACKET56=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arrayLit713); if (state.failed) return retval;
-            pushFollow(FOLLOW_exprListOpt_in_arrayLit716);
+            LBRACKET56=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_arrayLit977); if (state.failed) return retval;
+            pushFollow(FOLLOW_exprListOpt_in_arrayLit980);
             exprListOpt57=exprListOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, exprListOpt57.getTree());
-            RBRACKET58=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_arrayLit718); if (state.failed) return retval;
+            RBRACKET58=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_arrayLit982); if (state.failed) return retval;
 
             }
 
@@ -2558,13 +2558,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
-            // Haxe.g:176:9: ( COLON funcType )
-            // Haxe.g:176:11: COLON funcType
+            // Haxe.g:176:12: ( COLON funcType )
+            // Haxe.g:176:17: COLON funcType
             {
             root_0 = (Object)adaptor.nil();
 
-            COLON59=(Token)match(input,COLON,FOLLOW_COLON_in_typeTag737); if (state.failed) return retval;
-            pushFollow(FOLLOW_funcType_in_typeTag740);
+            COLON59=(Token)match(input,COLON,FOLLOW_COLON_in_typeTag1016); if (state.failed) return retval;
+            pushFollow(FOLLOW_funcType_in_typeTag1019);
             funcType60=funcType();
 
             state._fsp--;
@@ -2613,7 +2613,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeTag=new RewriteRuleSubtreeStream(adaptor,"rule typeTag");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
-            // Haxe.g:180:2: ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | )
+            // Haxe.g:180:5: ( typeTag -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? ) | )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2632,9 +2632,9 @@ public class HaxeParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // Haxe.g:180:4: typeTag
+                    // Haxe.g:180:10: typeTag
                     {
-                    pushFollow(FOLLOW_typeTag_in_typeTagOpt752);
+                    pushFollow(FOLLOW_typeTag_in_typeTagOpt1043);
                     typeTag61=typeTag();
 
                     state._fsp--;
@@ -2654,14 +2654,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 180:12: -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
+                    // 180:18: -> ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
                     {
-                        // Haxe.g:180:15: ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
+                        // Haxe.g:180:21: ^( TYPE_TAG[\"TYPE_TAG\",true] ( typeTag )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(TYPE_TAG, "TYPE_TAG", true), root_1);
 
-                        // Haxe.g:180:53: ( typeTag )?
+                        // Haxe.g:180:59: ( typeTag )?
                         if ( stream_typeTag.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTag.nextTree());
 
@@ -2677,7 +2677,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:182:2: 
+                    // Haxe.g:182:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -2735,7 +2735,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
-            // Haxe.g:185:2: ( type ( COMMA type )* | typeConstraint ( COMMA typeConstraint )* )
+            // Haxe.g:185:5: ( type ( COMMA type )* | typeConstraint ( COMMA typeConstraint )* )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2768,17 +2768,17 @@ public class HaxeParser extends Parser {
             }
             switch (alt21) {
                 case 1 :
-                    // Haxe.g:185:4: type ( COMMA type )*
+                    // Haxe.g:185:10: type ( COMMA type )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_typeList780);
+                    pushFollow(FOLLOW_type_in_typeList1086);
                     type62=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, type62.getTree());
-                    // Haxe.g:185:9: ( COMMA type )*
+                    // Haxe.g:185:15: ( COMMA type )*
                     loop19:
                     do {
                         int alt19=2;
@@ -2791,10 +2791,10 @@ public class HaxeParser extends Parser {
 
                         switch (alt19) {
                     	case 1 :
-                    	    // Haxe.g:185:10: COMMA type
+                    	    // Haxe.g:185:16: COMMA type
                     	    {
-                    	    COMMA63=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeList783); if (state.failed) return retval;
-                    	    pushFollow(FOLLOW_type_in_typeList786);
+                    	    COMMA63=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeList1089); if (state.failed) return retval;
+                    	    pushFollow(FOLLOW_type_in_typeList1092);
                     	    type64=type();
 
                     	    state._fsp--;
@@ -2813,17 +2813,17 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:186:4: typeConstraint ( COMMA typeConstraint )*
+                    // Haxe.g:186:10: typeConstraint ( COMMA typeConstraint )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_typeConstraint_in_typeList794);
+                    pushFollow(FOLLOW_typeConstraint_in_typeList1109);
                     typeConstraint65=typeConstraint();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeConstraint65.getTree());
-                    // Haxe.g:186:19: ( COMMA typeConstraint )*
+                    // Haxe.g:186:25: ( COMMA typeConstraint )*
                     loop20:
                     do {
                         int alt20=2;
@@ -2836,10 +2836,10 @@ public class HaxeParser extends Parser {
 
                         switch (alt20) {
                     	case 1 :
-                    	    // Haxe.g:186:20: COMMA typeConstraint
+                    	    // Haxe.g:186:26: COMMA typeConstraint
                     	    {
-                    	    COMMA66=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeList797); if (state.failed) return retval;
-                    	    pushFollow(FOLLOW_typeConstraint_in_typeList800);
+                    	    COMMA66=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeList1112); if (state.failed) return retval;
+                    	    pushFollow(FOLLOW_typeConstraint_in_typeList1115);
                     	    typeConstraint67=typeConstraint();
 
                     	    state._fsp--;
@@ -2938,14 +2938,14 @@ public class HaxeParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // Haxe.g:189:11: ( type ) ( MINUS_BIGGER type )*
+                    // Haxe.g:189:14: ( type ) ( MINUS_BIGGER type )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    // Haxe.g:189:11: ( type )
-                    // Haxe.g:189:12: type
+                    // Haxe.g:189:14: ( type )
+                    // Haxe.g:189:15: type
                     {
-                    pushFollow(FOLLOW_type_in_funcType814);
+                    pushFollow(FOLLOW_type_in_funcType1135);
                     type68=type();
 
                     state._fsp--;
@@ -2954,7 +2954,7 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    // Haxe.g:189:18: ( MINUS_BIGGER type )*
+                    // Haxe.g:189:21: ( MINUS_BIGGER type )*
                     loop22:
                     do {
                         int alt22=2;
@@ -2967,10 +2967,10 @@ public class HaxeParser extends Parser {
 
                         switch (alt22) {
                     	case 1 :
-                    	    // Haxe.g:189:19: MINUS_BIGGER type
+                    	    // Haxe.g:189:22: MINUS_BIGGER type
                     	    {
-                    	    MINUS_BIGGER69=(Token)match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_funcType818); if (state.failed) return retval;
-                    	    pushFollow(FOLLOW_type_in_funcType821);
+                    	    MINUS_BIGGER69=(Token)match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_funcType1139); if (state.failed) return retval;
+                    	    pushFollow(FOLLOW_type_in_funcType1142);
                     	    type70=type();
 
                     	    state._fsp--;
@@ -2989,11 +2989,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:190:4: VOID
+                    // Haxe.g:190:10: VOID
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    VOID71=(Token)match(input,VOID,FOLLOW_VOID_in_funcType828); if (state.failed) return retval;
+                    VOID71=(Token)match(input,VOID,FOLLOW_VOID_in_funcType1155); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     VOID71_tree = (Object)adaptor.create(VOID71);
                     adaptor.addChild(root_0, VOID71_tree);
@@ -3043,7 +3043,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
-            // Haxe.g:194:2: ( INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
+            // Haxe.g:194:5: ( INT | FLOAT | DYNAMIC | BOOLEAN | VOID )
             // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
@@ -3109,16 +3109,16 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
-            // Haxe.g:197:6: ( ( anonType | dotIdent | primitiveType ) ( typeParam )* | )
+            // Haxe.g:197:9: ( ( anonType | dotIdent | primitiveType ) ( typeParam )* | )
             int alt26=2;
             alt26 = dfa26.predict(input);
             switch (alt26) {
                 case 1 :
-                    // Haxe.g:197:8: ( anonType | dotIdent | primitiveType ) ( typeParam )*
+                    // Haxe.g:197:14: ( anonType | dotIdent | primitiveType ) ( typeParam )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    // Haxe.g:197:8: ( anonType | dotIdent | primitiveType )
+                    // Haxe.g:197:14: ( anonType | dotIdent | primitiveType )
                     int alt24=3;
                     switch ( input.LA(1) ) {
                     case LBRACE:
@@ -3151,9 +3151,9 @@ public class HaxeParser extends Parser {
 
                     switch (alt24) {
                         case 1 :
-                            // Haxe.g:197:9: anonType
+                            // Haxe.g:197:15: anonType
                             {
-                            pushFollow(FOLLOW_anonType_in_type867);
+                            pushFollow(FOLLOW_anonType_in_type1215);
                             anonType73=anonType();
 
                             state._fsp--;
@@ -3163,9 +3163,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // Haxe.g:197:20: dotIdent
+                            // Haxe.g:197:26: dotIdent
                             {
-                            pushFollow(FOLLOW_dotIdent_in_type871);
+                            pushFollow(FOLLOW_dotIdent_in_type1219);
                             dotIdent74=dotIdent();
 
                             state._fsp--;
@@ -3175,9 +3175,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // Haxe.g:197:31: primitiveType
+                            // Haxe.g:197:37: primitiveType
                             {
-                            pushFollow(FOLLOW_primitiveType_in_type875);
+                            pushFollow(FOLLOW_primitiveType_in_type1223);
                             primitiveType75=primitiveType();
 
                             state._fsp--;
@@ -3189,16 +3189,16 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    // Haxe.g:197:47: ( typeParam )*
+                    // Haxe.g:197:53: ( typeParam )*
                     loop25:
                     do {
                         int alt25=2;
                         alt25 = dfa25.predict(input);
                         switch (alt25) {
                     	case 1 :
-                    	    // Haxe.g:197:48: typeParam
+                    	    // Haxe.g:197:54: typeParam
                     	    {
-                    	    pushFollow(FOLLOW_typeParam_in_type880);
+                    	    pushFollow(FOLLOW_typeParam_in_type1228);
                     	    typeParam76=typeParam();
 
                     	    state._fsp--;
@@ -3217,7 +3217,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:199:2: 
+                    // Haxe.g:199:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3293,7 +3293,7 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
-            // Haxe.g:202:2: ( LT typeList GT | LT typeList LT typeList GTGT | LT typeList LT typeList LT typeList GTGTGT )
+            // Haxe.g:202:5: ( LT typeList GT | LT typeList LT typeList GTGT | LT typeList LT typeList LT typeList GTGTGT )
             int alt27=3;
             int LA27_0 = input.LA(1);
 
@@ -3326,71 +3326,71 @@ public class HaxeParser extends Parser {
             }
             switch (alt27) {
                 case 1 :
-                    // Haxe.g:202:4: LT typeList GT
+                    // Haxe.g:202:10: LT typeList GT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    LT77=(Token)match(input,LT,FOLLOW_LT_in_typeParam898); if (state.failed) return retval;
-                    pushFollow(FOLLOW_typeList_in_typeParam901);
+                    LT77=(Token)match(input,LT,FOLLOW_LT_in_typeParam1264); if (state.failed) return retval;
+                    pushFollow(FOLLOW_typeList_in_typeParam1267);
                     typeList78=typeList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeList78.getTree());
-                    GT79=(Token)match(input,GT,FOLLOW_GT_in_typeParam903); if (state.failed) return retval;
+                    GT79=(Token)match(input,GT,FOLLOW_GT_in_typeParam1269); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:203:4: LT typeList LT typeList GTGT
+                    // Haxe.g:203:10: LT typeList LT typeList GTGT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    LT80=(Token)match(input,LT,FOLLOW_LT_in_typeParam909); if (state.failed) return retval;
-                    pushFollow(FOLLOW_typeList_in_typeParam912);
+                    LT80=(Token)match(input,LT,FOLLOW_LT_in_typeParam1281); if (state.failed) return retval;
+                    pushFollow(FOLLOW_typeList_in_typeParam1284);
                     typeList81=typeList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeList81.getTree());
-                    LT82=(Token)match(input,LT,FOLLOW_LT_in_typeParam914); if (state.failed) return retval;
-                    pushFollow(FOLLOW_typeList_in_typeParam917);
+                    LT82=(Token)match(input,LT,FOLLOW_LT_in_typeParam1286); if (state.failed) return retval;
+                    pushFollow(FOLLOW_typeList_in_typeParam1289);
                     typeList83=typeList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeList83.getTree());
-                    GTGT84=(Token)match(input,GTGT,FOLLOW_GTGT_in_typeParam919); if (state.failed) return retval;
+                    GTGT84=(Token)match(input,GTGT,FOLLOW_GTGT_in_typeParam1291); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:204:4: LT typeList LT typeList LT typeList GTGTGT
+                    // Haxe.g:204:10: LT typeList LT typeList LT typeList GTGTGT
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    LT85=(Token)match(input,LT,FOLLOW_LT_in_typeParam925); if (state.failed) return retval;
-                    pushFollow(FOLLOW_typeList_in_typeParam928);
+                    LT85=(Token)match(input,LT,FOLLOW_LT_in_typeParam1303); if (state.failed) return retval;
+                    pushFollow(FOLLOW_typeList_in_typeParam1306);
                     typeList86=typeList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeList86.getTree());
-                    LT87=(Token)match(input,LT,FOLLOW_LT_in_typeParam930); if (state.failed) return retval;
-                    pushFollow(FOLLOW_typeList_in_typeParam933);
+                    LT87=(Token)match(input,LT,FOLLOW_LT_in_typeParam1308); if (state.failed) return retval;
+                    pushFollow(FOLLOW_typeList_in_typeParam1311);
                     typeList88=typeList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeList88.getTree());
-                    LT89=(Token)match(input,LT,FOLLOW_LT_in_typeParam935); if (state.failed) return retval;
-                    pushFollow(FOLLOW_typeList_in_typeParam938);
+                    LT89=(Token)match(input,LT,FOLLOW_LT_in_typeParam1313); if (state.failed) return retval;
+                    pushFollow(FOLLOW_typeList_in_typeParam1316);
                     typeList90=typeList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, typeList90.getTree());
-                    GTGTGT91=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_typeParam940); if (state.failed) return retval;
+                    GTGTGT91=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_typeParam1318); if (state.failed) return retval;
 
                     }
                     break;
@@ -3436,14 +3436,14 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeParam=new RewriteRuleSubtreeStream(adaptor,"rule typeParam");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
-            // Haxe.g:209:2: ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? ) | )
+            // Haxe.g:209:5: ( typeParam -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? ) | )
             int alt28=2;
             alt28 = dfa28.predict(input);
             switch (alt28) {
                 case 1 :
-                    // Haxe.g:209:4: typeParam
+                    // Haxe.g:209:10: typeParam
                     {
-                    pushFollow(FOLLOW_typeParam_in_typeParamOpt960);
+                    pushFollow(FOLLOW_typeParam_in_typeParamOpt1350);
                     typeParam92=typeParam();
 
                     state._fsp--;
@@ -3463,14 +3463,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 209:14: -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
+                    // 209:20: -> ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
                     {
-                        // Haxe.g:209:17: ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
+                        // Haxe.g:209:23: ^( TYPE_PARAM_OPT[\"TYPE_PARAM_OPT\",true] ( typeParam )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(TYPE_PARAM_OPT, "TYPE_PARAM_OPT", true), root_1);
 
-                        // Haxe.g:209:67: ( typeParam )?
+                        // Haxe.g:209:73: ( typeParam )?
                         if ( stream_typeParam.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParam.nextTree());
 
@@ -3486,7 +3486,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:211:2: 
+                    // Haxe.g:211:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -3546,31 +3546,31 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeList=new RewriteRuleSubtreeStream(adaptor,"rule typeList");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
-            // Haxe.g:214:2: ( IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? ) )
-            // Haxe.g:214:4: IDENTIFIER COLON LPAREN typeList RPAREN
+            // Haxe.g:214:5: ( IDENTIFIER COLON LPAREN typeList RPAREN -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? ) )
+            // Haxe.g:214:7: IDENTIFIER COLON LPAREN typeList RPAREN
             {
-            IDENTIFIER93=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typeConstraint995); if (state.failed) return retval; 
+            IDENTIFIER93=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typeConstraint1397); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER93);
 
-            COLON94=(Token)match(input,COLON,FOLLOW_COLON_in_typeConstraint997); if (state.failed) return retval; 
+            COLON94=(Token)match(input,COLON,FOLLOW_COLON_in_typeConstraint1399); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_COLON.add(COLON94);
 
-            LPAREN95=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_typeConstraint999); if (state.failed) return retval; 
+            LPAREN95=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_typeConstraint1401); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN95);
 
-            pushFollow(FOLLOW_typeList_in_typeConstraint1001);
+            pushFollow(FOLLOW_typeList_in_typeConstraint1403);
             typeList96=typeList();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_typeList.add(typeList96.getTree());
-            RPAREN97=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_typeConstraint1003); if (state.failed) return retval; 
+            RPAREN97=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_typeConstraint1405); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN97);
 
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, typeList, typeConstraint
+            // elements: IDENTIFIER, typeConstraint, typeList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3581,20 +3581,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 214:44: -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
+            // 214:47: -> ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
             {
-                // Haxe.g:214:47: ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
+                // Haxe.g:214:50: ^( $typeConstraint ( IDENTIFIER )? ( typeList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_retval.nextNode(), root_1);
 
-                // Haxe.g:214:65: ( IDENTIFIER )?
+                // Haxe.g:214:68: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
                     adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                 }
                 stream_IDENTIFIER.reset();
-                // Haxe.g:214:77: ( typeList )?
+                // Haxe.g:214:80: ( typeList )?
                 if ( stream_typeList.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeList.nextTree());
 
@@ -3670,10 +3670,10 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
-            // Haxe.g:219:2: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) )
-            // Haxe.g:219:4: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
+            // Haxe.g:219:5: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) )
+            // Haxe.g:219:10: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
             {
-            // Haxe.g:219:4: ( declAttrList )?
+            // Haxe.g:219:10: ( declAttrList )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -3684,7 +3684,7 @@ public class HaxeParser extends Parser {
                 case 1 :
                     // Haxe.g:0:0: declAttrList
                     {
-                    pushFollow(FOLLOW_declAttrList_in_functionReturn1029);
+                    pushFollow(FOLLOW_declAttrList_in_functionReturn1443);
                     declAttrList98=declAttrList();
 
                     state._fsp--;
@@ -3696,31 +3696,31 @@ public class HaxeParser extends Parser {
 
             }
 
-            FUNCTION99=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_functionReturn1032); if (state.failed) return retval; 
+            FUNCTION99=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_functionReturn1446); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION99);
 
-            NEW100=(Token)match(input,NEW,FOLLOW_NEW_in_functionReturn1034); if (state.failed) return retval; 
+            NEW100=(Token)match(input,NEW,FOLLOW_NEW_in_functionReturn1448); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_NEW.add(NEW100);
 
-            LPAREN101=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_functionReturn1036); if (state.failed) return retval; 
+            LPAREN101=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_functionReturn1450); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN101);
 
-            pushFollow(FOLLOW_paramList_in_functionReturn1038);
+            pushFollow(FOLLOW_paramList_in_functionReturn1452);
             paramList102=paramList();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_paramList.add(paramList102.getTree());
-            RPAREN103=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_functionReturn1040); if (state.failed) return retval; 
+            RPAREN103=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_functionReturn1454); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN103);
 
-            pushFollow(FOLLOW_typeTagOpt_in_functionReturn1042);
+            pushFollow(FOLLOW_typeTagOpt_in_functionReturn1456);
             typeTagOpt104=typeTagOpt();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt104.getTree());
-            pushFollow(FOLLOW_block_in_functionReturn1044);
+            pushFollow(FOLLOW_block_in_functionReturn1458);
             block105=block();
 
             state._fsp--;
@@ -3729,7 +3729,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, typeTagOpt, declAttrList, FUNCTION, NEW, paramList
+            // elements: declAttrList, paramList, FUNCTION, typeTagOpt, block, NEW
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3740,33 +3740,33 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 219:72: -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
+            // 219:78: -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
             {
-                // Haxe.g:219:75: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
+                // Haxe.g:219:81: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
                 adaptor.addChild(root_1, stream_NEW.nextNode());
-                // Haxe.g:219:104: ( declAttrList )?
+                // Haxe.g:219:110: ( declAttrList )?
                 if ( stream_declAttrList.hasNext() ) {
                     adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                 }
                 stream_declAttrList.reset();
-                // Haxe.g:219:118: ( paramList )?
+                // Haxe.g:219:124: ( paramList )?
                 if ( stream_paramList.hasNext() ) {
                     adaptor.addChild(root_1, stream_paramList.nextTree());
 
                 }
                 stream_paramList.reset();
-                // Haxe.g:219:129: ( typeTagOpt )?
+                // Haxe.g:219:135: ( typeTagOpt )?
                 if ( stream_typeTagOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                 }
                 stream_typeTagOpt.reset();
-                // Haxe.g:219:141: ( block )?
+                // Haxe.g:219:147: ( block )?
                 if ( stream_block.hasNext() ) {
                     adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -3947,16 +3947,16 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
-            // Haxe.g:223:2: ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) ( statement )? ) | WHILE parExpression statement -> ^( WHILE ( parExpression )? ( statement )? ) | DO statement WHILE parExpression SEMI -> ^( DO ( parExpression )? ( statement )? ) | TRY block catchStmtList -> ^( TRY ( block )? ( catchStmtList )? ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH ( expr )? ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW ( expr )? ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI )
+            // Haxe.g:223:5: ( block | assignExpr SEMI | varDecl | IF parExpression st1= statement ( ELSE st2= statement )? -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? ) | FOR LPAREN exp1= expr IN exp2= expr RPAREN statement -> ^( FOR ^( IN $exp1 $exp2) ( statement )? ) | WHILE parExpression statement -> ^( WHILE ( parExpression )? ( statement )? ) | DO statement WHILE parExpression SEMI -> ^( DO ( parExpression )? ( statement )? ) | TRY block catchStmtList -> ^( TRY ( block )? ( catchStmtList )? ) | SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE -> ^( SWITCH ( expr )? ( caseStmt )+ ) | RETURN ( expr )? SEMI -> ^( RETURN ( expr )? ) | THROW expr SEMI -> ^( THROW ( expr )? ) | BREAK ( IDENTIFIER )? SEMI -> ^( BREAK ( IDENTIFIER )? ) | CONTINUE ( IDENTIFIER )? SEMI -> ^( CONTINUE ( IDENTIFIER )? ) | expr SEMI | IDENTIFIER COLON statement -> ^( COLON ( IDENTIFIER )? ( statement )? ) | SEMI )
             int alt35=16;
             alt35 = dfa35.predict(input);
             switch (alt35) {
                 case 1 :
-                    // Haxe.g:223:4: block
+                    // Haxe.g:223:10: block
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_block_in_statement1081);
+                    pushFollow(FOLLOW_block_in_statement1507);
                     block106=block();
 
                     state._fsp--;
@@ -3966,26 +3966,26 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:224:4: assignExpr SEMI
+                    // Haxe.g:224:10: assignExpr SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_assignExpr_in_statement1086);
+                    pushFollow(FOLLOW_assignExpr_in_statement1518);
                     assignExpr107=assignExpr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, assignExpr107.getTree());
-                    SEMI108=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1088); if (state.failed) return retval;
+                    SEMI108=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1520); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:225:4: varDecl
+                    // Haxe.g:225:10: varDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDecl_in_statement1094);
+                    pushFollow(FOLLOW_varDecl_in_statement1532);
                     varDecl109=varDecl();
 
                     state._fsp--;
@@ -3995,24 +3995,24 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:226:4: IF parExpression st1= statement ( ELSE st2= statement )?
+                    // Haxe.g:226:10: IF parExpression st1= statement ( ELSE st2= statement )?
                     {
-                    IF110=(Token)match(input,IF,FOLLOW_IF_in_statement1099); if (state.failed) return retval; 
+                    IF110=(Token)match(input,IF,FOLLOW_IF_in_statement1543); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IF.add(IF110);
 
-                    pushFollow(FOLLOW_parExpression_in_statement1101);
+                    pushFollow(FOLLOW_parExpression_in_statement1545);
                     parExpression111=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_parExpression.add(parExpression111.getTree());
-                    pushFollow(FOLLOW_statement_in_statement1105);
+                    pushFollow(FOLLOW_statement_in_statement1549);
                     st1=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statement.add(st1.getTree());
-                    // Haxe.g:226:35: ( ELSE st2= statement )?
+                    // Haxe.g:226:41: ( ELSE st2= statement )?
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
@@ -4025,12 +4025,12 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt30) {
                         case 1 :
-                            // Haxe.g:226:36: ELSE st2= statement
+                            // Haxe.g:226:42: ELSE st2= statement
                             {
-                            ELSE112=(Token)match(input,ELSE,FOLLOW_ELSE_in_statement1108); if (state.failed) return retval; 
+                            ELSE112=(Token)match(input,ELSE,FOLLOW_ELSE_in_statement1552); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_ELSE.add(ELSE112);
 
-                            pushFollow(FOLLOW_statement_in_statement1112);
+                            pushFollow(FOLLOW_statement_in_statement1556);
                             st2=statement();
 
                             state._fsp--;
@@ -4045,7 +4045,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: st2, parExpression, IF, st1, ELSE
+                    // elements: IF, st2, st1, parExpression, ELSE
                     // token labels: 
                     // rule labels: retval, st1, st2
                     // token list labels: 
@@ -4058,18 +4058,18 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_st2=new RewriteRuleSubtreeStream(adaptor,"rule st2",st2!=null?st2.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 226:58: -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
+                    // 226:67: -> ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
                     {
-                        // Haxe.g:226:61: ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
+                        // Haxe.g:226:70: ^( IF parExpression $st1 ( ^( ELSE $st2) )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new IfNode(stream_IF.nextToken()), root_1);
 
                         adaptor.addChild(root_1, stream_parExpression.nextTree());
                         adaptor.addChild(root_1, stream_st1.nextTree());
-                        // Haxe.g:226:93: ( ^( ELSE $st2) )?
+                        // Haxe.g:226:102: ( ^( ELSE $st2) )?
                         if ( stream_st2.hasNext()||stream_ELSE.hasNext() ) {
-                            // Haxe.g:226:93: ^( ELSE $st2)
+                            // Haxe.g:226:102: ^( ELSE $st2)
                             {
                             Object root_2 = (Object)adaptor.nil();
                             root_2 = (Object)adaptor.becomeRoot(stream_ELSE.nextNode(), root_2);
@@ -4092,33 +4092,33 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // Haxe.g:227:4: FOR LPAREN exp1= expr IN exp2= expr RPAREN statement
+                    // Haxe.g:227:10: FOR LPAREN exp1= expr IN exp2= expr RPAREN statement
                     {
-                    FOR113=(Token)match(input,FOR,FOLLOW_FOR_in_statement1152); if (state.failed) return retval; 
+                    FOR113=(Token)match(input,FOR,FOLLOW_FOR_in_statement1605); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_FOR.add(FOR113);
 
-                    LPAREN114=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_statement1154); if (state.failed) return retval; 
+                    LPAREN114=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_statement1607); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN114);
 
-                    pushFollow(FOLLOW_expr_in_statement1158);
+                    pushFollow(FOLLOW_expr_in_statement1611);
                     exp1=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expr.add(exp1.getTree());
-                    IN115=(Token)match(input,IN,FOLLOW_IN_in_statement1160); if (state.failed) return retval; 
+                    IN115=(Token)match(input,IN,FOLLOW_IN_in_statement1613); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IN.add(IN115);
 
-                    pushFollow(FOLLOW_expr_in_statement1164);
+                    pushFollow(FOLLOW_expr_in_statement1617);
                     exp2=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expr.add(exp2.getTree());
-                    RPAREN116=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_statement1166); if (state.failed) return retval; 
+                    RPAREN116=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_statement1619); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN116);
 
-                    pushFollow(FOLLOW_statement_in_statement1168);
+                    pushFollow(FOLLOW_statement_in_statement1621);
                     statement117=statement();
 
                     state._fsp--;
@@ -4127,7 +4127,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, FOR, exp2, IN, exp1
+                    // elements: statement, exp2, exp1, IN, FOR
                     // token labels: 
                     // rule labels: retval, exp2, exp1
                     // token list labels: 
@@ -4140,14 +4140,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_exp1=new RewriteRuleSubtreeStream(adaptor,"rule exp1",exp1!=null?exp1.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 227:56: -> ^( FOR ^( IN $exp1 $exp2) ( statement )? )
+                    // 227:65: -> ^( FOR ^( IN $exp1 $exp2) ( statement )? )
                     {
-                        // Haxe.g:227:59: ^( FOR ^( IN $exp1 $exp2) ( statement )? )
+                        // Haxe.g:227:68: ^( FOR ^( IN $exp1 $exp2) ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new ForNode(stream_FOR.nextToken()), root_1);
 
-                        // Haxe.g:227:74: ^( IN $exp1 $exp2)
+                        // Haxe.g:227:83: ^( IN $exp1 $exp2)
                         {
                         Object root_2 = (Object)adaptor.nil();
                         root_2 = (Object)adaptor.becomeRoot(stream_IN.nextNode(), root_2);
@@ -4157,7 +4157,7 @@ public class HaxeParser extends Parser {
 
                         adaptor.addChild(root_1, root_2);
                         }
-                        // Haxe.g:227:92: ( statement )?
+                        // Haxe.g:227:101: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -4173,18 +4173,18 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // Haxe.g:228:4: WHILE parExpression statement
+                    // Haxe.g:228:10: WHILE parExpression statement
                     {
-                    WHILE118=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1196); if (state.failed) return retval; 
+                    WHILE118=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1658); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_WHILE.add(WHILE118);
 
-                    pushFollow(FOLLOW_parExpression_in_statement1198);
+                    pushFollow(FOLLOW_parExpression_in_statement1660);
                     parExpression119=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_parExpression.add(parExpression119.getTree());
-                    pushFollow(FOLLOW_statement_in_statement1200);
+                    pushFollow(FOLLOW_statement_in_statement1662);
                     statement120=statement();
 
                     state._fsp--;
@@ -4193,7 +4193,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, statement, WHILE
+                    // elements: WHILE, statement, parExpression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4204,20 +4204,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 228:38: -> ^( WHILE ( parExpression )? ( statement )? )
+                    // 228:56: -> ^( WHILE ( parExpression )? ( statement )? )
                     {
-                        // Haxe.g:228:41: ^( WHILE ( parExpression )? ( statement )? )
+                        // Haxe.g:228:59: ^( WHILE ( parExpression )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new WhileNode(stream_WHILE.nextToken()), root_1);
 
-                        // Haxe.g:228:60: ( parExpression )?
+                        // Haxe.g:228:78: ( parExpression )?
                         if ( stream_parExpression.hasNext() ) {
                             adaptor.addChild(root_1, stream_parExpression.nextTree());
 
                         }
                         stream_parExpression.reset();
-                        // Haxe.g:228:75: ( statement )?
+                        // Haxe.g:228:93: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -4233,33 +4233,33 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // Haxe.g:229:4: DO statement WHILE parExpression SEMI
+                    // Haxe.g:229:10: DO statement WHILE parExpression SEMI
                     {
-                    DO121=(Token)match(input,DO,FOLLOW_DO_in_statement1224); if (state.failed) return retval; 
+                    DO121=(Token)match(input,DO,FOLLOW_DO_in_statement1704); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_DO.add(DO121);
 
-                    pushFollow(FOLLOW_statement_in_statement1226);
+                    pushFollow(FOLLOW_statement_in_statement1706);
                     statement122=statement();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statement.add(statement122.getTree());
-                    WHILE123=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1228); if (state.failed) return retval; 
+                    WHILE123=(Token)match(input,WHILE,FOLLOW_WHILE_in_statement1708); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_WHILE.add(WHILE123);
 
-                    pushFollow(FOLLOW_parExpression_in_statement1230);
+                    pushFollow(FOLLOW_parExpression_in_statement1710);
                     parExpression124=parExpression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_parExpression.add(parExpression124.getTree());
-                    SEMI125=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1232); if (state.failed) return retval; 
+                    SEMI125=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1712); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI125);
 
 
 
                     // AST REWRITE
-                    // elements: statement, DO, parExpression
+                    // elements: parExpression, statement, DO
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4270,20 +4270,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 229:45: -> ^( DO ( parExpression )? ( statement )? )
+                    // 229:60: -> ^( DO ( parExpression )? ( statement )? )
                     {
-                        // Haxe.g:229:48: ^( DO ( parExpression )? ( statement )? )
+                        // Haxe.g:229:63: ^( DO ( parExpression )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new DoWhileNode(stream_DO.nextToken()), root_1);
 
-                        // Haxe.g:229:66: ( parExpression )?
+                        // Haxe.g:229:81: ( parExpression )?
                         if ( stream_parExpression.hasNext() ) {
                             adaptor.addChild(root_1, stream_parExpression.nextTree());
 
                         }
                         stream_parExpression.reset();
-                        // Haxe.g:229:81: ( statement )?
+                        // Haxe.g:229:96: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -4299,18 +4299,18 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // Haxe.g:230:4: TRY block catchStmtList
+                    // Haxe.g:230:10: TRY block catchStmtList
                     {
-                    TRY126=(Token)match(input,TRY,FOLLOW_TRY_in_statement1255); if (state.failed) return retval; 
+                    TRY126=(Token)match(input,TRY,FOLLOW_TRY_in_statement1750); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_TRY.add(TRY126);
 
-                    pushFollow(FOLLOW_block_in_statement1257);
+                    pushFollow(FOLLOW_block_in_statement1752);
                     block127=block();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_block.add(block127.getTree());
-                    pushFollow(FOLLOW_catchStmtList_in_statement1259);
+                    pushFollow(FOLLOW_catchStmtList_in_statement1754);
                     catchStmtList128=catchStmtList();
 
                     state._fsp--;
@@ -4330,20 +4330,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 230:32: -> ^( TRY ( block )? ( catchStmtList )? )
+                    // 230:50: -> ^( TRY ( block )? ( catchStmtList )? )
                     {
-                        // Haxe.g:230:35: ^( TRY ( block )? ( catchStmtList )? )
+                        // Haxe.g:230:53: ^( TRY ( block )? ( catchStmtList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new TryNode(stream_TRY.nextToken()), root_1);
 
-                        // Haxe.g:230:50: ( block )?
+                        // Haxe.g:230:68: ( block )?
                         if ( stream_block.hasNext() ) {
                             adaptor.addChild(root_1, stream_block.nextTree());
 
                         }
                         stream_block.reset();
-                        // Haxe.g:230:57: ( catchStmtList )?
+                        // Haxe.g:230:75: ( catchStmtList )?
                         if ( stream_catchStmtList.hasNext() ) {
                             adaptor.addChild(root_1, stream_catchStmtList.nextTree());
 
@@ -4359,27 +4359,27 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // Haxe.g:231:4: SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE
+                    // Haxe.g:231:10: SWITCH LPAREN expr RPAREN LBRACE ( caseStmt )+ RBRACE
                     {
-                    SWITCH129=(Token)match(input,SWITCH,FOLLOW_SWITCH_in_statement1283); if (state.failed) return retval; 
+                    SWITCH129=(Token)match(input,SWITCH,FOLLOW_SWITCH_in_statement1796); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SWITCH.add(SWITCH129);
 
-                    LPAREN130=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_statement1285); if (state.failed) return retval; 
+                    LPAREN130=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_statement1798); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN130);
 
-                    pushFollow(FOLLOW_expr_in_statement1287);
+                    pushFollow(FOLLOW_expr_in_statement1800);
                     expr131=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expr.add(expr131.getTree());
-                    RPAREN132=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_statement1289); if (state.failed) return retval; 
+                    RPAREN132=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_statement1802); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN132);
 
-                    LBRACE133=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_statement1291); if (state.failed) return retval; 
+                    LBRACE133=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_statement1804); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE133);
 
-                    // Haxe.g:231:37: ( caseStmt )+
+                    // Haxe.g:231:43: ( caseStmt )+
                     int cnt31=0;
                     loop31:
                     do {
@@ -4395,7 +4395,7 @@ public class HaxeParser extends Parser {
                     	case 1 :
                     	    // Haxe.g:0:0: caseStmt
                     	    {
-                    	    pushFollow(FOLLOW_caseStmt_in_statement1293);
+                    	    pushFollow(FOLLOW_caseStmt_in_statement1806);
                     	    caseStmt134=caseStmt();
 
                     	    state._fsp--;
@@ -4415,13 +4415,13 @@ public class HaxeParser extends Parser {
                         cnt31++;
                     } while (true);
 
-                    RBRACE135=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_statement1296); if (state.failed) return retval; 
+                    RBRACE135=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_statement1809); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE135);
 
 
 
                     // AST REWRITE
-                    // elements: caseStmt, expr, SWITCH
+                    // elements: expr, caseStmt, SWITCH
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4432,14 +4432,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 231:55: -> ^( SWITCH ( expr )? ( caseStmt )+ )
+                    // 231:64: -> ^( SWITCH ( expr )? ( caseStmt )+ )
                     {
-                        // Haxe.g:231:58: ^( SWITCH ( expr )? ( caseStmt )+ )
+                        // Haxe.g:231:67: ^( SWITCH ( expr )? ( caseStmt )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new SwitchNode(stream_SWITCH.nextToken()), root_1);
 
-                        // Haxe.g:231:79: ( expr )?
+                        // Haxe.g:231:88: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -4463,30 +4463,23 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 10 :
-                    // Haxe.g:232:4: RETURN ( expr )? SEMI
+                    // Haxe.g:232:10: RETURN ( expr )? SEMI
                     {
-                    RETURN136=(Token)match(input,RETURN,FOLLOW_RETURN_in_statement1317); if (state.failed) return retval; 
+                    RETURN136=(Token)match(input,RETURN,FOLLOW_RETURN_in_statement1839); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RETURN.add(RETURN136);
 
-                    // Haxe.g:232:11: ( expr )?
+                    // Haxe.g:232:17: ( expr )?
                     int alt32=2;
                     int LA32_0 = input.LA(1);
 
-                    if ( (LA32_0==LPAREN||LA32_0==IDENTIFIER||(LA32_0>=QUES && LA32_0<=LBRACKET)||(LA32_0>=LT && LA32_0<=GT)||(LA32_0>=GTGTGT && LA32_0<=NEW)||LA32_0==LBRACE||(LA32_0>=UNTYPED && LA32_0<=CAST)||LA32_0==NULL||(LA32_0>=LONGLITERAL && LA32_0<=FALSE)) ) {
+                    if ( (LA32_0==LPAREN||LA32_0==IDENTIFIER||LA32_0==THIS||(LA32_0>=FUNCTION && LA32_0<=LBRACKET)||LA32_0==NEW||LA32_0==LBRACE||LA32_0==UNTYPED||(LA32_0>=PLUS && LA32_0<=SUB)||(LA32_0>=SUBSUB && LA32_0<=CAST)||LA32_0==NULL||(LA32_0>=LONGLITERAL && LA32_0<=FALSE)) ) {
                         alt32=1;
-                    }
-                    else if ( (LA32_0==SEMI) ) {
-                        int LA32_2 = input.LA(2);
-
-                        if ( (synpred58_Haxe()) ) {
-                            alt32=1;
-                        }
                     }
                     switch (alt32) {
                         case 1 :
-                            // Haxe.g:232:12: expr
+                            // Haxe.g:232:18: expr
                             {
-                            pushFollow(FOLLOW_expr_in_statement1320);
+                            pushFollow(FOLLOW_expr_in_statement1842);
                             expr137=expr();
 
                             state._fsp--;
@@ -4498,7 +4491,7 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    SEMI138=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1324); if (state.failed) return retval; 
+                    SEMI138=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1846); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI138);
 
 
@@ -4515,14 +4508,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 232:28: -> ^( RETURN ( expr )? )
+                    // 232:49: -> ^( RETURN ( expr )? )
                     {
-                        // Haxe.g:232:31: ^( RETURN ( expr )? )
+                        // Haxe.g:232:52: ^( RETURN ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_RETURN.nextNode(), root_1);
 
-                        // Haxe.g:232:40: ( expr )?
+                        // Haxe.g:232:61: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -4538,24 +4531,24 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 11 :
-                    // Haxe.g:233:4: THROW expr SEMI
+                    // Haxe.g:233:10: THROW expr SEMI
                     {
-                    THROW139=(Token)match(input,THROW,FOLLOW_THROW_in_statement1342); if (state.failed) return retval; 
+                    THROW139=(Token)match(input,THROW,FOLLOW_THROW_in_statement1885); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_THROW.add(THROW139);
 
-                    pushFollow(FOLLOW_expr_in_statement1344);
+                    pushFollow(FOLLOW_expr_in_statement1887);
                     expr140=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_expr.add(expr140.getTree());
-                    SEMI141=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1346); if (state.failed) return retval; 
+                    SEMI141=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1889); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI141);
 
 
 
                     // AST REWRITE
-                    // elements: THROW, expr
+                    // elements: expr, THROW
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4566,14 +4559,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 233:25: -> ^( THROW ( expr )? )
+                    // 233:46: -> ^( THROW ( expr )? )
                     {
-                        // Haxe.g:233:28: ^( THROW ( expr )? )
+                        // Haxe.g:233:49: ^( THROW ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_THROW.nextNode(), root_1);
 
-                        // Haxe.g:233:36: ( expr )?
+                        // Haxe.g:233:57: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -4589,12 +4582,12 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 12 :
-                    // Haxe.g:234:4: BREAK ( IDENTIFIER )? SEMI
+                    // Haxe.g:234:10: BREAK ( IDENTIFIER )? SEMI
                     {
-                    BREAK142=(Token)match(input,BREAK,FOLLOW_BREAK_in_statement1365); if (state.failed) return retval; 
+                    BREAK142=(Token)match(input,BREAK,FOLLOW_BREAK_in_statement1929); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_BREAK.add(BREAK142);
 
-                    // Haxe.g:234:10: ( IDENTIFIER )?
+                    // Haxe.g:234:16: ( IDENTIFIER )?
                     int alt33=2;
                     int LA33_0 = input.LA(1);
 
@@ -4603,9 +4596,9 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt33) {
                         case 1 :
-                            // Haxe.g:234:11: IDENTIFIER
+                            // Haxe.g:234:17: IDENTIFIER
                             {
-                            IDENTIFIER143=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1368); if (state.failed) return retval; 
+                            IDENTIFIER143=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1932); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER143);
 
 
@@ -4614,13 +4607,13 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    SEMI144=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1372); if (state.failed) return retval; 
+                    SEMI144=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1936); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI144);
 
 
 
                     // AST REWRITE
-                    // elements: BREAK, IDENTIFIER
+                    // elements: IDENTIFIER, BREAK
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4631,14 +4624,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 234:32: -> ^( BREAK ( IDENTIFIER )? )
+                    // 234:50: -> ^( BREAK ( IDENTIFIER )? )
                     {
-                        // Haxe.g:234:35: ^( BREAK ( IDENTIFIER )? )
+                        // Haxe.g:234:53: ^( BREAK ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_BREAK.nextNode(), root_1);
 
-                        // Haxe.g:234:43: ( IDENTIFIER )?
+                        // Haxe.g:234:61: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
@@ -4654,12 +4647,12 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 13 :
-                    // Haxe.g:235:4: CONTINUE ( IDENTIFIER )? SEMI
+                    // Haxe.g:235:10: CONTINUE ( IDENTIFIER )? SEMI
                     {
-                    CONTINUE145=(Token)match(input,CONTINUE,FOLLOW_CONTINUE_in_statement1389); if (state.failed) return retval; 
+                    CONTINUE145=(Token)match(input,CONTINUE,FOLLOW_CONTINUE_in_statement1971); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CONTINUE.add(CONTINUE145);
 
-                    // Haxe.g:235:13: ( IDENTIFIER )?
+                    // Haxe.g:235:19: ( IDENTIFIER )?
                     int alt34=2;
                     int LA34_0 = input.LA(1);
 
@@ -4668,9 +4661,9 @@ public class HaxeParser extends Parser {
                     }
                     switch (alt34) {
                         case 1 :
-                            // Haxe.g:235:14: IDENTIFIER
+                            // Haxe.g:235:20: IDENTIFIER
                             {
-                            IDENTIFIER146=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1392); if (state.failed) return retval; 
+                            IDENTIFIER146=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1974); if (state.failed) return retval; 
                             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER146);
 
 
@@ -4679,13 +4672,13 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    SEMI147=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1396); if (state.failed) return retval; 
+                    SEMI147=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1978); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_SEMI.add(SEMI147);
 
 
 
                     // AST REWRITE
-                    // elements: CONTINUE, IDENTIFIER
+                    // elements: IDENTIFIER, CONTINUE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4696,14 +4689,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 235:36: -> ^( CONTINUE ( IDENTIFIER )? )
+                    // 235:54: -> ^( CONTINUE ( IDENTIFIER )? )
                     {
-                        // Haxe.g:235:39: ^( CONTINUE ( IDENTIFIER )? )
+                        // Haxe.g:235:57: ^( CONTINUE ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CONTINUE.nextNode(), root_1);
 
-                        // Haxe.g:235:50: ( IDENTIFIER )?
+                        // Haxe.g:235:68: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
@@ -4719,30 +4712,30 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 14 :
-                    // Haxe.g:236:4: expr SEMI
+                    // Haxe.g:236:10: expr SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_expr_in_statement1414);
+                    pushFollow(FOLLOW_expr_in_statement2014);
                     expr148=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expr148.getTree());
-                    SEMI149=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1417); if (state.failed) return retval;
+                    SEMI149=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement2017); if (state.failed) return retval;
 
                     }
                     break;
                 case 15 :
-                    // Haxe.g:237:4: IDENTIFIER COLON statement
+                    // Haxe.g:237:10: IDENTIFIER COLON statement
                     {
-                    IDENTIFIER150=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement1423); if (state.failed) return retval; 
+                    IDENTIFIER150=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_statement2029); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER150);
 
-                    COLON151=(Token)match(input,COLON,FOLLOW_COLON_in_statement1425); if (state.failed) return retval; 
+                    COLON151=(Token)match(input,COLON,FOLLOW_COLON_in_statement2031); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_COLON.add(COLON151);
 
-                    pushFollow(FOLLOW_statement_in_statement1427);
+                    pushFollow(FOLLOW_statement_in_statement2033);
                     statement152=statement();
 
                     state._fsp--;
@@ -4751,7 +4744,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: COLON, statement, IDENTIFIER
+                    // elements: IDENTIFIER, statement, COLON
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4762,20 +4755,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 237:35: -> ^( COLON ( IDENTIFIER )? ( statement )? )
+                    // 237:53: -> ^( COLON ( IDENTIFIER )? ( statement )? )
                     {
-                        // Haxe.g:237:38: ^( COLON ( IDENTIFIER )? ( statement )? )
+                        // Haxe.g:237:56: ^( COLON ( IDENTIFIER )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_COLON.nextNode(), root_1);
 
-                        // Haxe.g:237:46: ( IDENTIFIER )?
+                        // Haxe.g:237:64: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         }
                         stream_IDENTIFIER.reset();
-                        // Haxe.g:237:58: ( statement )?
+                        // Haxe.g:237:76: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -4791,11 +4784,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 16 :
-                    // Haxe.g:238:4: SEMI
+                    // Haxe.g:238:10: SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    SEMI153=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement1448); if (state.failed) return retval;
+                    SEMI153=(Token)match(input,SEMI,FOLLOW_SEMI_in_statement2072); if (state.failed) return retval;
 
                     }
                     break;
@@ -4845,19 +4838,19 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
-            // Haxe.g:242:2: ( LPAREN expr RPAREN )
-            // Haxe.g:242:6: LPAREN expr RPAREN
+            // Haxe.g:242:5: ( LPAREN expr RPAREN )
+            // Haxe.g:242:9: LPAREN expr RPAREN
             {
             root_0 = (Object)adaptor.nil();
 
-            LPAREN154=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_parExpression1466); if (state.failed) return retval;
-            pushFollow(FOLLOW_expr_in_parExpression1469);
+            LPAREN154=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_parExpression2096); if (state.failed) return retval;
+            pushFollow(FOLLOW_expr_in_parExpression2099);
             expr155=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr155.getTree());
-            RPAREN156=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_parExpression1471); if (state.failed) return retval;
+            RPAREN156=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_parExpression2101); if (state.failed) return retval;
 
             }
 
@@ -4909,7 +4902,7 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_blockStmt=new RewriteRuleSubtreeStream(adaptor,"rule blockStmt");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 32) ) { return retval; }
-            // Haxe.g:245:8: ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] ) | SEMI )
+            // Haxe.g:245:11: ( LBRACE ( blockStmt )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] ) | SEMI )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -4928,27 +4921,27 @@ public class HaxeParser extends Parser {
             }
             switch (alt37) {
                 case 1 :
-                    // Haxe.g:245:10: LBRACE ( blockStmt )* RBRACE
+                    // Haxe.g:245:16: LBRACE ( blockStmt )* RBRACE
                     {
-                    LBRACE157=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_block1483); if (state.failed) return retval; 
+                    LBRACE157=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_block2122); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE157);
 
-                    // Haxe.g:245:17: ( blockStmt )*
+                    // Haxe.g:245:23: ( blockStmt )*
                     loop36:
                     do {
                         int alt36=2;
                         int LA36_0 = input.LA(1);
 
-                        if ( ((LA36_0>=SEMI && LA36_0<=LPAREN)||LA36_0==IDENTIFIER||(LA36_0>=EXTERN && LA36_0<=PRIVATE)||(LA36_0>=PUBLIC && LA36_0<=OVERRIDE)||(LA36_0>=QUES && LA36_0<=LBRACKET)||(LA36_0>=LT && LA36_0<=GT)||(LA36_0>=GTGTGT && LA36_0<=IF)||LA36_0==FOR||(LA36_0>=WHILE && LA36_0<=LBRACE)||(LA36_0>=RETURN && LA36_0<=CONTINUE)||(LA36_0>=UNTYPED && LA36_0<=CAST)||(LA36_0>=VAR && LA36_0<=CLASS)||(LA36_0>=LONGLITERAL && LA36_0<=FALSE)) ) {
+                        if ( ((LA36_0>=SEMI && LA36_0<=LPAREN)||LA36_0==IDENTIFIER||(LA36_0>=EXTERN && LA36_0<=PRIVATE)||(LA36_0>=PUBLIC && LA36_0<=OVERRIDE)||LA36_0==THIS||(LA36_0>=FUNCTION && LA36_0<=LBRACKET)||(LA36_0>=NEW && LA36_0<=IF)||LA36_0==FOR||(LA36_0>=WHILE && LA36_0<=LBRACE)||(LA36_0>=RETURN && LA36_0<=CONTINUE)||LA36_0==UNTYPED||(LA36_0>=PLUS && LA36_0<=SUB)||(LA36_0>=SUBSUB && LA36_0<=INTERFACE)||(LA36_0>=LONGLITERAL && LA36_0<=FALSE)) ) {
                             alt36=1;
                         }
 
 
                         switch (alt36) {
                     	case 1 :
-                    	    // Haxe.g:245:18: blockStmt
+                    	    // Haxe.g:245:24: blockStmt
                     	    {
-                    	    pushFollow(FOLLOW_blockStmt_in_block1486);
+                    	    pushFollow(FOLLOW_blockStmt_in_block2125);
                     	    blockStmt158=blockStmt();
 
                     	    state._fsp--;
@@ -4963,13 +4956,13 @@ public class HaxeParser extends Parser {
                         }
                     } while (true);
 
-                    RBRACE159=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_block1490); if (state.failed) return retval; 
+                    RBRACE159=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_block2129); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE159);
 
 
 
                     // AST REWRITE
-                    // elements: RBRACE, blockStmt
+                    // elements: blockStmt, RBRACE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4980,14 +4973,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 245:37: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
+                    // 245:43: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
                     {
-                        // Haxe.g:245:40: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
+                        // Haxe.g:245:46: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( blockStmt )* RBRACE[$RBRACE, true] )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new BlockScopeNode(BLOCK_SCOPE, "BLOCK_SCOPE", true, LBRACE157), root_1);
 
-                        // Haxe.g:245:100: ( blockStmt )*
+                        // Haxe.g:245:106: ( blockStmt )*
                         while ( stream_blockStmt.hasNext() ) {
                             adaptor.addChild(root_1, stream_blockStmt.nextTree());
 
@@ -5004,11 +4997,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:246:4: SEMI
+                    // Haxe.g:246:10: SEMI
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    SEMI160=(Token)match(input,SEMI,FOLLOW_SEMI_in_block1515); if (state.failed) return retval;
+                    SEMI160=(Token)match(input,SEMI,FOLLOW_SEMI_in_block2160); if (state.failed) return retval;
 
                     }
                     break;
@@ -5058,16 +5051,16 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
-            // Haxe.g:250:2: ( varDecl | classDecl | statement )
+            // Haxe.g:250:5: ( varDecl | classDecl | statement )
             int alt38=3;
             alt38 = dfa38.predict(input);
             switch (alt38) {
                 case 1 :
-                    // Haxe.g:250:4: varDecl
+                    // Haxe.g:250:10: varDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDecl_in_blockStmt1528);
+                    pushFollow(FOLLOW_varDecl_in_blockStmt2185);
                     varDecl161=varDecl();
 
                     state._fsp--;
@@ -5077,11 +5070,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:251:4: classDecl
+                    // Haxe.g:251:10: classDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classDecl_in_blockStmt1533);
+                    pushFollow(FOLLOW_classDecl_in_blockStmt2196);
                     classDecl162=classDecl();
 
                     state._fsp--;
@@ -5091,11 +5084,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:252:4: statement
+                    // Haxe.g:252:10: statement
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_statement_in_blockStmt1538);
+                    pushFollow(FOLLOW_statement_in_blockStmt2207);
                     statement163=statement();
 
                     state._fsp--;
@@ -5148,17 +5141,17 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 34) ) { return retval; }
-            // Haxe.g:257:2: ( BREAK SEMI )
-            // Haxe.g:257:4: BREAK SEMI
+            // Haxe.g:257:5: ( BREAK SEMI )
+            // Haxe.g:257:10: BREAK SEMI
             {
             root_0 = (Object)adaptor.nil();
 
-            BREAK164=(Token)match(input,BREAK,FOLLOW_BREAK_in_breakStmt1571); if (state.failed) return retval;
+            BREAK164=(Token)match(input,BREAK,FOLLOW_BREAK_in_breakStmt2255); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             BREAK164_tree = (Object)adaptor.create(BREAK164);
             adaptor.addChild(root_0, BREAK164_tree);
             }
-            SEMI165=(Token)match(input,SEMI,FOLLOW_SEMI_in_breakStmt1573); if (state.failed) return retval;
+            SEMI165=(Token)match(input,SEMI,FOLLOW_SEMI_in_breakStmt2257); if (state.failed) return retval;
 
             }
 
@@ -5204,17 +5197,17 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 35) ) { return retval; }
-            // Haxe.g:261:2: ( CONTINUE SEMI )
-            // Haxe.g:261:4: CONTINUE SEMI
+            // Haxe.g:261:5: ( CONTINUE SEMI )
+            // Haxe.g:261:10: CONTINUE SEMI
             {
             root_0 = (Object)adaptor.nil();
 
-            CONTINUE166=(Token)match(input,CONTINUE,FOLLOW_CONTINUE_in_continueStmt1592); if (state.failed) return retval;
+            CONTINUE166=(Token)match(input,CONTINUE,FOLLOW_CONTINUE_in_continueStmt2288); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             CONTINUE166_tree = (Object)adaptor.create(CONTINUE166);
             adaptor.addChild(root_0, CONTINUE166_tree);
             }
-            SEMI167=(Token)match(input,SEMI,FOLLOW_SEMI_in_continueStmt1594); if (state.failed) return retval;
+            SEMI167=(Token)match(input,SEMI,FOLLOW_SEMI_in_continueStmt2290); if (state.failed) return retval;
 
             }
 
@@ -5293,21 +5286,21 @@ public class HaxeParser extends Parser {
             }
             switch (alt39) {
                 case 1 :
-                    // Haxe.g:264:11: CASE exprList COLON statement
+                    // Haxe.g:264:14: CASE exprList COLON statement
                     {
-                    CASE168=(Token)match(input,CASE,FOLLOW_CASE_in_caseStmt1605); if (state.failed) return retval; 
+                    CASE168=(Token)match(input,CASE,FOLLOW_CASE_in_caseStmt2310); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_CASE.add(CASE168);
 
-                    pushFollow(FOLLOW_exprList_in_caseStmt1607);
+                    pushFollow(FOLLOW_exprList_in_caseStmt2312);
                     exprList169=exprList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_exprList.add(exprList169.getTree());
-                    COLON170=(Token)match(input,COLON,FOLLOW_COLON_in_caseStmt1609); if (state.failed) return retval; 
+                    COLON170=(Token)match(input,COLON,FOLLOW_COLON_in_caseStmt2314); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_COLON.add(COLON170);
 
-                    pushFollow(FOLLOW_statement_in_caseStmt1611);
+                    pushFollow(FOLLOW_statement_in_caseStmt2316);
                     statement171=statement();
 
                     state._fsp--;
@@ -5316,7 +5309,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, CASE, exprList
+                    // elements: exprList, CASE, statement
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5327,20 +5320,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 264:42: -> ^( CASE ( exprList )? ( statement )? )
+                    // 264:48: -> ^( CASE ( exprList )? ( statement )? )
                     {
-                        // Haxe.g:264:45: ^( CASE ( exprList )? ( statement )? )
+                        // Haxe.g:264:51: ^( CASE ( exprList )? ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CASE.nextNode(), root_1);
 
-                        // Haxe.g:264:52: ( exprList )?
+                        // Haxe.g:264:58: ( exprList )?
                         if ( stream_exprList.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprList.nextTree());
 
                         }
                         stream_exprList.reset();
-                        // Haxe.g:264:62: ( statement )?
+                        // Haxe.g:264:68: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -5356,15 +5349,15 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:265:4: DEFAULT COLON statement
+                    // Haxe.g:265:10: DEFAULT COLON statement
                     {
-                    DEFAULT172=(Token)match(input,DEFAULT,FOLLOW_DEFAULT_in_caseStmt1629); if (state.failed) return retval; 
+                    DEFAULT172=(Token)match(input,DEFAULT,FOLLOW_DEFAULT_in_caseStmt2343); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_DEFAULT.add(DEFAULT172);
 
-                    COLON173=(Token)match(input,COLON,FOLLOW_COLON_in_caseStmt1631); if (state.failed) return retval; 
+                    COLON173=(Token)match(input,COLON,FOLLOW_COLON_in_caseStmt2345); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_COLON.add(COLON173);
 
-                    pushFollow(FOLLOW_statement_in_caseStmt1633);
+                    pushFollow(FOLLOW_statement_in_caseStmt2347);
                     statement174=statement();
 
                     state._fsp--;
@@ -5384,14 +5377,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 265:29: -> ^( DEFAULT ( statement )? )
+                    // 265:38: -> ^( DEFAULT ( statement )? )
                     {
-                        // Haxe.g:265:32: ^( DEFAULT ( statement )? )
+                        // Haxe.g:265:41: ^( DEFAULT ( statement )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_DEFAULT.nextNode(), root_1);
 
-                        // Haxe.g:265:42: ( statement )?
+                        // Haxe.g:265:51: ( statement )?
                         if ( stream_statement.hasNext() ) {
                             adaptor.addChild(root_1, stream_statement.nextTree());
 
@@ -5450,17 +5443,17 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 37) ) { return retval; }
-            // Haxe.g:269:9: ( DEFAULT COLON )
-            // Haxe.g:269:11: DEFAULT COLON
+            // Haxe.g:269:12: ( DEFAULT COLON )
+            // Haxe.g:269:17: DEFAULT COLON
             {
             root_0 = (Object)adaptor.nil();
 
-            DEFAULT175=(Token)match(input,DEFAULT,FOLLOW_DEFAULT_in_defaultStmt1662); if (state.failed) return retval;
+            DEFAULT175=(Token)match(input,DEFAULT,FOLLOW_DEFAULT_in_defaultStmt2391); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             DEFAULT175_tree = (Object)adaptor.create(DEFAULT175);
             adaptor.addChild(root_0, DEFAULT175_tree);
             }
-            COLON176=(Token)match(input,COLON,FOLLOW_COLON_in_defaultStmt1664); if (state.failed) return retval;
+            COLON176=(Token)match(input,COLON,FOLLOW_COLON_in_defaultStmt2393); if (state.failed) return retval;
 
             }
 
@@ -5506,14 +5499,14 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 38) ) { return retval; }
-            // Haxe.g:273:2: ( catchStmt catchStmtList | )
+            // Haxe.g:273:5: ( catchStmt catchStmtList | )
             int alt40=2;
             int LA40_0 = input.LA(1);
 
             if ( (LA40_0==CATCH) ) {
                 alt40=1;
             }
-            else if ( (LA40_0==EOF||(LA40_0>=SEMI && LA40_0<=PRIVATE)||(LA40_0>=PUBLIC && LA40_0<=RBRACKET)||(LA40_0>=LT && LA40_0<=GT)||(LA40_0>=GTGTGT && LA40_0<=DEFAULT)||(LA40_0>=UNTYPED && LA40_0<=IMPLEMENTS)||(LA40_0>=LONGLITERAL && LA40_0<=FALSE)) ) {
+            else if ( (LA40_0==EOF||(LA40_0>=SEMI && LA40_0<=IDENTIFIER)||(LA40_0>=EXTERN && LA40_0<=PRIVATE)||(LA40_0>=PUBLIC && LA40_0<=OVERRIDE)||LA40_0==THIS||(LA40_0>=FUNCTION && LA40_0<=LBRACKET)||(LA40_0>=NEW && LA40_0<=FOR)||(LA40_0>=WHILE && LA40_0<=DEFAULT)||LA40_0==UNTYPED||(LA40_0>=PLUS && LA40_0<=SUB)||(LA40_0>=SUBSUB && LA40_0<=INTERFACE)||(LA40_0>=LONGLITERAL && LA40_0<=FALSE)) ) {
                 alt40=2;
             }
             else {
@@ -5525,17 +5518,17 @@ public class HaxeParser extends Parser {
             }
             switch (alt40) {
                 case 1 :
-                    // Haxe.g:273:4: catchStmt catchStmtList
+                    // Haxe.g:273:7: catchStmt catchStmtList
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_catchStmt_in_catchStmtList1677);
+                    pushFollow(FOLLOW_catchStmt_in_catchStmtList2415);
                     catchStmt177=catchStmt();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, catchStmt177.getTree());
-                    pushFollow(FOLLOW_catchStmtList_in_catchStmtList1679);
+                    pushFollow(FOLLOW_catchStmtList_in_catchStmtList2417);
                     catchStmtList178=catchStmtList();
 
                     state._fsp--;
@@ -5545,7 +5538,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:275:2: 
+                    // Haxe.g:275:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5605,25 +5598,25 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 39) ) { return retval; }
-            // Haxe.g:278:2: ( CATCH LPAREN param RPAREN block -> ^( CATCH ( param )? ( block )? ) )
-            // Haxe.g:278:4: CATCH LPAREN param RPAREN block
+            // Haxe.g:278:5: ( CATCH LPAREN param RPAREN block -> ^( CATCH ( param )? ( block )? ) )
+            // Haxe.g:278:10: CATCH LPAREN param RPAREN block
             {
-            CATCH179=(Token)match(input,CATCH,FOLLOW_CATCH_in_catchStmt1701); if (state.failed) return retval; 
+            CATCH179=(Token)match(input,CATCH,FOLLOW_CATCH_in_catchStmt2451); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_CATCH.add(CATCH179);
 
-            LPAREN180=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_catchStmt1703); if (state.failed) return retval; 
+            LPAREN180=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_catchStmt2453); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN180);
 
-            pushFollow(FOLLOW_param_in_catchStmt1705);
+            pushFollow(FOLLOW_param_in_catchStmt2455);
             param181=param();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_param.add(param181.getTree());
-            RPAREN182=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_catchStmt1707); if (state.failed) return retval; 
+            RPAREN182=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_catchStmt2457); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN182);
 
-            pushFollow(FOLLOW_block_in_catchStmt1709);
+            pushFollow(FOLLOW_block_in_catchStmt2459);
             block183=block();
 
             state._fsp--;
@@ -5632,7 +5625,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: param, CATCH, block
+            // elements: CATCH, block, param
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5643,20 +5636,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 278:36: -> ^( CATCH ( param )? ( block )? )
+            // 278:42: -> ^( CATCH ( param )? ( block )? )
             {
-                // Haxe.g:278:39: ^( CATCH ( param )? ( block )? )
+                // Haxe.g:278:45: ^( CATCH ( param )? ( block )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_CATCH.nextNode(), root_1);
 
-                // Haxe.g:278:47: ( param )?
+                // Haxe.g:278:53: ( param )?
                 if ( stream_param.hasNext() ) {
                     adaptor.addChild(root_1, stream_param.nextTree());
 
                 }
                 stream_param.reset();
-                // Haxe.g:278:54: ( block )?
+                // Haxe.g:278:60: ( block )?
                 if ( stream_block.hasNext() ) {
                     adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -5711,114 +5704,30 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 40) ) { return retval; }
-            // Haxe.g:284:2: ( exprList | )
+            // Haxe.g:284:5: ( exprList | )
             int alt41=2;
-            switch ( input.LA(1) ) {
-            case LPAREN:
-            case IDENTIFIER:
-            case COMMA:
-            case QUES:
-            case THIS:
-            case EQ:
-            case PLUSEQ:
-            case SUBEQ:
-            case SLASHEQ:
-            case PERCENTEQ:
-            case AMPEQ:
-            case FUNCTION:
-            case LBRACKET:
-            case LT:
-            case GT:
-            case GTGTGT:
-            case NEW:
-            case LBRACE:
-            case UNTYPED:
-            case ELLIPSIS:
-            case BARBAR:
-            case AMPAMP:
-            case EQEQ:
-            case BANGEQ:
-            case GTEQ:
-            case LTEQ:
-            case BAR:
-            case AMP:
-            case CARET:
-            case LTLT:
-            case PLUS:
-            case SUB:
-            case STAR:
-            case SLASH:
-            case PERCENT:
-            case SUBSUB:
-            case PLUSPLUS:
-            case BANG:
-            case TILDE:
-            case CAST:
-            case NULL:
-            case LONGLITERAL:
-            case INTLITERAL:
-            case STRINGLITERAL:
-            case CHARLITERAL:
-            case FLOATNUM:
-            case TRUE:
-            case FALSE:
-                {
+            int LA41_0 = input.LA(1);
+
+            if ( (LA41_0==LPAREN||LA41_0==IDENTIFIER||LA41_0==THIS||(LA41_0>=FUNCTION && LA41_0<=LBRACKET)||LA41_0==NEW||LA41_0==LBRACE||LA41_0==UNTYPED||(LA41_0>=PLUS && LA41_0<=SUB)||(LA41_0>=SUBSUB && LA41_0<=CAST)||LA41_0==NULL||(LA41_0>=LONGLITERAL && LA41_0<=FALSE)) ) {
                 alt41=1;
-                }
-                break;
-            case RBRACKET:
-                {
-                int LA41_2 = input.LA(2);
-
-                if ( (synpred73_Haxe()) ) {
-                    alt41=1;
-                }
-                else if ( (true) ) {
-                    alt41=2;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 41, 2, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case RPAREN:
-                {
-                int LA41_3 = input.LA(2);
-
-                if ( (synpred73_Haxe()) ) {
-                    alt41=1;
-                }
-                else if ( (true) ) {
-                    alt41=2;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 41, 3, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            default:
+            }
+            else if ( (LA41_0==RPAREN||LA41_0==RBRACKET) ) {
+                alt41=2;
+            }
+            else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
                     new NoViableAltException("", 41, 0, input);
 
                 throw nvae;
             }
-
             switch (alt41) {
                 case 1 :
-                    // Haxe.g:284:4: exprList
+                    // Haxe.g:284:10: exprList
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_exprList_in_exprListOpt1735);
+                    pushFollow(FOLLOW_exprList_in_exprListOpt2497);
                     exprList184=exprList();
 
                     state._fsp--;
@@ -5828,7 +5737,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:286:2: 
+                    // Haxe.g:286:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -5881,17 +5790,17 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 41) ) { return retval; }
             // Haxe.g:288:9: ( expr ( COMMA expr )* )
-            // Haxe.g:288:11: expr ( COMMA expr )*
+            // Haxe.g:288:14: expr ( COMMA expr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_expr_in_exprList1748);
+            pushFollow(FOLLOW_expr_in_exprList2522);
             expr185=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expr185.getTree());
-            // Haxe.g:288:16: ( COMMA expr )*
+            // Haxe.g:288:19: ( COMMA expr )*
             loop42:
             do {
                 int alt42=2;
@@ -5904,10 +5813,10 @@ public class HaxeParser extends Parser {
 
                 switch (alt42) {
             	case 1 :
-            	    // Haxe.g:288:17: COMMA expr
+            	    // Haxe.g:288:20: COMMA expr
             	    {
-            	    COMMA186=(Token)match(input,COMMA,FOLLOW_COMMA_in_exprList1751); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_expr_in_exprList1754);
+            	    COMMA186=(Token)match(input,COMMA,FOLLOW_COMMA_in_exprList2525); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_expr_in_exprList2528);
             	    expr187=expr();
 
             	    state._fsp--;
@@ -5970,11 +5879,11 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_assignExpr=new RewriteRuleSubtreeStream(adaptor,"rule assignExpr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 42) ) { return retval; }
-            // Haxe.g:291:6: ( assignExpr | UNTYPED assignExpr -> ^( UNTYPED assignExpr ) )
+            // Haxe.g:291:9: ( assignExpr | UNTYPED assignExpr -> ^( UNTYPED assignExpr ) )
             int alt43=2;
             int LA43_0 = input.LA(1);
 
-            if ( (LA43_0==EOF||LA43_0==SEMI||(LA43_0>=LPAREN && LA43_0<=COLON)||(LA43_0>=COMMA && LA43_0<=RBRACKET)||(LA43_0>=LT && LA43_0<=GT)||(LA43_0>=GTGTGT && LA43_0<=NEW)||LA43_0==IN||(LA43_0>=LBRACE && LA43_0<=RBRACE)||(LA43_0>=ELLIPSIS && LA43_0<=CAST)||LA43_0==NULL||(LA43_0>=EXTENDS && LA43_0<=IMPLEMENTS)||(LA43_0>=LONGLITERAL && LA43_0<=FALSE)) ) {
+            if ( (LA43_0==LPAREN||LA43_0==IDENTIFIER||LA43_0==THIS||(LA43_0>=FUNCTION && LA43_0<=LBRACKET)||LA43_0==NEW||LA43_0==LBRACE||(LA43_0>=PLUS && LA43_0<=SUB)||(LA43_0>=SUBSUB && LA43_0<=CAST)||LA43_0==NULL||(LA43_0>=LONGLITERAL && LA43_0<=FALSE)) ) {
                 alt43=1;
             }
             else if ( (LA43_0==UNTYPED) ) {
@@ -5989,11 +5898,11 @@ public class HaxeParser extends Parser {
             }
             switch (alt43) {
                 case 1 :
-                    // Haxe.g:291:8: assignExpr
+                    // Haxe.g:291:14: assignExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_assignExpr_in_expr1767);
+                    pushFollow(FOLLOW_assignExpr_in_expr2553);
                     assignExpr188=assignExpr();
 
                     state._fsp--;
@@ -6003,12 +5912,12 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:292:4: UNTYPED assignExpr
+                    // Haxe.g:292:10: UNTYPED assignExpr
                     {
-                    UNTYPED189=(Token)match(input,UNTYPED,FOLLOW_UNTYPED_in_expr1772); if (state.failed) return retval; 
+                    UNTYPED189=(Token)match(input,UNTYPED,FOLLOW_UNTYPED_in_expr2564); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_UNTYPED.add(UNTYPED189);
 
-                    pushFollow(FOLLOW_assignExpr_in_expr1774);
+                    pushFollow(FOLLOW_assignExpr_in_expr2566);
                     assignExpr190=assignExpr();
 
                     state._fsp--;
@@ -6017,7 +5926,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: UNTYPED, assignExpr
+                    // elements: assignExpr, UNTYPED
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6028,9 +5937,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 292:23: -> ^( UNTYPED assignExpr )
+                    // 292:32: -> ^( UNTYPED assignExpr )
                     {
-                        // Haxe.g:292:26: ^( UNTYPED assignExpr )
+                        // Haxe.g:292:35: ^( UNTYPED assignExpr )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_UNTYPED.nextNode(), root_1);
@@ -6091,18 +6000,18 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return retval; }
-            // Haxe.g:296:2: ( iterExpr ( assignOp iterExpr )* )
-            // Haxe.g:296:5: iterExpr ( assignOp iterExpr )*
+            // Haxe.g:296:5: ( iterExpr ( assignOp iterExpr )* )
+            // Haxe.g:296:11: iterExpr ( assignOp iterExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_iterExpr_in_assignExpr1794);
+            pushFollow(FOLLOW_iterExpr_in_assignExpr2598);
             iterExpr191=iterExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, iterExpr191.getTree());
-            // Haxe.g:296:14: ( assignOp iterExpr )*
+            // Haxe.g:296:20: ( assignOp iterExpr )*
             loop44:
             do {
                 int alt44=2;
@@ -6115,15 +6024,15 @@ public class HaxeParser extends Parser {
 
                 switch (alt44) {
             	case 1 :
-            	    // Haxe.g:296:15: assignOp iterExpr
+            	    // Haxe.g:296:21: assignOp iterExpr
             	    {
-            	    pushFollow(FOLLOW_assignOp_in_assignExpr1797);
+            	    pushFollow(FOLLOW_assignOp_in_assignExpr2601);
             	    assignOp192=assignOp();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(assignOp192.getTree(), root_0);
-            	    pushFollow(FOLLOW_iterExpr_in_assignExpr1800);
+            	    pushFollow(FOLLOW_iterExpr_in_assignExpr2604);
             	    iterExpr193=iterExpr();
 
             	    state._fsp--;
@@ -6186,17 +6095,17 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return retval; }
             // Haxe.g:299:9: ( ternaryExpr ( ELLIPSIS ternaryExpr )* )
-            // Haxe.g:299:11: ternaryExpr ( ELLIPSIS ternaryExpr )*
+            // Haxe.g:299:14: ternaryExpr ( ELLIPSIS ternaryExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_ternaryExpr_in_iterExpr1812);
+            pushFollow(FOLLOW_ternaryExpr_in_iterExpr2622);
             ternaryExpr194=ternaryExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, ternaryExpr194.getTree());
-            // Haxe.g:299:23: ( ELLIPSIS ternaryExpr )*
+            // Haxe.g:299:26: ( ELLIPSIS ternaryExpr )*
             loop45:
             do {
                 int alt45=2;
@@ -6209,14 +6118,14 @@ public class HaxeParser extends Parser {
 
                 switch (alt45) {
             	case 1 :
-            	    // Haxe.g:299:24: ELLIPSIS ternaryExpr
+            	    // Haxe.g:299:27: ELLIPSIS ternaryExpr
             	    {
-            	    ELLIPSIS195=(Token)match(input,ELLIPSIS,FOLLOW_ELLIPSIS_in_iterExpr1815); if (state.failed) return retval;
+            	    ELLIPSIS195=(Token)match(input,ELLIPSIS,FOLLOW_ELLIPSIS_in_iterExpr2625); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    ELLIPSIS195_tree = (Object)adaptor.create(ELLIPSIS195);
             	    root_0 = (Object)adaptor.becomeRoot(ELLIPSIS195_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_ternaryExpr_in_iterExpr1818);
+            	    pushFollow(FOLLOW_ternaryExpr_in_iterExpr2628);
             	    ternaryExpr196=ternaryExpr();
 
             	    state._fsp--;
@@ -6282,18 +6191,18 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return retval; }
-            // Haxe.g:303:2: ( logicOrExpr ( QUES expr COLON logicOrExpr )* )
-            // Haxe.g:303:4: logicOrExpr ( QUES expr COLON logicOrExpr )*
+            // Haxe.g:303:5: ( logicOrExpr ( QUES expr COLON logicOrExpr )* )
+            // Haxe.g:303:10: logicOrExpr ( QUES expr COLON logicOrExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr1831);
+            pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr2650);
             logicOrExpr197=logicOrExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, logicOrExpr197.getTree());
-            // Haxe.g:303:16: ( QUES expr COLON logicOrExpr )*
+            // Haxe.g:303:22: ( QUES expr COLON logicOrExpr )*
             loop46:
             do {
                 int alt46=2;
@@ -6306,21 +6215,21 @@ public class HaxeParser extends Parser {
 
                 switch (alt46) {
             	case 1 :
-            	    // Haxe.g:303:17: QUES expr COLON logicOrExpr
+            	    // Haxe.g:303:23: QUES expr COLON logicOrExpr
             	    {
-            	    QUES198=(Token)match(input,QUES,FOLLOW_QUES_in_ternaryExpr1834); if (state.failed) return retval;
+            	    QUES198=(Token)match(input,QUES,FOLLOW_QUES_in_ternaryExpr2653); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    QUES198_tree = (Object)adaptor.create(QUES198);
             	    root_0 = (Object)adaptor.becomeRoot(QUES198_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_expr_in_ternaryExpr1837);
+            	    pushFollow(FOLLOW_expr_in_ternaryExpr2656);
             	    expr199=expr();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) adaptor.addChild(root_0, expr199.getTree());
-            	    COLON200=(Token)match(input,COLON,FOLLOW_COLON_in_ternaryExpr1839); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr1842);
+            	    COLON200=(Token)match(input,COLON,FOLLOW_COLON_in_ternaryExpr2658); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_logicOrExpr_in_ternaryExpr2661);
             	    logicOrExpr201=logicOrExpr();
 
             	    state._fsp--;
@@ -6382,18 +6291,18 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return retval; }
-            // Haxe.g:307:2: ( logicAndExpr ( BARBAR logicAndExpr )* )
-            // Haxe.g:307:4: logicAndExpr ( BARBAR logicAndExpr )*
+            // Haxe.g:307:5: ( logicAndExpr ( BARBAR logicAndExpr )* )
+            // Haxe.g:307:10: logicAndExpr ( BARBAR logicAndExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr1855);
+            pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr2683);
             logicAndExpr202=logicAndExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, logicAndExpr202.getTree());
-            // Haxe.g:307:17: ( BARBAR logicAndExpr )*
+            // Haxe.g:307:23: ( BARBAR logicAndExpr )*
             loop47:
             do {
                 int alt47=2;
@@ -6406,14 +6315,14 @@ public class HaxeParser extends Parser {
 
                 switch (alt47) {
             	case 1 :
-            	    // Haxe.g:307:18: BARBAR logicAndExpr
+            	    // Haxe.g:307:24: BARBAR logicAndExpr
             	    {
-            	    BARBAR203=(Token)match(input,BARBAR,FOLLOW_BARBAR_in_logicOrExpr1858); if (state.failed) return retval;
+            	    BARBAR203=(Token)match(input,BARBAR,FOLLOW_BARBAR_in_logicOrExpr2686); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    BARBAR203_tree = (Object)adaptor.create(BARBAR203);
             	    root_0 = (Object)adaptor.becomeRoot(BARBAR203_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr1861);
+            	    pushFollow(FOLLOW_logicAndExpr_in_logicOrExpr2689);
             	    logicAndExpr204=logicAndExpr();
 
             	    state._fsp--;
@@ -6475,15 +6384,15 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return retval; }
-            // Haxe.g:311:2: ( ( cmpExpr ) ( AMPAMP cmpExpr )* )
-            // Haxe.g:311:4: ( cmpExpr ) ( AMPAMP cmpExpr )*
+            // Haxe.g:311:5: ( ( cmpExpr ) ( AMPAMP cmpExpr )* )
+            // Haxe.g:311:10: ( cmpExpr ) ( AMPAMP cmpExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:311:4: ( cmpExpr )
-            // Haxe.g:311:5: cmpExpr
+            // Haxe.g:311:10: ( cmpExpr )
+            // Haxe.g:311:11: cmpExpr
             {
-            pushFollow(FOLLOW_cmpExpr_in_logicAndExpr1876);
+            pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2716);
             cmpExpr205=cmpExpr();
 
             state._fsp--;
@@ -6492,7 +6401,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // Haxe.g:311:14: ( AMPAMP cmpExpr )*
+            // Haxe.g:311:20: ( AMPAMP cmpExpr )*
             loop48:
             do {
                 int alt48=2;
@@ -6505,14 +6414,14 @@ public class HaxeParser extends Parser {
 
                 switch (alt48) {
             	case 1 :
-            	    // Haxe.g:311:15: AMPAMP cmpExpr
+            	    // Haxe.g:311:21: AMPAMP cmpExpr
             	    {
-            	    AMPAMP206=(Token)match(input,AMPAMP,FOLLOW_AMPAMP_in_logicAndExpr1880); if (state.failed) return retval;
+            	    AMPAMP206=(Token)match(input,AMPAMP,FOLLOW_AMPAMP_in_logicAndExpr2720); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    AMPAMP206_tree = (Object)adaptor.create(AMPAMP206);
             	    root_0 = (Object)adaptor.becomeRoot(AMPAMP206_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_cmpExpr_in_logicAndExpr1883);
+            	    pushFollow(FOLLOW_cmpExpr_in_logicAndExpr2723);
             	    cmpExpr207=cmpExpr();
 
             	    state._fsp--;
@@ -6585,14 +6494,14 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return retval; }
             // Haxe.g:314:9: ( ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )* )
-            // Haxe.g:314:11: ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
+            // Haxe.g:314:14: ( bitExpr ) ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:314:11: ( bitExpr )
-            // Haxe.g:314:12: bitExpr
+            // Haxe.g:314:14: ( bitExpr )
+            // Haxe.g:314:15: bitExpr
             {
-            pushFollow(FOLLOW_bitExpr_in_cmpExpr1897);
+            pushFollow(FOLLOW_bitExpr_in_cmpExpr2746);
             bitExpr208=bitExpr();
 
             state._fsp--;
@@ -6601,7 +6510,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // Haxe.g:314:21: ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
+            // Haxe.g:314:24: ( ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr )*
             loop50:
             do {
                 int alt50=2;
@@ -6614,9 +6523,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt50) {
             	case 1 :
-            	    // Haxe.g:314:22: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr
+            	    // Haxe.g:314:25: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT ) bitExpr
             	    {
-            	    // Haxe.g:314:22: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT )
+            	    // Haxe.g:314:25: ( EQEQ | BANGEQ | GTEQ | LTEQ | GT | LT )
             	    int alt49=6;
             	    switch ( input.LA(1) ) {
             	    case EQEQ:
@@ -6659,9 +6568,9 @@ public class HaxeParser extends Parser {
 
             	    switch (alt49) {
             	        case 1 :
-            	            // Haxe.g:314:23: EQEQ
+            	            // Haxe.g:314:26: EQEQ
             	            {
-            	            EQEQ209=(Token)match(input,EQEQ,FOLLOW_EQEQ_in_cmpExpr1902); if (state.failed) return retval;
+            	            EQEQ209=(Token)match(input,EQEQ,FOLLOW_EQEQ_in_cmpExpr2751); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            EQEQ209_tree = (Object)adaptor.create(EQEQ209);
             	            root_0 = (Object)adaptor.becomeRoot(EQEQ209_tree, root_0);
@@ -6670,9 +6579,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // Haxe.g:314:30: BANGEQ
+            	            // Haxe.g:314:33: BANGEQ
             	            {
-            	            BANGEQ210=(Token)match(input,BANGEQ,FOLLOW_BANGEQ_in_cmpExpr1906); if (state.failed) return retval;
+            	            BANGEQ210=(Token)match(input,BANGEQ,FOLLOW_BANGEQ_in_cmpExpr2755); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            BANGEQ210_tree = (Object)adaptor.create(BANGEQ210);
             	            root_0 = (Object)adaptor.becomeRoot(BANGEQ210_tree, root_0);
@@ -6681,9 +6590,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // Haxe.g:314:40: GTEQ
+            	            // Haxe.g:314:43: GTEQ
             	            {
-            	            GTEQ211=(Token)match(input,GTEQ,FOLLOW_GTEQ_in_cmpExpr1911); if (state.failed) return retval;
+            	            GTEQ211=(Token)match(input,GTEQ,FOLLOW_GTEQ_in_cmpExpr2760); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTEQ211_tree = (Object)adaptor.create(GTEQ211);
             	            root_0 = (Object)adaptor.becomeRoot(GTEQ211_tree, root_0);
@@ -6692,9 +6601,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 4 :
-            	            // Haxe.g:314:48: LTEQ
+            	            // Haxe.g:314:51: LTEQ
             	            {
-            	            LTEQ212=(Token)match(input,LTEQ,FOLLOW_LTEQ_in_cmpExpr1916); if (state.failed) return retval;
+            	            LTEQ212=(Token)match(input,LTEQ,FOLLOW_LTEQ_in_cmpExpr2765); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LTEQ212_tree = (Object)adaptor.create(LTEQ212);
             	            root_0 = (Object)adaptor.becomeRoot(LTEQ212_tree, root_0);
@@ -6703,9 +6612,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 5 :
-            	            // Haxe.g:314:56: GT
+            	            // Haxe.g:314:59: GT
             	            {
-            	            GT213=(Token)match(input,GT,FOLLOW_GT_in_cmpExpr1921); if (state.failed) return retval;
+            	            GT213=(Token)match(input,GT,FOLLOW_GT_in_cmpExpr2770); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GT213_tree = (Object)adaptor.create(GT213);
             	            root_0 = (Object)adaptor.becomeRoot(GT213_tree, root_0);
@@ -6714,9 +6623,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 6 :
-            	            // Haxe.g:314:62: LT
+            	            // Haxe.g:314:65: LT
             	            {
-            	            LT214=(Token)match(input,LT,FOLLOW_LT_in_cmpExpr1926); if (state.failed) return retval;
+            	            LT214=(Token)match(input,LT,FOLLOW_LT_in_cmpExpr2775); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LT214_tree = (Object)adaptor.create(LT214);
             	            root_0 = (Object)adaptor.becomeRoot(LT214_tree, root_0);
@@ -6727,7 +6636,7 @@ public class HaxeParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_bitExpr_in_cmpExpr1931);
+            	    pushFollow(FOLLOW_bitExpr_in_cmpExpr2780);
             	    bitExpr215=bitExpr();
 
             	    state._fsp--;
@@ -6798,14 +6707,14 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return retval; }
             // Haxe.g:317:9: ( ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )* )
-            // Haxe.g:317:11: ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
+            // Haxe.g:317:14: ( shiftExpr ) ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:317:11: ( shiftExpr )
-            // Haxe.g:317:12: shiftExpr
+            // Haxe.g:317:14: ( shiftExpr )
+            // Haxe.g:317:15: shiftExpr
             {
-            pushFollow(FOLLOW_shiftExpr_in_bitExpr1945);
+            pushFollow(FOLLOW_shiftExpr_in_bitExpr2803);
             shiftExpr216=shiftExpr();
 
             state._fsp--;
@@ -6814,7 +6723,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // Haxe.g:317:23: ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
+            // Haxe.g:317:26: ( BAR shiftExpr | AMP shiftExpr | CARET shiftExpr )*
             loop51:
             do {
                 int alt51=4;
@@ -6839,14 +6748,14 @@ public class HaxeParser extends Parser {
 
                 switch (alt51) {
             	case 1 :
-            	    // Haxe.g:317:24: BAR shiftExpr
+            	    // Haxe.g:317:27: BAR shiftExpr
             	    {
-            	    BAR217=(Token)match(input,BAR,FOLLOW_BAR_in_bitExpr1949); if (state.failed) return retval;
+            	    BAR217=(Token)match(input,BAR,FOLLOW_BAR_in_bitExpr2807); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    BAR217_tree = (Object)adaptor.create(BAR217);
             	    root_0 = (Object)adaptor.becomeRoot(BAR217_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_shiftExpr_in_bitExpr1952);
+            	    pushFollow(FOLLOW_shiftExpr_in_bitExpr2810);
             	    shiftExpr218=shiftExpr();
 
             	    state._fsp--;
@@ -6856,14 +6765,14 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // Haxe.g:317:41: AMP shiftExpr
+            	    // Haxe.g:317:44: AMP shiftExpr
             	    {
-            	    AMP219=(Token)match(input,AMP,FOLLOW_AMP_in_bitExpr1956); if (state.failed) return retval;
+            	    AMP219=(Token)match(input,AMP,FOLLOW_AMP_in_bitExpr2814); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    AMP219_tree = (Object)adaptor.create(AMP219);
             	    root_0 = (Object)adaptor.becomeRoot(AMP219_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_shiftExpr_in_bitExpr1959);
+            	    pushFollow(FOLLOW_shiftExpr_in_bitExpr2817);
             	    shiftExpr220=shiftExpr();
 
             	    state._fsp--;
@@ -6873,14 +6782,14 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // Haxe.g:317:57: CARET shiftExpr
+            	    // Haxe.g:317:60: CARET shiftExpr
             	    {
-            	    CARET221=(Token)match(input,CARET,FOLLOW_CARET_in_bitExpr1962); if (state.failed) return retval;
+            	    CARET221=(Token)match(input,CARET,FOLLOW_CARET_in_bitExpr2820); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    CARET221_tree = (Object)adaptor.create(CARET221);
             	    root_0 = (Object)adaptor.becomeRoot(CARET221_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_shiftExpr_in_bitExpr1965);
+            	    pushFollow(FOLLOW_shiftExpr_in_bitExpr2823);
             	    shiftExpr222=shiftExpr();
 
             	    state._fsp--;
@@ -6952,15 +6861,15 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return retval; }
-            // Haxe.g:321:2: ( ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* )
-            // Haxe.g:321:4: ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
+            // Haxe.g:321:5: ( ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )* )
+            // Haxe.g:321:10: ( addExpr ) ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:321:4: ( addExpr )
-            // Haxe.g:321:5: addExpr
+            // Haxe.g:321:10: ( addExpr )
+            // Haxe.g:321:11: addExpr
             {
-            pushFollow(FOLLOW_addExpr_in_shiftExpr1979);
+            pushFollow(FOLLOW_addExpr_in_shiftExpr2846);
             addExpr223=addExpr();
 
             state._fsp--;
@@ -6969,7 +6878,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // Haxe.g:321:14: ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
+            // Haxe.g:321:20: ( LTLT addExpr | ( GT GT ) addExpr | GTGTGT addExpr )*
             loop52:
             do {
                 int alt52=4;
@@ -6979,13 +6888,7 @@ public class HaxeParser extends Parser {
                     int LA52_2 = input.LA(2);
 
                     if ( (LA52_2==GT) ) {
-                        int LA52_5 = input.LA(3);
-
-                        if ( (synpred91_Haxe()) ) {
-                            alt52=2;
-                        }
-
-
+                        alt52=2;
                     }
 
 
@@ -7006,14 +6909,14 @@ public class HaxeParser extends Parser {
 
                 switch (alt52) {
             	case 1 :
-            	    // Haxe.g:321:15: LTLT addExpr
+            	    // Haxe.g:321:21: LTLT addExpr
             	    {
-            	    LTLT224=(Token)match(input,LTLT,FOLLOW_LTLT_in_shiftExpr1983); if (state.failed) return retval;
+            	    LTLT224=(Token)match(input,LTLT,FOLLOW_LTLT_in_shiftExpr2850); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    LTLT224_tree = (Object)adaptor.create(LTLT224);
             	    root_0 = (Object)adaptor.becomeRoot(LTLT224_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_addExpr_in_shiftExpr1987);
+            	    pushFollow(FOLLOW_addExpr_in_shiftExpr2854);
             	    addExpr225=addExpr();
 
             	    state._fsp--;
@@ -7023,17 +6926,17 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // Haxe.g:321:32: ( GT GT ) addExpr
+            	    // Haxe.g:321:38: ( GT GT ) addExpr
             	    {
-            	    // Haxe.g:321:32: ( GT GT )
-            	    // Haxe.g:321:33: GT GT
+            	    // Haxe.g:321:38: ( GT GT )
+            	    // Haxe.g:321:39: GT GT
             	    {
-            	    GT226=(Token)match(input,GT,FOLLOW_GT_in_shiftExpr1992); if (state.failed) return retval;
+            	    GT226=(Token)match(input,GT,FOLLOW_GT_in_shiftExpr2859); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    GT226_tree = (Object)adaptor.create(GT226);
             	    adaptor.addChild(root_0, GT226_tree);
             	    }
-            	    GT227=(Token)match(input,GT,FOLLOW_GT_in_shiftExpr1994); if (state.failed) return retval;
+            	    GT227=(Token)match(input,GT,FOLLOW_GT_in_shiftExpr2861); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    GT227_tree = (Object)adaptor.create(GT227);
             	    adaptor.addChild(root_0, GT227_tree);
@@ -7041,7 +6944,7 @@ public class HaxeParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_addExpr_in_shiftExpr1999);
+            	    pushFollow(FOLLOW_addExpr_in_shiftExpr2866);
             	    addExpr228=addExpr();
 
             	    state._fsp--;
@@ -7051,14 +6954,14 @@ public class HaxeParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // Haxe.g:321:52: GTGTGT addExpr
+            	    // Haxe.g:321:58: GTGTGT addExpr
             	    {
-            	    GTGTGT229=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_shiftExpr2003); if (state.failed) return retval;
+            	    GTGTGT229=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_shiftExpr2870); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    GTGTGT229_tree = (Object)adaptor.create(GTGTGT229);
             	    root_0 = (Object)adaptor.becomeRoot(GTGTGT229_tree, root_0);
             	    }
-            	    pushFollow(FOLLOW_addExpr_in_shiftExpr2006);
+            	    pushFollow(FOLLOW_addExpr_in_shiftExpr2873);
             	    addExpr230=addExpr();
 
             	    state._fsp--;
@@ -7123,14 +7026,14 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return retval; }
             // Haxe.g:324:9: ( ( multExpr ) ( ( PLUS | SUB ) multExpr )* )
-            // Haxe.g:324:12: ( multExpr ) ( ( PLUS | SUB ) multExpr )*
+            // Haxe.g:324:15: ( multExpr ) ( ( PLUS | SUB ) multExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:324:12: ( multExpr )
-            // Haxe.g:324:13: multExpr
+            // Haxe.g:324:15: ( multExpr )
+            // Haxe.g:324:16: multExpr
             {
-            pushFollow(FOLLOW_multExpr_in_addExpr2020);
+            pushFollow(FOLLOW_multExpr_in_addExpr2893);
             multExpr231=multExpr();
 
             state._fsp--;
@@ -7139,7 +7042,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // Haxe.g:324:23: ( ( PLUS | SUB ) multExpr )*
+            // Haxe.g:324:26: ( ( PLUS | SUB ) multExpr )*
             loop54:
             do {
                 int alt54=2;
@@ -7152,9 +7055,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt54) {
             	case 1 :
-            	    // Haxe.g:324:24: ( PLUS | SUB ) multExpr
+            	    // Haxe.g:324:27: ( PLUS | SUB ) multExpr
             	    {
-            	    // Haxe.g:324:24: ( PLUS | SUB )
+            	    // Haxe.g:324:27: ( PLUS | SUB )
             	    int alt53=2;
             	    int LA53_0 = input.LA(1);
 
@@ -7173,9 +7076,9 @@ public class HaxeParser extends Parser {
             	    }
             	    switch (alt53) {
             	        case 1 :
-            	            // Haxe.g:324:25: PLUS
+            	            // Haxe.g:324:28: PLUS
             	            {
-            	            PLUS232=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr2025); if (state.failed) return retval;
+            	            PLUS232=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr2898); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PLUS232_tree = (Object)adaptor.create(PLUS232);
             	            root_0 = (Object)adaptor.becomeRoot(PLUS232_tree, root_0);
@@ -7184,9 +7087,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // Haxe.g:324:33: SUB
+            	            // Haxe.g:324:36: SUB
             	            {
-            	            SUB233=(Token)match(input,SUB,FOLLOW_SUB_in_addExpr2030); if (state.failed) return retval;
+            	            SUB233=(Token)match(input,SUB,FOLLOW_SUB_in_addExpr2903); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            SUB233_tree = (Object)adaptor.create(SUB233);
             	            root_0 = (Object)adaptor.becomeRoot(SUB233_tree, root_0);
@@ -7197,7 +7100,7 @@ public class HaxeParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_multExpr_in_addExpr2034);
+            	    pushFollow(FOLLOW_multExpr_in_addExpr2907);
             	    multExpr234=multExpr();
 
             	    state._fsp--;
@@ -7264,14 +7167,14 @@ public class HaxeParser extends Parser {
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return retval; }
             // Haxe.g:327:9: ( ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )* )
-            // Haxe.g:327:11: ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )*
+            // Haxe.g:327:14: ( prefixExpr ) ( ( STAR | SLASH | PERCENT ) prefixExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:327:11: ( prefixExpr )
-            // Haxe.g:327:12: prefixExpr
+            // Haxe.g:327:14: ( prefixExpr )
+            // Haxe.g:327:15: prefixExpr
             {
-            pushFollow(FOLLOW_prefixExpr_in_multExpr2048);
+            pushFollow(FOLLOW_prefixExpr_in_multExpr2930);
             prefixExpr235=prefixExpr();
 
             state._fsp--;
@@ -7280,7 +7183,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            // Haxe.g:327:24: ( ( STAR | SLASH | PERCENT ) prefixExpr )*
+            // Haxe.g:327:27: ( ( STAR | SLASH | PERCENT ) prefixExpr )*
             loop56:
             do {
                 int alt56=2;
@@ -7293,9 +7196,9 @@ public class HaxeParser extends Parser {
 
                 switch (alt56) {
             	case 1 :
-            	    // Haxe.g:327:25: ( STAR | SLASH | PERCENT ) prefixExpr
+            	    // Haxe.g:327:28: ( STAR | SLASH | PERCENT ) prefixExpr
             	    {
-            	    // Haxe.g:327:25: ( STAR | SLASH | PERCENT )
+            	    // Haxe.g:327:28: ( STAR | SLASH | PERCENT )
             	    int alt55=3;
             	    switch ( input.LA(1) ) {
             	    case STAR:
@@ -7323,9 +7226,9 @@ public class HaxeParser extends Parser {
 
             	    switch (alt55) {
             	        case 1 :
-            	            // Haxe.g:327:26: STAR
+            	            // Haxe.g:327:29: STAR
             	            {
-            	            STAR236=(Token)match(input,STAR,FOLLOW_STAR_in_multExpr2053); if (state.failed) return retval;
+            	            STAR236=(Token)match(input,STAR,FOLLOW_STAR_in_multExpr2935); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            STAR236_tree = (Object)adaptor.create(STAR236);
             	            root_0 = (Object)adaptor.becomeRoot(STAR236_tree, root_0);
@@ -7334,9 +7237,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // Haxe.g:327:32: SLASH
+            	            // Haxe.g:327:35: SLASH
             	            {
-            	            SLASH237=(Token)match(input,SLASH,FOLLOW_SLASH_in_multExpr2056); if (state.failed) return retval;
+            	            SLASH237=(Token)match(input,SLASH,FOLLOW_SLASH_in_multExpr2938); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            SLASH237_tree = (Object)adaptor.create(SLASH237);
             	            root_0 = (Object)adaptor.becomeRoot(SLASH237_tree, root_0);
@@ -7345,9 +7248,9 @@ public class HaxeParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // Haxe.g:327:39: PERCENT
+            	            // Haxe.g:327:42: PERCENT
             	            {
-            	            PERCENT238=(Token)match(input,PERCENT,FOLLOW_PERCENT_in_multExpr2059); if (state.failed) return retval;
+            	            PERCENT238=(Token)match(input,PERCENT,FOLLOW_PERCENT_in_multExpr2941); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PERCENT238_tree = (Object)adaptor.create(PERCENT238);
             	            root_0 = (Object)adaptor.becomeRoot(PERCENT238_tree, root_0);
@@ -7358,7 +7261,7 @@ public class HaxeParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_prefixExpr_in_multExpr2063);
+            	    pushFollow(FOLLOW_prefixExpr_in_multExpr2945);
             	    prefixExpr239=prefixExpr();
 
             	    state._fsp--;
@@ -7434,85 +7337,13 @@ public class HaxeParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return retval; }
-            // Haxe.g:331:9: ( ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr )
+            // Haxe.g:331:5: ( ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE ) prefixExpr | newExpr | cast | suffixExpr )
             int alt58=4;
             switch ( input.LA(1) ) {
-            case SUB:
-                {
-                int LA58_1 = input.LA(2);
-
-                if ( (synpred103_Haxe()) ) {
-                    alt58=1;
-                }
-                else if ( (true) ) {
-                    alt58=4;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 58, 1, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case SUBSUB:
-                {
-                int LA58_2 = input.LA(2);
-
-                if ( (synpred103_Haxe()) ) {
-                    alt58=1;
-                }
-                else if ( (true) ) {
-                    alt58=4;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 58, 2, input);
-
-                    throw nvae;
-                }
-                }
-                break;
             case PLUS:
-                {
-                int LA58_3 = input.LA(2);
-
-                if ( (synpred103_Haxe()) ) {
-                    alt58=1;
-                }
-                else if ( (true) ) {
-                    alt58=4;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 58, 3, input);
-
-                    throw nvae;
-                }
-                }
-                break;
+            case SUB:
+            case SUBSUB:
             case PLUSPLUS:
-                {
-                int LA58_4 = input.LA(2);
-
-                if ( (synpred103_Haxe()) ) {
-                    alt58=1;
-                }
-                else if ( (true) ) {
-                    alt58=4;
-                }
-                else {
-                    if (state.backtracking>0) {state.failed=true; return retval;}
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 58, 4, input);
-
-                    throw nvae;
-                }
-                }
-                break;
             case BANG:
             case TILDE:
                 {
@@ -7529,44 +7360,12 @@ public class HaxeParser extends Parser {
                 alt58=3;
                 }
                 break;
-            case EOF:
-            case SEMI:
             case LPAREN:
-            case RPAREN:
             case IDENTIFIER:
-            case COLON:
-            case COMMA:
-            case QUES:
             case THIS:
-            case EQ:
-            case PLUSEQ:
-            case SUBEQ:
-            case SLASHEQ:
-            case PERCENTEQ:
-            case AMPEQ:
             case FUNCTION:
             case LBRACKET:
-            case RBRACKET:
-            case LT:
-            case GT:
-            case GTGTGT:
-            case IN:
             case LBRACE:
-            case RBRACE:
-            case ELLIPSIS:
-            case BARBAR:
-            case AMPAMP:
-            case EQEQ:
-            case BANGEQ:
-            case GTEQ:
-            case LTEQ:
-            case BAR:
-            case AMP:
-            case CARET:
-            case LTLT:
-            case STAR:
-            case SLASH:
-            case PERCENT:
             case NULL:
             case LONGLITERAL:
             case INTLITERAL:
@@ -7589,11 +7388,11 @@ public class HaxeParser extends Parser {
 
             switch (alt58) {
                 case 1 :
-                    // Haxe.g:331:11: ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE ) prefixExpr
+                    // Haxe.g:331:10: ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE ) prefixExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    // Haxe.g:331:11: ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE )
+                    // Haxe.g:331:10: ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE )
                     int alt57=6;
                     switch ( input.LA(1) ) {
                     case SUB:
@@ -7636,9 +7435,9 @@ public class HaxeParser extends Parser {
 
                     switch (alt57) {
                         case 1 :
-                            // Haxe.g:331:12: SUB
+                            // Haxe.g:331:11: SUB
                             {
-                            SUB240=(Token)match(input,SUB,FOLLOW_SUB_in_prefixExpr2085); if (state.failed) return retval;
+                            SUB240=(Token)match(input,SUB,FOLLOW_SUB_in_prefixExpr2972); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUB240_tree = (Object)adaptor.create(SUB240);
                             root_0 = (Object)adaptor.becomeRoot(SUB240_tree, root_0);
@@ -7647,9 +7446,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // Haxe.g:331:17: SUBSUB
+                            // Haxe.g:331:16: SUBSUB
                             {
-                            SUBSUB241=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_prefixExpr2088); if (state.failed) return retval;
+                            SUBSUB241=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_prefixExpr2975); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUBSUB241_tree = (Object)adaptor.create(SUBSUB241);
                             root_0 = (Object)adaptor.becomeRoot(SUBSUB241_tree, root_0);
@@ -7658,9 +7457,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // Haxe.g:331:25: PLUS
+                            // Haxe.g:331:24: PLUS
                             {
-                            PLUS242=(Token)match(input,PLUS,FOLLOW_PLUS_in_prefixExpr2091); if (state.failed) return retval;
+                            PLUS242=(Token)match(input,PLUS,FOLLOW_PLUS_in_prefixExpr2978); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             PLUS242_tree = (Object)adaptor.create(PLUS242);
                             root_0 = (Object)adaptor.becomeRoot(PLUS242_tree, root_0);
@@ -7669,9 +7468,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // Haxe.g:331:31: PLUSPLUS
+                            // Haxe.g:331:30: PLUSPLUS
                             {
-                            PLUSPLUS243=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_prefixExpr2094); if (state.failed) return retval;
+                            PLUSPLUS243=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_prefixExpr2981); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             PLUSPLUS243_tree = (Object)adaptor.create(PLUSPLUS243);
                             root_0 = (Object)adaptor.becomeRoot(PLUSPLUS243_tree, root_0);
@@ -7680,9 +7479,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 5 :
-                            // Haxe.g:331:41: BANG
+                            // Haxe.g:331:40: BANG
                             {
-                            BANG244=(Token)match(input,BANG,FOLLOW_BANG_in_prefixExpr2097); if (state.failed) return retval;
+                            BANG244=(Token)match(input,BANG,FOLLOW_BANG_in_prefixExpr2984); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             BANG244_tree = (Object)adaptor.create(BANG244);
                             root_0 = (Object)adaptor.becomeRoot(BANG244_tree, root_0);
@@ -7691,9 +7490,9 @@ public class HaxeParser extends Parser {
                             }
                             break;
                         case 6 :
-                            // Haxe.g:331:47: TILDE
+                            // Haxe.g:331:46: TILDE
                             {
-                            TILDE245=(Token)match(input,TILDE,FOLLOW_TILDE_in_prefixExpr2100); if (state.failed) return retval;
+                            TILDE245=(Token)match(input,TILDE,FOLLOW_TILDE_in_prefixExpr2987); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             TILDE245_tree = (Object)adaptor.create(TILDE245);
                             root_0 = (Object)adaptor.becomeRoot(TILDE245_tree, root_0);
@@ -7704,7 +7503,7 @@ public class HaxeParser extends Parser {
 
                     }
 
-                    pushFollow(FOLLOW_prefixExpr_in_prefixExpr2104);
+                    pushFollow(FOLLOW_prefixExpr_in_prefixExpr2991);
                     prefixExpr246=prefixExpr();
 
                     state._fsp--;
@@ -7714,11 +7513,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:332:11: newExpr
+                    // Haxe.g:332:10: newExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_newExpr_in_prefixExpr2116);
+                    pushFollow(FOLLOW_newExpr_in_prefixExpr3002);
                     newExpr247=newExpr();
 
                     state._fsp--;
@@ -7728,11 +7527,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:333:11: cast
+                    // Haxe.g:333:10: cast
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_cast_in_prefixExpr2128);
+                    pushFollow(FOLLOW_cast_in_prefixExpr3013);
                     cast248=cast();
 
                     state._fsp--;
@@ -7742,11 +7541,11 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:334:11: suffixExpr
+                    // Haxe.g:334:10: suffixExpr
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_suffixExpr_in_prefixExpr2140);
+                    pushFollow(FOLLOW_suffixExpr_in_prefixExpr3024);
                     suffixExpr249=suffixExpr();
 
                     state._fsp--;
@@ -7784,79 +7583,59 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "suffixExpr"
-    // Haxe.g:337:1: suffixExpr : ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt );
+    // Haxe.g:337:1: suffixExpr : ( value methodCallOrSliceList -> ^( SUFFIX_EXPR[\"CallOrSlice\",true] ( value )? ( methodCallOrSliceList )? ) | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt );
     public final HaxeParser.suffixExpr_return suffixExpr() throws RecognitionException {
         HaxeParser.suffixExpr_return retval = new HaxeParser.suffixExpr_return();
         retval.start = input.LT(1);
         int suffixExpr_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LPAREN251=null;
-        Token RPAREN253=null;
-        Token LBRACKET255=null;
-        Token RBRACKET257=null;
-        Token PLUSPLUS259=null;
-        Token SUBSUB261=null;
+        Token PLUSPLUS253=null;
+        Token SUBSUB255=null;
         HaxeParser.value_return value250 = null;
 
-        HaxeParser.exprListOpt_return exprListOpt252 = null;
+        HaxeParser.methodCallOrSliceList_return methodCallOrSliceList251 = null;
+
+        HaxeParser.value_return value252 = null;
 
         HaxeParser.value_return value254 = null;
 
-        HaxeParser.expr_return expr256 = null;
+        HaxeParser.value_return value256 = null;
 
-        HaxeParser.value_return value258 = null;
-
-        HaxeParser.value_return value260 = null;
-
-        HaxeParser.value_return value262 = null;
-
-        HaxeParser.typeParamOpt_return typeParamOpt263 = null;
+        HaxeParser.typeParamOpt_return typeParamOpt257 = null;
 
 
-        Object LPAREN251_tree=null;
-        Object RPAREN253_tree=null;
-        Object LBRACKET255_tree=null;
-        Object RBRACKET257_tree=null;
-        Object PLUSPLUS259_tree=null;
-        Object SUBSUB261_tree=null;
-        RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
+        Object PLUSPLUS253_tree=null;
+        Object SUBSUB255_tree=null;
         RewriteRuleTokenStream stream_SUBSUB=new RewriteRuleTokenStream(adaptor,"token SUBSUB");
         RewriteRuleTokenStream stream_PLUSPLUS=new RewriteRuleTokenStream(adaptor,"token PLUSPLUS");
-        RewriteRuleTokenStream stream_LPAREN=new RewriteRuleTokenStream(adaptor,"token LPAREN");
-        RewriteRuleSubtreeStream stream_exprListOpt=new RewriteRuleSubtreeStream(adaptor,"rule exprListOpt");
+        RewriteRuleSubtreeStream stream_methodCallOrSliceList=new RewriteRuleSubtreeStream(adaptor,"rule methodCallOrSliceList");
         RewriteRuleSubtreeStream stream_value=new RewriteRuleSubtreeStream(adaptor,"rule value");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return retval; }
-            // Haxe.g:338:2: ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt )
-            int alt59=5;
+            // Haxe.g:338:5: ( value methodCallOrSliceList -> ^( SUFFIX_EXPR[\"CallOrSlice\",true] ( value )? ( methodCallOrSliceList )? ) | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt )
+            int alt59=4;
             alt59 = dfa59.predict(input);
             switch (alt59) {
                 case 1 :
-                    // Haxe.g:338:4: value LPAREN exprListOpt RPAREN
+                    // Haxe.g:338:10: value methodCallOrSliceList
                     {
-                    pushFollow(FOLLOW_value_in_suffixExpr2159);
+                    pushFollow(FOLLOW_value_in_suffixExpr3048);
                     value250=value();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_value.add(value250.getTree());
-                    LPAREN251=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_suffixExpr2161); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN251);
-
-                    pushFollow(FOLLOW_exprListOpt_in_suffixExpr2163);
-                    exprListOpt252=exprListOpt();
+                    pushFollow(FOLLOW_methodCallOrSliceList_in_suffixExpr3050);
+                    methodCallOrSliceList251=methodCallOrSliceList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_exprListOpt.add(exprListOpt252.getTree());
-                    RPAREN253=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_suffixExpr2165); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN253);
-
+                    if ( state.backtracking==0 ) stream_methodCallOrSliceList.add(methodCallOrSliceList251.getTree());
 
 
                     // AST REWRITE
-                    // elements: exprListOpt, value
+                    // elements: value, methodCallOrSliceList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7867,25 +7646,25 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 338:36: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? )
+                    // 338:38: -> ^( SUFFIX_EXPR[\"CallOrSlice\",true] ( value )? ( methodCallOrSliceList )? )
                     {
-                        // Haxe.g:338:39: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? )
+                        // Haxe.g:338:41: ^( SUFFIX_EXPR[\"CallOrSlice\",true] ( value )? ( methodCallOrSliceList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "SUFFIX_EXPR", true), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "CallOrSlice", true), root_1);
 
-                        // Haxe.g:338:83: ( value )?
+                        // Haxe.g:338:85: ( value )?
                         if ( stream_value.hasNext() ) {
                             adaptor.addChild(root_1, stream_value.nextTree());
 
                         }
                         stream_value.reset();
-                        // Haxe.g:338:90: ( exprListOpt )?
-                        if ( stream_exprListOpt.hasNext() ) {
-                            adaptor.addChild(root_1, stream_exprListOpt.nextTree());
+                        // Haxe.g:338:92: ( methodCallOrSliceList )?
+                        if ( stream_methodCallOrSliceList.hasNext() ) {
+                            adaptor.addChild(root_1, stream_methodCallOrSliceList.nextTree());
 
                         }
-                        stream_exprListOpt.reset();
+                        stream_methodCallOrSliceList.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -7896,43 +7675,21 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:339:4: value LBRACKET expr RBRACKET
+                    // Haxe.g:339:10: value PLUSPLUS
                     {
-                    root_0 = (Object)adaptor.nil();
-
-                    pushFollow(FOLLOW_value_in_suffixExpr2186);
-                    value254=value();
+                    pushFollow(FOLLOW_value_in_suffixExpr3077);
+                    value252=value();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, value254.getTree());
-                    LBRACKET255=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_suffixExpr2188); if (state.failed) return retval;
-                    pushFollow(FOLLOW_expr_in_suffixExpr2191);
-                    expr256=expr();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, expr256.getTree());
-                    RBRACKET257=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_suffixExpr2193); if (state.failed) return retval;
-
-                    }
-                    break;
-                case 3 :
-                    // Haxe.g:340:4: value PLUSPLUS
-                    {
-                    pushFollow(FOLLOW_value_in_suffixExpr2199);
-                    value258=value();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_value.add(value258.getTree());
-                    PLUSPLUS259=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_suffixExpr2201); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_PLUSPLUS.add(PLUSPLUS259);
+                    if ( state.backtracking==0 ) stream_value.add(value252.getTree());
+                    PLUSPLUS253=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_suffixExpr3079); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_PLUSPLUS.add(PLUSPLUS253);
 
 
 
                     // AST REWRITE
-                    // elements: value, PLUSPLUS
+                    // elements: PLUSPLUS, value
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7943,20 +7700,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 340:22: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
+                    // 339:37: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
                     {
-                        // Haxe.g:340:25: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
+                        // Haxe.g:339:40: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "SUFFIX_EXPR", true), root_1);
 
-                        // Haxe.g:340:69: ( value )?
+                        // Haxe.g:339:84: ( value )?
                         if ( stream_value.hasNext() ) {
                             adaptor.addChild(root_1, stream_value.nextTree());
 
                         }
                         stream_value.reset();
-                        // Haxe.g:340:76: ( PLUSPLUS )?
+                        // Haxe.g:339:91: ( PLUSPLUS )?
                         if ( stream_PLUSPLUS.hasNext() ) {
                             adaptor.addChild(root_1, stream_PLUSPLUS.nextNode());
 
@@ -7971,17 +7728,17 @@ public class HaxeParser extends Parser {
                     retval.tree = root_0;}
                     }
                     break;
-                case 4 :
-                    // Haxe.g:341:4: value SUBSUB
+                case 3 :
+                    // Haxe.g:340:10: value SUBSUB
                     {
-                    pushFollow(FOLLOW_value_in_suffixExpr2225);
-                    value260=value();
+                    pushFollow(FOLLOW_value_in_suffixExpr3118);
+                    value254=value();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_value.add(value260.getTree());
-                    SUBSUB261=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_suffixExpr2227); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SUBSUB.add(SUBSUB261);
+                    if ( state.backtracking==0 ) stream_value.add(value254.getTree());
+                    SUBSUB255=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_suffixExpr3120); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SUBSUB.add(SUBSUB255);
 
 
 
@@ -7997,14 +7754,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 341:20: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
+                    // 340:35: -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
                     {
-                        // Haxe.g:341:23: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
+                        // Haxe.g:340:38: ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "SUFFIX_EXPR", true), root_1);
 
-                        // Haxe.g:341:67: ( value )?
+                        // Haxe.g:340:82: ( value )?
                         if ( stream_value.hasNext() ) {
                             adaptor.addChild(root_1, stream_value.nextTree());
 
@@ -8020,23 +7777,23 @@ public class HaxeParser extends Parser {
                     retval.tree = root_0;}
                     }
                     break;
-                case 5 :
-                    // Haxe.g:342:4: value typeParamOpt
+                case 4 :
+                    // Haxe.g:341:10: value typeParamOpt
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_value_in_suffixExpr2250);
-                    value262=value();
+                    pushFollow(FOLLOW_value_in_suffixExpr3158);
+                    value256=value();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, value262.getTree());
-                    pushFollow(FOLLOW_typeParamOpt_in_suffixExpr2252);
-                    typeParamOpt263=typeParamOpt();
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, value256.getTree());
+                    pushFollow(FOLLOW_typeParamOpt_in_suffixExpr3160);
+                    typeParamOpt257=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typeParamOpt263.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typeParamOpt257.getTree());
 
                     }
                     break;
@@ -8063,155 +7820,77 @@ public class HaxeParser extends Parser {
     }
     // $ANTLR end "suffixExpr"
 
-    public static class value_return extends ParserRuleReturnScope {
+    public static class methodCallOrSlice_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start "value"
-    // Haxe.g:345:1: value : ( funcLit | arrayLit | objLit | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent -> ^( IDENT[true] dotIdent ) | );
-    public final HaxeParser.value_return value() throws RecognitionException {
-        HaxeParser.value_return retval = new HaxeParser.value_return();
+    // $ANTLR start "methodCallOrSlice"
+    // Haxe.g:344:1: methodCallOrSlice : ( LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"MethodCall\",true] ( exprListOpt )? ) | LBRACKET expr RBRACKET -> ^( SUFFIX_EXPR[\"Slice\",true] ( expr )? ) );
+    public final HaxeParser.methodCallOrSlice_return methodCallOrSlice() throws RecognitionException {
+        HaxeParser.methodCallOrSlice_return retval = new HaxeParser.methodCallOrSlice_return();
         retval.start = input.LT(1);
-        int value_StartIndex = input.index();
+        int methodCallOrSlice_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LPAREN268=null;
-        Token RPAREN271=null;
-        HaxeParser.funcLit_return funcLit264 = null;
+        Token LPAREN258=null;
+        Token RPAREN260=null;
+        Token LBRACKET261=null;
+        Token RBRACKET263=null;
+        HaxeParser.exprListOpt_return exprListOpt259 = null;
 
-        HaxeParser.arrayLit_return arrayLit265 = null;
-
-        HaxeParser.objLit_return objLit266 = null;
-
-        HaxeParser.elementarySymbol_return elementarySymbol267 = null;
-
-        HaxeParser.expr_return expr269 = null;
-
-        HaxeParser.statement_return statement270 = null;
-
-        HaxeParser.dotIdent_return dotIdent272 = null;
+        HaxeParser.expr_return expr262 = null;
 
 
-        Object LPAREN268_tree=null;
-        Object RPAREN271_tree=null;
-        RewriteRuleSubtreeStream stream_dotIdent=new RewriteRuleSubtreeStream(adaptor,"rule dotIdent");
+        Object LPAREN258_tree=null;
+        Object RPAREN260_tree=null;
+        Object LBRACKET261_tree=null;
+        Object RBRACKET263_tree=null;
+        RewriteRuleTokenStream stream_LBRACKET=new RewriteRuleTokenStream(adaptor,"token LBRACKET");
+        RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
+        RewriteRuleTokenStream stream_RBRACKET=new RewriteRuleTokenStream(adaptor,"token RBRACKET");
+        RewriteRuleTokenStream stream_LPAREN=new RewriteRuleTokenStream(adaptor,"token LPAREN");
+        RewriteRuleSubtreeStream stream_exprListOpt=new RewriteRuleSubtreeStream(adaptor,"rule exprListOpt");
+        RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return retval; }
-            // Haxe.g:345:7: ( funcLit | arrayLit | objLit | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent -> ^( IDENT[true] dotIdent ) | )
-            int alt61=7;
-            alt61 = dfa61.predict(input);
-            switch (alt61) {
+            // Haxe.g:345:5: ( LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"MethodCall\",true] ( exprListOpt )? ) | LBRACKET expr RBRACKET -> ^( SUFFIX_EXPR[\"Slice\",true] ( expr )? ) )
+            int alt60=2;
+            int LA60_0 = input.LA(1);
+
+            if ( (LA60_0==LPAREN) ) {
+                alt60=1;
+            }
+            else if ( (LA60_0==LBRACKET) ) {
+                alt60=2;
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 60, 0, input);
+
+                throw nvae;
+            }
+            switch (alt60) {
                 case 1 :
-                    // Haxe.g:345:9: funcLit
+                    // Haxe.g:345:10: LPAREN exprListOpt RPAREN
                     {
-                    root_0 = (Object)adaptor.nil();
+                    LPAREN258=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_methodCallOrSlice3180); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN258);
 
-                    pushFollow(FOLLOW_funcLit_in_value2261);
-                    funcLit264=funcLit();
+                    pushFollow(FOLLOW_exprListOpt_in_methodCallOrSlice3182);
+                    exprListOpt259=exprListOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcLit264.getTree());
+                    if ( state.backtracking==0 ) stream_exprListOpt.add(exprListOpt259.getTree());
+                    RPAREN260=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_methodCallOrSlice3184); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN260);
 
-                    }
-                    break;
-                case 2 :
-                    // Haxe.g:346:5: arrayLit
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    pushFollow(FOLLOW_arrayLit_in_value2268);
-                    arrayLit265=arrayLit();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayLit265.getTree());
-
-                    }
-                    break;
-                case 3 :
-                    // Haxe.g:347:13: objLit
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    pushFollow(FOLLOW_objLit_in_value2282);
-                    objLit266=objLit();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, objLit266.getTree());
-
-                    }
-                    break;
-                case 4 :
-                    // Haxe.g:348:13: elementarySymbol
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    pushFollow(FOLLOW_elementarySymbol_in_value2296);
-                    elementarySymbol267=elementarySymbol();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementarySymbol267.getTree());
-
-                    }
-                    break;
-                case 5 :
-                    // Haxe.g:349:13: LPAREN ( expr | statement ) RPAREN
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-                    LPAREN268=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_value2310); if (state.failed) return retval;
-                    // Haxe.g:349:21: ( expr | statement )
-                    int alt60=2;
-                    alt60 = dfa60.predict(input);
-                    switch (alt60) {
-                        case 1 :
-                            // Haxe.g:349:22: expr
-                            {
-                            pushFollow(FOLLOW_expr_in_value2314);
-                            expr269=expr();
-
-                            state._fsp--;
-                            if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr269.getTree());
-
-                            }
-                            break;
-                        case 2 :
-                            // Haxe.g:349:27: statement
-                            {
-                            pushFollow(FOLLOW_statement_in_value2316);
-                            statement270=statement();
-
-                            state._fsp--;
-                            if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, statement270.getTree());
-
-                            }
-                            break;
-
-                    }
-
-                    RPAREN271=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_value2319); if (state.failed) return retval;
-
-                    }
-                    break;
-                case 6 :
-                    // Haxe.g:350:11: dotIdent
-                    {
-                    pushFollow(FOLLOW_dotIdent_in_value2332);
-                    dotIdent272=dotIdent();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_dotIdent.add(dotIdent272.getTree());
 
 
                     // AST REWRITE
-                    // elements: dotIdent
+                    // elements: exprListOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8222,14 +7901,19 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 350:20: -> ^( IDENT[true] dotIdent )
+                    // 345:36: -> ^( SUFFIX_EXPR[\"MethodCall\",true] ( exprListOpt )? )
                     {
-                        // Haxe.g:350:23: ^( IDENT[true] dotIdent )
+                        // Haxe.g:345:39: ^( SUFFIX_EXPR[\"MethodCall\",true] ( exprListOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarUsage(IDENT, true), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "MethodCall", true), root_1);
 
-                        adaptor.addChild(root_1, stream_dotIdent.nextTree());
+                        // Haxe.g:345:82: ( exprListOpt )?
+                        if ( stream_exprListOpt.hasNext() ) {
+                            adaptor.addChild(root_1, stream_exprListOpt.nextTree());
+
+                        }
+                        stream_exprListOpt.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -8239,10 +7923,180 @@ public class HaxeParser extends Parser {
                     retval.tree = root_0;}
                     }
                     break;
-                case 7 :
-                    // Haxe.g:352:9: 
+                case 2 :
+                    // Haxe.g:346:10: LBRACKET expr RBRACKET
+                    {
+                    LBRACKET261=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_methodCallOrSlice3208); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LBRACKET.add(LBRACKET261);
+
+                    pushFollow(FOLLOW_expr_in_methodCallOrSlice3210);
+                    expr262=expr();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_expr.add(expr262.getTree());
+                    RBRACKET263=(Token)match(input,RBRACKET,FOLLOW_RBRACKET_in_methodCallOrSlice3212); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RBRACKET.add(RBRACKET263);
+
+
+
+                    // AST REWRITE
+                    // elements: expr
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                    root_0 = (Object)adaptor.nil();
+                    // 346:33: -> ^( SUFFIX_EXPR[\"Slice\",true] ( expr )? )
+                    {
+                        // Haxe.g:346:36: ^( SUFFIX_EXPR[\"Slice\",true] ( expr )? )
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(new HaxeTree(SUFFIX_EXPR, "Slice", true), root_1);
+
+                        // Haxe.g:346:74: ( expr )?
+                        if ( stream_expr.hasNext() ) {
+                            adaptor.addChild(root_1, stream_expr.nextTree());
+
+                        }
+                        stream_expr.reset();
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    retval.tree = root_0;}
+                    }
+                    break;
+
+            }
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+            if ( state.backtracking>0 ) { memoize(input, 55, methodCallOrSlice_StartIndex); }
+        }
+        return retval;
+    }
+    // $ANTLR end "methodCallOrSlice"
+
+    public static class methodCallOrSliceList_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "methodCallOrSliceList"
+    // Haxe.g:349:1: methodCallOrSliceList : ( methodCallOrSlice methodCallOrSliceList | methodCallOrSlice );
+    public final HaxeParser.methodCallOrSliceList_return methodCallOrSliceList() throws RecognitionException {
+        HaxeParser.methodCallOrSliceList_return retval = new HaxeParser.methodCallOrSliceList_return();
+        retval.start = input.LT(1);
+        int methodCallOrSliceList_StartIndex = input.index();
+        Object root_0 = null;
+
+        HaxeParser.methodCallOrSlice_return methodCallOrSlice264 = null;
+
+        HaxeParser.methodCallOrSliceList_return methodCallOrSliceList265 = null;
+
+        HaxeParser.methodCallOrSlice_return methodCallOrSlice266 = null;
+
+
+
+        try {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return retval; }
+            // Haxe.g:350:5: ( methodCallOrSlice methodCallOrSliceList | methodCallOrSlice )
+            int alt61=2;
+            int LA61_0 = input.LA(1);
+
+            if ( (LA61_0==LPAREN) ) {
+                int LA61_1 = input.LA(2);
+
+                if ( (synpred110_Haxe()) ) {
+                    alt61=1;
+                }
+                else if ( (true) ) {
+                    alt61=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return retval;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 61, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else if ( (LA61_0==LBRACKET) ) {
+                int LA61_2 = input.LA(2);
+
+                if ( (synpred110_Haxe()) ) {
+                    alt61=1;
+                }
+                else if ( (true) ) {
+                    alt61=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return retval;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 61, 2, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                if (state.backtracking>0) {state.failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 61, 0, input);
+
+                throw nvae;
+            }
+            switch (alt61) {
+                case 1 :
+                    // Haxe.g:350:10: methodCallOrSlice methodCallOrSliceList
                     {
                     root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_methodCallOrSlice_in_methodCallOrSliceList3245);
+                    methodCallOrSlice264=methodCallOrSlice();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, methodCallOrSlice264.getTree());
+                    pushFollow(FOLLOW_methodCallOrSliceList_in_methodCallOrSliceList3247);
+                    methodCallOrSliceList265=methodCallOrSliceList();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, methodCallOrSliceList265.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // Haxe.g:351:10: methodCallOrSlice
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_methodCallOrSlice_in_methodCallOrSliceList3258);
+                    methodCallOrSlice266=methodCallOrSlice();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, methodCallOrSlice266.getTree());
 
                     }
                     break;
@@ -8263,7 +8117,252 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 55, value_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 56, methodCallOrSliceList_StartIndex); }
+        }
+        return retval;
+    }
+    // $ANTLR end "methodCallOrSliceList"
+
+    public static class value_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "value"
+    // Haxe.g:354:1: value : ( funcLit | arrayLit | objLit | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent -> ^( IDENT[true] dotIdent ) );
+    public final HaxeParser.value_return value() throws RecognitionException {
+        HaxeParser.value_return retval = new HaxeParser.value_return();
+        retval.start = input.LT(1);
+        int value_StartIndex = input.index();
+        Object root_0 = null;
+
+        Token LPAREN271=null;
+        Token RPAREN274=null;
+        HaxeParser.funcLit_return funcLit267 = null;
+
+        HaxeParser.arrayLit_return arrayLit268 = null;
+
+        HaxeParser.objLit_return objLit269 = null;
+
+        HaxeParser.elementarySymbol_return elementarySymbol270 = null;
+
+        HaxeParser.expr_return expr272 = null;
+
+        HaxeParser.statement_return statement273 = null;
+
+        HaxeParser.dotIdent_return dotIdent275 = null;
+
+
+        Object LPAREN271_tree=null;
+        Object RPAREN274_tree=null;
+        RewriteRuleSubtreeStream stream_dotIdent=new RewriteRuleSubtreeStream(adaptor,"rule dotIdent");
+        try {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return retval; }
+            // Haxe.g:355:5: ( funcLit | arrayLit | objLit | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent -> ^( IDENT[true] dotIdent ) )
+            int alt63=6;
+            switch ( input.LA(1) ) {
+            case FUNCTION:
+                {
+                alt63=1;
+                }
+                break;
+            case LBRACKET:
+                {
+                alt63=2;
+                }
+                break;
+            case LBRACE:
+                {
+                alt63=3;
+                }
+                break;
+            case NULL:
+            case LONGLITERAL:
+            case INTLITERAL:
+            case STRINGLITERAL:
+            case CHARLITERAL:
+            case FLOATNUM:
+            case TRUE:
+            case FALSE:
+                {
+                alt63=4;
+                }
+                break;
+            case LPAREN:
+                {
+                alt63=5;
+                }
+                break;
+            case IDENTIFIER:
+            case THIS:
+                {
+                alt63=6;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 63, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt63) {
+                case 1 :
+                    // Haxe.g:355:9: funcLit
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_funcLit_in_value3277);
+                    funcLit267=funcLit();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcLit267.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // Haxe.g:356:9: arrayLit
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_arrayLit_in_value3288);
+                    arrayLit268=arrayLit();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, arrayLit268.getTree());
+
+                    }
+                    break;
+                case 3 :
+                    // Haxe.g:357:9: objLit
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_objLit_in_value3298);
+                    objLit269=objLit();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, objLit269.getTree());
+
+                    }
+                    break;
+                case 4 :
+                    // Haxe.g:358:9: elementarySymbol
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    pushFollow(FOLLOW_elementarySymbol_in_value3308);
+                    elementarySymbol270=elementarySymbol();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementarySymbol270.getTree());
+
+                    }
+                    break;
+                case 5 :
+                    // Haxe.g:359:9: LPAREN ( expr | statement ) RPAREN
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+                    LPAREN271=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_value3318); if (state.failed) return retval;
+                    // Haxe.g:359:17: ( expr | statement )
+                    int alt62=2;
+                    alt62 = dfa62.predict(input);
+                    switch (alt62) {
+                        case 1 :
+                            // Haxe.g:359:18: expr
+                            {
+                            pushFollow(FOLLOW_expr_in_value3322);
+                            expr272=expr();
+
+                            state._fsp--;
+                            if (state.failed) return retval;
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr272.getTree());
+
+                            }
+                            break;
+                        case 2 :
+                            // Haxe.g:359:23: statement
+                            {
+                            pushFollow(FOLLOW_statement_in_value3324);
+                            statement273=statement();
+
+                            state._fsp--;
+                            if (state.failed) return retval;
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, statement273.getTree());
+
+                            }
+                            break;
+
+                    }
+
+                    RPAREN274=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_value3327); if (state.failed) return retval;
+
+                    }
+                    break;
+                case 6 :
+                    // Haxe.g:360:9: dotIdent
+                    {
+                    pushFollow(FOLLOW_dotIdent_in_value3338);
+                    dotIdent275=dotIdent();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_dotIdent.add(dotIdent275.getTree());
+
+
+                    // AST REWRITE
+                    // elements: dotIdent
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                    root_0 = (Object)adaptor.nil();
+                    // 360:18: -> ^( IDENT[true] dotIdent )
+                    {
+                        // Haxe.g:360:21: ^( IDENT[true] dotIdent )
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(new VarUsage(IDENT, true), root_1);
+
+                        adaptor.addChild(root_1, stream_dotIdent.nextTree());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    retval.tree = root_0;}
+                    }
+                    break;
+
+            }
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+            if ( state.backtracking>0 ) { memoize(input, 57, value_StartIndex); }
         }
         return retval;
     }
@@ -8275,59 +8374,59 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "newExpr"
-    // Haxe.g:354:1: newExpr : NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) ;
+    // Haxe.g:363:1: newExpr : NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) ;
     public final HaxeParser.newExpr_return newExpr() throws RecognitionException {
         HaxeParser.newExpr_return retval = new HaxeParser.newExpr_return();
         retval.start = input.LT(1);
         int newExpr_StartIndex = input.index();
         Object root_0 = null;
 
-        Token NEW273=null;
-        Token LPAREN275=null;
-        Token RPAREN277=null;
-        HaxeParser.type_return type274 = null;
+        Token NEW276=null;
+        Token LPAREN278=null;
+        Token RPAREN280=null;
+        HaxeParser.type_return type277 = null;
 
-        HaxeParser.exprListOpt_return exprListOpt276 = null;
+        HaxeParser.exprListOpt_return exprListOpt279 = null;
 
 
-        Object NEW273_tree=null;
-        Object LPAREN275_tree=null;
-        Object RPAREN277_tree=null;
+        Object NEW276_tree=null;
+        Object LPAREN278_tree=null;
+        Object RPAREN280_tree=null;
         RewriteRuleTokenStream stream_NEW=new RewriteRuleTokenStream(adaptor,"token NEW");
         RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
         RewriteRuleTokenStream stream_LPAREN=new RewriteRuleTokenStream(adaptor,"token LPAREN");
         RewriteRuleSubtreeStream stream_exprListOpt=new RewriteRuleSubtreeStream(adaptor,"rule exprListOpt");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return retval; }
-            // Haxe.g:355:2: ( NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) )
-            // Haxe.g:355:4: NEW type LPAREN exprListOpt RPAREN
+            if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return retval; }
+            // Haxe.g:364:5: ( NEW type LPAREN exprListOpt RPAREN -> ^( NEW ( type )? ( exprListOpt )? ) )
+            // Haxe.g:364:9: NEW type LPAREN exprListOpt RPAREN
             {
-            NEW273=(Token)match(input,NEW,FOLLOW_NEW_in_newExpr2385); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_NEW.add(NEW273);
+            NEW276=(Token)match(input,NEW,FOLLOW_NEW_in_newExpr3380); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_NEW.add(NEW276);
 
-            pushFollow(FOLLOW_type_in_newExpr2387);
-            type274=type();
-
-            state._fsp--;
-            if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_type.add(type274.getTree());
-            LPAREN275=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_newExpr2389); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN275);
-
-            pushFollow(FOLLOW_exprListOpt_in_newExpr2391);
-            exprListOpt276=exprListOpt();
+            pushFollow(FOLLOW_type_in_newExpr3382);
+            type277=type();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_exprListOpt.add(exprListOpt276.getTree());
-            RPAREN277=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_newExpr2393); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN277);
+            if ( state.backtracking==0 ) stream_type.add(type277.getTree());
+            LPAREN278=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_newExpr3384); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN278);
+
+            pushFollow(FOLLOW_exprListOpt_in_newExpr3386);
+            exprListOpt279=exprListOpt();
+
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) stream_exprListOpt.add(exprListOpt279.getTree());
+            RPAREN280=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_newExpr3388); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN280);
 
 
 
             // AST REWRITE
-            // elements: exprListOpt, type, NEW
+            // elements: type, exprListOpt, NEW
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8338,20 +8437,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 355:39: -> ^( NEW ( type )? ( exprListOpt )? )
+            // 364:44: -> ^( NEW ( type )? ( exprListOpt )? )
             {
-                // Haxe.g:355:42: ^( NEW ( type )? ( exprListOpt )? )
+                // Haxe.g:364:47: ^( NEW ( type )? ( exprListOpt )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_NEW.nextNode(), root_1);
 
-                // Haxe.g:355:48: ( type )?
+                // Haxe.g:364:53: ( type )?
                 if ( stream_type.hasNext() ) {
                     adaptor.addChild(root_1, stream_type.nextTree());
 
                 }
                 stream_type.reset();
-                // Haxe.g:355:54: ( exprListOpt )?
+                // Haxe.g:364:59: ( exprListOpt )?
                 if ( stream_exprListOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_exprListOpt.nextTree());
 
@@ -8381,7 +8480,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 56, newExpr_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 58, newExpr_StartIndex); }
         }
         return retval;
     }
@@ -8393,34 +8492,34 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "cast"
-    // Haxe.g:358:1: cast : ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) );
+    // Haxe.g:367:1: cast : ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) );
     public final HaxeParser.cast_return cast() throws RecognitionException {
         HaxeParser.cast_return retval = new HaxeParser.cast_return();
         retval.start = input.LT(1);
         int cast_StartIndex = input.index();
         Object root_0 = null;
 
-        Token CAST278=null;
-        Token LPAREN279=null;
-        Token COMMA281=null;
-        Token RPAREN283=null;
-        Token CAST284=null;
-        Token LPAREN285=null;
-        Token RPAREN287=null;
-        HaxeParser.expr_return expr280 = null;
+        Token CAST281=null;
+        Token LPAREN282=null;
+        Token COMMA284=null;
+        Token RPAREN286=null;
+        Token CAST287=null;
+        Token LPAREN288=null;
+        Token RPAREN290=null;
+        HaxeParser.expr_return expr283 = null;
 
-        HaxeParser.funcType_return funcType282 = null;
+        HaxeParser.funcType_return funcType285 = null;
 
-        HaxeParser.expr_return expr286 = null;
+        HaxeParser.expr_return expr289 = null;
 
 
-        Object CAST278_tree=null;
-        Object LPAREN279_tree=null;
-        Object COMMA281_tree=null;
-        Object RPAREN283_tree=null;
-        Object CAST284_tree=null;
-        Object LPAREN285_tree=null;
-        Object RPAREN287_tree=null;
+        Object CAST281_tree=null;
+        Object LPAREN282_tree=null;
+        Object COMMA284_tree=null;
+        Object RPAREN286_tree=null;
+        Object CAST287_tree=null;
+        Object LPAREN288_tree=null;
+        Object RPAREN290_tree=null;
         RewriteRuleTokenStream stream_CAST=new RewriteRuleTokenStream(adaptor,"token CAST");
         RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
@@ -8428,24 +8527,24 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_funcType=new RewriteRuleSubtreeStream(adaptor,"rule funcType");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return retval; }
-            // Haxe.g:358:9: ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) )
-            int alt63=2;
-            int LA63_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return retval; }
+            // Haxe.g:367:9: ( CAST LPAREN expr ( COMMA funcType )? RPAREN -> ^( CAST ( expr )? ( funcType )? ) | CAST LPAREN expr RPAREN -> ^( CAST ( expr )? ) )
+            int alt65=2;
+            int LA65_0 = input.LA(1);
 
-            if ( (LA63_0==CAST) ) {
-                int LA63_1 = input.LA(2);
+            if ( (LA65_0==CAST) ) {
+                int LA65_1 = input.LA(2);
 
                 if ( (synpred118_Haxe()) ) {
-                    alt63=1;
+                    alt65=1;
                 }
                 else if ( (true) ) {
-                    alt63=2;
+                    alt65=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 63, 1, input);
+                        new NoViableAltException("", 65, 1, input);
 
                     throw nvae;
                 }
@@ -8453,59 +8552,59 @@ public class HaxeParser extends Parser {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 63, 0, input);
+                    new NoViableAltException("", 65, 0, input);
 
                 throw nvae;
             }
-            switch (alt63) {
+            switch (alt65) {
                 case 1 :
-                    // Haxe.g:358:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
+                    // Haxe.g:367:13: CAST LPAREN expr ( COMMA funcType )? RPAREN
                     {
-                    CAST278=(Token)match(input,CAST,FOLLOW_CAST_in_cast2419); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CAST.add(CAST278);
+                    CAST281=(Token)match(input,CAST,FOLLOW_CAST_in_cast3418); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CAST.add(CAST281);
 
-                    LPAREN279=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_cast2421); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN279);
+                    LPAREN282=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_cast3420); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN282);
 
-                    pushFollow(FOLLOW_expr_in_cast2423);
-                    expr280=expr();
+                    pushFollow(FOLLOW_expr_in_cast3422);
+                    expr283=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expr.add(expr280.getTree());
-                    // Haxe.g:358:28: ( COMMA funcType )?
-                    int alt62=2;
-                    int LA62_0 = input.LA(1);
+                    if ( state.backtracking==0 ) stream_expr.add(expr283.getTree());
+                    // Haxe.g:367:30: ( COMMA funcType )?
+                    int alt64=2;
+                    int LA64_0 = input.LA(1);
 
-                    if ( (LA62_0==COMMA) ) {
-                        alt62=1;
+                    if ( (LA64_0==COMMA) ) {
+                        alt64=1;
                     }
-                    switch (alt62) {
+                    switch (alt64) {
                         case 1 :
-                            // Haxe.g:358:29: COMMA funcType
+                            // Haxe.g:367:31: COMMA funcType
                             {
-                            COMMA281=(Token)match(input,COMMA,FOLLOW_COMMA_in_cast2426); if (state.failed) return retval; 
-                            if ( state.backtracking==0 ) stream_COMMA.add(COMMA281);
+                            COMMA284=(Token)match(input,COMMA,FOLLOW_COMMA_in_cast3425); if (state.failed) return retval; 
+                            if ( state.backtracking==0 ) stream_COMMA.add(COMMA284);
 
-                            pushFollow(FOLLOW_funcType_in_cast2428);
-                            funcType282=funcType();
+                            pushFollow(FOLLOW_funcType_in_cast3427);
+                            funcType285=funcType();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_funcType.add(funcType282.getTree());
+                            if ( state.backtracking==0 ) stream_funcType.add(funcType285.getTree());
 
                             }
                             break;
 
                     }
 
-                    RPAREN283=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_cast2432); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN283);
+                    RPAREN286=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_cast3431); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN286);
 
 
 
                     // AST REWRITE
-                    // elements: funcType, CAST, expr
+                    // elements: expr, CAST, funcType
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8516,20 +8615,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 358:54: -> ^( CAST ( expr )? ( funcType )? )
+                    // 367:57: -> ^( CAST ( expr )? ( funcType )? )
                     {
-                        // Haxe.g:358:57: ^( CAST ( expr )? ( funcType )? )
+                        // Haxe.g:367:60: ^( CAST ( expr )? ( funcType )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CAST.nextNode(), root_1);
 
-                        // Haxe.g:358:64: ( expr )?
+                        // Haxe.g:367:67: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
                         }
                         stream_expr.reset();
-                        // Haxe.g:358:70: ( funcType )?
+                        // Haxe.g:367:73: ( funcType )?
                         if ( stream_funcType.hasNext() ) {
                             adaptor.addChild(root_1, stream_funcType.nextTree());
 
@@ -8545,27 +8644,27 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:359:4: CAST LPAREN expr RPAREN
+                    // Haxe.g:368:13: CAST LPAREN expr RPAREN
                     {
-                    CAST284=(Token)match(input,CAST,FOLLOW_CAST_in_cast2450); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CAST.add(CAST284);
+                    CAST287=(Token)match(input,CAST,FOLLOW_CAST_in_cast3459); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CAST.add(CAST287);
 
-                    LPAREN285=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_cast2452); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN285);
+                    LPAREN288=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_cast3461); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN288);
 
-                    pushFollow(FOLLOW_expr_in_cast2454);
-                    expr286=expr();
+                    pushFollow(FOLLOW_expr_in_cast3463);
+                    expr289=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expr.add(expr286.getTree());
-                    RPAREN287=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_cast2456); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN287);
+                    if ( state.backtracking==0 ) stream_expr.add(expr289.getTree());
+                    RPAREN290=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_cast3465); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN290);
 
 
 
                     // AST REWRITE
-                    // elements: expr, CAST
+                    // elements: CAST, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8576,14 +8675,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 359:31: -> ^( CAST ( expr )? )
+                    // 368:57: -> ^( CAST ( expr )? )
                     {
-                        // Haxe.g:359:34: ^( CAST ( expr )? )
+                        // Haxe.g:368:60: ^( CAST ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_CAST.nextNode(), root_1);
 
-                        // Haxe.g:359:41: ( expr )?
+                        // Haxe.g:368:67: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -8615,7 +8714,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 57, cast_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 59, cast_StartIndex); }
         }
         return retval;
     }
@@ -8627,45 +8726,45 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "topLevelDecl"
-    // Haxe.g:365:1: topLevelDecl : ( classDecl | interfaceDecl | enumDecl | typedefDecl );
+    // Haxe.g:374:1: topLevelDecl : ( classDecl | interfaceDecl | enumDecl | typedefDecl );
     public final HaxeParser.topLevelDecl_return topLevelDecl() throws RecognitionException {
         HaxeParser.topLevelDecl_return retval = new HaxeParser.topLevelDecl_return();
         retval.start = input.LT(1);
         int topLevelDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.classDecl_return classDecl288 = null;
+        HaxeParser.classDecl_return classDecl291 = null;
 
-        HaxeParser.interfaceDecl_return interfaceDecl289 = null;
+        HaxeParser.interfaceDecl_return interfaceDecl292 = null;
 
-        HaxeParser.enumDecl_return enumDecl290 = null;
+        HaxeParser.enumDecl_return enumDecl293 = null;
 
-        HaxeParser.typedefDecl_return typedefDecl291 = null;
+        HaxeParser.typedefDecl_return typedefDecl294 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return retval; }
-            // Haxe.g:366:2: ( classDecl | interfaceDecl | enumDecl | typedefDecl )
-            int alt64=4;
+            if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return retval; }
+            // Haxe.g:375:5: ( classDecl | interfaceDecl | enumDecl | typedefDecl )
+            int alt66=4;
             switch ( input.LA(1) ) {
             case MONKEYS_AT:
                 {
-                int LA64_1 = input.LA(2);
+                int LA66_1 = input.LA(2);
 
                 if ( (synpred119_Haxe()) ) {
-                    alt64=1;
+                    alt66=1;
                 }
                 else if ( (synpred120_Haxe()) ) {
-                    alt64=2;
+                    alt66=2;
                 }
                 else if ( (synpred121_Haxe()) ) {
-                    alt64=3;
+                    alt66=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 64, 1, input);
+                        new NoViableAltException("", 66, 1, input);
 
                     throw nvae;
                 }
@@ -8674,21 +8773,21 @@ public class HaxeParser extends Parser {
             case EXTERN:
             case PRIVATE:
                 {
-                int LA64_2 = input.LA(2);
+                int LA66_2 = input.LA(2);
 
                 if ( (synpred119_Haxe()) ) {
-                    alt64=1;
+                    alt66=1;
                 }
                 else if ( (synpred120_Haxe()) ) {
-                    alt64=2;
+                    alt66=2;
                 }
                 else if ( (synpred121_Haxe()) ) {
-                    alt64=3;
+                    alt66=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 64, 2, input);
+                        new NoViableAltException("", 66, 2, input);
 
                     throw nvae;
                 }
@@ -8696,86 +8795,86 @@ public class HaxeParser extends Parser {
                 break;
             case CLASS:
                 {
-                alt64=1;
+                alt66=1;
                 }
                 break;
             case INTERFACE:
                 {
-                alt64=2;
+                alt66=2;
                 }
                 break;
             case ENUM:
                 {
-                alt64=3;
+                alt66=3;
                 }
                 break;
             case TYPEDEF:
                 {
-                alt64=4;
+                alt66=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 64, 0, input);
+                    new NoViableAltException("", 66, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt64) {
+            switch (alt66) {
                 case 1 :
-                    // Haxe.g:366:4: classDecl
+                    // Haxe.g:375:9: classDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classDecl_in_topLevelDecl2490);
-                    classDecl288=classDecl();
+                    pushFollow(FOLLOW_classDecl_in_topLevelDecl3530);
+                    classDecl291=classDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classDecl288.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, classDecl291.getTree());
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:367:4: interfaceDecl
+                    // Haxe.g:376:9: interfaceDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_interfaceDecl_in_topLevelDecl2495);
-                    interfaceDecl289=interfaceDecl();
+                    pushFollow(FOLLOW_interfaceDecl_in_topLevelDecl3540);
+                    interfaceDecl292=interfaceDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceDecl289.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceDecl292.getTree());
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:368:11: enumDecl
+                    // Haxe.g:377:9: enumDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_enumDecl_in_topLevelDecl2507);
-                    enumDecl290=enumDecl();
+                    pushFollow(FOLLOW_enumDecl_in_topLevelDecl3550);
+                    enumDecl293=enumDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumDecl290.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumDecl293.getTree());
 
                     }
                     break;
                 case 4 :
-                    // Haxe.g:369:4: typedefDecl
+                    // Haxe.g:378:9: typedefDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_typedefDecl_in_topLevelDecl2512);
-                    typedefDecl291=typedefDecl();
+                    pushFollow(FOLLOW_typedefDecl_in_topLevelDecl3560);
+                    typedefDecl294=typedefDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typedefDecl291.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typedefDecl294.getTree());
 
                     }
                     break;
@@ -8796,7 +8895,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 58, topLevelDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 60, topLevelDecl_StartIndex); }
         }
         return retval;
     }
@@ -8808,28 +8907,28 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "enumDecl"
-    // Haxe.g:372:1: enumDecl : typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) ;
+    // Haxe.g:381:1: enumDecl : typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) ;
     public final HaxeParser.enumDecl_return enumDecl() throws RecognitionException {
         HaxeParser.enumDecl_return retval = new HaxeParser.enumDecl_return();
         retval.start = input.LT(1);
         int enumDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token ENUM293=null;
-        Token IDENTIFIER294=null;
-        Token LBRACE296=null;
-        Token RBRACE298=null;
-        HaxeParser.typeDeclFlags_return typeDeclFlags292 = null;
+        Token ENUM296=null;
+        Token IDENTIFIER297=null;
+        Token LBRACE299=null;
+        Token RBRACE301=null;
+        HaxeParser.typeDeclFlags_return typeDeclFlags295 = null;
 
-        HaxeParser.typeParamOpt_return typeParamOpt295 = null;
+        HaxeParser.typeParamOpt_return typeParamOpt298 = null;
 
-        HaxeParser.enumBody_return enumBody297 = null;
+        HaxeParser.enumBody_return enumBody300 = null;
 
 
-        Object ENUM293_tree=null;
-        Object IDENTIFIER294_tree=null;
-        Object LBRACE296_tree=null;
-        Object RBRACE298_tree=null;
+        Object ENUM296_tree=null;
+        Object IDENTIFIER297_tree=null;
+        Object LBRACE299_tree=null;
+        Object RBRACE301_tree=null;
         RewriteRuleTokenStream stream_ENUM=new RewriteRuleTokenStream(adaptor,"token ENUM");
         RewriteRuleTokenStream stream_RBRACE=new RewriteRuleTokenStream(adaptor,"token RBRACE");
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
@@ -8838,44 +8937,44 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_enumBody=new RewriteRuleSubtreeStream(adaptor,"rule enumBody");
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return retval; }
-            // Haxe.g:372:9: ( typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) )
-            // Haxe.g:372:11: typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE
+            if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
+            // Haxe.g:381:9: ( typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? ) )
+            // Haxe.g:381:13: typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE
             {
-            pushFollow(FOLLOW_typeDeclFlags_in_enumDecl2522);
-            typeDeclFlags292=typeDeclFlags();
+            pushFollow(FOLLOW_typeDeclFlags_in_enumDecl3578);
+            typeDeclFlags295=typeDeclFlags();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_typeDeclFlags.add(typeDeclFlags292.getTree());
-            ENUM293=(Token)match(input,ENUM,FOLLOW_ENUM_in_enumDecl2524); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_ENUM.add(ENUM293);
+            if ( state.backtracking==0 ) stream_typeDeclFlags.add(typeDeclFlags295.getTree());
+            ENUM296=(Token)match(input,ENUM,FOLLOW_ENUM_in_enumDecl3580); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_ENUM.add(ENUM296);
 
-            IDENTIFIER294=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumDecl2526); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER294);
+            IDENTIFIER297=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumDecl3582); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER297);
 
-            pushFollow(FOLLOW_typeParamOpt_in_enumDecl2528);
-            typeParamOpt295=typeParamOpt();
-
-            state._fsp--;
-            if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt295.getTree());
-            LBRACE296=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_enumDecl2530); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE296);
-
-            pushFollow(FOLLOW_enumBody_in_enumDecl2532);
-            enumBody297=enumBody();
+            pushFollow(FOLLOW_typeParamOpt_in_enumDecl3584);
+            typeParamOpt298=typeParamOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_enumBody.add(enumBody297.getTree());
-            RBRACE298=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_enumDecl2534); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE298);
+            if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt298.getTree());
+            LBRACE299=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_enumDecl3586); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE299);
+
+            pushFollow(FOLLOW_enumBody_in_enumDecl3588);
+            enumBody300=enumBody();
+
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) stream_enumBody.add(enumBody300.getTree());
+            RBRACE301=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_enumDecl3590); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE301);
 
 
 
             // AST REWRITE
-            // elements: typeParamOpt, IDENTIFIER, enumBody, ENUM
+            // elements: IDENTIFIER, ENUM, enumBody, typeParamOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8886,26 +8985,26 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 372:77: -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
+            // 381:79: -> ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
             {
-                // Haxe.g:372:80: ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
+                // Haxe.g:381:82: ^( ENUM ( IDENTIFIER )? ( typeParamOpt )? ( enumBody )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(stream_ENUM.nextNode(), root_1);
 
-                // Haxe.g:372:87: ( IDENTIFIER )?
+                // Haxe.g:381:89: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
                     adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                 }
                 stream_IDENTIFIER.reset();
-                // Haxe.g:372:99: ( typeParamOpt )?
+                // Haxe.g:381:101: ( typeParamOpt )?
                 if ( stream_typeParamOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
                 }
                 stream_typeParamOpt.reset();
-                // Haxe.g:372:113: ( enumBody )?
+                // Haxe.g:381:115: ( enumBody )?
                 if ( stream_enumBody.hasNext() ) {
                     adaptor.addChild(root_1, stream_enumBody.nextTree());
 
@@ -8935,7 +9034,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 59, enumDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 61, enumDecl_StartIndex); }
         }
         return retval;
     }
@@ -8947,51 +9046,51 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "enumBody"
-    // Haxe.g:375:1: enumBody : ( enumValueDecl )* ;
+    // Haxe.g:384:1: enumBody : ( enumValueDecl )* ;
     public final HaxeParser.enumBody_return enumBody() throws RecognitionException {
         HaxeParser.enumBody_return retval = new HaxeParser.enumBody_return();
         retval.start = input.LT(1);
         int enumBody_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.enumValueDecl_return enumValueDecl299 = null;
+        HaxeParser.enumValueDecl_return enumValueDecl302 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return retval; }
-            // Haxe.g:375:9: ( ( enumValueDecl )* )
-            // Haxe.g:375:11: ( enumValueDecl )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
+            // Haxe.g:384:9: ( ( enumValueDecl )* )
+            // Haxe.g:384:13: ( enumValueDecl )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // Haxe.g:375:11: ( enumValueDecl )*
-            loop65:
+            // Haxe.g:384:13: ( enumValueDecl )*
+            loop67:
             do {
-                int alt65=2;
-                int LA65_0 = input.LA(1);
+                int alt67=2;
+                int LA67_0 = input.LA(1);
 
-                if ( (LA65_0==IDENTIFIER) ) {
-                    alt65=1;
+                if ( (LA67_0==IDENTIFIER) ) {
+                    alt67=1;
                 }
 
 
-                switch (alt65) {
+                switch (alt67) {
             	case 1 :
-            	    // Haxe.g:375:12: enumValueDecl
+            	    // Haxe.g:384:14: enumValueDecl
             	    {
-            	    pushFollow(FOLLOW_enumValueDecl_in_enumBody2560);
-            	    enumValueDecl299=enumValueDecl();
+            	    pushFollow(FOLLOW_enumValueDecl_in_enumBody3624);
+            	    enumValueDecl302=enumValueDecl();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumValueDecl299.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumValueDecl302.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop65;
+            	    break loop67;
                 }
             } while (true);
 
@@ -9013,7 +9112,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 60, enumBody_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 62, enumBody_StartIndex); }
         }
         return retval;
     }
@@ -9025,52 +9124,52 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "enumValueDecl"
-    // Haxe.g:378:1: enumValueDecl : ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) );
+    // Haxe.g:387:1: enumValueDecl : ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) );
     public final HaxeParser.enumValueDecl_return enumValueDecl() throws RecognitionException {
         HaxeParser.enumValueDecl_return retval = new HaxeParser.enumValueDecl_return();
         retval.start = input.LT(1);
         int enumValueDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token IDENTIFIER300=null;
-        Token LPAREN301=null;
-        Token RPAREN303=null;
-        Token SEMI304=null;
-        Token IDENTIFIER305=null;
-        Token SEMI306=null;
-        HaxeParser.paramList_return paramList302 = null;
+        Token IDENTIFIER303=null;
+        Token LPAREN304=null;
+        Token RPAREN306=null;
+        Token SEMI307=null;
+        Token IDENTIFIER308=null;
+        Token SEMI309=null;
+        HaxeParser.paramList_return paramList305 = null;
 
 
-        Object IDENTIFIER300_tree=null;
-        Object LPAREN301_tree=null;
-        Object RPAREN303_tree=null;
-        Object SEMI304_tree=null;
-        Object IDENTIFIER305_tree=null;
-        Object SEMI306_tree=null;
+        Object IDENTIFIER303_tree=null;
+        Object LPAREN304_tree=null;
+        Object RPAREN306_tree=null;
+        Object SEMI307_tree=null;
+        Object IDENTIFIER308_tree=null;
+        Object SEMI309_tree=null;
         RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
         RewriteRuleTokenStream stream_SEMI=new RewriteRuleTokenStream(adaptor,"token SEMI");
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
         RewriteRuleTokenStream stream_LPAREN=new RewriteRuleTokenStream(adaptor,"token LPAREN");
         RewriteRuleSubtreeStream stream_paramList=new RewriteRuleSubtreeStream(adaptor,"rule paramList");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
-            // Haxe.g:379:2: ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) )
-            int alt66=2;
-            int LA66_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
+            // Haxe.g:388:5: ( IDENTIFIER LPAREN paramList RPAREN SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? ) | IDENTIFIER SEMI -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ) )
+            int alt68=2;
+            int LA68_0 = input.LA(1);
 
-            if ( (LA66_0==IDENTIFIER) ) {
-                int LA66_1 = input.LA(2);
+            if ( (LA68_0==IDENTIFIER) ) {
+                int LA68_1 = input.LA(2);
 
-                if ( (LA66_1==LPAREN) ) {
-                    alt66=1;
+                if ( (LA68_1==LPAREN) ) {
+                    alt68=1;
                 }
-                else if ( (LA66_1==SEMI) ) {
-                    alt66=2;
+                else if ( (LA68_1==SEMI) ) {
+                    alt68=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 66, 1, input);
+                        new NoViableAltException("", 68, 1, input);
 
                     throw nvae;
                 }
@@ -9078,36 +9177,36 @@ public class HaxeParser extends Parser {
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 66, 0, input);
+                    new NoViableAltException("", 68, 0, input);
 
                 throw nvae;
             }
-            switch (alt66) {
+            switch (alt68) {
                 case 1 :
-                    // Haxe.g:379:4: IDENTIFIER LPAREN paramList RPAREN SEMI
+                    // Haxe.g:388:9: IDENTIFIER LPAREN paramList RPAREN SEMI
                     {
-                    IDENTIFIER300=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl2579); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER300);
+                    IDENTIFIER303=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl3662); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER303);
 
-                    LPAREN301=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_enumValueDecl2581); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN301);
+                    LPAREN304=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_enumValueDecl3664); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN304);
 
-                    pushFollow(FOLLOW_paramList_in_enumValueDecl2583);
-                    paramList302=paramList();
+                    pushFollow(FOLLOW_paramList_in_enumValueDecl3666);
+                    paramList305=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList302.getTree());
-                    RPAREN303=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_enumValueDecl2585); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN303);
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList305.getTree());
+                    RPAREN306=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_enumValueDecl3668); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN306);
 
-                    SEMI304=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl2587); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI304);
+                    SEMI307=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl3670); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI307);
 
 
 
                     // AST REWRITE
-                    // elements: paramList, IDENTIFIER, IDENTIFIER
+                    // elements: IDENTIFIER, IDENTIFIER, paramList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9118,20 +9217,20 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 379:44: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
+                    // 388:49: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
                     {
-                        // Haxe.g:379:47: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
+                        // Haxe.g:388:52: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER300), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER303), root_1);
 
-                        // Haxe.g:379:89: ( IDENTIFIER )?
+                        // Haxe.g:388:94: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
 
                         }
                         stream_IDENTIFIER.reset();
-                        // Haxe.g:379:111: ( paramList )?
+                        // Haxe.g:388:116: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
@@ -9147,13 +9246,13 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:380:4: IDENTIFIER SEMI
+                    // Haxe.g:389:9: IDENTIFIER SEMI
                     {
-                    IDENTIFIER305=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl2613); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER305);
+                    IDENTIFIER308=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl3704); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER308);
 
-                    SEMI306=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl2615); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI306);
+                    SEMI309=(Token)match(input,SEMI,FOLLOW_SEMI_in_enumValueDecl3706); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI309);
 
 
 
@@ -9169,14 +9268,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 380:23: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
+                    // 389:49: -> ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
                     {
-                        // Haxe.g:380:26: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
+                        // Haxe.g:389:52: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER305), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER308), root_1);
 
-                        // Haxe.g:380:68: ( IDENTIFIER )?
+                        // Haxe.g:389:94: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
 
@@ -9208,7 +9307,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 61, enumValueDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 63, enumValueDecl_StartIndex); }
         }
         return retval;
     }
@@ -9220,38 +9319,38 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDeclList"
-    // Haxe.g:384:1: varDeclList : varDecl varDeclList ;
+    // Haxe.g:393:1: varDeclList : varDecl varDeclList ;
     public final HaxeParser.varDeclList_return varDeclList() throws RecognitionException {
         HaxeParser.varDeclList_return retval = new HaxeParser.varDeclList_return();
         retval.start = input.LT(1);
         int varDeclList_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.varDecl_return varDecl307 = null;
+        HaxeParser.varDecl_return varDecl310 = null;
 
-        HaxeParser.varDeclList_return varDeclList308 = null;
+        HaxeParser.varDeclList_return varDeclList311 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
-            // Haxe.g:385:2: ( varDecl varDeclList )
-            // Haxe.g:385:4: varDecl varDeclList
+            if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return retval; }
+            // Haxe.g:394:5: ( varDecl varDeclList )
+            // Haxe.g:394:9: varDecl varDeclList
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_varDecl_in_varDeclList2654);
-            varDecl307=varDecl();
+            pushFollow(FOLLOW_varDecl_in_varDeclList3777);
+            varDecl310=varDecl();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl307.getTree());
-            pushFollow(FOLLOW_varDeclList_in_varDeclList2656);
-            varDeclList308=varDeclList();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl310.getTree());
+            pushFollow(FOLLOW_varDeclList_in_varDeclList3779);
+            varDeclList311=varDeclList();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList308.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList311.getTree());
 
             }
 
@@ -9270,7 +9369,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 62, varDeclList_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 64, varDeclList_StartIndex); }
         }
         return retval;
     }
@@ -9282,70 +9381,70 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDecl"
-    // Haxe.g:388:1: varDecl : ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) ;
+    // Haxe.g:397:1: varDecl : ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) ;
     public final HaxeParser.varDecl_return varDecl() throws RecognitionException {
         HaxeParser.varDecl_return retval = new HaxeParser.varDecl_return();
         retval.start = input.LT(1);
         int varDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token VAR310=null;
-        Token SEMI312=null;
-        HaxeParser.declAttrList_return declAttrList309 = null;
+        Token VAR313=null;
+        Token SEMI315=null;
+        HaxeParser.declAttrList_return declAttrList312 = null;
 
-        HaxeParser.varDeclPartList_return varDeclPartList311 = null;
+        HaxeParser.varDeclPartList_return varDeclPartList314 = null;
 
 
-        Object VAR310_tree=null;
-        Object SEMI312_tree=null;
+        Object VAR313_tree=null;
+        Object SEMI315_tree=null;
         RewriteRuleTokenStream stream_VAR=new RewriteRuleTokenStream(adaptor,"token VAR");
         RewriteRuleTokenStream stream_SEMI=new RewriteRuleTokenStream(adaptor,"token SEMI");
         RewriteRuleSubtreeStream stream_declAttrList=new RewriteRuleSubtreeStream(adaptor,"rule declAttrList");
         RewriteRuleSubtreeStream stream_varDeclPartList=new RewriteRuleSubtreeStream(adaptor,"rule varDeclPartList");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
-            // Haxe.g:388:9: ( ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) )
-            // Haxe.g:388:11: ( declAttrList )? VAR varDeclPartList SEMI
+            if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return retval; }
+            // Haxe.g:397:9: ( ( declAttrList )? VAR varDeclPartList SEMI -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? ) )
+            // Haxe.g:397:13: ( declAttrList )? VAR varDeclPartList SEMI
             {
-            // Haxe.g:388:11: ( declAttrList )?
-            int alt67=2;
-            int LA67_0 = input.LA(1);
+            // Haxe.g:397:13: ( declAttrList )?
+            int alt69=2;
+            int LA69_0 = input.LA(1);
 
-            if ( (LA67_0==PRIVATE||(LA67_0>=PUBLIC && LA67_0<=OVERRIDE)) ) {
-                alt67=1;
+            if ( (LA69_0==PRIVATE||(LA69_0>=PUBLIC && LA69_0<=OVERRIDE)) ) {
+                alt69=1;
             }
-            switch (alt67) {
+            switch (alt69) {
                 case 1 :
-                    // Haxe.g:388:12: declAttrList
+                    // Haxe.g:397:14: declAttrList
                     {
-                    pushFollow(FOLLOW_declAttrList_in_varDecl2668);
-                    declAttrList309=declAttrList();
+                    pushFollow(FOLLOW_declAttrList_in_varDecl3799);
+                    declAttrList312=declAttrList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList309.getTree());
+                    if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList312.getTree());
 
                     }
                     break;
 
             }
 
-            VAR310=(Token)match(input,VAR,FOLLOW_VAR_in_varDecl2672); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_VAR.add(VAR310);
+            VAR313=(Token)match(input,VAR,FOLLOW_VAR_in_varDecl3803); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_VAR.add(VAR313);
 
-            pushFollow(FOLLOW_varDeclPartList_in_varDecl2674);
-            varDeclPartList311=varDeclPartList();
+            pushFollow(FOLLOW_varDeclPartList_in_varDecl3805);
+            varDeclPartList314=varDeclPartList();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_varDeclPartList.add(varDeclPartList311.getTree());
-            SEMI312=(Token)match(input,SEMI,FOLLOW_SEMI_in_varDecl2676); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_SEMI.add(SEMI312);
+            if ( state.backtracking==0 ) stream_varDeclPartList.add(varDeclPartList314.getTree());
+            SEMI315=(Token)match(input,SEMI,FOLLOW_SEMI_in_varDecl3807); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_SEMI.add(SEMI315);
 
 
 
             // AST REWRITE
-            // elements: declAttrList, varDeclPartList, VAR
+            // elements: VAR, declAttrList, varDeclPartList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -9356,20 +9455,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 388:52: -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
+            // 397:54: -> ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
             {
-                // Haxe.g:388:55: ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
+                // Haxe.g:397:57: ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, VAR310), root_1);
+                root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, VAR313), root_1);
 
-                // Haxe.g:388:83: ( declAttrList )?
+                // Haxe.g:397:85: ( declAttrList )?
                 if ( stream_declAttrList.hasNext() ) {
                     adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                 }
                 stream_declAttrList.reset();
-                // Haxe.g:388:97: ( varDeclPartList )?
+                // Haxe.g:397:99: ( varDeclPartList )?
                 if ( stream_varDeclPartList.hasNext() ) {
                     adaptor.addChild(root_1, stream_varDeclPartList.nextTree());
 
@@ -9399,7 +9498,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 63, varDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 65, varDecl_StartIndex); }
         }
         return retval;
     }
@@ -9411,62 +9510,62 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDeclPartList"
-    // Haxe.g:391:1: varDeclPartList : varDeclPart ( COMMA varDeclPart )* ;
+    // Haxe.g:400:1: varDeclPartList : varDeclPart ( COMMA varDeclPart )* ;
     public final HaxeParser.varDeclPartList_return varDeclPartList() throws RecognitionException {
         HaxeParser.varDeclPartList_return retval = new HaxeParser.varDeclPartList_return();
         retval.start = input.LT(1);
         int varDeclPartList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA314=null;
-        HaxeParser.varDeclPart_return varDeclPart313 = null;
+        Token COMMA317=null;
+        HaxeParser.varDeclPart_return varDeclPart316 = null;
 
-        HaxeParser.varDeclPart_return varDeclPart315 = null;
+        HaxeParser.varDeclPart_return varDeclPart318 = null;
 
 
-        Object COMMA314_tree=null;
+        Object COMMA317_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return retval; }
-            // Haxe.g:392:2: ( varDeclPart ( COMMA varDeclPart )* )
-            // Haxe.g:392:4: varDeclPart ( COMMA varDeclPart )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return retval; }
+            // Haxe.g:401:5: ( varDeclPart ( COMMA varDeclPart )* )
+            // Haxe.g:401:9: varDeclPart ( COMMA varDeclPart )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2707);
-            varDeclPart313=varDeclPart();
+            pushFollow(FOLLOW_varDeclPart_in_varDeclPartList3853);
+            varDeclPart316=varDeclPart();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclPart313.getTree());
-            // Haxe.g:392:16: ( COMMA varDeclPart )*
-            loop68:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclPart316.getTree());
+            // Haxe.g:401:21: ( COMMA varDeclPart )*
+            loop70:
             do {
-                int alt68=2;
-                int LA68_0 = input.LA(1);
+                int alt70=2;
+                int LA70_0 = input.LA(1);
 
-                if ( (LA68_0==COMMA) ) {
-                    alt68=1;
+                if ( (LA70_0==COMMA) ) {
+                    alt70=1;
                 }
 
 
-                switch (alt68) {
+                switch (alt70) {
             	case 1 :
-            	    // Haxe.g:392:17: COMMA varDeclPart
+            	    // Haxe.g:401:22: COMMA varDeclPart
             	    {
-            	    COMMA314=(Token)match(input,COMMA,FOLLOW_COMMA_in_varDeclPartList2710); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_varDeclPart_in_varDeclPartList2713);
-            	    varDeclPart315=varDeclPart();
+            	    COMMA317=(Token)match(input,COMMA,FOLLOW_COMMA_in_varDeclPartList3856); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_varDeclPart_in_varDeclPartList3859);
+            	    varDeclPart318=varDeclPart();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclPart315.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclPart318.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop68;
+            	    break loop70;
                 }
             } while (true);
 
@@ -9488,7 +9587,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 64, varDeclPartList_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 66, varDeclPartList_StartIndex); }
         }
         return retval;
     }
@@ -9500,53 +9599,53 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varDeclPart"
-    // Haxe.g:395:1: varDeclPart : IDENTIFIER propDeclOpt typeTagOpt varInit ;
+    // Haxe.g:404:1: varDeclPart : IDENTIFIER propDeclOpt typeTagOpt varInit ;
     public final HaxeParser.varDeclPart_return varDeclPart() throws RecognitionException {
         HaxeParser.varDeclPart_return retval = new HaxeParser.varDeclPart_return();
         retval.start = input.LT(1);
         int varDeclPart_StartIndex = input.index();
         Object root_0 = null;
 
-        Token IDENTIFIER316=null;
-        HaxeParser.propDeclOpt_return propDeclOpt317 = null;
+        Token IDENTIFIER319=null;
+        HaxeParser.propDeclOpt_return propDeclOpt320 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt318 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt321 = null;
 
-        HaxeParser.varInit_return varInit319 = null;
+        HaxeParser.varInit_return varInit322 = null;
 
 
-        Object IDENTIFIER316_tree=null;
+        Object IDENTIFIER319_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return retval; }
-            // Haxe.g:396:2: ( IDENTIFIER propDeclOpt typeTagOpt varInit )
-            // Haxe.g:396:4: IDENTIFIER propDeclOpt typeTagOpt varInit
+            if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return retval; }
+            // Haxe.g:405:5: ( IDENTIFIER propDeclOpt typeTagOpt varInit )
+            // Haxe.g:405:9: IDENTIFIER propDeclOpt typeTagOpt varInit
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER316=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_varDeclPart2727); if (state.failed) return retval;
+            IDENTIFIER319=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_varDeclPart3884); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER316_tree = new VarUsage(IDENTIFIER316) ;
-            adaptor.addChild(root_0, IDENTIFIER316_tree);
+            IDENTIFIER319_tree = new VarUsage(IDENTIFIER319) ;
+            adaptor.addChild(root_0, IDENTIFIER319_tree);
             }
-            pushFollow(FOLLOW_propDeclOpt_in_varDeclPart2732);
-            propDeclOpt317=propDeclOpt();
+            pushFollow(FOLLOW_propDeclOpt_in_varDeclPart3889);
+            propDeclOpt320=propDeclOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, propDeclOpt317.getTree());
-            pushFollow(FOLLOW_typeTagOpt_in_varDeclPart2734);
-            typeTagOpt318=typeTagOpt();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, propDeclOpt320.getTree());
+            pushFollow(FOLLOW_typeTagOpt_in_varDeclPart3891);
+            typeTagOpt321=typeTagOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, typeTagOpt318.getTree());
-            pushFollow(FOLLOW_varInit_in_varDeclPart2736);
-            varInit319=varInit();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, typeTagOpt321.getTree());
+            pushFollow(FOLLOW_varInit_in_varDeclPart3893);
+            varInit322=varInit();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, varInit319.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, varInit322.getTree());
 
             }
 
@@ -9565,7 +9664,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 65, varDeclPart_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 67, varDeclPart_StartIndex); }
         }
         return retval;
     }
@@ -9577,58 +9676,58 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "propDecl"
-    // Haxe.g:399:1: propDecl : LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) ;
+    // Haxe.g:408:1: propDecl : LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) ;
     public final HaxeParser.propDecl_return propDecl() throws RecognitionException {
         HaxeParser.propDecl_return retval = new HaxeParser.propDecl_return();
         retval.start = input.LT(1);
         int propDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LPAREN320=null;
-        Token COMMA321=null;
-        Token RPAREN322=null;
+        Token LPAREN323=null;
+        Token COMMA324=null;
+        Token RPAREN325=null;
         HaxeParser.propAccessor_return a1 = null;
 
         HaxeParser.propAccessor_return a2 = null;
 
 
-        Object LPAREN320_tree=null;
-        Object COMMA321_tree=null;
-        Object RPAREN322_tree=null;
+        Object LPAREN323_tree=null;
+        Object COMMA324_tree=null;
+        Object RPAREN325_tree=null;
         RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
         RewriteRuleTokenStream stream_COMMA=new RewriteRuleTokenStream(adaptor,"token COMMA");
         RewriteRuleTokenStream stream_LPAREN=new RewriteRuleTokenStream(adaptor,"token LPAREN");
         RewriteRuleSubtreeStream stream_propAccessor=new RewriteRuleSubtreeStream(adaptor,"rule propAccessor");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return retval; }
-            // Haxe.g:399:9: ( LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) )
-            // Haxe.g:399:11: LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN
+            if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return retval; }
+            // Haxe.g:408:9: ( LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? ) )
+            // Haxe.g:408:13: LPAREN a1= propAccessor COMMA a2= propAccessor RPAREN
             {
-            LPAREN320=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_propDecl2746); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN320);
+            LPAREN323=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_propDecl3911); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN323);
 
-            pushFollow(FOLLOW_propAccessor_in_propDecl2750);
+            pushFollow(FOLLOW_propAccessor_in_propDecl3915);
             a1=propAccessor();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_propAccessor.add(a1.getTree());
-            COMMA321=(Token)match(input,COMMA,FOLLOW_COMMA_in_propDecl2752); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_COMMA.add(COMMA321);
+            COMMA324=(Token)match(input,COMMA,FOLLOW_COMMA_in_propDecl3917); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_COMMA.add(COMMA324);
 
-            pushFollow(FOLLOW_propAccessor_in_propDecl2756);
+            pushFollow(FOLLOW_propAccessor_in_propDecl3921);
             a2=propAccessor();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_propAccessor.add(a2.getTree());
-            RPAREN322=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_propDecl2758); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN322);
+            RPAREN325=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_propDecl3923); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN325);
 
 
 
             // AST REWRITE
-            // elements: a2, a1
+            // elements: a1, a2
             // token labels: 
             // rule labels: retval, a1, a2
             // token list labels: 
@@ -9641,20 +9740,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_a2=new RewriteRuleSubtreeStream(adaptor,"rule a2",a2!=null?a2.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 399:63: -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
+            // 408:65: -> ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
             {
-                // Haxe.g:399:66: ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
+                // Haxe.g:408:68: ^( PROPERTY_DECL[\"PROPERTY_DECL\",true] ( $a1)? ( $a2)? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new HaxeTree(PROPERTY_DECL, "PROPERTY_DECL", true), root_1);
 
-                // Haxe.g:399:114: ( $a1)?
+                // Haxe.g:408:116: ( $a1)?
                 if ( stream_a1.hasNext() ) {
                     adaptor.addChild(root_1, stream_a1.nextTree());
 
                 }
                 stream_a1.reset();
-                // Haxe.g:399:119: ( $a2)?
+                // Haxe.g:408:121: ( $a2)?
                 if ( stream_a2.hasNext() ) {
                     adaptor.addChild(root_1, stream_a2.nextTree());
 
@@ -9684,7 +9783,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 66, propDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 68, propDecl_StartIndex); }
         }
         return retval;
     }
@@ -9696,28 +9795,28 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "propAccessor"
-    // Haxe.g:402:1: propAccessor : ( IDENTIFIER | NULL | DEFAULT | DYNAMIC );
+    // Haxe.g:411:1: propAccessor : ( IDENTIFIER | NULL | DEFAULT | DYNAMIC );
     public final HaxeParser.propAccessor_return propAccessor() throws RecognitionException {
         HaxeParser.propAccessor_return retval = new HaxeParser.propAccessor_return();
         retval.start = input.LT(1);
         int propAccessor_StartIndex = input.index();
         Object root_0 = null;
 
-        Token set323=null;
+        Token set326=null;
 
-        Object set323_tree=null;
+        Object set326_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return retval; }
-            // Haxe.g:403:2: ( IDENTIFIER | NULL | DEFAULT | DYNAMIC )
+            if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return retval; }
+            // Haxe.g:412:13: ( IDENTIFIER | NULL | DEFAULT | DYNAMIC )
             // Haxe.g:
             {
             root_0 = (Object)adaptor.nil();
 
-            set323=(Token)input.LT(1);
+            set326=(Token)input.LT(1);
             if ( input.LA(1)==IDENTIFIER||input.LA(1)==DYNAMIC||input.LA(1)==DEFAULT||input.LA(1)==NULL ) {
                 input.consume();
-                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set323));
+                if ( state.backtracking==0 ) adaptor.addChild(root_0, (Object)adaptor.create(set326));
                 state.errorRecovery=false;state.failed=false;
             }
             else {
@@ -9744,7 +9843,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 67, propAccessor_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 69, propAccessor_StartIndex); }
         }
         return retval;
     }
@@ -9756,53 +9855,53 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "propDeclOpt"
-    // Haxe.g:409:1: propDeclOpt : ( propDecl | );
+    // Haxe.g:418:1: propDeclOpt : ( propDecl | );
     public final HaxeParser.propDeclOpt_return propDeclOpt() throws RecognitionException {
         HaxeParser.propDeclOpt_return retval = new HaxeParser.propDeclOpt_return();
         retval.start = input.LT(1);
         int propDeclOpt_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.propDecl_return propDecl324 = null;
+        HaxeParser.propDecl_return propDecl327 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return retval; }
-            // Haxe.g:410:2: ( propDecl | )
-            int alt69=2;
-            int LA69_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return retval; }
+            // Haxe.g:419:13: ( propDecl | )
+            int alt71=2;
+            int LA71_0 = input.LA(1);
 
-            if ( (LA69_0==LPAREN) ) {
-                alt69=1;
+            if ( (LA71_0==LPAREN) ) {
+                alt71=1;
             }
-            else if ( (LA69_0==EOF||LA69_0==SEMI||LA69_0==RPAREN||LA69_0==COLON||LA69_0==COMMA||LA69_0==EQ||LA69_0==LBRACE) ) {
-                alt69=2;
+            else if ( (LA71_0==EOF||LA71_0==SEMI||LA71_0==RPAREN||LA71_0==COLON||LA71_0==COMMA||LA71_0==EQ||LA71_0==LBRACE) ) {
+                alt71=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 69, 0, input);
+                    new NoViableAltException("", 71, 0, input);
 
                 throw nvae;
             }
-            switch (alt69) {
+            switch (alt71) {
                 case 1 :
-                    // Haxe.g:410:4: propDecl
+                    // Haxe.g:419:17: propDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_propDecl_in_propDeclOpt2818);
-                    propDecl324=propDecl();
+                    pushFollow(FOLLOW_propDecl_in_propDeclOpt4079);
+                    propDecl327=propDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, propDecl324.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, propDecl327.getTree());
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:412:2: 
+                    // Haxe.g:421:13: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -9825,7 +9924,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 68, propDeclOpt_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 70, propDeclOpt_StartIndex); }
         }
         return retval;
     }
@@ -9837,52 +9936,52 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "varInit"
-    // Haxe.g:414:1: varInit : ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | );
+    // Haxe.g:423:1: varInit : ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | );
     public final HaxeParser.varInit_return varInit() throws RecognitionException {
         HaxeParser.varInit_return retval = new HaxeParser.varInit_return();
         retval.start = input.LT(1);
         int varInit_StartIndex = input.index();
         Object root_0 = null;
 
-        Token EQ325=null;
-        HaxeParser.expr_return expr326 = null;
+        Token EQ328=null;
+        HaxeParser.expr_return expr329 = null;
 
 
-        Object EQ325_tree=null;
+        Object EQ328_tree=null;
         RewriteRuleTokenStream stream_EQ=new RewriteRuleTokenStream(adaptor,"token EQ");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return retval; }
-            // Haxe.g:414:9: ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | )
-            int alt70=2;
-            int LA70_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
+            // Haxe.g:423:9: ( EQ expr -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? ) | )
+            int alt72=2;
+            int LA72_0 = input.LA(1);
 
-            if ( (LA70_0==EQ) ) {
-                alt70=1;
+            if ( (LA72_0==EQ) ) {
+                alt72=1;
             }
-            else if ( (LA70_0==EOF||LA70_0==SEMI||LA70_0==RPAREN||LA70_0==COMMA) ) {
-                alt70=2;
+            else if ( (LA72_0==EOF||LA72_0==SEMI||LA72_0==RPAREN||LA72_0==COMMA) ) {
+                alt72=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 70, 0, input);
+                    new NoViableAltException("", 72, 0, input);
 
                 throw nvae;
             }
-            switch (alt70) {
+            switch (alt72) {
                 case 1 :
-                    // Haxe.g:414:11: EQ expr
+                    // Haxe.g:423:13: EQ expr
                     {
-                    EQ325=(Token)match(input,EQ,FOLLOW_EQ_in_varInit2833); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_EQ.add(EQ325);
+                    EQ328=(Token)match(input,EQ,FOLLOW_EQ_in_varInit4124); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_EQ.add(EQ328);
 
-                    pushFollow(FOLLOW_expr_in_varInit2835);
-                    expr326=expr();
+                    pushFollow(FOLLOW_expr_in_varInit4126);
+                    expr329=expr();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_expr.add(expr326.getTree());
+                    if ( state.backtracking==0 ) stream_expr.add(expr329.getTree());
 
 
                     // AST REWRITE
@@ -9897,14 +9996,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 414:19: -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
+                    // 423:21: -> ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
                     {
-                        // Haxe.g:414:22: ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
+                        // Haxe.g:423:24: ^( VAR_INIT[\"VAR_INIT\",true] ( expr )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(VAR_INIT, "VAR_INIT", true), root_1);
 
-                        // Haxe.g:414:60: ( expr )?
+                        // Haxe.g:423:62: ( expr )?
                         if ( stream_expr.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr.nextTree());
 
@@ -9920,7 +10019,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:416:2: 
+                    // Haxe.g:425:9: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -9943,7 +10042,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 69, varInit_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 71, varInit_StartIndex); }
         }
         return retval;
     }
@@ -9955,48 +10054,48 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "funcDecl"
-    // Haxe.g:418:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) );
+    // Haxe.g:427:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) );
     public final HaxeParser.funcDecl_return funcDecl() throws RecognitionException {
         HaxeParser.funcDecl_return retval = new HaxeParser.funcDecl_return();
         retval.start = input.LT(1);
         int funcDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token FUNCTION328=null;
-        Token NEW329=null;
-        Token LPAREN330=null;
-        Token RPAREN332=null;
-        Token FUNCTION336=null;
-        Token IDENTIFIER337=null;
-        Token LPAREN339=null;
-        Token RPAREN341=null;
-        HaxeParser.declAttrList_return declAttrList327 = null;
+        Token FUNCTION331=null;
+        Token NEW332=null;
+        Token LPAREN333=null;
+        Token RPAREN335=null;
+        Token FUNCTION339=null;
+        Token IDENTIFIER340=null;
+        Token LPAREN342=null;
+        Token RPAREN344=null;
+        HaxeParser.declAttrList_return declAttrList330 = null;
 
-        HaxeParser.paramList_return paramList331 = null;
+        HaxeParser.paramList_return paramList334 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt333 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt336 = null;
 
-        HaxeParser.block_return block334 = null;
+        HaxeParser.block_return block337 = null;
 
-        HaxeParser.declAttrList_return declAttrList335 = null;
+        HaxeParser.declAttrList_return declAttrList338 = null;
 
-        HaxeParser.typeParamOpt_return typeParamOpt338 = null;
+        HaxeParser.typeParamOpt_return typeParamOpt341 = null;
 
-        HaxeParser.paramList_return paramList340 = null;
+        HaxeParser.paramList_return paramList343 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt342 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt345 = null;
 
-        HaxeParser.block_return block343 = null;
+        HaxeParser.block_return block346 = null;
 
 
-        Object FUNCTION328_tree=null;
-        Object NEW329_tree=null;
-        Object LPAREN330_tree=null;
-        Object RPAREN332_tree=null;
-        Object FUNCTION336_tree=null;
-        Object IDENTIFIER337_tree=null;
-        Object LPAREN339_tree=null;
-        Object RPAREN341_tree=null;
+        Object FUNCTION331_tree=null;
+        Object NEW332_tree=null;
+        Object LPAREN333_tree=null;
+        Object RPAREN335_tree=null;
+        Object FUNCTION339_tree=null;
+        Object IDENTIFIER340_tree=null;
+        Object LPAREN342_tree=null;
+        Object RPAREN344_tree=null;
         RewriteRuleTokenStream stream_FUNCTION=new RewriteRuleTokenStream(adaptor,"token FUNCTION");
         RewriteRuleTokenStream stream_NEW=new RewriteRuleTokenStream(adaptor,"token NEW");
         RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
@@ -10008,71 +10107,71 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return retval; }
-            // Haxe.g:418:9: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) )
-            int alt73=2;
-            alt73 = dfa73.predict(input);
-            switch (alt73) {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
+            // Haxe.g:427:9: ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) )
+            int alt75=2;
+            alt75 = dfa75.predict(input);
+            switch (alt75) {
                 case 1 :
-                    // Haxe.g:418:11: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
+                    // Haxe.g:427:13: ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block
                     {
-                    // Haxe.g:418:11: ( declAttrList )?
-                    int alt71=2;
-                    int LA71_0 = input.LA(1);
+                    // Haxe.g:427:13: ( declAttrList )?
+                    int alt73=2;
+                    int LA73_0 = input.LA(1);
 
-                    if ( (LA71_0==PRIVATE||(LA71_0>=PUBLIC && LA71_0<=OVERRIDE)) ) {
-                        alt71=1;
+                    if ( (LA73_0==PRIVATE||(LA73_0>=PUBLIC && LA73_0<=OVERRIDE)) ) {
+                        alt73=1;
                     }
-                    switch (alt71) {
+                    switch (alt73) {
                         case 1 :
                             // Haxe.g:0:0: declAttrList
                             {
-                            pushFollow(FOLLOW_declAttrList_in_funcDecl2862);
-                            declAttrList327=declAttrList();
+                            pushFollow(FOLLOW_declAttrList_in_funcDecl4174);
+                            declAttrList330=declAttrList();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList327.getTree());
+                            if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList330.getTree());
 
                             }
                             break;
 
                     }
 
-                    FUNCTION328=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl2865); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION328);
+                    FUNCTION331=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl4177); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION331);
 
-                    NEW329=(Token)match(input,NEW,FOLLOW_NEW_in_funcDecl2867); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_NEW.add(NEW329);
+                    NEW332=(Token)match(input,NEW,FOLLOW_NEW_in_funcDecl4179); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_NEW.add(NEW332);
 
-                    LPAREN330=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl2869); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN330);
+                    LPAREN333=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl4181); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN333);
 
-                    pushFollow(FOLLOW_paramList_in_funcDecl2871);
-                    paramList331=paramList();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList331.getTree());
-                    RPAREN332=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl2873); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN332);
-
-                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl2875);
-                    typeTagOpt333=typeTagOpt();
+                    pushFollow(FOLLOW_paramList_in_funcDecl4183);
+                    paramList334=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt333.getTree());
-                    pushFollow(FOLLOW_block_in_funcDecl2877);
-                    block334=block();
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList334.getTree());
+                    RPAREN335=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl4185); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN335);
+
+                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl4187);
+                    typeTagOpt336=typeTagOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_block.add(block334.getTree());
+                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt336.getTree());
+                    pushFollow(FOLLOW_block_in_funcDecl4189);
+                    block337=block();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_block.add(block337.getTree());
 
 
                     // AST REWRITE
-                    // elements: paramList, FUNCTION, NEW, typeTagOpt, block, declAttrList
+                    // elements: declAttrList, block, FUNCTION, paramList, typeTagOpt, NEW
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10083,33 +10182,33 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 419:4: -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
+                    // 428:17: -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
                     {
-                        // Haxe.g:419:7: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
+                        // Haxe.g:428:20: ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
                         adaptor.addChild(root_1, stream_NEW.nextNode());
-                        // Haxe.g:419:36: ( declAttrList )?
+                        // Haxe.g:428:49: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                         }
                         stream_declAttrList.reset();
-                        // Haxe.g:419:50: ( paramList )?
+                        // Haxe.g:428:63: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // Haxe.g:419:61: ( typeTagOpt )?
+                        // Haxe.g:428:74: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // Haxe.g:419:73: ( block )?
+                        // Haxe.g:428:86: ( block )?
                         if ( stream_block.hasNext() ) {
                             adaptor.addChild(root_1, stream_block.nextTree());
 
@@ -10125,71 +10224,71 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:420:4: ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block
+                    // Haxe.g:429:13: ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block
                     {
-                    // Haxe.g:420:4: ( declAttrList )?
-                    int alt72=2;
-                    int LA72_0 = input.LA(1);
+                    // Haxe.g:429:13: ( declAttrList )?
+                    int alt74=2;
+                    int LA74_0 = input.LA(1);
 
-                    if ( (LA72_0==PRIVATE||(LA72_0>=PUBLIC && LA72_0<=OVERRIDE)) ) {
-                        alt72=1;
+                    if ( (LA74_0==PRIVATE||(LA74_0>=PUBLIC && LA74_0<=OVERRIDE)) ) {
+                        alt74=1;
                     }
-                    switch (alt72) {
+                    switch (alt74) {
                         case 1 :
                             // Haxe.g:0:0: declAttrList
                             {
-                            pushFollow(FOLLOW_declAttrList_in_funcDecl2910);
-                            declAttrList335=declAttrList();
+                            pushFollow(FOLLOW_declAttrList_in_funcDecl4244);
+                            declAttrList338=declAttrList();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList335.getTree());
+                            if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList338.getTree());
 
                             }
                             break;
 
                     }
 
-                    FUNCTION336=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl2913); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION336);
+                    FUNCTION339=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcDecl4247); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION339);
 
-                    IDENTIFIER337=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcDecl2915); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER337);
+                    IDENTIFIER340=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcDecl4249); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER340);
 
-                    pushFollow(FOLLOW_typeParamOpt_in_funcDecl2917);
-                    typeParamOpt338=typeParamOpt();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt338.getTree());
-                    LPAREN339=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl2919); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN339);
-
-                    pushFollow(FOLLOW_paramList_in_funcDecl2921);
-                    paramList340=paramList();
+                    pushFollow(FOLLOW_typeParamOpt_in_funcDecl4251);
+                    typeParamOpt341=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList340.getTree());
-                    RPAREN341=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl2923); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN341);
+                    if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt341.getTree());
+                    LPAREN342=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcDecl4253); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN342);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl2925);
-                    typeTagOpt342=typeTagOpt();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt342.getTree());
-                    pushFollow(FOLLOW_block_in_funcDecl2927);
-                    block343=block();
+                    pushFollow(FOLLOW_paramList_in_funcDecl4255);
+                    paramList343=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_block.add(block343.getTree());
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList343.getTree());
+                    RPAREN344=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcDecl4257); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN344);
+
+                    pushFollow(FOLLOW_typeTagOpt_in_funcDecl4259);
+                    typeTagOpt345=typeTagOpt();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt345.getTree());
+                    pushFollow(FOLLOW_block_in_funcDecl4261);
+                    block346=block();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_block.add(block346.getTree());
 
 
                     // AST REWRITE
-                    // elements: typeParamOpt, declAttrList, paramList, typeTagOpt, FUNCTION, IDENTIFIER, block
+                    // elements: block, IDENTIFIER, declAttrList, typeParamOpt, paramList, FUNCTION, typeTagOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10200,39 +10299,39 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 421:4: -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
+                    // 430:17: -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
                     {
-                        // Haxe.g:421:7: ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
+                        // Haxe.g:430:20: ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new FunctionNode(stream_FUNCTION.nextToken()), root_1);
 
                         adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                        // Haxe.g:421:43: ( declAttrList )?
+                        // Haxe.g:430:56: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                         }
                         stream_declAttrList.reset();
-                        // Haxe.g:421:57: ( paramList )?
+                        // Haxe.g:430:70: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // Haxe.g:421:68: ( typeTagOpt )?
+                        // Haxe.g:430:81: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // Haxe.g:421:80: ( block )?
+                        // Haxe.g:430:93: ( block )?
                         if ( stream_block.hasNext() ) {
                             adaptor.addChild(root_1, stream_block.nextTree());
 
                         }
                         stream_block.reset();
-                        // Haxe.g:421:87: ( typeParamOpt )?
+                        // Haxe.g:430:100: ( typeParamOpt )?
                         if ( stream_typeParamOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
@@ -10264,7 +10363,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 70, funcDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 72, funcDecl_StartIndex); }
         }
         return retval;
     }
@@ -10276,78 +10375,78 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "funcProtoDecl"
-    // Haxe.g:424:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) );
+    // Haxe.g:433:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) );
     public final HaxeParser.funcProtoDecl_return funcProtoDecl() throws RecognitionException {
         HaxeParser.funcProtoDecl_return retval = new HaxeParser.funcProtoDecl_return();
         retval.start = input.LT(1);
         int funcProtoDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token FUNCTION345=null;
-        Token NEW346=null;
-        Token LPAREN347=null;
-        Token RPAREN349=null;
-        Token SEMI351=null;
-        Token FUNCTION353=null;
-        Token IDENTIFIER354=null;
-        Token LPAREN356=null;
-        Token RPAREN358=null;
-        Token SEMI360=null;
-        Token FUNCTION361=null;
-        Token NEW362=null;
-        Token LPAREN363=null;
-        Token RPAREN365=null;
-        Token SEMI367=null;
-        Token FUNCTION368=null;
-        Token IDENTIFIER369=null;
-        Token LPAREN371=null;
-        Token RPAREN373=null;
-        Token SEMI375=null;
-        HaxeParser.declAttrList_return declAttrList344 = null;
+        Token FUNCTION348=null;
+        Token NEW349=null;
+        Token LPAREN350=null;
+        Token RPAREN352=null;
+        Token SEMI354=null;
+        Token FUNCTION356=null;
+        Token IDENTIFIER357=null;
+        Token LPAREN359=null;
+        Token RPAREN361=null;
+        Token SEMI363=null;
+        Token FUNCTION364=null;
+        Token NEW365=null;
+        Token LPAREN366=null;
+        Token RPAREN368=null;
+        Token SEMI370=null;
+        Token FUNCTION371=null;
+        Token IDENTIFIER372=null;
+        Token LPAREN374=null;
+        Token RPAREN376=null;
+        Token SEMI378=null;
+        HaxeParser.declAttrList_return declAttrList347 = null;
 
-        HaxeParser.paramList_return paramList348 = null;
+        HaxeParser.paramList_return paramList351 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt350 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt353 = null;
 
-        HaxeParser.declAttrList_return declAttrList352 = null;
+        HaxeParser.declAttrList_return declAttrList355 = null;
 
-        HaxeParser.typeParamOpt_return typeParamOpt355 = null;
+        HaxeParser.typeParamOpt_return typeParamOpt358 = null;
 
-        HaxeParser.paramList_return paramList357 = null;
+        HaxeParser.paramList_return paramList360 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt359 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt362 = null;
 
-        HaxeParser.paramList_return paramList364 = null;
+        HaxeParser.paramList_return paramList367 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt366 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt369 = null;
 
-        HaxeParser.typeParamOpt_return typeParamOpt370 = null;
+        HaxeParser.typeParamOpt_return typeParamOpt373 = null;
 
-        HaxeParser.paramList_return paramList372 = null;
+        HaxeParser.paramList_return paramList375 = null;
 
-        HaxeParser.typeTagOpt_return typeTagOpt374 = null;
+        HaxeParser.typeTagOpt_return typeTagOpt377 = null;
 
 
-        Object FUNCTION345_tree=null;
-        Object NEW346_tree=null;
-        Object LPAREN347_tree=null;
-        Object RPAREN349_tree=null;
-        Object SEMI351_tree=null;
-        Object FUNCTION353_tree=null;
-        Object IDENTIFIER354_tree=null;
-        Object LPAREN356_tree=null;
-        Object RPAREN358_tree=null;
-        Object SEMI360_tree=null;
-        Object FUNCTION361_tree=null;
-        Object NEW362_tree=null;
-        Object LPAREN363_tree=null;
-        Object RPAREN365_tree=null;
-        Object SEMI367_tree=null;
-        Object FUNCTION368_tree=null;
-        Object IDENTIFIER369_tree=null;
-        Object LPAREN371_tree=null;
-        Object RPAREN373_tree=null;
-        Object SEMI375_tree=null;
+        Object FUNCTION348_tree=null;
+        Object NEW349_tree=null;
+        Object LPAREN350_tree=null;
+        Object RPAREN352_tree=null;
+        Object SEMI354_tree=null;
+        Object FUNCTION356_tree=null;
+        Object IDENTIFIER357_tree=null;
+        Object LPAREN359_tree=null;
+        Object RPAREN361_tree=null;
+        Object SEMI363_tree=null;
+        Object FUNCTION364_tree=null;
+        Object NEW365_tree=null;
+        Object LPAREN366_tree=null;
+        Object RPAREN368_tree=null;
+        Object SEMI370_tree=null;
+        Object FUNCTION371_tree=null;
+        Object IDENTIFIER372_tree=null;
+        Object LPAREN374_tree=null;
+        Object RPAREN376_tree=null;
+        Object SEMI378_tree=null;
         RewriteRuleTokenStream stream_FUNCTION=new RewriteRuleTokenStream(adaptor,"token FUNCTION");
         RewriteRuleTokenStream stream_NEW=new RewriteRuleTokenStream(adaptor,"token NEW");
         RewriteRuleTokenStream stream_RPAREN=new RewriteRuleTokenStream(adaptor,"token RPAREN");
@@ -10359,51 +10458,51 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeTagOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeTagOpt");
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
-            // Haxe.g:425:2: ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) )
-            int alt74=4;
-            alt74 = dfa74.predict(input);
-            switch (alt74) {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
+            // Haxe.g:434:5: ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) )
+            int alt76=4;
+            alt76 = dfa76.predict(input);
+            switch (alt76) {
                 case 1 :
-                    // Haxe.g:425:4: declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:434:9: declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl2969);
-                    declAttrList344=declAttrList();
+                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl4331);
+                    declAttrList347=declAttrList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList344.getTree());
-                    FUNCTION345=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl2971); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION345);
+                    if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList347.getTree());
+                    FUNCTION348=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl4333); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION348);
 
-                    NEW346=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl2973); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_NEW.add(NEW346);
+                    NEW349=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl4335); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_NEW.add(NEW349);
 
-                    LPAREN347=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl2975); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN347);
+                    LPAREN350=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl4337); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN350);
 
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl2977);
-                    paramList348=paramList();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList348.getTree());
-                    RPAREN349=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl2979); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN349);
-
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl2981);
-                    typeTagOpt350=typeTagOpt();
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl4339);
+                    paramList351=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt350.getTree());
-                    SEMI351=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl2983); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI351);
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList351.getTree());
+                    RPAREN352=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl4341); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN352);
+
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl4343);
+                    typeTagOpt353=typeTagOpt();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt353.getTree());
+                    SEMI354=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl4345); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI354);
 
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, paramList, declAttrList, NEW, FUNCTION
+                    // elements: paramList, declAttrList, NEW, typeTagOpt, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10414,32 +10513,32 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 426:4: -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
+                    // 435:13: -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
                     {
-                        // Haxe.g:426:7: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
+                        // Haxe.g:435:16: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // Haxe.g:426:18: ( NEW )?
+                        // Haxe.g:435:27: ( NEW )?
                         if ( stream_NEW.hasNext() ) {
                             adaptor.addChild(root_1, stream_NEW.nextNode());
 
                         }
                         stream_NEW.reset();
-                        // Haxe.g:426:23: ( paramList )?
+                        // Haxe.g:435:32: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // Haxe.g:426:34: ( typeTagOpt )?
+                        // Haxe.g:435:43: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // Haxe.g:426:46: ( declAttrList )?
+                        // Haxe.g:435:55: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
@@ -10455,51 +10554,51 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:427:4: declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:436:9: declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl3010);
-                    declAttrList352=declAttrList();
+                    pushFollow(FOLLOW_declAttrList_in_funcProtoDecl4386);
+                    declAttrList355=declAttrList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList352.getTree());
-                    FUNCTION353=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3012); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION353);
+                    if ( state.backtracking==0 ) stream_declAttrList.add(declAttrList355.getTree());
+                    FUNCTION356=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl4388); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION356);
 
-                    IDENTIFIER354=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl3014); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER354);
+                    IDENTIFIER357=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl4390); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER357);
 
-                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3016);
-                    typeParamOpt355=typeParamOpt();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt355.getTree());
-                    LPAREN356=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3018); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN356);
-
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3020);
-                    paramList357=paramList();
+                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl4392);
+                    typeParamOpt358=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList357.getTree());
-                    RPAREN358=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3022); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN358);
+                    if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt358.getTree());
+                    LPAREN359=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl4394); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN359);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3024);
-                    typeTagOpt359=typeTagOpt();
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl4396);
+                    paramList360=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt359.getTree());
-                    SEMI360=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3026); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI360);
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList360.getTree());
+                    RPAREN361=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl4398); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN361);
+
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl4400);
+                    typeTagOpt362=typeTagOpt();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt362.getTree());
+                    SEMI363=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl4402); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI363);
 
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, declAttrList, IDENTIFIER, FUNCTION, typeParamOpt, paramList
+                    // elements: paramList, typeParamOpt, typeTagOpt, FUNCTION, declAttrList, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10510,38 +10609,38 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 428:4: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
+                    // 437:13: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
                     {
-                        // Haxe.g:428:7: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
+                        // Haxe.g:437:16: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // Haxe.g:428:18: ( IDENTIFIER )?
+                        // Haxe.g:437:27: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         }
                         stream_IDENTIFIER.reset();
-                        // Haxe.g:428:30: ( paramList )?
+                        // Haxe.g:437:39: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // Haxe.g:428:41: ( typeTagOpt )?
+                        // Haxe.g:437:50: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // Haxe.g:428:53: ( declAttrList )?
+                        // Haxe.g:437:62: ( declAttrList )?
                         if ( stream_declAttrList.hasNext() ) {
                             adaptor.addChild(root_1, stream_declAttrList.nextTree());
 
                         }
                         stream_declAttrList.reset();
-                        // Haxe.g:428:67: ( typeParamOpt )?
+                        // Haxe.g:437:76: ( typeParamOpt )?
                         if ( stream_typeParamOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
@@ -10557,39 +10656,39 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:429:4: FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:438:9: FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    FUNCTION361=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3056); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION361);
+                    FUNCTION364=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl4446); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION364);
 
-                    NEW362=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl3058); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_NEW.add(NEW362);
+                    NEW365=(Token)match(input,NEW,FOLLOW_NEW_in_funcProtoDecl4448); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_NEW.add(NEW365);
 
-                    LPAREN363=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3060); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN363);
+                    LPAREN366=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl4450); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN366);
 
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3062);
-                    paramList364=paramList();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList364.getTree());
-                    RPAREN365=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3064); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN365);
-
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3066);
-                    typeTagOpt366=typeTagOpt();
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl4452);
+                    paramList367=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt366.getTree());
-                    SEMI367=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3068); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI367);
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList367.getTree());
+                    RPAREN368=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl4454); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN368);
+
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl4456);
+                    typeTagOpt369=typeTagOpt();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt369.getTree());
+                    SEMI370=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl4458); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI370);
 
 
 
                     // AST REWRITE
-                    // elements: NEW, FUNCTION, paramList, typeTagOpt
+                    // elements: FUNCTION, typeTagOpt, NEW, paramList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10600,26 +10699,26 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 430:4: -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
+                    // 439:13: -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
                     {
-                        // Haxe.g:430:7: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
+                        // Haxe.g:439:16: ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // Haxe.g:430:18: ( NEW )?
+                        // Haxe.g:439:27: ( NEW )?
                         if ( stream_NEW.hasNext() ) {
                             adaptor.addChild(root_1, stream_NEW.nextNode());
 
                         }
                         stream_NEW.reset();
-                        // Haxe.g:430:23: ( paramList )?
+                        // Haxe.g:439:32: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // Haxe.g:430:34: ( typeTagOpt )?
+                        // Haxe.g:439:43: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
@@ -10635,45 +10734,45 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:431:4: FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
+                    // Haxe.g:440:9: FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI
                     {
-                    FUNCTION368=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl3092); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION368);
+                    FUNCTION371=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcProtoDecl4496); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FUNCTION.add(FUNCTION371);
 
-                    IDENTIFIER369=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl3094); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER369);
+                    IDENTIFIER372=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_funcProtoDecl4498); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER372);
 
-                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl3096);
-                    typeParamOpt370=typeParamOpt();
-
-                    state._fsp--;
-                    if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt370.getTree());
-                    LPAREN371=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl3098); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN371);
-
-                    pushFollow(FOLLOW_paramList_in_funcProtoDecl3100);
-                    paramList372=paramList();
+                    pushFollow(FOLLOW_typeParamOpt_in_funcProtoDecl4500);
+                    typeParamOpt373=typeParamOpt();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_paramList.add(paramList372.getTree());
-                    RPAREN373=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl3102); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN373);
+                    if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt373.getTree());
+                    LPAREN374=(Token)match(input,LPAREN,FOLLOW_LPAREN_in_funcProtoDecl4502); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LPAREN.add(LPAREN374);
 
-                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl3104);
-                    typeTagOpt374=typeTagOpt();
+                    pushFollow(FOLLOW_paramList_in_funcProtoDecl4504);
+                    paramList375=paramList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt374.getTree());
-                    SEMI375=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl3106); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI375);
+                    if ( state.backtracking==0 ) stream_paramList.add(paramList375.getTree());
+                    RPAREN376=(Token)match(input,RPAREN,FOLLOW_RPAREN_in_funcProtoDecl4506); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_RPAREN.add(RPAREN376);
+
+                    pushFollow(FOLLOW_typeTagOpt_in_funcProtoDecl4508);
+                    typeTagOpt377=typeTagOpt();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_typeTagOpt.add(typeTagOpt377.getTree());
+                    SEMI378=(Token)match(input,SEMI,FOLLOW_SEMI_in_funcProtoDecl4510); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_SEMI.add(SEMI378);
 
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, paramList, FUNCTION, typeTagOpt, typeParamOpt
+                    // elements: typeParamOpt, FUNCTION, IDENTIFIER, paramList, typeTagOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10684,32 +10783,32 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 432:4: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
+                    // 441:13: -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
                     {
-                        // Haxe.g:432:7: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
+                        // Haxe.g:441:16: ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_FUNCTION.nextNode(), root_1);
 
-                        // Haxe.g:432:18: ( IDENTIFIER )?
+                        // Haxe.g:441:27: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
                             adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
 
                         }
                         stream_IDENTIFIER.reset();
-                        // Haxe.g:432:30: ( paramList )?
+                        // Haxe.g:441:39: ( paramList )?
                         if ( stream_paramList.hasNext() ) {
                             adaptor.addChild(root_1, stream_paramList.nextTree());
 
                         }
                         stream_paramList.reset();
-                        // Haxe.g:432:41: ( typeTagOpt )?
+                        // Haxe.g:441:50: ( typeTagOpt )?
                         if ( stream_typeTagOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeTagOpt.nextTree());
 
                         }
                         stream_typeTagOpt.reset();
-                        // Haxe.g:432:53: ( typeParamOpt )?
+                        // Haxe.g:441:62: ( typeParamOpt )?
                         if ( stream_typeParamOpt.hasNext() ) {
                             adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
@@ -10741,7 +10840,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 71, funcProtoDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 73, funcProtoDecl_StartIndex); }
         }
         return retval;
     }
@@ -10753,26 +10852,26 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "classDecl"
-    // Haxe.g:435:1: classDecl : typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) ;
+    // Haxe.g:444:1: classDecl : typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) ;
     public final HaxeParser.classDecl_return classDecl() throws RecognitionException {
         HaxeParser.classDecl_return retval = new HaxeParser.classDecl_return();
         retval.start = input.LT(1);
         int classDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token CLASS377=null;
-        Token IDENTIFIER378=null;
-        HaxeParser.typeDeclFlags_return typeDeclFlags376 = null;
+        Token CLASS380=null;
+        Token IDENTIFIER381=null;
+        HaxeParser.typeDeclFlags_return typeDeclFlags379 = null;
 
-        HaxeParser.typeParamOpt_return typeParamOpt379 = null;
+        HaxeParser.typeParamOpt_return typeParamOpt382 = null;
 
-        HaxeParser.inheritListOpt_return inheritListOpt380 = null;
+        HaxeParser.inheritListOpt_return inheritListOpt383 = null;
 
-        HaxeParser.classBodyScope_return classBodyScope381 = null;
+        HaxeParser.classBodyScope_return classBodyScope384 = null;
 
 
-        Object CLASS377_tree=null;
-        Object IDENTIFIER378_tree=null;
+        Object CLASS380_tree=null;
+        Object IDENTIFIER381_tree=null;
         RewriteRuleTokenStream stream_CLASS=new RewriteRuleTokenStream(adaptor,"token CLASS");
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
         RewriteRuleSubtreeStream stream_typeDeclFlags=new RewriteRuleSubtreeStream(adaptor,"rule typeDeclFlags");
@@ -10780,44 +10879,44 @@ public class HaxeParser extends Parser {
         RewriteRuleSubtreeStream stream_typeParamOpt=new RewriteRuleSubtreeStream(adaptor,"rule typeParamOpt");
         RewriteRuleSubtreeStream stream_inheritListOpt=new RewriteRuleSubtreeStream(adaptor,"rule inheritListOpt");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
-            // Haxe.g:436:2: ( typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) )
-            // Haxe.g:436:4: typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
+            if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
+            // Haxe.g:445:5: ( typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? ) )
+            // Haxe.g:445:9: typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
             {
-            pushFollow(FOLLOW_typeDeclFlags_in_classDecl3140);
-            typeDeclFlags376=typeDeclFlags();
+            pushFollow(FOLLOW_typeDeclFlags_in_classDecl4564);
+            typeDeclFlags379=typeDeclFlags();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_typeDeclFlags.add(typeDeclFlags376.getTree());
-            CLASS377=(Token)match(input,CLASS,FOLLOW_CLASS_in_classDecl3142); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_CLASS.add(CLASS377);
+            if ( state.backtracking==0 ) stream_typeDeclFlags.add(typeDeclFlags379.getTree());
+            CLASS380=(Token)match(input,CLASS,FOLLOW_CLASS_in_classDecl4566); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_CLASS.add(CLASS380);
 
-            IDENTIFIER378=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDecl3144); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER378);
+            IDENTIFIER381=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_classDecl4568); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER381);
 
-            pushFollow(FOLLOW_typeParamOpt_in_classDecl3146);
-            typeParamOpt379=typeParamOpt();
-
-            state._fsp--;
-            if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt379.getTree());
-            pushFollow(FOLLOW_inheritListOpt_in_classDecl3148);
-            inheritListOpt380=inheritListOpt();
+            pushFollow(FOLLOW_typeParamOpt_in_classDecl4570);
+            typeParamOpt382=typeParamOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_inheritListOpt.add(inheritListOpt380.getTree());
-            pushFollow(FOLLOW_classBodyScope_in_classDecl3150);
-            classBodyScope381=classBodyScope();
+            if ( state.backtracking==0 ) stream_typeParamOpt.add(typeParamOpt382.getTree());
+            pushFollow(FOLLOW_inheritListOpt_in_classDecl4572);
+            inheritListOpt383=inheritListOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_classBodyScope.add(classBodyScope381.getTree());
+            if ( state.backtracking==0 ) stream_inheritListOpt.add(inheritListOpt383.getTree());
+            pushFollow(FOLLOW_classBodyScope_in_classDecl4574);
+            classBodyScope384=classBodyScope();
+
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) stream_classBodyScope.add(classBodyScope384.getTree());
 
 
             // AST REWRITE
-            // elements: classBodyScope, typeDeclFlags, CLASS, inheritListOpt, IDENTIFIER, typeParamOpt
+            // elements: inheritListOpt, IDENTIFIER, classBodyScope, typeParamOpt, CLASS, typeDeclFlags
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10828,33 +10927,33 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 437:4: -> ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
+            // 446:13: -> ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
             {
-                // Haxe.g:437:7: ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
+                // Haxe.g:446:16: ^( CLASS IDENTIFIER ( typeDeclFlags )? ( typeParamOpt )? ( inheritListOpt )? ( classBodyScope )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(new ClassNode(stream_CLASS.nextToken()), root_1);
 
                 adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                // Haxe.g:437:37: ( typeDeclFlags )?
+                // Haxe.g:446:46: ( typeDeclFlags )?
                 if ( stream_typeDeclFlags.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeDeclFlags.nextTree());
 
                 }
                 stream_typeDeclFlags.reset();
-                // Haxe.g:437:52: ( typeParamOpt )?
+                // Haxe.g:446:61: ( typeParamOpt )?
                 if ( stream_typeParamOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_typeParamOpt.nextTree());
 
                 }
                 stream_typeParamOpt.reset();
-                // Haxe.g:437:66: ( inheritListOpt )?
+                // Haxe.g:446:75: ( inheritListOpt )?
                 if ( stream_inheritListOpt.hasNext() ) {
                     adaptor.addChild(root_1, stream_inheritListOpt.nextTree());
 
                 }
                 stream_inheritListOpt.reset();
-                // Haxe.g:437:82: ( classBodyScope )?
+                // Haxe.g:446:91: ( classBodyScope )?
                 if ( stream_classBodyScope.hasNext() ) {
                     adaptor.addChild(root_1, stream_classBodyScope.nextTree());
 
@@ -10884,7 +10983,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 72, classDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 74, classDecl_StartIndex); }
         }
         return retval;
     }
@@ -10896,68 +10995,68 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "classBodyScope"
-    // Haxe.g:440:1: classBodyScope : LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) ;
+    // Haxe.g:449:1: classBodyScope : LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) ;
     public final HaxeParser.classBodyScope_return classBodyScope() throws RecognitionException {
         HaxeParser.classBodyScope_return retval = new HaxeParser.classBodyScope_return();
         retval.start = input.LT(1);
         int classBodyScope_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LBRACE382=null;
-        Token RBRACE384=null;
-        HaxeParser.classMember_return classMember383 = null;
+        Token LBRACE385=null;
+        Token RBRACE387=null;
+        HaxeParser.classMember_return classMember386 = null;
 
 
-        Object LBRACE382_tree=null;
-        Object RBRACE384_tree=null;
+        Object LBRACE385_tree=null;
+        Object RBRACE387_tree=null;
         RewriteRuleTokenStream stream_RBRACE=new RewriteRuleTokenStream(adaptor,"token RBRACE");
         RewriteRuleTokenStream stream_LBRACE=new RewriteRuleTokenStream(adaptor,"token LBRACE");
         RewriteRuleSubtreeStream stream_classMember=new RewriteRuleSubtreeStream(adaptor,"rule classMember");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
-            // Haxe.g:441:2: ( LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) )
-            // Haxe.g:441:4: LBRACE ( classMember )* RBRACE
+            if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return retval; }
+            // Haxe.g:450:5: ( LBRACE ( classMember )* RBRACE -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] ) )
+            // Haxe.g:450:9: LBRACE ( classMember )* RBRACE
             {
-            LBRACE382=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_classBodyScope3188); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE382);
+            LBRACE385=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_classBodyScope4632); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_LBRACE.add(LBRACE385);
 
-            // Haxe.g:441:11: ( classMember )*
-            loop75:
+            // Haxe.g:450:16: ( classMember )*
+            loop77:
             do {
-                int alt75=2;
-                int LA75_0 = input.LA(1);
+                int alt77=2;
+                int LA77_0 = input.LA(1);
 
-                if ( (LA75_0==MONKEYS_AT||(LA75_0>=EXTERN && LA75_0<=PRIVATE)||(LA75_0>=PUBLIC && LA75_0<=OVERRIDE)||LA75_0==FUNCTION||(LA75_0>=ENUM && LA75_0<=VAR)||(LA75_0>=CLASS && LA75_0<=INTERFACE)) ) {
-                    alt75=1;
+                if ( (LA77_0==MONKEYS_AT||(LA77_0>=EXTERN && LA77_0<=PRIVATE)||(LA77_0>=PUBLIC && LA77_0<=OVERRIDE)||LA77_0==FUNCTION||(LA77_0>=ENUM && LA77_0<=VAR)||(LA77_0>=CLASS && LA77_0<=INTERFACE)) ) {
+                    alt77=1;
                 }
 
 
-                switch (alt75) {
+                switch (alt77) {
             	case 1 :
-            	    // Haxe.g:441:12: classMember
+            	    // Haxe.g:450:17: classMember
             	    {
-            	    pushFollow(FOLLOW_classMember_in_classBodyScope3191);
-            	    classMember383=classMember();
+            	    pushFollow(FOLLOW_classMember_in_classBodyScope4635);
+            	    classMember386=classMember();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) stream_classMember.add(classMember383.getTree());
+            	    if ( state.backtracking==0 ) stream_classMember.add(classMember386.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop75;
+            	    break loop77;
                 }
             } while (true);
 
-            RBRACE384=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_classBodyScope3195); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE384);
+            RBRACE387=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_classBodyScope4639); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_RBRACE.add(RBRACE387);
 
 
 
             // AST REWRITE
-            // elements: RBRACE, classMember
+            // elements: classMember, RBRACE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10968,20 +11067,20 @@ public class HaxeParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 441:33: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
+            // 450:38: -> ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
             {
-                // Haxe.g:441:36: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
+                // Haxe.g:450:41: ^( BLOCK_SCOPE[\"BLOCK_SCOPE\", true, $LBRACE] ( classMember )* RBRACE[$RBRACE, true] )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                root_1 = (Object)adaptor.becomeRoot(new BlockScopeNode(BLOCK_SCOPE, "BLOCK_SCOPE", true, LBRACE382), root_1);
+                root_1 = (Object)adaptor.becomeRoot(new BlockScopeNode(BLOCK_SCOPE, "BLOCK_SCOPE", true, LBRACE385), root_1);
 
-                // Haxe.g:441:96: ( classMember )*
+                // Haxe.g:450:101: ( classMember )*
                 while ( stream_classMember.hasNext() ) {
                     adaptor.addChild(root_1, stream_classMember.nextTree());
 
                 }
                 stream_classMember.reset();
-                adaptor.addChild(root_1, new HaxeTree(RBRACE, RBRACE384, true));
+                adaptor.addChild(root_1, new HaxeTree(RBRACE, RBRACE387, true));
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -11006,7 +11105,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 73, classBodyScope_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 75, classBodyScope_StartIndex); }
         }
         return retval;
     }
@@ -11018,66 +11117,66 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "classMember"
-    // Haxe.g:444:1: classMember : ( varDecl | funcDecl | enumDecl );
+    // Haxe.g:453:1: classMember : ( varDecl | funcDecl | enumDecl );
     public final HaxeParser.classMember_return classMember() throws RecognitionException {
         HaxeParser.classMember_return retval = new HaxeParser.classMember_return();
         retval.start = input.LT(1);
         int classMember_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.varDecl_return varDecl385 = null;
+        HaxeParser.varDecl_return varDecl388 = null;
 
-        HaxeParser.funcDecl_return funcDecl386 = null;
+        HaxeParser.funcDecl_return funcDecl389 = null;
 
-        HaxeParser.enumDecl_return enumDecl387 = null;
+        HaxeParser.enumDecl_return enumDecl390 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
-            // Haxe.g:445:2: ( varDecl | funcDecl | enumDecl )
-            int alt76=3;
-            alt76 = dfa76.predict(input);
-            switch (alt76) {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
+            // Haxe.g:454:5: ( varDecl | funcDecl | enumDecl )
+            int alt78=3;
+            alt78 = dfa78.predict(input);
+            switch (alt78) {
                 case 1 :
-                    // Haxe.g:445:4: varDecl
+                    // Haxe.g:454:9: varDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDecl_in_classMember3225);
-                    varDecl385=varDecl();
+                    pushFollow(FOLLOW_varDecl_in_classMember4677);
+                    varDecl388=varDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl385.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl388.getTree());
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:446:4: funcDecl
+                    // Haxe.g:455:9: funcDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_funcDecl_in_classMember3231);
-                    funcDecl386=funcDecl();
+                    pushFollow(FOLLOW_funcDecl_in_classMember4688);
+                    funcDecl389=funcDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcDecl386.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcDecl389.getTree());
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:448:4: enumDecl
+                    // Haxe.g:457:9: enumDecl
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_enumDecl_in_classMember3238);
-                    enumDecl387=enumDecl();
+                    pushFollow(FOLLOW_enumDecl_in_classMember4700);
+                    enumDecl390=enumDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumDecl387.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, enumDecl390.getTree());
 
                     }
                     break;
@@ -11098,7 +11197,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 74, classMember_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 76, classMember_StartIndex); }
         }
         return retval;
     }
@@ -11110,67 +11209,67 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "interfaceDecl"
-    // Haxe.g:451:1: interfaceDecl : typeDeclFlags INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE ;
+    // Haxe.g:460:1: interfaceDecl : typeDeclFlags INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE ;
     public final HaxeParser.interfaceDecl_return interfaceDecl() throws RecognitionException {
         HaxeParser.interfaceDecl_return retval = new HaxeParser.interfaceDecl_return();
         retval.start = input.LT(1);
         int interfaceDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token INTERFACE389=null;
-        Token LBRACE392=null;
-        Token RBRACE394=null;
-        HaxeParser.typeDeclFlags_return typeDeclFlags388 = null;
+        Token INTERFACE392=null;
+        Token LBRACE395=null;
+        Token RBRACE397=null;
+        HaxeParser.typeDeclFlags_return typeDeclFlags391 = null;
 
-        HaxeParser.type_return type390 = null;
+        HaxeParser.type_return type393 = null;
 
-        HaxeParser.inheritListOpt_return inheritListOpt391 = null;
+        HaxeParser.inheritListOpt_return inheritListOpt394 = null;
 
-        HaxeParser.interfaceBody_return interfaceBody393 = null;
+        HaxeParser.interfaceBody_return interfaceBody396 = null;
 
 
-        Object INTERFACE389_tree=null;
-        Object LBRACE392_tree=null;
-        Object RBRACE394_tree=null;
+        Object INTERFACE392_tree=null;
+        Object LBRACE395_tree=null;
+        Object RBRACE397_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return retval; }
-            // Haxe.g:452:2: ( typeDeclFlags INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE )
-            // Haxe.g:452:4: typeDeclFlags INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
+            if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
+            // Haxe.g:461:5: ( typeDeclFlags INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE )
+            // Haxe.g:461:9: typeDeclFlags INTERFACE type inheritListOpt LBRACE interfaceBody RBRACE
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_typeDeclFlags_in_interfaceDecl3256);
-            typeDeclFlags388=typeDeclFlags();
+            pushFollow(FOLLOW_typeDeclFlags_in_interfaceDecl4729);
+            typeDeclFlags391=typeDeclFlags();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, typeDeclFlags388.getTree());
-            INTERFACE389=(Token)match(input,INTERFACE,FOLLOW_INTERFACE_in_interfaceDecl3258); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, typeDeclFlags391.getTree());
+            INTERFACE392=(Token)match(input,INTERFACE,FOLLOW_INTERFACE_in_interfaceDecl4731); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            INTERFACE389_tree = (Object)adaptor.create(INTERFACE389);
-            adaptor.addChild(root_0, INTERFACE389_tree);
+            INTERFACE392_tree = (Object)adaptor.create(INTERFACE392);
+            adaptor.addChild(root_0, INTERFACE392_tree);
             }
-            pushFollow(FOLLOW_type_in_interfaceDecl3260);
-            type390=type();
+            pushFollow(FOLLOW_type_in_interfaceDecl4733);
+            type393=type();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, type390.getTree());
-            pushFollow(FOLLOW_inheritListOpt_in_interfaceDecl3262);
-            inheritListOpt391=inheritListOpt();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, type393.getTree());
+            pushFollow(FOLLOW_inheritListOpt_in_interfaceDecl4735);
+            inheritListOpt394=inheritListOpt();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, inheritListOpt391.getTree());
-            LBRACE392=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_interfaceDecl3264); if (state.failed) return retval;
-            pushFollow(FOLLOW_interfaceBody_in_interfaceDecl3267);
-            interfaceBody393=interfaceBody();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, inheritListOpt394.getTree());
+            LBRACE395=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_interfaceDecl4737); if (state.failed) return retval;
+            pushFollow(FOLLOW_interfaceBody_in_interfaceDecl4740);
+            interfaceBody396=interfaceBody();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody393.getTree());
-            RBRACE394=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_interfaceDecl3269); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody396.getTree());
+            RBRACE397=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_interfaceDecl4742); if (state.failed) return retval;
 
             }
 
@@ -11189,7 +11288,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 75, interfaceDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 77, interfaceDecl_StartIndex); }
         }
         return retval;
     }
@@ -11201,71 +11300,71 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "interfaceBody"
-    // Haxe.g:455:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | );
+    // Haxe.g:464:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | );
     public final HaxeParser.interfaceBody_return interfaceBody() throws RecognitionException {
         HaxeParser.interfaceBody_return retval = new HaxeParser.interfaceBody_return();
         retval.start = input.LT(1);
         int interfaceBody_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.varDecl_return varDecl395 = null;
+        HaxeParser.varDecl_return varDecl398 = null;
 
-        HaxeParser.interfaceBody_return interfaceBody396 = null;
+        HaxeParser.interfaceBody_return interfaceBody399 = null;
 
-        HaxeParser.funcProtoDecl_return funcProtoDecl397 = null;
+        HaxeParser.funcProtoDecl_return funcProtoDecl400 = null;
 
-        HaxeParser.interfaceBody_return interfaceBody398 = null;
+        HaxeParser.interfaceBody_return interfaceBody401 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
-            // Haxe.g:456:2: ( varDecl interfaceBody | funcProtoDecl interfaceBody | )
-            int alt77=3;
-            alt77 = dfa77.predict(input);
-            switch (alt77) {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
+            // Haxe.g:465:5: ( varDecl interfaceBody | funcProtoDecl interfaceBody | )
+            int alt79=3;
+            alt79 = dfa79.predict(input);
+            switch (alt79) {
                 case 1 :
-                    // Haxe.g:456:4: varDecl interfaceBody
+                    // Haxe.g:465:9: varDecl interfaceBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_varDecl_in_interfaceBody3282);
-                    varDecl395=varDecl();
+                    pushFollow(FOLLOW_varDecl_in_interfaceBody4766);
+                    varDecl398=varDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl395.getTree());
-                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3284);
-                    interfaceBody396=interfaceBody();
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDecl398.getTree());
+                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody4768);
+                    interfaceBody399=interfaceBody();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody396.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody399.getTree());
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:457:4: funcProtoDecl interfaceBody
+                    // Haxe.g:466:9: funcProtoDecl interfaceBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_funcProtoDecl_in_interfaceBody3289);
-                    funcProtoDecl397=funcProtoDecl();
+                    pushFollow(FOLLOW_funcProtoDecl_in_interfaceBody4778);
+                    funcProtoDecl400=funcProtoDecl();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcProtoDecl397.getTree());
-                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody3291);
-                    interfaceBody398=interfaceBody();
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, funcProtoDecl400.getTree());
+                    pushFollow(FOLLOW_interfaceBody_in_interfaceBody4780);
+                    interfaceBody401=interfaceBody();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody398.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody401.getTree());
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:460:2: 
+                    // Haxe.g:469:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -11288,7 +11387,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 76, interfaceBody_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 78, interfaceBody_StartIndex); }
         }
         return retval;
     }
@@ -11300,62 +11399,62 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "inheritList"
-    // Haxe.g:462:1: inheritList : inherit ( COMMA inherit )* ;
+    // Haxe.g:471:1: inheritList : inherit ( COMMA inherit )* ;
     public final HaxeParser.inheritList_return inheritList() throws RecognitionException {
         HaxeParser.inheritList_return retval = new HaxeParser.inheritList_return();
         retval.start = input.LT(1);
         int inheritList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA400=null;
-        HaxeParser.inherit_return inherit399 = null;
+        Token COMMA403=null;
+        HaxeParser.inherit_return inherit402 = null;
 
-        HaxeParser.inherit_return inherit401 = null;
+        HaxeParser.inherit_return inherit404 = null;
 
 
-        Object COMMA400_tree=null;
+        Object COMMA403_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
-            // Haxe.g:463:2: ( inherit ( COMMA inherit )* )
-            // Haxe.g:463:4: inherit ( COMMA inherit )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
+            // Haxe.g:472:5: ( inherit ( COMMA inherit )* )
+            // Haxe.g:472:10: inherit ( COMMA inherit )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_inherit_in_inheritList3313);
-            inherit399=inherit();
+            pushFollow(FOLLOW_inherit_in_inheritList4814);
+            inherit402=inherit();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit399.getTree());
-            // Haxe.g:463:12: ( COMMA inherit )*
-            loop78:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit402.getTree());
+            // Haxe.g:472:18: ( COMMA inherit )*
+            loop80:
             do {
-                int alt78=2;
-                int LA78_0 = input.LA(1);
+                int alt80=2;
+                int LA80_0 = input.LA(1);
 
-                if ( (LA78_0==COMMA) ) {
-                    alt78=1;
+                if ( (LA80_0==COMMA) ) {
+                    alt80=1;
                 }
 
 
-                switch (alt78) {
+                switch (alt80) {
             	case 1 :
-            	    // Haxe.g:463:13: COMMA inherit
+            	    // Haxe.g:472:19: COMMA inherit
             	    {
-            	    COMMA400=(Token)match(input,COMMA,FOLLOW_COMMA_in_inheritList3316); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_inherit_in_inheritList3319);
-            	    inherit401=inherit();
+            	    COMMA403=(Token)match(input,COMMA,FOLLOW_COMMA_in_inheritList4817); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_inherit_in_inheritList4820);
+            	    inherit404=inherit();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit401.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, inherit404.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop78;
+            	    break loop80;
                 }
             } while (true);
 
@@ -11377,7 +11476,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 77, inheritList_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 79, inheritList_StartIndex); }
         }
         return retval;
     }
@@ -11389,46 +11488,46 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "inheritListOpt"
-    // Haxe.g:466:1: inheritListOpt : ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | );
+    // Haxe.g:475:1: inheritListOpt : ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | );
     public final HaxeParser.inheritListOpt_return inheritListOpt() throws RecognitionException {
         HaxeParser.inheritListOpt_return retval = new HaxeParser.inheritListOpt_return();
         retval.start = input.LT(1);
         int inheritListOpt_StartIndex = input.index();
         Object root_0 = null;
 
-        HaxeParser.inheritList_return inheritList402 = null;
+        HaxeParser.inheritList_return inheritList405 = null;
 
 
         RewriteRuleSubtreeStream stream_inheritList=new RewriteRuleSubtreeStream(adaptor,"rule inheritList");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
-            // Haxe.g:467:2: ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | )
-            int alt79=2;
-            int LA79_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 80) ) { return retval; }
+            // Haxe.g:476:5: ( inheritList -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? ) | )
+            int alt81=2;
+            int LA81_0 = input.LA(1);
 
-            if ( ((LA79_0>=EXTENDS && LA79_0<=IMPLEMENTS)) ) {
-                alt79=1;
+            if ( ((LA81_0>=EXTENDS && LA81_0<=IMPLEMENTS)) ) {
+                alt81=1;
             }
-            else if ( (LA79_0==LBRACE) ) {
-                alt79=2;
+            else if ( (LA81_0==LBRACE) ) {
+                alt81=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 79, 0, input);
+                    new NoViableAltException("", 81, 0, input);
 
                 throw nvae;
             }
-            switch (alt79) {
+            switch (alt81) {
                 case 1 :
-                    // Haxe.g:467:4: inheritList
+                    // Haxe.g:476:10: inheritList
                     {
-                    pushFollow(FOLLOW_inheritList_in_inheritListOpt3337);
-                    inheritList402=inheritList();
+                    pushFollow(FOLLOW_inheritList_in_inheritListOpt4850);
+                    inheritList405=inheritList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_inheritList.add(inheritList402.getTree());
+                    if ( state.backtracking==0 ) stream_inheritList.add(inheritList405.getTree());
 
 
                     // AST REWRITE
@@ -11443,14 +11542,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 467:16: -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
+                    // 476:22: -> ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
                     {
-                        // Haxe.g:467:19: ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
+                        // Haxe.g:476:25: ^( INHERIT_LIST_OPT[\"INHERIT_LIST_OPT\",true] ( inheritList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(new HaxeTree(INHERIT_LIST_OPT, "INHERIT_LIST_OPT", true), root_1);
 
-                        // Haxe.g:467:73: ( inheritList )?
+                        // Haxe.g:476:79: ( inheritList )?
                         if ( stream_inheritList.hasNext() ) {
                             adaptor.addChild(root_1, stream_inheritList.nextTree());
 
@@ -11466,7 +11565,7 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:469:6: 
+                    // Haxe.g:478:9: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -11489,7 +11588,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 78, inheritListOpt_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 80, inheritListOpt_StartIndex); }
         }
         return retval;
     }
@@ -11501,61 +11600,61 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "inherit"
-    // Haxe.g:471:1: inherit : ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) );
+    // Haxe.g:480:1: inherit : ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) );
     public final HaxeParser.inherit_return inherit() throws RecognitionException {
         HaxeParser.inherit_return retval = new HaxeParser.inherit_return();
         retval.start = input.LT(1);
         int inherit_StartIndex = input.index();
         Object root_0 = null;
 
-        Token EXTENDS403=null;
-        Token IMPLEMENTS405=null;
-        HaxeParser.type_return type404 = null;
+        Token EXTENDS406=null;
+        Token IMPLEMENTS408=null;
+        HaxeParser.type_return type407 = null;
 
-        HaxeParser.type_return type406 = null;
+        HaxeParser.type_return type409 = null;
 
 
-        Object EXTENDS403_tree=null;
-        Object IMPLEMENTS405_tree=null;
+        Object EXTENDS406_tree=null;
+        Object IMPLEMENTS408_tree=null;
         RewriteRuleTokenStream stream_IMPLEMENTS=new RewriteRuleTokenStream(adaptor,"token IMPLEMENTS");
         RewriteRuleTokenStream stream_EXTENDS=new RewriteRuleTokenStream(adaptor,"token EXTENDS");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
-            // Haxe.g:471:9: ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) )
-            int alt80=2;
-            int LA80_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 81) ) { return retval; }
+            // Haxe.g:480:12: ( EXTENDS type -> ^( EXTENDS ( type )? ) | IMPLEMENTS type -> ^( IMPLEMENTS ( type )? ) )
+            int alt82=2;
+            int LA82_0 = input.LA(1);
 
-            if ( (LA80_0==EXTENDS) ) {
-                alt80=1;
+            if ( (LA82_0==EXTENDS) ) {
+                alt82=1;
             }
-            else if ( (LA80_0==IMPLEMENTS) ) {
-                alt80=2;
+            else if ( (LA82_0==IMPLEMENTS) ) {
+                alt82=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 80, 0, input);
+                    new NoViableAltException("", 82, 0, input);
 
                 throw nvae;
             }
-            switch (alt80) {
+            switch (alt82) {
                 case 1 :
-                    // Haxe.g:471:11: EXTENDS type
+                    // Haxe.g:480:17: EXTENDS type
                     {
-                    EXTENDS403=(Token)match(input,EXTENDS,FOLLOW_EXTENDS_in_inherit3373); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_EXTENDS.add(EXTENDS403);
+                    EXTENDS406=(Token)match(input,EXTENDS,FOLLOW_EXTENDS_in_inherit4904); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_EXTENDS.add(EXTENDS406);
 
-                    pushFollow(FOLLOW_type_in_inherit3375);
-                    type404=type();
+                    pushFollow(FOLLOW_type_in_inherit4906);
+                    type407=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_type.add(type404.getTree());
+                    if ( state.backtracking==0 ) stream_type.add(type407.getTree());
 
 
                     // AST REWRITE
-                    // elements: EXTENDS, type
+                    // elements: type, EXTENDS
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11566,14 +11665,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 471:25: -> ^( EXTENDS ( type )? )
+                    // 480:34: -> ^( EXTENDS ( type )? )
                     {
-                        // Haxe.g:471:28: ^( EXTENDS ( type )? )
+                        // Haxe.g:480:37: ^( EXTENDS ( type )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_EXTENDS.nextNode(), root_1);
 
-                        // Haxe.g:471:38: ( type )?
+                        // Haxe.g:480:47: ( type )?
                         if ( stream_type.hasNext() ) {
                             adaptor.addChild(root_1, stream_type.nextTree());
 
@@ -11589,17 +11688,17 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:472:11: IMPLEMENTS type
+                    // Haxe.g:481:14: IMPLEMENTS type
                     {
-                    IMPLEMENTS405=(Token)match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_inherit3397); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_IMPLEMENTS.add(IMPLEMENTS405);
+                    IMPLEMENTS408=(Token)match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_inherit4934); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_IMPLEMENTS.add(IMPLEMENTS408);
 
-                    pushFollow(FOLLOW_type_in_inherit3399);
-                    type406=type();
+                    pushFollow(FOLLOW_type_in_inherit4936);
+                    type409=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) stream_type.add(type406.getTree());
+                    if ( state.backtracking==0 ) stream_type.add(type409.getTree());
 
 
                     // AST REWRITE
@@ -11614,14 +11713,14 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 472:27: -> ^( IMPLEMENTS ( type )? )
+                    // 481:30: -> ^( IMPLEMENTS ( type )? )
                     {
-                        // Haxe.g:472:30: ^( IMPLEMENTS ( type )? )
+                        // Haxe.g:481:33: ^( IMPLEMENTS ( type )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(stream_IMPLEMENTS.nextNode(), root_1);
 
-                        // Haxe.g:472:43: ( type )?
+                        // Haxe.g:481:46: ( type )?
                         if ( stream_type.hasNext() ) {
                             adaptor.addChild(root_1, stream_type.nextTree());
 
@@ -11653,7 +11752,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 79, inherit_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 81, inherit_StartIndex); }
         }
         return retval;
     }
@@ -11665,51 +11764,51 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typedefDecl"
-    // Haxe.g:475:1: typedefDecl : TYPEDEF IDENTIFIER EQ funcType ;
+    // Haxe.g:484:1: typedefDecl : TYPEDEF IDENTIFIER EQ funcType ;
     public final HaxeParser.typedefDecl_return typedefDecl() throws RecognitionException {
         HaxeParser.typedefDecl_return retval = new HaxeParser.typedefDecl_return();
         retval.start = input.LT(1);
         int typedefDecl_StartIndex = input.index();
         Object root_0 = null;
 
-        Token TYPEDEF407=null;
-        Token IDENTIFIER408=null;
-        Token EQ409=null;
-        HaxeParser.funcType_return funcType410 = null;
+        Token TYPEDEF410=null;
+        Token IDENTIFIER411=null;
+        Token EQ412=null;
+        HaxeParser.funcType_return funcType413 = null;
 
 
-        Object TYPEDEF407_tree=null;
-        Object IDENTIFIER408_tree=null;
-        Object EQ409_tree=null;
+        Object TYPEDEF410_tree=null;
+        Object IDENTIFIER411_tree=null;
+        Object EQ412_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 80) ) { return retval; }
-            // Haxe.g:476:2: ( TYPEDEF IDENTIFIER EQ funcType )
-            // Haxe.g:476:4: TYPEDEF IDENTIFIER EQ funcType
+            if ( state.backtracking>0 && alreadyParsedRule(input, 82) ) { return retval; }
+            // Haxe.g:485:5: ( TYPEDEF IDENTIFIER EQ funcType )
+            // Haxe.g:485:10: TYPEDEF IDENTIFIER EQ funcType
             {
             root_0 = (Object)adaptor.nil();
 
-            TYPEDEF407=(Token)match(input,TYPEDEF,FOLLOW_TYPEDEF_in_typedefDecl3427); if (state.failed) return retval;
+            TYPEDEF410=(Token)match(input,TYPEDEF,FOLLOW_TYPEDEF_in_typedefDecl4976); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            TYPEDEF407_tree = (Object)adaptor.create(TYPEDEF407);
-            adaptor.addChild(root_0, TYPEDEF407_tree);
+            TYPEDEF410_tree = (Object)adaptor.create(TYPEDEF410);
+            adaptor.addChild(root_0, TYPEDEF410_tree);
             }
-            IDENTIFIER408=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typedefDecl3429); if (state.failed) return retval;
+            IDENTIFIER411=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_typedefDecl4978); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER408_tree = (Object)adaptor.create(IDENTIFIER408);
-            adaptor.addChild(root_0, IDENTIFIER408_tree);
+            IDENTIFIER411_tree = (Object)adaptor.create(IDENTIFIER411);
+            adaptor.addChild(root_0, IDENTIFIER411_tree);
             }
-            EQ409=(Token)match(input,EQ,FOLLOW_EQ_in_typedefDecl3431); if (state.failed) return retval;
+            EQ412=(Token)match(input,EQ,FOLLOW_EQ_in_typedefDecl4980); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            EQ409_tree = (Object)adaptor.create(EQ409);
-            adaptor.addChild(root_0, EQ409_tree);
+            EQ412_tree = (Object)adaptor.create(EQ412);
+            adaptor.addChild(root_0, EQ412_tree);
             }
-            pushFollow(FOLLOW_funcType_in_typedefDecl3433);
-            funcType410=funcType();
+            pushFollow(FOLLOW_funcType_in_typedefDecl4982);
+            funcType413=funcType();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType410.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType413.getTree());
 
             }
 
@@ -11728,7 +11827,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 80, typedefDecl_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 82, typedefDecl_StartIndex); }
         }
         return retval;
     }
@@ -11740,40 +11839,40 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "typeExtend"
-    // Haxe.g:479:1: typeExtend : GT funcType COMMA ;
+    // Haxe.g:488:1: typeExtend : GT funcType COMMA ;
     public final HaxeParser.typeExtend_return typeExtend() throws RecognitionException {
         HaxeParser.typeExtend_return retval = new HaxeParser.typeExtend_return();
         retval.start = input.LT(1);
         int typeExtend_StartIndex = input.index();
         Object root_0 = null;
 
-        Token GT411=null;
-        Token COMMA413=null;
-        HaxeParser.funcType_return funcType412 = null;
+        Token GT414=null;
+        Token COMMA416=null;
+        HaxeParser.funcType_return funcType415 = null;
 
 
-        Object GT411_tree=null;
-        Object COMMA413_tree=null;
+        Object GT414_tree=null;
+        Object COMMA416_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 81) ) { return retval; }
-            // Haxe.g:480:9: ( GT funcType COMMA )
-            // Haxe.g:480:11: GT funcType COMMA
+            if ( state.backtracking>0 && alreadyParsedRule(input, 83) ) { return retval; }
+            // Haxe.g:489:9: ( GT funcType COMMA )
+            // Haxe.g:489:14: GT funcType COMMA
             {
             root_0 = (Object)adaptor.nil();
 
-            GT411=(Token)match(input,GT,FOLLOW_GT_in_typeExtend3452); if (state.failed) return retval;
+            GT414=(Token)match(input,GT,FOLLOW_GT_in_typeExtend5010); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            GT411_tree = (Object)adaptor.create(GT411);
-            adaptor.addChild(root_0, GT411_tree);
+            GT414_tree = (Object)adaptor.create(GT414);
+            adaptor.addChild(root_0, GT414_tree);
             }
-            pushFollow(FOLLOW_funcType_in_typeExtend3454);
-            funcType412=funcType();
+            pushFollow(FOLLOW_funcType_in_typeExtend5012);
+            funcType415=funcType();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType412.getTree());
-            COMMA413=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeExtend3456); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType415.getTree());
+            COMMA416=(Token)match(input,COMMA,FOLLOW_COMMA_in_typeExtend5014); if (state.failed) return retval;
 
             }
 
@@ -11792,7 +11891,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 81, typeExtend_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 83, typeExtend_StartIndex); }
         }
         return retval;
     }
@@ -11804,48 +11903,48 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "anonType"
-    // Haxe.g:483:1: anonType : LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE ;
+    // Haxe.g:492:1: anonType : LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE ;
     public final HaxeParser.anonType_return anonType() throws RecognitionException {
         HaxeParser.anonType_return retval = new HaxeParser.anonType_return();
         retval.start = input.LT(1);
         int anonType_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LBRACE414=null;
-        Token RBRACE420=null;
-        HaxeParser.anonTypeFieldList_return anonTypeFieldList415 = null;
-
-        HaxeParser.varDeclList_return varDeclList416 = null;
-
-        HaxeParser.typeExtend_return typeExtend417 = null;
-
+        Token LBRACE417=null;
+        Token RBRACE423=null;
         HaxeParser.anonTypeFieldList_return anonTypeFieldList418 = null;
 
         HaxeParser.varDeclList_return varDeclList419 = null;
 
+        HaxeParser.typeExtend_return typeExtend420 = null;
 
-        Object LBRACE414_tree=null;
-        Object RBRACE420_tree=null;
+        HaxeParser.anonTypeFieldList_return anonTypeFieldList421 = null;
+
+        HaxeParser.varDeclList_return varDeclList422 = null;
+
+
+        Object LBRACE417_tree=null;
+        Object RBRACE423_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 82) ) { return retval; }
-            // Haxe.g:483:9: ( LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE )
-            // Haxe.g:483:11: LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE
+            if ( state.backtracking>0 && alreadyParsedRule(input, 84) ) { return retval; }
+            // Haxe.g:492:9: ( LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE )
+            // Haxe.g:492:14: LBRACE ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) ) RBRACE
             {
             root_0 = (Object)adaptor.nil();
 
-            LBRACE414=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_anonType3467); if (state.failed) return retval;
-            // Haxe.g:484:4: ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) )
-            int alt82=4;
+            LBRACE417=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_anonType5034); if (state.failed) return retval;
+            // Haxe.g:493:13: ( | anonTypeFieldList | varDeclList | typeExtend ( | anonTypeFieldList | varDeclList ) )
+            int alt84=4;
             switch ( input.LA(1) ) {
             case RBRACE:
                 {
-                alt82=1;
+                alt84=1;
                 }
                 break;
             case IDENTIFIER:
                 {
-                alt82=2;
+                alt84=2;
                 }
                 break;
             case PRIVATE:
@@ -11856,72 +11955,72 @@ public class HaxeParser extends Parser {
             case OVERRIDE:
             case VAR:
                 {
-                alt82=3;
+                alt84=3;
                 }
                 break;
             case GT:
                 {
-                alt82=4;
+                alt84=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 82, 0, input);
+                    new NoViableAltException("", 84, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt82) {
+            switch (alt84) {
                 case 1 :
-                    // Haxe.g:485:22: 
+                    // Haxe.g:494:25: 
                     {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:485:27: anonTypeFieldList
+                    // Haxe.g:494:30: anonTypeFieldList
                     {
-                    pushFollow(FOLLOW_anonTypeFieldList_in_anonType3502);
-                    anonTypeFieldList415=anonTypeFieldList();
+                    pushFollow(FOLLOW_anonTypeFieldList_in_anonType5081);
+                    anonTypeFieldList418=anonTypeFieldList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList415.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList418.getTree());
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:486:26: varDeclList
+                    // Haxe.g:495:29: varDeclList
                     {
-                    pushFollow(FOLLOW_varDeclList_in_anonType3530);
-                    varDeclList416=varDeclList();
+                    pushFollow(FOLLOW_varDeclList_in_anonType5112);
+                    varDeclList419=varDeclList();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList416.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList419.getTree());
 
                     }
                     break;
                 case 4 :
-                    // Haxe.g:487:27: typeExtend ( | anonTypeFieldList | varDeclList )
+                    // Haxe.g:496:30: typeExtend ( | anonTypeFieldList | varDeclList )
                     {
-                    pushFollow(FOLLOW_typeExtend_in_anonType3559);
-                    typeExtend417=typeExtend();
+                    pushFollow(FOLLOW_typeExtend_in_anonType5144);
+                    typeExtend420=typeExtend();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typeExtend417.getTree());
-                    // Haxe.g:487:38: ( | anonTypeFieldList | varDeclList )
-                    int alt81=3;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, typeExtend420.getTree());
+                    // Haxe.g:496:41: ( | anonTypeFieldList | varDeclList )
+                    int alt83=3;
                     switch ( input.LA(1) ) {
                     case RBRACE:
                         {
-                        alt81=1;
+                        alt83=1;
                         }
                         break;
                     case IDENTIFIER:
                         {
-                        alt81=2;
+                        alt83=2;
                         }
                         break;
                     case PRIVATE:
@@ -11932,44 +12031,44 @@ public class HaxeParser extends Parser {
                     case OVERRIDE:
                     case VAR:
                         {
-                        alt81=3;
+                        alt83=3;
                         }
                         break;
                     default:
                         if (state.backtracking>0) {state.failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 81, 0, input);
+                            new NoViableAltException("", 83, 0, input);
 
                         throw nvae;
                     }
 
-                    switch (alt81) {
+                    switch (alt83) {
                         case 1 :
-                            // Haxe.g:488:24: 
+                            // Haxe.g:497:33: 
                             {
                             }
                             break;
                         case 2 :
-                            // Haxe.g:488:25: anonTypeFieldList
+                            // Haxe.g:497:34: anonTypeFieldList
                             {
-                            pushFollow(FOLLOW_anonTypeFieldList_in_anonType3587);
-                            anonTypeFieldList418=anonTypeFieldList();
+                            pushFollow(FOLLOW_anonTypeFieldList_in_anonType5181);
+                            anonTypeFieldList421=anonTypeFieldList();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList418.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeFieldList421.getTree());
 
                             }
                             break;
                         case 3 :
-                            // Haxe.g:489:25: varDeclList
+                            // Haxe.g:498:34: varDeclList
                             {
-                            pushFollow(FOLLOW_varDeclList_in_anonType3613);
-                            varDeclList419=varDeclList();
+                            pushFollow(FOLLOW_varDeclList_in_anonType5216);
+                            varDeclList422=varDeclList();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList419.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, varDeclList422.getTree());
 
                             }
                             break;
@@ -11982,7 +12081,7 @@ public class HaxeParser extends Parser {
 
             }
 
-            RBRACE420=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_anonType3657); if (state.failed) return retval;
+            RBRACE423=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_anonType5263); if (state.failed) return retval;
 
             }
 
@@ -12001,7 +12100,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 82, anonType_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 84, anonType_StartIndex); }
         }
         return retval;
     }
@@ -12013,62 +12112,62 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "anonTypeFieldList"
-    // Haxe.g:494:1: anonTypeFieldList : anonTypeField ( COMMA anonTypeField )* ;
+    // Haxe.g:503:1: anonTypeFieldList : anonTypeField ( COMMA anonTypeField )* ;
     public final HaxeParser.anonTypeFieldList_return anonTypeFieldList() throws RecognitionException {
         HaxeParser.anonTypeFieldList_return retval = new HaxeParser.anonTypeFieldList_return();
         retval.start = input.LT(1);
         int anonTypeFieldList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA422=null;
-        HaxeParser.anonTypeField_return anonTypeField421 = null;
+        Token COMMA425=null;
+        HaxeParser.anonTypeField_return anonTypeField424 = null;
 
-        HaxeParser.anonTypeField_return anonTypeField423 = null;
+        HaxeParser.anonTypeField_return anonTypeField426 = null;
 
 
-        Object COMMA422_tree=null;
+        Object COMMA425_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 83) ) { return retval; }
-            // Haxe.g:495:2: ( anonTypeField ( COMMA anonTypeField )* )
-            // Haxe.g:495:4: anonTypeField ( COMMA anonTypeField )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 85) ) { return retval; }
+            // Haxe.g:504:5: ( anonTypeField ( COMMA anonTypeField )* )
+            // Haxe.g:504:10: anonTypeField ( COMMA anonTypeField )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3671);
-            anonTypeField421=anonTypeField();
+            pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList5289);
+            anonTypeField424=anonTypeField();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField421.getTree());
-            // Haxe.g:495:18: ( COMMA anonTypeField )*
-            loop83:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField424.getTree());
+            // Haxe.g:504:24: ( COMMA anonTypeField )*
+            loop85:
             do {
-                int alt83=2;
-                int LA83_0 = input.LA(1);
+                int alt85=2;
+                int LA85_0 = input.LA(1);
 
-                if ( (LA83_0==COMMA) ) {
-                    alt83=1;
+                if ( (LA85_0==COMMA) ) {
+                    alt85=1;
                 }
 
 
-                switch (alt83) {
+                switch (alt85) {
             	case 1 :
-            	    // Haxe.g:495:19: COMMA anonTypeField
+            	    // Haxe.g:504:25: COMMA anonTypeField
             	    {
-            	    COMMA422=(Token)match(input,COMMA,FOLLOW_COMMA_in_anonTypeFieldList3674); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList3677);
-            	    anonTypeField423=anonTypeField();
+            	    COMMA425=(Token)match(input,COMMA,FOLLOW_COMMA_in_anonTypeFieldList5292); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_anonTypeField_in_anonTypeFieldList5295);
+            	    anonTypeField426=anonTypeField();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField423.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, anonTypeField426.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop83;
+            	    break loop85;
                 }
             } while (true);
 
@@ -12090,7 +12189,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 83, anonTypeFieldList_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 85, anonTypeFieldList_StartIndex); }
         }
         return retval;
     }
@@ -12102,36 +12201,36 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "objLit"
-    // Haxe.g:498:1: objLit : '{' objLitElemList '}' ;
+    // Haxe.g:507:1: objLit : '{' objLitElemList '}' ;
     public final HaxeParser.objLit_return objLit() throws RecognitionException {
         HaxeParser.objLit_return retval = new HaxeParser.objLit_return();
         retval.start = input.LT(1);
         int objLit_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal424=null;
-        Token char_literal426=null;
-        HaxeParser.objLitElemList_return objLitElemList425 = null;
+        Token char_literal427=null;
+        Token char_literal429=null;
+        HaxeParser.objLitElemList_return objLitElemList428 = null;
 
 
-        Object char_literal424_tree=null;
-        Object char_literal426_tree=null;
+        Object char_literal427_tree=null;
+        Object char_literal429_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 84) ) { return retval; }
-            // Haxe.g:498:8: ( '{' objLitElemList '}' )
-            // Haxe.g:498:10: '{' objLitElemList '}'
+            if ( state.backtracking>0 && alreadyParsedRule(input, 86) ) { return retval; }
+            // Haxe.g:507:11: ( '{' objLitElemList '}' )
+            // Haxe.g:507:16: '{' objLitElemList '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal424=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_objLit3689); if (state.failed) return retval;
-            pushFollow(FOLLOW_objLitElemList_in_objLit3692);
-            objLitElemList425=objLitElemList();
+            char_literal427=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_objLit5316); if (state.failed) return retval;
+            pushFollow(FOLLOW_objLitElemList_in_objLit5319);
+            objLitElemList428=objLitElemList();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElemList425.getTree());
-            char_literal426=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_objLit3694); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElemList428.getTree());
+            char_literal429=(Token)match(input,RBRACE,FOLLOW_RBRACE_in_objLit5321); if (state.failed) return retval;
 
             }
 
@@ -12150,7 +12249,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 84, objLit_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 86, objLit_StartIndex); }
         }
         return retval;
     }
@@ -12162,40 +12261,40 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "anonTypeField"
-    // Haxe.g:501:1: anonTypeField : IDENTIFIER COLON funcType ;
+    // Haxe.g:510:1: anonTypeField : IDENTIFIER COLON funcType ;
     public final HaxeParser.anonTypeField_return anonTypeField() throws RecognitionException {
         HaxeParser.anonTypeField_return retval = new HaxeParser.anonTypeField_return();
         retval.start = input.LT(1);
         int anonTypeField_StartIndex = input.index();
         Object root_0 = null;
 
-        Token IDENTIFIER427=null;
-        Token COLON428=null;
-        HaxeParser.funcType_return funcType429 = null;
+        Token IDENTIFIER430=null;
+        Token COLON431=null;
+        HaxeParser.funcType_return funcType432 = null;
 
 
-        Object IDENTIFIER427_tree=null;
-        Object COLON428_tree=null;
+        Object IDENTIFIER430_tree=null;
+        Object COLON431_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 85) ) { return retval; }
-            // Haxe.g:502:2: ( IDENTIFIER COLON funcType )
-            // Haxe.g:502:4: IDENTIFIER COLON funcType
+            if ( state.backtracking>0 && alreadyParsedRule(input, 87) ) { return retval; }
+            // Haxe.g:511:5: ( IDENTIFIER COLON funcType )
+            // Haxe.g:511:10: IDENTIFIER COLON funcType
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER427=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_anonTypeField3706); if (state.failed) return retval;
+            IDENTIFIER430=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_anonTypeField5342); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER427_tree = (Object)adaptor.create(IDENTIFIER427);
-            adaptor.addChild(root_0, IDENTIFIER427_tree);
+            IDENTIFIER430_tree = (Object)adaptor.create(IDENTIFIER430);
+            adaptor.addChild(root_0, IDENTIFIER430_tree);
             }
-            COLON428=(Token)match(input,COLON,FOLLOW_COLON_in_anonTypeField3708); if (state.failed) return retval;
-            pushFollow(FOLLOW_funcType_in_anonTypeField3711);
-            funcType429=funcType();
+            COLON431=(Token)match(input,COLON,FOLLOW_COLON_in_anonTypeField5344); if (state.failed) return retval;
+            pushFollow(FOLLOW_funcType_in_anonTypeField5347);
+            funcType432=funcType();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType429.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, funcType432.getTree());
 
             }
 
@@ -12214,7 +12313,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 85, anonTypeField_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 87, anonTypeField_StartIndex); }
         }
         return retval;
     }
@@ -12226,62 +12325,62 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "objLitElemList"
-    // Haxe.g:505:1: objLitElemList : objLitElem ( COMMA objLitElem )* ;
+    // Haxe.g:514:1: objLitElemList : objLitElem ( COMMA objLitElem )* ;
     public final HaxeParser.objLitElemList_return objLitElemList() throws RecognitionException {
         HaxeParser.objLitElemList_return retval = new HaxeParser.objLitElemList_return();
         retval.start = input.LT(1);
         int objLitElemList_StartIndex = input.index();
         Object root_0 = null;
 
-        Token COMMA431=null;
-        HaxeParser.objLitElem_return objLitElem430 = null;
+        Token COMMA434=null;
+        HaxeParser.objLitElem_return objLitElem433 = null;
 
-        HaxeParser.objLitElem_return objLitElem432 = null;
+        HaxeParser.objLitElem_return objLitElem435 = null;
 
 
-        Object COMMA431_tree=null;
+        Object COMMA434_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 86) ) { return retval; }
-            // Haxe.g:506:2: ( objLitElem ( COMMA objLitElem )* )
-            // Haxe.g:506:4: objLitElem ( COMMA objLitElem )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 88) ) { return retval; }
+            // Haxe.g:515:5: ( objLitElem ( COMMA objLitElem )* )
+            // Haxe.g:515:10: objLitElem ( COMMA objLitElem )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_objLitElem_in_objLitElemList3727);
-            objLitElem430=objLitElem();
+            pushFollow(FOLLOW_objLitElem_in_objLitElemList5375);
+            objLitElem433=objLitElem();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem430.getTree());
-            // Haxe.g:506:15: ( COMMA objLitElem )*
-            loop84:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem433.getTree());
+            // Haxe.g:515:21: ( COMMA objLitElem )*
+            loop86:
             do {
-                int alt84=2;
-                int LA84_0 = input.LA(1);
+                int alt86=2;
+                int LA86_0 = input.LA(1);
 
-                if ( (LA84_0==COMMA) ) {
-                    alt84=1;
+                if ( (LA86_0==COMMA) ) {
+                    alt86=1;
                 }
 
 
-                switch (alt84) {
+                switch (alt86) {
             	case 1 :
-            	    // Haxe.g:506:16: COMMA objLitElem
+            	    // Haxe.g:515:22: COMMA objLitElem
             	    {
-            	    COMMA431=(Token)match(input,COMMA,FOLLOW_COMMA_in_objLitElemList3730); if (state.failed) return retval;
-            	    pushFollow(FOLLOW_objLitElem_in_objLitElemList3733);
-            	    objLitElem432=objLitElem();
+            	    COMMA434=(Token)match(input,COMMA,FOLLOW_COMMA_in_objLitElemList5378); if (state.failed) return retval;
+            	    pushFollow(FOLLOW_objLitElem_in_objLitElemList5381);
+            	    objLitElem435=objLitElem();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem432.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, objLitElem435.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop84;
+            	    break loop86;
                 }
             } while (true);
 
@@ -12303,7 +12402,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 86, objLitElemList_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 88, objLitElemList_StartIndex); }
         }
         return retval;
     }
@@ -12315,40 +12414,40 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "objLitElem"
-    // Haxe.g:509:1: objLitElem : IDENTIFIER COLON expr ;
+    // Haxe.g:518:1: objLitElem : IDENTIFIER COLON expr ;
     public final HaxeParser.objLitElem_return objLitElem() throws RecognitionException {
         HaxeParser.objLitElem_return retval = new HaxeParser.objLitElem_return();
         retval.start = input.LT(1);
         int objLitElem_StartIndex = input.index();
         Object root_0 = null;
 
-        Token IDENTIFIER433=null;
-        Token COLON434=null;
-        HaxeParser.expr_return expr435 = null;
+        Token IDENTIFIER436=null;
+        Token COLON437=null;
+        HaxeParser.expr_return expr438 = null;
 
 
-        Object IDENTIFIER433_tree=null;
-        Object COLON434_tree=null;
+        Object IDENTIFIER436_tree=null;
+        Object COLON437_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 87) ) { return retval; }
-            // Haxe.g:510:9: ( IDENTIFIER COLON expr )
-            // Haxe.g:510:11: IDENTIFIER COLON expr
+            if ( state.backtracking>0 && alreadyParsedRule(input, 89) ) { return retval; }
+            // Haxe.g:519:9: ( IDENTIFIER COLON expr )
+            // Haxe.g:519:14: IDENTIFIER COLON expr
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER433=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_objLitElem3754); if (state.failed) return retval;
+            IDENTIFIER436=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_objLitElem5411); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER433_tree = (Object)adaptor.create(IDENTIFIER433);
-            adaptor.addChild(root_0, IDENTIFIER433_tree);
+            IDENTIFIER436_tree = (Object)adaptor.create(IDENTIFIER436);
+            adaptor.addChild(root_0, IDENTIFIER436_tree);
             }
-            COLON434=(Token)match(input,COLON,FOLLOW_COLON_in_objLitElem3756); if (state.failed) return retval;
-            pushFollow(FOLLOW_expr_in_objLitElem3759);
-            expr435=expr();
+            COLON437=(Token)match(input,COLON,FOLLOW_COLON_in_objLitElem5413); if (state.failed) return retval;
+            pushFollow(FOLLOW_expr_in_objLitElem5416);
+            expr438=expr();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr435.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expr438.getTree());
 
             }
 
@@ -12367,7 +12466,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 87, objLitElem_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 89, objLitElem_StartIndex); }
         }
         return retval;
     }
@@ -12379,30 +12478,30 @@ public class HaxeParser extends Parser {
     };
 
     // $ANTLR start "elementarySymbol"
-    // Haxe.g:513:1: elementarySymbol : ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | NULL -> ^( NULL[$NULL,\"Unknown<0>\"] ) | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] );
+    // Haxe.g:522:1: elementarySymbol : ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | NULL -> ^( NULL[$NULL,\"Unknown<0>\"] ) | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] );
     public final HaxeParser.elementarySymbol_return elementarySymbol() throws RecognitionException {
         HaxeParser.elementarySymbol_return retval = new HaxeParser.elementarySymbol_return();
         retval.start = input.LT(1);
         int elementarySymbol_StartIndex = input.index();
         Object root_0 = null;
 
-        Token LONGLITERAL436=null;
-        Token NULL437=null;
-        Token INTLITERAL438=null;
-        Token STRINGLITERAL439=null;
-        Token CHARLITERAL440=null;
-        Token FLOATNUM441=null;
-        Token TRUE442=null;
-        Token FALSE443=null;
+        Token LONGLITERAL439=null;
+        Token NULL440=null;
+        Token INTLITERAL441=null;
+        Token STRINGLITERAL442=null;
+        Token CHARLITERAL443=null;
+        Token FLOATNUM444=null;
+        Token TRUE445=null;
+        Token FALSE446=null;
 
-        Object LONGLITERAL436_tree=null;
-        Object NULL437_tree=null;
-        Object INTLITERAL438_tree=null;
-        Object STRINGLITERAL439_tree=null;
-        Object CHARLITERAL440_tree=null;
-        Object FLOATNUM441_tree=null;
-        Object TRUE442_tree=null;
-        Object FALSE443_tree=null;
+        Object LONGLITERAL439_tree=null;
+        Object NULL440_tree=null;
+        Object INTLITERAL441_tree=null;
+        Object STRINGLITERAL442_tree=null;
+        Object CHARLITERAL443_tree=null;
+        Object FLOATNUM444_tree=null;
+        Object TRUE445_tree=null;
+        Object FALSE446_tree=null;
         RewriteRuleTokenStream stream_INTLITERAL=new RewriteRuleTokenStream(adaptor,"token INTLITERAL");
         RewriteRuleTokenStream stream_FALSE=new RewriteRuleTokenStream(adaptor,"token FALSE");
         RewriteRuleTokenStream stream_TRUE=new RewriteRuleTokenStream(adaptor,"token TRUE");
@@ -12413,64 +12512,64 @@ public class HaxeParser extends Parser {
         RewriteRuleTokenStream stream_LONGLITERAL=new RewriteRuleTokenStream(adaptor,"token LONGLITERAL");
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 88) ) { return retval; }
-            // Haxe.g:514:2: ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | NULL -> ^( NULL[$NULL,\"Unknown<0>\"] ) | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] )
-            int alt85=8;
+            if ( state.backtracking>0 && alreadyParsedRule(input, 90) ) { return retval; }
+            // Haxe.g:523:5: ( LONGLITERAL -> LONGLITERAL[$LONGLITERAL, \"INT\"] | NULL -> ^( NULL[$NULL,\"Unknown<0>\"] ) | INTLITERAL -> INTLITERAL[$INTLITERAL, \"INT\"] | STRINGLITERAL -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"] | CHARLITERAL -> CHARLITERAL[$CHARLITERAL, \"STRING\"] | FLOATNUM -> FLOATNUM[$FLOATNUM, \"FLOAT\"] | TRUE -> TRUE[$TRUE,\"BOOL\"] | FALSE -> FALSE[$FALSE,\"BOOL\"] )
+            int alt87=8;
             switch ( input.LA(1) ) {
             case LONGLITERAL:
                 {
-                alt85=1;
+                alt87=1;
                 }
                 break;
             case NULL:
                 {
-                alt85=2;
+                alt87=2;
                 }
                 break;
             case INTLITERAL:
                 {
-                alt85=3;
+                alt87=3;
                 }
                 break;
             case STRINGLITERAL:
                 {
-                alt85=4;
+                alt87=4;
                 }
                 break;
             case CHARLITERAL:
                 {
-                alt85=5;
+                alt87=5;
                 }
                 break;
             case FLOATNUM:
                 {
-                alt85=6;
+                alt87=6;
                 }
                 break;
             case TRUE:
                 {
-                alt85=7;
+                alt87=7;
                 }
                 break;
             case FALSE:
                 {
-                alt85=8;
+                alt87=8;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 85, 0, input);
+                    new NoViableAltException("", 87, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt85) {
+            switch (alt87) {
                 case 1 :
-                    // Haxe.g:514:4: LONGLITERAL
+                    // Haxe.g:523:10: LONGLITERAL
                     {
-                    LONGLITERAL436=(Token)match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_elementarySymbol3771); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_LONGLITERAL.add(LONGLITERAL436);
+                    LONGLITERAL439=(Token)match(input,LONGLITERAL,FOLLOW_LONGLITERAL_in_elementarySymbol5440); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_LONGLITERAL.add(LONGLITERAL439);
 
 
 
@@ -12486,9 +12585,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 514:16: -> LONGLITERAL[$LONGLITERAL, \"INT\"]
+                    // 523:25: -> LONGLITERAL[$LONGLITERAL, \"INT\"]
                     {
-                        adaptor.addChild(root_0, new Constant(LONGLITERAL, LONGLITERAL436, "INT"));
+                        adaptor.addChild(root_0, new Constant(LONGLITERAL, LONGLITERAL439, "INT"));
 
                     }
 
@@ -12496,10 +12595,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:515:6: NULL
+                    // Haxe.g:524:9: NULL
                     {
-                    NULL437=(Token)match(input,NULL,FOLLOW_NULL_in_elementarySymbol3786); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_NULL.add(NULL437);
+                    NULL440=(Token)match(input,NULL,FOLLOW_NULL_in_elementarySymbol5461); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_NULL.add(NULL440);
 
 
 
@@ -12515,12 +12614,12 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 515:11: -> ^( NULL[$NULL,\"Unknown<0>\"] )
+                    // 524:14: -> ^( NULL[$NULL,\"Unknown<0>\"] )
                     {
-                        // Haxe.g:515:14: ^( NULL[$NULL,\"Unknown<0>\"] )
+                        // Haxe.g:524:17: ^( NULL[$NULL,\"Unknown<0>\"] )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new Constant(NULL, NULL437, "Unknown<0>"), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new Constant(NULL, NULL440, "Unknown<0>"), root_1);
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -12531,10 +12630,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:516:4: INTLITERAL
+                    // Haxe.g:525:10: INTLITERAL
                     {
-                    INTLITERAL438=(Token)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_elementarySymbol3801); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_INTLITERAL.add(INTLITERAL438);
+                    INTLITERAL441=(Token)match(input,INTLITERAL,FOLLOW_INTLITERAL_in_elementarySymbol5482); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_INTLITERAL.add(INTLITERAL441);
 
 
 
@@ -12550,9 +12649,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 516:15: -> INTLITERAL[$INTLITERAL, \"INT\"]
+                    // 525:24: -> INTLITERAL[$INTLITERAL, \"INT\"]
                     {
-                        adaptor.addChild(root_0, new Constant(INTLITERAL, INTLITERAL438, "INT"));
+                        adaptor.addChild(root_0, new Constant(INTLITERAL, INTLITERAL441, "INT"));
 
                     }
 
@@ -12560,10 +12659,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:517:4: STRINGLITERAL
+                    // Haxe.g:526:10: STRINGLITERAL
                     {
-                    STRINGLITERAL439=(Token)match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_elementarySymbol3814); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_STRINGLITERAL.add(STRINGLITERAL439);
+                    STRINGLITERAL442=(Token)match(input,STRINGLITERAL,FOLLOW_STRINGLITERAL_in_elementarySymbol5504); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_STRINGLITERAL.add(STRINGLITERAL442);
 
 
 
@@ -12579,9 +12678,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 517:18: -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"]
+                    // 526:27: -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"]
                     {
-                        adaptor.addChild(root_0, new Constant(STRINGLITERAL, STRINGLITERAL439, "STRING"));
+                        adaptor.addChild(root_0, new Constant(STRINGLITERAL, STRINGLITERAL442, "STRING"));
 
                     }
 
@@ -12589,10 +12688,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // Haxe.g:518:4: CHARLITERAL
+                    // Haxe.g:527:10: CHARLITERAL
                     {
-                    CHARLITERAL440=(Token)match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_elementarySymbol3827); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_CHARLITERAL.add(CHARLITERAL440);
+                    CHARLITERAL443=(Token)match(input,CHARLITERAL,FOLLOW_CHARLITERAL_in_elementarySymbol5526); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_CHARLITERAL.add(CHARLITERAL443);
 
 
 
@@ -12608,9 +12707,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 518:16: -> CHARLITERAL[$CHARLITERAL, \"STRING\"]
+                    // 527:25: -> CHARLITERAL[$CHARLITERAL, \"STRING\"]
                     {
-                        adaptor.addChild(root_0, new Constant(CHARLITERAL, CHARLITERAL440, "STRING"));
+                        adaptor.addChild(root_0, new Constant(CHARLITERAL, CHARLITERAL443, "STRING"));
 
                     }
 
@@ -12618,10 +12717,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // Haxe.g:519:4: FLOATNUM
+                    // Haxe.g:528:10: FLOATNUM
                     {
-                    FLOATNUM441=(Token)match(input,FLOATNUM,FOLLOW_FLOATNUM_in_elementarySymbol3840); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FLOATNUM.add(FLOATNUM441);
+                    FLOATNUM444=(Token)match(input,FLOATNUM,FOLLOW_FLOATNUM_in_elementarySymbol5548); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FLOATNUM.add(FLOATNUM444);
 
 
 
@@ -12637,9 +12736,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 519:13: -> FLOATNUM[$FLOATNUM, \"FLOAT\"]
+                    // 528:22: -> FLOATNUM[$FLOATNUM, \"FLOAT\"]
                     {
-                        adaptor.addChild(root_0, new Constant(FLOATNUM, FLOATNUM441, "FLOAT"));
+                        adaptor.addChild(root_0, new Constant(FLOATNUM, FLOATNUM444, "FLOAT"));
 
                     }
 
@@ -12647,10 +12746,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // Haxe.g:520:4: TRUE
+                    // Haxe.g:529:10: TRUE
                     {
-                    TRUE442=(Token)match(input,TRUE,FOLLOW_TRUE_in_elementarySymbol3853); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_TRUE.add(TRUE442);
+                    TRUE445=(Token)match(input,TRUE,FOLLOW_TRUE_in_elementarySymbol5570); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_TRUE.add(TRUE445);
 
 
 
@@ -12666,9 +12765,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 520:10: -> TRUE[$TRUE,\"BOOL\"]
+                    // 529:22: -> TRUE[$TRUE,\"BOOL\"]
                     {
-                        adaptor.addChild(root_0, new Constant(TRUE, TRUE442, "BOOL"));
+                        adaptor.addChild(root_0, new Constant(TRUE, TRUE445, "BOOL"));
 
                     }
 
@@ -12676,10 +12775,10 @@ public class HaxeParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // Haxe.g:521:4: FALSE
+                    // Haxe.g:530:10: FALSE
                     {
-                    FALSE443=(Token)match(input,FALSE,FOLLOW_FALSE_in_elementarySymbol3867); if (state.failed) return retval; 
-                    if ( state.backtracking==0 ) stream_FALSE.add(FALSE443);
+                    FALSE446=(Token)match(input,FALSE,FOLLOW_FALSE_in_elementarySymbol5596); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_FALSE.add(FALSE446);
 
 
 
@@ -12695,9 +12794,9 @@ public class HaxeParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 521:11: -> FALSE[$FALSE,\"BOOL\"]
+                    // 530:23: -> FALSE[$FALSE,\"BOOL\"]
                     {
-                        adaptor.addChild(root_0, new Constant(FALSE, FALSE443, "BOOL"));
+                        adaptor.addChild(root_0, new Constant(FALSE, FALSE446, "BOOL"));
 
                     }
 
@@ -12721,7 +12820,7 @@ public class HaxeParser extends Parser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 88, elementarySymbol_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 90, elementarySymbol_StartIndex); }
         }
         return retval;
     }
@@ -12732,7 +12831,7 @@ public class HaxeParser extends Parser {
         // Haxe.g:146:43: ( typeTagOpt )
         // Haxe.g:146:43: typeTagOpt
         {
-        pushFollow(FOLLOW_typeTagOpt_in_synpred28_Haxe675);
+        pushFollow(FOLLOW_typeTagOpt_in_synpred28_Haxe936);
         typeTagOpt();
 
         state._fsp--;
@@ -12744,13 +12843,13 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred34_Haxe
     public final void synpred34_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:189:11: ( ( type ) ( MINUS_BIGGER type )* )
-        // Haxe.g:189:11: ( type ) ( MINUS_BIGGER type )*
+        // Haxe.g:189:14: ( ( type ) ( MINUS_BIGGER type )* )
+        // Haxe.g:189:14: ( type ) ( MINUS_BIGGER type )*
         {
-        // Haxe.g:189:11: ( type )
-        // Haxe.g:189:12: type
+        // Haxe.g:189:14: ( type )
+        // Haxe.g:189:15: type
         {
-        pushFollow(FOLLOW_type_in_synpred34_Haxe814);
+        pushFollow(FOLLOW_type_in_synpred34_Haxe1135);
         type();
 
         state._fsp--;
@@ -12758,146 +12857,24 @@ public class HaxeParser extends Parser {
 
         }
 
-        // Haxe.g:189:18: ( MINUS_BIGGER type )*
-        loop88:
-        do {
-            int alt88=2;
-            int LA88_0 = input.LA(1);
-
-            if ( (LA88_0==MINUS_BIGGER) ) {
-                alt88=1;
-            }
-
-
-            switch (alt88) {
-        	case 1 :
-        	    // Haxe.g:189:19: MINUS_BIGGER type
-        	    {
-        	    match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_synpred34_Haxe818); if (state.failed) return ;
-        	    pushFollow(FOLLOW_type_in_synpred34_Haxe821);
-        	    type();
-
-        	    state._fsp--;
-        	    if (state.failed) return ;
-
-        	    }
-        	    break;
-
-        	default :
-        	    break loop88;
-            }
-        } while (true);
-
-
-        }
-    }
-    // $ANTLR end synpred34_Haxe
-
-    // $ANTLR start synpred41_Haxe
-    public final void synpred41_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:197:48: ( typeParam )
-        // Haxe.g:197:48: typeParam
-        {
-        pushFollow(FOLLOW_typeParam_in_synpred41_Haxe880);
-        typeParam();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred41_Haxe
-
-    // $ANTLR start synpred42_Haxe
-    public final void synpred42_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:197:8: ( ( anonType | dotIdent | primitiveType ) ( typeParam )* )
-        // Haxe.g:197:8: ( anonType | dotIdent | primitiveType ) ( typeParam )*
-        {
-        // Haxe.g:197:8: ( anonType | dotIdent | primitiveType )
-        int alt89=3;
-        switch ( input.LA(1) ) {
-        case LBRACE:
-            {
-            alt89=1;
-            }
-            break;
-        case IDENTIFIER:
-        case THIS:
-            {
-            alt89=2;
-            }
-            break;
-        case DYNAMIC:
-        case VOID:
-        case INT:
-        case FLOAT:
-        case BOOLEAN:
-            {
-            alt89=3;
-            }
-            break;
-        default:
-            if (state.backtracking>0) {state.failed=true; return ;}
-            NoViableAltException nvae =
-                new NoViableAltException("", 89, 0, input);
-
-            throw nvae;
-        }
-
-        switch (alt89) {
-            case 1 :
-                // Haxe.g:197:9: anonType
-                {
-                pushFollow(FOLLOW_anonType_in_synpred42_Haxe867);
-                anonType();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-            case 2 :
-                // Haxe.g:197:20: dotIdent
-                {
-                pushFollow(FOLLOW_dotIdent_in_synpred42_Haxe871);
-                dotIdent();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-            case 3 :
-                // Haxe.g:197:31: primitiveType
-                {
-                pushFollow(FOLLOW_primitiveType_in_synpred42_Haxe875);
-                primitiveType();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-
-        }
-
-        // Haxe.g:197:47: ( typeParam )*
+        // Haxe.g:189:21: ( MINUS_BIGGER type )*
         loop90:
         do {
             int alt90=2;
             int LA90_0 = input.LA(1);
 
-            if ( (LA90_0==LT) ) {
+            if ( (LA90_0==MINUS_BIGGER) ) {
                 alt90=1;
             }
 
 
             switch (alt90) {
         	case 1 :
-        	    // Haxe.g:197:48: typeParam
+        	    // Haxe.g:189:22: MINUS_BIGGER type
         	    {
-        	    pushFollow(FOLLOW_typeParam_in_synpred42_Haxe880);
-        	    typeParam();
+        	    match(input,MINUS_BIGGER,FOLLOW_MINUS_BIGGER_in_synpred34_Haxe1139); if (state.failed) return ;
+        	    pushFollow(FOLLOW_type_in_synpred34_Haxe1142);
+        	    type();
 
         	    state._fsp--;
         	    if (state.failed) return ;
@@ -12913,20 +12890,142 @@ public class HaxeParser extends Parser {
 
         }
     }
+    // $ANTLR end synpred34_Haxe
+
+    // $ANTLR start synpred41_Haxe
+    public final void synpred41_Haxe_fragment() throws RecognitionException {   
+        // Haxe.g:197:54: ( typeParam )
+        // Haxe.g:197:54: typeParam
+        {
+        pushFollow(FOLLOW_typeParam_in_synpred41_Haxe1228);
+        typeParam();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred41_Haxe
+
+    // $ANTLR start synpred42_Haxe
+    public final void synpred42_Haxe_fragment() throws RecognitionException {   
+        // Haxe.g:197:14: ( ( anonType | dotIdent | primitiveType ) ( typeParam )* )
+        // Haxe.g:197:14: ( anonType | dotIdent | primitiveType ) ( typeParam )*
+        {
+        // Haxe.g:197:14: ( anonType | dotIdent | primitiveType )
+        int alt91=3;
+        switch ( input.LA(1) ) {
+        case LBRACE:
+            {
+            alt91=1;
+            }
+            break;
+        case IDENTIFIER:
+        case THIS:
+            {
+            alt91=2;
+            }
+            break;
+        case DYNAMIC:
+        case VOID:
+        case INT:
+        case FLOAT:
+        case BOOLEAN:
+            {
+            alt91=3;
+            }
+            break;
+        default:
+            if (state.backtracking>0) {state.failed=true; return ;}
+            NoViableAltException nvae =
+                new NoViableAltException("", 91, 0, input);
+
+            throw nvae;
+        }
+
+        switch (alt91) {
+            case 1 :
+                // Haxe.g:197:15: anonType
+                {
+                pushFollow(FOLLOW_anonType_in_synpred42_Haxe1215);
+                anonType();
+
+                state._fsp--;
+                if (state.failed) return ;
+
+                }
+                break;
+            case 2 :
+                // Haxe.g:197:26: dotIdent
+                {
+                pushFollow(FOLLOW_dotIdent_in_synpred42_Haxe1219);
+                dotIdent();
+
+                state._fsp--;
+                if (state.failed) return ;
+
+                }
+                break;
+            case 3 :
+                // Haxe.g:197:37: primitiveType
+                {
+                pushFollow(FOLLOW_primitiveType_in_synpred42_Haxe1223);
+                primitiveType();
+
+                state._fsp--;
+                if (state.failed) return ;
+
+                }
+                break;
+
+        }
+
+        // Haxe.g:197:53: ( typeParam )*
+        loop92:
+        do {
+            int alt92=2;
+            int LA92_0 = input.LA(1);
+
+            if ( (LA92_0==LT) ) {
+                alt92=1;
+            }
+
+
+            switch (alt92) {
+        	case 1 :
+        	    // Haxe.g:197:54: typeParam
+        	    {
+        	    pushFollow(FOLLOW_typeParam_in_synpred42_Haxe1228);
+        	    typeParam();
+
+        	    state._fsp--;
+        	    if (state.failed) return ;
+
+        	    }
+        	    break;
+
+        	default :
+        	    break loop92;
+            }
+        } while (true);
+
+
+        }
+    }
     // $ANTLR end synpred42_Haxe
 
     // $ANTLR start synpred43_Haxe
     public final void synpred43_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:202:4: ( LT typeList GT )
-        // Haxe.g:202:4: LT typeList GT
+        // Haxe.g:202:10: ( LT typeList GT )
+        // Haxe.g:202:10: LT typeList GT
         {
-        match(input,LT,FOLLOW_LT_in_synpred43_Haxe898); if (state.failed) return ;
-        pushFollow(FOLLOW_typeList_in_synpred43_Haxe901);
+        match(input,LT,FOLLOW_LT_in_synpred43_Haxe1264); if (state.failed) return ;
+        pushFollow(FOLLOW_typeList_in_synpred43_Haxe1267);
         typeList();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,GT,FOLLOW_GT_in_synpred43_Haxe903); if (state.failed) return ;
+        match(input,GT,FOLLOW_GT_in_synpred43_Haxe1269); if (state.failed) return ;
 
         }
     }
@@ -12934,22 +13033,22 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred44_Haxe
     public final void synpred44_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:203:4: ( LT typeList LT typeList GTGT )
-        // Haxe.g:203:4: LT typeList LT typeList GTGT
+        // Haxe.g:203:10: ( LT typeList LT typeList GTGT )
+        // Haxe.g:203:10: LT typeList LT typeList GTGT
         {
-        match(input,LT,FOLLOW_LT_in_synpred44_Haxe909); if (state.failed) return ;
-        pushFollow(FOLLOW_typeList_in_synpred44_Haxe912);
+        match(input,LT,FOLLOW_LT_in_synpred44_Haxe1281); if (state.failed) return ;
+        pushFollow(FOLLOW_typeList_in_synpred44_Haxe1284);
         typeList();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,LT,FOLLOW_LT_in_synpred44_Haxe914); if (state.failed) return ;
-        pushFollow(FOLLOW_typeList_in_synpred44_Haxe917);
+        match(input,LT,FOLLOW_LT_in_synpred44_Haxe1286); if (state.failed) return ;
+        pushFollow(FOLLOW_typeList_in_synpred44_Haxe1289);
         typeList();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,GTGT,FOLLOW_GTGT_in_synpred44_Haxe919); if (state.failed) return ;
+        match(input,GTGT,FOLLOW_GTGT_in_synpred44_Haxe1291); if (state.failed) return ;
 
         }
     }
@@ -12957,10 +13056,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred45_Haxe
     public final void synpred45_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:209:4: ( typeParam )
-        // Haxe.g:209:4: typeParam
+        // Haxe.g:209:10: ( typeParam )
+        // Haxe.g:209:10: typeParam
         {
-        pushFollow(FOLLOW_typeParam_in_synpred45_Haxe960);
+        pushFollow(FOLLOW_typeParam_in_synpred45_Haxe1350);
         typeParam();
 
         state._fsp--;
@@ -12972,10 +13071,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred47_Haxe
     public final void synpred47_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:223:4: ( block )
-        // Haxe.g:223:4: block
+        // Haxe.g:223:10: ( block )
+        // Haxe.g:223:10: block
         {
-        pushFollow(FOLLOW_block_in_synpred47_Haxe1081);
+        pushFollow(FOLLOW_block_in_synpred47_Haxe1507);
         block();
 
         state._fsp--;
@@ -12987,15 +13086,15 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred48_Haxe
     public final void synpred48_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:224:4: ( assignExpr SEMI )
-        // Haxe.g:224:4: assignExpr SEMI
+        // Haxe.g:224:10: ( assignExpr SEMI )
+        // Haxe.g:224:10: assignExpr SEMI
         {
-        pushFollow(FOLLOW_assignExpr_in_synpred48_Haxe1086);
+        pushFollow(FOLLOW_assignExpr_in_synpred48_Haxe1518);
         assignExpr();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,SEMI,FOLLOW_SEMI_in_synpred48_Haxe1088); if (state.failed) return ;
+        match(input,SEMI,FOLLOW_SEMI_in_synpred48_Haxe1520); if (state.failed) return ;
 
         }
     }
@@ -13006,11 +13105,11 @@ public class HaxeParser extends Parser {
         HaxeParser.statement_return st2 = null;
 
 
-        // Haxe.g:226:36: ( ELSE st2= statement )
-        // Haxe.g:226:36: ELSE st2= statement
+        // Haxe.g:226:42: ( ELSE st2= statement )
+        // Haxe.g:226:42: ELSE st2= statement
         {
-        match(input,ELSE,FOLLOW_ELSE_in_synpred50_Haxe1108); if (state.failed) return ;
-        pushFollow(FOLLOW_statement_in_synpred50_Haxe1112);
+        match(input,ELSE,FOLLOW_ELSE_in_synpred50_Haxe1552); if (state.failed) return ;
+        pushFollow(FOLLOW_statement_in_synpred50_Haxe1556);
         st2=statement();
 
         state._fsp--;
@@ -13020,32 +13119,17 @@ public class HaxeParser extends Parser {
     }
     // $ANTLR end synpred50_Haxe
 
-    // $ANTLR start synpred58_Haxe
-    public final void synpred58_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:232:12: ( expr )
-        // Haxe.g:232:12: expr
-        {
-        pushFollow(FOLLOW_expr_in_synpred58_Haxe1320);
-        expr();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred58_Haxe
-
     // $ANTLR start synpred65_Haxe
     public final void synpred65_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:236:4: ( expr SEMI )
-        // Haxe.g:236:4: expr SEMI
+        // Haxe.g:236:10: ( expr SEMI )
+        // Haxe.g:236:10: expr SEMI
         {
-        pushFollow(FOLLOW_expr_in_synpred65_Haxe1414);
+        pushFollow(FOLLOW_expr_in_synpred65_Haxe2014);
         expr();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,SEMI,FOLLOW_SEMI_in_synpred65_Haxe1417); if (state.failed) return ;
+        match(input,SEMI,FOLLOW_SEMI_in_synpred65_Haxe2017); if (state.failed) return ;
 
         }
     }
@@ -13053,12 +13137,12 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred66_Haxe
     public final void synpred66_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:237:4: ( IDENTIFIER COLON statement )
-        // Haxe.g:237:4: IDENTIFIER COLON statement
+        // Haxe.g:237:10: ( IDENTIFIER COLON statement )
+        // Haxe.g:237:10: IDENTIFIER COLON statement
         {
-        match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_synpred66_Haxe1423); if (state.failed) return ;
-        match(input,COLON,FOLLOW_COLON_in_synpred66_Haxe1425); if (state.failed) return ;
-        pushFollow(FOLLOW_statement_in_synpred66_Haxe1427);
+        match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_synpred66_Haxe2029); if (state.failed) return ;
+        match(input,COLON,FOLLOW_COLON_in_synpred66_Haxe2031); if (state.failed) return ;
+        pushFollow(FOLLOW_statement_in_synpred66_Haxe2033);
         statement();
 
         state._fsp--;
@@ -13070,10 +13154,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred69_Haxe
     public final void synpred69_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:250:4: ( varDecl )
-        // Haxe.g:250:4: varDecl
+        // Haxe.g:250:10: ( varDecl )
+        // Haxe.g:250:10: varDecl
         {
-        pushFollow(FOLLOW_varDecl_in_synpred69_Haxe1528);
+        pushFollow(FOLLOW_varDecl_in_synpred69_Haxe2185);
         varDecl();
 
         state._fsp--;
@@ -13085,10 +13169,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred70_Haxe
     public final void synpred70_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:251:4: ( classDecl )
-        // Haxe.g:251:4: classDecl
+        // Haxe.g:251:10: ( classDecl )
+        // Haxe.g:251:10: classDecl
         {
-        pushFollow(FOLLOW_classDecl_in_synpred70_Haxe1533);
+        pushFollow(FOLLOW_classDecl_in_synpred70_Haxe2196);
         classDecl();
 
         state._fsp--;
@@ -13098,86 +13182,21 @@ public class HaxeParser extends Parser {
     }
     // $ANTLR end synpred70_Haxe
 
-    // $ANTLR start synpred73_Haxe
-    public final void synpred73_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:284:4: ( exprList )
-        // Haxe.g:284:4: exprList
-        {
-        pushFollow(FOLLOW_exprList_in_synpred73_Haxe1735);
-        exprList();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred73_Haxe
-
-    // $ANTLR start synpred91_Haxe
-    public final void synpred91_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:321:32: ( ( GT GT ) addExpr )
-        // Haxe.g:321:32: ( GT GT ) addExpr
-        {
-        // Haxe.g:321:32: ( GT GT )
-        // Haxe.g:321:33: GT GT
-        {
-        match(input,GT,FOLLOW_GT_in_synpred91_Haxe1992); if (state.failed) return ;
-        match(input,GT,FOLLOW_GT_in_synpred91_Haxe1994); if (state.failed) return ;
-
-        }
-
-        pushFollow(FOLLOW_addExpr_in_synpred91_Haxe1999);
-        addExpr();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred91_Haxe
-
-    // $ANTLR start synpred103_Haxe
-    public final void synpred103_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:331:11: ( ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE ) prefixExpr )
-        // Haxe.g:331:11: ( SUB | SUBSUB | PLUS | PLUSPLUS | BANG | TILDE ) prefixExpr
-        {
-        if ( (input.LA(1)>=PLUS && input.LA(1)<=SUB)||(input.LA(1)>=SUBSUB && input.LA(1)<=TILDE) ) {
-            input.consume();
-            state.errorRecovery=false;state.failed=false;
-        }
-        else {
-            if (state.backtracking>0) {state.failed=true; return ;}
-            MismatchedSetException mse = new MismatchedSetException(null,input);
-            throw mse;
-        }
-
-        pushFollow(FOLLOW_prefixExpr_in_synpred103_Haxe2104);
-        prefixExpr();
-
-        state._fsp--;
-        if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred103_Haxe
-
     // $ANTLR start synpred106_Haxe
     public final void synpred106_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:338:4: ( value LPAREN exprListOpt RPAREN )
-        // Haxe.g:338:4: value LPAREN exprListOpt RPAREN
+        // Haxe.g:338:10: ( value methodCallOrSliceList )
+        // Haxe.g:338:10: value methodCallOrSliceList
         {
-        pushFollow(FOLLOW_value_in_synpred106_Haxe2159);
+        pushFollow(FOLLOW_value_in_synpred106_Haxe3048);
         value();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,LPAREN,FOLLOW_LPAREN_in_synpred106_Haxe2161); if (state.failed) return ;
-        pushFollow(FOLLOW_exprListOpt_in_synpred106_Haxe2163);
-        exprListOpt();
+        pushFollow(FOLLOW_methodCallOrSliceList_in_synpred106_Haxe3050);
+        methodCallOrSliceList();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,RPAREN,FOLLOW_RPAREN_in_synpred106_Haxe2165); if (state.failed) return ;
 
         }
     }
@@ -13185,21 +13204,15 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred107_Haxe
     public final void synpred107_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:339:4: ( value LBRACKET expr RBRACKET )
-        // Haxe.g:339:4: value LBRACKET expr RBRACKET
+        // Haxe.g:339:10: ( value PLUSPLUS )
+        // Haxe.g:339:10: value PLUSPLUS
         {
-        pushFollow(FOLLOW_value_in_synpred107_Haxe2186);
+        pushFollow(FOLLOW_value_in_synpred107_Haxe3077);
         value();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred107_Haxe2188); if (state.failed) return ;
-        pushFollow(FOLLOW_expr_in_synpred107_Haxe2191);
-        expr();
-
-        state._fsp--;
-        if (state.failed) return ;
-        match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred107_Haxe2193); if (state.failed) return ;
+        match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_synpred107_Haxe3079); if (state.failed) return ;
 
         }
     }
@@ -13207,102 +13220,50 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred108_Haxe
     public final void synpred108_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:340:4: ( value PLUSPLUS )
-        // Haxe.g:340:4: value PLUSPLUS
+        // Haxe.g:340:10: ( value SUBSUB )
+        // Haxe.g:340:10: value SUBSUB
         {
-        pushFollow(FOLLOW_value_in_synpred108_Haxe2199);
+        pushFollow(FOLLOW_value_in_synpred108_Haxe3118);
         value();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_synpred108_Haxe2201); if (state.failed) return ;
+        match(input,SUBSUB,FOLLOW_SUBSUB_in_synpred108_Haxe3120); if (state.failed) return ;
 
         }
     }
     // $ANTLR end synpred108_Haxe
 
-    // $ANTLR start synpred109_Haxe
-    public final void synpred109_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:341:4: ( value SUBSUB )
-        // Haxe.g:341:4: value SUBSUB
+    // $ANTLR start synpred110_Haxe
+    public final void synpred110_Haxe_fragment() throws RecognitionException {   
+        // Haxe.g:350:10: ( methodCallOrSlice methodCallOrSliceList )
+        // Haxe.g:350:10: methodCallOrSlice methodCallOrSliceList
         {
-        pushFollow(FOLLOW_value_in_synpred109_Haxe2225);
-        value();
+        pushFollow(FOLLOW_methodCallOrSlice_in_synpred110_Haxe3245);
+        methodCallOrSlice();
 
         state._fsp--;
         if (state.failed) return ;
-        match(input,SUBSUB,FOLLOW_SUBSUB_in_synpred109_Haxe2227); if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred109_Haxe
-
-    // $ANTLR start synpred111_Haxe
-    public final void synpred111_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:346:5: ( arrayLit )
-        // Haxe.g:346:5: arrayLit
-        {
-        pushFollow(FOLLOW_arrayLit_in_synpred111_Haxe2268);
-        arrayLit();
+        pushFollow(FOLLOW_methodCallOrSliceList_in_synpred110_Haxe3247);
+        methodCallOrSliceList();
 
         state._fsp--;
         if (state.failed) return ;
 
         }
     }
-    // $ANTLR end synpred111_Haxe
+    // $ANTLR end synpred110_Haxe
 
-    // $ANTLR start synpred114_Haxe
-    public final void synpred114_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:349:22: ( expr )
-        // Haxe.g:349:22: expr
+    // $ANTLR start synpred115_Haxe
+    public final void synpred115_Haxe_fragment() throws RecognitionException {   
+        // Haxe.g:359:18: ( expr )
+        // Haxe.g:359:18: expr
         {
-        pushFollow(FOLLOW_expr_in_synpred114_Haxe2314);
+        pushFollow(FOLLOW_expr_in_synpred115_Haxe3322);
         expr();
 
         state._fsp--;
         if (state.failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred114_Haxe
-
-    // $ANTLR start synpred115_Haxe
-    public final void synpred115_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:349:13: ( LPAREN ( expr | statement ) RPAREN )
-        // Haxe.g:349:13: LPAREN ( expr | statement ) RPAREN
-        {
-        match(input,LPAREN,FOLLOW_LPAREN_in_synpred115_Haxe2310); if (state.failed) return ;
-        // Haxe.g:349:21: ( expr | statement )
-        int alt97=2;
-        alt97 = dfa97.predict(input);
-        switch (alt97) {
-            case 1 :
-                // Haxe.g:349:22: expr
-                {
-                pushFollow(FOLLOW_expr_in_synpred115_Haxe2314);
-                expr();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-            case 2 :
-                // Haxe.g:349:27: statement
-                {
-                pushFollow(FOLLOW_statement_in_synpred115_Haxe2316);
-                statement();
-
-                state._fsp--;
-                if (state.failed) return ;
-
-                }
-                break;
-
-        }
-
-        match(input,RPAREN,FOLLOW_RPAREN_in_synpred115_Haxe2319); if (state.failed) return ;
 
         }
     }
@@ -13310,29 +13271,29 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred118_Haxe
     public final void synpred118_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:358:11: ( CAST LPAREN expr ( COMMA funcType )? RPAREN )
-        // Haxe.g:358:11: CAST LPAREN expr ( COMMA funcType )? RPAREN
+        // Haxe.g:367:13: ( CAST LPAREN expr ( COMMA funcType )? RPAREN )
+        // Haxe.g:367:13: CAST LPAREN expr ( COMMA funcType )? RPAREN
         {
-        match(input,CAST,FOLLOW_CAST_in_synpred118_Haxe2419); if (state.failed) return ;
-        match(input,LPAREN,FOLLOW_LPAREN_in_synpred118_Haxe2421); if (state.failed) return ;
-        pushFollow(FOLLOW_expr_in_synpred118_Haxe2423);
+        match(input,CAST,FOLLOW_CAST_in_synpred118_Haxe3418); if (state.failed) return ;
+        match(input,LPAREN,FOLLOW_LPAREN_in_synpred118_Haxe3420); if (state.failed) return ;
+        pushFollow(FOLLOW_expr_in_synpred118_Haxe3422);
         expr();
 
         state._fsp--;
         if (state.failed) return ;
-        // Haxe.g:358:28: ( COMMA funcType )?
-        int alt98=2;
-        int LA98_0 = input.LA(1);
+        // Haxe.g:367:30: ( COMMA funcType )?
+        int alt100=2;
+        int LA100_0 = input.LA(1);
 
-        if ( (LA98_0==COMMA) ) {
-            alt98=1;
+        if ( (LA100_0==COMMA) ) {
+            alt100=1;
         }
-        switch (alt98) {
+        switch (alt100) {
             case 1 :
-                // Haxe.g:358:29: COMMA funcType
+                // Haxe.g:367:31: COMMA funcType
                 {
-                match(input,COMMA,FOLLOW_COMMA_in_synpred118_Haxe2426); if (state.failed) return ;
-                pushFollow(FOLLOW_funcType_in_synpred118_Haxe2428);
+                match(input,COMMA,FOLLOW_COMMA_in_synpred118_Haxe3425); if (state.failed) return ;
+                pushFollow(FOLLOW_funcType_in_synpred118_Haxe3427);
                 funcType();
 
                 state._fsp--;
@@ -13343,7 +13304,7 @@ public class HaxeParser extends Parser {
 
         }
 
-        match(input,RPAREN,FOLLOW_RPAREN_in_synpred118_Haxe2432); if (state.failed) return ;
+        match(input,RPAREN,FOLLOW_RPAREN_in_synpred118_Haxe3431); if (state.failed) return ;
 
         }
     }
@@ -13351,10 +13312,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred119_Haxe
     public final void synpred119_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:366:4: ( classDecl )
-        // Haxe.g:366:4: classDecl
+        // Haxe.g:375:9: ( classDecl )
+        // Haxe.g:375:9: classDecl
         {
-        pushFollow(FOLLOW_classDecl_in_synpred119_Haxe2490);
+        pushFollow(FOLLOW_classDecl_in_synpred119_Haxe3530);
         classDecl();
 
         state._fsp--;
@@ -13366,10 +13327,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred120_Haxe
     public final void synpred120_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:367:4: ( interfaceDecl )
-        // Haxe.g:367:4: interfaceDecl
+        // Haxe.g:376:9: ( interfaceDecl )
+        // Haxe.g:376:9: interfaceDecl
         {
-        pushFollow(FOLLOW_interfaceDecl_in_synpred120_Haxe2495);
+        pushFollow(FOLLOW_interfaceDecl_in_synpred120_Haxe3540);
         interfaceDecl();
 
         state._fsp--;
@@ -13381,10 +13342,10 @@ public class HaxeParser extends Parser {
 
     // $ANTLR start synpred121_Haxe
     public final void synpred121_Haxe_fragment() throws RecognitionException {   
-        // Haxe.g:368:11: ( enumDecl )
-        // Haxe.g:368:11: enumDecl
+        // Haxe.g:377:9: ( enumDecl )
+        // Haxe.g:377:9: enumDecl
         {
-        pushFollow(FOLLOW_enumDecl_in_synpred121_Haxe2507);
+        pushFollow(FOLLOW_enumDecl_in_synpred121_Haxe3550);
         enumDecl();
 
         state._fsp--;
@@ -13396,11 +13357,11 @@ public class HaxeParser extends Parser {
 
     // Delegated rules
 
-    public final boolean synpred58_Haxe() {
+    public final boolean synpred119_Haxe() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred58_Haxe_fragment(); // can never throw exception
+            synpred119_Haxe_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13424,11 +13385,11 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred103_Haxe() {
+    public final boolean synpred66_Haxe() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred103_Haxe_fragment(); // can never throw exception
+            synpred66_Haxe_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13438,11 +13399,11 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred73_Haxe() {
+    public final boolean synpred110_Haxe() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred73_Haxe_fragment(); // can never throw exception
+            synpred110_Haxe_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13452,11 +13413,39 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred111_Haxe() {
+    public final boolean synpred118_Haxe() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred111_Haxe_fragment(); // can never throw exception
+            synpred118_Haxe_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred43_Haxe() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred43_Haxe_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred107_Haxe() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred107_Haxe_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13578,6 +13567,20 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred42_Haxe() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred42_Haxe_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred50_Haxe() {
         state.backtracking++;
         int start = input.mark();
@@ -13592,11 +13595,11 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred42_Haxe() {
+    public final boolean synpred70_Haxe() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred42_Haxe_fragment(); // can never throw exception
+            synpred70_Haxe_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13634,20 +13637,6 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred70_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred70_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred28_Haxe() {
         state.backtracking++;
         int start = input.mark();
@@ -13676,123 +13665,11 @@ public class HaxeParser extends Parser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred114_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred114_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred106_Haxe() {
         state.backtracking++;
         int start = input.mark();
         try {
             synpred106_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred119_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred119_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred66_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred66_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred91_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred91_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred109_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred109_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred118_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred118_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred43_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred43_Haxe_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
-    public final boolean synpred107_Haxe() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred107_Haxe_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -13810,13 +13687,11 @@ public class HaxeParser extends Parser {
     protected DFA35 dfa35 = new DFA35(this);
     protected DFA38 dfa38 = new DFA38(this);
     protected DFA59 dfa59 = new DFA59(this);
-    protected DFA61 dfa61 = new DFA61(this);
-    protected DFA60 dfa60 = new DFA60(this);
-    protected DFA73 dfa73 = new DFA73(this);
-    protected DFA74 dfa74 = new DFA74(this);
+    protected DFA62 dfa62 = new DFA62(this);
+    protected DFA75 dfa75 = new DFA75(this);
     protected DFA76 dfa76 = new DFA76(this);
-    protected DFA77 dfa77 = new DFA77(this);
-    protected DFA97 dfa97 = new DFA97(this);
+    protected DFA78 dfa78 = new DFA78(this);
+    protected DFA79 dfa79 = new DFA79(this);
     static final String DFA26_eotS =
         "\32\uffff";
     static final String DFA26_eofS =
@@ -13990,7 +13865,7 @@ public class HaxeParser extends Parser {
             this.transition = DFA25_transition;
         }
         public String getDescription() {
-            return "()* loopback of 197:47: ( typeParam )*";
+            return "()* loopback of 197:53: ( typeParam )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -14136,53 +14011,26 @@ public class HaxeParser extends Parser {
         }
     }
     static final String DFA35_eotS =
-        "\105\uffff";
+        "\55\uffff";
     static final String DFA35_eofS =
-        "\105\uffff";
+        "\55\uffff";
     static final String DFA35_minS =
-        "\1\21\56\0\21\uffff\1\0\4\uffff";
+        "\1\21\26\0\21\uffff\1\0\4\uffff";
     static final String DFA35_maxS =
-        "\1\154\56\0\21\uffff\1\0\4\uffff";
+        "\1\154\26\0\21\uffff\1\0\4\uffff";
     static final String DFA35_acceptS =
-        "\57\uffff\1\3\5\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14"+
+        "\27\uffff\1\3\5\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14"+
         "\1\15\1\16\1\uffff\1\1\1\2\1\20\1\17";
     static final String DFA35_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
-        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
-        "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
-        "\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\21\uffff\1\56\4\uffff}>";
+        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\21\uffff\1\26\4"+
+        "\uffff}>";
     static final String[] DFA35_transitionS = {
-            "\1\2\1\uffff\1\25\1\uffff\1\26\2\uffff\1\57\3\uffff\5\57\1"+
-            "\uffff\1\47\1\100\1\51\1\52\1\53\1\54\1\55\1\56\1\13\1\14\6"+
-            "\uffff\1\27\1\34\1\uffff\1\35\1\11\1\65\1\uffff\1\66\1\uffff"+
-            "\1\67\1\70\1\71\1\72\1\1\1\uffff\1\73\1\74\1\75\1\76\3\uffff"+
-            "\1\77\1\50\1\46\1\45\1\41\1\42\1\43\1\44\1\36\1\37\1\40\1\33"+
-            "\1\5\1\3\1\30\1\31\1\32\1\4\1\6\1\7\1\10\1\12\1\uffff\1\57\1"+
-            "\16\5\uffff\1\15\1\17\1\20\1\21\1\22\1\23\1\24",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
+            "\1\2\1\uffff\1\25\1\uffff\1\26\2\uffff\1\27\3\uffff\5\27\2"+
+            "\uffff\1\50\6\uffff\1\13\1\14\12\uffff\1\11\1\35\1\uffff\1\36"+
+            "\1\uffff\1\37\1\40\1\41\1\42\1\1\1\uffff\1\43\1\44\1\45\1\46"+
+            "\3\uffff\1\47\13\uffff\1\5\1\3\3\uffff\1\4\1\6\1\7\1\10\1\12"+
+            "\1\uffff\1\27\1\16\5\uffff\1\15\1\17\1\20\1\21\1\22\1\23\1\24",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -14272,11 +14120,11 @@ public class HaxeParser extends Parser {
                         int index35_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred47_Haxe()) ) {s = 65;}
+                        if ( (synpred47_Haxe()) ) {s = 41;}
 
-                        else if ( (synpred48_Haxe()) ) {s = 66;}
+                        else if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_1);
@@ -14289,13 +14137,9 @@ public class HaxeParser extends Parser {
                         int index35_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred47_Haxe()) ) {s = 65;}
+                        if ( (synpred47_Haxe()) ) {s = 41;}
 
-                        else if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                        else if ( (true) ) {s = 67;}
+                        else if ( (true) ) {s = 43;}
 
                          
                         input.seek(index35_2);
@@ -14308,9 +14152,9 @@ public class HaxeParser extends Parser {
                         int index35_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_3);
@@ -14323,9 +14167,9 @@ public class HaxeParser extends Parser {
                         int index35_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_4);
@@ -14338,9 +14182,9 @@ public class HaxeParser extends Parser {
                         int index35_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_5);
@@ -14353,9 +14197,9 @@ public class HaxeParser extends Parser {
                         int index35_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_6);
@@ -14368,9 +14212,9 @@ public class HaxeParser extends Parser {
                         int index35_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_7);
@@ -14383,9 +14227,9 @@ public class HaxeParser extends Parser {
                         int index35_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_8);
@@ -14398,9 +14242,9 @@ public class HaxeParser extends Parser {
                         int index35_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_9);
@@ -14413,9 +14257,9 @@ public class HaxeParser extends Parser {
                         int index35_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_10);
@@ -14428,9 +14272,9 @@ public class HaxeParser extends Parser {
                         int index35_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_11);
@@ -14443,9 +14287,9 @@ public class HaxeParser extends Parser {
                         int index35_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_12);
@@ -14458,9 +14302,9 @@ public class HaxeParser extends Parser {
                         int index35_13 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_13);
@@ -14473,9 +14317,9 @@ public class HaxeParser extends Parser {
                         int index35_14 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_14);
@@ -14488,9 +14332,9 @@ public class HaxeParser extends Parser {
                         int index35_15 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_15);
@@ -14503,9 +14347,9 @@ public class HaxeParser extends Parser {
                         int index35_16 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_16);
@@ -14518,9 +14362,9 @@ public class HaxeParser extends Parser {
                         int index35_17 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_17);
@@ -14533,9 +14377,9 @@ public class HaxeParser extends Parser {
                         int index35_18 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_18);
@@ -14548,9 +14392,9 @@ public class HaxeParser extends Parser {
                         int index35_19 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_19);
@@ -14563,9 +14407,9 @@ public class HaxeParser extends Parser {
                         int index35_20 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_20);
@@ -14578,9 +14422,9 @@ public class HaxeParser extends Parser {
                         int index35_21 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_21);
@@ -14593,389 +14437,29 @@ public class HaxeParser extends Parser {
                         int index35_22 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
-                        else if ( (synpred66_Haxe()) ) {s = 68;}
+                        else if ( (synpred66_Haxe()) ) {s = 44;}
 
                          
                         input.seek(index35_22);
                         if ( s>=0 ) return s;
                         break;
                     case 22 : 
-                        int LA35_23 = input.LA(1);
-
-                         
-                        int index35_23 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_23);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 23 : 
-                        int LA35_24 = input.LA(1);
-
-                         
-                        int index35_24 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_24);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 24 : 
-                        int LA35_25 = input.LA(1);
-
-                         
-                        int index35_25 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_25);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 25 : 
-                        int LA35_26 = input.LA(1);
-
-                         
-                        int index35_26 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_26);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
-                        int LA35_27 = input.LA(1);
-
-                         
-                        int index35_27 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_27);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 27 : 
-                        int LA35_28 = input.LA(1);
-
-                         
-                        int index35_28 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_28);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 28 : 
-                        int LA35_29 = input.LA(1);
-
-                         
-                        int index35_29 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_29);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 29 : 
-                        int LA35_30 = input.LA(1);
-
-                         
-                        int index35_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 30 : 
-                        int LA35_31 = input.LA(1);
-
-                         
-                        int index35_31 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_31);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 31 : 
-                        int LA35_32 = input.LA(1);
-
-                         
-                        int index35_32 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_32);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 32 : 
-                        int LA35_33 = input.LA(1);
-
-                         
-                        int index35_33 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_33);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 33 : 
-                        int LA35_34 = input.LA(1);
-
-                         
-                        int index35_34 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_34);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 34 : 
-                        int LA35_35 = input.LA(1);
-
-                         
-                        int index35_35 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_35);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 35 : 
-                        int LA35_36 = input.LA(1);
-
-                         
-                        int index35_36 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_36);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 36 : 
-                        int LA35_37 = input.LA(1);
-
-                         
-                        int index35_37 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_37);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 37 : 
-                        int LA35_38 = input.LA(1);
-
-                         
-                        int index35_38 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_38);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 38 : 
-                        int LA35_39 = input.LA(1);
-
-                         
-                        int index35_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 39 : 
                         int LA35_40 = input.LA(1);
 
                          
                         int index35_40 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
+                        if ( (synpred48_Haxe()) ) {s = 42;}
 
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
+                        else if ( (synpred65_Haxe()) ) {s = 39;}
 
                          
                         input.seek(index35_40);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 40 : 
-                        int LA35_41 = input.LA(1);
-
-                         
-                        int index35_41 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_41);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 41 : 
-                        int LA35_42 = input.LA(1);
-
-                         
-                        int index35_42 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_42);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 42 : 
-                        int LA35_43 = input.LA(1);
-
-                         
-                        int index35_43 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_43);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 43 : 
-                        int LA35_44 = input.LA(1);
-
-                         
-                        int index35_44 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_44);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 44 : 
-                        int LA35_45 = input.LA(1);
-
-                         
-                        int index35_45 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_45);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 45 : 
-                        int LA35_46 = input.LA(1);
-
-                         
-                        int index35_46 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_46);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 46 : 
-                        int LA35_64 = input.LA(1);
-
-                         
-                        int index35_64 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred48_Haxe()) ) {s = 66;}
-
-                        else if ( (synpred65_Haxe()) ) {s = 63;}
-
-                         
-                        input.seek(index35_64);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -14987,22 +14471,22 @@ public class HaxeParser extends Parser {
         }
     }
     static final String DFA38_eotS =
-        "\106\uffff";
+        "\56\uffff";
     static final String DFA38_eofS =
-        "\106\uffff";
+        "\56\uffff";
     static final String DFA38_minS =
-        "\1\21\6\0\1\uffff\1\0\75\uffff";
+        "\1\21\6\0\1\uffff\1\0\45\uffff";
     static final String DFA38_maxS =
-        "\1\154\6\0\1\uffff\1\0\75\uffff";
+        "\1\154\6\0\1\uffff\1\0\45\uffff";
     static final String DFA38_acceptS =
-        "\7\uffff\1\2\3\uffff\1\3\71\uffff\1\1";
+        "\7\uffff\1\2\3\uffff\1\3\41\uffff\1\1";
     static final String DFA38_specialS =
-        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\uffff\1\6\75\uffff}>";
+        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\uffff\1\6\45\uffff}>";
     static final String[] DFA38_transitionS = {
             "\1\13\1\7\1\13\1\uffff\1\13\1\uffff\1\7\1\5\3\uffff\1\10\1"+
-            "\1\1\2\1\3\1\4\1\uffff\12\13\6\uffff\2\13\1\uffff\3\13\1\uffff"+
-            "\1\13\1\uffff\5\13\1\uffff\4\13\3\uffff\26\13\1\uffff\1\6\1"+
-            "\13\1\7\4\uffff\7\13",
+            "\1\1\2\1\3\1\4\2\uffff\1\13\6\uffff\2\13\12\uffff\2\13\1\uffff"+
+            "\1\13\1\uffff\5\13\1\uffff\4\13\3\uffff\1\13\13\uffff\2\13\3"+
+            "\uffff\5\13\1\uffff\1\6\1\13\1\7\4\uffff\7\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -15011,30 +14495,6 @@ public class HaxeParser extends Parser {
             "\1\uffff",
             "",
             "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "",
             "",
             "",
@@ -15117,7 +14577,7 @@ public class HaxeParser extends Parser {
                         int index38_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (true) ) {s = 11;}
 
@@ -15132,7 +14592,7 @@ public class HaxeParser extends Parser {
                         int index38_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (true) ) {s = 11;}
 
@@ -15147,7 +14607,7 @@ public class HaxeParser extends Parser {
                         int index38_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (true) ) {s = 11;}
 
@@ -15162,7 +14622,7 @@ public class HaxeParser extends Parser {
                         int index38_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (true) ) {s = 11;}
 
@@ -15177,7 +14637,7 @@ public class HaxeParser extends Parser {
                         int index38_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (synpred70_Haxe()) ) {s = 7;}
 
@@ -15194,7 +14654,7 @@ public class HaxeParser extends Parser {
                         int index38_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (true) ) {s = 11;}
 
@@ -15209,7 +14669,7 @@ public class HaxeParser extends Parser {
                         int index38_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred69_Haxe()) ) {s = 69;}
+                        if ( (synpred69_Haxe()) ) {s = 45;}
 
                         else if ( (true) ) {s = 11;}
 
@@ -15226,23 +14686,21 @@ public class HaxeParser extends Parser {
         }
     }
     static final String DFA59_eotS =
-        "\64\uffff";
+        "\22\uffff";
     static final String DFA59_eofS =
-        "\1\20\63\uffff";
+        "\22\uffff";
     static final String DFA59_minS =
-        "\1\21\15\0\46\uffff";
+        "\1\23\15\0\4\uffff";
     static final String DFA59_maxS =
-        "\1\154\15\0\46\uffff";
+        "\1\154\15\0\4\uffff";
     static final String DFA59_acceptS =
-        "\16\uffff\1\3\1\4\1\5\41\uffff\1\1\1\2";
+        "\16\uffff\1\1\1\2\1\3\1\4";
     static final String DFA59_specialS =
         "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
-        "\14\46\uffff}>";
+        "\14\4\uffff}>";
     static final String[] DFA59_transitionS = {
-            "\1\20\1\uffff\1\14\1\20\1\15\1\20\12\uffff\2\20\1\15\6\20\1"+
-            "\1\1\2\1\20\5\uffff\2\20\1\uffff\1\20\4\uffff\1\20\4\uffff\1"+
-            "\3\1\20\10\uffff\20\20\1\17\1\16\5\uffff\1\5\5\uffff\1\4\1\6"+
-            "\1\7\1\10\1\11\1\12\1\13",
+            "\1\14\1\uffff\1\15\15\uffff\1\15\6\uffff\1\1\1\2\23\uffff\1"+
+            "\3\40\uffff\1\5\5\uffff\1\4\1\6\1\7\1\10\1\11\1\12\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -15256,40 +14714,6 @@ public class HaxeParser extends Parser {
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "",
             "",
             "",
@@ -15326,7 +14750,7 @@ public class HaxeParser extends Parser {
             this.transition = DFA59_transition;
         }
         public String getDescription() {
-            return "337:1: suffixExpr : ( value LPAREN exprListOpt RPAREN -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( exprListOpt )? ) | value LBRACKET expr RBRACKET | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt );";
+            return "337:1: suffixExpr : ( value methodCallOrSliceList -> ^( SUFFIX_EXPR[\"CallOrSlice\",true] ( value )? ( methodCallOrSliceList )? ) | value PLUSPLUS -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? ( PLUSPLUS )? ) | value SUBSUB -> ^( SUFFIX_EXPR[\"SUFFIX_EXPR\",true] ( value )? SUBSUB ) | value typeParamOpt );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -15339,15 +14763,13 @@ public class HaxeParser extends Parser {
                         int index59_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_1);
@@ -15360,15 +14782,13 @@ public class HaxeParser extends Parser {
                         int index59_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_2);
@@ -15381,15 +14801,13 @@ public class HaxeParser extends Parser {
                         int index59_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_3);
@@ -15402,15 +14820,13 @@ public class HaxeParser extends Parser {
                         int index59_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_4);
@@ -15423,15 +14839,13 @@ public class HaxeParser extends Parser {
                         int index59_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_5);
@@ -15444,15 +14858,13 @@ public class HaxeParser extends Parser {
                         int index59_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_6);
@@ -15465,15 +14877,13 @@ public class HaxeParser extends Parser {
                         int index59_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_7);
@@ -15486,15 +14896,13 @@ public class HaxeParser extends Parser {
                         int index59_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_8);
@@ -15507,15 +14915,13 @@ public class HaxeParser extends Parser {
                         int index59_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_9);
@@ -15528,15 +14934,13 @@ public class HaxeParser extends Parser {
                         int index59_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_10);
@@ -15549,15 +14953,13 @@ public class HaxeParser extends Parser {
                         int index59_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_11);
@@ -15570,15 +14972,13 @@ public class HaxeParser extends Parser {
                         int index59_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_12);
@@ -15591,15 +14991,13 @@ public class HaxeParser extends Parser {
                         int index59_13 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred106_Haxe()) ) {s = 50;}
+                        if ( (synpred106_Haxe()) ) {s = 14;}
 
-                        else if ( (synpred107_Haxe()) ) {s = 51;}
+                        else if ( (synpred107_Haxe()) ) {s = 15;}
 
-                        else if ( (synpred108_Haxe()) ) {s = 14;}
+                        else if ( (synpred108_Haxe()) ) {s = 16;}
 
-                        else if ( (synpred109_Haxe()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 16;}
+                        else if ( (true) ) {s = 17;}
 
                          
                         input.seek(index59_13);
@@ -15613,23 +15011,47 @@ public class HaxeParser extends Parser {
             throw nvae;
         }
     }
-    static final String DFA61_eotS =
-        "\64\uffff";
-    static final String DFA61_eofS =
-        "\1\16\63\uffff";
-    static final String DFA61_minS =
-        "\1\21\1\uffff\1\0\11\uffff\1\0\47\uffff";
-    static final String DFA61_maxS =
-        "\1\154\1\uffff\1\0\11\uffff\1\0\47\uffff";
-    static final String DFA61_acceptS =
-        "\1\uffff\1\1\1\uffff\1\3\1\4\10\uffff\1\6\1\7\43\uffff\1\2\1\5";
-    static final String DFA61_specialS =
-        "\2\uffff\1\0\11\uffff\1\1\47\uffff}>";
-    static final String[] DFA61_transitionS = {
-            "\1\16\1\uffff\1\14\1\16\1\15\1\16\12\uffff\2\16\1\15\6\16\1"+
-            "\1\1\2\1\16\5\uffff\2\16\1\uffff\1\16\4\uffff\1\16\4\uffff\1"+
-            "\3\1\16\10\uffff\22\16\5\uffff\1\4\5\uffff\7\4",
-            "",
+    static final String DFA62_eotS =
+        "\52\uffff";
+    static final String DFA62_eofS =
+        "\52\uffff";
+    static final String DFA62_minS =
+        "\1\21\26\0\21\uffff\1\0\1\uffff";
+    static final String DFA62_maxS =
+        "\1\154\26\0\21\uffff\1\0\1\uffff";
+    static final String DFA62_acceptS =
+        "\27\uffff\1\2\21\uffff\1\1";
+    static final String DFA62_specialS =
+        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
+        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\21\uffff\1\26\1"+
+        "\uffff}>";
+    static final String[] DFA62_transitionS = {
+            "\1\27\1\uffff\1\24\1\uffff\1\25\2\uffff\1\27\3\uffff\5\27\2"+
+            "\uffff\1\50\6\uffff\1\11\1\12\12\uffff\1\7\1\27\1\uffff\1\27"+
+            "\1\uffff\4\27\1\13\1\uffff\4\27\3\uffff\1\26\13\uffff\1\3\1"+
+            "\1\3\uffff\1\2\1\4\1\5\1\6\1\10\1\uffff\1\27\1\15\5\uffff\1"+
+            "\14\1\16\1\17\1\20\1\21\1\22\1\23",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
             "\1\uffff",
             "",
             "",
@@ -15640,974 +15062,420 @@ public class HaxeParser extends Parser {
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             ""
     };
 
-    static final short[] DFA61_eot = DFA.unpackEncodedString(DFA61_eotS);
-    static final short[] DFA61_eof = DFA.unpackEncodedString(DFA61_eofS);
-    static final char[] DFA61_min = DFA.unpackEncodedStringToUnsignedChars(DFA61_minS);
-    static final char[] DFA61_max = DFA.unpackEncodedStringToUnsignedChars(DFA61_maxS);
-    static final short[] DFA61_accept = DFA.unpackEncodedString(DFA61_acceptS);
-    static final short[] DFA61_special = DFA.unpackEncodedString(DFA61_specialS);
-    static final short[][] DFA61_transition;
+    static final short[] DFA62_eot = DFA.unpackEncodedString(DFA62_eotS);
+    static final short[] DFA62_eof = DFA.unpackEncodedString(DFA62_eofS);
+    static final char[] DFA62_min = DFA.unpackEncodedStringToUnsignedChars(DFA62_minS);
+    static final char[] DFA62_max = DFA.unpackEncodedStringToUnsignedChars(DFA62_maxS);
+    static final short[] DFA62_accept = DFA.unpackEncodedString(DFA62_acceptS);
+    static final short[] DFA62_special = DFA.unpackEncodedString(DFA62_specialS);
+    static final short[][] DFA62_transition;
 
     static {
-        int numStates = DFA61_transitionS.length;
-        DFA61_transition = new short[numStates][];
+        int numStates = DFA62_transitionS.length;
+        DFA62_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA61_transition[i] = DFA.unpackEncodedString(DFA61_transitionS[i]);
+            DFA62_transition[i] = DFA.unpackEncodedString(DFA62_transitionS[i]);
         }
     }
 
-    class DFA61 extends DFA {
+    class DFA62 extends DFA {
 
-        public DFA61(BaseRecognizer recognizer) {
+        public DFA62(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 61;
-            this.eot = DFA61_eot;
-            this.eof = DFA61_eof;
-            this.min = DFA61_min;
-            this.max = DFA61_max;
-            this.accept = DFA61_accept;
-            this.special = DFA61_special;
-            this.transition = DFA61_transition;
+            this.decisionNumber = 62;
+            this.eot = DFA62_eot;
+            this.eof = DFA62_eof;
+            this.min = DFA62_min;
+            this.max = DFA62_max;
+            this.accept = DFA62_accept;
+            this.special = DFA62_special;
+            this.transition = DFA62_transition;
         }
         public String getDescription() {
-            return "345:1: value : ( funcLit | arrayLit | objLit | elementarySymbol | LPAREN ( expr | statement ) RPAREN | dotIdent -> ^( IDENT[true] dotIdent ) | );";
+            return "359:17: ( expr | statement )";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA61_2 = input.LA(1);
+                        int LA62_1 = input.LA(1);
 
                          
-                        int index61_2 = input.index();
+                        int index62_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred111_Haxe()) ) {s = 50;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 14;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index61_2);
+                        input.seek(index62_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA61_12 = input.LA(1);
+                        int LA62_2 = input.LA(1);
 
                          
-                        int index61_12 = input.index();
+                        int index62_2 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_Haxe()) ) {s = 51;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 14;}
-
-                         
-                        input.seek(index61_12);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 61, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
-    static final String DFA60_eotS =
-        "\102\uffff";
-    static final String DFA60_eofS =
-        "\102\uffff";
-    static final String DFA60_minS =
-        "\1\21\55\0\1\uffff\1\0\21\uffff\1\0";
-    static final String DFA60_maxS =
-        "\1\154\55\0\1\uffff\1\0\21\uffff\1\0";
-    static final String DFA60_acceptS =
-        "\56\uffff\1\1\1\uffff\1\2\21\uffff";
-    static final String DFA60_specialS =
-        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
-        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
-        "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
-        "\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\uffff\1\55\21\uffff\1\56}>";
-    static final String[] DFA60_transitionS = {
-            "\1\60\1\uffff\1\24\1\56\1\25\2\uffff\1\60\3\uffff\5\60\1\uffff"+
-            "\1\46\1\101\1\50\1\51\1\52\1\53\1\54\1\55\1\11\1\12\6\uffff"+
-            "\1\26\1\33\1\uffff\1\34\1\7\1\60\1\uffff\1\60\1\uffff\4\60\1"+
-            "\13\1\uffff\4\60\3\uffff\1\57\1\47\1\45\1\44\1\40\1\41\1\42"+
-            "\1\43\1\35\1\36\1\37\1\32\1\3\1\1\1\27\1\30\1\31\1\2\1\4\1\5"+
-            "\1\6\1\10\1\uffff\1\60\1\15\5\uffff\1\14\1\16\1\17\1\20\1\21"+
-            "\1\22\1\23",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\uffff"
-    };
-
-    static final short[] DFA60_eot = DFA.unpackEncodedString(DFA60_eotS);
-    static final short[] DFA60_eof = DFA.unpackEncodedString(DFA60_eofS);
-    static final char[] DFA60_min = DFA.unpackEncodedStringToUnsignedChars(DFA60_minS);
-    static final char[] DFA60_max = DFA.unpackEncodedStringToUnsignedChars(DFA60_maxS);
-    static final short[] DFA60_accept = DFA.unpackEncodedString(DFA60_acceptS);
-    static final short[] DFA60_special = DFA.unpackEncodedString(DFA60_specialS);
-    static final short[][] DFA60_transition;
-
-    static {
-        int numStates = DFA60_transitionS.length;
-        DFA60_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA60_transition[i] = DFA.unpackEncodedString(DFA60_transitionS[i]);
-        }
-    }
-
-    class DFA60 extends DFA {
-
-        public DFA60(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 60;
-            this.eot = DFA60_eot;
-            this.eof = DFA60_eof;
-            this.min = DFA60_min;
-            this.max = DFA60_max;
-            this.accept = DFA60_accept;
-            this.special = DFA60_special;
-            this.transition = DFA60_transition;
-        }
-        public String getDescription() {
-            return "349:21: ( expr | statement )";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA60_1 = input.LA(1);
+                        else if ( (true) ) {s = 23;}
 
                          
-                        int index60_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA60_2 = input.LA(1);
-
-                         
-                        int index60_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_2);
+                        input.seek(index62_2);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA60_3 = input.LA(1);
+                        int LA62_3 = input.LA(1);
 
                          
-                        int index60_3 = input.index();
+                        int index62_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_3);
+                        input.seek(index62_3);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA60_4 = input.LA(1);
+                        int LA62_4 = input.LA(1);
 
                          
-                        int index60_4 = input.index();
+                        int index62_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_4);
+                        input.seek(index62_4);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA60_5 = input.LA(1);
+                        int LA62_5 = input.LA(1);
 
                          
-                        int index60_5 = input.index();
+                        int index62_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_5);
+                        input.seek(index62_5);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA60_6 = input.LA(1);
+                        int LA62_6 = input.LA(1);
 
                          
-                        int index60_6 = input.index();
+                        int index62_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_6);
+                        input.seek(index62_6);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA60_7 = input.LA(1);
+                        int LA62_7 = input.LA(1);
 
                          
-                        int index60_7 = input.index();
+                        int index62_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_7);
+                        input.seek(index62_7);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA60_8 = input.LA(1);
+                        int LA62_8 = input.LA(1);
 
                          
-                        int index60_8 = input.index();
+                        int index62_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_8);
+                        input.seek(index62_8);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA60_9 = input.LA(1);
+                        int LA62_9 = input.LA(1);
 
                          
-                        int index60_9 = input.index();
+                        int index62_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_9);
+                        input.seek(index62_9);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA60_10 = input.LA(1);
+                        int LA62_10 = input.LA(1);
 
                          
-                        int index60_10 = input.index();
+                        int index62_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_10);
+                        input.seek(index62_10);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA60_11 = input.LA(1);
+                        int LA62_11 = input.LA(1);
 
                          
-                        int index60_11 = input.index();
+                        int index62_11 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_11);
+                        input.seek(index62_11);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA60_12 = input.LA(1);
+                        int LA62_12 = input.LA(1);
 
                          
-                        int index60_12 = input.index();
+                        int index62_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_12);
+                        input.seek(index62_12);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA60_13 = input.LA(1);
+                        int LA62_13 = input.LA(1);
 
                          
-                        int index60_13 = input.index();
+                        int index62_13 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_13);
+                        input.seek(index62_13);
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
-                        int LA60_14 = input.LA(1);
+                        int LA62_14 = input.LA(1);
 
                          
-                        int index60_14 = input.index();
+                        int index62_14 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_14);
+                        input.seek(index62_14);
                         if ( s>=0 ) return s;
                         break;
                     case 14 : 
-                        int LA60_15 = input.LA(1);
+                        int LA62_15 = input.LA(1);
 
                          
-                        int index60_15 = input.index();
+                        int index62_15 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_15);
+                        input.seek(index62_15);
                         if ( s>=0 ) return s;
                         break;
                     case 15 : 
-                        int LA60_16 = input.LA(1);
+                        int LA62_16 = input.LA(1);
 
                          
-                        int index60_16 = input.index();
+                        int index62_16 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_16);
+                        input.seek(index62_16);
                         if ( s>=0 ) return s;
                         break;
                     case 16 : 
-                        int LA60_17 = input.LA(1);
+                        int LA62_17 = input.LA(1);
 
                          
-                        int index60_17 = input.index();
+                        int index62_17 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_17);
+                        input.seek(index62_17);
                         if ( s>=0 ) return s;
                         break;
                     case 17 : 
-                        int LA60_18 = input.LA(1);
+                        int LA62_18 = input.LA(1);
 
                          
-                        int index60_18 = input.index();
+                        int index62_18 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_18);
+                        input.seek(index62_18);
                         if ( s>=0 ) return s;
                         break;
                     case 18 : 
-                        int LA60_19 = input.LA(1);
+                        int LA62_19 = input.LA(1);
 
                          
-                        int index60_19 = input.index();
+                        int index62_19 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_19);
+                        input.seek(index62_19);
                         if ( s>=0 ) return s;
                         break;
                     case 19 : 
-                        int LA60_20 = input.LA(1);
+                        int LA62_20 = input.LA(1);
 
                          
-                        int index60_20 = input.index();
+                        int index62_20 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_20);
+                        input.seek(index62_20);
                         if ( s>=0 ) return s;
                         break;
                     case 20 : 
-                        int LA60_21 = input.LA(1);
+                        int LA62_21 = input.LA(1);
 
                          
-                        int index60_21 = input.index();
+                        int index62_21 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_21);
+                        input.seek(index62_21);
                         if ( s>=0 ) return s;
                         break;
                     case 21 : 
-                        int LA60_22 = input.LA(1);
+                        int LA62_22 = input.LA(1);
 
                          
-                        int index60_22 = input.index();
+                        int index62_22 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index60_22);
+                        input.seek(index62_22);
                         if ( s>=0 ) return s;
                         break;
                     case 22 : 
-                        int LA60_23 = input.LA(1);
+                        int LA62_40 = input.LA(1);
 
                          
-                        int index60_23 = input.index();
+                        int index62_40 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
+                        if ( (synpred115_Haxe()) ) {s = 41;}
 
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_23);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 23 : 
-                        int LA60_24 = input.LA(1);
+                        else if ( (true) ) {s = 23;}
 
                          
-                        int index60_24 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_24);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 24 : 
-                        int LA60_25 = input.LA(1);
-
-                         
-                        int index60_25 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_25);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 25 : 
-                        int LA60_26 = input.LA(1);
-
-                         
-                        int index60_26 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_26);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
-                        int LA60_27 = input.LA(1);
-
-                         
-                        int index60_27 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_27);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 27 : 
-                        int LA60_28 = input.LA(1);
-
-                         
-                        int index60_28 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_28);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 28 : 
-                        int LA60_29 = input.LA(1);
-
-                         
-                        int index60_29 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_29);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 29 : 
-                        int LA60_30 = input.LA(1);
-
-                         
-                        int index60_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 30 : 
-                        int LA60_31 = input.LA(1);
-
-                         
-                        int index60_31 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_31);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 31 : 
-                        int LA60_32 = input.LA(1);
-
-                         
-                        int index60_32 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_32);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 32 : 
-                        int LA60_33 = input.LA(1);
-
-                         
-                        int index60_33 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_33);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 33 : 
-                        int LA60_34 = input.LA(1);
-
-                         
-                        int index60_34 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_34);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 34 : 
-                        int LA60_35 = input.LA(1);
-
-                         
-                        int index60_35 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_35);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 35 : 
-                        int LA60_36 = input.LA(1);
-
-                         
-                        int index60_36 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_36);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 36 : 
-                        int LA60_37 = input.LA(1);
-
-                         
-                        int index60_37 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_37);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 37 : 
-                        int LA60_38 = input.LA(1);
-
-                         
-                        int index60_38 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_38);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 38 : 
-                        int LA60_39 = input.LA(1);
-
-                         
-                        int index60_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 39 : 
-                        int LA60_40 = input.LA(1);
-
-                         
-                        int index60_40 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_40);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 40 : 
-                        int LA60_41 = input.LA(1);
-
-                         
-                        int index60_41 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_41);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 41 : 
-                        int LA60_42 = input.LA(1);
-
-                         
-                        int index60_42 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_42);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 42 : 
-                        int LA60_43 = input.LA(1);
-
-                         
-                        int index60_43 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_43);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 43 : 
-                        int LA60_44 = input.LA(1);
-
-                         
-                        int index60_44 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_44);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 44 : 
-                        int LA60_45 = input.LA(1);
-
-                         
-                        int index60_45 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_45);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 45 : 
-                        int LA60_47 = input.LA(1);
-
-                         
-                        int index60_47 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_47);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 46 : 
-                        int LA60_65 = input.LA(1);
-
-                         
-                        int index60_65 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index60_65);
+                        input.seek(index62_40);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 60, _s, input);
+                new NoViableAltException(getDescription(), 62, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String DFA73_eotS =
+    static final String DFA75_eotS =
         "\11\uffff";
-    static final String DFA73_eofS =
+    static final String DFA75_eofS =
         "\11\uffff";
-    static final String DFA73_minS =
+    static final String DFA75_minS =
         "\6\30\1\25\2\uffff";
-    static final String DFA73_maxS =
+    static final String DFA75_maxS =
         "\6\52\1\66\2\uffff";
-    static final String DFA73_acceptS =
+    static final String DFA75_acceptS =
         "\7\uffff\1\1\1\2";
-    static final String DFA73_specialS =
+    static final String DFA75_specialS =
         "\11\uffff}>";
-    static final String[] DFA73_transitionS = {
+    static final String[] DFA75_transitionS = {
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\6",
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\6",
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\6",
@@ -16619,52 +15487,52 @@ public class HaxeParser extends Parser {
             ""
     };
 
-    static final short[] DFA73_eot = DFA.unpackEncodedString(DFA73_eotS);
-    static final short[] DFA73_eof = DFA.unpackEncodedString(DFA73_eofS);
-    static final char[] DFA73_min = DFA.unpackEncodedStringToUnsignedChars(DFA73_minS);
-    static final char[] DFA73_max = DFA.unpackEncodedStringToUnsignedChars(DFA73_maxS);
-    static final short[] DFA73_accept = DFA.unpackEncodedString(DFA73_acceptS);
-    static final short[] DFA73_special = DFA.unpackEncodedString(DFA73_specialS);
-    static final short[][] DFA73_transition;
+    static final short[] DFA75_eot = DFA.unpackEncodedString(DFA75_eotS);
+    static final short[] DFA75_eof = DFA.unpackEncodedString(DFA75_eofS);
+    static final char[] DFA75_min = DFA.unpackEncodedStringToUnsignedChars(DFA75_minS);
+    static final char[] DFA75_max = DFA.unpackEncodedStringToUnsignedChars(DFA75_maxS);
+    static final short[] DFA75_accept = DFA.unpackEncodedString(DFA75_acceptS);
+    static final short[] DFA75_special = DFA.unpackEncodedString(DFA75_specialS);
+    static final short[][] DFA75_transition;
 
     static {
-        int numStates = DFA73_transitionS.length;
-        DFA73_transition = new short[numStates][];
+        int numStates = DFA75_transitionS.length;
+        DFA75_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA73_transition[i] = DFA.unpackEncodedString(DFA73_transitionS[i]);
+            DFA75_transition[i] = DFA.unpackEncodedString(DFA75_transitionS[i]);
         }
     }
 
-    class DFA73 extends DFA {
+    class DFA75 extends DFA {
 
-        public DFA73(BaseRecognizer recognizer) {
+        public DFA75(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 73;
-            this.eot = DFA73_eot;
-            this.eof = DFA73_eof;
-            this.min = DFA73_min;
-            this.max = DFA73_max;
-            this.accept = DFA73_accept;
-            this.special = DFA73_special;
-            this.transition = DFA73_transition;
+            this.decisionNumber = 75;
+            this.eot = DFA75_eot;
+            this.eof = DFA75_eof;
+            this.min = DFA75_min;
+            this.max = DFA75_max;
+            this.accept = DFA75_accept;
+            this.special = DFA75_special;
+            this.transition = DFA75_transition;
         }
         public String getDescription() {
-            return "418:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) );";
+            return "427:1: funcDecl : ( ( declAttrList )? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION NEW ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ) | ( declAttrList )? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block -> ^( FUNCTION IDENTIFIER ( declAttrList )? ( paramList )? ( typeTagOpt )? ( block )? ( typeParamOpt )? ) );";
         }
     }
-    static final String DFA74_eotS =
+    static final String DFA76_eotS =
         "\14\uffff";
-    static final String DFA74_eofS =
+    static final String DFA76_eofS =
         "\14\uffff";
-    static final String DFA74_minS =
+    static final String DFA76_minS =
         "\6\30\2\25\4\uffff";
-    static final String DFA74_maxS =
+    static final String DFA76_maxS =
         "\6\52\2\66\4\uffff";
-    static final String DFA74_acceptS =
+    static final String DFA76_acceptS =
         "\10\uffff\1\3\1\4\1\1\1\2";
-    static final String DFA74_specialS =
+    static final String DFA76_specialS =
         "\14\uffff}>";
-    static final String[] DFA74_transitionS = {
+    static final String[] DFA76_transitionS = {
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\6",
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\7",
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\7",
@@ -16677,71 +15545,6 @@ public class HaxeParser extends Parser {
             "",
             "",
             ""
-    };
-
-    static final short[] DFA74_eot = DFA.unpackEncodedString(DFA74_eotS);
-    static final short[] DFA74_eof = DFA.unpackEncodedString(DFA74_eofS);
-    static final char[] DFA74_min = DFA.unpackEncodedStringToUnsignedChars(DFA74_minS);
-    static final char[] DFA74_max = DFA.unpackEncodedStringToUnsignedChars(DFA74_maxS);
-    static final short[] DFA74_accept = DFA.unpackEncodedString(DFA74_acceptS);
-    static final short[] DFA74_special = DFA.unpackEncodedString(DFA74_specialS);
-    static final short[][] DFA74_transition;
-
-    static {
-        int numStates = DFA74_transitionS.length;
-        DFA74_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA74_transition[i] = DFA.unpackEncodedString(DFA74_transitionS[i]);
-        }
-    }
-
-    class DFA74 extends DFA {
-
-        public DFA74(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 74;
-            this.eot = DFA74_eot;
-            this.eof = DFA74_eof;
-            this.min = DFA74_min;
-            this.max = DFA74_max;
-            this.accept = DFA74_accept;
-            this.special = DFA74_special;
-            this.transition = DFA74_transition;
-        }
-        public String getDescription() {
-            return "424:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) );";
-        }
-    }
-    static final String DFA76_eotS =
-        "\12\uffff";
-    static final String DFA76_eofS =
-        "\12\uffff";
-    static final String DFA76_minS =
-        "\1\22\4\30\1\27\3\uffff\1\30";
-    static final String DFA76_maxS =
-        "\6\137\3\uffff\1\137";
-    static final String DFA76_acceptS =
-        "\6\uffff\1\1\1\2\1\3\1\uffff";
-    static final String DFA76_specialS =
-        "\12\uffff}>";
-    static final String[] DFA76_transitionS = {
-            "\1\10\4\uffff\1\10\1\5\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff"+
-            "\1\7\63\uffff\1\10\1\6",
-            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
-            "\6",
-            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
-            "\6",
-            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
-            "\6",
-            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
-            "\6",
-            "\1\10\1\5\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\63\uffff"+
-            "\1\10\1\6",
-            "",
-            "",
-            "",
-            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
-            "\6"
     };
 
     static final short[] DFA76_eot = DFA.unpackEncodedString(DFA76_eotS);
@@ -16774,22 +15577,87 @@ public class HaxeParser extends Parser {
             this.transition = DFA76_transition;
         }
         public String getDescription() {
-            return "444:1: classMember : ( varDecl | funcDecl | enumDecl );";
+            return "433:1: funcProtoDecl : ( declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ) | declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( declAttrList )? ( typeParamOpt )? ) | FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( NEW )? ( paramList )? ( typeTagOpt )? ) | FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI -> ^( FUNCTION ( IDENTIFIER )? ( paramList )? ( typeTagOpt )? ( typeParamOpt )? ) );";
         }
     }
-    static final String DFA77_eotS =
+    static final String DFA78_eotS =
+        "\12\uffff";
+    static final String DFA78_eofS =
+        "\12\uffff";
+    static final String DFA78_minS =
+        "\1\22\4\30\1\27\3\uffff\1\30";
+    static final String DFA78_maxS =
+        "\6\137\3\uffff\1\137";
+    static final String DFA78_acceptS =
+        "\6\uffff\1\1\1\2\1\3\1\uffff";
+    static final String DFA78_specialS =
+        "\12\uffff}>";
+    static final String[] DFA78_transitionS = {
+            "\1\10\4\uffff\1\10\1\5\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff"+
+            "\1\7\63\uffff\1\10\1\6",
+            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
+            "\6",
+            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
+            "\6",
+            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
+            "\6",
+            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
+            "\6",
+            "\1\10\1\5\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\63\uffff"+
+            "\1\10\1\6",
+            "",
+            "",
+            "",
+            "\1\11\3\uffff\1\11\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1"+
+            "\6"
+    };
+
+    static final short[] DFA78_eot = DFA.unpackEncodedString(DFA78_eotS);
+    static final short[] DFA78_eof = DFA.unpackEncodedString(DFA78_eofS);
+    static final char[] DFA78_min = DFA.unpackEncodedStringToUnsignedChars(DFA78_minS);
+    static final char[] DFA78_max = DFA.unpackEncodedStringToUnsignedChars(DFA78_maxS);
+    static final short[] DFA78_accept = DFA.unpackEncodedString(DFA78_acceptS);
+    static final short[] DFA78_special = DFA.unpackEncodedString(DFA78_specialS);
+    static final short[][] DFA78_transition;
+
+    static {
+        int numStates = DFA78_transitionS.length;
+        DFA78_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA78_transition[i] = DFA.unpackEncodedString(DFA78_transitionS[i]);
+        }
+    }
+
+    class DFA78 extends DFA {
+
+        public DFA78(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 78;
+            this.eot = DFA78_eot;
+            this.eof = DFA78_eof;
+            this.min = DFA78_min;
+            this.max = DFA78_max;
+            this.accept = DFA78_accept;
+            this.special = DFA78_special;
+            this.transition = DFA78_transition;
+        }
+        public String getDescription() {
+            return "453:1: classMember : ( varDecl | funcDecl | enumDecl );";
+        }
+    }
+    static final String DFA79_eotS =
         "\11\uffff";
-    static final String DFA77_eofS =
+    static final String DFA79_eofS =
         "\1\10\10\uffff";
-    static final String DFA77_minS =
+    static final String DFA79_minS =
         "\6\30\3\uffff";
-    static final String DFA77_maxS =
+    static final String DFA79_maxS =
         "\6\137\3\uffff";
-    static final String DFA77_acceptS =
+    static final String DFA79_acceptS =
         "\6\uffff\1\1\1\2\1\3";
-    static final String DFA77_specialS =
+    static final String DFA79_specialS =
         "\11\uffff}>";
-    static final String[] DFA77_transitionS = {
+    static final String[] DFA79_transitionS = {
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\7\25\uffff\1\10"+
             "\36\uffff\1\6",
             "\1\5\3\uffff\1\5\1\1\1\2\1\3\1\4\11\uffff\1\7\64\uffff\1\6",
@@ -16802,1395 +15670,543 @@ public class HaxeParser extends Parser {
             ""
     };
 
-    static final short[] DFA77_eot = DFA.unpackEncodedString(DFA77_eotS);
-    static final short[] DFA77_eof = DFA.unpackEncodedString(DFA77_eofS);
-    static final char[] DFA77_min = DFA.unpackEncodedStringToUnsignedChars(DFA77_minS);
-    static final char[] DFA77_max = DFA.unpackEncodedStringToUnsignedChars(DFA77_maxS);
-    static final short[] DFA77_accept = DFA.unpackEncodedString(DFA77_acceptS);
-    static final short[] DFA77_special = DFA.unpackEncodedString(DFA77_specialS);
-    static final short[][] DFA77_transition;
+    static final short[] DFA79_eot = DFA.unpackEncodedString(DFA79_eotS);
+    static final short[] DFA79_eof = DFA.unpackEncodedString(DFA79_eofS);
+    static final char[] DFA79_min = DFA.unpackEncodedStringToUnsignedChars(DFA79_minS);
+    static final char[] DFA79_max = DFA.unpackEncodedStringToUnsignedChars(DFA79_maxS);
+    static final short[] DFA79_accept = DFA.unpackEncodedString(DFA79_acceptS);
+    static final short[] DFA79_special = DFA.unpackEncodedString(DFA79_specialS);
+    static final short[][] DFA79_transition;
 
     static {
-        int numStates = DFA77_transitionS.length;
-        DFA77_transition = new short[numStates][];
+        int numStates = DFA79_transitionS.length;
+        DFA79_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA77_transition[i] = DFA.unpackEncodedString(DFA77_transitionS[i]);
+            DFA79_transition[i] = DFA.unpackEncodedString(DFA79_transitionS[i]);
         }
     }
 
-    class DFA77 extends DFA {
+    class DFA79 extends DFA {
 
-        public DFA77(BaseRecognizer recognizer) {
+        public DFA79(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 77;
-            this.eot = DFA77_eot;
-            this.eof = DFA77_eof;
-            this.min = DFA77_min;
-            this.max = DFA77_max;
-            this.accept = DFA77_accept;
-            this.special = DFA77_special;
-            this.transition = DFA77_transition;
+            this.decisionNumber = 79;
+            this.eot = DFA79_eot;
+            this.eof = DFA79_eof;
+            this.min = DFA79_min;
+            this.max = DFA79_max;
+            this.accept = DFA79_accept;
+            this.special = DFA79_special;
+            this.transition = DFA79_transition;
         }
         public String getDescription() {
-            return "455:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | );";
-        }
-    }
-    static final String DFA97_eotS =
-        "\102\uffff";
-    static final String DFA97_eofS =
-        "\102\uffff";
-    static final String DFA97_minS =
-        "\1\21\55\0\1\uffff\1\0\21\uffff\1\0";
-    static final String DFA97_maxS =
-        "\1\154\55\0\1\uffff\1\0\21\uffff\1\0";
-    static final String DFA97_acceptS =
-        "\56\uffff\1\1\1\uffff\1\2\21\uffff";
-    static final String DFA97_specialS =
-        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
-        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30"+
-        "\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45"+
-        "\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\uffff\1\55\21\uffff\1\56}>";
-    static final String[] DFA97_transitionS = {
-            "\1\60\1\uffff\1\24\1\56\1\25\2\uffff\1\60\3\uffff\5\60\1\uffff"+
-            "\1\46\1\101\1\50\1\51\1\52\1\53\1\54\1\55\1\11\1\12\6\uffff"+
-            "\1\26\1\33\1\uffff\1\34\1\7\1\60\1\uffff\1\60\1\uffff\4\60\1"+
-            "\13\1\uffff\4\60\3\uffff\1\57\1\47\1\45\1\44\1\40\1\41\1\42"+
-            "\1\43\1\35\1\36\1\37\1\32\1\3\1\1\1\27\1\30\1\31\1\2\1\4\1\5"+
-            "\1\6\1\10\1\uffff\1\60\1\15\5\uffff\1\14\1\16\1\17\1\20\1\21"+
-            "\1\22\1\23",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\uffff"
-    };
-
-    static final short[] DFA97_eot = DFA.unpackEncodedString(DFA97_eotS);
-    static final short[] DFA97_eof = DFA.unpackEncodedString(DFA97_eofS);
-    static final char[] DFA97_min = DFA.unpackEncodedStringToUnsignedChars(DFA97_minS);
-    static final char[] DFA97_max = DFA.unpackEncodedStringToUnsignedChars(DFA97_maxS);
-    static final short[] DFA97_accept = DFA.unpackEncodedString(DFA97_acceptS);
-    static final short[] DFA97_special = DFA.unpackEncodedString(DFA97_specialS);
-    static final short[][] DFA97_transition;
-
-    static {
-        int numStates = DFA97_transitionS.length;
-        DFA97_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA97_transition[i] = DFA.unpackEncodedString(DFA97_transitionS[i]);
-        }
-    }
-
-    class DFA97 extends DFA {
-
-        public DFA97(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 97;
-            this.eot = DFA97_eot;
-            this.eof = DFA97_eof;
-            this.min = DFA97_min;
-            this.max = DFA97_max;
-            this.accept = DFA97_accept;
-            this.special = DFA97_special;
-            this.transition = DFA97_transition;
-        }
-        public String getDescription() {
-            return "349:21: ( expr | statement )";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            TokenStream input = (TokenStream)_input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA97_1 = input.LA(1);
-
-                         
-                        int index97_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA97_2 = input.LA(1);
-
-                         
-                        int index97_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA97_3 = input.LA(1);
-
-                         
-                        int index97_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA97_4 = input.LA(1);
-
-                         
-                        int index97_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA97_5 = input.LA(1);
-
-                         
-                        int index97_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA97_6 = input.LA(1);
-
-                         
-                        int index97_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA97_7 = input.LA(1);
-
-                         
-                        int index97_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_7);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA97_8 = input.LA(1);
-
-                         
-                        int index97_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA97_9 = input.LA(1);
-
-                         
-                        int index97_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA97_10 = input.LA(1);
-
-                         
-                        int index97_10 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_10);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA97_11 = input.LA(1);
-
-                         
-                        int index97_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA97_12 = input.LA(1);
-
-                         
-                        int index97_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA97_13 = input.LA(1);
-
-                         
-                        int index97_13 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_13);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA97_14 = input.LA(1);
-
-                         
-                        int index97_14 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_14);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA97_15 = input.LA(1);
-
-                         
-                        int index97_15 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_15);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
-                        int LA97_16 = input.LA(1);
-
-                         
-                        int index97_16 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_16);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA97_17 = input.LA(1);
-
-                         
-                        int index97_17 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_17);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 17 : 
-                        int LA97_18 = input.LA(1);
-
-                         
-                        int index97_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 18 : 
-                        int LA97_19 = input.LA(1);
-
-                         
-                        int index97_19 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_19);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 19 : 
-                        int LA97_20 = input.LA(1);
-
-                         
-                        int index97_20 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_20);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 20 : 
-                        int LA97_21 = input.LA(1);
-
-                         
-                        int index97_21 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_21);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 21 : 
-                        int LA97_22 = input.LA(1);
-
-                         
-                        int index97_22 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_22);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 22 : 
-                        int LA97_23 = input.LA(1);
-
-                         
-                        int index97_23 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_23);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 23 : 
-                        int LA97_24 = input.LA(1);
-
-                         
-                        int index97_24 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_24);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 24 : 
-                        int LA97_25 = input.LA(1);
-
-                         
-                        int index97_25 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_25);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 25 : 
-                        int LA97_26 = input.LA(1);
-
-                         
-                        int index97_26 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_26);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 26 : 
-                        int LA97_27 = input.LA(1);
-
-                         
-                        int index97_27 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_27);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 27 : 
-                        int LA97_28 = input.LA(1);
-
-                         
-                        int index97_28 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_28);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 28 : 
-                        int LA97_29 = input.LA(1);
-
-                         
-                        int index97_29 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_29);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 29 : 
-                        int LA97_30 = input.LA(1);
-
-                         
-                        int index97_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 30 : 
-                        int LA97_31 = input.LA(1);
-
-                         
-                        int index97_31 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_31);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 31 : 
-                        int LA97_32 = input.LA(1);
-
-                         
-                        int index97_32 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_32);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 32 : 
-                        int LA97_33 = input.LA(1);
-
-                         
-                        int index97_33 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_33);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 33 : 
-                        int LA97_34 = input.LA(1);
-
-                         
-                        int index97_34 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_34);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 34 : 
-                        int LA97_35 = input.LA(1);
-
-                         
-                        int index97_35 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_35);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 35 : 
-                        int LA97_36 = input.LA(1);
-
-                         
-                        int index97_36 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_36);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 36 : 
-                        int LA97_37 = input.LA(1);
-
-                         
-                        int index97_37 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_37);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 37 : 
-                        int LA97_38 = input.LA(1);
-
-                         
-                        int index97_38 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_38);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 38 : 
-                        int LA97_39 = input.LA(1);
-
-                         
-                        int index97_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 39 : 
-                        int LA97_40 = input.LA(1);
-
-                         
-                        int index97_40 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_40);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 40 : 
-                        int LA97_41 = input.LA(1);
-
-                         
-                        int index97_41 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_41);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 41 : 
-                        int LA97_42 = input.LA(1);
-
-                         
-                        int index97_42 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_42);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 42 : 
-                        int LA97_43 = input.LA(1);
-
-                         
-                        int index97_43 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_43);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 43 : 
-                        int LA97_44 = input.LA(1);
-
-                         
-                        int index97_44 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_44);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 44 : 
-                        int LA97_45 = input.LA(1);
-
-                         
-                        int index97_45 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_45);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 45 : 
-                        int LA97_47 = input.LA(1);
-
-                         
-                        int index97_47 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_47);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 46 : 
-                        int LA97_65 = input.LA(1);
-
-                         
-                        int index97_65 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred114_Haxe()) ) {s = 46;}
-
-                        else if ( (true) ) {s = 48;}
-
-                         
-                        input.seek(index97_65);
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            if (state.backtracking>0) {state.failed=true; return -1;}
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 97, _s, input);
-            error(nvae);
-            throw nvae;
+            return "464:1: interfaceBody : ( varDecl interfaceBody | funcProtoDecl interfaceBody | );";
         }
     }
  
 
-    public static final BitSet FOLLOW_myPackage_in_module123 = new BitSet(new long[]{0x000000000D840000L,0x0000002640000000L});
-    public static final BitSet FOLLOW_topLevelList_in_module126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_topLevel_in_topLevelList155 = new BitSet(new long[]{0x000000000D840002L,0x0000002640000000L});
-    public static final BitSet FOLLOW_myImport_in_topLevel168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_topLevelDecl_in_topLevel174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PACKAGE_in_myPackage185 = new BitSet(new long[]{0x0000000800200000L});
-    public static final BitSet FOLLOW_dotIdent_in_myPackage187 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_myPackage189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MONKEYS_AT_in_meta208 = new BitSet(new long[]{0x0003C00080600000L});
-    public static final BitSet FOLLOW_metaName_in_meta210 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_LPAREN_in_meta213 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_meta215 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_meta217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_metaName230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_metaName235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COLON_in_metaName241 = new BitSet(new long[]{0x0003C00080600000L});
-    public static final BitSet FOLLOW_metaName_in_metaName243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_meta_in_typeDeclFlags255 = new BitSet(new long[]{0x0000000001840002L});
-    public static final BitSet FOLLOW_set_in_typeDeclFlags259 = new BitSet(new long[]{0x0000000001800002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_qualifiedIdentifier281 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_DOT_in_qualifiedIdentifier294 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_qualifiedIdentifier298 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_IMPORT_in_myImport327 = new BitSet(new long[]{0x0000000800200000L});
-    public static final BitSet FOLLOW_dotIdent_in_myImport330 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_myImport332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_USING_in_myImport338 = new BitSet(new long[]{0x0000000800200000L});
-    public static final BitSet FOLLOW_dotIdent_in_myImport341 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_myImport343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_myPackage_in_module165 = new BitSet(new long[]{0x000000000D840000L,0x0000002640000000L});
+    public static final BitSet FOLLOW_topLevelList_in_module168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_topLevel_in_topLevelList206 = new BitSet(new long[]{0x000000000D840002L,0x0000002640000000L});
+    public static final BitSet FOLLOW_myImport_in_topLevel225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_topLevelDecl_in_topLevel234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PACKAGE_in_myPackage251 = new BitSet(new long[]{0x0000000800200000L});
+    public static final BitSet FOLLOW_dotIdent_in_myPackage253 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_myPackage255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MONKEYS_AT_in_meta280 = new BitSet(new long[]{0x0003C00080600000L});
+    public static final BitSet FOLLOW_metaName_in_meta282 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_LPAREN_in_meta285 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_meta287 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_meta289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_metaName308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_metaName316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COLON_in_metaName325 = new BitSet(new long[]{0x0003C00080600000L});
+    public static final BitSet FOLLOW_metaName_in_metaName327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_meta_in_typeDeclFlags345 = new BitSet(new long[]{0x0000000001840002L});
+    public static final BitSet FOLLOW_set_in_typeDeclFlags349 = new BitSet(new long[]{0x0000000001800002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_qualifiedIdentifier383 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_DOT_in_qualifiedIdentifier396 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_qualifiedIdentifier400 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_IMPORT_in_myImport438 = new BitSet(new long[]{0x0000000800200000L});
+    public static final BitSet FOLLOW_dotIdent_in_myImport441 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_myImport443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_USING_in_myImport452 = new BitSet(new long[]{0x0000000800200000L});
+    public static final BitSet FOLLOW_dotIdent_in_myImport455 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_myImport457 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_access0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STATIC_in_declAttr392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INLINE_in_declAttr397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DYNAMIC_in_declAttr402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OVERRIDE_in_declAttr407 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_access_in_declAttr412 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttr_in_declAttrList424 = new BitSet(new long[]{0x00000001F1000002L});
-    public static final BitSet FOLLOW_param_in_paramList450 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_paramList453 = new BitSet(new long[]{0x0000000400200000L});
-    public static final BitSet FOLLOW_param_in_paramList455 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_QUES_in_param485 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_param488 = new BitSet(new long[]{0x0000001000400000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_param490 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_varInit_in_param492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STATIC_in_declAttr521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INLINE_in_declAttr529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DYNAMIC_in_declAttr537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OVERRIDE_in_declAttr545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_access_in_declAttr553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttr_in_declAttrList571 = new BitSet(new long[]{0x00000001F1000002L});
+    public static final BitSet FOLLOW_param_in_paramList603 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_paramList606 = new BitSet(new long[]{0x0000000400200000L});
+    public static final BitSet FOLLOW_param_in_paramList608 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_QUES_in_param650 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_param653 = new BitSet(new long[]{0x0000001000400000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_param655 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_varInit_in_param657 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_id0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_id_in_dotIdent544 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_DOT_in_dotIdent552 = new BitSet(new long[]{0x0000000800200000L});
-    public static final BitSet FOLLOW_id_in_dotIdent556 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_EQ_in_assignOp581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PLUSEQ_in_assignOp595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SUBEQ_in_assignOp609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SLASHEQ_in_assignOp622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PERCENTEQ_in_assignOp635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AMPEQ_in_assignOp648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcLit667 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcLit669 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcLit671 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcLit673 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcLit675 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_block_in_funcLit678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_arrayLit713 = new BitSet(new long[]{0x80441C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_exprListOpt_in_arrayLit716 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_RBRACKET_in_arrayLit718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COLON_in_typeTag737 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_funcType_in_typeTag740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeTag_in_typeTagOpt752 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_typeList780 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_typeList783 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_type_in_typeList786 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_typeConstraint_in_typeList794 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_typeList797 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_typeConstraint_in_typeList800 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_type_in_funcType814 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_MINUS_BIGGER_in_funcType818 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_type_in_funcType821 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_VOID_in_funcType828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_id_in_dotIdent736 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_DOT_in_dotIdent744 = new BitSet(new long[]{0x0000000800200000L});
+    public static final BitSet FOLLOW_id_in_dotIdent748 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_EQ_in_assignOp785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PLUSEQ_in_assignOp811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SUBEQ_in_assignOp834 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SLASHEQ_in_assignOp856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PERCENTEQ_in_assignOp878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AMPEQ_in_assignOp900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcLit928 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcLit930 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcLit932 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcLit934 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcLit936 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_block_in_funcLit939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_arrayLit977 = new BitSet(new long[]{0x80401C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_exprListOpt_in_arrayLit980 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_RBRACKET_in_arrayLit982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COLON_in_typeTag1016 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_funcType_in_typeTag1019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeTag_in_typeTagOpt1043 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_typeList1086 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_typeList1089 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_type_in_typeList1092 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_typeConstraint_in_typeList1109 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_typeList1112 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_typeConstraint_in_typeList1115 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_type_in_funcType1135 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_MINUS_BIGGER_in_funcType1139 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_type_in_funcType1142 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_VOID_in_funcType1155 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_primitiveType0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anonType_in_type867 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_dotIdent_in_type871 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type875 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_typeParam_in_type880 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_LT_in_typeParam898 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeParam901 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_GT_in_typeParam903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_typeParam909 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeParam912 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LT_in_typeParam914 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeParam917 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_GTGT_in_typeParam919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_typeParam925 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeParam928 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LT_in_typeParam930 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeParam933 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LT_in_typeParam935 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeParam938 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_GTGTGT_in_typeParam940 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeParam_in_typeParamOpt960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_typeConstraint995 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_typeConstraint997 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_typeConstraint999 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_typeConstraint1001 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_typeConstraint1003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttrList_in_functionReturn1029 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_FUNCTION_in_functionReturn1032 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_NEW_in_functionReturn1034 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_functionReturn1036 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_functionReturn1038 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_functionReturn1040 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_functionReturn1042 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_block_in_functionReturn1044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_block_in_statement1081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assignExpr_in_statement1086 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDecl_in_statement1094 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IF_in_statement1099 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_parExpression_in_statement1101 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_statement1105 = new BitSet(new long[]{0x0100000000000002L});
-    public static final BitSet FOLLOW_ELSE_in_statement1108 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_statement1112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FOR_in_statement1152 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_statement1154 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_statement1158 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_IN_in_statement1160 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_statement1164 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_statement1166 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_statement1168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WHILE_in_statement1196 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_parExpression_in_statement1198 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_statement1200 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DO_in_statement1224 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_statement1226 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_WHILE_in_statement1228 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_parExpression_in_statement1230 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TRY_in_statement1255 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_block_in_statement1257 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_catchStmtList_in_statement1259 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SWITCH_in_statement1283 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_statement1285 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_statement1287 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_statement1289 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_LBRACE_in_statement1291 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000060L});
-    public static final BitSet FOLLOW_caseStmt_in_statement1293 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000061L});
-    public static final BitSet FOLLOW_RBRACE_in_statement1296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RETURN_in_statement1317 = new BitSet(new long[]{0x80440C08002A0000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_statement1320 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_THROW_in_statement1342 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_statement1344 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BREAK_in_statement1365 = new BitSet(new long[]{0x0000000000220000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_statement1368 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONTINUE_in_statement1389 = new BitSet(new long[]{0x0000000000220000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_statement1392 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_statement1414 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_statement1417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_statement1423 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_statement1425 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_statement1427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMI_in_statement1448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_parExpression1466 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_parExpression1469 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_parExpression1471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACE_in_block1483 = new BitSet(new long[]{0xFAC40C09F1EE0000L,0x00001FC3BE30011FL});
-    public static final BitSet FOLLOW_blockStmt_in_block1486 = new BitSet(new long[]{0xFAC40C09F1EE0000L,0x00001FC3BE30011FL});
-    public static final BitSet FOLLOW_RBRACE_in_block1490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMI_in_block1515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDecl_in_blockStmt1528 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classDecl_in_blockStmt1533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_blockStmt1538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BREAK_in_breakStmt1571 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_breakStmt1573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONTINUE_in_continueStmt1592 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_continueStmt1594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CASE_in_caseStmt1605 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_exprList_in_caseStmt1607 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_caseStmt1609 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_caseStmt1611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DEFAULT_in_caseStmt1629 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_caseStmt1631 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_caseStmt1633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DEFAULT_in_defaultStmt1662 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_defaultStmt1664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_catchStmt_in_catchStmtList1677 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_catchStmtList_in_catchStmtList1679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CATCH_in_catchStmt1701 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_catchStmt1703 = new BitSet(new long[]{0x0000000400200000L});
-    public static final BitSet FOLLOW_param_in_catchStmt1705 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_catchStmt1707 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_block_in_catchStmt1709 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_exprList_in_exprListOpt1735 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_exprList1748 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_exprList1751 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_exprList1754 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_assignExpr_in_expr1767 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_UNTYPED_in_expr1772 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_assignExpr_in_expr1774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_iterExpr_in_assignExpr1794 = new BitSet(new long[]{0x000003F000000002L});
-    public static final BitSet FOLLOW_assignOp_in_assignExpr1797 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_iterExpr_in_assignExpr1800 = new BitSet(new long[]{0x000003F000000002L});
-    public static final BitSet FOLLOW_ternaryExpr_in_iterExpr1812 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-    public static final BitSet FOLLOW_ELLIPSIS_in_iterExpr1815 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_ternaryExpr_in_iterExpr1818 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-    public static final BitSet FOLLOW_logicOrExpr_in_ternaryExpr1831 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_QUES_in_ternaryExpr1834 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_ternaryExpr1837 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_ternaryExpr1839 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_logicOrExpr_in_ternaryExpr1842 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_logicAndExpr_in_logicOrExpr1855 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_BARBAR_in_logicOrExpr1858 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_logicAndExpr_in_logicOrExpr1861 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_cmpExpr_in_logicAndExpr1876 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
-    public static final BitSet FOLLOW_AMPAMP_in_logicAndExpr1880 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_cmpExpr_in_logicAndExpr1883 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
-    public static final BitSet FOLLOW_bitExpr_in_cmpExpr1897 = new BitSet(new long[]{0x000C000000000002L,0x000000000000F000L});
-    public static final BitSet FOLLOW_EQEQ_in_cmpExpr1902 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_BANGEQ_in_cmpExpr1906 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_GTEQ_in_cmpExpr1911 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_LTEQ_in_cmpExpr1916 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_GT_in_cmpExpr1921 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_LT_in_cmpExpr1926 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_bitExpr_in_cmpExpr1931 = new BitSet(new long[]{0x000C000000000002L,0x000000000000F000L});
-    public static final BitSet FOLLOW_shiftExpr_in_bitExpr1945 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
-    public static final BitSet FOLLOW_BAR_in_bitExpr1949 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_shiftExpr_in_bitExpr1952 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
-    public static final BitSet FOLLOW_AMP_in_bitExpr1956 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_shiftExpr_in_bitExpr1959 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
-    public static final BitSet FOLLOW_CARET_in_bitExpr1962 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_shiftExpr_in_bitExpr1965 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
-    public static final BitSet FOLLOW_addExpr_in_shiftExpr1979 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_LTLT_in_shiftExpr1983 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_addExpr_in_shiftExpr1987 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_GT_in_shiftExpr1992 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_GT_in_shiftExpr1994 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_addExpr_in_shiftExpr1999 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_GTGTGT_in_shiftExpr2003 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_addExpr_in_shiftExpr2006 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_multExpr_in_addExpr2020 = new BitSet(new long[]{0x0000000000000002L,0x0000000000300000L});
-    public static final BitSet FOLLOW_PLUS_in_addExpr2025 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_SUB_in_addExpr2030 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_multExpr_in_addExpr2034 = new BitSet(new long[]{0x0000000000000002L,0x0000000000300000L});
-    public static final BitSet FOLLOW_prefixExpr_in_multExpr2048 = new BitSet(new long[]{0x0000000000000002L,0x0000000001C00000L});
-    public static final BitSet FOLLOW_STAR_in_multExpr2053 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_SLASH_in_multExpr2056 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_PERCENT_in_multExpr2059 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_prefixExpr_in_multExpr2063 = new BitSet(new long[]{0x0000000000000002L,0x0000000001C00000L});
-    public static final BitSet FOLLOW_SUB_in_prefixExpr2085 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_SUBSUB_in_prefixExpr2088 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_PLUS_in_prefixExpr2091 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_PLUSPLUS_in_prefixExpr2094 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_BANG_in_prefixExpr2097 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_TILDE_in_prefixExpr2100 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_prefixExpr_in_prefixExpr2104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_newExpr_in_prefixExpr2116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_cast_in_prefixExpr2128 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_suffixExpr_in_prefixExpr2140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_suffixExpr2159 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_suffixExpr2161 = new BitSet(new long[]{0x80440C0800380000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_exprListOpt_in_suffixExpr2163 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_suffixExpr2165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_suffixExpr2186 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LBRACKET_in_suffixExpr2188 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_suffixExpr2191 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_RBRACKET_in_suffixExpr2193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_suffixExpr2199 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_PLUSPLUS_in_suffixExpr2201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_suffixExpr2225 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_SUBSUB_in_suffixExpr2227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_suffixExpr2250 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_typeParamOpt_in_suffixExpr2252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcLit_in_value2261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arrayLit_in_value2268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_objLit_in_value2282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elementarySymbol_in_value2296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_value2310 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_expr_in_value2314 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_statement_in_value2316 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_value2319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dotIdent_in_value2332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NEW_in_newExpr2385 = new BitSet(new long[]{0x8003C00880280000L});
-    public static final BitSet FOLLOW_type_in_newExpr2387 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_newExpr2389 = new BitSet(new long[]{0x80440C0800380000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_exprListOpt_in_newExpr2391 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_newExpr2393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAST_in_cast2419 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_cast2421 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_cast2423 = new BitSet(new long[]{0x0000000200100000L});
-    public static final BitSet FOLLOW_COMMA_in_cast2426 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_funcType_in_cast2428 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_cast2432 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAST_in_cast2450 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_cast2452 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_cast2454 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_cast2456 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classDecl_in_topLevelDecl2490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_interfaceDecl_in_topLevelDecl2495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enumDecl_in_topLevelDecl2507 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typedefDecl_in_topLevelDecl2512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeDeclFlags_in_enumDecl2522 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_ENUM_in_enumDecl2524 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_enumDecl2526 = new BitSet(new long[]{0x8004000000000000L});
-    public static final BitSet FOLLOW_typeParamOpt_in_enumDecl2528 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_LBRACE_in_enumDecl2530 = new BitSet(new long[]{0x0000000000200000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_enumBody_in_enumDecl2532 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RBRACE_in_enumDecl2534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enumValueDecl_in_enumBody2560 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl2579 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_enumValueDecl2581 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_enumValueDecl2583 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_enumValueDecl2585 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_enumValueDecl2587 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl2613 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_enumValueDecl2615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDecl_in_varDeclList2654 = new BitSet(new long[]{0x00000001F1000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_varDeclList_in_varDeclList2656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttrList_in_varDecl2668 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_VAR_in_varDecl2672 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_varDeclPartList_in_varDecl2674 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_varDecl2676 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList2707 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_varDeclPartList2710 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList2713 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_varDeclPart2727 = new BitSet(new long[]{0x0000001000480000L});
-    public static final BitSet FOLLOW_propDeclOpt_in_varDeclPart2732 = new BitSet(new long[]{0x0000001000400000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_varDeclPart2734 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_varInit_in_varDeclPart2736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_propDecl2746 = new BitSet(new long[]{0x0000000080200000L,0x0000000100000040L});
-    public static final BitSet FOLLOW_propAccessor_in_propDecl2750 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_COMMA_in_propDecl2752 = new BitSet(new long[]{0x0000000080200000L,0x0000000100000040L});
-    public static final BitSet FOLLOW_propAccessor_in_propDecl2756 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_propDecl2758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anonType_in_type1215 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_dotIdent_in_type1219 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type1223 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_typeParam_in_type1228 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_LT_in_typeParam1264 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeParam1267 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_GT_in_typeParam1269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_typeParam1281 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeParam1284 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LT_in_typeParam1286 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeParam1289 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_GTGT_in_typeParam1291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_typeParam1303 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeParam1306 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LT_in_typeParam1308 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeParam1311 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LT_in_typeParam1313 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeParam1316 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_GTGTGT_in_typeParam1318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeParam_in_typeParamOpt1350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_typeConstraint1397 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_typeConstraint1399 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_typeConstraint1401 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_typeConstraint1403 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_typeConstraint1405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_functionReturn1443 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_functionReturn1446 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_functionReturn1448 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_functionReturn1450 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_functionReturn1452 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_functionReturn1454 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_functionReturn1456 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_block_in_functionReturn1458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_block_in_statement1507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assignExpr_in_statement1518 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement1520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_statement1532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IF_in_statement1543 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_parExpression_in_statement1545 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_statement1549 = new BitSet(new long[]{0x0100000000000002L});
+    public static final BitSet FOLLOW_ELSE_in_statement1552 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_statement1556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FOR_in_statement1605 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_statement1607 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_statement1611 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_IN_in_statement1613 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_statement1617 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_statement1619 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_statement1621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WHILE_in_statement1658 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_parExpression_in_statement1660 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_statement1662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DO_in_statement1704 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_statement1706 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_WHILE_in_statement1708 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_parExpression_in_statement1710 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement1712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TRY_in_statement1750 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_block_in_statement1752 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_catchStmtList_in_statement1754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SWITCH_in_statement1796 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_statement1798 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_statement1800 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_statement1802 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_LBRACE_in_statement1804 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000060L});
+    public static final BitSet FOLLOW_caseStmt_in_statement1806 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000061L});
+    public static final BitSet FOLLOW_RBRACE_in_statement1809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RETURN_in_statement1839 = new BitSet(new long[]{0x80400C08002A0000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_statement1842 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement1846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_THROW_in_statement1885 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_statement1887 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement1889 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BREAK_in_statement1929 = new BitSet(new long[]{0x0000000000220000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_statement1932 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement1936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONTINUE_in_statement1971 = new BitSet(new long[]{0x0000000000220000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_statement1974 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement1978 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_statement2014 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_statement2017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_statement2029 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_statement2031 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_statement2033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMI_in_statement2072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_parExpression2096 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_parExpression2099 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_parExpression2101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACE_in_block2122 = new BitSet(new long[]{0xFAC00C09F1EE0000L,0x00001FC3BE30011FL});
+    public static final BitSet FOLLOW_blockStmt_in_block2125 = new BitSet(new long[]{0xFAC00C09F1EE0000L,0x00001FC3BE30011FL});
+    public static final BitSet FOLLOW_RBRACE_in_block2129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMI_in_block2160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_blockStmt2185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classDecl_in_blockStmt2196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_blockStmt2207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BREAK_in_breakStmt2255 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_breakStmt2257 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONTINUE_in_continueStmt2288 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_continueStmt2290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CASE_in_caseStmt2310 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_exprList_in_caseStmt2312 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_caseStmt2314 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_caseStmt2316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_caseStmt2343 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_caseStmt2345 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_caseStmt2347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFAULT_in_defaultStmt2391 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_defaultStmt2393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_catchStmt_in_catchStmtList2415 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_catchStmtList_in_catchStmtList2417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CATCH_in_catchStmt2451 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_catchStmt2453 = new BitSet(new long[]{0x0000000400200000L});
+    public static final BitSet FOLLOW_param_in_catchStmt2455 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_catchStmt2457 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_block_in_catchStmt2459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_exprList_in_exprListOpt2497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_exprList2522 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_exprList2525 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_exprList2528 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_assignExpr_in_expr2553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_UNTYPED_in_expr2564 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_assignExpr_in_expr2566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_iterExpr_in_assignExpr2598 = new BitSet(new long[]{0x000003F000000002L});
+    public static final BitSet FOLLOW_assignOp_in_assignExpr2601 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_iterExpr_in_assignExpr2604 = new BitSet(new long[]{0x000003F000000002L});
+    public static final BitSet FOLLOW_ternaryExpr_in_iterExpr2622 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_ELLIPSIS_in_iterExpr2625 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_ternaryExpr_in_iterExpr2628 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
+    public static final BitSet FOLLOW_logicOrExpr_in_ternaryExpr2650 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_QUES_in_ternaryExpr2653 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_ternaryExpr2656 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_ternaryExpr2658 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_logicOrExpr_in_ternaryExpr2661 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_logicAndExpr_in_logicOrExpr2683 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_BARBAR_in_logicOrExpr2686 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_logicAndExpr_in_logicOrExpr2689 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_cmpExpr_in_logicAndExpr2716 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_AMPAMP_in_logicAndExpr2720 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_cmpExpr_in_logicAndExpr2723 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_bitExpr_in_cmpExpr2746 = new BitSet(new long[]{0x000C000000000002L,0x000000000000F000L});
+    public static final BitSet FOLLOW_EQEQ_in_cmpExpr2751 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_BANGEQ_in_cmpExpr2755 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_GTEQ_in_cmpExpr2760 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_LTEQ_in_cmpExpr2765 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_GT_in_cmpExpr2770 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_LT_in_cmpExpr2775 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_bitExpr_in_cmpExpr2780 = new BitSet(new long[]{0x000C000000000002L,0x000000000000F000L});
+    public static final BitSet FOLLOW_shiftExpr_in_bitExpr2803 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
+    public static final BitSet FOLLOW_BAR_in_bitExpr2807 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_shiftExpr_in_bitExpr2810 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
+    public static final BitSet FOLLOW_AMP_in_bitExpr2814 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_shiftExpr_in_bitExpr2817 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
+    public static final BitSet FOLLOW_CARET_in_bitExpr2820 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_shiftExpr_in_bitExpr2823 = new BitSet(new long[]{0x0000000000000002L,0x0000000000070000L});
+    public static final BitSet FOLLOW_addExpr_in_shiftExpr2846 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
+    public static final BitSet FOLLOW_LTLT_in_shiftExpr2850 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_addExpr_in_shiftExpr2854 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
+    public static final BitSet FOLLOW_GT_in_shiftExpr2859 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_GT_in_shiftExpr2861 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_addExpr_in_shiftExpr2866 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
+    public static final BitSet FOLLOW_GTGTGT_in_shiftExpr2870 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_addExpr_in_shiftExpr2873 = new BitSet(new long[]{0x0028000000000002L,0x0000000000080000L});
+    public static final BitSet FOLLOW_multExpr_in_addExpr2893 = new BitSet(new long[]{0x0000000000000002L,0x0000000000300000L});
+    public static final BitSet FOLLOW_PLUS_in_addExpr2898 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_SUB_in_addExpr2903 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_multExpr_in_addExpr2907 = new BitSet(new long[]{0x0000000000000002L,0x0000000000300000L});
+    public static final BitSet FOLLOW_prefixExpr_in_multExpr2930 = new BitSet(new long[]{0x0000000000000002L,0x0000000001C00000L});
+    public static final BitSet FOLLOW_STAR_in_multExpr2935 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_SLASH_in_multExpr2938 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_PERCENT_in_multExpr2941 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_prefixExpr_in_multExpr2945 = new BitSet(new long[]{0x0000000000000002L,0x0000000001C00000L});
+    public static final BitSet FOLLOW_SUB_in_prefixExpr2972 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_SUBSUB_in_prefixExpr2975 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_PLUS_in_prefixExpr2978 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_PLUSPLUS_in_prefixExpr2981 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_BANG_in_prefixExpr2984 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_TILDE_in_prefixExpr2987 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300000L});
+    public static final BitSet FOLLOW_prefixExpr_in_prefixExpr2991 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_newExpr_in_prefixExpr3002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_cast_in_prefixExpr3013 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_suffixExpr_in_prefixExpr3024 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_suffixExpr3048 = new BitSet(new long[]{0x0000080000080000L});
+    public static final BitSet FOLLOW_methodCallOrSliceList_in_suffixExpr3050 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_suffixExpr3077 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_PLUSPLUS_in_suffixExpr3079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_suffixExpr3118 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_SUBSUB_in_suffixExpr3120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_suffixExpr3158 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_suffixExpr3160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_methodCallOrSlice3180 = new BitSet(new long[]{0x80400C0800380000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_exprListOpt_in_methodCallOrSlice3182 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_methodCallOrSlice3184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_methodCallOrSlice3208 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_methodCallOrSlice3210 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_RBRACKET_in_methodCallOrSlice3212 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_methodCallOrSlice_in_methodCallOrSliceList3245 = new BitSet(new long[]{0x0000080000080000L});
+    public static final BitSet FOLLOW_methodCallOrSliceList_in_methodCallOrSliceList3247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_methodCallOrSlice_in_methodCallOrSliceList3258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcLit_in_value3277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arrayLit_in_value3288 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_objLit_in_value3298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elementarySymbol_in_value3308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_value3318 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_expr_in_value3322 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_statement_in_value3324 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_value3327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dotIdent_in_value3338 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NEW_in_newExpr3380 = new BitSet(new long[]{0x8003C00880280000L});
+    public static final BitSet FOLLOW_type_in_newExpr3382 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_newExpr3384 = new BitSet(new long[]{0x80400C0800380000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_exprListOpt_in_newExpr3386 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_newExpr3388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAST_in_cast3418 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_cast3420 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_cast3422 = new BitSet(new long[]{0x0000000200100000L});
+    public static final BitSet FOLLOW_COMMA_in_cast3425 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_funcType_in_cast3427 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_cast3431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAST_in_cast3459 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_cast3461 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_cast3463 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_cast3465 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classDecl_in_topLevelDecl3530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_interfaceDecl_in_topLevelDecl3540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enumDecl_in_topLevelDecl3550 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typedefDecl_in_topLevelDecl3560 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeDeclFlags_in_enumDecl3578 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_ENUM_in_enumDecl3580 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enumDecl3582 = new BitSet(new long[]{0x8004000000000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_enumDecl3584 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_LBRACE_in_enumDecl3586 = new BitSet(new long[]{0x0000000000200000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_enumBody_in_enumDecl3588 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_enumDecl3590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enumValueDecl_in_enumBody3624 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl3662 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_enumValueDecl3664 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_enumValueDecl3666 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_enumValueDecl3668 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_enumValueDecl3670 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_enumValueDecl3704 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_enumValueDecl3706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_varDeclList3777 = new BitSet(new long[]{0x00000001F1000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_varDeclList_in_varDeclList3779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_varDecl3799 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_VAR_in_varDecl3803 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_varDeclPartList_in_varDecl3805 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_varDecl3807 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList3853 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_varDeclPartList3856 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_varDeclPart_in_varDeclPartList3859 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_varDeclPart3884 = new BitSet(new long[]{0x0000001000480000L});
+    public static final BitSet FOLLOW_propDeclOpt_in_varDeclPart3889 = new BitSet(new long[]{0x0000001000400000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_varDeclPart3891 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_varInit_in_varDeclPart3893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_propDecl3911 = new BitSet(new long[]{0x0000000080200000L,0x0000000100000040L});
+    public static final BitSet FOLLOW_propAccessor_in_propDecl3915 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_COMMA_in_propDecl3917 = new BitSet(new long[]{0x0000000080200000L,0x0000000100000040L});
+    public static final BitSet FOLLOW_propAccessor_in_propDecl3921 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_propDecl3923 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_propAccessor0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_propDecl_in_propDeclOpt2818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQ_in_varInit2833 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_varInit2835 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttrList_in_funcDecl2862 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcDecl2865 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_NEW_in_funcDecl2867 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcDecl2869 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcDecl2871 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcDecl2873 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl2875 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_block_in_funcDecl2877 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttrList_in_funcDecl2910 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcDecl2913 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_funcDecl2915 = new BitSet(new long[]{0x0004000000080000L});
-    public static final BitSet FOLLOW_typeParamOpt_in_funcDecl2917 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcDecl2919 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcDecl2921 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcDecl2923 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl2925 = new BitSet(new long[]{0x8000000000420000L});
-    public static final BitSet FOLLOW_block_in_funcDecl2927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl2969 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl2971 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_NEW_in_funcProtoDecl2973 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl2975 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl2977 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl2979 = new BitSet(new long[]{0x0000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl2981 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl2983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl3010 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3012 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl3014 = new BitSet(new long[]{0x0004000000080000L});
-    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl3016 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3018 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3020 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3022 = new BitSet(new long[]{0x0000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3024 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3056 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_NEW_in_funcProtoDecl3058 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3060 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3062 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3064 = new BitSet(new long[]{0x0000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3066 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3068 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl3092 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl3094 = new BitSet(new long[]{0x0004000000080000L});
-    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl3096 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl3098 = new BitSet(new long[]{0x0000000400300000L});
-    public static final BitSet FOLLOW_paramList_in_funcProtoDecl3100 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl3102 = new BitSet(new long[]{0x0000000000420000L});
-    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl3104 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl3106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeDeclFlags_in_classDecl3140 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    public static final BitSet FOLLOW_CLASS_in_classDecl3142 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_classDecl3144 = new BitSet(new long[]{0x8004000000000000L,0x0000001800000000L});
-    public static final BitSet FOLLOW_typeParamOpt_in_classDecl3146 = new BitSet(new long[]{0x8004000000000000L,0x0000001800000000L});
-    public static final BitSet FOLLOW_inheritListOpt_in_classDecl3148 = new BitSet(new long[]{0x8004000000000000L,0x0000001800000000L});
-    public static final BitSet FOLLOW_classBodyScope_in_classDecl3150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACE_in_classBodyScope3188 = new BitSet(new long[]{0x00000401F1840000L,0x00000000C0000001L});
-    public static final BitSet FOLLOW_classMember_in_classBodyScope3191 = new BitSet(new long[]{0x00000401F1840000L,0x00000000C0000001L});
-    public static final BitSet FOLLOW_RBRACE_in_classBodyScope3195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDecl_in_classMember3225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcDecl_in_classMember3231 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enumDecl_in_classMember3238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeDeclFlags_in_interfaceDecl3256 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_INTERFACE_in_interfaceDecl3258 = new BitSet(new long[]{0x8003C00880200000L,0x0000001800000000L});
-    public static final BitSet FOLLOW_type_in_interfaceDecl3260 = new BitSet(new long[]{0x8000000000000000L,0x0000001800000000L});
-    public static final BitSet FOLLOW_inheritListOpt_in_interfaceDecl3262 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_LBRACE_in_interfaceDecl3264 = new BitSet(new long[]{0x00000401F1000000L,0x0000000080000001L});
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceDecl3267 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RBRACE_in_interfaceDecl3269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDecl_in_interfaceBody3282 = new BitSet(new long[]{0x00000401F1000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funcProtoDecl_in_interfaceBody3289 = new BitSet(new long[]{0x00000401F1000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody3291 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_inherit_in_inheritList3313 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_inheritList3316 = new BitSet(new long[]{0x0000000000000000L,0x0000001800000000L});
-    public static final BitSet FOLLOW_inherit_in_inheritList3319 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_inheritList_in_inheritListOpt3337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EXTENDS_in_inherit3373 = new BitSet(new long[]{0x8003C00880200000L});
-    public static final BitSet FOLLOW_type_in_inherit3375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IMPLEMENTS_in_inherit3397 = new BitSet(new long[]{0x8003C00880200000L});
-    public static final BitSet FOLLOW_type_in_inherit3399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TYPEDEF_in_typedefDecl3427 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_typedefDecl3429 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_EQ_in_typedefDecl3431 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_funcType_in_typedefDecl3433 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_GT_in_typeExtend3452 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_funcType_in_typeExtend3454 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_COMMA_in_typeExtend3456 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACE_in_anonType3467 = new BitSet(new long[]{0x00080001F1200000L,0x0000000080000001L});
-    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType3502 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_varDeclList_in_anonType3530 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_typeExtend_in_anonType3559 = new BitSet(new long[]{0x00000001F1200000L,0x0000000080000001L});
-    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType3587 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_varDeclList_in_anonType3613 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RBRACE_in_anonType3657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList3671 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_anonTypeFieldList3674 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList3677 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_LBRACE_in_objLit3689 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_objLitElemList_in_objLit3692 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_RBRACE_in_objLit3694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_anonTypeField3706 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_anonTypeField3708 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_funcType_in_anonTypeField3711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_objLitElem_in_objLitElemList3727 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_COMMA_in_objLitElemList3730 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_objLitElem_in_objLitElemList3733 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_objLitElem3754 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_objLitElem3756 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_objLitElem3759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LONGLITERAL_in_elementarySymbol3771 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_elementarySymbol3786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTLITERAL_in_elementarySymbol3801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRINGLITERAL_in_elementarySymbol3814 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHARLITERAL_in_elementarySymbol3827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOATNUM_in_elementarySymbol3840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_TRUE_in_elementarySymbol3853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FALSE_in_elementarySymbol3867 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeTagOpt_in_synpred28_Haxe675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_synpred34_Haxe814 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_MINUS_BIGGER_in_synpred34_Haxe818 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_type_in_synpred34_Haxe821 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_typeParam_in_synpred41_Haxe880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_anonType_in_synpred42_Haxe867 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_dotIdent_in_synpred42_Haxe871 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_synpred42_Haxe875 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_typeParam_in_synpred42_Haxe880 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_LT_in_synpred43_Haxe898 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_synpred43_Haxe901 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_GT_in_synpred43_Haxe903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_synpred44_Haxe909 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_synpred44_Haxe912 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LT_in_synpred44_Haxe914 = new BitSet(new long[]{0x8003C00A80200000L});
-    public static final BitSet FOLLOW_typeList_in_synpred44_Haxe917 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_GTGT_in_synpred44_Haxe919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_typeParam_in_synpred45_Haxe960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_block_in_synpred47_Haxe1081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_assignExpr_in_synpred48_Haxe1086 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_synpred48_Haxe1088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ELSE_in_synpred50_Haxe1108 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_synpred50_Haxe1112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_synpred58_Haxe1320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_synpred65_Haxe1414 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_SEMI_in_synpred65_Haxe1417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_synpred66_Haxe1423 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_COLON_in_synpred66_Haxe1425 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_statement_in_synpred66_Haxe1427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_varDecl_in_synpred69_Haxe1528 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classDecl_in_synpred70_Haxe1533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_exprList_in_synpred73_Haxe1735 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_GT_in_synpred91_Haxe1992 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_GT_in_synpred91_Haxe1994 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_addExpr_in_synpred91_Haxe1999 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred103_Haxe2084 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300000L});
-    public static final BitSet FOLLOW_prefixExpr_in_synpred103_Haxe2104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_synpred106_Haxe2159 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_synpred106_Haxe2161 = new BitSet(new long[]{0x80440C0800380000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_exprListOpt_in_synpred106_Haxe2163 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_synpred106_Haxe2165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_synpred107_Haxe2186 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_LBRACKET_in_synpred107_Haxe2188 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_synpred107_Haxe2191 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_RBRACKET_in_synpred107_Haxe2193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_synpred108_Haxe2199 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_PLUSPLUS_in_synpred108_Haxe2201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_value_in_synpred109_Haxe2225 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_SUBSUB_in_synpred109_Haxe2227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arrayLit_in_synpred111_Haxe2268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_synpred114_Haxe2314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_synpred115_Haxe2310 = new BitSet(new long[]{0xFAC40C09F16A0000L,0x00001FC1BE30011EL});
-    public static final BitSet FOLLOW_expr_in_synpred115_Haxe2314 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_statement_in_synpred115_Haxe2316 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_synpred115_Haxe2319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CAST_in_synpred118_Haxe2419 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_LPAREN_in_synpred118_Haxe2421 = new BitSet(new long[]{0x80440C0800280000L,0x00001FC13E300100L});
-    public static final BitSet FOLLOW_expr_in_synpred118_Haxe2423 = new BitSet(new long[]{0x0000000200100000L});
-    public static final BitSet FOLLOW_COMMA_in_synpred118_Haxe2426 = new BitSet(new long[]{0x8003E00880200000L});
-    public static final BitSet FOLLOW_funcType_in_synpred118_Haxe2428 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_RPAREN_in_synpred118_Haxe2432 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classDecl_in_synpred119_Haxe2490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_interfaceDecl_in_synpred120_Haxe2495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enumDecl_in_synpred121_Haxe2507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_propDecl_in_propDeclOpt4079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQ_in_varInit4124 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_varInit4126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcDecl4174 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcDecl4177 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_funcDecl4179 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcDecl4181 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcDecl4183 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcDecl4185 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl4187 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_block_in_funcDecl4189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcDecl4244 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcDecl4247 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_funcDecl4249 = new BitSet(new long[]{0x0004000000080000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_funcDecl4251 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcDecl4253 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcDecl4255 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcDecl4257 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcDecl4259 = new BitSet(new long[]{0x8000000000420000L});
+    public static final BitSet FOLLOW_block_in_funcDecl4261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl4331 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl4333 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_funcProtoDecl4335 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl4337 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl4339 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl4341 = new BitSet(new long[]{0x0000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl4343 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl4345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declAttrList_in_funcProtoDecl4386 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl4388 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl4390 = new BitSet(new long[]{0x0004000000080000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl4392 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl4394 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl4396 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl4398 = new BitSet(new long[]{0x0000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl4400 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl4402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl4446 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_NEW_in_funcProtoDecl4448 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl4450 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl4452 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl4454 = new BitSet(new long[]{0x0000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl4456 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl4458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FUNCTION_in_funcProtoDecl4496 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_funcProtoDecl4498 = new BitSet(new long[]{0x0004000000080000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_funcProtoDecl4500 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_funcProtoDecl4502 = new BitSet(new long[]{0x0000000400300000L});
+    public static final BitSet FOLLOW_paramList_in_funcProtoDecl4504 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_funcProtoDecl4506 = new BitSet(new long[]{0x0000000000420000L});
+    public static final BitSet FOLLOW_typeTagOpt_in_funcProtoDecl4508 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_funcProtoDecl4510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeDeclFlags_in_classDecl4564 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_CLASS_in_classDecl4566 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_classDecl4568 = new BitSet(new long[]{0x8004000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_typeParamOpt_in_classDecl4570 = new BitSet(new long[]{0x8004000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_inheritListOpt_in_classDecl4572 = new BitSet(new long[]{0x8004000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_classBodyScope_in_classDecl4574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACE_in_classBodyScope4632 = new BitSet(new long[]{0x00000401F1840000L,0x00000000C0000001L});
+    public static final BitSet FOLLOW_classMember_in_classBodyScope4635 = new BitSet(new long[]{0x00000401F1840000L,0x00000000C0000001L});
+    public static final BitSet FOLLOW_RBRACE_in_classBodyScope4639 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_classMember4677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcDecl_in_classMember4688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enumDecl_in_classMember4700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeDeclFlags_in_interfaceDecl4729 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_INTERFACE_in_interfaceDecl4731 = new BitSet(new long[]{0x8003C00880200000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_type_in_interfaceDecl4733 = new BitSet(new long[]{0x8000000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_inheritListOpt_in_interfaceDecl4735 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_LBRACE_in_interfaceDecl4737 = new BitSet(new long[]{0x00000401F1000000L,0x0000000080000001L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceDecl4740 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_interfaceDecl4742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_interfaceBody4766 = new BitSet(new long[]{0x00000401F1000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody4768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcProtoDecl_in_interfaceBody4778 = new BitSet(new long[]{0x00000401F1000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceBody4780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_inherit_in_inheritList4814 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_inheritList4817 = new BitSet(new long[]{0x0000000000000000L,0x0000001800000000L});
+    public static final BitSet FOLLOW_inherit_in_inheritList4820 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_inheritList_in_inheritListOpt4850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EXTENDS_in_inherit4904 = new BitSet(new long[]{0x8003C00880200000L});
+    public static final BitSet FOLLOW_type_in_inherit4906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IMPLEMENTS_in_inherit4934 = new BitSet(new long[]{0x8003C00880200000L});
+    public static final BitSet FOLLOW_type_in_inherit4936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TYPEDEF_in_typedefDecl4976 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_typedefDecl4978 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_EQ_in_typedefDecl4980 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_funcType_in_typedefDecl4982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_GT_in_typeExtend5010 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_funcType_in_typeExtend5012 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_COMMA_in_typeExtend5014 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACE_in_anonType5034 = new BitSet(new long[]{0x00080001F1200000L,0x0000000080000001L});
+    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType5081 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_varDeclList_in_anonType5112 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_typeExtend_in_anonType5144 = new BitSet(new long[]{0x00000001F1200000L,0x0000000080000001L});
+    public static final BitSet FOLLOW_anonTypeFieldList_in_anonType5181 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_varDeclList_in_anonType5216 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_anonType5263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList5289 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_anonTypeFieldList5292 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_anonTypeField_in_anonTypeFieldList5295 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_LBRACE_in_objLit5316 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_objLitElemList_in_objLit5319 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_RBRACE_in_objLit5321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_anonTypeField5342 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_anonTypeField5344 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_funcType_in_anonTypeField5347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_objLitElem_in_objLitElemList5375 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_COMMA_in_objLitElemList5378 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_objLitElem_in_objLitElemList5381 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_objLitElem5411 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_objLitElem5413 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_objLitElem5416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LONGLITERAL_in_elementarySymbol5440 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_elementarySymbol5461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTLITERAL_in_elementarySymbol5482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRINGLITERAL_in_elementarySymbol5504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHARLITERAL_in_elementarySymbol5526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOATNUM_in_elementarySymbol5548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TRUE_in_elementarySymbol5570 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FALSE_in_elementarySymbol5596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeTagOpt_in_synpred28_Haxe936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_synpred34_Haxe1135 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_MINUS_BIGGER_in_synpred34_Haxe1139 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_type_in_synpred34_Haxe1142 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_typeParam_in_synpred41_Haxe1228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_anonType_in_synpred42_Haxe1215 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_dotIdent_in_synpred42_Haxe1219 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_synpred42_Haxe1223 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_typeParam_in_synpred42_Haxe1228 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_LT_in_synpred43_Haxe1264 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_synpred43_Haxe1267 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_GT_in_synpred43_Haxe1269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_synpred44_Haxe1281 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_synpred44_Haxe1284 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LT_in_synpred44_Haxe1286 = new BitSet(new long[]{0x8003C00A80200000L});
+    public static final BitSet FOLLOW_typeList_in_synpred44_Haxe1289 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_GTGT_in_synpred44_Haxe1291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_typeParam_in_synpred45_Haxe1350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_block_in_synpred47_Haxe1507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_assignExpr_in_synpred48_Haxe1518 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_synpred48_Haxe1520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ELSE_in_synpred50_Haxe1552 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_synpred50_Haxe1556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_synpred65_Haxe2014 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_SEMI_in_synpred65_Haxe2017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_synpred66_Haxe2029 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_COLON_in_synpred66_Haxe2031 = new BitSet(new long[]{0xFAC00C09F16A0000L,0x00001FC1BE30011EL});
+    public static final BitSet FOLLOW_statement_in_synpred66_Haxe2033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_varDecl_in_synpred69_Haxe2185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classDecl_in_synpred70_Haxe2196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_synpred106_Haxe3048 = new BitSet(new long[]{0x0000080000080000L});
+    public static final BitSet FOLLOW_methodCallOrSliceList_in_synpred106_Haxe3050 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_synpred107_Haxe3077 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_PLUSPLUS_in_synpred107_Haxe3079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_value_in_synpred108_Haxe3118 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_SUBSUB_in_synpred108_Haxe3120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_methodCallOrSlice_in_synpred110_Haxe3245 = new BitSet(new long[]{0x0000080000080000L});
+    public static final BitSet FOLLOW_methodCallOrSliceList_in_synpred110_Haxe3247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_synpred115_Haxe3322 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CAST_in_synpred118_Haxe3418 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_LPAREN_in_synpred118_Haxe3420 = new BitSet(new long[]{0x80400C0800280000L,0x00001FC13E300100L});
+    public static final BitSet FOLLOW_expr_in_synpred118_Haxe3422 = new BitSet(new long[]{0x0000000200100000L});
+    public static final BitSet FOLLOW_COMMA_in_synpred118_Haxe3425 = new BitSet(new long[]{0x8003E00880200000L});
+    public static final BitSet FOLLOW_funcType_in_synpred118_Haxe3427 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_RPAREN_in_synpred118_Haxe3431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classDecl_in_synpred119_Haxe3530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_interfaceDecl_in_synpred120_Haxe3540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enumDecl_in_synpred121_Haxe3550 = new BitSet(new long[]{0x0000000000000002L});
 
 }

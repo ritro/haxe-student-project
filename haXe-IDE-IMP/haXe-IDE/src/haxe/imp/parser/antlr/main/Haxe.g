@@ -328,28 +328,37 @@ multExpr:    (prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
     ;
     
 prefixExpr
-        :    (SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
-        |    newExpr
-        |    cast
-        |    suffixExpr
-        ;
+    :    (SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
+    |    newExpr
+    |    cast
+    |    suffixExpr
+    ;
     
 suffixExpr
-    :    value LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? exprListOpt?)
-    |    value LBRACKET! expr RBRACKET!
+    :    value methodCallOrSliceList -> ^(SUFFIX_EXPR<HaxeTree>["CallOrSlice",true] value? methodCallOrSliceList?)
     |    value PLUSPLUS             -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
     |    value SUBSUB             -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? SUBSUB)
     |    value typeParamOpt
-;
+    ;
 
-value   :   funcLit 
-        |   arrayLit
-        |   objLit
-        |   elementarySymbol
-        |   LPAREN! (expr|statement) RPAREN!
-        |   dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
-        |
-        ;
+methodCallOrSlice
+    :    LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall",true] exprListOpt?)
+    |    LBRACKET expr RBRACKET -> ^(SUFFIX_EXPR<HaxeTree>["Slice",true] expr?)
+    ;
+
+methodCallOrSliceList
+    :    methodCallOrSlice methodCallOrSliceList
+    |    methodCallOrSlice
+    ;
+
+value
+    :   funcLit 
+    |   arrayLit
+    |   objLit
+    |   elementarySymbol
+    |   LPAREN! (expr|statement) RPAREN!
+    |   dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
+    ;
 
 newExpr           
     :   NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)

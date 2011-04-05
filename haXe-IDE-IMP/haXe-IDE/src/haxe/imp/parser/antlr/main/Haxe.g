@@ -126,12 +126,12 @@ param
     : QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
     ;
     
-id  :    IDENTIFIER
+id  :    IDENTIFIER //<VarUsage>[$IDENTIFIER]
     |    THIS
     ;
 
 dotIdent
-    :    id DOT dotIdent -> ^(IDENT<VarUsage>[true] id dotIdent?)
+    :    id DOT dotIdent ->  ^(IDENT<VarUsage>[true] id dotIdent?)
     |    id -> ^(IDENT<VarUsage>[true] id)
     ;
 

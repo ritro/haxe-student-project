@@ -32,10 +32,7 @@ public class BlockScopeNode extends HaxeTree {
 	 */
 	private ArrayList<VarUsage> declaredVars = new ArrayList<VarUsage>();
 
-	/** The l bracket position. */
 	private int lBracketPosition;
-
-	/** The r bracket position. */
 	private int rBracketPosition;
 
 	/**
@@ -55,6 +52,16 @@ public class BlockScopeNode extends HaxeTree {
 	 */
 	public void setDeclaredVars(final ArrayList<VarUsage> declaredVars) {
 		this.declaredVars = declaredVars;
+	}
+	
+	public void addToDeclaredVars(final VarUsage declaredVar){
+		for (VarUsage x : declaredVars)
+			//FIXME only for simple
+			if (x.getText().equals(declaredVar.getText())){
+					declaredVars.remove(x);
+					break;
+			}
+		this.declaredVars.add(declaredVar);
 	}
 
 	/**

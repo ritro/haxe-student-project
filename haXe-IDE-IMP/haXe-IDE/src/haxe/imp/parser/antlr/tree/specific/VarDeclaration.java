@@ -130,6 +130,7 @@ public class VarDeclaration extends HaxeTree {
 	/**
 	 * Returns node correspond for var name (in var tmp:Int = foo+bar; it will
 	 * return node for "tmp").
+	 * Also set type from declaration if previously not set;
 	 * 
 	 * @return the var name node
 	 */
@@ -160,18 +161,33 @@ public class VarDeclaration extends HaxeTree {
 	 */
 	@Override
 	public HaxeType getHaxeType() {
-		try {
-			for (HaxeTree tree : this.getChildren()) {
-				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
-					return (HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
-							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
-							new HaxeType(tree.getChild(0).getText());
+		return this.getVarNameNode().getHaxeType();
+	}
+	
+	public void trySetTypeFromDeclaration(){
+		if (this.getVarNameNode().getHaxeType().equals(HaxeType.haxeNotYetRecognized)){
+			try {
+				for (HaxeTree tree : this.getChildren()) {
+					if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
+						this.getVarNameNode().setHaxeType(
+								(HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
+								HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
+								new HaxeType(tree.getChild(0).getText()));
+						return;
+					}
 				}
+			} catch (NullPointerException nullPointerException) {
+				System.out.println("Problems on getting varType");
 			}
-		} catch (NullPointerException nullPointerException) {
-			System.out.println("Problems on getting varType");
+			this.getVarNameNode().setHaxeType(HaxeType.haxeUndefined);
 		}
-		return HaxeType.haxeUndefined;
+	}
+	
+	@Override
+	public boolean setHaxeType(HaxeType type){
+		this.getVarNameNode().setHaxeType(type);
+			
+		return true;
 	}
 
 	/**

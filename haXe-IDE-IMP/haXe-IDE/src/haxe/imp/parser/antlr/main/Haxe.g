@@ -126,13 +126,15 @@ param
     : QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
     ;
     
-id    :    IDENTIFIER
+id  :    IDENTIFIER
     |    THIS
     ;
-    
-dotIdent:    (id -> id) (DOT ident=id -> ^($ident $dotIdent))* //(id -> id) (DOT ident=id -> ^(DOT $dotIdent $ident))*
+
+dotIdent
+    :    id DOT dotIdent -> ^(DOT ^(IDENT<VarUsage>[true] id)? dotIdent?)
+    |    id -> ^(IDENT<VarUsage>[true] id)
     ;
-    
+
 assignOp
     :    EQ        -> EQ<AssignOperationNode>[$EQ]
     |    PLUSEQ     -> PLUSEQ<AssignOperationNode>[$PLUSEQ]
@@ -357,7 +359,7 @@ value
     |   objLit
     |   elementarySymbol
     |   LPAREN! (expr|statement) RPAREN!
-    |   dotIdent -> ^(IDENT<VarUsage>[true] dotIdent)
+    |   dotIdent
     ;
 
 newExpr           

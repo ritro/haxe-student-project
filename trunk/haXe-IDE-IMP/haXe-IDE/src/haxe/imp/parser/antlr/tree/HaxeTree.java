@@ -31,6 +31,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
@@ -272,7 +274,7 @@ public class HaxeTree extends CommonTree {
 
 	/**
 	 * Calculating scopes in tree. Should be applied only to module
-	 * 
+	 * FIXME here calculus only for classes, should interfaces be included?
 	 */
 	public void calculateScopes() {
 		if (this.getChildCount() > 0) {
@@ -422,12 +424,16 @@ public class HaxeTree extends CommonTree {
 				ArrayList<VarUsage> united = new ArrayList<VarUsage>(
 						thisAsBlockScope.getDeclaredVars());
 				united.addAll(params);
-				thisAsBlockScope.setDeclaredVars(united);
+				for (VarUsage x : united)
+					thisAsBlockScope.addToDeclaredVars(x);
+				//thisAsBlockScope.setDeclaredVars(united);
 			} else if (this.getParent() instanceof ClassNode) {
 				ArrayList<VarUsage> varsFromClass = ((ClassNode) this
 						.getParent()).getAllDeclaredVars();
-				varsFromClass.addAll(thisAsBlockScope.getDeclaredVars());
-				thisAsBlockScope.setDeclaredVars(varsFromClass);
+				//varsFromClass.addAll(thisAsBlockScope.getDeclaredVars());
+				//thisAsBlockScope.setDeclaredVars(varsFromClass);
+				for (VarUsage x : varsFromClass)
+					thisAsBlockScope.addToDeclaredVars(x);
 			}
 			if (this.getChildCount() > 0) {
 				for (HaxeTree tree : this.getChildren()) {
@@ -436,8 +442,7 @@ public class HaxeTree extends CommonTree {
 			}
 		} else if (this instanceof VarDeclaration) {
 			VarDeclaration declarationTree = (VarDeclaration) this;
-			declarationTree.getVarNameNode().setHaxeType(
-					declarationTree.getHaxeType());
+			declarationTree.trySetTypeFromDeclaration();
 			VarUsage varUsage = declarationTree.getVarNameNode().getClone();
 
 			HaxeTree varInitNode = declarationTree.getVAR_INIT_NODE();
@@ -449,7 +454,13 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 			if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
-					//TODO Trying to calculate type
+				//All class variables must be declared with a type (c)Haxe
+				if (blockScope.parent instanceof ClassNode){
+					this.commitError("Class var should have type",
+							((CommonToken) varUsage.getToken()).getStartIndex(),
+							((CommonToken) varUsage.getToken()).getText().length());
+				}
+					//TODO Trying to calculate type ????
 			}
 			if (blockScope.getDeclaredVars().contains(varUsage)) {
 				this.commitError("Var is already declared",
@@ -460,12 +471,13 @@ public class HaxeTree extends CommonTree {
 				ArrayList<VarUsage> united = new ArrayList<VarUsage>(blockScope
 						.getDeclaredVars());
 				united.add(varUsage);
-				blockScope.setDeclaredVars(united);
+				for (VarUsage x : united)
+					blockScope.addToDeclaredVars(x);
+				//blockScope.setDeclaredVars(united);
 			}
 		}else if (this instanceof VarUsage) {
 			VarUsage thisAsVarUsage = (VarUsage) this;
-			if (thisAsVarUsage.getHaxeType().equals(
-					HaxeType.haxeNotYetRecognized)) {
+			if (thisAsVarUsage.getHaxeType().equals(HaxeType.haxeNotYetRecognized)) {
 				if (!thisAsVarUsage.isAuxiliary()){					
 					if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
 						thisAsVarUsage.setHaxeType(blockScope
@@ -481,8 +493,7 @@ public class HaxeTree extends CommonTree {
 				}
 				else{
 					//simple identifier
-					if (//thisAsVarUsage.getChildCount()==1 &&
-						thisAsVarUsage.getChild(0).getChildCount()==0){
+					if (thisAsVarUsage.getChild(0).getChildCount()==0){
 						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
 							thisAsVarUsage.setHaxeType(blockScope
 									.getVarInScopeType(thisAsVarUsage.getText()));
@@ -504,21 +515,39 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 		}else if (this instanceof AssignOperationNode) {
-			if (this.getChildCount() > 0) {
+			AssignOperationNode thisAsAssignNode = (AssignOperationNode)this;
+			for (HaxeTree tree : this.getChildren()) {
+					tree.calculateScopes(blockScope);
+				}
+			HaxeType leftPart = (thisAsAssignNode.getLeftOperand()).getHaxeType();			
+			HaxeType rightPart = this.getTypeOfOperation(thisAsAssignNode.getRightOperand());
+			//FIXME some dirty heavy code !!!!!!!!!!!!
+			if (blockScope.doScopeContainsVarName(thisAsAssignNode.getLeftOperand().getText()) &&
+					blockScope.getVarInScopeType(thisAsAssignNode.getLeftOperand().getText()).equals(HaxeType.haxeUndefined)
+					&&
+					!rightPart.equals(HaxeType.haxeUndefined) &&
+					!rightPart.equals(HaxeType.haxeNotYetRecognized) &&
+					getDeclarationNode(thisAsAssignNode.getLeftOperand()) instanceof VarDeclaration){
+				if (!(getDeclarationNode(thisAsAssignNode.getLeftOperand()).getParent().getParent() 
+						instanceof ClassNode)){
+					getDeclarationNode(thisAsAssignNode.getLeftOperand()).setHaxeType(rightPart);		
+					setNewTypeToDeclaredVar(
+						((VarDeclaration)getDeclarationNode(thisAsAssignNode.getLeftOperand())).getVarNameNode()
+						,blockScope);
+				} else {
+					thisAsAssignNode.getLeftOperand().setHaxeType(rightPart);
+					setNewTypeToDeclaredVar(((VarUsage)thisAsAssignNode.getLeftOperand()).getClone()
+						,blockScope);
+				}
+				thisAsAssignNode.getLeftOperand().setHaxeType(HaxeType.haxeNotYetRecognized);
 				for (HaxeTree tree : this.getChildren()) {
 					tree.calculateScopes(blockScope);
 				}
 			}
-			AssignOperationNode thisAsAssignNode = (AssignOperationNode)this;
-			HaxeType leftPart = (thisAsAssignNode.getLeftOperand()).getHaxeType();			
-			HaxeType rightPart = this.getTypeOfOperation(thisAsAssignNode.getRightOperand());
-			if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
-				//длинна and offset is right, проверять всплыв подск где то в другом месте
-				this.commitError("Can't cast "+
-						thisAsAssignNode.getRightOperand().getText()+" of type "+ rightPart.getTypeName()
-						+" to type "+leftPart.getTypeName(), 
-						this.getToken().getStartIndex(), 
-												this.getToken().getText().length());
+			//-------------->ends hear
+			else if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
+				this.commitError(rightPart.getTypeName()+" should be "+leftPart.getTypeName(), 
+						this.getToken().getStartIndex(), this.getToken().getText().length());
 				return;
 			}
 		} else if (this instanceof FunctionNode) {
@@ -534,6 +563,22 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 		}
+	}
+	
+	private void setNewTypeToDeclaredVar(VarUsage varUsage, BlockScopeNode blockScope){
+		blockScope.addToDeclaredVars(varUsage);		
+		HaxeTree parent = (HaxeTree) blockScope.getParent();
+		//if (parent instanceof ClassNode)
+		//	return; //class var should be declared with type
+		parent = (HaxeTree) parent.getParent();
+		while (parent != null)
+			if (parent instanceof BlockScopeNode &&
+				 ((BlockScopeNode)parent).doScopeContainsVarName(varUsage.getText())){
+			 		setNewTypeToDeclaredVar(varUsage, (BlockScopeNode)parent);
+			 		return;
+			}
+			else
+				parent = (HaxeTree) parent.getParent();
 	}
 
 	/**
@@ -880,7 +925,7 @@ public class HaxeTree extends CommonTree {
 	private HaxeTree isDeclaredIn(final List<HaxeTree> declarations) {
 		for (HaxeTree tree : declarations) {
 			if (tree.isVarDeclaration(this) || 
-				tree.isFuncDeclaration(this)|| 
+				tree.isFuncDeclaration(this)||
 				tree.isClassDeclaration(this)) {
 				return tree;
 			}
@@ -1098,6 +1143,15 @@ public class HaxeTree extends CommonTree {
 				this.printTree(t.getChild(i), indent + 1);
 			}
 		}
+	}
+	
+	public boolean setHaxeType(HaxeType type){
+		if (this instanceof VarUsage)
+			return ((VarUsage)this).setHaxeType(type);
+		else if (this instanceof VarDeclaration)
+			return ((VarDeclaration)this).setHaxeType(type);
+			
+		return false;
 	}
 
 	//FIXME not all special nodes have their own functions

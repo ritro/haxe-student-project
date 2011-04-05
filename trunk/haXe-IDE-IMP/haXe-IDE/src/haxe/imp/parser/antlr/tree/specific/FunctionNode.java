@@ -100,17 +100,16 @@ public class FunctionNode extends HaxeTree {
 
 	/**
 	 * Gets the parameters as var usage.
-	 * 
+	 * FIXME
 	 * @return the parameters as var usage
-	 */
+	 */ 
 	public ArrayList<VarUsage> getParametersAsVarUsage() {
 		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
 		HaxeTree parameters = this.getParamListNode();
 		if (parameters != null) {
 			for (HaxeTree varDecl : parameters.getChildren()) {
 				VarDeclaration varDeclaration = (VarDeclaration) varDecl;
-				varDeclaration.getVarNameNode().setHaxeType(
-						varDeclaration.getHaxeType());
+				varDeclaration.trySetTypeFromDeclaration();
 				VarUsage varUsage = varDeclaration.getVarNameNode().getClone();
 				list.add(varUsage);
 			}

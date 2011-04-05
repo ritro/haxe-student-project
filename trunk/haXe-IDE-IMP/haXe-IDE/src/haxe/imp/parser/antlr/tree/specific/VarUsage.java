@@ -31,8 +31,10 @@ public class VarUsage extends HaxeTree {
 	 * @param varType
 	 *            the varType to set
 	 */
-	public void setHaxeType(final HaxeType varType) {
+	@Override
+	public boolean setHaxeType(final HaxeType varType) {
 		this.haxeType = varType;
+		return true;
 	}
 	
 	/**
@@ -40,6 +42,7 @@ public class VarUsage extends HaxeTree {
 	 * 
 	 * @return the varType
 	 */
+	@Override
 	public HaxeType getHaxeType() {
 		return this.haxeType;
 	}
@@ -62,14 +65,14 @@ public class VarUsage extends HaxeTree {
 	
 	/**
 	 * 
-	 * @return if getText != null then getText, else child(0).getText
+	 * @return if getText != null then getText, else lastchild.getText
 	 */
 	@Override
 	public String getText() {
 		if (this.getChildCount() == 0) 
 			return super.getText();
 		
-		return this.getChild(0).getText();
+		return this.getAllChildren().get(this.getAllChildren().size()-1).getText();
 	}
 	
 	/**
@@ -79,37 +82,6 @@ public class VarUsage extends HaxeTree {
 	public HaxeTree getNodePart(int i){
 		int lenth = this.getAllChildren().size();
 		return (lenth>i)? this.getAllChildren().get(lenth-1 - i): null;
-	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param t
-	 *            the t
-	 * @param varType
-	 *            the var type
-	 */
-	public VarUsage(final int ttype, final Token t, final String varType) {
-		this.token = t;
-		if (varType.equals("INT")) {
-			this.setHaxeType(HaxeType.haxeInt);
-		} else if (varType.equals("FLOAT")) {
-			this.setHaxeType(HaxeType.haxeFloat);
-		} else if (varType.equals("STRING")) {
-			this.setHaxeType(HaxeType.haxeString);
-		} else if (varType.equals("VOID")) {
-			this.setHaxeType(HaxeType.haxeVoid);
-		} else if (varType.equals("BOOL")) {
-			this.setHaxeType(HaxeType.haxeBool);
-		} else if (varType.equals("DYNAMIC")) {
-			this.setHaxeType(HaxeType.haxeDynamic);
-		} else if (varType.equals("Unknown<0>")){
-			this.setHaxeType(HaxeType.haxeUnknown);
-		}else{
-			this.setHaxeType(HaxeType.haxeUndefined);
-		}
 	}
 
 	public VarUsage(final int ttype, final boolean auxiliary) {
@@ -125,6 +97,7 @@ public class VarUsage extends HaxeTree {
 	public VarUsage getClone() {
 		VarUsage varUsage = new VarUsage(this.getToken());
 		varUsage.setHaxeType(this.getHaxeType());
+		varUsage.addChild(this.getChild(0));
 		return varUsage;
 	}
 

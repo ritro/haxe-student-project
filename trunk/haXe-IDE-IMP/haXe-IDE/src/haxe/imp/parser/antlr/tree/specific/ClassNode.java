@@ -127,8 +127,7 @@ public class ClassNode extends HaxeTree {
 			for (HaxeTree tree : blockScopeNode.getChildren()) {
 				if (tree instanceof VarDeclaration) {
 					VarDeclaration declarationTree = (VarDeclaration) tree;
-					declarationTree.getVarNameNode().setHaxeType(
-							declarationTree.getHaxeType());
+					declarationTree.trySetTypeFromDeclaration();
 					VarUsage varUsage = declarationTree.getVarNameNode()
 							.getClone();
 					list.add(varUsage);

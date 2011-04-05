@@ -16,8 +16,9 @@ public class Constant extends HaxeTree {
 	 * @param varType
 	 *            the varType to set
 	 */
-	public void setHaxeType(final HaxeType varType) {
+	public boolean setHaxeType(final HaxeType varType) {
 		this.haxeType = varType;
+		return true;
 	}
 	
 	/**

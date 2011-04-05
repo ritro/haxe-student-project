@@ -131,7 +131,7 @@ id  :    IDENTIFIER
     ;
 
 dotIdent
-    :    id DOT dotIdent -> ^(DOT ^(IDENT<VarUsage>[true] id)? dotIdent?)
+    :    id DOT dotIdent -> ^(IDENT<VarUsage>[true] id dotIdent?)
     |    id -> ^(IDENT<VarUsage>[true] id)
     ;
 

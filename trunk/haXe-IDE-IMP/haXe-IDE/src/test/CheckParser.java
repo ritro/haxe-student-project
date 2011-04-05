@@ -44,9 +44,9 @@ public class CheckParser {
 	
 	@Test
 	public void testAssignment() throws RecognitionException{
-		parseClass("testSimpleAssignmentGlobal");
-		parseClass("testSimpleAssignmentLocal");
-		parseClass("testSimpleAssignmentLocal2");
+		parseClass("testSimpleAssignmentGlobal.hx");
+		parseClass("testSimpleAssignmentLocal.hx");
+		parseClass("testSimpleAssignmentLocal2.hx");
 	}
 	
 	@Test

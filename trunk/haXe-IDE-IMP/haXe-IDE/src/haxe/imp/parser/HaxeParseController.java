@@ -32,6 +32,7 @@ import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.IMessageHandler;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
+import org.eclipse.imp.parser.SimpleAnnotationTypeInfo;
 import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
@@ -102,8 +103,7 @@ public class HaxeParseController implements IParseController {
 	 */
 	@Override
 	public IAnnotationTypeInfo getAnnotationTypeInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SimpleAnnotationTypeInfo();
 	}
 
 	/*

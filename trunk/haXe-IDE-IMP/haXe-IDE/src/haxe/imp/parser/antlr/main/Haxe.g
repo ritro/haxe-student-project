@@ -91,7 +91,7 @@ typeDeclFlags
     ;
     
 qualifiedIdentifier
-    :    (a=IDENTIFIER  ->  $a)   (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
+    : (a=IDENTIFIER  ->  $a) (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
     ;
     
 myImport
@@ -99,7 +99,7 @@ myImport
     | USING^ dotIdent SEMI!
     ;
 // -------- Basics
-                    
+
 access
     : PUBLIC
     | PRIVATE
@@ -119,7 +119,7 @@ declAttrList
 
 paramList
     : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST", true] param+)
-    |    
+    |
     ;
 
 param
@@ -145,11 +145,11 @@ assignOp
     ;
 
     
-funcLit: FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList? typeTagOpt? block?)
-    ;
-arrayLit         : LBRACKET! exprListOpt RBRACKET!
-    ;
-    /*
+funcLit : FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList? typeTagOpt? block?)
+        ;
+arrayLit    : LBRACKET! exprListOpt RBRACKET!
+            ;
+/*
 ! -------- Preprocessor
 ! Not actually implemented as a preprocessor though.
 */
@@ -175,8 +175,8 @@ ppError           : PP_ERROR
     
 //! -------- Types
 
-typeTag    :    COLON! funcType
-    ;
+typeTag : COLON! funcType
+        ;
     
 typeTagOpt
     :    typeTag -> ^(TYPE_TAG<HaxeTree>["TYPE_TAG",true] typeTag?)
@@ -188,7 +188,8 @@ typeList
     |    typeConstraint (COMMA! typeConstraint )* 
     ;
 
-funcType:    (type) (MINUS_BIGGER! type)*
+funcType
+    :    (type) (MINUS_BIGGER! type)*
     |    VOID
     ;
     
@@ -197,8 +198,8 @@ primitiveType
     ;
 
 type    :    (anonType | dotIdent | primitiveType ) (typeParam)*
-    |    
-    ;
+        |    
+        ;
     
 typeParam
     :    LT! typeList GT!
@@ -213,7 +214,7 @@ typeParamOpt
     ;
        
 typeConstraint
-    : IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER? typeList?)
+    :   IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER? typeList?)
     ;
     
 
@@ -244,36 +245,36 @@ parExpression
     :   LPAREN! expr RPAREN!
     ;
 
-block     :    LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<HaxeTree>[$RBRACE, true]) 
-    |    SEMI!
-    ;
+block   :    LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<HaxeTree>[$RBRACE, true]) 
+        |    SEMI!
+        ;
     
 blockStmt
     :    varDecl
     |    classDecl
     |    statement
     ;
-              
     
-breakStmt         
+breakStmt
     :    BREAK SEMI!
     ;
     
-continueStmt      
+continueStmt
     :    CONTINUE SEMI!
     ;
     
-caseStmt:    CASE exprList COLON statement     -> ^(CASE exprList? statement?)
-    |    DEFAULT COLON statement     -> ^(DEFAULT statement?)
+caseStmt
+    :    CASE exprList COLON statement  -> ^(CASE exprList? statement?)
+    |    DEFAULT COLON statement        -> ^(DEFAULT statement?)
     ;
     
 defaultStmt
-           :    DEFAULT COLON!
+    :    DEFAULT COLON!
     ;
     
 catchStmtList
     : catchStmt catchStmtList
-        |
+    |
     ;
     
 catchStmt
@@ -287,10 +288,12 @@ exprListOpt
     |
     ;
     
-exprList:    expr (COMMA! expr)*
+exprList
+    :    expr (COMMA! expr)*
     ;
     
-expr    :    assignExpr
+expr
+    :    assignExpr
     |    UNTYPED assignExpr    -> ^(UNTYPED assignExpr)
     ;
 
@@ -298,7 +301,8 @@ assignExpr
     :     iterExpr (assignOp^ iterExpr)* 
     ;
 
-iterExpr:    ternaryExpr (ELLIPSIS^ ternaryExpr)*
+iterExpr
+    :    ternaryExpr (ELLIPSIS^ ternaryExpr)*
     ;
 
 ternaryExpr
@@ -317,17 +321,17 @@ cmpExpr :    (bitExpr) ((EQEQ^| BANGEQ^ | GTEQ^ | LTEQ^ | GT^ | LT^)  bitExpr)*
     ;
     
 bitExpr :    (shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*
-    ;
+        ;
 
 shiftExpr
     :    (addExpr) (LTLT^  addExpr | (GT GT)^  addExpr | GTGTGT^ addExpr)*
     ;
 
 addExpr :     (multExpr) ((PLUS^ | SUB^) multExpr )*
-    ;
+        ;
     
 multExpr:    (prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
-    ;
+        ;
     
 prefixExpr
     :    (SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
@@ -385,43 +389,43 @@ enumDecl:   typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE ->
 
 enumBody:   (enumValueDecl)*
         ;
-        
+
 enumValueDecl     
     :   IDENTIFIER LPAREN paramList RPAREN SEMI -> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>? paramList? )    
     |   IDENTIFIER SEMI                         -> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>?)
 //  |   pp
     ;
-    
-varDeclList       
+
+varDeclList
     :   varDecl varDeclList
     ;
-    
+
 varDecl :   (declAttrList)? VAR varDeclPartList SEMI -> ^(VAR<VarDeclaration>[$VAR] declAttrList? varDeclPartList?)
         ;
     
 varDeclPartList   
     :   varDeclPart (COMMA! varDeclPart)*
     ;
-    
+
 varDeclPart
     :   IDENTIFIER<VarUsage> propDeclOpt typeTagOpt varInit
     ;
-    
+
 propDecl:   LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL",true] $a1? $a2?)
         ;
-    
+
 propAccessor    
-            :   IDENTIFIER  
-            |   NULL    
-            |   DEFAULT
-            |   DYNAMIC
-            ;
+        :   IDENTIFIER  
+        |   NULL
+        |   DEFAULT
+        |   DYNAMIC
+        ;
     
 propDeclOpt
-            :   propDecl    
-            |
-            ;
-    
+    :   propDecl    
+    |
+    ;
+
 varInit :   EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT",true] expr?)
         |   
         ;
@@ -477,8 +481,8 @@ inheritList
 inheritListOpt    
     :    inheritList -> ^(INHERIT_LIST_OPT<HaxeTree>["INHERIT_LIST_OPT",true] inheritList?)
     |    
-        ;
-        
+    ;
+    
 inherit    :    EXTENDS type     -> ^(EXTENDS type?)
         |    IMPLEMENTS type -> ^(IMPLEMENTS type?)
     ;
@@ -488,26 +492,27 @@ typedefDecl
     ;
     
 typeExtend
-        :    GT funcType COMMA!
+    :    GT funcType COMMA!
     ;
     
-anonType:    LBRACE!
+anonType
+    :   LBRACE!
             ( 
-                        |    anonTypeFieldList 
-                       |    varDeclList 
-                        |    typeExtend (
-                                |anonTypeFieldList
-                                |varDeclList) 
-                        ) 
-                RBRACE!
+            |   anonTypeFieldList 
+            |   varDeclList 
+            |   typeExtend (
+                        |   anonTypeFieldList
+                        |   varDeclList) 
+            ) 
+        RBRACE!
     ;
     
 anonTypeFieldList 
     :    anonTypeField (COMMA! anonTypeField)*
     ;
 
-objLit    :    '{'! objLitElemList '}'!
-    ;
+objLit  : '{'! objLitElemList '}'!
+        ;
 
 anonTypeField
     :    IDENTIFIER COLON! funcType
@@ -518,19 +523,19 @@ objLitElemList
     ;
     
 objLitElem
-        :    IDENTIFIER COLON! expr
+    :    IDENTIFIER COLON! expr
     ;
     
 elementarySymbol
-    :    LONGLITERAL    -> LONGLITERAL<Constant>[$LONGLITERAL, "INT"]
+    :   LONGLITERAL    -> LONGLITERAL<Constant>[$LONGLITERAL, "INT"]
     |   NULL -> ^(NULL<Constant>[$NULL,"Unknown<0>"])
-    |    INTLITERAL    -> INTLITERAL<Constant>[$INTLITERAL, "INT"]
-    |    STRINGLITERAL    -> STRINGLITERAL<Constant>[$STRINGLITERAL,"STRING"]
-    |    CHARLITERAL    -> CHARLITERAL<Constant>[$CHARLITERAL, "STRING"]
-    |    FLOATNUM    -> FLOATNUM<Constant>[$FLOATNUM, "FLOAT"]
-    |    TRUE        -> TRUE<Constant>[$TRUE,"BOOL"]
-    |    FALSE        -> FALSE<Constant>[$FALSE,"BOOL"]
-    ;    
+    |   INTLITERAL    -> INTLITERAL<Constant>[$INTLITERAL, "INT"]
+    |   STRINGLITERAL    -> STRINGLITERAL<Constant>[$STRINGLITERAL,"STRING"]
+    |   CHARLITERAL    -> CHARLITERAL<Constant>[$CHARLITERAL, "STRING"]
+    |   FLOATNUM    -> FLOATNUM<Constant>[$FLOATNUM, "FLOAT"]
+    |   TRUE        -> TRUE<Constant>[$TRUE,"BOOL"]
+    |   FALSE        -> FALSE<Constant>[$FALSE,"BOOL"]
+    ;
 
 WS  :   ( ' '
         | '\t'

@@ -247,6 +247,26 @@ public class BlockScopeNode extends HaxeTree {
 		}
 		return false;
 	}
+	
+	public void changeVarType(VarUsage varUsage){
+		if (!this.doScopeContainsVarName(varUsage.getText()))
+			return;
+
+		this.addToDeclaredVars(varUsage);
+		if (getParentBlockScope() != null)
+			getParentBlockScope().changeVarType(varUsage);
+	}
+	
+	private BlockScopeNode getParentBlockScope(){
+		parent = (HaxeTree) this.getParent();
+		while (parent != null)
+			if (parent instanceof BlockScopeNode)
+				return (BlockScopeNode)parent;
+			else 
+				parent = (HaxeTree) parent.getParent();
+		
+		return null;
+	}
 
 	/**
 	 * Return type of var as it stores in scope.
@@ -255,7 +275,7 @@ public class BlockScopeNode extends HaxeTree {
 	 *            the var name
 	 * @return the var in scope type
 	 */
-	public HaxeType getVarInScopeType(final String varName) {
+	public HaxeType getVarType(final String varName) {
 		for (HaxeTree usage : this.declaredVars) {
 			if (usage.getText().equals(varName)) {
 				return ((VarUsage) usage).getHaxeType();

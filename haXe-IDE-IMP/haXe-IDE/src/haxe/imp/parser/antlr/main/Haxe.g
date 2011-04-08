@@ -10,6 +10,7 @@ tokens {
     PROPERTY_DECL;
     MODULE;
     SUFFIX_EXPR;
+    PREFIX_EXPR;
     BLOCK_SCOPE;
     PARAM_LIST;
     TYPE_TAG;
@@ -126,8 +127,8 @@ param
     : QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
     ;
     
-id  :    IDENTIFIER //<VarUsage>[$IDENTIFIER]
-    |    THIS
+id  :    IDENTIFIER //-> ^(IDENTIFIER<VarUsage>)
+    |    THIS //-> ^(THIS<VarUsage>)
     ;
 
 dotIdent
@@ -334,7 +335,7 @@ multExpr:    (prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
         ;
     
 prefixExpr
-    :    (SUB^|SUBSUB^|PLUS^|PLUSPLUS^|BANG^|TILDE^) prefixExpr
+    :    (SUB|SUBSUB|PLUS|PLUSPLUS|BANG|TILDE)^ prefixExpr
     |    newExpr
     |    cast
     |    suffixExpr

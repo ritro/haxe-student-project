@@ -125,6 +125,10 @@ public class HaxeType {
 		
 		return false;
 	}
+	//for bool operations but solo
+	public boolean isNumericType(){
+		return (this.equals(haxeInt) || this.equals(haxeFloat));
+	}
 
 	/**
 	 * Applied in case when user is sure, that both of parameters are numbers. (

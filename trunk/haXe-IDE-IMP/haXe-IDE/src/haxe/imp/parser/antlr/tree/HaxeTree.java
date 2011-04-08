@@ -271,6 +271,19 @@ public class HaxeTree extends CommonTree {
 		messageHandler.handleSimpleMessage(message, offset,
 				offset + length - 1, 0, 0, 0, 0);
 	}
+	
+	protected void commitError(final String message) {
+		messageHandler.handleSimpleMessage(message, 
+				this.getMostLeftPosition(),
+				//((CommonToken)this.getToken()).getStartIndex(),
+				this.getMostRightPosition(),
+				//((CommonToken)this.getToken()).getStartIndex() + this.getToken().getText().length() - 1,
+				0, 0, 0, 0);
+	}
+	
+	private void commitCastError(){
+		this.commitError(this.getText() + ": cast problems");
+	}
 
 	/**
 	 * Calculating scopes in tree. Should be applied only to module
@@ -426,15 +439,14 @@ public class HaxeTree extends CommonTree {
 				united.addAll(params);
 				for (VarUsage x : united)
 					thisAsBlockScope.addToDeclaredVars(x);
-				//thisAsBlockScope.setDeclaredVars(united);
-			} else if (this.getParent() instanceof ClassNode) {
+			}/* else if (this.getParent() instanceof ClassNode) {
 				ArrayList<VarUsage> varsFromClass = ((ClassNode) this
 						.getParent()).getAllDeclaredVars();
 				//varsFromClass.addAll(thisAsBlockScope.getDeclaredVars());
 				//thisAsBlockScope.setDeclaredVars(varsFromClass);
-				for (VarUsage x : varsFromClass)
-					thisAsBlockScope.addToDeclaredVars(x);
-			}
+				//for (VarUsage x : varsFromClass)
+				//	thisAsBlockScope.addToDeclaredVars(x);
+			}*/
 			if (this.getChildCount() > 0) {
 				for (HaxeTree tree : this.getChildren()) {
 					tree.calculateScopes(thisAsBlockScope);
@@ -456,16 +468,11 @@ public class HaxeTree extends CommonTree {
 			if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
 				//All class variables must be declared with a type (c)Haxe
 				if (blockScope.parent instanceof ClassNode){
-					this.commitError("Class var should have type",
-							((CommonToken) varUsage.getToken()).getStartIndex(),
-							((CommonToken) varUsage.getToken()).getText().length());
+					varUsage.commitError("Class var should have type");
 				}
-					//TODO Trying to calculate type ????
 			}
-			if (blockScope.getDeclaredVars().contains(varUsage)) {
-				this.commitError("Var is already declared",
-						((CommonToken) varUsage.getToken()).getStartIndex(),
-						((CommonToken) varUsage.getToken()).getText().length());
+			if (blockScope.doScopeContainsVarName(varUsage.getText())) {
+				varUsage.commitError("Var is already declared");
 			} else {
 				// TODO could be used without cloning
 				ArrayList<VarUsage> united = new ArrayList<VarUsage>(blockScope
@@ -473,7 +480,6 @@ public class HaxeTree extends CommonTree {
 				united.add(varUsage);
 				for (VarUsage x : united)
 					blockScope.addToDeclaredVars(x);
-				//blockScope.setDeclaredVars(united);
 			}
 		}else if (this instanceof VarUsage) {
 			VarUsage thisAsVarUsage = (VarUsage) this;
@@ -481,13 +487,9 @@ public class HaxeTree extends CommonTree {
 				if (!thisAsVarUsage.isAuxiliary()){					
 					if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
 						thisAsVarUsage.setHaxeType(blockScope
-								.getVarInScopeType(thisAsVarUsage.getText()));
+								.getVarType(thisAsVarUsage.getText()));
 					} else {
-						this.commitError(thisAsVarUsage.getText()
-								+ " is not declared", ((CommonToken) thisAsVarUsage
-								.getToken()).getStartIndex(),
-								((CommonToken) thisAsVarUsage.getToken()).getText()
-										.length());
+						this.commitError(thisAsVarUsage.getText()+ " is not declared");
 						return;
 					}
 				}
@@ -496,7 +498,7 @@ public class HaxeTree extends CommonTree {
 					if (thisAsVarUsage.getChild(0).getChildCount()==0){
 						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
 							thisAsVarUsage.setHaxeType(blockScope
-									.getVarInScopeType(thisAsVarUsage.getText()));
+									.getVarType(thisAsVarUsage.getText()));
 						} else {
 							this.commitError(thisAsVarUsage.getText()
 									+ " is not declared", thisAsVarUsage.getMostLeftPosition(),
@@ -519,40 +521,36 @@ public class HaxeTree extends CommonTree {
 			for (HaxeTree tree : this.getChildren()) {
 					tree.calculateScopes(blockScope);
 				}
-			HaxeType leftPart = (thisAsAssignNode.getLeftOperand()).getHaxeType();			
-			HaxeType rightPart = this.getTypeOfOperation(thisAsAssignNode.getRightOperand());
-			//FIXME some dirty heavy code !!!!!!!!!!!!
-			if (blockScope.doScopeContainsVarName(thisAsAssignNode.getLeftOperand().getText()) &&
-					blockScope.getVarInScopeType(thisAsAssignNode.getLeftOperand().getText()).equals(HaxeType.haxeUndefined)
-					&&
-					!rightPart.equals(HaxeType.haxeUndefined) &&
-					!rightPart.equals(HaxeType.haxeNotYetRecognized) &&
-					getDeclarationNode(thisAsAssignNode.getLeftOperand()) instanceof VarDeclaration){
-				if (!(getDeclarationNode(thisAsAssignNode.getLeftOperand()).getParent().getParent() 
-						instanceof ClassNode)){
-					getDeclarationNode(thisAsAssignNode.getLeftOperand()).setHaxeType(rightPart);		
-					setNewTypeToDeclaredVar(
-						((VarDeclaration)getDeclarationNode(thisAsAssignNode.getLeftOperand())).getVarNameNode()
-						,blockScope);
-				} else {
-					thisAsAssignNode.getLeftOperand().setHaxeType(rightPart);
-					setNewTypeToDeclaredVar(((VarUsage)thisAsAssignNode.getLeftOperand()).getClone()
-						,blockScope);
-				}
+			HaxeTree leftPart = thisAsAssignNode.getLeftOperand();			
+			HaxeType rightPartType = thisAsAssignNode.getRightOperand().getHaxeType();
+			if (blockScope.doScopeContainsVarName(leftPart.getText()) &&
+				blockScope.getVarType(leftPart.getText()).equals(HaxeType.haxeUndefined)&&
+				!rightPartType.equals(HaxeType.haxeUndefined) &&
+				!rightPartType.equals(HaxeType.haxeNotYetRecognized) &&
+				getDeclarationNode(leftPart) instanceof VarDeclaration){
+					if (!(getDeclarationNode(leftPart).getParent().getParent() 
+							instanceof ClassNode)){
+						getDeclarationNode(leftPart).setHaxeType(rightPartType);
+						blockScope.changeVarType(((VarDeclaration)getDeclarationNode
+								(leftPart)).getVarNameNode());
+					} else {
+						thisAsAssignNode.getLeftOperand().setHaxeType(rightPartType);
+						blockScope.changeVarType(((VarUsage)leftPart).getClone());
+					}
 				thisAsAssignNode.getLeftOperand().setHaxeType(HaxeType.haxeNotYetRecognized);
-				for (HaxeTree tree : this.getChildren()) {
+				for (HaxeTree tree : this.getChildren())
 					tree.calculateScopes(blockScope);
-				}
 			}
-			//-------------->ends hear
-			else if (!HaxeType.isAvailableAssignement(leftPart, rightPart)) {
-				this.commitError(rightPart.getTypeName()+" should be "+leftPart.getTypeName(), 
-						this.getToken().getStartIndex(), this.getToken().getText().length());
+			else if (!rightPartType.equals(HaxeType.haxeNotYetRecognized) &&
+					!leftPart.getHaxeType().equals(HaxeType.haxeNotYetRecognized) &&
+					!HaxeType.isAvailableAssignement(leftPart.getHaxeType(), rightPartType)) {
+				this.commitError(rightPartType.getTypeName()+" should be "+
+						leftPart.getHaxeType().getTypeName());
 				return;
 			}
 		} else if (this instanceof FunctionNode) {
-			BlockScopeNode funcBlockScopeNode = ((FunctionNode) this)
-					.getBlockScope();
+			BlockScopeNode funcBlockScopeNode = ((FunctionNode) this).getBlockScope();
+			//mb parametres adding to block scope
 			if (funcBlockScopeNode != null) {
 				funcBlockScopeNode.calculateScopes(blockScope);
 			}
@@ -563,135 +561,6 @@ public class HaxeTree extends CommonTree {
 				}
 			}
 		}
-	}
-	
-	private void setNewTypeToDeclaredVar(VarUsage varUsage, BlockScopeNode blockScope){
-		blockScope.addToDeclaredVars(varUsage);		
-		HaxeTree parent = (HaxeTree) blockScope.getParent();
-		//if (parent instanceof ClassNode)
-		//	return; //class var should be declared with type
-		parent = (HaxeTree) parent.getParent();
-		while (parent != null)
-			if (parent instanceof BlockScopeNode &&
-				 ((BlockScopeNode)parent).doScopeContainsVarName(varUsage.getText())){
-			 		setNewTypeToDeclaredVar(varUsage, (BlockScopeNode)parent);
-			 		return;
-			}
-			else
-				parent = (HaxeTree) parent.getParent();
-	}
-
-	/**
-	 * Gets the type of operation.
-	 * 
-	 * @param leftNode
-	 *            the left node
-	 * @param rightNode
-	 *            the right node
-	 * @param operator
-	 *            the operator
-	 * @return the type of operation
-	 * @throws HaxeCastException
-	 *             the haxe cast exception
-	 */
-	private HaxeType getTypeOfOperation(final HaxeTree leftNode,
-			final HaxeTree rightNode, final boolOperations operator)
-			throws HaxeCastException {
-		HaxeType leftType = this.getTypeOfOperation(leftNode);
-		HaxeType rightType = this.getTypeOfOperation(rightNode);
-		switch (operator) {
-		case EQ:
-		case PLUS: {
-			if (leftType.equals(HaxeType.haxeString)
-					|| rightType.equals(HaxeType.haxeString)) {
-				return HaxeType.haxeString;
-			} else if (areBothNumbers(leftType, rightType)) {
-				return getCommonNumberType(leftType, rightType);
-			} else {
-				this.commitError(leftNode.parent.getText() + ": cast problems",
-						((CommonToken) leftNode.parent.getToken())
-								.getStartIndex(), leftNode.parent.getToken()
-								.getText().length());
-				return HaxeType.haxeObject;
-			}
-		}
-		case DIV: {
-			if (areBothNumbers(leftType, rightType)) {
-				return HaxeType.haxeFloat;
-			} else {
-				this.commitError(leftNode.parent.getText() + ": cast problems",
-						((CommonToken) leftNode.parent.getToken())
-								.getStartIndex(), leftNode.parent.getToken()
-								.getText().length());
-				return HaxeType.haxeObject;
-			}
-		}
-		case MINUS: {
-			if (areBothNumbers(leftType, rightType)) {
-				return getCommonNumberType(leftType, rightType);
-			} else {
-				this.commitError(leftNode.parent.getText() + ": cast problems",
-						((CommonToken) leftNode.parent.getToken())
-								.getStartIndex(), leftNode.parent.getToken()
-								.getText().length());
-				return HaxeType.haxeObject;
-			}
-		}
-		case MULTY: {
-			if (areBothNumbers(leftType, rightType)) {
-				if (leftType.equals(HaxeType.haxeInt)
-						&& rightType.equals(HaxeType.haxeInt)) {
-					return HaxeType.haxeInt;
-				}
-				return HaxeType.haxeFloat;
-			} else {
-				this.commitError(leftNode.parent.getText() + ": cast problems",
-						((CommonToken) leftNode.parent.getToken())
-								.getStartIndex(), leftNode.parent.getToken()
-								.getText().length());
-				return HaxeType.haxeObject;
-			}
-		}
-		}
-		throw new HaxeCastException((HaxeTree) leftNode.parent);
-	}
-
-	/**
-	 * Gets the type of operation.
-	 * 
-	 * @param node
-	 *            the node
-	 * @return the type of operation
-	 * @throws HaxeCastException
-	 */
-	private HaxeType getTypeOfOperation(final HaxeTree node)
-			throws HaxeCastException {
-		if (node instanceof VarUsage | node instanceof Constant) {
-			return node.getHaxeType();
-		} else if (node instanceof HaxeTree) {
-			if (node.getType() == SUFFIX_EXPR_TYPE) {
-				/**
-				 * TODO check types of arguments
-				 */
-				return node.getChild(0).getHaxeType();
-			} else if (node.getText().equals("+")) {
-				return this.getTypeOfOperation(node.getChild(0), node
-						.getChild(1), boolOperations.PLUS);
-			} else if (node.getText().equals("-")) {
-				return this.getTypeOfOperation(node.getChild(0), node
-						.getChild(1), boolOperations.MINUS);
-			} else if (node.getText().equals("*")) {
-				return this.getTypeOfOperation(node.getChild(0), node
-						.getChild(1), boolOperations.MULTY);
-			} else if (node.getText().equals("/")) {
-				return this.getTypeOfOperation(node.getChild(0), node
-						.getChild(1), boolOperations.DIV);
-			} else if (node.getText().equals("=")) {
-				return this.getTypeOfOperation(node.getChild(0), node
-						.getChild(1), boolOperations.EQ);
-			} 
-		}
-		return HaxeType.haxeUndefined;
 	}
 
 	/**
@@ -1006,19 +875,9 @@ public class HaxeTree extends CommonTree {
 			}
 		}
 	}
-
-	/**
-	 * The Class ComparatorByLines.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
+/*
 	private class ComparatorByLines implements Comparator<CommonTree> {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-		 */
 		@Override
 		public int compare(final CommonTree arg0, final CommonTree arg1) {
 			if (arg0.getLine() < arg1.getLine()) {
@@ -1030,19 +889,9 @@ public class HaxeTree extends CommonTree {
 			}
 		}
 	}
-
-	/**
-	 * The Class ComparatorByPosInLine.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
+	
 	private class ComparatorByPosInLine implements Comparator<CommonTree> {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-		 */
 		@Override
 		public int compare(final CommonTree arg0, final CommonTree arg1) {
 			if (arg0.getCharPositionInLine() < arg1.getCharPositionInLine()) {
@@ -1053,13 +902,8 @@ public class HaxeTree extends CommonTree {
 				return 0;
 			}
 		}
-	}
+	}*/
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.BaseTree#getChildren()
-	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<HaxeTree> getChildren() {
@@ -1153,8 +997,30 @@ public class HaxeTree extends CommonTree {
 			
 		return false;
 	}
+	
+	private boolean ifNumOperation(){
+		return (this.getText().equals("+")||
+				this.getText().equals("-")||
+				this.getText().equals("*")||
+				this.getText().equals("/"));
+	}
+	
+	private boolOperations getBoolOperation(){
+		if (this.getText().equals("+"))
+			return boolOperations.PLUS;
+		else if (this.getText().equals("-"))
+			return boolOperations.MINUS;
+		else if (this.getText().equals("*"))
+			return boolOperations.MULTY;
+		else if (this.getText().equals("/"))
+			return boolOperations.DIV;
+		else if (this.getText().equals("="))
+			return boolOperations.EQ;
+		
+		return null;
+	}
 
-	//FIXME not all special nodes have their own functions
+	//FIXME not all special nodes have their own functions and not sure about HaxeTree
 	public HaxeType getHaxeType() {
 		if (this instanceof BlockScopeNode)
 			return ((BlockScopeNode)this).getHaxeType();
@@ -1166,8 +1032,75 @@ public class HaxeTree extends CommonTree {
 			return ((VarDeclaration)this).getHaxeType();
 		else if (this instanceof ClassNode)
 			return ((ClassNode)this).getHaxeType();
+		else if (this instanceof HaxeTree) {			
+			if (this.getType() == SUFFIX_EXPR_TYPE)
+				return this.getChild(0).getHaxeType(); //?TODO??????? 
+			else if (this.getChildCount() == 1) //prefix expr
+				return this.getUnarOperationType();
+			else //2 children -> bool operation
+				return this.getBoolOperationType();
+		}
 		
 		return HaxeType.haxeNotYetRecognized;
+	}
+	
+	private HaxeType getUnarOperationType(){
+		if (this.ifNumOperation() &&
+			this.getChild(0).getHaxeType().isNumericType()) //+/*- can be used thiw other types??
+				return this.getChild(0).getHaxeType();
+		//else commit Error???
+		return HaxeType.haxeNotYetRecognized;
+	}
+	
+	private HaxeType getBoolOperationType() throws HaxeCastException {
+		HaxeTree leftNode = this.getChild(0);
+		HaxeTree rightNode = this.getChild(1);
+		HaxeType leftType = leftNode.getHaxeType();
+		HaxeType rightType = rightNode.getHaxeType();
+
+		switch (this.getBoolOperation()) {
+		case EQ:
+		case PLUS: {
+			if (leftType.equals(HaxeType.haxeString)|| 
+				rightType.equals(HaxeType.haxeString)) {
+				return HaxeType.haxeString;
+			} else if (areBothNumbers(leftType, rightType)) {
+				return getCommonNumberType(leftType, rightType);
+			} else {
+				this.commitCastError();
+				return HaxeType.haxeObject;
+			}
+		}
+		case DIV: {
+			if (areBothNumbers(leftType, rightType)) {
+				return HaxeType.haxeFloat;
+			} else {
+				this.commitCastError();
+				return HaxeType.haxeObject;
+			}
+		}
+		case MINUS: {
+			if (areBothNumbers(leftType, rightType)) {
+				return getCommonNumberType(leftType, rightType);
+			} else {
+				this.commitCastError();
+				return HaxeType.haxeObject;
+			}
+		}
+		case MULTY: {
+			if (areBothNumbers(leftType, rightType)) {
+				if (leftType.equals(HaxeType.haxeInt)
+						&& rightType.equals(HaxeType.haxeInt)) {
+					return HaxeType.haxeInt;
+				}
+				return HaxeType.haxeFloat;
+			} else {
+				this.commitCastError();
+				return HaxeType.haxeObject;
+			}
+		}
+		}
+		throw new HaxeCastException((HaxeTree) leftNode.parent);
 	}
 
 }

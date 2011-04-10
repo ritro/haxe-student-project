@@ -553,7 +553,6 @@ LEXER SECTION (????? ? ?????)
 LONGLITERAL
     :   IntegerNumber LongSuffix
     ;
-
     
 INTLITERAL
     :   IntegerNumber 
@@ -616,283 +615,127 @@ EscapeSequence
              )          
 ;     
 
-ABSTRACT:    'abstract';
+ABSTRACT:   'abstract';
 BOOLEAN:    'Bool';
-BREAK:        'break';
-BYTE:        'byte';
-CASE:        'case';
-CATCH:        'catch';
-CHAR:        'char';
-CLASS:        'class';
-CONST:        'const';
-CONTINUE:    'continue';
+BREAK:      'break';
+BYTE:       'byte';
+CASE:       'case';
+CATCH:      'catch';
+CHAR:       'char';
+CLASS:      'class';
+CONST:      'const';
+CONTINUE:   'continue';
 DEFAULT:    'default';
-DO:        'do';
-DOUBLE:        'double';
-ELSE:        'else';
-ENUM:        'enum';
+DO:         'do';
+DOUBLE:     'double';
+ELSE:       'else';
+ENUM:       'enum';
 EXTENDS:    'extends';
-EXTERN:        'extern';
-FINAL:        'final';
+EXTERN:     'extern';
+FINAL:      'final';
 FINALLY:    'finally';
-FLOAT:        'Float';
+FLOAT:      'Float';
 FOR:        'for';
-GOTO:        'goto';
-IF:        'if';
-IMPLEMENTS:    'implements';
-IMPORT:        'import';
-INSTANCEOF:    'instanceof';
+GOTO:       'goto';
+IF:         'if';
+IMPLEMENTS: 'implements';
+IMPORT:     'import';
+INSTANCEOF: 'instanceof';
 INT:        'Int';
-INTERFACE:    'interface';
-LONG:        'long';
-NATIVE:        'native';
+INTERFACE:  'interface';
+LONG:       'long';
+NATIVE:     'native';
 NEW:        'new';
 PACKAGE:    'package';
 PRIVATE:    'private';
-PROTECTED:    'protected';
-PUBLIC:        'public';
-RETURN:        'return';
-SHORT:        'short';
-STATIC:        'static';
-INLINE:        'inline';
+PROTECTED:  'protected';
+PUBLIC:     'public';
+RETURN:     'return';
+SHORT:      'short';
+STATIC:     'static';
+INLINE:     'inline';
 DYNAMIC:    'dynamic';
-OVERRIDE:    'override';
-STRICTFP:    'strictfp';
-SUPER:        'super';
-SWITCH:        'switch';
-THIS:        'this';
-THROW:        'throw';
-THROWS:        'throws';
-TRANSIENT:    'transient';
+OVERRIDE:   'override';
+STRICTFP:   'strictfp';
+SUPER:      'super';
+SWITCH:     'switch';
+THIS:       'this';
+THROW:      'throw';
+THROWS:     'throws';
+TRANSIENT:  'transient';
 TRY:        'try';
 TYPEDEF:    'typedef';
 UNTYPED:    'untyped';
-USING:        'using';
+USING:      'using';
 VAR:        'var';
-VOID:        'Void';
-VOLATILE:    'volatile';
-WHILE:        'while';
-TRUE:        'true';
-FALSE:        'false';
-NULL:        'null';
-CAST:        'cast';
-FUNCTION:    'function';
-IN:        'in';
+VOID:       'Void';
+VOLATILE:   'volatile';
+WHILE:      'while';
+TRUE:       'true';
+FALSE:      'false';
+NULL:       'null';
+CAST:       'cast';
+FUNCTION:   'function';
+IN:         'in';
     
-LPAREN
-    :   '('
-    ;
-
-RPAREN
-    :   ')'
-    ;
-
-LBRACE
-    :   '{'
-    ;
-
-RBRACE
-    :   '}'
-    ;
-
-LBRACKET
-    :   '['
-    ;
-
-RBRACKET
-    :   ']'
-    ;
-
-SEMI
-    :   ';'
-    ;
-
-COMMA
-    :   ','
-    ;
-
-DOT
-    :   '.'
-    ;
-
-ELLIPSIS
-    :   '...'
-    ;
-
-EQ
-    :   '='
-    ;
-
-BANG
-    :   '!'
-    ;
-
-TILDE
-    :   '~'
-    ;
-
-QUES
-    :   '?'
-    ;
-
-COLON
-    :   ':'
-    ;
-
-EQEQ
-    :   '=='
-    ;
-
-AMPAMP
-    :   '&&'
-    ;
-
-BARBAR
-    :   '||'
-    ;
-
-PLUSPLUS
-    :   '++'
-    ;
-
-SUBSUB
-    :   '--'
-    ;
-
-PLUS
-    :   '+'
-    ;
-
-SUB
-    :   '-'
-    ;
-
-STAR
-    :   '*'
-    ;
-
-SLASH
-    :   '/'
-    ;
-
-AMP
-    :   '&'
-    ;
-
-BAR
-    :   '|'
-    ;
-
-CARET
-    :   '^'
-    ;
-
-PERCENT
-    :   '%'
-    ;
-
-PLUSEQ
-    :   '+='
-    ; 
-    
-SUBEQ
-    :   '-='
-    ;
-
-STAREQ
-    :   '*='
-    ;
-
-SLASHEQ
-    :   '/='
-    ;
-
-AMPEQ
-    :   '&='
-    ;
-
-BAREQ
-    :   '|='
-    ;
-
-CARETEQ
-    :   '^='
-    ;
-
-PERCENTEQ
-    :   '%='
-    ;
-    
-PERCENTDLQ
-    : '%%<<%%='
-    ;
-PERCENTDBQ
-    : '%%>>%%='
-    ;
-PERCENTDBBQ
-    : '%%>>>%%='
-    ;
-EQEQEQ
-    :'==='
-    ;
-    
-PERCENTLESQ
-    : '%%<=%%'
-    ;
-
-BANGEQQ    
-    :'!=='
-    ;
-
-MONKEYS_AT
-    :   '@'
-    ;
-
-BANGEQ    :    '!='
-    ;
-    
-MINUS_BIGGER
-    :    '->'
-    ;
-
-PERCENTLL
-    :'%%<<%%'
-    ;
-PERCENTBB
-    :'%%>>%%'
-    ;
-PERCENTBBB
-    :'%%>>>%%'
-    ;
-    
-GT    :    '>'
-        ;
-    
-GTGT    :    '>>'
-    ;
-    
-LTLT    :    '<<'
-    ;
-GTGTGT    :    '>>>'
-    ;
-    
-LTLTEQ    :    '<<='
-    ;
-    
-GTGTEQ    :    '>>='
-    ;
-    
-GTGTGTEQ:    '>>>='
-    ;    
-    
-GTEQ    :    '>='
-    ;
-LTEQ    :    '<='
-    ;
-
-LT
-    :   '<'
-    ;     
+LPAREN      :   '(';
+RPAREN      :   ')';
+LBRACE      :   '{';
+RBRACE      :   '}';
+LBRACKET    :   '[';
+RBRACKET    :   ']';
+SEMI        :   ';';
+COMMA       :   ',';
+DOT         :   '.';
+ELLIPSIS    :   '...';
+EQ          :   '=';
+BANG        :   '!';
+TILDE       :   '~';
+QUES        :   '?';
+COLON       :   ':';
+EQEQ        :   '==';
+AMPAMP      :   '&&';
+BARBAR      :   '||';
+PLUSPLUS    :   '++';
+SUBSUB      :   '--';
+PLUS        :   '+';
+SUB         :   '-';
+STAR        :   '*';
+SLASH       :   '/';
+AMP         :   '&';
+BAR         :   '|';
+CARET       :   '^';
+PERCENT     :   '%';
+PLUSEQ      :   '+=';
+SUBEQ       :   '-=';
+STAREQ      :   '*=';
+SLASHEQ     :   '/=';
+AMPEQ       :   '&=';
+BAREQ       :   '|=';
+CARETEQ     :   '^=';
+PERCENTEQ   :   '%=';
+PERCENTDLQ  :   '%%<<%%=';
+PERCENTDBQ  :   '%%>>%%=';
+PERCENTDBBQ :   '%%>>>%%=';
+EQEQEQ      :   '===';
+PERCENTLESQ :   '%%<=%%';
+BANGEQQ     :   '!==';
+MONKEYS_AT  :   '@';
+BANGEQ      :   '!=';
+MINUS_BIGGER:   '->';
+PERCENTLL   :   '%%<<%%';
+PERCENTBB   :   '%%>>%%';
+PERCENTBBB  :   '%%>>>%%';
+GT      :   '>';
+GTGT    :   '>>';
+LTLT    :   '<<';
+GTGTGT  :   '>>>';
+LTLTEQ  :   '<<=';
+GTGTEQ  :   '>>=';
+GTGTGTEQ:   '>>>=';
+GTEQ    :   '>=';
+LTEQ    :   '<=';
+LT      :   '<';     
 
 IDENTIFIER
     :  ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*

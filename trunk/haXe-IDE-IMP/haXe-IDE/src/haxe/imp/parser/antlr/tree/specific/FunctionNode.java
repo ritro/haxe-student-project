@@ -12,6 +12,7 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -53,38 +54,11 @@ public class FunctionNode extends HaxeTree {
 		return this.fullNameWithParameters;
 	}
 
-	/**
-	 * Instantiates a new function node.
-	 */
-	public FunctionNode() {
-		super();
-	}
-
-	/**
-	 * Instantiates a new function node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public FunctionNode(final HaxeTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new function node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
 	public FunctionNode(final Token t) {
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Gets the param list node.
-	 * 
 	 * @return the param list node
 	 */
 	public HaxeTree getParamListNode() {
@@ -142,6 +116,18 @@ public class FunctionNode extends HaxeTree {
 			return HaxeType.haxeUndefined;
 		}
 		return HaxeType.haxeUndefined;
+	}
+	
+	/**
+	 * Creating class outline
+	 */
+	@Override
+	public void accept(final HaxeModelVisitor visitor){
+		visitor.visit(this);/*
+		for (HaxeTree child : this.getBlockScope().getChildren()) {
+			child.accept(visitor);
+		}*/
+		visitor.endVisit(this);
 	}
 
 	/**

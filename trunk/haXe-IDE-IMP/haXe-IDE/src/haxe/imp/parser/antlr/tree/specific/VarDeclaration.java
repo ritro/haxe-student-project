@@ -11,7 +11,9 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -42,85 +44,10 @@ public class VarDeclaration extends HaxeTree {
 		return this.nameWithType;
 	}
 
-	/**
-	 * Instantiates a new var declaration.
-	 */
-	public VarDeclaration() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var declaration.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public VarDeclaration(final CommonTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var declaration.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public VarDeclaration(final Token t) {
-		super(t);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var declaration.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param type
-	 *            the type
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public VarDeclaration(final int ttype, final String type,
-			final boolean auxiliary) {
-		super(ttype, type, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var declaration.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 */
-	public VarDeclaration(final int ttype) {
-		super(ttype);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new var declaration.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param token
-	 *            the token
-	 */
 	public VarDeclaration(final int ttype, final Token token) {
 		this.token = token;
 	}
 
-	/**
-	 * Instantiates a new var declaration.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param token
-	 *            the token
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
 	public VarDeclaration(final int ttype, final Token token,
 			final boolean auxiliary) {
 		this.token = token;
@@ -189,6 +116,15 @@ public class VarDeclaration extends HaxeTree {
 			
 		return true;
 	}
+	
+	/**
+	 * Creating class outline
+	 */
+	@Override
+	public void accept(final HaxeModelVisitor visitor){
+		visitor.visit(this);
+		visitor.endVisit(this);
+	}
 
 	/**
 	 * ???
@@ -204,5 +140,35 @@ public class VarDeclaration extends HaxeTree {
 			}
 		}
 		return null;
+	}
+	
+	@Override
+	public void calculateScopes(final BlockScopeNode blockScope){
+		this.trySetTypeFromDeclaration();
+		VarUsage varUsage = getVarNameNode().getClone();
+
+		HaxeTree varInitNode = this.getVAR_INIT_NODE();
+		if (varInitNode != null) {
+			if (varInitNode.getChildCount() > 0) {
+				for (HaxeTree tree : varInitNode.getChildren()) {
+					tree.calculateScopes(blockScope);
+				}
+			}
+		}
+		if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
+			/**(c)Haxe
+			 * All Class variables must be declared with a type 
+			 */
+			if (blockScope.parent instanceof ClassNode){
+				varUsage.commitError("Class var should have type");
+			} else
+			if (blockScope.parent instanceof EnumNode)
+				this.setHaxeType(new HaxeType(blockScope.parent.getText()));
+		}
+		if (blockScope.doScopeContainsVarName(varUsage.getText())) {
+			varUsage.commitError("Var is already declared");
+		} else {
+			blockScope.addToDeclaredVars(varUsage);
+		}
 	}
 }

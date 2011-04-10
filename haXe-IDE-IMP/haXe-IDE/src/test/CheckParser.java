@@ -50,6 +50,12 @@ public class CheckParser {
 	}
 	
 	@Test
+	public void checkInvalidAssigment() {
+		HaxeParser parser = createHaxeParser(pathToTests + "checkAssigments.hx");
+		assertEquals(7, parser.getNumberOfSyntaxErrors());
+	}
+	
+	@Test
 	public void testFunction() throws RecognitionException {
 		assertTreeSize(2, parseFunctionFile("testFunction01"));
 		assertTreeSize(4, parseFunctionFile("testFunction02"));
@@ -66,8 +72,8 @@ public class CheckParser {
 	
 	@Test
 	public void testClass() throws RecognitionException {
-		assertTreeSize(2, parseClass("testClass01"));
-		assertTreeSize(3, parseClass("testClass02"));
+		assertTreeSize(1, parseClass("testClass01"));
+		assertTreeSize(2, parseClass("testClass02"));
 	}
 
 	public static HaxeTree parseStatement(final String filename) throws RecognitionException {

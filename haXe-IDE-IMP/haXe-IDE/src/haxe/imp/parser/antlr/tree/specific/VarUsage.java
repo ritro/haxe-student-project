@@ -72,7 +72,7 @@ public class VarUsage extends HaxeTree {
 		if (this.getChildCount() == 0) 
 			return super.getText();
 		
-		return this.getAllChildren().get(this.getAllChildren().size()-1).getText();
+		return this.getChild(0).getText();//.getAllChildren().get(this.getAllChildren().size()-1)
 	}
 	
 	/**

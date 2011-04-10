@@ -199,8 +199,8 @@ primitiveType
     :    INT | FLOAT | DYNAMIC | BOOLEAN | VOID
     ;
 
-type    :    (anonType | dotIdent | primitiveType ) (typeParam)*
-        |    
+type    :    (anonType^ | dotIdent^ | primitiveType^ ) (typeParam)*
+        |    				//????
         ;
     
 typeParam
@@ -300,15 +300,15 @@ expr
     ;
 
 assignExpr
-    :     iterExpr (assignOp^ iterExpr)* 
+    :     iterExpr (assignOp^ iterExpr)? 
     ;
 
 iterExpr
-    :    ternaryExpr (ELLIPSIS^ ternaryExpr)*
+    :    ternaryExpr (ELLIPSIS^ ternaryExpr)?
     ;
 
 ternaryExpr
-    :    logicOrExpr (QUES^ expr COLON! logicOrExpr)*
+    :    logicOrExpr (QUES^ expr COLON! logicOrExpr)? //????
     ;
 
 logicOrExpr
@@ -322,7 +322,7 @@ logicAndExpr
 cmpExpr :    (bitExpr) ((EQEQ^| BANGEQ^ | GTEQ^ | LTEQ^ | GT^ | LT^)  bitExpr)*
     ;
     
-bitExpr :    (shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*
+bitExpr :    (shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*  //???????
         ;
 
 shiftExpr
@@ -332,21 +332,26 @@ shiftExpr
 addExpr :     (multExpr) ((PLUS^ | SUB^) multExpr )*
         ;
     
-multExpr:    (prefixExpr) ((STAR^|SLASH^|PERCENT^) prefixExpr)*
+multExpr:    (psExpr) ((STAR^|SLASH^|PERCENT^) psExpr)*
         ;
+        
+psExpr
+    	:	prefixExpr
+    	|	suffixExpr
+    	| 	value
+    	;
     
 prefixExpr
-    :    (SUB|SUBSUB|PLUS|PLUSPLUS|BANG|TILDE)^ prefixExpr
-    |    newExpr
-    |    cast
-    |    suffixExpr
-    ;
+	:    (SUB|SUBSUB|PLUS|PLUSPLUS|BANG|TILDE)^ value
+	|	newExpr
+    	|	cast    	
+    	|	funcLit 
+	;
     
 suffixExpr
     :    value methodCallOrSliceList -> ^(SUFFIX_EXPR<HaxeTree>["CallOrSlice",true] value? methodCallOrSliceList?)
     |    value PLUSPLUS             -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
     |    value SUBSUB             -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? SUBSUB)
-    |    value typeParamOpt
     ;
 
 methodCallOrSlice
@@ -360,12 +365,12 @@ methodCallOrSliceList
     ;
 
 value
-    :   funcLit 
-    |   arrayLit
-    |   objLit
+    //:   funcLit 
+    //|   arrayLit //Slice???
+    :   objLit
     |   elementarySymbol
     |   LPAREN! (expr|statement) RPAREN!
-    |   dotIdent
+    |   dotIdent typeParamOpt
     ;
 
 newExpr           

@@ -48,6 +48,7 @@ public class HaxeType {
 	//Unknown<0> - special value usable for any type with behavior diff from Dynamic
 	//NULL have this type and it used only(?) for it
 	public static final HaxeType haxeUnknown;
+	public static final HaxeType haxeEnum;
 
 	static {
 		haxeString = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".String");
@@ -79,6 +80,7 @@ public class HaxeType {
 				this.add(haxeObject);
 			}
 		});
+		haxeEnum = new HaxeType("haxe.Enum");
 	}
 
 	/**

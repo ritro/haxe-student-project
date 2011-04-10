@@ -113,5 +113,42 @@ public class VarUsage extends HaxeTree {
 		}
 		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
+	
+	@Override
+	public void calculateScopes(final BlockScopeNode blockScope){
+		if (getHaxeType().equals(HaxeType.haxeNotYetRecognized)) {
+			if (!isAuxiliary()){					
+				if (blockScope.doScopeContainsVarName(getText())) {
+					setHaxeType(blockScope.getVarType(getText()));
+				} else {
+					//try find class or enum declaration
+					this.commitError(getText()+ " is not declared");
+					return;
+				}
+			}
+			else{ 
+				HaxeTree y = getChild(0).getDeclarationNode(getChild(0));
+				//simple identifier
+				if (getChild(0).getChildCount()==0){
+					if (blockScope.doScopeContainsVarName(getText())) {
+						setHaxeType(blockScope.getVarType(getText()));
+					} else if (y.getType() != 0){
+						setHaxeType(y.getHaxeType());
+					} else {
+						this.commitError(getText()
+								+ " is not declared", getMostLeftPosition(),
+								getMostRightPosition()-getMostLeftPosition());
+						return;
+					}}
+				else{
+					//TODO здесь искать по пакетам, параметрам других классов и тп
+					this.commitError(getText()+ " can't yet define Those", 
+							getMostLeftPosition(),
+							getMostRightPosition()-getMostLeftPosition());
+					return;
+				}
+			}
+		}
+	}
 
 }

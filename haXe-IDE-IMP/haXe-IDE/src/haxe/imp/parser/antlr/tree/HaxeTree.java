@@ -20,6 +20,7 @@ import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.Constant;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
@@ -176,81 +177,33 @@ public class HaxeTree extends CommonTree {
 	 * Instantiates a new extended common tree.
 	 */
 	public HaxeTree() {
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Instantiates a new extended common tree.
-	 * 
-	 * @param node
-	 *            the node
-	 */
 	public HaxeTree(final CommonTree node) {
 		super(node);
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * Instantiates a new extended common tree.
-	 * 
-	 * @param t
-	 *            the t
-	 */
 	public HaxeTree(final Token t) {
 		super(t);
 	}
 
-	/**
-	 * Instantiates a new extended common tree.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param t
-	 *            the t
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
 	public HaxeTree(final int ttype, final Token t,
 			final boolean auxiliary) {
 		this.token = t;
 		this.auxiliary = auxiliary;
 	}
 
-	/**
-	 * Instantiates a new extended common tree.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param type
-	 *            the type
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
 	public HaxeTree(final int ttype, final String type,
 			final boolean auxiliary) {
 		this.token = new CommonToken(ttype, type);
 		this.auxiliary = auxiliary;
 	}
 
-	/**
-	 * Instantiates a new extended common tree.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
 	public HaxeTree(final int ttype, final boolean auxiliary) {
 		this.token = new CommonToken(ttype);
 		this.auxiliary = auxiliary;
 	}
 
-	/**
-	 * Instantiates a new extended common tree.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 */
 	public HaxeTree(final int ttype) {
 		this.token = new CommonToken(ttype);
 	}
@@ -266,13 +219,13 @@ public class HaxeTree extends CommonTree {
 	 * @param length
 	 *            the length
 	 */
-	private void commitError(final String message, final int offset,
+	public void commitError(final String message, final int offset,
 			final int length) {
 		messageHandler.handleSimpleMessage(message, offset,
 				offset + length - 1, 0, 0, 0, 0);
 	}
 	
-	protected void commitError(final String message) {
+	public void commitError(final String message) {
 		messageHandler.handleSimpleMessage(message, 
 				this.getMostLeftPosition(),
 				//((CommonToken)this.getToken()).getStartIndex(),
@@ -297,46 +250,35 @@ public class HaxeTree extends CommonTree {
 					if (blockScope != null) {
 						blockScope.calculateScopes(blockScope);
 					}
-					break;
+				}
+				if (tree instanceof EnumNode) {
+					BlockScopeNode blockScope = ((EnumNode) tree).getBlockScope();
+					if (blockScope != null) {
+						blockScope.calculateScopes(blockScope);
+					}
 				}
 			}
 		}
 	}
 
 	/**
-	 * Accept.
-	 * 
-	 * @param visitor
-	 *            the visitor
+	 * Construction of outline
 	 */
-
+	//TODO complete for other nodes - 
 	public void accept(final HaxeModelVisitor visitor) {
 		try {
 			if (this instanceof FunctionNode) {
-				visitor.visit(this);
-				visitor.endVisit(this);
+				((FunctionNode)this).accept(visitor);
+				//visitor.visit(this);
+				//visitor.endVisit(this);
 			} else if (this instanceof ClassNode) {
-				visitor.visit(this);
-				for (HaxeTree child : this.getChildren()) {
-					child.accept(visitor);
-				}
-				visitor.endVisit(this);
-			} else if (this instanceof VarDeclaration) {
-				visitor.visit(this);
-				visitor.endVisit(this);
+				((ClassNode)this).accept(visitor);
+			} else if (this instanceof EnumNode) {
+				((EnumNode)this).accept(visitor);
+			}else if (this instanceof VarDeclaration) {
+				((VarDeclaration)this).accept(visitor);
 			} else if (this instanceof BlockScopeNode) {
-				boolean isParentClass = (this.parent instanceof ClassNode);
-				if (!isParentClass) {
-					visitor.visit(this, false);
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-					visitor.endVisit(this);
-				} else {
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-				}
+				((BlockScopeNode)this).accept(visitor);
 			} else if (this.token != null) {
 				if (this.token.getType() == MODULE_TYPE) {
 					visitor.visit(this);
@@ -344,13 +286,7 @@ public class HaxeTree extends CommonTree {
 						child.accept(visitor);
 					}
 					visitor.endVisit(this);
-				} else if (this.token.getType() == ENUM_TYPE) {
-					visitor.visit(this);
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-					visitor.endVisit(this);
-				}
+				} 
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out
@@ -360,12 +296,6 @@ public class HaxeTree extends CommonTree {
 		}
 	}
 
-	/**
-	 * Accept.
-	 * 
-	 * @param visitor
-	 *            the visitor
-	 */
 	public void accept(final HaxeFoldingVisitor visitor) {
 		try {
 			if (this instanceof FunctionNode) {
@@ -424,98 +354,14 @@ public class HaxeTree extends CommonTree {
 	 * @throws HaxeCastException
 	 *             the haxe cast exception
 	 */
-	protected void calculateScopes(final BlockScopeNode blockScope)
+	public void calculateScopes(final BlockScopeNode blockScope)
 			throws HaxeCastException {
 		if (this instanceof BlockScopeNode) {
-			BlockScopeNode thisAsBlockScope = (BlockScopeNode) this;
-			thisAsBlockScope.setDeclaredVars(blockScope.getDeclaredVars());
-
-			if (this.getParent() instanceof FunctionNode) {
-				ArrayList<VarUsage> params = ((FunctionNode) this.getParent())
-						.getParametersAsVarUsage();
-
-				ArrayList<VarUsage> united = new ArrayList<VarUsage>(
-						thisAsBlockScope.getDeclaredVars());
-				united.addAll(params);
-				for (VarUsage x : united)
-					thisAsBlockScope.addToDeclaredVars(x);
-			}/* else if (this.getParent() instanceof ClassNode) {
-				ArrayList<VarUsage> varsFromClass = ((ClassNode) this
-						.getParent()).getAllDeclaredVars();
-				//varsFromClass.addAll(thisAsBlockScope.getDeclaredVars());
-				//thisAsBlockScope.setDeclaredVars(varsFromClass);
-				//for (VarUsage x : varsFromClass)
-				//	thisAsBlockScope.addToDeclaredVars(x);
-			}*/
-			if (this.getChildCount() > 0) {
-				for (HaxeTree tree : this.getChildren()) {
-					tree.calculateScopes(thisAsBlockScope);
-				}
-			}
+			((BlockScopeNode)this).calculateScopes(blockScope);
 		} else if (this instanceof VarDeclaration) {
-			VarDeclaration declarationTree = (VarDeclaration) this;
-			declarationTree.trySetTypeFromDeclaration();
-			VarUsage varUsage = declarationTree.getVarNameNode().getClone();
-
-			HaxeTree varInitNode = declarationTree.getVAR_INIT_NODE();
-			if (varInitNode != null) {
-				if (varInitNode.getChildCount() > 0) {
-					for (HaxeTree tree : varInitNode.getChildren()) {
-						tree.calculateScopes(blockScope);
-					}
-				}
-			}
-			if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
-				//All class variables must be declared with a type (c)Haxe
-				if (blockScope.parent instanceof ClassNode){
-					varUsage.commitError("Class var should have type");
-				}
-			}
-			if (blockScope.doScopeContainsVarName(varUsage.getText())) {
-				varUsage.commitError("Var is already declared");
-			} else {
-				// TODO could be used without cloning
-				ArrayList<VarUsage> united = new ArrayList<VarUsage>(blockScope
-						.getDeclaredVars());
-				united.add(varUsage);
-				for (VarUsage x : united)
-					blockScope.addToDeclaredVars(x);
-			}
+			((VarDeclaration)this).calculateScopes(blockScope);
 		}else if (this instanceof VarUsage) {
-			VarUsage thisAsVarUsage = (VarUsage) this;
-			if (thisAsVarUsage.getHaxeType().equals(HaxeType.haxeNotYetRecognized)) {
-				if (!thisAsVarUsage.isAuxiliary()){					
-					if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
-						thisAsVarUsage.setHaxeType(blockScope
-								.getVarType(thisAsVarUsage.getText()));
-					} else {
-						this.commitError(thisAsVarUsage.getText()+ " is not declared");
-						return;
-					}
-				}
-				else{
-					//simple identifier
-					if (thisAsVarUsage.getChild(0).getChildCount()==0){
-						if (blockScope.doScopeContainsVarName(thisAsVarUsage.getText())) {
-							thisAsVarUsage.setHaxeType(blockScope
-									.getVarType(thisAsVarUsage.getText()));
-						} else {
-							this.commitError(thisAsVarUsage.getText()
-									+ " is not declared", thisAsVarUsage.getMostLeftPosition(),
-									thisAsVarUsage.getMostRightPosition()-
-															thisAsVarUsage.getMostLeftPosition());
-							return;
-						}}
-					else{
-						//TODO здесь искать по пакетам, параметрам других классов и тп
-						this.commitError(thisAsVarUsage.getText()+ " can't yet define Those", 
-								thisAsVarUsage.getMostLeftPosition(),
-								thisAsVarUsage.getMostRightPosition()-
-															thisAsVarUsage.getMostLeftPosition());
-						return;
-					}
-				}
-			}
+			((VarUsage) this).calculateScopes(blockScope);
 		}else if (this instanceof AssignOperationNode) {
 			AssignOperationNode thisAsAssignNode = (AssignOperationNode)this;
 			for (HaxeTree tree : this.getChildren()) {
@@ -549,11 +395,20 @@ public class HaxeTree extends CommonTree {
 				return;
 			}
 		} else if (this instanceof FunctionNode) {
+			//TODO return in prev block scope. add func decl + try to 
 			BlockScopeNode funcBlockScopeNode = ((FunctionNode) this).getBlockScope();
-			//mb parametres adding to block scope
+			//mb parametres adding to block scope here
 			if (funcBlockScopeNode != null) {
 				funcBlockScopeNode.calculateScopes(blockScope);
 			}
+		} else if (this.getType() == SUFFIX_EXPR_TYPE){
+			if (this.getText().equals("CallOrSlice"))
+				this.getChild(0).calculateScopes(blockScope); //calculate for VarUsage
+			if (!this.getChild(0).getHaxeType().equals(HaxeType.haxeNotYetRecognized)){
+				//TODO: check if it is Method Call or Slice
+				//TODO: check for parametres of call
+			}else
+				this.commitError(this.getChild(0).getText()+" is not declared");
 		} else {
 			if (this.getChildren() != null) {
 				for (HaxeTree tree : this.getChildren()) {
@@ -748,20 +603,32 @@ public class HaxeTree extends CommonTree {
 		HaxeTree parent = (HaxeTree) this.getParent();
 		if (parent != null) {
 			if (this.isVarDeclaration(usageNode) ||
-				this.isClassDeclaration(usageNode)) {
+				this.isClassDeclaration(usageNode)){
 				return this;
-			} else 
-				if (this instanceof FunctionNode){
-				if (this.isFuncDeclaration(usageNode))
-					return this;
-				else {
-					HaxeTree params = ((FunctionNode) this).getParamListNode();
-					if (params != null) {
-						HaxeTree declaration = usageNode.isDeclaredIn(params
-								.getChildren());
-						if (declaration != null) return declaration;
+			} else
+				if (this instanceof EnumNode){
+					if (this.isEnumDeclaration(usageNode))
+						return this;
+					else{
+						if (!((EnumNode) this).getAllMembers().isEmpty()) {
+							HaxeTree declaration = usageNode.isDeclaredIn(
+									((EnumNode) this).getAllMembers());
+							if (declaration != null) return declaration;
+						}
 					}
-				}
+				}			
+			else 
+				if (this instanceof FunctionNode){
+					if (this.isFuncDeclaration(usageNode))
+						return this;
+					else {
+						HaxeTree params = ((FunctionNode) this).getParamListNode();
+						if (params != null) {
+							HaxeTree declaration = usageNode.isDeclaredIn(params
+									.getChildren());
+							if (declaration != null) return declaration;
+						}
+					}
 			}
 //TODO:think about INSTANCES later ------------>however seems to work well
 			int index = parent.getChildren().indexOf(this);
@@ -795,7 +662,8 @@ public class HaxeTree extends CommonTree {
 		for (HaxeTree tree : declarations) {
 			if (tree.isVarDeclaration(this) || 
 				tree.isFuncDeclaration(this)||
-				tree.isClassDeclaration(this)) {
+				tree.isClassDeclaration(this)||
+				tree.isEnumDeclaration(this)) {
 				return tree;
 			}
 		}
@@ -835,7 +703,19 @@ public class HaxeTree extends CommonTree {
 	 * @return true, if is class declaration
 	 */
 	private boolean isClassDeclaration(final HaxeTree usage) {
-		return ((this instanceof ClassNode) && (this.getChild(0).getText()
+		return ((this instanceof ClassNode) && (this.getText()
+				.equals(usage.getText())));
+	}
+
+	/**
+	 * Checks if is enum declaration.
+	 * 
+	 * @param usage
+	 *            the usage
+	 * @return true, if is enum declaration
+	 */
+	private boolean isEnumDeclaration(final HaxeTree usage) {
+		return ((this instanceof EnumNode) && (this.getText()
 				.equals(usage.getText())));
 	}
 
@@ -1032,6 +912,8 @@ public class HaxeTree extends CommonTree {
 			return ((VarDeclaration)this).getHaxeType();
 		else if (this instanceof ClassNode)
 			return ((ClassNode)this).getHaxeType();
+		else if (this instanceof EnumNode)
+			return ((EnumNode)this).getHaxeType();
 		else if (this instanceof HaxeTree) {			
 			if (this.getType() == SUFFIX_EXPR_TYPE)
 				return this.getChild(0).getHaxeType(); //?TODO??????? 

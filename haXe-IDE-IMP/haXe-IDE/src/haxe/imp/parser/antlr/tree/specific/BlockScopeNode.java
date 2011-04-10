@@ -12,7 +12,9 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -123,109 +125,7 @@ public class BlockScopeNode extends HaxeTree {
 				this.getChild(this.getChildCount()-1).getHaxeType() :
 					HaxeType.haxeVoid;
 	}
-	
-	/*
-	 * A block evaluates to the VALUE of the last expression of the block
-	 
-	@Override
-	public HaxeTree getValue(){
-		return this.getChild(this.getChildCount()-1);
-	}*/
 
-	public BlockScopeNode() {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public BlockScopeNode(final CommonTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public BlockScopeNode(final Token t) {
-		super(t);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param t
-	 *            the t
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public BlockScopeNode(final int ttype, final Token t,
-			final boolean auxiliary) {
-		super(ttype, t, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param type
-	 *            the type
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public BlockScopeNode(final int ttype, final String type,
-			final boolean auxiliary) {
-		super(ttype, type, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param auxiliary
-	 *            the auxiliary
-	 */
-	public BlockScopeNode(final int ttype, final boolean auxiliary) {
-		super(ttype, auxiliary);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 */
-	public BlockScopeNode(final int ttype) {
-		super(ttype);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new block scope node.
-	 * 
-	 * @param blockScope
-	 *            the block scope
-	 * @param string
-	 *            the string
-	 * @param b
-	 *            the b
-	 * @param lBracket
-	 *            the l bracket
-	 */
 	public BlockScopeNode(final int blockScope, final String string,
 			final boolean b, final Token lBracket) {
 		super(blockScope, string, b);
@@ -267,6 +167,26 @@ public class BlockScopeNode extends HaxeTree {
 		
 		return null;
 	}
+	
+	/**
+	 * Creating class outline
+	 */
+	@Override
+	public void accept(final HaxeModelVisitor visitor){
+		/*boolean isParentClass = (this.parent instanceof ClassNode)||
+								(this.parent instanceof EnumNode);
+		if (!isParentClass) {
+			visitor.visit(this, false);
+			for (HaxeTree child : this.getChildren()) {
+				child.accept(visitor);
+			}
+			visitor.endVisit(this);
+		} else {*/
+			for (HaxeTree child : this.getChildren()) {
+				child.accept(visitor);
+			}
+		//}
+	}	
 
 	/**
 	 * Return type of var as it stores in scope.
@@ -282,5 +202,23 @@ public class BlockScopeNode extends HaxeTree {
 			}
 		}
 		return HaxeType.haxeUndefined;
+	}
+	
+	@Override
+	public void calculateScopes(final BlockScopeNode blockScope){
+		this.setDeclaredVars(blockScope.getDeclaredVars());
+
+		if (this.getParent() instanceof FunctionNode) {
+			ArrayList<VarUsage> params = ((FunctionNode) this.getParent())
+					.getParametersAsVarUsage();
+			
+			for (VarUsage x : params)
+				this.addToDeclaredVars(x);
+		}
+		if (this.getChildCount() > 0) {
+			for (HaxeTree tree : this.getChildren()) {
+				tree.calculateScopes(this);
+			}
+		}
 	}
 }

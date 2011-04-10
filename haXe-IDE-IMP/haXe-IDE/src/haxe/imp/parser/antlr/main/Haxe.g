@@ -47,6 +47,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.DoWhileNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -132,8 +133,8 @@ id  :    IDENTIFIER //-> ^(IDENTIFIER<VarUsage>)
     ;
 
 dotIdent
-    :    id DOT dotIdent ->  ^(IDENT<VarUsage>[true] id dotIdent?)
-    |    id -> ^(IDENT<VarUsage>[true] id)
+    :    id DOT a=dotIdent ->  ^(DOT<VarUsage>[true] id $a)
+    |    id -> ^(DOT<VarUsage>[true] id)
     ;
 
 assignOp
@@ -385,10 +386,11 @@ topLevelDecl
     |   typedefDecl
     ;
     
-enumDecl:   typeDeclFlags ENUM IDENTIFIER typeParamOpt LBRACE enumBody RBRACE -> ^(ENUM IDENTIFIER? typeParamOpt? enumBody?)
+enumDecl:   typeDeclFlags ENUM IDENTIFIER typeParamOpt enumBody -> ^(IDENTIFIER<EnumNode> typeParamOpt? enumBody?)
         ;
 
-enumBody:   (enumValueDecl)*
+enumBody:   LBRACE (enumValueDecl)* RBRACE
+            -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] enumValueDecl* RBRACE<HaxeTree>[$RBRACE, true])
         ;
 
 enumValueDecl     
@@ -450,7 +452,7 @@ funcProtoDecl
     
 classDecl
     :   typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
-            -> ^(CLASS<ClassNode> IDENTIFIER typeDeclFlags? typeParamOpt? inheritListOpt? classBodyScope?)
+            -> ^(IDENTIFIER<ClassNode> typeDeclFlags? typeParamOpt? inheritListOpt? classBodyScope?)
     ;
     
 classBodyScope

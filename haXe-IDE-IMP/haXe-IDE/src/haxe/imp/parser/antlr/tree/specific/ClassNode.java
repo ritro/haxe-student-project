@@ -13,6 +13,7 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class ClassNode extends HaxeTree {
 	 */
 	public String getClassName() {
 		if (this.className.equals("")) {
-			this.className = this.getChild(0).getText();
+			this.className = this.getText();
 		}
 		return this.className;
 	}
@@ -113,6 +114,18 @@ public class ClassNode extends HaxeTree {
 		//FIXME not sure if I understood right - types from  Hierarhy and Implemented are the same?????
 		type.setClassHierarchy(list);
 		return type;
+	}
+	
+	/**
+	 * Creating class outline
+	 */
+	@Override
+	public void accept(final HaxeModelVisitor visitor){
+		visitor.visit(this);
+		for (HaxeTree child : this.getBlockScope().getChildren()) {
+			child.accept(visitor);
+		}
+		visitor.endVisit(this);
 	}
 
 	/**

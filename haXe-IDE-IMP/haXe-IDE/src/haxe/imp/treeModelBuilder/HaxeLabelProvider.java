@@ -15,6 +15,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe_ide.Activator;
@@ -136,6 +137,8 @@ public class HaxeLabelProvider implements ILabelProvider {
 			return enumReturn;
 		} else if (n instanceof BlockScopeNode) {
 			return "Block";
+		} else if (n instanceof EnumNode) {
+			return "Enum "+ n.getText();
 		} else if (n instanceof AssignOperationNode) {
 			AssignOperationNode stmt = (AssignOperationNode) n;
 			return stmt.getText() + "=";//;+ stmt.getText() ??????????
@@ -149,7 +152,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 			VarDeclaration varDeclaration = (VarDeclaration) n;
 			return varDeclaration.getNameWithType();
 		}
-		return "<???>";
+		return "<??no label yet??>";
 	}
 
 	/*

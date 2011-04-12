@@ -49,7 +49,7 @@ public class FunctionNode extends HaxeTree {
 			}
 			this.fullNameWithParameters = this.getFunctionName() + "("
 					+ parameters + ") : "
-					+ this.getFunctionReturnType().getTypeName();
+					+ this.getHaxeType().getTypeName();
 		}
 		return this.fullNameWithParameters;
 	}
@@ -99,13 +99,9 @@ public class FunctionNode extends HaxeTree {
 	public String getFunctionName() {
 		return this.getChild(0).getText();
 	}
-
-	/**
-	 * Gets the function return type.
-	 * 
-	 * @return the function return type
-	 */
-	public HaxeType getFunctionReturnType() {
+	
+	@Override
+	public HaxeType getHaxeType(){
 		try {
 			for (HaxeTree tree : this.getChildren()) {
 				if (tree.getToken().getType() == TYPE_TAG_TYPE) {
@@ -115,7 +111,28 @@ public class FunctionNode extends HaxeTree {
 		} catch (NullPointerException nullPointerException) {
 			return HaxeType.haxeUndefined;
 		}
+		
 		return HaxeType.haxeUndefined;
+	}
+	
+	@Override
+	public void calculateScopes(final BlockScopeNode blockScope){
+		if (getBlockScope() != null) {
+			getBlockScope().calculateScopes(blockScope);
+			if (!getHaxeType().equals(HaxeType.haxeUndefined)){
+				HaxeTree returnNode = null;
+				for (HaxeTree tree: getBlockScope().getChildren())
+					if (tree.getText().equals("return"))
+						returnNode = tree;
+				if (returnNode == null) //Missing Return Statement
+					this.commitError("Function should return value."); //FIXME not haxe message
+				else //Return type Not valid	
+					if (!returnNode.getHaxeType().equals(getHaxeType()))//FIXME ---//----
+						returnNode.getChild(0).commitError("Returned value doesn't match function value");
+			}else{
+				//FIXME ?? this.setHaxeType(getBlockScope().getHaxeType())
+			}		
+		}
 	}
 	
 	/**

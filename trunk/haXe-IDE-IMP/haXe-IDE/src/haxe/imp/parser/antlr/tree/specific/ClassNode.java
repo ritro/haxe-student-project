@@ -149,7 +149,7 @@ public class ClassNode extends HaxeTree {
 					VarUsage usage = new VarUsage(
 							((HaxeTree) functionTree.getChild(0))
 									.getToken());
-					usage.setHaxeType(functionTree.getFunctionReturnType());
+					usage.setHaxeType(functionTree.getHaxeType());
 					list.add(usage);
 				} else if (tree instanceof ClassNode) {
 					ClassNode classTree = (ClassNode) tree;

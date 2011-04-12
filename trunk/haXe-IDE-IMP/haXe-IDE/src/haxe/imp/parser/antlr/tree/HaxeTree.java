@@ -73,6 +73,7 @@ public class HaxeTree extends CommonTree {
 	public static final int VAR_INIT_TYPE = HaxeParser.VAR_INIT;
 	public static final int MODULE_TYPE = HaxeParser.MODULE;
 	public static final int ENUM_TYPE = HaxeParser.ENUM;
+	public static final int RETURN_TYPE = HaxeParser.RETURN;
 		
 	public boolean isAuxiliary() { 
 		return this.auxiliary;
@@ -395,12 +396,7 @@ public class HaxeTree extends CommonTree {
 				return;
 			}
 		} else if (this instanceof FunctionNode) {
-			//TODO return in prev block scope. add func decl + try to 
-			BlockScopeNode funcBlockScopeNode = ((FunctionNode) this).getBlockScope();
-			//mb parametres adding to block scope here
-			if (funcBlockScopeNode != null) {
-				funcBlockScopeNode.calculateScopes(blockScope);
-			}
+			((FunctionNode)this).calculateScopes(blockScope);
 		} else if (this.getType() == SUFFIX_EXPR_TYPE){
 			if (this.getText().equals("CallOrSlice"))
 				this.getChild(0).calculateScopes(blockScope); //calculate for VarUsage
@@ -914,8 +910,11 @@ public class HaxeTree extends CommonTree {
 			return ((ClassNode)this).getHaxeType();
 		else if (this instanceof EnumNode)
 			return ((EnumNode)this).getHaxeType();
+		else if (this instanceof FunctionNode)
+			return ((FunctionNode)this).getHaxeType();
 		else if (this instanceof HaxeTree) {			
-			if (this.getType() == SUFFIX_EXPR_TYPE)
+			if (this.getType() == SUFFIX_EXPR_TYPE ||
+				this.getType() == RETURN_TYPE)
 				return this.getChild(0).getHaxeType(); //?TODO??????? 
 			else if (this.getChildCount() == 1) //prefix expr
 				return this.getUnarOperationType();

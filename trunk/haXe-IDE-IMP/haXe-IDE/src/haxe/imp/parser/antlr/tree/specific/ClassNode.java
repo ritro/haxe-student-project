@@ -122,7 +122,7 @@ public class ClassNode extends HaxeTree {
 	@Override
 	public void accept(final HaxeModelVisitor visitor){
 		visitor.visit(this);
-		for (HaxeTree child : this.getBlockScope().getChildren()) {
+		for (ScopeVarDeclNode child : this.getBlockScope().getDeclaredVars()) {
 			child.accept(visitor);
 		}
 		visitor.endVisit(this);

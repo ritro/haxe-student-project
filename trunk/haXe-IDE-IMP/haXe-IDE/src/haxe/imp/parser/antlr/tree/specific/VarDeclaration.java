@@ -11,7 +11,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-import org.antlr.runtime.tree.CommonTree;
 
 /**
  * The Class VarDeclaration.
@@ -122,8 +120,8 @@ public class VarDeclaration extends HaxeTree {
 	 */
 	@Override
 	public void accept(final HaxeModelVisitor visitor){
-		visitor.visit(this);
-		visitor.endVisit(this);
+		//visitor.visit(this);
+		//visitor.endVisit(this);
 	}
 
 	/**
@@ -144,9 +142,10 @@ public class VarDeclaration extends HaxeTree {
 	
 	@Override
 	public void calculateScopes(final BlockScopeNode blockScope){
-		this.trySetTypeFromDeclaration();
-		VarUsage varUsage = getVarNameNode().getClone();
-
+		ScopeVarDeclNode svdn = new ScopeVarDeclNode(this.getVarName(), 
+										this.getVarNameNode().getToken());		
+		blockScope.addToDeclaredVars(svdn);
+		
 		HaxeTree varInitNode = this.getVAR_INIT_NODE();
 		if (varInitNode != null) {
 			if (varInitNode.getChildCount() > 0) {
@@ -154,21 +153,24 @@ public class VarDeclaration extends HaxeTree {
 					tree.calculateScopes(blockScope);
 				}
 			}
-		}
-		if (varUsage.getHaxeType().equals(HaxeType.haxeUndefined)) {
-			/**(c)Haxe
-			 * All Class variables must be declared with a type 
-			 */
-			if (blockScope.parent instanceof ClassNode){
-				varUsage.commitError("Class var should have type");
-			} else
-			if (blockScope.parent instanceof EnumNode)
-				this.setHaxeType(new HaxeType(blockScope.parent.getText()));
-		}
-		if (blockScope.doScopeContainsVarName(varUsage.getText())) {
-			varUsage.commitError("Var is already declared");
+		}		
+		/*
+		if (blockScope.doScopeContainsVarName(svdn.getText())) {
+			svdn.commitError("Var is already declared");
 		} else {
-			blockScope.addToDeclaredVars(varUsage);
+			blockScope.addToDeclaredVars(svdn);
+		}*/
+	}
+	
+	public BlockScopeNode getParentScope() {
+		HaxeTree tree = (HaxeTree) this.getParent();
+		while (!tree.isNil()) {
+			if (tree instanceof BlockScopeNode &&
+				(tree.getParent() instanceof ClassNode ||
+				 tree.getParent() instanceof EnumNode)) //??
+				return (BlockScopeNode) tree;
+			tree = (HaxeTree) tree.getParent();
 		}
+		return null;
 	}
 }

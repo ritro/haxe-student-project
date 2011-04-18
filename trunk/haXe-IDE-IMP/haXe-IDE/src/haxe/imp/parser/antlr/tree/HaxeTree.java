@@ -22,6 +22,9 @@ import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.Constant;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.ScopeFunDeclNode;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarUseNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe.imp.parser.antlr.utils.HaxeType;
@@ -148,7 +151,7 @@ public class HaxeTree extends CommonTree {
 				assert(this.getToken() != null);
 
 				this.mostRightPosition = this.getToken().getStartIndex()
-						+ this.getToken().getText().length();
+						+ this.getToken().getText().length()-1;
 				if (this.getChildCount() > 0) {
 					for (HaxeTree commonTree : this.getChildren()) {
 						if (this.mostRightPosition < commonTree
@@ -228,10 +231,7 @@ public class HaxeTree extends CommonTree {
 	
 	public void commitError(final String message) {
 		messageHandler.handleSimpleMessage(message, 
-				this.getMostLeftPosition(),
-				//((CommonToken)this.getToken()).getStartIndex(),
-				this.getMostRightPosition(),
-				//((CommonToken)this.getToken()).getStartIndex() + this.getToken().getText().length() - 1,
+				this.getMostLeftPosition(), this.getMostRightPosition(),
 				0, 0, 0, 0);
 	}
 	
@@ -268,18 +268,20 @@ public class HaxeTree extends CommonTree {
 	//TODO complete for other nodes - 
 	public void accept(final HaxeModelVisitor visitor) {
 		try {
-			if (this instanceof FunctionNode) {
-				((FunctionNode)this).accept(visitor);
-				//visitor.visit(this);
-				//visitor.endVisit(this);
-			} else if (this instanceof ClassNode) {
+			if (this instanceof ClassNode) {
 				((ClassNode)this).accept(visitor);
 			} else if (this instanceof EnumNode) {
 				((EnumNode)this).accept(visitor);
-			}else if (this instanceof VarDeclaration) {
+			}else /*if (this instanceof FunctionNode) {
+				((FunctionNode)this).accept(visitor);
+			} else if (this instanceof VarDeclaration) {
 				((VarDeclaration)this).accept(visitor);
-			} else if (this instanceof BlockScopeNode) {
+			} else*/ if (this instanceof BlockScopeNode) {
 				((BlockScopeNode)this).accept(visitor);
+			} else if (this instanceof ScopeVarDeclNode) {
+				((ScopeVarDeclNode)this).accept(visitor);
+			} else if (this instanceof ScopeFunDeclNode) {
+				((ScopeFunDeclNode)this).accept(visitor);
 			} else if (this.token != null) {
 				if (this.token.getType() == MODULE_TYPE) {
 					visitor.visit(this);
@@ -361,50 +363,10 @@ public class HaxeTree extends CommonTree {
 			((BlockScopeNode)this).calculateScopes(blockScope);
 		} else if (this instanceof VarDeclaration) {
 			((VarDeclaration)this).calculateScopes(blockScope);
-		}else if (this instanceof VarUsage) {
-			((VarUsage) this).calculateScopes(blockScope);
-		}else if (this instanceof AssignOperationNode) {
-			AssignOperationNode thisAsAssignNode = (AssignOperationNode)this;
-			for (HaxeTree tree : this.getChildren()) {
-					tree.calculateScopes(blockScope);
-				}
-			HaxeTree leftPart = thisAsAssignNode.getLeftOperand();			
-			HaxeType rightPartType = thisAsAssignNode.getRightOperand().getHaxeType();
-			if (blockScope.doScopeContainsVarName(leftPart.getText()) &&
-				blockScope.getVarType(leftPart.getText()).equals(HaxeType.haxeUndefined)&&
-				!rightPartType.equals(HaxeType.haxeUndefined) &&
-				!rightPartType.equals(HaxeType.haxeNotYetRecognized) &&
-				getDeclarationNode(leftPart) instanceof VarDeclaration){
-					if (!(getDeclarationNode(leftPart).getParent().getParent() 
-							instanceof ClassNode)){
-						getDeclarationNode(leftPart).setHaxeType(rightPartType);
-						blockScope.changeVarType(((VarDeclaration)getDeclarationNode
-								(leftPart)).getVarNameNode());
-					} else {
-						thisAsAssignNode.getLeftOperand().setHaxeType(rightPartType);
-						blockScope.changeVarType(((VarUsage)leftPart).getClone());
-					}
-				thisAsAssignNode.getLeftOperand().setHaxeType(HaxeType.haxeNotYetRecognized);
-				for (HaxeTree tree : this.getChildren())
-					tree.calculateScopes(blockScope);
-			}
-			else if (!rightPartType.equals(HaxeType.haxeNotYetRecognized) &&
-					!leftPart.getHaxeType().equals(HaxeType.haxeNotYetRecognized) &&
-					!HaxeType.isAvailableAssignement(leftPart.getHaxeType(), rightPartType)) {
-				this.commitError(rightPartType.getTypeName()+" should be "+
-						leftPart.getHaxeType().getTypeName());
-				return;
-			}
+		//} else if (this instanceof VarUsage) {
+			//((VarUsage) this).calculateScopes(blockScope);
 		} else if (this instanceof FunctionNode) {
 			((FunctionNode)this).calculateScopes(blockScope);
-		} else if (this.getType() == SUFFIX_EXPR_TYPE){
-			if (this.getText().equals("CallOrSlice"))
-				this.getChild(0).calculateScopes(blockScope); //calculate for VarUsage
-			if (!this.getChild(0).getHaxeType().equals(HaxeType.haxeNotYetRecognized)){
-				//TODO: check if it is Method Call or Slice
-				//TODO: check for parametres of call
-			}else
-				this.commitError(this.getChild(0).getText()+" is not declared");
 		} else {
 			if (this.getChildren() != null) {
 				for (HaxeTree tree : this.getChildren()) {
@@ -413,7 +375,7 @@ public class HaxeTree extends CommonTree {
 			}
 		}
 	}
-
+	
 	/**
 	 * The Pair Class.
 	 * @author Anatoly Kondratyev
@@ -859,6 +821,20 @@ public class HaxeTree extends CommonTree {
 				if (t.getChild(i) instanceof Constant)
 					((Constant)t.getChild(i)).printTree();
 				else
+				if (t.getChild(i) instanceof BlockScopeNode){
+					System.out.println("Block scope "+ t.getText());
+					for (ScopeVarDeclNode x : ((BlockScopeNode)t.getChild(i)).getDeclaredVars())
+						x.printTree();
+				}else
+				if (t.getChild(i) instanceof ScopeVarDeclNode){
+					((ScopeVarDeclNode)t.getChild(i)).printTree();	
+				}else
+				if (t.getChild(i) instanceof ScopeVarUseNode){
+					((ScopeVarDeclNode)t.getChild(i)).printTree();	
+				}else
+				if (t.getChild(i) instanceof ScopeFunDeclNode){
+					((ScopeVarDeclNode)t.getChild(i)).printTree();	
+				}else
 					System.out.println(t.getChild(i).getText());
 				this.printTree(t.getChild(i), indent + 1);
 			}
@@ -872,6 +848,26 @@ public class HaxeTree extends CommonTree {
 			return ((VarDeclaration)this).setHaxeType(type);
 			
 		return false;
+	}
+	
+	//only first lvl
+	public void calculateTypes(){
+		if (this.getChildCount() > 0) {
+			for (HaxeTree tree : this.getChildren()) {
+				if (tree instanceof ClassNode) {
+					BlockScopeNode blockScope = ((ClassNode) tree).getBlockScope();
+					if (blockScope != null) {
+						blockScope.calculateTypes();
+					}
+				}
+				if (tree instanceof EnumNode) {
+					BlockScopeNode blockScope = ((EnumNode) tree).getBlockScope();
+					if (blockScope != null) {
+						blockScope.calculateTypes();
+					}
+				}
+			}
+		}
 	}
 	
 	private boolean ifNumOperation(){

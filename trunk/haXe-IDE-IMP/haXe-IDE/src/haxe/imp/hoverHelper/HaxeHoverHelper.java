@@ -12,6 +12,10 @@ package haxe.imp.hoverHelper;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.ScopeFunDeclNode;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarUseNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 import haxe_ide.Activator;
 
@@ -160,16 +164,21 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		// Otherwise, base the help message on the text that is represented
 		// by the help node
 		/** TODO add help cover for class nodes */
+		/*
 		if (helpNode instanceof VarUsage) {
 			VarUsage def = (VarUsage) helpNode;
-			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
-		}else if (helpNode instanceof FunctionNode
-				|| ((HaxeTree) helpNode).getParent() instanceof FunctionNode) {
-			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode
-					: ((HaxeTree) helpNode).getParent());
-			msg = def.getFullNameWithParameters();
-		}else if (helpNode instanceof HaxeTree && ((HaxeTree)helpNode).parent instanceof VarUsage){
-			VarUsage def = (VarUsage)((HaxeTree)helpNode).parent;
+			msg = "not implemented yet in hoover";
+		}else*/ if (helpNode instanceof FunctionNode ||
+					((HaxeTree)helpNode).getParent() instanceof FunctionNode) {
+			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode :
+								((HaxeTree)helpNode).getParent());
+			ScopeFunDeclNode x = (ScopeFunDeclNode)
+				(def.getParentScope().findDeclaredVar(def.getChild(0).getToken()));
+			msg = x.getHaxeType().getFullTypeName() + " " + x.getText();
+		}else if (helpNode instanceof VarDeclaration){
+			ScopeVarDeclNode def = (ScopeVarDeclNode)
+				(((VarDeclaration)helpNode).getParentScope().findDeclaredVar
+							(((VarDeclaration)helpNode).getVarNameNode().getToken()));
 			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
 		}
 		return msg;

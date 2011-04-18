@@ -119,20 +119,13 @@ public class FunctionNode extends HaxeTree {
 	public void calculateScopes(final BlockScopeNode blockScope){
 		if (getBlockScope() != null) {
 			getBlockScope().calculateScopes(blockScope);
-			if (!getHaxeType().equals(HaxeType.haxeUndefined)){
-				HaxeTree returnNode = null;
-				for (HaxeTree tree: getBlockScope().getChildren())
-					if (tree.getText().equals("return"))
-						returnNode = tree;
-				if (returnNode == null) //Missing Return Statement
-					this.commitError("Function should return value."); //FIXME not haxe message
-				else //Return type Not valid	
-					if (!returnNode.getHaxeType().equals(getHaxeType()))//FIXME ---//----
-						returnNode.getChild(0).commitError("Returned value doesn't match function value");
-			}else{
-				//FIXME ?? this.setHaxeType(getBlockScope().getHaxeType())
-			}		
 		}
+		
+		ScopeFunDeclNode sfd = new ScopeFunDeclNode(this.getFunctionName(), this.getChild(0).getToken());
+		sfd.setHaxeType(getHaxeType());
+		for (VarUsage x: getParametersAsVarUsage())
+			sfd.addParametreType(new ScopeVarDeclNode(x.getText(), x.getToken()));
+		blockScope.addToDeclaredVars(sfd);
 	}
 	
 	/**
@@ -140,11 +133,12 @@ public class FunctionNode extends HaxeTree {
 	 */
 	@Override
 	public void accept(final HaxeModelVisitor visitor){
-		visitor.visit(this);/*
+		//visitor.visit(this);
+		/*
 		for (HaxeTree child : this.getBlockScope().getChildren()) {
 			child.accept(visitor);
 		}*/
-		visitor.endVisit(this);
+		//visitor.endVisit(this);
 	}
 
 	/**
@@ -159,6 +153,18 @@ public class FunctionNode extends HaxeTree {
 					return (BlockScopeNode) tree;
 				}
 			}
+		}
+		return null;
+	}
+	
+	public BlockScopeNode getParentScope() {
+		HaxeTree tree = (HaxeTree) this.getParent();
+		while (!tree.isNil()) {
+			if (tree instanceof BlockScopeNode &&
+				(tree.getParent() instanceof ClassNode ||
+				 tree.getParent() instanceof EnumNode)) //??
+				return (BlockScopeNode) tree;
+			tree = (HaxeTree) tree.getParent();
 		}
 		return null;
 	}

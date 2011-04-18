@@ -30,9 +30,8 @@ public class BlockScopeNode extends HaxeTree {
 
 	/**
 	 * Each BlockScope contains Nodes representing vars, that could be used in
-	 * current scope.
 	 */
-	private ArrayList<VarUsage> declaredVars = new ArrayList<VarUsage>();
+	private ArrayList<ScopeVarDeclNode> declaredVars = new ArrayList<ScopeVarDeclNode>();
 
 	private int lBracketPosition;
 	private int rBracketPosition;
@@ -42,7 +41,7 @@ public class BlockScopeNode extends HaxeTree {
 	 * 
 	 * @return the declaredVars
 	 */
-	public ArrayList<VarUsage> getDeclaredVars() {
+	public ArrayList<ScopeVarDeclNode> getDeclaredVars() {
 		return this.declaredVars;
 	}
 
@@ -52,18 +51,33 @@ public class BlockScopeNode extends HaxeTree {
 	 * @param declaredVars
 	 *            the declaredVars to set
 	 */
-	public void setDeclaredVars(final ArrayList<VarUsage> declaredVars) {
+	public void setDeclaredVars(final ArrayList<ScopeVarDeclNode> declaredVars) {
 		this.declaredVars = declaredVars;
 	}
 	
-	public void addToDeclaredVars(final VarUsage declaredVar){
-		for (VarUsage x : declaredVars)
-			//FIXME only for simple
-			if (x.getText().equals(declaredVar.getText())){
-					declaredVars.remove(x);
-					break;
+	public void addToDeclaredVars(final ScopeVarDeclNode declaredVar){
+		for (ScopeVarDeclNode x : declaredVars)
+			if (x instanceof ScopeVarDeclNode &&
+				x.getName().equals(declaredVar.getName())){
+				declaredVars.remove(x);
+				break;
 			}
 		this.declaredVars.add(declaredVar);
+	}
+	
+	public void addToDeclaredVars(final ScopeFunDeclNode declaredVar){
+		this.declaredVars.add(declaredVar);
+	}
+	
+	public void addToDeclaredVars(final ScopeVarUseNode declaredVar){
+		this.declaredVars.add(declaredVar);
+	}
+	
+	public ScopeVarDeclNode findDeclaredVar(CommonToken token){
+		for (ScopeVarDeclNode x: getDeclaredVars())
+			if (x.getToken().equals(token))
+				return x;
+		return null;
 	}
 
 	/**
@@ -121,8 +135,8 @@ public class BlockScopeNode extends HaxeTree {
 	 */
 	@Override
 	public HaxeType getHaxeType(){
-		return (this.getChildCount()>0)? 
-				this.getChild(this.getChildCount()-1).getHaxeType() :
+		return (this.getDeclaredVars().size() > 0) ? 
+				this.getDeclaredVars().get((this.getDeclaredVars().size()-1)).getHaxeType() :
 					HaxeType.haxeVoid;
 	}
 
@@ -147,7 +161,7 @@ public class BlockScopeNode extends HaxeTree {
 		}
 		return false;
 	}
-	
+	/*
 	public void changeVarType(VarUsage varUsage){
 		if (!this.doScopeContainsVarName(varUsage.getText()))
 			return;
@@ -166,7 +180,7 @@ public class BlockScopeNode extends HaxeTree {
 				parent = (HaxeTree) parent.getParent();
 		
 		return null;
-	}
+	}*/
 	
 	/**
 	 * Creating class outline
@@ -182,6 +196,11 @@ public class BlockScopeNode extends HaxeTree {
 			}
 			visitor.endVisit(this);
 		} else {*/
+			// vars to outline
+			for (ScopeVarDeclNode child : this.getDeclaredVars()) {
+				child.accept(visitor);
+			}
+			//searching for functions
 			for (HaxeTree child : this.getChildren()) {
 				child.accept(visitor);
 			}
@@ -204,20 +223,37 @@ public class BlockScopeNode extends HaxeTree {
 		return HaxeType.haxeUndefined;
 	}
 	
-	@Override
+	@Override //Is it right to rewrite params???
 	public void calculateScopes(final BlockScopeNode blockScope){
-		this.setDeclaredVars(blockScope.getDeclaredVars());
+		setDeclaredVars(((ArrayList<ScopeVarDeclNode>)(blockScope.getDeclaredVars().clone())));
 
 		if (this.getParent() instanceof FunctionNode) {
 			ArrayList<VarUsage> params = ((FunctionNode) this.getParent())
 					.getParametersAsVarUsage();
 			
 			for (VarUsage x : params)
-				this.addToDeclaredVars(x);
+				addToDeclaredVars(new ScopeVarDeclNode(x.getText(), 
+											x.getToken()));
 		}
+
 		if (this.getChildCount() > 0) {
 			for (HaxeTree tree : this.getChildren()) {
 				tree.calculateScopes(this);
+			}
+		}
+	}
+	
+	@Override
+	public void calculateTypes(){
+		for (ScopeVarDeclNode tree : this.getDeclaredVars()) {
+			if (tree instanceof ScopeFunDeclNode) {
+				
+			} else
+			if (tree instanceof ScopeVarUseNode){
+				
+			} else
+			if (tree instanceof ScopeVarDeclNode){
+				
 			}
 		}
 	}

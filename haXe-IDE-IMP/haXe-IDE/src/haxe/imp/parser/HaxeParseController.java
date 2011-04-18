@@ -310,6 +310,7 @@ public class HaxeParseController implements IParseController {
 			HaxeTree.setMessageHandler(this.handler);
 			this.handler.clearMessages();
 			this.currentAST.calculateScopes();
+			this.currentAST.calculateTypes();
 
 		} catch (RecognitionException e) {
 			e.printStackTrace();

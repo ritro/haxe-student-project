@@ -115,7 +115,7 @@ public class VarUsage extends HaxeTree {
 	}
 	
 	@Override
-	public void calculateScopes(final BlockScopeNode blockScope){
+	public void calculateScopes(final BlockScopeNode blockScope){/*
 		if (getHaxeType().equals(HaxeType.haxeNotYetRecognized)) {
 			if (!isAuxiliary()){					
 				if (blockScope.doScopeContainsVarName(getText())) {
@@ -148,7 +148,7 @@ public class VarUsage extends HaxeTree {
 					return;
 				}
 			}
-		}
+		}*/
 	}
 
 }

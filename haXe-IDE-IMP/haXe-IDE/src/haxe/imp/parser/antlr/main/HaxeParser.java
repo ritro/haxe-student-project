@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 Haxe.g 2011-04-11 00:22:27
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 Haxe.g 2011-04-13 11:49:37
 
 package haxe.imp.parser.antlr.main;
 
@@ -287,7 +287,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: topLevelList, myPackage
+            // elements: myPackage, topLevelList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -558,7 +558,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: dotIdent, PACKAGE
+            // elements: PACKAGE, dotIdent
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1035,7 +1035,7 @@ public class HaxeParser extends Parser {
 
 
             	    // AST REWRITE
-            	    // elements: qualifiedIdentifier, ident, DOT
+            	    // elements: ident, DOT, qualifiedIdentifier
             	    // token labels: ident
             	    // rule labels: retval
             	    // token list labels: 
@@ -2438,7 +2438,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: paramList, FUNCTION, typeTagOpt, block
+            // elements: FUNCTION, block, paramList, typeTagOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3597,7 +3597,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: typeConstraint, typeList, IDENTIFIER
+            // elements: IDENTIFIER, typeConstraint, typeList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3756,7 +3756,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, FUNCTION, paramList, NEW, declAttrList, typeTagOpt
+            // elements: typeTagOpt, block, declAttrList, FUNCTION, NEW, paramList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -4072,7 +4072,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: parExpression, st1, IF, st2, ELSE
+                    // elements: IF, parExpression, st2, ELSE, st1
                     // token labels: 
                     // rule labels: retval, st1, st2
                     // token list labels: 
@@ -4154,7 +4154,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: statement, exp1, IN, FOR, exp2
+                    // elements: exp2, IN, FOR, statement, exp1
                     // token labels: 
                     // rule labels: retval, exp2, exp1
                     // token list labels: 
@@ -4220,7 +4220,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: WHILE, parExpression, statement
+                    // elements: WHILE, statement, parExpression
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4286,7 +4286,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: DO, statement, parExpression
+                    // elements: statement, parExpression, DO
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4346,7 +4346,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: catchStmtList, block, TRY
+                    // elements: block, catchStmtList, TRY
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4448,7 +4448,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: SWITCH, expr, caseStmt
+                    // elements: caseStmt, SWITCH, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4524,7 +4524,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: RETURN, expr
+                    // elements: expr, RETURN
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4575,7 +4575,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: THROW, expr
+                    // elements: expr, THROW
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4705,7 +4705,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: CONTINUE, IDENTIFIER
+                    // elements: IDENTIFIER, CONTINUE
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4771,7 +4771,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, COLON, statement
+                    // elements: statement, COLON, IDENTIFIER
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -4989,7 +4989,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: blockStmt, RBRACE
+                    // elements: RBRACE, blockStmt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5336,7 +5336,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: exprList, CASE, statement
+                    // elements: CASE, statement, exprList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5393,7 +5393,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: DEFAULT, statement
+                    // elements: statement, DEFAULT
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5652,7 +5652,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, CATCH, param
+            // elements: param, block, CATCH
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -5953,7 +5953,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: assignExpr, UNTYPED
+                    // elements: UNTYPED, assignExpr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -7608,7 +7608,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: methodCallOrSliceList, value
+                    // elements: value, methodCallOrSliceList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8319,7 +8319,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: exprListOpt, NEW, type
+            // elements: type, NEW, exprListOpt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8497,7 +8497,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: funcType, CAST, expr
+                    // elements: expr, funcType, CAST
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8557,7 +8557,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: expr, CAST
+                    // elements: CAST, expr
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -8855,7 +8855,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: IDENTIFIER, enumBody, typeParamOpt
+            // elements: typeParamOpt, IDENTIFIER, enumBody
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8982,7 +8982,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: enumValueDecl, RBRACE
+            // elements: RBRACE, enumValueDecl
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -9125,7 +9125,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: paramList, IDENTIFIER, IDENTIFIER
+                    // elements: IDENTIFIER, IDENTIFIER, paramList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9363,7 +9363,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: declAttrList, varDeclPartList, VAR
+            // elements: varDeclPartList, VAR, declAttrList
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -9646,7 +9646,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: a2, a1
+            // elements: a1, a2
             // token labels: 
             // rule labels: retval, a1, a2
             // token list labels: 
@@ -10090,7 +10090,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: FUNCTION, declAttrList, paramList, typeTagOpt, NEW, block
+                    // elements: NEW, declAttrList, paramList, FUNCTION, typeTagOpt, block
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10207,7 +10207,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: declAttrList, typeParamOpt, FUNCTION, typeTagOpt, paramList, block, IDENTIFIER
+                    // elements: typeParamOpt, IDENTIFIER, block, paramList, declAttrList, typeTagOpt, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10421,7 +10421,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, paramList, NEW, FUNCTION, declAttrList
+                    // elements: paramList, NEW, FUNCTION, declAttrList, typeTagOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10517,7 +10517,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: IDENTIFIER, declAttrList, typeTagOpt, paramList, FUNCTION, typeParamOpt
+                    // elements: FUNCTION, typeTagOpt, paramList, IDENTIFIER, declAttrList, typeParamOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10607,7 +10607,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: typeTagOpt, paramList, FUNCTION, NEW
+                    // elements: paramList, typeTagOpt, NEW, FUNCTION
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10691,7 +10691,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: FUNCTION, typeTagOpt, IDENTIFIER, paramList, typeParamOpt
+                    // elements: paramList, FUNCTION, typeParamOpt, IDENTIFIER, typeTagOpt
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -10835,7 +10835,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: classBodyScope, inheritListOpt, typeParamOpt, IDENTIFIER, typeDeclFlags
+            // elements: inheritListOpt, typeParamOpt, typeDeclFlags, classBodyScope, IDENTIFIER
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10974,7 +10974,7 @@ public class HaxeParser extends Parser {
 
 
             // AST REWRITE
-            // elements: classMember, RBRACE
+            // elements: RBRACE, classMember
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -11572,7 +11572,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: type, EXTENDS
+                    // elements: EXTENDS, type
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -11620,7 +11620,7 @@ public class HaxeParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: type, IMPLEMENTS
+                    // elements: IMPLEMENTS, type
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 

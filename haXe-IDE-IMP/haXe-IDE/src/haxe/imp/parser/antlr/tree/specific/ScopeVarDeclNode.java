@@ -24,16 +24,17 @@ import org.antlr.runtime.Token;
  */
 public class ScopeVarDeclNode extends HaxeTree {
 	
+	public enum VarType {ClassVarDecl, FunctionVarDecl, FunctionParam, NotDefined};
 	private HaxeType haxeType = HaxeType.haxeUndefined;
-	private String name = "?";
-
-	public String getName() {
-		return name;
-	}
+	private VarType declType = VarType.NotDefined;
 	
+	public VarType getDeclType() {
+		return declType;
+	}
+
 	@Override
 	public String getText(){
-		return name;
+		return super.getText();
 	}
 	
 	@Override
@@ -52,17 +53,21 @@ public class ScopeVarDeclNode extends HaxeTree {
 	}
 	
 	public String getNameWithType() {
-		return this.getName() + " : " + this.getHaxeType().getTypeName();
+		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 
-	public ScopeVarDeclNode(String name, CommonToken token) {
+	public ScopeVarDeclNode(CommonToken token) {
 		super(token);
-		this.name = name;
+	}
+	
+	public ScopeVarDeclNode(VarType type, CommonToken token) {
+		super(token);
+		this.declType = type;
 	}
 	
 	@Override
 	public void printTree(){
-		System.out.println("ScopeVarDeclNode_"+"Name: " +getName() + ", type: "+ getHaxeType());
+		System.out.println("ScopeVarDeclNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
 	}
 	
 	/**

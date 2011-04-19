@@ -29,18 +29,18 @@ public class ScopeFunDeclNode extends ScopeVarDeclNode {
 		parametres.add(var);
 	}
 
-	public ScopeFunDeclNode(String name, CommonToken token) {
-		super(name,token);		
+	public ScopeFunDeclNode(CommonToken token) {
+		super(token);		
 	}
 	
 	@Override
 	public String getNameWithType() {
-		return "function " + this.getName() + "() : " + this.getHaxeType().getTypeName();
+		return "function " + this.getText() + "() : " + this.getHaxeType().getTypeName();
 	}
 	
 	@Override
 	public void printTree(){
-		System.out.println("ScopeFunDeclNode_"+"Name: " +getName() + ", type: "+ getHaxeType());
+		System.out.println("ScopeFunDeclNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
 		
 		for (ScopeVarDeclNode x: parametres){
 			System.out.print("     ");

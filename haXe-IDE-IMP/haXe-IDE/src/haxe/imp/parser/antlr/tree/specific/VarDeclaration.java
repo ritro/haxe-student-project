@@ -142,8 +142,20 @@ public class VarDeclaration extends HaxeTree {
 	
 	@Override
 	public void calculateScopes(final BlockScopeNode blockScope){
-		ScopeVarDeclNode svdn = new ScopeVarDeclNode(this.getVarName(), 
-										this.getVarNameNode().getToken());		
+		ScopeVarDeclNode svdn = new ScopeVarDeclNode(this.getVarNameNode().getToken());	
+		try {
+			for (HaxeTree tree : this.getChildren()) {
+				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
+					svdn.setHaxeType(
+							(HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
+							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
+							new HaxeType(tree.getChild(0).getText()));
+					break;
+				}
+			}
+		} catch (NullPointerException nullPointerException) {
+			System.out.println("Problems on getting varType");
+		}
 		blockScope.addToDeclaredVars(svdn);
 		
 		HaxeTree varInitNode = this.getVAR_INIT_NODE();
@@ -153,13 +165,7 @@ public class VarDeclaration extends HaxeTree {
 					tree.calculateScopes(blockScope);
 				}
 			}
-		}		
-		/*
-		if (blockScope.doScopeContainsVarName(svdn.getText())) {
-			svdn.commitError("Var is already declared");
-		} else {
-			blockScope.addToDeclaredVars(svdn);
-		}*/
+		}
 	}
 	
 	public BlockScopeNode getParentScope() {
@@ -167,7 +173,8 @@ public class VarDeclaration extends HaxeTree {
 		while (!tree.isNil()) {
 			if (tree instanceof BlockScopeNode &&
 				(tree.getParent() instanceof ClassNode ||
-				 tree.getParent() instanceof EnumNode)) //??
+				 tree.getParent() instanceof EnumNode ||
+				 tree.getParent() instanceof FunctionNode)) //??
 				return (BlockScopeNode) tree;
 			tree = (HaxeTree) tree.getParent();
 		}

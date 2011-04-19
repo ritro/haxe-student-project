@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -121,10 +122,10 @@ public class FunctionNode extends HaxeTree {
 			getBlockScope().calculateScopes(blockScope);
 		}
 		
-		ScopeFunDeclNode sfd = new ScopeFunDeclNode(this.getFunctionName(), this.getChild(0).getToken());
+		ScopeFunDeclNode sfd = new ScopeFunDeclNode(this.getChild(0).getToken());
 		sfd.setHaxeType(getHaxeType());
 		for (VarUsage x: getParametersAsVarUsage())
-			sfd.addParametreType(new ScopeVarDeclNode(x.getText(), x.getToken()));
+			sfd.addParametreType(new ScopeVarDeclNode(VarType.FunctionParam, x.getToken()));
 		blockScope.addToDeclaredVars(sfd);
 	}
 	

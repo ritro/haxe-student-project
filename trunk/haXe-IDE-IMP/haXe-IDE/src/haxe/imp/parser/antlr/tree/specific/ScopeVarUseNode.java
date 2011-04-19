@@ -24,22 +24,17 @@ public class ScopeVarUseNode extends ScopeVarDeclNode {
 	private HaxeTree fullName;
 
 	@Override
-	public String getName() {
-		return fullName.getText();
-	}
-	
-	@Override
 	public String getText() {
 		return fullName.getText();
 	}
 	
 	public ScopeVarUseNode(HaxeTree name, CommonToken token) {
-		super(name.getText(),token);
+		super(token);
 		fullName = name;
 	}
 	
 	@Override
 	public void printTree(){
-		System.out.println("ScopeVarUseNode_"+"Name: " +getName() + ", type: "+ getHaxeType());
+		System.out.println("ScopeVarUseNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
 	}
 }

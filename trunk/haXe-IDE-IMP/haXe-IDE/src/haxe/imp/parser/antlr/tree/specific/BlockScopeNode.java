@@ -56,12 +56,12 @@ public class BlockScopeNode extends HaxeTree {
 	}
 	
 	public void addToDeclaredVars(final ScopeVarDeclNode declaredVar){
-		for (ScopeVarDeclNode x : declaredVars)
+		/*for (ScopeVarDeclNode x : declaredVars)
 			if (x instanceof ScopeVarDeclNode &&
 				x.getName().equals(declaredVar.getName())){
 				declaredVars.remove(x);
 				break;
-			}
+			}*/
 		this.declaredVars.add(declaredVar);
 	}
 	
@@ -232,8 +232,7 @@ public class BlockScopeNode extends HaxeTree {
 					.getParametersAsVarUsage();
 			
 			for (VarUsage x : params)
-				addToDeclaredVars(new ScopeVarDeclNode(x.getText(), 
-											x.getToken()));
+				addToDeclaredVars(new ScopeVarDeclNode(x.getToken()));
 		}
 
 		if (this.getChildCount() > 0) {
@@ -241,6 +240,27 @@ public class BlockScopeNode extends HaxeTree {
 				tree.calculateScopes(this);
 			}
 		}
+	}
+	
+	private boolean checkUniqueOFDeclarations(ScopeVarDeclNode var){
+		for (ScopeVarDeclNode tree : this.getDeclaredVars()){
+			if (tree.getToken().equals(var.getToken()))
+				break; //looking for the previous vars with the same text
+			if (tree instanceof ScopeFunDeclNode) {
+				if (var.getText().equals(((ScopeFunDeclNode)tree).getText()) &&
+					//FIXME && parametres equals... ??
+					!var.getToken().equals(((ScopeFunDeclNode)tree).getToken()))
+					return false; //another var with the same name
+			} else
+			if (!(tree instanceof ScopeVarUseNode)){
+				if (var.getText().equals(tree.getText()) &&
+					var.getDeclType().equals(tree.getDeclType()) && //now just for param-decl override
+						//&& parametres equals...
+					!var.getToken().equals(tree.getToken()))
+						return false; //another var with the same name
+			}
+		}
+		return true;
 	}
 	
 	@Override
@@ -253,8 +273,14 @@ public class BlockScopeNode extends HaxeTree {
 				
 			} else
 			if (tree instanceof ScopeVarDeclNode){
-				
+				if (this.getParent() instanceof ClassNode &&
+					tree.ifUndefinedType())
+					tree.commitError("Class var should have type");
+				if (!checkUniqueOFDeclarations(tree))
+					tree.commitError("Var is already declared");
 			}
 		}
+		for (HaxeTree x : getChildren())
+			x.calculateTypes();
 	}
 }

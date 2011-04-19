@@ -268,21 +268,7 @@ public class HaxeTree extends CommonTree {
 	//TODO complete for other nodes - 
 	public void accept(final HaxeModelVisitor visitor) {
 		try {
-			if (this instanceof ClassNode) {
-				((ClassNode)this).accept(visitor);
-			} else if (this instanceof EnumNode) {
-				((EnumNode)this).accept(visitor);
-			}else /*if (this instanceof FunctionNode) {
-				((FunctionNode)this).accept(visitor);
-			} else if (this instanceof VarDeclaration) {
-				((VarDeclaration)this).accept(visitor);
-			} else*/ if (this instanceof BlockScopeNode) {
-				((BlockScopeNode)this).accept(visitor);
-			} else if (this instanceof ScopeVarDeclNode) {
-				((ScopeVarDeclNode)this).accept(visitor);
-			} else if (this instanceof ScopeFunDeclNode) {
-				((ScopeFunDeclNode)this).accept(visitor);
-			} else if (this.token != null) {
+			if (this.token != null) {
 				if (this.token.getType() == MODULE_TYPE) {
 					visitor.visit(this);
 					for (HaxeTree child : this.getChildren()) {
@@ -359,21 +345,11 @@ public class HaxeTree extends CommonTree {
 	 */
 	public void calculateScopes(final BlockScopeNode blockScope)
 			throws HaxeCastException {
-		if (this instanceof BlockScopeNode) {
-			((BlockScopeNode)this).calculateScopes(blockScope);
-		} else if (this instanceof VarDeclaration) {
-			((VarDeclaration)this).calculateScopes(blockScope);
-		//} else if (this instanceof VarUsage) {
-			//((VarUsage) this).calculateScopes(blockScope);
-		} else if (this instanceof FunctionNode) {
-			((FunctionNode)this).calculateScopes(blockScope);
-		} else {
-			if (this.getChildren() != null) {
+		if (this.getChildren() != null) {
 				for (HaxeTree tree : this.getChildren()) {
 					tree.calculateScopes(blockScope);
 				}
 			}
-		}
 	}
 	
 	/**
@@ -812,28 +788,18 @@ public class HaxeTree extends CommonTree {
 			}
 			for (int i = 0; i < t.getChildCount(); i++) {
 					System.out.print(sb.toString());
-				if (t.getChild(i) instanceof AssignOperationNode)
-					((AssignOperationNode)t.getChild(i)).printTree();
-				else
-				if (t.getChild(i) instanceof VarUsage)
-					((VarUsage)t.getChild(i)).printTree();
-				else
-				if (t.getChild(i) instanceof Constant)
-					((Constant)t.getChild(i)).printTree();
+				if (t.getChild(i) instanceof AssignOperationNode ||
+					t.getChild(i) instanceof VarUsage ||
+					t.getChild(i) instanceof Constant ||
+					t.getChild(i) instanceof ScopeVarDeclNode ||
+					t.getChild(i) instanceof ScopeVarUseNode ||
+					t.getChild(i) instanceof ScopeFunDeclNode)
+					t.getChild(i).printTree();
 				else
 				if (t.getChild(i) instanceof BlockScopeNode){
 					System.out.println("Block scope "+ t.getText());
 					for (ScopeVarDeclNode x : ((BlockScopeNode)t.getChild(i)).getDeclaredVars())
 						x.printTree();
-				}else
-				if (t.getChild(i) instanceof ScopeVarDeclNode){
-					((ScopeVarDeclNode)t.getChild(i)).printTree();	
-				}else
-				if (t.getChild(i) instanceof ScopeVarUseNode){
-					((ScopeVarDeclNode)t.getChild(i)).printTree();	
-				}else
-				if (t.getChild(i) instanceof ScopeFunDeclNode){
-					((ScopeVarDeclNode)t.getChild(i)).printTree();	
 				}else
 					System.out.println(t.getChild(i).getText());
 				this.printTree(t.getChild(i), indent + 1);
@@ -842,32 +808,25 @@ public class HaxeTree extends CommonTree {
 	}
 	
 	public boolean setHaxeType(HaxeType type){
-		if (this instanceof VarUsage)
-			return ((VarUsage)this).setHaxeType(type);
-		else if (this instanceof VarDeclaration)
-			return ((VarDeclaration)this).setHaxeType(type);
-			
 		return false;
 	}
 	
 	//only first lvl
-	public void calculateTypes(){
+	public void calculateTypes(){ //begin with module
+		BlockScopeNode blockScope = null; 
 		if (this.getChildCount() > 0) {
 			for (HaxeTree tree : this.getChildren()) {
-				if (tree instanceof ClassNode) {
-					BlockScopeNode blockScope = ((ClassNode) tree).getBlockScope();
-					if (blockScope != null) {
-						blockScope.calculateTypes();
-					}
-				}
-				if (tree instanceof EnumNode) {
-					BlockScopeNode blockScope = ((EnumNode) tree).getBlockScope();
-					if (blockScope != null) {
-						blockScope.calculateTypes();
-					}
-				}
+				blockScope = tree.getBlockScope();
+				if (blockScope != null) {
+					blockScope.calculateTypes();
+				} else
+					tree.calculateTypes();
 			}
 		}
+	}
+	
+	public BlockScopeNode getBlockScope(){
+		return null;
 	}
 	
 	private boolean ifNumOperation(){
@@ -894,21 +853,7 @@ public class HaxeTree extends CommonTree {
 
 	//FIXME not all special nodes have their own functions and not sure about HaxeTree
 	public HaxeType getHaxeType() {
-		if (this instanceof BlockScopeNode)
-			return ((BlockScopeNode)this).getHaxeType();
-		else if (this instanceof VarUsage)
-			return ((VarUsage)this).getHaxeType();
-		else if (this instanceof Constant)
-			return ((Constant)this).getHaxeType();
-		else if (this instanceof VarDeclaration)
-			return ((VarDeclaration)this).getHaxeType();
-		else if (this instanceof ClassNode)
-			return ((ClassNode)this).getHaxeType();
-		else if (this instanceof EnumNode)
-			return ((EnumNode)this).getHaxeType();
-		else if (this instanceof FunctionNode)
-			return ((FunctionNode)this).getHaxeType();
-		else if (this instanceof HaxeTree) {			
+		if (this instanceof HaxeTree) {			
 			if (this.getType() == SUFFIX_EXPR_TYPE ||
 				this.getType() == RETURN_TYPE)
 				return this.getChild(0).getHaxeType(); //?TODO??????? 

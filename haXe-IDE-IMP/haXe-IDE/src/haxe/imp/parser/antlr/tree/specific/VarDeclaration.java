@@ -86,10 +86,6 @@ public class VarDeclaration extends HaxeTree {
 	 */
 	@Override
 	public HaxeType getHaxeType() {
-		return this.getVarNameNode().getHaxeType();
-	}
-	
-	public void trySetTypeFromDeclaration(){
 		if (this.getVarNameNode().getHaxeType().equals(HaxeType.haxeNotYetRecognized)){
 			try {
 				for (HaxeTree tree : this.getChildren()) {
@@ -98,14 +94,16 @@ public class VarDeclaration extends HaxeTree {
 								(HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
 								HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
 								new HaxeType(tree.getChild(0).getText()));
-						return;
+						break;
 					}
 				}
 			} catch (NullPointerException nullPointerException) {
 				System.out.println("Problems on getting varType");
+				this.getVarNameNode().setHaxeType(HaxeType.haxeUndefined);
 			}
-			this.getVarNameNode().setHaxeType(HaxeType.haxeUndefined);
-		}
+		} 
+		
+		return this.getVarNameNode().getHaxeType();
 	}
 	
 	@Override
@@ -138,34 +136,6 @@ public class VarDeclaration extends HaxeTree {
 			}
 		}
 		return null;
-	}
-	
-	@Override
-	public void calculateScopes(final BlockScopeNode blockScope){
-		ScopeVarDeclNode svdn = new ScopeVarDeclNode(this.getVarNameNode().getToken());	
-		try {
-			for (HaxeTree tree : this.getChildren()) {
-				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
-					svdn.setHaxeType(
-							(HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
-							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
-							new HaxeType(tree.getChild(0).getText()));
-					break;
-				}
-			}
-		} catch (NullPointerException nullPointerException) {
-			System.out.println("Problems on getting varType");
-		}
-		blockScope.addToDeclaredVars(svdn);
-		
-		HaxeTree varInitNode = this.getVAR_INIT_NODE();
-		if (varInitNode != null) {
-			if (varInitNode.getChildCount() > 0) {
-				for (HaxeTree tree : varInitNode.getChildren()) {
-					tree.calculateScopes(blockScope);
-				}
-			}
-		}
 	}
 	
 	public BlockScopeNode getParentScope() {

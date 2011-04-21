@@ -23,14 +23,8 @@ import org.antlr.runtime.CommonToken;
  */
 public class ScopeFunDeclNode extends ScopeVarDeclNode {
 	
-	private ArrayList<ScopeVarDeclNode> parametres = new ArrayList<ScopeVarDeclNode>();	
-	
-	public void addParametreType(final ScopeVarDeclNode var) {
-		parametres.add(var);
-	}
-
-	public ScopeFunDeclNode(CommonToken token) {
-		super(token);		
+	public ScopeFunDeclNode(CommonToken token,CommonToken blockScope) {
+		super(token,blockScope);		
 	}
 	
 	@Override
@@ -40,12 +34,7 @@ public class ScopeFunDeclNode extends ScopeVarDeclNode {
 	
 	@Override
 	public void printTree(){
-		System.out.println("ScopeFunDeclNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
-		
-		for (ScopeVarDeclNode x: parametres){
-			System.out.print("     ");
-			x.printTree();
-		}
+		System.out.println("FunDecl " + getText() + ", type: "+ getHaxeType());
 	}
 	
 	/**

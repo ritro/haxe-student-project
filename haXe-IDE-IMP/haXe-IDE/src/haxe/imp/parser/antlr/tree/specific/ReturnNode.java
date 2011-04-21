@@ -79,8 +79,8 @@ public class ReturnNode extends HaxeTree {
 	}
 	
 	@Override
-	public void calculateScopes(final BlockScopeNode blockScope){
-		this.getChild(0).calculateScopes();
+	public DeclaredVarsTable calculateScopes(){
+		return null;
 	}
 
 }

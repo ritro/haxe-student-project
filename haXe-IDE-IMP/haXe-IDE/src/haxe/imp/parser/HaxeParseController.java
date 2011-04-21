@@ -14,6 +14,8 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
+import haxe.imp.parser.antlr.tree.specific.DeclaredVarsTable;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
 import haxe_ide.Activator;
 
 import java.util.ArrayList;
@@ -309,8 +311,8 @@ public class HaxeParseController implements IParseController {
 			System.out.println("success!");
 			HaxeTree.setMessageHandler(this.handler);
 			this.handler.clearMessages();
-			this.currentAST.calculateScopes();
-			this.currentAST.calculateTypes();
+			this.currentAST.calculateScope();
+			//this.currentAST.calculateTypes();
 
 		} catch (RecognitionException e) {
 			e.printStackTrace();

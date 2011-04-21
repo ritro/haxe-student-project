@@ -28,8 +28,8 @@ public class ScopeVarUseNode extends ScopeVarDeclNode {
 		return fullName.getText();
 	}
 	
-	public ScopeVarUseNode(HaxeTree name, CommonToken token) {
-		super(token);
+	public ScopeVarUseNode(HaxeTree name, CommonToken token,CommonToken blockScope) {
+		super(token,blockScope);
 		fullName = name;
 	}
 	

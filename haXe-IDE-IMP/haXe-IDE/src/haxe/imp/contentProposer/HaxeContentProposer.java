@@ -13,6 +13,7 @@ package haxe.imp.contentProposer;
 import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsage;
 
 import java.util.ArrayList;
@@ -75,8 +76,8 @@ public class HaxeContentProposer implements IContentProposer {
 				return null;
 			}
 		}
-		ArrayList<HaxeTree> availableVars = this.filterVars(
-				sourceNode.getAvailableVars(), sourceString);
+		ArrayList<ScopeVarDeclNode> availableVars = this.filterVars(
+				sourceNode.getDeclaredVars().getDeclaredVars(), sourceString);
 		return this.createSourceProposals(availableVars, sourceString, offset);
 	}
 
@@ -112,10 +113,10 @@ public class HaxeContentProposer implements IContentProposer {
 	 *            the prefix
 	 * @return the array list
 	 */
-	private ArrayList<HaxeTree> filterVars(
-			final ArrayList<HaxeTree> vars, final String prefix) {
-		ArrayList<HaxeTree> result = new ArrayList<HaxeTree>();
-		for (HaxeTree commonTree : vars) {
+	private ArrayList<ScopeVarDeclNode> filterVars(
+			final ArrayList<ScopeVarDeclNode> vars, final String prefix) {
+		ArrayList<ScopeVarDeclNode> result = new ArrayList<ScopeVarDeclNode>();
+		for (ScopeVarDeclNode commonTree : vars) {
 			if (commonTree.getText().startsWith(prefix)) {
 				result.add(commonTree);
 			}
@@ -135,12 +136,12 @@ public class HaxeContentProposer implements IContentProposer {
 	 * @return the source proposal[]
 	 */
 	private SourceProposal[] createSourceProposals(
-			final ArrayList<HaxeTree> availableVars,
+			final ArrayList<ScopeVarDeclNode> availableVars,
 			final String prefix, final int offset) {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
-		for (HaxeTree commonTree : availableVars) {
-			VarUsage usage = (VarUsage) commonTree;
+		for (ScopeVarDeclNode commonTree : availableVars) {
+			ScopeVarDeclNode usage = (ScopeVarDeclNode) commonTree;
 			result.add(new ComparableSourceProposal(usage.getTextWithType(),
 					usage.getText(), prefix, offset));
 		}

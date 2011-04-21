@@ -116,56 +116,11 @@ public class ClassNode extends HaxeTree {
 		return type;
 	}
 	
-	/**
-	 * Creating class outline
-	 */
-	@Override
-	public void accept(final HaxeModelVisitor visitor){
-		visitor.visit(this);
-		for (ScopeVarDeclNode child : this.getBlockScope().getDeclaredVars()) {
-			child.accept(visitor);
+	public DeclaredVarsTable calculateScopes(){
+		if (getBlockScope() != null) {
+			return getBlockScope().calculateScopes();
 		}
-		visitor.endVisit(this);
-	}
-
-	/**
-	 * Gets the all declared vars.
-	 * 
-	 * @return the all declared vars
-	 */
-	public ArrayList<VarUsage> getAllDeclaredVars() {
-		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
-		BlockScopeNode blockScopeNode = this.getBlockScope();
-		if (blockScopeNode != null) {
-			for (HaxeTree tree : blockScopeNode.getChildren()) {
-				if (tree instanceof VarDeclaration) {
-					VarDeclaration declarationTree = (VarDeclaration) tree;
-					declarationTree.trySetTypeFromDeclaration();
-					VarUsage varUsage = declarationTree.getVarNameNode()
-							.getClone();
-					list.add(varUsage);
-				} else if (tree instanceof FunctionNode) {
-					FunctionNode functionTree = (FunctionNode) tree;
-					VarUsage usage = new VarUsage(
-							((HaxeTree) functionTree.getChild(0))
-									.getToken());
-					usage.setHaxeType(functionTree.getHaxeType());
-					list.add(usage);
-				} else if (tree instanceof ClassNode) {
-					ClassNode classTree = (ClassNode) tree;
-					VarUsage usage = new VarUsage(classTree.getChild(0)
-							.getToken());
-					/**
-					 * FIXME while creating HaxeType, we shoul use ALL available
-					 * information about it
-					 */
-					usage.setHaxeType(new HaxeType(classTree.getChild(0)
-							.getToken().getText()));
-					list.add(usage);
-				}
-			}
-		}
-		return list;
+		else return null;
 	}
 
 }

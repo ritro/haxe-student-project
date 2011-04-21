@@ -20,6 +20,7 @@ import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.Constant;
+import haxe.imp.parser.antlr.tree.specific.DeclaredVarsTable;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.ScopeFunDeclNode;
@@ -239,27 +240,25 @@ public class HaxeTree extends CommonTree {
 		this.commitError(this.getText() + ": cast problems");
 	}
 
-	/**
-	 * Calculating scopes in tree. Should be applied only to module
-	 * FIXME here calculus only for classes, should interfaces be included?
-	 */
-	public void calculateScopes() {
+	private DeclaredVarsTable declaredVars;
+	public DeclaredVarsTable getDeclaredVars() {
+		return declaredVars;
+	}
+
+	public void calculateScope() {
+		declaredVars = new DeclaredVarsTable();
+
 		if (this.getChildCount() > 0) {
 			for (HaxeTree tree : this.getChildren()) {
-				if (tree instanceof ClassNode) {
-					BlockScopeNode blockScope = ((ClassNode) tree).getBlockScope();
-					if (blockScope != null) {
-						blockScope.calculateScopes(blockScope);
-					}
-				}
-				if (tree instanceof EnumNode) {
-					BlockScopeNode blockScope = ((EnumNode) tree).getBlockScope();
-					if (blockScope != null) {
-						blockScope.calculateScopes(blockScope);
-					}
-				}
+				if (tree instanceof ClassNode ||
+					tree instanceof EnumNode)
+					declaredVars.addAll(tree.calculateScopes()); 
 			}
 		}
+	}
+	
+	public DeclaredVarsTable calculateScopes() {
+		return null;
 	}
 
 	/**
@@ -276,6 +275,15 @@ public class HaxeTree extends CommonTree {
 					}
 					visitor.endVisit(this);
 				} 
+				if (this instanceof ClassNode){
+					visitor.visit(this);
+					for (ScopeVarDeclNode child : declaredVars.getDeclaredVars()) {
+						if (this.getBlockScope() != null &&
+							child.getScopeToken().equals(this.getBlockScope().getToken()))
+							child.accept(visitor);
+					}
+					visitor.endVisit(this);
+				}
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out
@@ -329,27 +337,6 @@ public class HaxeTree extends CommonTree {
 					.println("Exception caught from invocation of language-specific tree model builder implementation");
 			nullPointerException.printStackTrace();
 		}
-	}
-
-	/**
-	 * Calculate scopes. Also it calculate primitive types. Thi operaqtion
-	 * should be also used before most operations on code (hyperlinking,
-	 * help-covering, autocompletion)
-	 * 
-	 *  TODO: rewrite using override
-	 *  
-	 * @param blockScope
-	 *            the block scope
-	 * @throws HaxeCastException
-	 *             the haxe cast exception
-	 */
-	public void calculateScopes(final BlockScopeNode blockScope)
-			throws HaxeCastException {
-		if (this.getChildren() != null) {
-				for (HaxeTree tree : this.getChildren()) {
-					tree.calculateScopes(blockScope);
-				}
-			}
 	}
 	
 	/**
@@ -675,7 +662,7 @@ public class HaxeTree extends CommonTree {
 	 * 
 	 * @return the available vars
 	 */
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public ArrayList<HaxeTree> getAvailableVars() {
 		if (this instanceof BlockScopeNode) {
 			ArrayList arrayList = ((BlockScopeNode) this).getDeclaredVars();
@@ -769,6 +756,7 @@ public class HaxeTree extends CommonTree {
 	 * Prints full tree into console.
 	 */
 	public void printTree() {
+		declaredVars.print();
 		this.printTree(this, 0);
 	}
 
@@ -790,16 +778,11 @@ public class HaxeTree extends CommonTree {
 					System.out.print(sb.toString());
 				if (t.getChild(i) instanceof AssignOperationNode ||
 					t.getChild(i) instanceof VarUsage ||
-					t.getChild(i) instanceof Constant ||
-					t.getChild(i) instanceof ScopeVarDeclNode ||
-					t.getChild(i) instanceof ScopeVarUseNode ||
-					t.getChild(i) instanceof ScopeFunDeclNode)
+					t.getChild(i) instanceof Constant)
 					t.getChild(i).printTree();
 				else
 				if (t.getChild(i) instanceof BlockScopeNode){
 					System.out.println("Block scope "+ t.getText());
-					for (ScopeVarDeclNode x : ((BlockScopeNode)t.getChild(i)).getDeclaredVars())
-						x.printTree();
 				}else
 					System.out.println(t.getChild(i).getText());
 				this.printTree(t.getChild(i), indent + 1);

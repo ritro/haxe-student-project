@@ -13,6 +13,7 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
+import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -28,57 +29,8 @@ import org.antlr.runtime.tree.CommonTree;
  */
 public class BlockScopeNode extends HaxeTree {
 
-	/**
-	 * Each BlockScope contains Nodes representing vars, that could be used in
-	 */
-	private ArrayList<ScopeVarDeclNode> declaredVars = new ArrayList<ScopeVarDeclNode>();
-
 	private int lBracketPosition;
 	private int rBracketPosition;
-
-	/**
-	 * Gets the declared vars.
-	 * 
-	 * @return the declaredVars
-	 */
-	public ArrayList<ScopeVarDeclNode> getDeclaredVars() {
-		return this.declaredVars;
-	}
-
-	/**
-	 * Sets the declared vars.
-	 * 
-	 * @param declaredVars
-	 *            the declaredVars to set
-	 */
-	public void setDeclaredVars(final ArrayList<ScopeVarDeclNode> declaredVars) {
-		this.declaredVars = declaredVars;
-	}
-	
-	public void addToDeclaredVars(final ScopeVarDeclNode declaredVar){
-		/*for (ScopeVarDeclNode x : declaredVars)
-			if (x instanceof ScopeVarDeclNode &&
-				x.getName().equals(declaredVar.getName())){
-				declaredVars.remove(x);
-				break;
-			}*/
-		this.declaredVars.add(declaredVar);
-	}
-	
-	public void addToDeclaredVars(final ScopeFunDeclNode declaredVar){
-		this.declaredVars.add(declaredVar);
-	}
-	
-	public void addToDeclaredVars(final ScopeVarUseNode declaredVar){
-		this.declaredVars.add(declaredVar);
-	}
-	
-	public ScopeVarDeclNode findDeclaredVar(CommonToken token){
-		for (ScopeVarDeclNode x: getDeclaredVars())
-			if (x.getToken().equals(token))
-				return x;
-		return null;
-	}
 
 	/**
 	 * Gets the l bracket position.
@@ -133,12 +85,12 @@ public class BlockScopeNode extends HaxeTree {
 	 * A block evaluates to the TYPE of the last expression of the block.
 	 * As an exception, the empty block { } evaluates to Void.
 	 */
-	@Override
+	/*@Override
 	public HaxeType getHaxeType(){
 		return (this.getDeclaredVars().size() > 0) ? 
 				this.getDeclaredVars().get((this.getDeclaredVars().size()-1)).getHaxeType() :
 					HaxeType.haxeVoid;
-	}
+	}*/
 
 	public BlockScopeNode(final int blockScope, final String string,
 			final boolean b, final Token lBracket) {
@@ -153,7 +105,7 @@ public class BlockScopeNode extends HaxeTree {
 	 *            the var name
 	 * @return true, if successful
 	 */
-	public boolean doScopeContainsVarName(final String varName) {
+	/*public boolean doScopeContainsVarName(final String varName) {
 		for (HaxeTree usage : this.declaredVars) {
 			if (usage.getText().equals(varName)) {
 				return true;
@@ -161,7 +113,7 @@ public class BlockScopeNode extends HaxeTree {
 		}
 		return false;
 	}
-	/*
+	
 	public void changeVarType(VarUsage varUsage){
 		if (!this.doScopeContainsVarName(varUsage.getText()))
 			return;
@@ -182,87 +134,46 @@ public class BlockScopeNode extends HaxeTree {
 		return null;
 	}*/
 	
-	/**
-	 * Creating class outline
-	 */
 	@Override
-	public void accept(final HaxeModelVisitor visitor){
-		/*boolean isParentClass = (this.parent instanceof ClassNode)||
-								(this.parent instanceof EnumNode);
-		if (!isParentClass) {
-			visitor.visit(this, false);
-			for (HaxeTree child : this.getChildren()) {
-				child.accept(visitor);
-			}
-			visitor.endVisit(this);
-		} else {*/
-			// vars to outline
-			for (ScopeVarDeclNode child : this.getDeclaredVars()) {
-				child.accept(visitor);
-			}
-			//searching for functions
-			for (HaxeTree child : this.getChildren()) {
-				child.accept(visitor);
-			}
-		//}
-	}	
-
-	/**
-	 * Return type of var as it stores in scope.
-	 * 
-	 * @param varName
-	 *            the var name
-	 * @return the var in scope type
-	 */
-	public HaxeType getVarType(final String varName) {
-		for (HaxeTree usage : this.declaredVars) {
-			if (usage.getText().equals(varName)) {
-				return ((VarUsage) usage).getHaxeType();
-			}
-		}
-		return HaxeType.haxeUndefined;
-	}
-	
-	@Override //Is it right to rewrite params???
-	public void calculateScopes(final BlockScopeNode blockScope){
-		setDeclaredVars(((ArrayList<ScopeVarDeclNode>)(blockScope.getDeclaredVars().clone())));
-
+	public DeclaredVarsTable calculateScopes(){		
+		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
+/*
 		if (this.getParent() instanceof FunctionNode) {
 			ArrayList<VarUsage> params = ((FunctionNode) this.getParent())
 					.getParametersAsVarUsage();
 			
 			for (VarUsage x : params)
-				addToDeclaredVars(new ScopeVarDeclNode(x.getToken()));
-		}
+				declaredVars.addToDeclaredVars(new ScopeVarDeclNode(x.getToken(),this.getToken()));
+		}*/
 
 		if (this.getChildCount() > 0) {
 			for (HaxeTree tree : this.getChildren()) {
-				tree.calculateScopes(this);
+				if (tree instanceof ClassNode)
+					declaredVars.addAll(tree.calculateScopes());
+				else 
+				if (tree instanceof FunctionNode){
+					ScopeFunDeclNode sfd = new ScopeFunDeclNode(tree.getChild(0).getToken(),
+																this.getToken());
+					sfd.setHaxeType(tree.getHaxeType());
+					declaredVars.addToDeclaredVars(sfd);
+					declaredVars.addAll(tree.calculateScopes());
+				}
+				else
+				if (tree instanceof VarDeclaration){
+					ScopeVarDeclNode dvt = new ScopeVarDeclNode((VarDeclaration)tree,this.getToken());
+					dvt.setHaxeType(((VarDeclaration)tree).getHaxeType());
+					if (declaredVars.ifVarExists(dvt))
+						declaredVars.addToDeclaredVars(dvt);
+					else 
+						dvt.commitError("Var is already declared");
+				}
 			}
 		}
+		
+		return declaredVars;
 	}
 	
-	private boolean checkUniqueOFDeclarations(ScopeVarDeclNode var){
-		for (ScopeVarDeclNode tree : this.getDeclaredVars()){
-			if (tree.getToken().equals(var.getToken()))
-				break; //looking for the previous vars with the same text
-			if (tree instanceof ScopeFunDeclNode) {
-				if (var.getText().equals(((ScopeFunDeclNode)tree).getText()) &&
-					//FIXME && parametres equals... ??
-					!var.getToken().equals(((ScopeFunDeclNode)tree).getToken()))
-					return false; //another var with the same name
-			} else
-			if (!(tree instanceof ScopeVarUseNode)){
-				if (var.getText().equals(tree.getText()) &&
-					var.getDeclType().equals(tree.getDeclType()) && //now just for param-decl override
-						//&& parametres equals...
-					!var.getToken().equals(tree.getToken()))
-						return false; //another var with the same name
-			}
-		}
-		return true;
-	}
-	
+	/*
 	@Override
 	public void calculateTypes(){
 		for (ScopeVarDeclNode tree : this.getDeclaredVars()) {
@@ -282,5 +193,5 @@ public class BlockScopeNode extends HaxeTree {
 		}
 		for (HaxeTree x : getChildren())
 			x.calculateTypes();
-	}
+	}*/
 }

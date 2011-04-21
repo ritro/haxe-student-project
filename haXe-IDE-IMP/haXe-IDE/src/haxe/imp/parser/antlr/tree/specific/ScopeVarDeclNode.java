@@ -27,7 +27,12 @@ public class ScopeVarDeclNode extends HaxeTree {
 	public enum VarType {ClassVarDecl, FunctionVarDecl, FunctionParam, NotDefined};
 	private HaxeType haxeType = HaxeType.haxeUndefined;
 	private VarType declType = VarType.NotDefined;
+	private CommonToken blockScope;
 	
+	public CommonToken getScopeToken() {
+		return blockScope;
+	}
+
 	public VarType getDeclType() {
 		return declType;
 	}
@@ -56,12 +61,41 @@ public class ScopeVarDeclNode extends HaxeTree {
 		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 
-	public ScopeVarDeclNode(CommonToken token) {
+	public ScopeVarDeclNode(CommonToken token, CommonToken blockScope) {
 		super(token);
+		this.blockScope = blockScope;
 	}
 	
-	public ScopeVarDeclNode(VarType type, CommonToken token) {
+	public ScopeVarDeclNode(VarDeclaration vd, CommonToken blockScope){
+		super(vd.getVarNameNode().getToken());	
+		this.blockScope = blockScope;
+		try {
+			for (HaxeTree tree : this.getChildren()) {
+				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
+					this.setHaxeType(
+							(HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
+							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
+							new HaxeType(tree.getChild(0).getText()));
+					break;
+				}
+			}
+		} catch (NullPointerException nullPointerException) {
+			System.out.println("Problems on getting varType");
+		}
+		/*
+		HaxeTree varInitNode = this.getVAR_INIT_NODE();
+		if (varInitNode != null) {
+			if (varInitNode.getChildCount() > 0) {
+				for (HaxeTree tree : varInitNode.getChildren()) {
+					tree.calculateScopes(blockScope);
+				}
+			}
+		}*/
+	}
+	
+	public ScopeVarDeclNode(VarType type, CommonToken token, CommonToken blockScope) {
 		super(token);
+		this.blockScope = blockScope;
 		this.declType = type;
 	}
 	
@@ -77,5 +111,12 @@ public class ScopeVarDeclNode extends HaxeTree {
 	public void accept(final HaxeModelVisitor visitor){
 		visitor.visit(this);
 		visitor.endVisit(this);
+	}
+
+	public String getTextWithType() {
+		if (this.getDeclType() == VarType.FunctionParam) {
+			return "some function param-not impelemented";
+		}
+		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 }

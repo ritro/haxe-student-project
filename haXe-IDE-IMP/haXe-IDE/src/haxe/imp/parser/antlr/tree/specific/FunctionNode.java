@@ -84,7 +84,6 @@ public class FunctionNode extends HaxeTree {
 		if (parameters != null) {
 			for (HaxeTree varDecl : parameters.getChildren()) {
 				VarDeclaration varDeclaration = (VarDeclaration) varDecl;
-				varDeclaration.trySetTypeFromDeclaration();
 				VarUsage varUsage = varDeclaration.getVarNameNode().getClone();
 				list.add(varUsage);
 			}
@@ -117,29 +116,16 @@ public class FunctionNode extends HaxeTree {
 	}
 	
 	@Override
-	public void calculateScopes(final BlockScopeNode blockScope){
-		if (getBlockScope() != null) {
-			getBlockScope().calculateScopes(blockScope);
-		}
-		
-		ScopeFunDeclNode sfd = new ScopeFunDeclNode(this.getChild(0).getToken());
-		sfd.setHaxeType(getHaxeType());
+	public DeclaredVarsTable calculateScopes(){	
+		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 		for (VarUsage x: getParametersAsVarUsage())
-			sfd.addParametreType(new ScopeVarDeclNode(VarType.FunctionParam, x.getToken()));
-		blockScope.addToDeclaredVars(sfd);
-	}
-	
-	/**
-	 * Creating class outline
-	 */
-	@Override
-	public void accept(final HaxeModelVisitor visitor){
-		//visitor.visit(this);
-		/*
-		for (HaxeTree child : this.getBlockScope().getChildren()) {
-			child.accept(visitor);
-		}*/
-		//visitor.endVisit(this);
+			declaredVars.addToDeclaredVars(new ScopeVarDeclNode(VarType.FunctionParam,
+											x.getToken(), getBlockScope().getToken()));
+		
+		if (getBlockScope() != null) {
+			declaredVars.addAll(getBlockScope().calculateScopes());
+		}
+		return declaredVars;
 	}
 
 	/**
@@ -154,18 +140,6 @@ public class FunctionNode extends HaxeTree {
 					return (BlockScopeNode) tree;
 				}
 			}
-		}
-		return null;
-	}
-	
-	public BlockScopeNode getParentScope() {
-		HaxeTree tree = (HaxeTree) this.getParent();
-		while (!tree.isNil()) {
-			if (tree instanceof BlockScopeNode &&
-				(tree.getParent() instanceof ClassNode ||
-				 tree.getParent() instanceof EnumNode)) //??
-				return (BlockScopeNode) tree;
-			tree = (HaxeTree) tree.getParent();
 		}
 		return null;
 	}

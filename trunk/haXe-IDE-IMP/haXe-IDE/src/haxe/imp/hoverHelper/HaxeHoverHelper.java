@@ -23,6 +23,7 @@ import java.util.List;
 
 import lpg.runtime.IToken;
 
+import org.antlr.runtime.CommonToken;
 import org.eclipse.imp.editor.AnnotationHoverBase;
 import org.eclipse.imp.language.ServiceFactory;
 import org.eclipse.imp.parser.IParseController;
@@ -161,6 +162,7 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 			}
 		}
 
+		HaxeTree currentAst = (HaxeTree)parseController.getCurrentAst();
 		// Otherwise, base the help message on the text that is represented
 		// by the help node
 		/** TODO add help cover for class nodes */
@@ -172,12 +174,13 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 					((HaxeTree)helpNode).getParent() instanceof FunctionNode) {
 			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode :
 								((HaxeTree)helpNode).getParent());
+			CommonToken ftoken = def.getChild(0).getToken();
 			ScopeFunDeclNode x = (ScopeFunDeclNode)
-				(def.getParentScope().findDeclaredVar(def.getChild(0).getToken()));
+				(currentAst.getDeclaredVars().findDeclaredVar(ftoken));
 			msg = x.getHaxeType().getFullTypeName() + " " + x.getText();
 		}else if (helpNode instanceof VarDeclaration){
 			ScopeVarDeclNode def = (ScopeVarDeclNode)
-				(((VarDeclaration)helpNode).getParentScope().findDeclaredVar
+				(currentAst.getDeclaredVars().findDeclaredVar
 							(((VarDeclaration)helpNode).getVarNameNode().getToken()));
 			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
 		}

@@ -130,5 +130,12 @@ public class EnumNode extends HaxeTree {
 				list.add(x);
 		return list;
 	}
+	
+	public DeclaredVarsTable calculateScopes() {
+		if (getBlockScope() != null) {
+			return getBlockScope().calculateScopes();
+		}
+		else return null;
+	}
 
 }

@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.CommonToken;
@@ -21,7 +22,7 @@ import org.antlr.runtime.Token;
  * 
  * @author kondratyev
  */
-public class VarUsage extends HaxeTree {
+public class VarUsageNode extends HaxeTree {
 	
 	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
 
@@ -59,7 +60,7 @@ public class VarUsage extends HaxeTree {
 	 * @param t
 	 *            the t
 	 */
-	public VarUsage(final Token t) {
+	public VarUsageNode(final Token t) {
 		this.token = t;
 	}
 	
@@ -84,7 +85,7 @@ public class VarUsage extends HaxeTree {
 		return (lenth>i)? this.getAllChildren().get(lenth-1 - i): null;
 	}
 
-	public VarUsage(final int ttype, final boolean auxiliary) {
+	public VarUsageNode(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
 	}
 	
@@ -94,11 +95,11 @@ public class VarUsage extends HaxeTree {
 	 * 
 	 * @return the clone
 	 */
-	public VarUsage getClone() {
-		VarUsage varUsage = new VarUsage(this.getToken());
-		varUsage.setHaxeType(this.getHaxeType());
-		varUsage.addChild(this.getChild(0));
-		return varUsage;
+	public VarUsageNode getClone() {
+		VarUsageNode varUsageNode = new VarUsageNode(this.getToken());
+		varUsageNode.setHaxeType(this.getHaxeType());
+		varUsageNode.addChild(this.getChild(0));
+		return varUsageNode;
 	}
 
 	/**

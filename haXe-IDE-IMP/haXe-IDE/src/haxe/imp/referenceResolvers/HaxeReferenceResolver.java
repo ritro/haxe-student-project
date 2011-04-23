@@ -11,7 +11,7 @@
 package haxe.imp.referenceResolvers;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
@@ -56,7 +56,7 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 		// TODO Replace the following with an implementation suitable for your
 		// language and reference types
 
-		if (node instanceof VarUsage && controller.getCurrentAst() != null) {
+		if (node instanceof VarUsageNode && controller.getCurrentAst() != null) {
 			HaxeTree result;
 			try {
 				result = ((HaxeTree) node).getDeclarationNode((HaxeTree) node);
@@ -64,7 +64,7 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 				return null;
 			}
 			return result;
-		}else if (node instanceof HaxeTree&& ((HaxeTree)node).parent instanceof VarUsage && controller.getCurrentAst() != null) {
+		}else if (node instanceof HaxeTree&& ((HaxeTree)node).parent instanceof VarUsageNode && controller.getCurrentAst() != null) {
 			HaxeTree result;
 			try {
 				result = ((HaxeTree)((HaxeTree)node).parent).getDeclarationNode((HaxeTree)((HaxeTree)node).parent);

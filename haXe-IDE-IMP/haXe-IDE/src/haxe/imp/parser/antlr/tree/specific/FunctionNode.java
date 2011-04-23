@@ -11,7 +11,9 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode.VarType;
+import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -43,7 +45,7 @@ public class FunctionNode extends HaxeTree {
 			if (paramList != null && paramList.getChildCount() != 0) {
 				for (HaxeTree commonTree : paramList.getChildren()) {
 					parameters += comma
-							+ ((VarDeclaration) commonTree).getHaxeType()
+							+ ((VarDeclarationNode) commonTree).getHaxeType()
 									.getTypeName();
 					comma = ", ";
 				}
@@ -78,14 +80,14 @@ public class FunctionNode extends HaxeTree {
 	 * FIXME
 	 * @return the parameters as var usage
 	 */ 
-	public ArrayList<VarUsage> getParametersAsVarUsage() {
-		ArrayList<VarUsage> list = new ArrayList<VarUsage>();
+	public ArrayList<VarUsageNode> getParametersAsVarUsage() {
+		ArrayList<VarUsageNode> list = new ArrayList<VarUsageNode>();
 		HaxeTree parameters = this.getParamListNode();
 		if (parameters != null) {
 			for (HaxeTree varDecl : parameters.getChildren()) {
-				VarDeclaration varDeclaration = (VarDeclaration) varDecl;
-				VarUsage varUsage = varDeclaration.getVarNameNode().getClone();
-				list.add(varUsage);
+				VarDeclarationNode varDeclarationNode = (VarDeclarationNode) varDecl;
+				VarUsageNode varUsageNode = varDeclarationNode.getVarNameNode().getClone();
+				list.add(varUsageNode);
 			}
 		}
 		return list;
@@ -118,8 +120,8 @@ public class FunctionNode extends HaxeTree {
 	@Override
 	public DeclaredVarsTable calculateScopes(){	
 		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-		for (VarUsage x: getParametersAsVarUsage())
-			declaredVars.addToDeclaredVars(new ScopeVarDeclNode(VarType.FunctionParam,
+		for (VarUsageNode x: getParametersAsVarUsage())
+			declaredVars.addToDeclaredVars(new VarDeclNode(VarType.FunctionParam,
 											x.getToken(), getBlockScope().getToken()));
 		
 		if (getBlockScope() != null) {

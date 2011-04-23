@@ -12,11 +12,11 @@ package haxe.imp.hoverHelper;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeFunDeclNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarUseNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUseNode;
 import haxe_ide.Activator;
 
 import java.util.List;
@@ -175,13 +175,13 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode :
 								((HaxeTree)helpNode).getParent());
 			CommonToken ftoken = def.getChild(0).getToken();
-			ScopeFunDeclNode x = (ScopeFunDeclNode)
+			FunctionDeclNode x = (FunctionDeclNode)
 				(currentAst.getDeclaredVars().findDeclaredVar(ftoken));
 			msg = x.getHaxeType().getFullTypeName() + " " + x.getText();
-		}else if (helpNode instanceof VarDeclaration){
-			ScopeVarDeclNode def = (ScopeVarDeclNode)
+		}else if (helpNode instanceof VarDeclarationNode){
+			VarDeclNode def = (VarDeclNode)
 				(currentAst.getDeclaredVars().findDeclaredVar
-							(((VarDeclaration)helpNode).getVarNameNode().getToken()));
+							(((VarDeclarationNode)helpNode).getVarNameNode().getToken()));
 			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
 		}
 		return msg;

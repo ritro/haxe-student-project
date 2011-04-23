@@ -17,9 +17,9 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeFunDeclNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
 import haxe_ide.Activator;
 import haxe_ide.IHaxeResources;
 
@@ -132,7 +132,7 @@ public class HaxeLabelProvider implements ILabelProvider {
 		} else if (n.token.getType() == HaxeLexer.ENUM) {
 			String enumReturn = "Enum ";
 			if (n.getChildCount() > 0) {
-				if (!(n.getChild(0) instanceof VarDeclaration)) {
+				if (!(n.getChild(0) instanceof VarDeclarationNode)) {
 					enumReturn += n.getChild(0).getText();
 				}
 			}
@@ -152,10 +152,10 @@ public class HaxeLabelProvider implements ILabelProvider {
 		} else if (n instanceof VarDeclaration) {
 			VarDeclaration varDeclaration = (VarDeclaration) n;
 			return varDeclaration.getNameWithType();
-		}else*/ if (n instanceof ScopeFunDeclNode) {
-			return ((ScopeFunDeclNode)n).getNameWithType();
-		} else if (n instanceof ScopeVarDeclNode) {
-			return ((ScopeVarDeclNode)n).getNameWithType();
+		}else*/ if (n instanceof FunctionDeclNode) {
+			return ((FunctionDeclNode)n).getNameWithType();
+		} else if (n instanceof VarDeclNode) {
+			return ((VarDeclNode)n).getNameWithType();
 		}
 		return "<??no label yet??>";
 	}

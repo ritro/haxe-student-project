@@ -24,7 +24,7 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class VarDeclaration extends HaxeTree {
+public class VarDeclarationNode extends HaxeTree {
 
 	/** The name with type. */
 	private String nameWithType = "";
@@ -42,11 +42,11 @@ public class VarDeclaration extends HaxeTree {
 		return this.nameWithType;
 	}
 
-	public VarDeclaration(final int ttype, final Token token) {
+	public VarDeclarationNode(final int ttype, final Token token) {
 		this.token = token;
 	}
 
-	public VarDeclaration(final int ttype, final Token token,
+	public VarDeclarationNode(final int ttype, final Token token,
 			final boolean auxiliary) {
 		this.token = token;
 		this.setAuxiliary(auxiliary);
@@ -59,14 +59,14 @@ public class VarDeclaration extends HaxeTree {
 	 * 
 	 * @return the var name node
 	 */
-	public VarUsage getVarNameNode() {
+	public VarUsageNode getVarNameNode() {
 		for (HaxeTree child : this.getChildren()) {
-			if (child instanceof VarUsage) {
-				return (VarUsage) child;
+			if (child instanceof VarUsageNode) {
+				return (VarUsageNode) child;
 			}
 		}
 		System.out.println("No var name in var declaration");
-		return (VarUsage) this.getChild(0);
+		return (VarUsageNode) this.getChild(0);
 	}
 
 	/**

@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser.antlr.tree.specific;
+package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import org.antlr.runtime.CommonToken;
 
@@ -19,7 +19,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
  * 
  * @author kondratyev
  */
-public class ScopeVarUseNode extends ScopeVarDeclNode {
+public class VarUseNode extends VarDeclNode {
 	
 	private HaxeTree fullName;
 
@@ -28,7 +28,7 @@ public class ScopeVarUseNode extends ScopeVarDeclNode {
 		return fullName.getText();
 	}
 	
-	public ScopeVarUseNode(HaxeTree name, CommonToken token,CommonToken blockScope) {
+	public VarUseNode(HaxeTree name, CommonToken token,CommonToken blockScope) {
 		super(token,blockScope);
 		fullName = name;
 	}

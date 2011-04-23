@@ -12,6 +12,7 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -126,7 +127,7 @@ public class EnumNode extends HaxeTree {
 		ArrayList<HaxeTree> list = new ArrayList<HaxeTree>();
 
 		for (HaxeTree x: this.getBlockScope().getChildren())
-			if (x instanceof VarDeclaration)
+			if (x instanceof VarDeclarationNode)
 				list.add(x);
 		return list;
 	}

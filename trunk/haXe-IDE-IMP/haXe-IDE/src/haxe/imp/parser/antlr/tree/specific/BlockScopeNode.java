@@ -13,7 +13,10 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode.VarType;
+import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -152,16 +155,16 @@ public class BlockScopeNode extends HaxeTree {
 					declaredVars.addAll(tree.calculateScopes());
 				else 
 				if (tree instanceof FunctionNode){
-					ScopeFunDeclNode sfd = new ScopeFunDeclNode(tree.getChild(0).getToken(),
+					FunctionDeclNode sfd = new FunctionDeclNode(tree.getChild(0).getToken(),
 																this.getToken());
 					sfd.setHaxeType(tree.getHaxeType());
 					declaredVars.addToDeclaredVars(sfd);
 					declaredVars.addAll(tree.calculateScopes());
 				}
 				else
-				if (tree instanceof VarDeclaration){
-					ScopeVarDeclNode dvt = new ScopeVarDeclNode((VarDeclaration)tree,this.getToken());
-					dvt.setHaxeType(((VarDeclaration)tree).getHaxeType());
+				if (tree instanceof VarDeclarationNode){
+					VarDeclNode dvt = new VarDeclNode((VarDeclarationNode)tree,this.getToken());
+					dvt.setHaxeType(((VarDeclarationNode)tree).getHaxeType());
 					if (declaredVars.ifVarExists(dvt))
 						declaredVars.addToDeclaredVars(dvt);
 					else 

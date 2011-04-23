@@ -13,9 +13,9 @@ import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.SwitchNode;
 import haxe.imp.parser.antlr.tree.specific.TryNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
-import haxe.imp.parser.antlr.tree.specific.Constant;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
 
@@ -1773,11 +1773,11 @@ public class HaxeParser extends Parser {
                 // Haxe.g:128:46: ^( VAR[$IDENTIFIER, true] ( IDENTIFIER )? ( typeTagOpt )? ( varInit )? ( QUES )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, IDENTIFIER38, true), root_1);
+                root_1 = (Object)adaptor.becomeRoot(new VarDeclarationNode(VAR, IDENTIFIER38, true), root_1);
 
                 // Haxe.g:128:87: ( IDENTIFIER )?
                 if ( stream_IDENTIFIER.hasNext() ) {
-                    adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
+                    adaptor.addChild(root_1, new VarUsageNode(stream_IDENTIFIER.nextToken()));
 
                 }
                 stream_IDENTIFIER.reset();
@@ -1983,7 +1983,7 @@ public class HaxeParser extends Parser {
                         // Haxe.g:136:32: ^( DOT[true] id $a)
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarUsage(DOT, true), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new VarUsageNode(DOT, true), root_1);
 
                         adaptor.addChild(root_1, stream_id.nextTree());
                         adaptor.addChild(root_1, stream_a.nextTree());
@@ -2024,7 +2024,7 @@ public class HaxeParser extends Parser {
                         // Haxe.g:137:16: ^( DOT[true] id )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarUsage(DOT, true), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new VarUsageNode(DOT, true), root_1);
 
                         adaptor.addChild(root_1, stream_id.nextTree());
 
@@ -9141,11 +9141,11 @@ public class HaxeParser extends Parser {
                         // Haxe.g:402:52: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? ( paramList )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER299), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new VarDeclarationNode(IDENTIFIER, IDENTIFIER299), root_1);
 
                         // Haxe.g:402:94: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
-                            adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
+                            adaptor.addChild(root_1, new VarUsageNode(stream_IDENTIFIER.nextToken()));
 
                         }
                         stream_IDENTIFIER.reset();
@@ -9192,11 +9192,11 @@ public class HaxeParser extends Parser {
                         // Haxe.g:403:52: ^( IDENTIFIER[$IDENTIFIER] ( IDENTIFIER )? )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(IDENTIFIER, IDENTIFIER304), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new VarDeclarationNode(IDENTIFIER, IDENTIFIER304), root_1);
 
                         // Haxe.g:403:94: ( IDENTIFIER )?
                         if ( stream_IDENTIFIER.hasNext() ) {
-                            adaptor.addChild(root_1, new VarUsage(stream_IDENTIFIER.nextToken()));
+                            adaptor.addChild(root_1, new VarUsageNode(stream_IDENTIFIER.nextToken()));
 
                         }
                         stream_IDENTIFIER.reset();
@@ -9379,7 +9379,7 @@ public class HaxeParser extends Parser {
                 // Haxe.g:411:57: ^( VAR[$VAR] ( declAttrList )? ( varDeclPartList )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
-                root_1 = (Object)adaptor.becomeRoot(new VarDeclaration(VAR, VAR309), root_1);
+                root_1 = (Object)adaptor.becomeRoot(new VarDeclarationNode(VAR, VAR309), root_1);
 
                 // Haxe.g:411:85: ( declAttrList )?
                 if ( stream_declAttrList.hasNext() ) {
@@ -9544,7 +9544,7 @@ public class HaxeParser extends Parser {
 
             IDENTIFIER315=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_varDeclPart3899); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            IDENTIFIER315_tree = new VarUsage(IDENTIFIER315) ;
+            IDENTIFIER315_tree = new VarUsageNode(IDENTIFIER315) ;
             adaptor.addChild(root_0, IDENTIFIER315_tree);
             }
             pushFollow(FOLLOW_propDeclOpt_in_varDeclPart3904);
@@ -12505,7 +12505,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 538:24: -> LONGLITERAL[$LONGLITERAL, \"INT\"]
                     {
-                        adaptor.addChild(root_0, new Constant(LONGLITERAL, LONGLITERAL435, "INT"));
+                        adaptor.addChild(root_0, new ConstantNode(LONGLITERAL, LONGLITERAL435, "INT"));
 
                     }
 
@@ -12537,7 +12537,7 @@ public class HaxeParser extends Parser {
                         // Haxe.g:539:17: ^( NULL[$NULL,\"Unknown<0>\"] )
                         {
                         Object root_1 = (Object)adaptor.nil();
-                        root_1 = (Object)adaptor.becomeRoot(new Constant(NULL, NULL436, "Unknown<0>"), root_1);
+                        root_1 = (Object)adaptor.becomeRoot(new ConstantNode(NULL, NULL436, "Unknown<0>"), root_1);
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -12569,7 +12569,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 540:23: -> INTLITERAL[$INTLITERAL, \"INT\"]
                     {
-                        adaptor.addChild(root_0, new Constant(INTLITERAL, INTLITERAL437, "INT"));
+                        adaptor.addChild(root_0, new ConstantNode(INTLITERAL, INTLITERAL437, "INT"));
 
                     }
 
@@ -12598,7 +12598,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 541:26: -> STRINGLITERAL[$STRINGLITERAL,\"STRING\"]
                     {
-                        adaptor.addChild(root_0, new Constant(STRINGLITERAL, STRINGLITERAL438, "STRING"));
+                        adaptor.addChild(root_0, new ConstantNode(STRINGLITERAL, STRINGLITERAL438, "STRING"));
 
                     }
 
@@ -12627,7 +12627,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 542:24: -> CHARLITERAL[$CHARLITERAL, \"STRING\"]
                     {
-                        adaptor.addChild(root_0, new Constant(CHARLITERAL, CHARLITERAL439, "STRING"));
+                        adaptor.addChild(root_0, new ConstantNode(CHARLITERAL, CHARLITERAL439, "STRING"));
 
                     }
 
@@ -12656,7 +12656,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 543:21: -> FLOATNUM[$FLOATNUM, \"FLOAT\"]
                     {
-                        adaptor.addChild(root_0, new Constant(FLOATNUM, FLOATNUM440, "FLOAT"));
+                        adaptor.addChild(root_0, new ConstantNode(FLOATNUM, FLOATNUM440, "FLOAT"));
 
                     }
 
@@ -12685,7 +12685,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 544:21: -> TRUE[$TRUE,\"BOOL\"]
                     {
-                        adaptor.addChild(root_0, new Constant(TRUE, TRUE441, "BOOL"));
+                        adaptor.addChild(root_0, new ConstantNode(TRUE, TRUE441, "BOOL"));
 
                     }
 
@@ -12714,7 +12714,7 @@ public class HaxeParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 545:22: -> FALSE[$FALSE,\"BOOL\"]
                     {
-                        adaptor.addChild(root_0, new Constant(FALSE, FALSE442, "BOOL"));
+                        adaptor.addChild(root_0, new ConstantNode(FALSE, FALSE442, "BOOL"));
 
                     }
 

@@ -14,8 +14,8 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
-import haxe.imp.parser.antlr.tree.specific.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
 import haxe_ide.Activator;
 
 import java.util.ArrayList;

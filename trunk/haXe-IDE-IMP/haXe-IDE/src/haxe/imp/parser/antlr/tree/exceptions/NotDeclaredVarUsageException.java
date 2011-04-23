@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.exceptions;
 
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 /**
  * The Class NotDeclaredVarUsageException.
@@ -23,14 +23,14 @@ public class NotDeclaredVarUsageException extends Exception {
 	private static final long serialVersionUID = -573859182870312543L;
 
 	/** The usage. */
-	private VarUsage usage;
+	private VarUsageNode usage;
 
 	/**
 	 * Gets the usage.
 	 * 
 	 * @return the usage
 	 */
-	public VarUsage getUsage() {
+	public VarUsageNode getUsage() {
 		return this.usage;
 	}
 
@@ -40,7 +40,7 @@ public class NotDeclaredVarUsageException extends Exception {
 	 * @param usage
 	 *            the usage to set
 	 */
-	public void setUsage(final VarUsage usage) {
+	public void setUsage(final VarUsageNode usage) {
 		this.usage = usage;
 	}
 
@@ -50,7 +50,7 @@ public class NotDeclaredVarUsageException extends Exception {
 	 * @param usage
 	 *            the usage
 	 */
-	public NotDeclaredVarUsageException(final VarUsage usage) {
+	public NotDeclaredVarUsageException(final VarUsageNode usage) {
 		this.usage = usage;
 	}
 

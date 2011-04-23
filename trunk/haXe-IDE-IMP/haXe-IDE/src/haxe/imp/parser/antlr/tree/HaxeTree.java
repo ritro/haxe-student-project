@@ -19,15 +19,15 @@ import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.Constant;
-import haxe.imp.parser.antlr.tree.specific.DeclaredVarsTable;
+import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeFunDeclNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarUseNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUseNode;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -260,6 +260,10 @@ public class HaxeTree extends CommonTree {
 	public DeclaredVarsTable calculateScopes() {
 		return null;
 	}
+	
+	public HaxeTree getParent(){
+		return (HaxeTree)super.getParent();
+	}
 
 	/**
 	 * Construction of outline
@@ -270,20 +274,24 @@ public class HaxeTree extends CommonTree {
 			if (this.token != null) {
 				if (this.token.getType() == MODULE_TYPE) {
 					visitor.visit(this);
-					for (HaxeTree child : this.getChildren()) {
+					for (VarDeclNode child : this.getDeclaredVars().getDeclaredVars()) {
 						child.accept(visitor);
 					}
+					/*
+					for (HaxeTree child : this.getChildren()) {
+						child.accept(visitor);
+					}*/
 					visitor.endVisit(this);
-				} 
+				} /*
 				if (this instanceof ClassNode){
-					visitor.visit(this);
-					for (ScopeVarDeclNode child : declaredVars.getDeclaredVars()) {
+					visitor.visit(this); //FIXME!!!
+					for (ScopeVarDeclNode child : this.getDeclaredVars().getDeclaredVars()) {
 						if (this.getBlockScope() != null &&
 							child.getScopeToken().equals(this.getBlockScope().getToken()))
 							child.accept(visitor);
 					}
 					visitor.endVisit(this);
-				}
+				}*/
 			}
 		} catch (NullPointerException nullPointerException) {
 			System.out
@@ -599,7 +607,7 @@ public class HaxeTree extends CommonTree {
 	 * @return true, if is declaration
 	 */
 	private boolean isVarDeclaration(final HaxeTree usage) {
-		return ((this instanceof VarDeclaration)&& 
+		return ((this instanceof VarDeclarationNode)&& 
 				(this.getChildren() != null) && 
 				(this.getChild(0).getText().equals(usage.getText())));
 	}
@@ -777,8 +785,8 @@ public class HaxeTree extends CommonTree {
 			for (int i = 0; i < t.getChildCount(); i++) {
 					System.out.print(sb.toString());
 				if (t.getChild(i) instanceof AssignOperationNode ||
-					t.getChild(i) instanceof VarUsage ||
-					t.getChild(i) instanceof Constant)
+					t.getChild(i) instanceof VarUsageNode ||
+					t.getChild(i) instanceof ConstantNode)
 					t.getChild(i).printTree();
 				else
 				if (t.getChild(i) instanceof BlockScopeNode){

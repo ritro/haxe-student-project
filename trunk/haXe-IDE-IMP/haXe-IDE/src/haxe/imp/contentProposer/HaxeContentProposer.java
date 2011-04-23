@@ -13,8 +13,8 @@ package haxe.imp.contentProposer;
 import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.ScopeVarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -76,7 +76,7 @@ public class HaxeContentProposer implements IContentProposer {
 				return null;
 			}
 		}
-		ArrayList<ScopeVarDeclNode> availableVars = this.filterVars(
+		ArrayList<VarDeclNode> availableVars = this.filterVars(
 				sourceNode.getDeclaredVars().getDeclaredVars(), sourceString);
 		return this.createSourceProposals(availableVars, sourceString, offset);
 	}
@@ -113,10 +113,10 @@ public class HaxeContentProposer implements IContentProposer {
 	 *            the prefix
 	 * @return the array list
 	 */
-	private ArrayList<ScopeVarDeclNode> filterVars(
-			final ArrayList<ScopeVarDeclNode> vars, final String prefix) {
-		ArrayList<ScopeVarDeclNode> result = new ArrayList<ScopeVarDeclNode>();
-		for (ScopeVarDeclNode commonTree : vars) {
+	private ArrayList<VarDeclNode> filterVars(
+			final ArrayList<VarDeclNode> vars, final String prefix) {
+		ArrayList<VarDeclNode> result = new ArrayList<VarDeclNode>();
+		for (VarDeclNode commonTree : vars) {
 			if (commonTree.getText().startsWith(prefix)) {
 				result.add(commonTree);
 			}
@@ -136,12 +136,12 @@ public class HaxeContentProposer implements IContentProposer {
 	 * @return the source proposal[]
 	 */
 	private SourceProposal[] createSourceProposals(
-			final ArrayList<ScopeVarDeclNode> availableVars,
+			final ArrayList<VarDeclNode> availableVars,
 			final String prefix, final int offset) {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
-		for (ScopeVarDeclNode commonTree : availableVars) {
-			ScopeVarDeclNode usage = (ScopeVarDeclNode) commonTree;
+		for (VarDeclNode commonTree : availableVars) {
+			VarDeclNode usage = (VarDeclNode) commonTree;
 			result.add(new ComparableSourceProposal(usage.getTextWithType(),
 					usage.getText(), prefix, offset));
 		}

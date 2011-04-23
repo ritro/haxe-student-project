@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser.antlr.tree.specific;
+package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -21,9 +21,9 @@ import org.antlr.runtime.CommonToken;
  * 
  * @author kondratyev
  */
-public class ScopeFunDeclNode extends ScopeVarDeclNode {
+public class FunctionDeclNode extends VarDeclNode {
 	
-	public ScopeFunDeclNode(CommonToken token,CommonToken blockScope) {
+	public FunctionDeclNode(CommonToken token,CommonToken blockScope) {
 		super(token,blockScope);		
 	}
 	

@@ -8,9 +8,10 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser.antlr.tree.specific;
+package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -22,7 +23,7 @@ import org.antlr.runtime.Token;
  * 
  * @author kondratyev
  */
-public class ScopeVarDeclNode extends HaxeTree {
+public class VarDeclNode extends HaxeTree {
 	
 	public enum VarType {ClassVarDecl, FunctionVarDecl, FunctionParam, NotDefined};
 	private HaxeType haxeType = HaxeType.haxeUndefined;
@@ -61,12 +62,12 @@ public class ScopeVarDeclNode extends HaxeTree {
 		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 
-	public ScopeVarDeclNode(CommonToken token, CommonToken blockScope) {
+	public VarDeclNode(CommonToken token, CommonToken blockScope) {
 		super(token);
 		this.blockScope = blockScope;
 	}
 	
-	public ScopeVarDeclNode(VarDeclaration vd, CommonToken blockScope){
+	public VarDeclNode(VarDeclarationNode vd, CommonToken blockScope){
 		super(vd.getVarNameNode().getToken());	
 		this.blockScope = blockScope;
 		try {
@@ -93,7 +94,7 @@ public class ScopeVarDeclNode extends HaxeTree {
 		}*/
 	}
 	
-	public ScopeVarDeclNode(VarType type, CommonToken token, CommonToken blockScope) {
+	public VarDeclNode(VarType type, CommonToken token, CommonToken blockScope) {
 		super(token);
 		this.blockScope = blockScope;
 		this.declType = type;

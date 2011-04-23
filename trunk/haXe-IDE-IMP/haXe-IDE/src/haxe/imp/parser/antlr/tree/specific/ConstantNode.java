@@ -5,7 +5,7 @@ import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 
-public class Constant extends HaxeTree {
+public class ConstantNode extends HaxeTree {
 	
 	/** The var type. */
 	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
@@ -42,7 +42,7 @@ public class Constant extends HaxeTree {
 	 * @param t
 	 *            the t
 	 */
-	public Constant(final Token t) {
+	public ConstantNode(final Token t) {
 		this.token = t;
 	}
 	
@@ -65,7 +65,7 @@ public class Constant extends HaxeTree {
 	 * @param varType
 	 *            the var type
 	 */
-	public Constant(final int ttype, final Token t, final String varType) {
+	public ConstantNode(final int ttype, final Token t, final String varType) {
 		this.token = t;
 		if (varType.equals("INT")) {
 			this.setHaxeType(HaxeType.haxeInt);
@@ -86,12 +86,12 @@ public class Constant extends HaxeTree {
 		}
 	}
 
-	public Constant(final int ttype, final boolean auxiliary) {
+	public ConstantNode(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
 	}
 	
-	public Constant getClone() {
-		Constant varUsage = new Constant(this.getToken());
+	public ConstantNode getClone() {
+		ConstantNode varUsage = new ConstantNode(this.getToken());
 		varUsage.setHaxeType(this.getHaxeType());
 		return varUsage;
 	}

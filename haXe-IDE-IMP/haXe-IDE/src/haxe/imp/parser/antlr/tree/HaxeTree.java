@@ -240,9 +240,9 @@ public class HaxeTree extends CommonTree {
 		this.commitError(this.getText() + ": cast problems");
 	}
 
-	private DeclaredVarsTable declaredVars;
+	protected DeclaredVarsTable declaredVars;
 	public DeclaredVarsTable getDeclaredVars() {
-		return declaredVars;
+		return this.declaredVars;
 	}
 
 	public void calculateScope() {

@@ -41,6 +41,9 @@ public class DeclaredVarsTable{
 		for (VarDeclNode x: getDeclaredVars())
 			if (x.getToken().equals(token))
 				return x;
+		for (VarDeclNode x: getDeclaredVars())
+			if (x instanceof ClassDeclNode)
+				return x.getDeclaredVars().findDeclaredVar(token);
 		return null;
 	}
 

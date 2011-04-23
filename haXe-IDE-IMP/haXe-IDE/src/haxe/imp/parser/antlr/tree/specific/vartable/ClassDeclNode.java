@@ -10,32 +10,27 @@ import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 public class ClassDeclNode extends VarDeclNode {
 	
-	DeclaredVarsTable varTable = new DeclaredVarsTable();
-
-	public DeclaredVarsTable getVarTable() {
-		return varTable;
-	}
-
-	public void setVarTable(DeclaredVarsTable varTable) {
-		this.varTable = varTable;
+	public void setDeclaredVars(DeclaredVarsTable varTable) {
+		this.declaredVars = varTable;
 	}
 
 	public void addAllToDeclaredVars(DeclaredVarsTable list) {
-		this.varTable.addAll(list);
+		this.declaredVars.addAll(list);
+	}
+	
+	public void addToDeclaredVars(VarDeclNode declaredVar){
+		declaredVars.addToDeclaredVars(declaredVar);
 	}
 	
 	public ClassDeclNode(CommonToken token, CommonToken blockScope) {
 		super(token,blockScope);
-	}
-	
-	public void addToDeclaredVars(VarDeclNode declaredVar){
-		varTable.addToDeclaredVars(declaredVar);
+		declaredVars = new DeclaredVarsTable();
 	}
 	
 	@Override
 	public void accept(final HaxeModelVisitor visitor){
 		visitor.visit(this);
-		for (VarDeclNode x: varTable.getDeclaredVars())
+		for (VarDeclNode x: declaredVars.getDeclaredVars())
 			if (x.getScopeToken().equals(this.getScopeToken()))
 				x.accept(visitor);
 		visitor.endVisit(this);
@@ -44,7 +39,7 @@ public class ClassDeclNode extends VarDeclNode {
 	@Override
 	public void printTree(){
 		System.out.println("ClassDecl"+"Name: " + getText());
-		for (VarDeclNode x: varTable.getDeclaredVars()){
+		for (VarDeclNode x: declaredVars.getDeclaredVars()){
 			System.out.print("     ");
 			x.printTree();
 		}

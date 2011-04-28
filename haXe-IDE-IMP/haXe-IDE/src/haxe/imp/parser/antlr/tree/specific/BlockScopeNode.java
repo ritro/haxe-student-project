@@ -16,6 +16,7 @@ import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUseNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
@@ -165,36 +166,43 @@ public class BlockScopeNode extends HaxeTree {
 				if (tree instanceof VarDeclarationNode){
 					VarDeclNode dvt = new VarDeclNode((VarDeclarationNode)tree,this.getToken());
 					dvt.setHaxeType(((VarDeclarationNode)tree).getHaxeType());
-					if (declaredVars.ifVarExists(dvt))
+					HaxeTree init = ((VarDeclarationNode)tree).getVAR_INIT_NODE();
+					if (init != null && !init.getHaxeType().equals(HaxeType.haxeUndefined))
+						if (dvt.getHaxeType().equals(HaxeType.haxeUndefined))
+							dvt.setHaxeType(init.getHaxeType());
+						else 
+							if (!dvt.getHaxeType().equals(init.getHaxeType())){
+								dvt.commitError(init.getHaxeType() + " should be " +
+										dvt.getHaxeType());
+								init.printTree(this, 0);
+							}
+					if (!declaredVars.ifVarExists(dvt))
 						declaredVars.addToDeclaredVars(dvt);
 					else 
 						dvt.commitError("Var is already declared");
+				}
+				else
+				if (tree instanceof VarUseNode){
+					VarUseNode vun = new VarUseNode(tree.getChild(0), tree.getToken(), 
+														this.getToken()); 
+					vun.setHaxeType(tree.getHaxeType());
+					declaredVars.addToDeclaredVars(vun);
+				}
+				else
+				if (tree instanceof AssignOperationNode){
+					VarUseNode vun = new VarUseNode(((AssignOperationNode)tree).getLeftOperand(), 
+										((AssignOperationNode)tree).getLeftOperand().getToken(), 
+										this.getToken());
+					VarUseNode vun2 = new VarUseNode(((AssignOperationNode)tree).getRightOperand(), 
+							((AssignOperationNode)tree).getRightOperand().getToken(), 
+							this.getToken());
+					vun2.setHaxeType(((AssignOperationNode)tree).getRightOperand().getHaxeType());
+					vun.setAssignExpr(vun2);
+					declaredVars.addToDeclaredVars(vun);
 				}
 			}
 		}
 		
 		return declaredVars;
 	}
-	
-	/*
-	@Override
-	public void calculateTypes(){
-		for (ScopeVarDeclNode tree : this.getDeclaredVars()) {
-			if (tree instanceof ScopeFunDeclNode) {
-				
-			} else
-			if (tree instanceof ScopeVarUseNode){
-				
-			} else
-			if (tree instanceof ScopeVarDeclNode){
-				if (this.getParent() instanceof ClassNode &&
-					tree.ifUndefinedType())
-					tree.commitError("Class var should have type");
-				if (!checkUniqueOFDeclarations(tree))
-					tree.commitError("Var is already declared");
-			}
-		}
-		for (HaxeTree x : getChildren())
-			x.calculateTypes();
-	}*/
 }

@@ -277,22 +277,8 @@ public class HaxeTree extends CommonTree {
 					for (VarDeclNode child : this.getDeclaredVars().getDeclaredVars()) {
 						child.accept(visitor);
 					}
-					/*
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}*/
 					visitor.endVisit(this);
-				} /*
-				if (this instanceof ClassNode){
-					visitor.visit(this); //FIXME!!!
-					for (ScopeVarDeclNode child : this.getDeclaredVars().getDeclaredVars()) {
-						if (this.getBlockScope() != null &&
-							child.getScopeToken().equals(this.getBlockScope().getToken()))
-							child.accept(visitor);
-					}
-					visitor.endVisit(this);
-				}*/
-			}
+			} }
 		} catch (NullPointerException nullPointerException) {
 			System.out
 					.println("Exception caught from invocation of language-specific tree model builder implementation");
@@ -776,7 +762,7 @@ public class HaxeTree extends CommonTree {
 	 * @param indent
 	 *            the indent
 	 */
-	private void printTree(final HaxeTree t, final int indent) {
+	public void printTree(final HaxeTree t, final int indent) {
 		if (t != null) {
 			StringBuffer sb = new StringBuffer(indent);
 			for (int i = 0; i < indent; i++) {
@@ -804,14 +790,9 @@ public class HaxeTree extends CommonTree {
 	
 	//only first lvl
 	public void calculateTypes(){ //begin with module
-		BlockScopeNode blockScope = null; 
-		if (this.getChildCount() > 0) {
-			for (HaxeTree tree : this.getChildren()) {
-				blockScope = tree.getBlockScope();
-				if (blockScope != null) {
-					blockScope.calculateTypes();
-				} else
-					tree.calculateTypes();
+		if (!this.getDeclaredVars().getDeclaredVars().isEmpty()) {
+			for (VarDeclNode tree : this.getDeclaredVars().getDeclaredVars()) {
+				tree.calculateTypes();
 			}
 		}
 	}
@@ -854,7 +835,7 @@ public class HaxeTree extends CommonTree {
 				return this.getBoolOperationType();
 		}
 		
-		return HaxeType.haxeNotYetRecognized;
+		return HaxeType.haxeUndefined;
 	}
 	
 	private HaxeType getUnarOperationType(){
@@ -862,7 +843,7 @@ public class HaxeTree extends CommonTree {
 			this.getChild(0).getHaxeType().isNumericType()) //+/*- can be used thiw other types??
 				return this.getChild(0).getHaxeType();
 		//else commit Error???
-		return HaxeType.haxeNotYetRecognized;
+		return HaxeType.haxeUndefined;
 	}
 	
 	private HaxeType getBoolOperationType() throws HaxeCastException {

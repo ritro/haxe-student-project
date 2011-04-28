@@ -8,7 +8,7 @@ import org.antlr.runtime.Token;
 public class ConstantNode extends HaxeTree {
 	
 	/** The var type. */
-	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
+	private HaxeType haxeType = HaxeType.haxeUndefined;
 
 	/**
 	 * Sets the var type.

@@ -24,18 +24,18 @@ public class DeclaredVarsTable{
 				if (var.getText().equals(((FunctionDeclNode)tree).getText()) &&
 					//FIXME && parametres equals... ??
 					!var.getToken().equals(((FunctionDeclNode)tree).getToken()))
-					return false; //another var with the same name
+					return true; //another var with the same name
 			} else
 			if (!(tree instanceof VarUseNode)){
 				if (var.getText().equals(tree.getText()) &&
 					var.getDeclType().equals(tree.getDeclType()) && //now just for param-decl override
 						//&& parametres equals... && blockscope mark equals
 					!var.getToken().equals(tree.getToken()))
-						return false; //another var with the same name
+						return true; //another var with the same name
 			} 
 		}
-		return true;
-	}
+		return false;
+	}	
 	
 	public VarDeclNode findDeclaredVar(CommonToken token){
 		for (VarDeclNode x: getDeclaredVars())
@@ -59,12 +59,6 @@ public class DeclaredVarsTable{
 	}
 	
 	public void addToDeclaredVars(final VarDeclNode declaredVar){
-		/*for (ScopeVarDeclNode x : declaredVars)
-			if (x instanceof ScopeVarDeclNode &&
-				x.getName().equals(declaredVar.getName())){
-				declaredVars.remove(x);
-				break;
-			}*/
 		declaredVars.add(declaredVar);
 	}
 	
@@ -88,20 +82,36 @@ public class DeclaredVarsTable{
 		else return false;
 	}
 	
+	private boolean ifUndefinedExist(){
+		for (VarDeclNode tree : declaredVars) {
+			if (tree.getHaxeType().equals(HaxeType.haxeUndefined))
+				return true;
+		}
+		return false;
+	}
+	
 	public void calculateTypes(){
 		for (VarDeclNode tree : declaredVars) {
 			if (tree instanceof FunctionDeclNode) {
-				
+				if (((FunctionDeclNode)tree).getReturnNode() == null)
+					tree.setHaxeType(HaxeType.haxeVoid);
+				else {
+					//set return type
+				}
 			} else
 			if (tree instanceof VarUseNode){
-				
+				if (((VarUseNode)tree).getAssignExpr() == null){
+					
+				} else {
+					VarUseNode vun = (VarUseNode)tree;
+					if (vun.getAssignExpr().getHaxeType() != HaxeType.haxeUndefined)
+						vun.setHaxeType(vun.getAssignExpr().getHaxeType());
+				}
 			} else
 			if (tree instanceof VarDeclNode){
 				if (tree.getDeclType() == VarType.ClassVarDecl &&
 					tree.ifUndefinedType())
 					tree.commitError("Class var should have type");
-				//if (!checkUniqueOFDeclarations(tree))
-				//	tree.commitError("Var is already declared");
 			}
 		}
 	}		

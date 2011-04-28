@@ -102,7 +102,7 @@ public class VarDeclNode extends HaxeTree {
 	
 	@Override
 	public void printTree(){
-		System.out.println("ScopeVarDeclNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
+		System.out.println("VarDeclNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
 	}
 	
 	/**

@@ -86,24 +86,19 @@ public class VarDeclarationNode extends HaxeTree {
 	 */
 	@Override
 	public HaxeType getHaxeType() {
-		if (this.getVarNameNode().getHaxeType().equals(HaxeType.haxeNotYetRecognized)){
-			try {
-				for (HaxeTree tree : this.getChildren()) {
-					if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
-						this.getVarNameNode().setHaxeType(
-								(HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
-								HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
-								new HaxeType(tree.getChild(0).getText()));
-						break;
-					}
+		try {
+			for (HaxeTree tree : this.getChildren()) {
+				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
+					return (HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
+							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
+								new HaxeType(tree.getChild(0).getText());
 				}
-			} catch (NullPointerException nullPointerException) {
-				System.out.println("Problems on getting varType");
-				this.getVarNameNode().setHaxeType(HaxeType.haxeUndefined);
 			}
-		} 
+		} catch (NullPointerException nullPointerException) {
+			System.out.println("Problems on getting varType");
+		}
 		
-		return this.getVarNameNode().getHaxeType();
+		return HaxeType.haxeUndefined;
 	}
 	
 	@Override
@@ -111,15 +106,6 @@ public class VarDeclarationNode extends HaxeTree {
 		this.getVarNameNode().setHaxeType(type);
 			
 		return true;
-	}
-	
-	/**
-	 * Creating class outline
-	 */
-	@Override
-	public void accept(final HaxeModelVisitor visitor){
-		//visitor.visit(this);
-		//visitor.endVisit(this);
 	}
 
 	/**
@@ -132,21 +118,8 @@ public class VarDeclarationNode extends HaxeTree {
 				.getChildren()) {
 			Token token = (CommonToken) tree.getToken();
 			if (token.getType() == VAR_INIT_TYPE) {
-				return tree;
+				return tree.getChild(0);
 			}
-		}
-		return null;
-	}
-	
-	public BlockScopeNode getParentScope() {
-		HaxeTree tree = (HaxeTree) this.getParent();
-		while (!tree.isNil()) {
-			if (tree instanceof BlockScopeNode &&
-				(tree.getParent() instanceof ClassNode ||
-				 tree.getParent() instanceof EnumNode ||
-				 tree.getParent() instanceof FunctionNode)) //??
-				return (BlockScopeNode) tree;
-			tree = (HaxeTree) tree.getParent();
 		}
 		return null;
 	}

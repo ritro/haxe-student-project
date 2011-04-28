@@ -24,7 +24,7 @@ import org.antlr.runtime.Token;
  */
 public class ReturnNode extends HaxeTree {
 	
-	private HaxeType haxeType = HaxeType.haxeNotYetRecognized;
+	private HaxeType haxeType = HaxeType.haxeUndefined;
 
 	/**
 	 * Sets the var type.

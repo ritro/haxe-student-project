@@ -22,10 +22,19 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 public class VarUseNode extends VarDeclNode {
 	
 	private HaxeTree fullName;
+	private VarDeclNode assignment = null;
 
 	@Override
 	public String getText() {
 		return fullName.getText();
+	}
+	
+	public VarDeclNode getAssignExpr() {
+		return assignment;
+	}
+	
+	public void setAssignExpr(VarDeclNode assignment) {
+		this.assignment = assignment;
 	}
 	
 	public VarUseNode(HaxeTree name, CommonToken token,CommonToken blockScope) {
@@ -35,6 +44,14 @@ public class VarUseNode extends VarDeclNode {
 	
 	@Override
 	public void printTree(){
-		System.out.println("ScopeVarUseNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
+		if (assignment != null){
+			System.out.println("Assignment");
+			System.out.println("      Name: " + getText() + ", type: "+ getHaxeType());
+			System.out.print("      ");
+			assignment.printTree();
+		}
+		else{
+			System.out.println("VarUseNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
+		}
 	}
 }

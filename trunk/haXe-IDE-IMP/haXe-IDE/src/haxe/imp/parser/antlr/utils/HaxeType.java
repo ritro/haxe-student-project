@@ -43,7 +43,6 @@ public class HaxeType {
 	public static final HaxeType haxeString;
 	public static final HaxeType haxeDynamic;
 	public static final HaxeType haxeObject;
-	public static final HaxeType haxeNotYetRecognized;
 	public static final HaxeType haxeUndefined;
 	//Unknown<0> - special value usable for any type with behavior diff from Dynamic
 	//NULL have this type and it used only(?) for it
@@ -70,7 +69,6 @@ public class HaxeType {
 		haxeBool = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Bool");
 		haxeDynamic = new HaxeType(HAXE_PRIMARY_TYPES_PATH + ".Dynamic");
 		haxeObject = new HaxeType("haxe.Object");
-		haxeNotYetRecognized = new HaxeType("haxe.notYetRecognized");
 		haxeUndefined = new HaxeType("haxe.Undefined");
 		haxeUnknown = new HaxeType("haxe.Unknown<0>");
 		haxeUnknown.setClassHierarchy(new ArrayList<HaxeType>() {

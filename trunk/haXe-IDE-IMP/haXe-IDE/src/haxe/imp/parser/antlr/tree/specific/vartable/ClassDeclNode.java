@@ -44,5 +44,10 @@ public class ClassDeclNode extends VarDeclNode {
 			x.printTree();
 		}
 	}
+	
+	@Override
+	public void calculateTypes(){
+		this.getDeclaredVars().calculateTypes();
+	}
 
 }

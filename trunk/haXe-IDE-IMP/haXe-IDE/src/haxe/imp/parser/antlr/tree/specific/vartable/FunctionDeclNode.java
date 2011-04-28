@@ -23,6 +23,16 @@ import org.antlr.runtime.CommonToken;
  */
 public class FunctionDeclNode extends VarDeclNode {
 	
+	private VarDeclNode returnNode = null; //MB varUseNode??
+
+	public VarDeclNode getReturnNode() {
+		return returnNode;
+	}
+	
+	public void setReturnNode(VarDeclNode node){
+		returnNode = node;
+	}
+	
 	public FunctionDeclNode(CommonToken token,CommonToken blockScope) {
 		super(token,blockScope);		
 	}

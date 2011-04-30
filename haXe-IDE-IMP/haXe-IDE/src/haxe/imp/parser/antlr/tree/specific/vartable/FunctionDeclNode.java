@@ -44,7 +44,13 @@ public class FunctionDeclNode extends VarDeclNode {
 	
 	@Override
 	public void printTree(){
-		System.out.println("FunDecl " + getText() + ", type: "+ getHaxeType());
+		System.out.print("FunDecl " + getText() + ", type: "+ getHaxeType().getTypeName());
+		if (returnNode != null){
+			System.out.print(" return: ");
+			returnNode.printTree();
+		} else {
+			System.out.println();
+		}
 	}
 	
 	/**

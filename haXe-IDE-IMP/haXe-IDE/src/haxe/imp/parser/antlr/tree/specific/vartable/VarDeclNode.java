@@ -52,6 +52,10 @@ public class VarDeclNode extends HaxeTree {
 		return this.getHaxeType().equals(HaxeType.haxeUndefined);
 	}
 	
+	public void setVarType(final VarType varType) {
+		this.declType = varType;
+	}
+	
 	@Override
 	public boolean setHaxeType(final HaxeType varType) {
 		this.haxeType = varType;
@@ -102,7 +106,7 @@ public class VarDeclNode extends HaxeTree {
 	
 	@Override
 	public void printTree(){
-		System.out.println("VarDeclNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
+		System.out.println("DeclNode: " + getText() + ", type: "+ getHaxeType().getTypeName());
 	}
 	
 	/**

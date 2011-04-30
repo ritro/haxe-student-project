@@ -76,6 +76,18 @@ public class FunctionNode extends HaxeTree {
 	}
 
 	/**
+	 * @return the param list node
+	 */
+	public HaxeTree getReturnNode() {
+		for (HaxeTree tree : this.getBlockScope().getChildren()) {
+			if (tree instanceof ReturnNode) {
+				return tree;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Gets the parameters as var usage.
 	 * FIXME
 	 * @return the parameters as var usage

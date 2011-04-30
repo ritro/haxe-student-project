@@ -22,8 +22,10 @@ import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
@@ -772,7 +774,8 @@ public class HaxeTree extends CommonTree {
 					System.out.print(sb.toString());
 				if (t.getChild(i) instanceof AssignOperationNode ||
 					t.getChild(i) instanceof VarUsageNode ||
-					t.getChild(i) instanceof ConstantNode)
+					t.getChild(i) instanceof ConstantNode ||
+					t.getChild(i) instanceof ReturnNode)
 					t.getChild(i).printTree();
 				else
 				if (t.getChild(i) instanceof BlockScopeNode){

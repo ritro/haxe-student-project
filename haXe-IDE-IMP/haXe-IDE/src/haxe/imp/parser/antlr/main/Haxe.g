@@ -54,9 +54,10 @@ import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.SwitchNode;
 import haxe.imp.parser.antlr.tree.specific.TryNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.VarUsage;
-import haxe.imp.parser.antlr.tree.specific.Constant;
+import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
@@ -125,16 +126,16 @@ paramList
     ;
 
 param
-    : QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclaration>[$IDENTIFIER, true] IDENTIFIER<VarUsage>? typeTagOpt? varInit? QUES?)
+    : QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclarationNode>[$IDENTIFIER, true] IDENTIFIER<VarUsageNode>? typeTagOpt? varInit? QUES?)
     ;
     
-id  :    IDENTIFIER //-> ^(IDENTIFIER<VarUsage>)
-    |    THIS //-> ^(THIS<VarUsage>)
+id  :    IDENTIFIER //-> ^(IDENTIFIER<VarUsageNode>)
+    |    THIS //-> ^(THIS<VarUsageNode>)
     ;
 
 dotIdent
-    :    id DOT a=dotIdent ->  ^(DOT<VarUsage>[true] id $a)
-    |    id -> ^(DOT<VarUsage>[true] id)
+    :    id DOT a=dotIdent ->  ^(DOT<VarUsageNode>[true] id $a)
+    |    id -> ^(DOT<VarUsageNode>[true] id)
     ;
 
 assignOp
@@ -234,7 +235,7 @@ statement
     |    DO statement WHILE parExpression SEMI             -> ^(DO<DoWhileNode> parExpression? statement?)
     |    TRY block catchStmtList                 -> ^(TRY<TryNode> block? catchStmtList?)
     |    SWITCH LPAREN expr RPAREN LBRACE caseStmt+ RBRACE     -> ^(SWITCH<SwitchNode> expr? caseStmt+)
-    |    RETURN (expr)? SEMI                    -> ^(RETURN expr?)
+    |    RETURN (expr)? SEMI                    -> ^(RETURN<ReturnNode> expr?)
     |    THROW expr SEMI                     -> ^(THROW expr?)
     |    BREAK (IDENTIFIER)? SEMI                -> ^(BREAK IDENTIFIER?)
     |    CONTINUE (IDENTIFIER)? SEMI                 -> ^(CONTINUE IDENTIFIER?)
@@ -399,8 +400,8 @@ enumBody:   LBRACE (enumValueDecl)* RBRACE
         ;
 
 enumValueDecl     
-    :   IDENTIFIER LPAREN paramList RPAREN SEMI -> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>? paramList? )    
-    |   IDENTIFIER SEMI                         -> ^(IDENTIFIER<VarDeclaration>[$IDENTIFIER] IDENTIFIER<VarUsage>?)
+    :   IDENTIFIER LPAREN paramList RPAREN SEMI -> ^(IDENTIFIER<VarDeclarationNode>[$IDENTIFIER] IDENTIFIER<VarUsageNode>? paramList? )    
+    |   IDENTIFIER SEMI                         -> ^(IDENTIFIER<VarDeclarationNode>[$IDENTIFIER] IDENTIFIER<VarUsageNode>?)
 //  |   pp
     ;
 
@@ -408,7 +409,7 @@ varDeclList
     :   varDecl varDeclList
     ;
 
-varDecl :   (declAttrList)? VAR varDeclPartList SEMI -> ^(VAR<VarDeclaration>[$VAR] declAttrList? varDeclPartList?)
+varDecl :   (declAttrList)? VAR varDeclPartList SEMI -> ^(VAR<VarDeclarationNode>[$VAR] declAttrList? varDeclPartList?)
         ;
     
 varDeclPartList   
@@ -416,7 +417,7 @@ varDeclPartList
     ;
 
 varDeclPart
-    :   IDENTIFIER<VarUsage> propDeclOpt typeTagOpt varInit
+    :   IDENTIFIER<VarUsageNode> propDeclOpt typeTagOpt varInit
     ;
 
 propDecl:   LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL",true] $a1? $a2?)
@@ -535,14 +536,14 @@ objLitElem
     ;
     
 elementarySymbol
-    :   LONGLITERAL    -> LONGLITERAL<Constant>[$LONGLITERAL, "INT"]
-    |   NULL -> ^(NULL<Constant>[$NULL,"Unknown<0>"])
-    |   INTLITERAL    -> INTLITERAL<Constant>[$INTLITERAL, "INT"]
-    |   STRINGLITERAL    -> STRINGLITERAL<Constant>[$STRINGLITERAL,"STRING"]
-    |   CHARLITERAL    -> CHARLITERAL<Constant>[$CHARLITERAL, "STRING"]
-    |   FLOATNUM    -> FLOATNUM<Constant>[$FLOATNUM, "FLOAT"]
-    |   TRUE        -> TRUE<Constant>[$TRUE,"BOOL"]
-    |   FALSE        -> FALSE<Constant>[$FALSE,"BOOL"]
+    :   LONGLITERAL    -> LONGLITERAL<ConstantNode>[$LONGLITERAL, "INT"]
+    |   NULL -> ^(NULL<ConstantNode>[$NULL,"Unknown<0>"])
+    |   INTLITERAL    -> INTLITERAL<ConstantNode>[$INTLITERAL, "INT"]
+    |   STRINGLITERAL    -> STRINGLITERAL<ConstantNode>[$STRINGLITERAL,"STRING"]
+    |   CHARLITERAL    -> CHARLITERAL<ConstantNode>[$CHARLITERAL, "STRING"]
+    |   FLOATNUM    -> FLOATNUM<ConstantNode>[$FLOATNUM, "FLOAT"]
+    |   TRUE        -> TRUE<ConstantNode>[$TRUE,"BOOL"]
+    |   FALSE        -> FALSE<ConstantNode>[$FALSE,"BOOL"]
     ;
 
 WS  :   ( ' '

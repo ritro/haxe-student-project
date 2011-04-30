@@ -42,6 +42,12 @@ public class VarUseNode extends VarDeclNode {
 		fullName = name;
 	}
 	
+	public void commitAssignmentError(){
+		if (assignment.isNil())
+			return;
+		assignment.commitError(assignment.getHaxeType() + " should be " + this.getHaxeType().getTypeName());
+	}
+	
 	@Override
 	public void printTree(){
 		if (assignment != null){
@@ -51,7 +57,7 @@ public class VarUseNode extends VarDeclNode {
 			assignment.printTree();
 		}
 		else{
-			System.out.println("VarUseNode_"+"Name: " + getText() + ", type: "+ getHaxeType());
+			System.out.println("UseNode: " + getText() + ", type: "+ getHaxeType());
 		}
 	}
 }

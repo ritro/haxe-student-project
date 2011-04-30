@@ -37,14 +37,33 @@ public class DeclaredVarsTable{
 		return false;
 	}	
 	
-	public VarDeclNode findDeclaredVar(CommonToken token){
+	public VarDeclNode findDeclaredVar(CommonToken declToken){
 		for (VarDeclNode x: getDeclaredVars())
-			if (x.getToken().equals(token))
+			if (x.getToken().equals(declToken))
+				return x;
+		for (VarDeclNode x: getDeclaredVars())
+			if (x instanceof ClassDeclNode)
+				return x.getDeclaredVars().findDeclaredVar(declToken);
+		return null;
+	}
+	/*
+	public VarDeclNode findDeclaredVar(String name, CommonToken blockScopeToken){
+		for (VarDeclNode x: getDeclaredVars())
+			if (x.getScopeToken().equals(blockScopeToken))
 				return x;
 		for (VarDeclNode x: getDeclaredVars())
 			if (x instanceof ClassDeclNode)
 				return x.getDeclaredVars().findDeclaredVar(token);
 		return null;
+	}*/
+	
+	public void setDeclaredVarType(String name, CommonToken blockScope, HaxeType type){
+		for (VarDeclNode x: getDeclaredVars()){
+			if (x.getDeclType() != VarType.ClassVarDecl &&
+				x.getScopeToken().equals(blockScope) &&
+				x.getText().equals(name))
+				x.setHaxeType(type);
+		}
 	}
 
 	/**
@@ -98,21 +117,25 @@ public class DeclaredVarsTable{
 				else {
 					//set return type
 				}
-			} else
-			if (tree instanceof VarUseNode){
-				if (((VarUseNode)tree).getAssignExpr() == null){
-					
-				} else {
-					VarUseNode vun = (VarUseNode)tree;
-					if (vun.getAssignExpr().getHaxeType() != HaxeType.haxeUndefined)
+			} else if (tree instanceof ClassDeclNode){
+				
+			} else if (tree instanceof VarUseNode){
+				VarUseNode vun = (VarUseNode)tree;
+				if (vun.getAssignExpr() != null &&
+					!vun.getAssignExpr().ifUndefinedType()){
+					if (vun.ifUndefinedType()){
 						vun.setHaxeType(vun.getAssignExpr().getHaxeType());
-				}
-			} else
-			if (tree instanceof VarDeclNode){
-				if (tree.getDeclType() == VarType.ClassVarDecl &&
-					tree.ifUndefinedType())
-					tree.commitError("Class var should have type");
-			}
+					} else if (!HaxeType.isAvailableAssignement(vun.getHaxeType(), 
+									vun.getAssignExpr().getHaxeType())){
+						vun.commitAssignmentError();
+					}
+				} else if (vun.getAssignExpr() == null)
+				{
+					
+				}	
+			} else if (tree.getDeclType() == VarType.ClassVarDecl &&
+						tree.ifUndefinedType())
+				tree.commitError("Class var should have type");
 		}
 	}		
 

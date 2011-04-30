@@ -6,6 +6,9 @@ import org.antlr.runtime.CommonToken;
 import org.eclipse.core.internal.resources.AliasManager.AddToCollectionDoit;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode.VarType;
+import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 public class ClassDeclNode extends VarDeclNode {
@@ -47,6 +50,7 @@ public class ClassDeclNode extends VarDeclNode {
 	
 	@Override
 	public void calculateTypes(){
+		//while getDeclV.containdUndef...
 		this.getDeclaredVars().calculateTypes();
 	}
 

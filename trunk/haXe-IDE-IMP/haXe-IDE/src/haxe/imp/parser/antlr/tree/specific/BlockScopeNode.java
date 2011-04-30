@@ -101,54 +101,42 @@ public class BlockScopeNode extends HaxeTree {
 		super(blockScope, string, b);
 		this.lBracketPosition = ((CommonToken) lBracket).getStartIndex();
 	}
-
-	/**
-	 * Checks if there is var with such name in current scope.
-	 * 
-	 * @param varName
-	 *            the var name
-	 * @return true, if successful
-	 */
-	/*public boolean doScopeContainsVarName(final String varName) {
-		for (HaxeTree usage : this.declaredVars) {
-			if (usage.getText().equals(varName)) {
+	
+	private boolean ifParentIsClass(){
+		HaxeTree parent = this.getParent();
+		
+		while (parent != null){
+			if (parent instanceof ClassNode)
 				return true;
-			}
+			else if (parent instanceof FunctionNode ||
+					 parent instanceof EnumNode)
+				return false;
+			else
+				parent = parent.getParent();
 		}
+		
 		return false;
 	}
 	
-	public void changeVarType(VarUsage varUsage){
-		if (!this.doScopeContainsVarName(varUsage.getText()))
-			return;
-
-		this.addToDeclaredVars(varUsage);
-		if (getParentBlockScope() != null)
-			getParentBlockScope().changeVarType(varUsage);
-	}
-	
-	private BlockScopeNode getParentBlockScope(){
-		parent = (HaxeTree) this.getParent();
-		while (parent != null)
-			if (parent instanceof BlockScopeNode)
-				return (BlockScopeNode)parent;
-			else 
-				parent = (HaxeTree) parent.getParent();
+	private boolean ifParentIsFunction(){
+		HaxeTree parent = this.getParent();
 		
-		return null;
-	}*/
+		while (parent != null){
+			if (parent instanceof FunctionNode)
+				return true;
+			else if (parent instanceof ClassNode ||
+					 parent instanceof EnumNode)
+				return false;
+			else
+				parent = parent.getParent();
+		}
+		
+		return false;
+	}
 	
 	@Override
 	public DeclaredVarsTable calculateScopes(){		
 		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-/*
-		if (this.getParent() instanceof FunctionNode) {
-			ArrayList<VarUsage> params = ((FunctionNode) this.getParent())
-					.getParametersAsVarUsage();
-			
-			for (VarUsage x : params)
-				declaredVars.addToDeclaredVars(new ScopeVarDeclNode(x.getToken(),this.getToken()));
-		}*/
 
 		if (this.getChildCount() > 0) {
 			for (HaxeTree tree : this.getChildren()) {
@@ -159,6 +147,13 @@ public class BlockScopeNode extends HaxeTree {
 					FunctionDeclNode sfd = new FunctionDeclNode(tree.getChild(0).getToken(),
 																this.getToken());
 					sfd.setHaxeType(tree.getHaxeType());
+					if (((FunctionNode)tree).getReturnNode() != null){
+						HaxeTree returnN =  ((FunctionNode)tree).getReturnNode();
+						VarUseNode vun = new VarUseNode(returnN, returnN.getToken(), 
+								this.getToken());
+						vun.setHaxeType(returnN.getHaxeType());
+						sfd.setReturnNode(vun);
+					}
 					declaredVars.addToDeclaredVars(sfd);
 					declaredVars.addAll(tree.calculateScopes());
 				}
@@ -166,20 +161,31 @@ public class BlockScopeNode extends HaxeTree {
 				if (tree instanceof VarDeclarationNode){
 					VarDeclNode dvt = new VarDeclNode((VarDeclarationNode)tree,this.getToken());
 					dvt.setHaxeType(((VarDeclarationNode)tree).getHaxeType());
+					
+					if (this.ifParentIsClass())
+						dvt.setVarType(VarType.ClassVarDecl);
+					else if (this.ifParentIsFunction())
+						dvt.setVarType(VarType.FunctionVarDecl);
+						
 					HaxeTree init = ((VarDeclarationNode)tree).getVAR_INIT_NODE();
-					if (init != null && !init.getHaxeType().equals(HaxeType.haxeUndefined))
-						if (dvt.getHaxeType().equals(HaxeType.haxeUndefined))
-							dvt.setHaxeType(init.getHaxeType());
-						else 
-							if (!dvt.getHaxeType().equals(init.getHaxeType())){
-								dvt.commitError(init.getHaxeType() + " should be " +
-										dvt.getHaxeType());
-								init.printTree(this, 0);
-							}
+					VarUseNode vun = null;
+					if (init != null &&
+						!init.getHaxeType().equals(HaxeType.haxeUndefined) &&//primary
+						dvt.getHaxeType().getClassHierarchy().contains(init.getHaxeType()))//Undef too
+						dvt.setHaxeType(init.getHaxeType());
+					else if (init != null)
+					{
+						vun = new VarUseNode(tree.getChild(0), dvt.getToken(), this.getToken());
+						vun.setHaxeType(dvt.getHaxeType());
+						vun.setAssignExpr(new VarUseNode(init, init.getToken(), this.getToken())); 
+						vun.getAssignExpr().setHaxeType(init.getHaxeType());
+					}
 					if (!declaredVars.ifVarExists(dvt))
 						declaredVars.addToDeclaredVars(dvt);
 					else 
 						dvt.commitError("Var is already declared");
+					if (vun != null)
+						declaredVars.addToDeclaredVars(vun);
 				}
 				else
 				if (tree instanceof VarUseNode){

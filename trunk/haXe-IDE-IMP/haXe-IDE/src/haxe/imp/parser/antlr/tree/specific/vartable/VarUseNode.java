@@ -52,12 +52,12 @@ public class VarUseNode extends VarDeclNode {
 	public void printTree(){
 		if (assignment != null){
 			System.out.println("Assignment");
-			System.out.println("      Name: " + getText() + ", type: "+ getHaxeType());
+			System.out.println("      Name: " + getText() + ", type: "+ getHaxeType().getTypeName());
 			System.out.print("      ");
 			assignment.printTree();
 		}
 		else{
-			System.out.println("UseNode: " + getText() + ", type: "+ getHaxeType());
+			System.out.println("UseNode: " + getText() + ", type: "+ getHaxeType().getTypeName());
 		}
 	}
 }

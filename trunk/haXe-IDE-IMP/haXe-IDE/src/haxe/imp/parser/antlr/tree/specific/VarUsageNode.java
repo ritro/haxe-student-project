@@ -50,7 +50,10 @@ public class VarUsageNode extends HaxeTree {
 	
 	@Override
 	public void printTree(){
-		System.out.println("VarUsage"+ "(name=" +this.getText()+")" +
+		if (isAuxiliary())
+			System.out.println("VarUseDOT");
+		else
+			System.out.println("VarUsage"+ "(name=" +this.getText()+")" +
 				"{"+getHaxeType().getTypeName()+'}');
 	}
 
@@ -70,10 +73,13 @@ public class VarUsageNode extends HaxeTree {
 	 */
 	@Override
 	public String getText() {
+		if (this.isAuxiliary())
+			return "DOT";
+		
 		if (this.getChildCount() == 0) 
 			return super.getText();
 		
-		return this.getChild(0).getText();//.getAllChildren().get(this.getAllChildren().size()-1)
+		return this.getAllChildren().get(this.getAllChildren().size()-1).getText();
 	}
 	
 	/**

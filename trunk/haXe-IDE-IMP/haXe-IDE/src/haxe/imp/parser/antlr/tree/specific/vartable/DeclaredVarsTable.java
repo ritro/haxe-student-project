@@ -112,10 +112,13 @@ public class DeclaredVarsTable{
 	public void calculateTypes(){
 		for (VarDeclNode tree : declaredVars) {
 			if (tree instanceof FunctionDeclNode) {
-				if (((FunctionDeclNode)tree).getReturnNode() == null)
-					tree.setHaxeType(HaxeType.haxeVoid);
-				else {
-					//set return type
+				FunctionDeclNode fdn = (FunctionDeclNode)tree;
+				if (fdn.ifUndefinedType()){
+					fdn.setHaxeType(HaxeType.haxeVoid);
+				} else if (fdn.getReturnNode() == null){
+					fdn.commitNullReturnError();
+				} else {
+					//check if right return type	
 				}
 			} else if (tree instanceof ClassDeclNode){
 				

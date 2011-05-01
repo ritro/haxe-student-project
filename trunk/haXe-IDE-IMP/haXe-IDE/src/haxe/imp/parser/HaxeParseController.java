@@ -313,7 +313,6 @@ public class HaxeParseController implements IParseController {
 			this.handler.clearMessages();
 			this.currentAST.calculateScope();
 			this.currentAST.calculateTypes();
-
 		} catch (RecognitionException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -330,7 +329,7 @@ public class HaxeParseController implements IParseController {
 	public Object parse(final String input, final IProgressMonitor monitor) {
 		this.currentAST = null;
 		this.doParse(input);
-		this.currentAST.printTree();
+		//this.currentAST.printTree();
 		return this.currentAST;
 	}
 

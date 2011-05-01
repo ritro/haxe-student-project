@@ -45,7 +45,9 @@ public class ReturnNode extends HaxeTree {
 	 */
 	@Override
 	public HaxeType getHaxeType() {
-		return this.getChild(0).getHaxeType();
+		if (this.getChildCount() >0 )
+			return this.getChild(0).getHaxeType();
+		else return HaxeType.haxeVoid;
 	}
 	
 	@Override

@@ -1,5 +1,8 @@
 package haxe.imp.builders;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
@@ -143,7 +146,7 @@ public class HaxeBuilder extends BuilderBase {
 			// runs the parser in place of the compiler but creates problem
 			// markers for errors that will show up in the problems view
 			runParserForCompiler(file, monitor);
-
+			
 			doRefresh(file.getParent()); // N.B.: Assumes all generated files go into parent folder
 		} catch (Exception e) {
 			// catch Exception, because any exception could break the
@@ -213,4 +216,6 @@ public class HaxeBuilder extends BuilderBase {
 							e);
 		}
 	}
+	
+	//public ArrayList<Object> projectAST = new ArrayList<Object>();
 }

@@ -42,6 +42,10 @@ public class FunctionDeclNode extends VarDeclNode {
 		return "function " + this.getText() + "() : " + this.getHaxeType().getTypeName();
 	}
 	
+	public void commitNullReturnError(){
+		this.commitError(this.getText() + " should return value.");
+	}
+	
 	@Override
 	public void printTree(){
 		System.out.print("FunDecl " + getText() + ", type: "+ getHaxeType().getTypeName());

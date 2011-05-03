@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2009 Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU General Public License, version 2
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl-2.0.html
- *
- * Contributors:
- *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
- *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
@@ -16,27 +6,25 @@ import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import org.antlr.runtime.CommonToken;
-import org.antlr.runtime.Token;
 
-/**
- * The Class VarUsage.
- * 
- * @author kondratyev
- */
-public class VarDeclNode extends HaxeTree {
+public class VarDeclaration extends HaxeTree {
 	
 	public enum VarType {ClassVarDecl, FunctionVarDecl, FunctionParam, NotDefined};
 	private HaxeType haxeType = HaxeType.haxeUndefined;
 	private VarType declType = VarType.NotDefined;
-	private CommonToken blockScope;
-	
-	public CommonToken getScopeToken() {
-		return blockScope;
-	}
+	private int varNumber = 0;
 
 	public VarType getDeclType() {
 		return declType;
 	}
+	
+	public int getVarNumber(){
+        return varNumber;
+    }
+	
+	public void setVarNumber(int varNumber){
+        this.varNumber = varNumber;
+    }
 
 	@Override
 	public String getText(){
@@ -66,14 +54,14 @@ public class VarDeclNode extends HaxeTree {
 		return this.getText() + " : " + this.getHaxeType().getTypeName();
 	}
 
-	public VarDeclNode(CommonToken token, CommonToken blockScope) {
+	public VarDeclaration(CommonToken token, int varNumber) {
 		super(token);
-		this.blockScope = blockScope;
+		setVarNumber(varNumber);
 	}
 	
-	public VarDeclNode(VarDeclarationNode vd, CommonToken blockScope){
+	public VarDeclaration(VarDeclarationNode vd, int varNumber){
 		super(vd.getVarNameNode().getToken());	
-		this.blockScope = blockScope;
+		setVarNumber(varNumber);
 		try {
 			for (HaxeTree tree : this.getChildren()) {
 				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
@@ -98,15 +86,16 @@ public class VarDeclNode extends HaxeTree {
 		}*/
 	}
 	
-	public VarDeclNode(VarType type, CommonToken token, CommonToken blockScope) {
+	public VarDeclaration(VarType type, CommonToken token,int varNumber) {
 		super(token);
-		this.blockScope = blockScope;
+		setVarNumber(varNumber);
 		this.declType = type;
 	}
 	
 	@Override
 	public void printTree(){
-		System.out.println("DeclNode: " + getText() + ", type: "+ getHaxeType().getTypeName());
+		System.out.println("DeclNode: " + getText() + ", type: "+ getHaxeType().getTypeName() + 
+		        ", Num: " + this.getVarNumber());
 	}
 	
 	/**

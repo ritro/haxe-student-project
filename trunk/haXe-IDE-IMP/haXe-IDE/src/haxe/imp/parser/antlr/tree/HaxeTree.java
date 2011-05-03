@@ -25,11 +25,11 @@ import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUseNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -276,7 +276,7 @@ public class HaxeTree extends CommonTree {
 			if (this.token != null) {
 				if (this.token.getType() == MODULE_TYPE) {
 					visitor.visit(this);
-					for (VarDeclNode child : this.getDeclaredVars().getDeclaredVars()) {
+					for (VarDeclaration child : this.getDeclaredVars().getDeclaredVars()) {
 						child.accept(visitor);
 					}
 					visitor.endVisit(this);
@@ -794,7 +794,7 @@ public class HaxeTree extends CommonTree {
 	//only first lvl
 	public void calculateTypes(){ //begin with module
 		if (!this.getDeclaredVars().getDeclaredVars().isEmpty()) {
-			for (VarDeclNode tree : this.getDeclaredVars().getDeclaredVars()) {
+			for (VarDeclaration tree : this.getDeclaredVars().getDeclaredVars()) {
 				tree.calculateTypes();
 			}
 		}

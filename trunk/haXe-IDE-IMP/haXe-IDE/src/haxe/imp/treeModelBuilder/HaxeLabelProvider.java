@@ -18,8 +18,8 @@ import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
 import haxe_ide.Activator;
 import haxe_ide.IHaxeResources;
 
@@ -152,10 +152,10 @@ public class HaxeLabelProvider implements ILabelProvider {
 		} else if (n instanceof VarDeclaration) {
 			VarDeclaration varDeclaration = (VarDeclaration) n;
 			return varDeclaration.getNameWithType();
-		}else*/ if (n instanceof FunctionDeclNode) {
-			return ((FunctionDeclNode)n).getNameWithType();
-		} else if (n instanceof VarDeclNode) {
-			return ((VarDeclNode)n).getNameWithType();
+		}else*/ if (n instanceof FunctionDeclaration) {
+			return ((FunctionDeclaration)n).getNameWithType();
+		} else if (n instanceof VarDeclaration) {
+			return ((VarDeclaration)n).getNameWithType();
 		}
 		return "<??no label yet??>";
 	}

@@ -13,7 +13,7 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -120,15 +120,11 @@ public class ClassNode extends HaxeTree {
 
 	@Override
 	public DeclaredVarsTable calculateScopes() {
-		ClassDeclNode scdn = new ClassDeclNode(this.getToken(), 
-				this.getBlockScope().getToken());
+	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 
 		if (getBlockScope() != null) {
-			scdn.addAllToDeclaredVars(getBlockScope().calculateScopes());
+			declaredVars.addAll(getBlockScope().calculateScopes());
 		}
-		
-		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-		declaredVars.addToDeclaredVars(scdn);
 		
 		return declaredVars;
 	}

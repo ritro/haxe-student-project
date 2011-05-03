@@ -12,8 +12,10 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode.VarType;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -133,12 +135,12 @@ public class FunctionNode extends HaxeTree {
 	public DeclaredVarsTable calculateScopes(){	
 		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 		for (VarUsageNode x: getParametersAsVarUsage())
-			declaredVars.addToDeclaredVars(new VarDeclNode(VarType.FunctionParam,
-											x.getToken(), getBlockScope().getToken()));
+			declaredVars.addToDeclaredVars(new VarDeclaration(VarType.FunctionParam, x.getToken(), 0));
 		
 		if (getBlockScope() != null) {
-			declaredVars.addAll(getBlockScope().calculateScopes());
+		    declaredVars.addWithIncrease(getBlockScope().calculateScopes());
 		}
+		
 		return declaredVars;
 	}
 

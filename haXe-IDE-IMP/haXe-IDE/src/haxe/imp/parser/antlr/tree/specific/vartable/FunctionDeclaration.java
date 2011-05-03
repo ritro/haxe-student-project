@@ -12,29 +12,22 @@ package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
-import java.util.ArrayList;
-
 import org.antlr.runtime.CommonToken;
 
-/**
- * The Class VarUsage.
- * 
- * @author kondratyev
- */
-public class FunctionDeclNode extends VarDeclNode {
+public class FunctionDeclaration extends VarDeclaration {
 	
-	private VarDeclNode returnNode = null; //MB varUseNode??
+	private VarDeclaration returnNode = null; //MB varUseNode??
 
-	public VarDeclNode getReturnNode() {
+	public VarDeclaration getReturnNode() {
 		return returnNode;
 	}
 	
-	public void setReturnNode(VarDeclNode node){
+	public void setReturnNode(VarDeclaration node){
 		returnNode = node;
 	}
 	
-	public FunctionDeclNode(CommonToken token,CommonToken blockScope) {
-		super(token,blockScope);		
+	public FunctionDeclaration(CommonToken token,int varNumber) {
+		super(token,varNumber);		
 	}
 	
 	@Override
@@ -48,7 +41,8 @@ public class FunctionDeclNode extends VarDeclNode {
 	
 	@Override
 	public void printTree(){
-		System.out.print("FunDecl " + getText() + ", type: "+ getHaxeType().getTypeName());
+		System.out.print("FunDecl " + getText() + ", type: "+ getHaxeType().getTypeName() + 
+                ", Num: " + getVarNumber());
 		if (returnNode != null){
 			System.out.print(" return: ");
 			returnNode.printTree();

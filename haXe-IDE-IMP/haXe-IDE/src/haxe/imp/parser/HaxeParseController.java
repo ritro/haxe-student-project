@@ -15,7 +15,7 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
 import haxe_ide.Activator;
 
 import java.util.ArrayList;
@@ -65,272 +65,272 @@ import org.eclipse.jface.text.IRegion;
  */
 public class HaxeParseController implements IParseController {
 
-	/** The current ast. */
-	private HaxeTree currentAST = new HaxeTree();
+    /** The current ast. */
+    private HaxeTree currentAST = new HaxeTree();
 
-	/** The token stream. */
-	private CommonTokenStream tokenStream = new CommonTokenStream();
-	/**
-	 * The language of the source being parsed by this IParseController.
-	 */
-	protected Language fLanguage = LanguageRegistry
-			.findLanguage(Activator.kLanguageID);
+    /** The token stream. */
+    private CommonTokenStream tokenStream = new CommonTokenStream();
+    /**
+     * The language of the source being parsed by this IParseController.
+     */
+    protected Language fLanguage = LanguageRegistry
+            .findLanguage(Activator.kLanguageID);
 
-	/**
-	 * The project containing the source being parsed by this IParseController.
-	 * May be null if the source isn't actually part of an Eclipse project
-	 * (e.g., a random bit of source text living outside the workspace).
-	 */
-	protected ISourceProject fProject;
+    /**
+     * The project containing the source being parsed by this IParseController.
+     * May be null if the source isn't actually part of an Eclipse project
+     * (e.g., a random bit of source text living outside the workspace).
+     */
+    protected ISourceProject fProject;
 
-	/**
-	 * The path to the file containing the source being parsed by this.
-	 * {@link IParseController}.
-	 */
-	protected IPath fFilePath;
+    /**
+     * The path to the file containing the source being parsed by this.
+     * {@link IParseController}.
+     */
+    protected IPath fFilePath;
 
-	/**
-	 * The {@link IMessageHandler} to which parser/compiler messages are
-	 * directed.
-	 */
-	protected IMessageHandler handler;
+    /**
+     * The {@link IMessageHandler} to which parser/compiler messages are
+     * directed.
+     */
+    protected IMessageHandler handler;
 
-	/** The source position locator. */
-	private ISourcePositionLocator fSourcePositionLocator;
+    /** The source position locator. */
+    private ISourcePositionLocator fSourcePositionLocator;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getAnnotationTypeInfo()
-	 */
-	@Override
-	public IAnnotationTypeInfo getAnnotationTypeInfo() {
-		return new SimpleAnnotationTypeInfo();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getAnnotationTypeInfo()
+     */
+    @Override
+    public IAnnotationTypeInfo getAnnotationTypeInfo() {
+        return new SimpleAnnotationTypeInfo();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getCurrentAst()
-	 */
-	@Override
-	public Object getCurrentAst() {
-		return this.currentAST;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getCurrentAst()
+     */
+    @Override
+    public Object getCurrentAst() {
+        return this.currentAST;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getLanguage()
-	 */
-	@Override
-	public Language getLanguage() {
-		return this.fLanguage;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getLanguage()
+     */
+    @Override
+    public Language getLanguage() {
+        return this.fLanguage;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getPath()
-	 */
-	@Override
-	public IPath getPath() {
-		return this.fFilePath;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getPath()
+     */
+    @Override
+    public IPath getPath() {
+        return this.fFilePath;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getProject()
-	 */
-	@Override
-	public ISourceProject getProject() {
-		return this.fProject;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getProject()
+     */
+    @Override
+    public ISourceProject getProject() {
+        return this.fProject;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getSourcePositionLocator()
-	 */
-	@Override
-	public ISourcePositionLocator getSourcePositionLocator() {
-		if (this.fSourcePositionLocator == null) {
-			this.fSourcePositionLocator = new HaxeSourcePositionLocator(this);
-		}
-		return this.fSourcePositionLocator;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getSourcePositionLocator()
+     */
+    @Override
+    public ISourcePositionLocator getSourcePositionLocator() {
+        if (this.fSourcePositionLocator == null) {
+            this.fSourcePositionLocator = new HaxeSourcePositionLocator(this);
+        }
+        return this.fSourcePositionLocator;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#getSyntaxProperties()
-	 */
-	@Override
-	public ILanguageSyntaxProperties getSyntaxProperties() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#getSyntaxProperties()
+     */
+    @Override
+    public ILanguageSyntaxProperties getSyntaxProperties() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.IParseController#getTokenIterator(org.eclipse.
-	 * jface.text.IRegion)
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public Iterator getTokenIterator(final IRegion region) {
-		InnerCommonTokenIterator commonTokenIterator = new InnerCommonTokenIterator(
-				this.tokenStream, region);
-		return commonTokenIterator;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.imp.parser.IParseController#getTokenIterator(org.eclipse.
+     * jface.text.IRegion)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public Iterator getTokenIterator(final IRegion region) {
+        InnerCommonTokenIterator commonTokenIterator = new InnerCommonTokenIterator(
+                this.tokenStream, region);
+        return commonTokenIterator;
+    }
 
-	// public tokenS
+    // public tokenS
 
-	/**
-	 * Gets the token stream.
-	 * 
-	 * @return the token stream
-	 */
-	public CommonTokenStream getTokenStream() {
-		return this.tokenStream;
-	}
+    /**
+     * Gets the token stream.
+     * 
+     * @return the token stream
+     */
+    public CommonTokenStream getTokenStream() {
+        return this.tokenStream;
+    }
 
-	/**
-	 * The Class InnerCommonTokenIterator.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
-	private class InnerCommonTokenIterator implements Iterator<Object> {
+    /**
+     * The Class InnerCommonTokenIterator.
+     * 
+     * @author Anatoly Kondratyev
+     */
+    private class InnerCommonTokenIterator implements Iterator<Object> {
 
-		/** The common tokens. */
-		private ArrayList<CommonToken> commonTokens = new ArrayList<CommonToken>();
+        /** The common tokens. */
+        private ArrayList<CommonToken> commonTokens = new ArrayList<CommonToken>();
 
-		/** The current token number. */
-		private int currentTokenNumber = -1;
+        /** The current token number. */
+        private int currentTokenNumber = -1;
 
-		/** The begin. */
-		private int begin = 0;
+        /** The begin. */
+        private int begin = 0;
 
-		/** The end. */
-		private int end = 0;
+        /** The end. */
+        private int end = 0;
 
-		/**
-		 * Instantiates a new inner common token iterator.
-		 * 
-		 * @param commonTokenStream
-		 *            the common token stream
-		 * @param region
-		 *            the region
-		 */
-		@SuppressWarnings("unchecked")
-		public InnerCommonTokenIterator(
-				final CommonTokenStream commonTokenStream, final IRegion region) {
-			this.commonTokens = (ArrayList<CommonToken>) commonTokenStream
-					.getTokens();
-			this.begin = region.getOffset();
-			this.end = region.getOffset() + region.getLength();
-		}
+        /**
+         * Instantiates a new inner common token iterator.
+         * 
+         * @param commonTokenStream
+         *            the common token stream
+         * @param region
+         *            the region
+         */
+        @SuppressWarnings("unchecked")
+        public InnerCommonTokenIterator(
+                final CommonTokenStream commonTokenStream, final IRegion region) {
+            this.commonTokens = (ArrayList<CommonToken>) commonTokenStream
+                    .getTokens();
+            this.begin = region.getOffset();
+            this.end = region.getOffset() + region.getLength();
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#hasNext()
-		 */
-		@Override
-		public boolean hasNext() {
-			if (this.currentTokenNumber + 1 >= this.commonTokens.size()) {
-				return false;
-			} else if (this.commonTokens.get(this.currentTokenNumber + 1)
-					.getStartIndex() < this.end) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.util.Iterator#hasNext()
+         */
+        @Override
+        public boolean hasNext() {
+            if (this.currentTokenNumber + 1 >= this.commonTokens.size()) {
+                return false;
+            } else if (this.commonTokens.get(this.currentTokenNumber + 1)
+                    .getStartIndex() < this.end) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#next()
-		 */
-		@Override
-		public Object next() {
-			this.currentTokenNumber++;
-			return this.commonTokens.get(this.currentTokenNumber);
-		}
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.util.Iterator#next()
+         */
+        @Override
+        public Object next() {
+            this.currentTokenNumber++;
+            return this.commonTokens.get(this.currentTokenNumber);
+        }
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.Iterator#remove()
-		 */
-		@Override
-		public void remove() {
-			this.commonTokens.remove(this.currentTokenNumber);
-		}
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.util.Iterator#remove()
+         */
+        @Override
+        public void remove() {
+            this.commonTokens.remove(this.currentTokenNumber);
+        }
 
-	}
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.IParseController#initialize(org.eclipse.core.runtime
-	 * .IPath, org.eclipse.imp.model.ISourceProject,
-	 * org.eclipse.imp.parser.IMessageHandler)
-	 */
-	@Override
-	public void initialize(final IPath filePath, final ISourceProject project,
-			final IMessageHandler handler) {
-		this.fProject = project;
-		this.fFilePath = filePath;
-		this.handler = handler;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.imp.parser.IParseController#initialize(org.eclipse.core.runtime
+     * .IPath, org.eclipse.imp.model.ISourceProject,
+     * org.eclipse.imp.parser.IMessageHandler)
+     */
+    @Override
+    public void initialize(final IPath filePath, final ISourceProject project,
+            final IMessageHandler handler) {
+        this.fProject = project;
+        this.fFilePath = filePath;
+        this.handler = handler;
+    }
 
-	/**
-	 * Do parse.
-	 * 
-	 * @param contents
-	 *            the contents
-	 */
-	private void doParse(final String contents) {
-		HaxeLexer lexer = new HaxeLexer(new ANTLRStringStream(contents));
-		this.tokenStream = new CommonTokenStream(lexer);
-		this.tokenStream.getTokens();
-		System.out.print("Parsing file...");
-		HaxeParser parser = new HaxeParser(this.tokenStream);
-		parser.setTreeAdaptor(new HaxeTreeAdaptor());
-		this.currentAST = new HaxeTree();
+    /**
+     * Do parse.
+     * 
+     * @param contents
+     *            the contents
+     */
+    private void doParse(final String contents) {
+        HaxeLexer lexer = new HaxeLexer(new ANTLRStringStream(contents));
+        this.tokenStream = new CommonTokenStream(lexer);
+        this.tokenStream.getTokens();
+        System.out.print("Parsing file...");
+        HaxeParser parser = new HaxeParser(this.tokenStream);
+        parser.setTreeAdaptor(new HaxeTreeAdaptor());
+        this.currentAST = new HaxeTree();
 
-		try {
-			HaxeParser.module_return parserResult = parser.module();
-			this.currentAST = (HaxeTree) parserResult.getTree();
-			System.out.println("success!");
-			HaxeTree.setMessageHandler(this.handler);
-			this.handler.clearMessages();
-			this.currentAST.calculateScope();
-			this.currentAST.calculateTypes();
-		} catch (RecognitionException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
+        try {
+            HaxeParser.module_return parserResult = parser.module();
+            this.currentAST = (HaxeTree) parserResult.getTree();
+            System.out.println("success!");
+            HaxeTree.setMessageHandler(this.handler);
+            this.handler.clearMessages();
+            this.currentAST.calculateScope();
+            //this.currentAST.calculateTypes();
+        } catch (RecognitionException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.parser.IParseController#parse(java.lang.String,
-	 * org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	@Override
-	public Object parse(final String input, final IProgressMonitor monitor) {
-		this.currentAST = null;
-		this.doParse(input);
-		//this.currentAST.printTree();
-		return this.currentAST;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.imp.parser.IParseController#parse(java.lang.String,
+     * org.eclipse.core.runtime.IProgressMonitor)
+     */
+    @Override
+    public Object parse(final String input, final IProgressMonitor monitor) {
+        this.currentAST = null;
+        this.doParse(input);
+        this.currentAST.printTree();
+        return this.currentAST;
+    }
 
 }

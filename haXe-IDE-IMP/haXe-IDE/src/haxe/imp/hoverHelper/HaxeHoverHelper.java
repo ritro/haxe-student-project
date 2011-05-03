@@ -14,9 +14,9 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUseNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 import haxe_ide.Activator;
 
 import java.util.List;
@@ -175,11 +175,11 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode :
 								((HaxeTree)helpNode).getParent());
 			CommonToken ftoken = def.getChild(0).getToken();
-			FunctionDeclNode x = (FunctionDeclNode)
+			FunctionDeclaration x = (FunctionDeclaration)
 				(currentAst.getDeclaredVars().findDeclaredVar(ftoken));
 			msg = x.getHaxeType().getFullTypeName() + " " + x.getText();
 		}else if (helpNode instanceof VarDeclarationNode){
-			VarDeclNode def = (VarDeclNode)
+			VarDeclaration def = (VarDeclaration)
 				(currentAst.getDeclaredVars().findDeclaredVar
 							(((VarDeclarationNode)helpNode).getVarNameNode().getToken()));
 			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();

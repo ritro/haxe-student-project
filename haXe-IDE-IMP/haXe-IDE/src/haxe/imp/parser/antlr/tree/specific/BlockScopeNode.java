@@ -13,11 +13,12 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
+import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUseNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode.VarType;
+import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -140,26 +141,30 @@ public class BlockScopeNode extends HaxeTree {
 
 		if (this.getChildCount() > 0) {
 			for (HaxeTree tree : this.getChildren()) {
-				if (tree instanceof ClassNode)
-					declaredVars.addAll(tree.calculateScopes());
+				if (tree instanceof ClassNode){
+				    ClassDeclaration scdn = new ClassDeclaration(this.getToken(), 0);
+				    scdn.addAllToDeclaredVars(tree.calculateScopes());
+				    
+					declaredVars.addWithIncrease(scdn);
+				}
 				else 
 				if (tree instanceof FunctionNode){
-					FunctionDeclNode sfd = new FunctionDeclNode(tree.getChild(0).getToken(),
-																this.getToken());
+					FunctionDeclaration sfd = new FunctionDeclaration(tree.getChild(0).getToken(), 0);
 					sfd.setHaxeType(tree.getHaxeType());
 					if (((FunctionNode)tree).getReturnNode() != null){
+					    /*
 						HaxeTree returnN =  ((FunctionNode)tree).getReturnNode();
-						VarUseNode vun = new VarUseNode(returnN, returnN.getToken(), 
+						VarUse vun = new VarUse(returnN, returnN.getToken(), 
 								this.getToken());
 						vun.setHaxeType(returnN.getHaxeType());
-						sfd.setReturnNode(vun);
+						sfd.setReturnNode(vun);*///FIXME
 					}
-					declaredVars.addToDeclaredVars(sfd);
-					declaredVars.addAll(tree.calculateScopes());
+					declaredVars.addWithIncrease(sfd);
+					declaredVars.addWithIncrease(tree.calculateScopes());
 				}
 				else
 				if (tree instanceof VarDeclarationNode){
-					VarDeclNode dvt = new VarDeclNode((VarDeclarationNode)tree,this.getToken());
+					VarDeclaration dvt = new VarDeclaration((VarDeclarationNode)tree,0);
 					dvt.setHaxeType(((VarDeclarationNode)tree).getHaxeType());
 					
 					if (this.ifParentIsClass())
@@ -168,43 +173,42 @@ public class BlockScopeNode extends HaxeTree {
 						dvt.setVarType(VarType.FunctionVarDecl);
 						
 					HaxeTree init = ((VarDeclarationNode)tree).getVAR_INIT_NODE();
-					VarUseNode vun = null;
+					VarUse vun = null;
 					if (init != null &&
 						!init.getHaxeType().equals(HaxeType.haxeUndefined) &&//primary
 						dvt.getHaxeType().getClassHierarchy().contains(init.getHaxeType()))//Undef too
 						dvt.setHaxeType(init.getHaxeType());
 					else if (init != null)
 					{
-						vun = new VarUseNode(tree.getChild(0), dvt.getToken(), this.getToken());
+						vun = new VarUse(tree.getChild(0), dvt.getToken(), 0);
 						vun.setHaxeType(dvt.getHaxeType());
-						vun.setAssignExpr(new VarUseNode(init, init.getToken(), this.getToken())); 
+						vun.setAssignExpr(new VarUse(init, init.getToken(), 0)); 
 						vun.getAssignExpr().setHaxeType(init.getHaxeType());
 					}
 					if (!declaredVars.ifVarExists(dvt))
-						declaredVars.addToDeclaredVars(dvt);
+					    declaredVars.addWithIncrease(dvt);
 					else 
 						dvt.commitError("Var is already declared");
 					if (vun != null)
-						declaredVars.addToDeclaredVars(vun);
+					    declaredVars.addWithIncrease(vun);
 				}
 				else
-				if (tree instanceof VarUseNode){
-					VarUseNode vun = new VarUseNode(tree.getChild(0), tree.getToken(), 
-														this.getToken()); 
+				if (tree instanceof VarUse){
+					VarUse vun = new VarUse(tree.getChild(0), tree.getToken(), 0); 
 					vun.setHaxeType(tree.getHaxeType());
-					declaredVars.addToDeclaredVars(vun);
+					declaredVars.addWithIncrease(vun);
 				}
 				else
 				if (tree instanceof AssignOperationNode){
-					VarUseNode vun = new VarUseNode(((AssignOperationNode)tree).getLeftOperand(), 
+					VarUse vun = new VarUse(((AssignOperationNode)tree).getLeftOperand(), 
 										((AssignOperationNode)tree).getLeftOperand().getToken(), 
-										this.getToken());
-					VarUseNode vun2 = new VarUseNode(((AssignOperationNode)tree).getRightOperand(), 
+										0);/*
+					VarUse vun2 = new VarUse(((AssignOperationNode)tree).getRightOperand(), 
 							((AssignOperationNode)tree).getRightOperand().getToken(), 
 							this.getToken());
 					vun2.setHaxeType(((AssignOperationNode)tree).getRightOperand().getHaxeType());
-					vun.setAssignExpr(vun2);
-					declaredVars.addToDeclaredVars(vun);
+					vun.setAssignExpr(vun2);*/
+					declaredVars.addWithIncrease(vun);
 				}
 			}
 		}

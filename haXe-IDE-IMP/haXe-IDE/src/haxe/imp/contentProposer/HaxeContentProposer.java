@@ -14,7 +14,7 @@ import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclNode;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -76,7 +76,7 @@ public class HaxeContentProposer implements IContentProposer {
 				return null;
 			}
 		}
-		ArrayList<VarDeclNode> availableVars = this.filterVars(
+		ArrayList<VarDeclaration> availableVars = this.filterVars(
 				sourceNode.getDeclaredVars().getDeclaredVars(), sourceString);
 		return this.createSourceProposals(availableVars, sourceString, offset);
 	}
@@ -113,10 +113,10 @@ public class HaxeContentProposer implements IContentProposer {
 	 *            the prefix
 	 * @return the array list
 	 */
-	private ArrayList<VarDeclNode> filterVars(
-			final ArrayList<VarDeclNode> vars, final String prefix) {
-		ArrayList<VarDeclNode> result = new ArrayList<VarDeclNode>();
-		for (VarDeclNode commonTree : vars) {
+	private ArrayList<VarDeclaration> filterVars(
+			final ArrayList<VarDeclaration> vars, final String prefix) {
+		ArrayList<VarDeclaration> result = new ArrayList<VarDeclaration>();
+		for (VarDeclaration commonTree : vars) {
 			if (commonTree.getText().startsWith(prefix)) {
 				result.add(commonTree);
 			}
@@ -136,12 +136,12 @@ public class HaxeContentProposer implements IContentProposer {
 	 * @return the source proposal[]
 	 */
 	private SourceProposal[] createSourceProposals(
-			final ArrayList<VarDeclNode> availableVars,
+			final ArrayList<VarDeclaration> availableVars,
 			final String prefix, final int offset) {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
-		for (VarDeclNode commonTree : availableVars) {
-			VarDeclNode usage = (VarDeclNode) commonTree;
+		for (VarDeclaration commonTree : availableVars) {
+			VarDeclaration usage = (VarDeclaration) commonTree;
 			result.add(new ComparableSourceProposal(usage.getTextWithType(),
 					usage.getText(), prefix, offset));
 		}

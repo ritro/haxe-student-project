@@ -202,12 +202,11 @@ public class BlockScopeNode extends HaxeTree {
 				if (tree instanceof AssignOperationNode){
 					VarUse vun = new VarUse(((AssignOperationNode)tree).getLeftOperand(), 
 										((AssignOperationNode)tree).getLeftOperand().getToken(), 
-										0);/*
+										0);
 					VarUse vun2 = new VarUse(((AssignOperationNode)tree).getRightOperand(), 
-							((AssignOperationNode)tree).getRightOperand().getToken(), 
-							this.getToken());
+							((AssignOperationNode)tree).getRightOperand().getToken(),0);
 					vun2.setHaxeType(((AssignOperationNode)tree).getRightOperand().getHaxeType());
-					vun.setAssignExpr(vun2);*/
+					vun.setAssignExpr(vun2);
 					declaredVars.addWithIncrease(vun);
 				}
 			}

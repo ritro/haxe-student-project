@@ -3,6 +3,7 @@ package haxe.imp.parser.antlr.tree.specific.vartable;
 import org.antlr.runtime.CommonToken;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 public class VarUse extends VarDeclaration {
 	
@@ -32,6 +33,10 @@ public class VarUse extends VarDeclaration {
 			return;
 		assignment.commitError(assignment.getHaxeType() + " should be " + this.getHaxeType().getTypeName());
 	}
+    
+    public void commitUndeclaredError(){
+        this.commitError(this.getText() + " is not declared.");
+    }
 	
 	@Override
 	public void printTree(){
@@ -47,4 +52,8 @@ public class VarUse extends VarDeclaration {
 	                ", Num: " + getVarNumber());
 		}
 	}
+    
+    @Override
+    public void accept(final HaxeModelVisitor visitor){
+    }
 }

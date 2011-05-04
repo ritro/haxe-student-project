@@ -72,8 +72,15 @@ public class DeclaredVarsTable {
     private void increaseVarNumber(int onHow, int fromNumber, String varName){
         for (VarDeclaration x : getDeclaredVars())
             if ( x.getText().equals(varName)
-                    && x.getVarNumber() >= fromNumber)
+                    && x.getVarNumber() >= fromNumber){
+                if (x instanceof VarUse 
+                        && ((VarUse)x).getAssignExpr() != null
+                        && ((VarUse)x).getAssignExpr().getText().equals(varName)
+                        && ((VarUse)x).getAssignExpr().getVarNumber() >= fromNumber){
+                    ((VarUse)x).getAssignExpr().setVarNumber(x.getVarNumber() + onHow);
+                } 
                 x.setVarNumber(x.getVarNumber() + onHow);
+            }
     }
     
     private int findVarNumber(String name){
@@ -95,6 +102,17 @@ public class DeclaredVarsTable {
                 return x.getDeclaredVars().findDeclaredVar(declToken);
         return null;
     }
+    
+    public VarDeclaration findDeclaredVar(String name) {
+        for (VarDeclaration x : getDeclaredVars())
+            if (x.getText().equals(name)
+                    && x.ifVarDeclaration())
+                return x;
+        for (VarDeclaration x : getDeclaredVars())
+            if (x instanceof ClassDeclaration)
+                return x.getDeclaredVars().findDeclaredVar(name);
+        return null;
+    }
 
     /*
      * public VarDeclNode findDeclaredVar(String name, CommonToken
@@ -103,40 +121,15 @@ public class DeclaredVarsTable {
      * getDeclaredVars()) if (x instanceof ClassDeclNode) return
      * x.getDeclaredVars().findDeclaredVar(token); return null; }
      */
-/*
-    public void setDeclaredVarType(int indexOfVarUse, HaxeType type) {
-        VarUse element = (VarUse) getDeclaredVars().get(indexOfVarUse);
-        CommonToken lastScope = element.getScopeToken();
-        
-        setDeclaredVarType(element.getText(), lastScope, type);
-        
-        for (int i = indexOfVarUse; i >= 0 ; i--) {
-            if ((getDeclaredVars().get(i).getDeclType() == VarType.ClassVarDecl
-                    || getDeclaredVars().get(i).getDeclType() == VarType.FunctionVarDecl
-                    || getDeclaredVars().get(i).getDeclType() == VarType.FunctionParam)
-                    && getDeclaredVars().get(i).getText().equals(element.getText())
-                    && !lastScope.equals(getDeclaredVars().get(i).getScopeToken())){
-                lastScope = getDeclaredVars().get(i).getScopeToken();
-                setDeclaredVarType(element.getText(), lastScope, type);
-                return;
-            }
-            else if (getDeclaredVars().get(i).getText().equals(element.getText())){
-                lastScope = getDeclaredVars().get(i).getScopeToken();
-                setDeclaredVarType(element.getText(), lastScope, type);
-            }
-        }
-    }
     
-    public void setDeclaredVarType(String name,CommonToken blockScope, HaxeType type) {
+    public void setDeclaredVarType(String name,int Num, HaxeType type) {
         for (VarDeclaration x : getDeclaredVars()) {
-            if (x.getDeclType() != VarType.ClassVarDecl
-                    && x.getDeclType() != VarType.FunctionVarDecl
-                    && x.getDeclType() != VarType.FunctionParam
-                    && x.getScopeToken().equals(blockScope)
-                    && x.getText().equals(name))
+            if (Num == x.getVarNumber()
+                    && x.getText().equals(name)
+                    && !x.getDeclType().equals(VarType.ClassVarDecl))
                 x.setHaxeType(type);
         }
-    }*/
+    }
 
     /**
      * Sets the declared vars.
@@ -200,11 +193,13 @@ public class DeclaredVarsTable {
 
             } else if (tree instanceof VarUse) {
                 VarUse vun = (VarUse) tree;
-                if (vun.getAssignExpr() != null
+                if (findDeclaredVar(vun.getText()) == null){
+                    vun.commitUndeclaredError();
+                } else if (vun.getAssignExpr() != null
                         && !vun.getAssignExpr().ifUndefinedType()
                         && vun.ifUndefinedType()) {
-                    //setDeclaredVarType(getDeclaredVars().indexOf(tree), vun.getAssignExpr().getHaxeType());
-                    vun.setHaxeType(vun.getAssignExpr().getHaxeType());
+                    setDeclaredVarType(vun.getText(),vun.getVarNumber(), 
+                            vun.getAssignExpr().getHaxeType());
                 } else if (vun.getAssignExpr() != null
                         && !vun.getAssignExpr().ifUndefinedType()
                         && !HaxeType.isAvailableAssignement(vun.getHaxeType(), 

@@ -794,9 +794,7 @@ public class HaxeTree extends CommonTree {
 	//only first lvl
 	public void calculateTypes(){ //begin with module
 		if (!this.getDeclaredVars().getDeclaredVars().isEmpty()) {
-			for (VarDeclaration tree : this.getDeclaredVars().getDeclaredVars()) {
-				tree.calculateTypes();
-			}
+		    this.getDeclaredVars().calculateTypes();
 		}
 	}
 	
@@ -810,6 +808,13 @@ public class HaxeTree extends CommonTree {
 				this.getText().equals("*")||
 				this.getText().equals("/"));
 	}
+    
+    public boolean ifVarDeclaration(){
+        return !(this instanceof ClassDeclaration||
+                this instanceof VarUse ||
+                this instanceof FunctionDeclaration);
+    }
+    
 	
 	private boolOperations getBoolOperation(){
 		if (this.getText().equals("+"))

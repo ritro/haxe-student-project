@@ -103,8 +103,10 @@ public class VarDeclaration extends HaxeTree {
 	 */
 	@Override
 	public void accept(final HaxeModelVisitor visitor){
-		visitor.visit(this);
-		visitor.endVisit(this);
+	    if (this.getDeclType().equals(VarType.ClassVarDecl)){
+    		visitor.visit(this);
+    		visitor.endVisit(this);
+	    }
 	}
 
 	public String getTextWithType() {

@@ -27,8 +27,7 @@ public class ClassDeclaration extends VarDeclaration {
 	public void accept(final HaxeModelVisitor visitor){
 		visitor.visit(this);
 		for (VarDeclaration x: declaredVars.getDeclaredVars())
-			if (x.getVarNumber() == this.getVarNumber())
-				x.accept(visitor);
+			x.accept(visitor);
 		visitor.endVisit(this);
 	}
 

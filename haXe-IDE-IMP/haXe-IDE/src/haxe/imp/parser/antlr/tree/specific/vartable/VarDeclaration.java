@@ -36,10 +36,6 @@ public class VarDeclaration extends HaxeTree {
 		return haxeType;
 	}
 	
-	public boolean ifUndefinedType(){
-		return this.getHaxeType().equals(HaxeType.haxeUndefined);
-	}
-	
 	public void setVarType(final VarType varType) {
 		this.declType = varType;
 	}
@@ -91,6 +87,18 @@ public class VarDeclaration extends HaxeTree {
 		setVarNumber(varNumber);
 		this.declType = type;
 	}
+    
+    public void commitClassUndefinedTypeError(){
+        this.commitError("Class var declaration should have type.");
+    }
+    
+    public void commitIncorrectReturnTypeError(){
+        this.commitError("Returned value doesn't match function value.");
+    }
+
+    public boolean ifUndefinedType(){
+        return this.getHaxeType().equals(HaxeType.haxeUndefined);
+    }
 	
 	@Override
 	public void printTree(){

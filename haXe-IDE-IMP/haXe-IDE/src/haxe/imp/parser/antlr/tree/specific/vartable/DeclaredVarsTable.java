@@ -2,6 +2,7 @@ package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
+import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
@@ -70,17 +71,18 @@ public class DeclaredVarsTable {
     }
     
     private void increaseVarNumber(int onHow, int fromNumber, String varName){
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : getDeclaredVars()){
             if ( x.getText().equals(varName)
                     && x.getVarNumber() >= fromNumber){
-                if (x instanceof VarUse 
-                        && ((VarUse)x).getAssignExpr() != null
-                        && ((VarUse)x).getAssignExpr().getText().equals(varName)
-                        && ((VarUse)x).getAssignExpr().getVarNumber() >= fromNumber){
-                    ((VarUse)x).getAssignExpr().setVarNumber(x.getVarNumber() + onHow);
-                } 
                 x.setVarNumber(x.getVarNumber() + onHow);
             }
+            if (x instanceof VarUse 
+                    && ((VarUse)x).getAssignExpr() != null
+                    && ((VarUse)x).getAssignExpr().getText().equals(varName)
+                    && ((VarUse)x).getAssignExpr().getVarNumber() >= fromNumber){
+                ((VarUse)x).getAssignExpr().setVarNumber(x.getVarNumber() + onHow);
+            } 
+        }
     }
     
     private int findVarNumber(String name){
@@ -168,26 +170,66 @@ public class DeclaredVarsTable {
             return false;
     }
 
-    private boolean ifUndefinedExist() {
-        for (VarDeclaration tree : declaredVars) {
-            if (tree.getHaxeType().equals(HaxeType.haxeUndefined))
-                return true;
-        }
-        return false;
-    }
-
     public void calculateTypes() {
+        boolean ifChanged = false;
+        
+        do {
+            ifChanged = false;
+            for (VarDeclaration tree : declaredVars) {
+                if (tree instanceof FunctionDeclaration) {
+                    FunctionDeclaration fdn = (FunctionDeclaration) tree;
+                    if (fdn.ifUndefinedType()) {
+                        fdn.setHaxeType(HaxeType.haxeVoid); //??
+                        ifChanged = true;
+                    } /*else if (fdn.getReturnNode() == null) {
+                        fdn.commitNullReturnError();
+                    } else if (!fdn.getReturnNode().ifUndefinedType() // check if right return type
+                               && !fdn.getReturnNode().getHaxeType().equals(fdn.getHaxeType())) {
+                             fdn.getReturnNode().commitIncorrectReturnTypeError();
+                    }*/
+                } else if (tree instanceof ClassDeclaration) {
+    
+                } else if (tree instanceof VarUse) {
+                    VarUse vun = (VarUse) tree;
+                    if (findDeclaredVar(vun.getText()) == null){
+                        //vun.commitUndeclaredError();
+                    } else if (vun.getAssignExpr() != null
+                            && !vun.getAssignExpr().ifUndefinedType()
+                            && vun.ifUndefinedType()) {
+                        setDeclaredVarType(vun.getText(),vun.getVarNumber(), 
+                                vun.getAssignExpr().getHaxeType());
+                        ifChanged = true;
+                    } else /*if (vun.getAssignExpr() != null
+                            && !vun.getAssignExpr().ifUndefinedType()
+                            && !HaxeType.isAvailableAssignement(vun.getHaxeType(), 
+                                    vun.getAssignExpr().getHaxeType())) {
+                        vun.commitIncorrectAssignmentError();
+                    } else */ if (vun.getAssignExpr() == null) {
+                        //do nothing??
+                    }
+                } else if (tree.getDeclType() == VarType.ClassVarDecl
+                        && tree.ifUndefinedType()){
+                    //tree.commitClassUndefinedTypeError();
+                }
+            }
+        } while (ifChanged);
+        markErrors();
+    }
+    
+    public void markErrors(){
         for (VarDeclaration tree : declaredVars) {
             if (tree instanceof FunctionDeclaration) {
                 FunctionDeclaration fdn = (FunctionDeclaration) tree;
-                if (fdn.ifUndefinedType()) {
-                    fdn.setHaxeType(HaxeType.haxeVoid);
-                } else if (fdn.getReturnNode() == null) {
+                if (fdn.getHaxeType().equals(HaxeType.haxeVoid) 
+                        && fdn.getReturnNode() != null) {
+                    //fdn.getReturnNode().commitStrangeDecl();
+                } else if (!fdn.getHaxeType().equals(HaxeType.haxeVoid) 
+                           && fdn.getReturnNode() == null) {
                     fdn.commitNullReturnError();
-                } else {
-                    // check if right return type
-                    // if (!returnNode.getHaxeType().equals(getHaxeType()))
-                    // returnNode.getChild(0).commitError("Returned value doesn't match function value");
+                } else if (!fdn.getHaxeType().equals(HaxeType.haxeVoid) 
+                           && !fdn.getReturnNode().ifUndefinedType() // check if right return type
+                           && !fdn.getReturnNode().getHaxeType().equals(fdn.getHaxeType())) {
+                         fdn.getReturnNode().commitIncorrectReturnTypeError();
                 }
             } else if (tree instanceof ClassDeclaration) {
 
@@ -197,20 +239,13 @@ public class DeclaredVarsTable {
                     vun.commitUndeclaredError();
                 } else if (vun.getAssignExpr() != null
                         && !vun.getAssignExpr().ifUndefinedType()
-                        && vun.ifUndefinedType()) {
-                    setDeclaredVarType(vun.getText(),vun.getVarNumber(), 
-                            vun.getAssignExpr().getHaxeType());
-                } else if (vun.getAssignExpr() != null
-                        && !vun.getAssignExpr().ifUndefinedType()
                         && !HaxeType.isAvailableAssignement(vun.getHaxeType(), 
                                 vun.getAssignExpr().getHaxeType())) {
-                    vun.commitAssignmentError();
-                } else if (vun.getAssignExpr() == null) {
-
+                    vun.commitIncorrectAssignmentError();
                 }
             } else if (tree.getDeclType() == VarType.ClassVarDecl
                     && tree.ifUndefinedType())
-                tree.commitError("Class var should have type");
+                tree.commitClassUndefinedTypeError();
         }
     }
 

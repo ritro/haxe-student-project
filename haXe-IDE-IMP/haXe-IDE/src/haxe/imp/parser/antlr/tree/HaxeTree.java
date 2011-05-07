@@ -814,7 +814,10 @@ public class HaxeTree extends CommonTree {
                 this instanceof VarUse ||
                 this instanceof FunctionDeclaration);
     }
-    
+
+    public boolean ifUndefinedType(){
+        return this.getHaxeType().equals(HaxeType.haxeUndefined);
+    }
 	
 	private boolOperations getBoolOperation(){
 		if (this.getText().equals("+"))

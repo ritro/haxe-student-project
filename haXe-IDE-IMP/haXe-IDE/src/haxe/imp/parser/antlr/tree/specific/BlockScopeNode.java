@@ -175,7 +175,7 @@ public class BlockScopeNode extends HaxeTree {
 					HaxeTree init = ((VarDeclarationNode)tree).getVAR_INIT_NODE();
 					VarUse vun = null;
 					if (init != null &&
-						!init.getHaxeType().equals(HaxeType.haxeUndefined) &&//primary
+						!init.ifUndefinedType() &&//primary
 						dvt.getHaxeType().getClassHierarchy().contains(init.getHaxeType()))//Undef too
 						dvt.setHaxeType(init.getHaxeType());
 					else if (init != null)

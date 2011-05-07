@@ -28,7 +28,7 @@ public class VarUse extends VarDeclaration {
 		fullName = name;
 	}
 	
-	public void commitAssignmentError(){
+	public void commitIncorrectAssignmentError(){
 		if (assignment.isNil())
 			return;
 		assignment.commitError(assignment.getHaxeType() + " should be " + this.getHaxeType().getTypeName());

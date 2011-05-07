@@ -27,58 +27,27 @@ public class ErrorNode extends HaxeTree {
 	/** The delegate. */
 	org.antlr.runtime.tree.CommonErrorNode delegate;
 
-	/**
-	 * Instantiates a new extended error node.
-	 * 
-	 * @param input
-	 *            the input
-	 * @param start
-	 *            the start
-	 * @param stop
-	 *            the stop
-	 * @param e
-	 *            the e
-	 */
+
 	public ErrorNode(final TokenStream input, final Token start,
 			final Token stop, final RecognitionException e) {
 		this.delegate = new CommonErrorNode(input, start, stop, e);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.CommonTree#isNil()
-	 */
 	@Override
 	public boolean isNil() {
 		return this.delegate.isNil();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.CommonTree#getType()
-	 */
+	
 	@Override
 	public int getType() {
 		return this.delegate.getType();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.CommonTree#getText()
-	 */
 	@Override
 	public String getText() {
 		return this.delegate.getText();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see haxe.imp.parser.antlr.tree.ExtendedCommonTree#toString()
-	 */
 	@Override
 	public String toString() {
 		return this.delegate.toString();

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.Token;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ClassNode.
  * 

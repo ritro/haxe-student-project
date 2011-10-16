@@ -50,6 +50,10 @@ import org.eclipse.imp.parser.IMessageHandler;
  * 
  * @author Anatoly Kondratyev
  */
+/**
+ * @author Ritro
+ *
+ */
 public class HaxeTree extends CommonTree {
 
 	/** The auxiliary. */
@@ -247,6 +251,14 @@ public class HaxeTree extends CommonTree {
 		return this.declaredVars;
 	}
 
+	/**
+	 * Creates Declared Vars table and run the 
+	 * recursive procedure to fill it with declarations of 
+	 * classes,
+	 * enums.
+	 * As they are the most high instances which may be in
+	 * a correct program.
+	 */
 	public void calculateScope() {
 		declaredVars = new DeclaredVarsTable();
 
@@ -259,6 +271,19 @@ public class HaxeTree extends CommonTree {
 		}
 	}
 	
+	
+	/**
+	 * According to the node type, makes the Declaration Vars
+	 * table for all vars met in that node. The method should
+	 * be implemented for each of node type separately.
+	 * @return vars table for current node.
+	 */
+	/*
+	 * It is the stub. The same method will be implemented
+	 * in classes nested from HaxedTree.
+	 * @return null
+	 * FIXME make it abstract??
+	 */
 	public DeclaredVarsTable calculateScopes() {
 		return null;
 	}
@@ -282,8 +307,8 @@ public class HaxeTree extends CommonTree {
 					visitor.endVisit(this);
 			} }
 		} catch (NullPointerException nullPointerException) {
-			System.out
-					.println("Exception caught from invocation of language-specific tree model builder implementation");
+			System.out.println(
+					"Exception caught from invocation of language-specific tree model builder implementation");
 			nullPointerException.printStackTrace();
 			//throw nullPointerException;
 		}

@@ -32,6 +32,10 @@ import org.antlr.runtime.tree.CommonTree;
  * Blocks can execute several expressions.
  * @author kondratyev
  */
+/**
+ * @author Ritro
+ *
+ */
 public class BlockScopeNode extends HaxeTree {
 
 	private int lBracketPosition;
@@ -135,83 +139,157 @@ public class BlockScopeNode extends HaxeTree {
 		return false;
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see haxe.imp.parser.antlr.tree.HaxeTree#calculateScopes()
+	 * Checks met vars and according to the type calculates scopes
+	 * for them or just insert into vars table.
+	 */
 	@Override
 	public DeclaredVarsTable calculateScopes(){		
 		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 
-		if (this.getChildCount() > 0) {
-			for (HaxeTree tree : this.getChildren()) {
-				if (tree instanceof ClassNode){
-				    ClassDeclaration scdn = new ClassDeclaration(this.getToken(), 0);
-				    scdn.addAllToDeclaredVars(tree.calculateScopes());
-				    
-					declaredVars.addWithIncrease(scdn);
-				}
-				else 
-				if (tree instanceof FunctionNode){
-					FunctionDeclaration sfd = new FunctionDeclaration(tree.getChild(0).getToken(), 0);
-					sfd.setHaxeType(tree.getHaxeType());
-					if (((FunctionNode)tree).getReturnNode() != null){
-					    /*
-						HaxeTree returnN =  ((FunctionNode)tree).getReturnNode();
-						VarUse vun = new VarUse(returnN, returnN.getToken(), 
-								this.getToken());
-						vun.setHaxeType(returnN.getHaxeType());
-						sfd.setReturnNode(vun);*///FIXME
-					}
-					declaredVars.addWithIncrease(sfd);
-					declaredVars.addWithIncrease(tree.calculateScopes());
-				}
-				else
-				if (tree instanceof VarDeclarationNode){
-					VarDeclaration dvt = new VarDeclaration((VarDeclarationNode)tree,0);
-					dvt.setHaxeType(((VarDeclarationNode)tree).getHaxeType());
-					
-					if (this.ifParentIsClass())
-						dvt.setVarType(VarType.ClassVarDecl);
-					else if (this.ifParentIsFunction())
-						dvt.setVarType(VarType.FunctionVarDecl);
-						
-					HaxeTree init = ((VarDeclarationNode)tree).getVAR_INIT_NODE();
-					VarUse vun = null;
-					if (init != null &&
-						!init.ifUndefinedType() &&//primary
-						dvt.getHaxeType().getClassHierarchy().contains(init.getHaxeType()))//Undef too
-						dvt.setHaxeType(init.getHaxeType());
-					else if (init != null)
-					{
-						vun = new VarUse(tree.getChild(0), dvt.getToken(), 0);
-						vun.setHaxeType(dvt.getHaxeType());
-						vun.setAssignExpr(new VarUse(init, init.getToken(), 0)); 
-						vun.getAssignExpr().setHaxeType(init.getHaxeType());
-					}
-					if (!declaredVars.ifVarExists(dvt))
-					    declaredVars.addWithIncrease(dvt);
-					else 
-						dvt.commitError("Var is already declared");
-					if (vun != null)
-					    declaredVars.addWithIncrease(vun);
+		for (HaxeTree tree : this.getChildren()) 
+		{
+			if (tree instanceof ClassNode)
+			{
+			    ClassDeclaration scdn = new ClassDeclaration(this.getToken(), 0);
+			    scdn.addAllToDeclaredVars(tree.calculateScopes());
+			    
+				declaredVars.addWithIncrease(scdn);
+			}
+			else if (tree instanceof FunctionNode)
+			{
+				FunctionDeclaration functionDeclaration = createFunctionDeclaration((FunctionNode)tree);
+				declaredVars.addWithIncrease(functionDeclaration);
+				declaredVars.addWithIncrease(tree.calculateScopes());
+			}
+			else if (tree instanceof VarDeclarationNode)
+			{
+				VarDeclarationNode node = (VarDeclarationNode)tree;
+				
+				VarDeclaration varDeclaration = createVarDeclaration(node);
+				//during declaration there could be an assignment for var
+				VarUse varUse = createVarUse(node, varDeclaration);
+				
+				if (!declaredVars.contains(varDeclaration))
+				{
+				    declaredVars.addWithIncrease(varDeclaration);
 				}
 				else
-				if (tree instanceof VarUse){
-					VarUse vun = new VarUse(tree.getChild(0), tree.getToken(), 0); 
-					vun.setHaxeType(tree.getHaxeType());
-					declaredVars.addWithIncrease(vun);
+				{
+					//The same block scope contains two variable declarations 
+					//with the same variable name - such overlay is forbidden
+					varDeclaration.commitError("Var is already declared");
 				}
-				else
-				if (tree instanceof AssignOperationNode){
-					VarUse vun = new VarUse(((AssignOperationNode)tree).getLeftOperand(), 
-										((AssignOperationNode)tree).getLeftOperand().getToken(), 
-										0);
-					VarUse vun2 = new VarUse(((AssignOperationNode)tree).getRightOperand(), 
-							((AssignOperationNode)tree).getRightOperand().getToken(),0);
-					vun2.setHaxeType(((AssignOperationNode)tree).getRightOperand().getHaxeType());
-					vun.setAssignExpr(vun2);
-					declaredVars.addWithIncrease(vun);
+				
+				if (varUse != null)
+				{
+				    declaredVars.addWithIncrease(varUse);
 				}
+			}
+			else if (tree instanceof VarUse)
+			{
+				VarUse vun = new VarUse(tree.getChild(0), tree.getToken()); 
+				vun.setHaxeType(tree.getHaxeType());
+				declaredVars.addWithIncrease(vun);
+			}
+			else if (tree instanceof AssignOperationNode)
+			{
+				VarUse varWithAssignment = createVarUse((AssignOperationNode)tree);
+				declaredVars.addWithIncrease(varWithAssignment);
 			}
 		}
 		
 		return declaredVars;
+	}
+	
+	/**
+	 * Creates declaration usable for Var Declaration Table 
+	 * for Function from it's tree node.
+	 * @param Function Node from tree.
+	 * @return Ready to operate with Function Declaration.
+	 */
+	private FunctionDeclaration createFunctionDeclaration(FunctionNode node)
+	{
+		FunctionDeclaration functionDeclaration = new FunctionDeclaration(node.getChild(0).getToken(), 0);
+		functionDeclaration.setHaxeType(node.getHaxeType());
+		if (node.getReturnNode() != null)
+		{
+		    /*
+			HaxeTree returnN =  ((FunctionNode)tree).getReturnNode();
+			VarUse vun = new VarUse(returnN, returnN.getToken(), 
+					this.getToken());
+			vun.setHaxeType(returnN.getHaxeType());
+			sfd.setReturnNode(vun);*///FIXME
+		}
+		return functionDeclaration;
+	}
+	
+	/**
+	 * Creates declaration usable for Var Declaration Table
+	 * for Var node from it's tree node. It created only declaration
+	 * of var and no info about it's value assignments during declaration.
+	 * @param Var node.
+	 * @return Ready to operate with Var Declaration.
+	 */
+	private VarDeclaration createVarDeclaration(VarDeclarationNode node)
+	{
+		VarDeclaration varDeclaration = new VarDeclaration(node,0);
+		varDeclaration.setHaxeType(node.getHaxeType());
+		
+		if (this.ifParentIsClass())
+			varDeclaration.setVarType(VarType.ClassVarDecl);
+		else if (this.ifParentIsFunction())
+			varDeclaration.setVarType(VarType.FunctionVarDecl);
+			
+		return varDeclaration;
+	}
+	
+	/**
+	 * Creates declaration of assignment for Var node from it's tree 
+	 * node info and previously created declaration for this var.
+	 * This declaration can be used in Var Declaration Table as normal
+	 * Var Use.
+	 * @param Vars node.
+	 * @param Previously created varDeclaration for that var.
+	 * @return Ready to operate with Var Usage or if where was
+	 * no usage it returns Null.
+	 */
+	private VarUse createVarUse(VarDeclarationNode node, VarDeclaration varDeclaration)
+	{
+		HaxeTree init = node.getVAR_INIT_NODE();
+		VarUse varUse = null;
+		if (init != null &&
+			!init.ifUndefinedType() &&//primary
+			varDeclaration.getHaxeType().getClassHierarchy().contains(init.getHaxeType()))//Undef too
+			varDeclaration.setHaxeType(init.getHaxeType());
+		else if (init != null)
+		{
+			varUse = new VarUse(node.getChild(0), varDeclaration.getToken(), 0);
+			varUse.setHaxeType(varDeclaration.getHaxeType());
+			varUse.setAssignExpr(new VarUse(init, init.getToken(), 0)); 
+			varUse.getAssignExpr().setHaxeType(init.getHaxeType());
+		}
+		
+		return varUse;
+	}
+	
+	/**
+	 * Creates declaration for assigning var a new value.
+	 * @param assignOperation
+	 * @return Ready to operate with Var Usage.
+	 */
+	private VarUse createVarUse(AssignOperationNode assignOperation)
+	{
+		VarUse varBeforeEquation = new VarUse(
+				assignOperation.getLeftOperand(), 
+				assignOperation.getLeftOperand().getToken());
+		VarUse varAfterEquation = new VarUse(
+				assignOperation.getRightOperand(), 
+				assignOperation.getRightOperand().getToken());
+		varAfterEquation.setHaxeType(assignOperation.getRightOperand().getHaxeType());
+		varBeforeEquation.setAssignExpr(varAfterEquation);
+		return varBeforeEquation;
 	}
 }

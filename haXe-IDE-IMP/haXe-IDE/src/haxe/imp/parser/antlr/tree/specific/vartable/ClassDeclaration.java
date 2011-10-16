@@ -15,7 +15,7 @@ public class ClassDeclaration extends VarDeclaration {
 	}
 	
 	public void addToDeclaredVars(VarDeclaration declaredVar){
-		declaredVars.addToDeclaredVars(declaredVar);
+		declaredVars.add(declaredVar);
 	}
 	
 	public ClassDeclaration(CommonToken token, int varNumber) {

@@ -134,14 +134,6 @@
       </initializer>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="Haxe"
-            class="haxe.imp.preferences.HaxePreferencePage"
-            id="haxe.imp.preferences.Haxe">
-      </page>
-   </extension>
-   <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             objectClass="org.eclipse.core.resources.IProject"
@@ -155,6 +147,14 @@
                id="haxe.imp.actions.enableNatureAction">
          </action>
       </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Haxe"
+            class="haxe.imp.preferences.HaxePreferencePage"
+            id="haxe.imp.preferences.Haxe">
+      </page>
    </extension>
 
 </plugin>

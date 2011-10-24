@@ -10,8 +10,6 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.exceptions;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-
 /**
  * This exception is thrown when already declared var occurs in
  * VarDeclarationNode in left part.

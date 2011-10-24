@@ -12,11 +12,16 @@ public class VarDeclaration extends HaxeTree
 
     public enum VarType
     {
-        ClassVarDecl, FunctionVarDecl, FunctionParam, NotDefined
+        ClassDeclaration,//Class
+        ClassVarDeclaration,//Class var (cant set type)
+        FunctionDeclaration,//fun decl
+        FunctionParameter, //fun parameter
+        VarDeclaration,//function and else decl
+        VarUsage
     };
 
     private HaxeType haxeType  = HaxeType.haxeUndefined;
-    private VarType  declType  = VarType.NotDefined;
+    protected VarType  declType  = VarType.VarDeclaration;
     private int      varNumber = 0;
 
     public VarType getDeclType()
@@ -144,6 +149,11 @@ public class VarDeclaration extends HaxeTree
     {
         this.commitError("Class var declaration should have type.");
     }
+    
+    public void commitVarAlreadyDeclaredTypeError()
+    {
+        this.commitError("Var is already declared");
+    }
 
     public void commitIncorrectReturnTypeError()
     {
@@ -169,7 +179,7 @@ public class VarDeclaration extends HaxeTree
     @Override
     public void accept(final HaxeModelVisitor visitor)
     {
-        if (this.getDeclType().equals(VarType.ClassVarDecl))
+        if (this.getDeclType().equals(VarType.ClassDeclaration))
         {
             visitor.visit(this);
             visitor.endVisit(this);
@@ -178,7 +188,7 @@ public class VarDeclaration extends HaxeTree
 
     public String getTextWithType()
     {
-        if (this.getDeclType() == VarType.FunctionParam)
+        if (this.getDeclType() == VarType.FunctionParameter)
         {
             return "some function param-not impelemented";
         }

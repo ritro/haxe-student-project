@@ -27,7 +27,8 @@ public class FunctionDeclaration extends VarDeclaration {
 	}
 	
 	public FunctionDeclaration(CommonToken token,int varNumber) {
-		super(token,varNumber);		
+		super(token,varNumber);
+		declType = VarType.FunctionDeclaration;
 	}
 	
 	@Override

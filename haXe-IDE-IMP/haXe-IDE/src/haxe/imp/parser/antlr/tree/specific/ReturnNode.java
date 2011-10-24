@@ -14,7 +14,6 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
-import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
 /**

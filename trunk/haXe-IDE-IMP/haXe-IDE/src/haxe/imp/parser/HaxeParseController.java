@@ -98,61 +98,31 @@ public class HaxeParseController implements IParseController {
     /** The source position locator. */
     private ISourcePositionLocator fSourcePositionLocator;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getAnnotationTypeInfo()
-     */
     @Override
     public IAnnotationTypeInfo getAnnotationTypeInfo() {
         return new SimpleAnnotationTypeInfo();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getCurrentAst()
-     */
     @Override
     public Object getCurrentAst() {
         return this.currentAST;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getLanguage()
-     */
     @Override
     public Language getLanguage() {
         return this.fLanguage;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getPath()
-     */
     @Override
     public IPath getPath() {
         return this.fFilePath;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getProject()
-     */
     @Override
     public ISourceProject getProject() {
         return this.fProject;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getSourcePositionLocator()
-     */
     @Override
     public ISourcePositionLocator getSourcePositionLocator() {
         if (this.fSourcePositionLocator == null) {
@@ -161,24 +131,12 @@ public class HaxeParseController implements IParseController {
         return this.fSourcePositionLocator;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#getSyntaxProperties()
-     */
     @Override
     public ILanguageSyntaxProperties getSyntaxProperties() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.imp.parser.IParseController#getTokenIterator(org.eclipse.
-     * jface.text.IRegion)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Iterator getTokenIterator(final IRegion region) {
@@ -186,8 +144,6 @@ public class HaxeParseController implements IParseController {
                 this.tokenStream, region);
         return commonTokenIterator;
     }
-
-    // public tokenS
 
     /**
      * Gets the token stream.
@@ -234,11 +190,6 @@ public class HaxeParseController implements IParseController {
             this.end = region.getOffset() + region.getLength();
         }
 
-        /*
-         * (non-Javadoc)
-         * 
-         * @see java.util.Iterator#hasNext()
-         */
         @Override
         public boolean hasNext() {
             if (this.currentTokenNumber + 1 >= this.commonTokens.size()) {
@@ -251,22 +202,12 @@ public class HaxeParseController implements IParseController {
             }
         }
 
-        /*
-         * (non-Javadoc)
-         * 
-         * @see java.util.Iterator#next()
-         */
         @Override
         public Object next() {
             this.currentTokenNumber++;
             return this.commonTokens.get(this.currentTokenNumber);
         }
 
-        /*
-         * (non-Javadoc)
-         * 
-         * @see java.util.Iterator#remove()
-         */
         @Override
         public void remove() {
             this.commonTokens.remove(this.currentTokenNumber);
@@ -274,14 +215,6 @@ public class HaxeParseController implements IParseController {
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.imp.parser.IParseController#initialize(org.eclipse.core.runtime
-     * .IPath, org.eclipse.imp.model.ISourceProject,
-     * org.eclipse.imp.parser.IMessageHandler)
-     */
     @Override
     public void initialize(final IPath filePath, final ISourceProject project,
             final IMessageHandler handler) {
@@ -312,19 +245,13 @@ public class HaxeParseController implements IParseController {
             HaxeTree.setMessageHandler(this.handler);
             this.handler.clearMessages();
             this.currentAST.calculateScope();
-            this.currentAST.calculateTypes();
+            //this.currentAST.calculateTypes();
         } catch (RecognitionException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.imp.parser.IParseController#parse(java.lang.String,
-     * org.eclipse.core.runtime.IProgressMonitor)
-     */
     @Override
     public Object parse(final String input, final IProgressMonitor monitor) {
         this.currentAST = null;

@@ -1,7 +1,6 @@
 package haxe.imp.parser.antlr.tree.specific.vartable;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.exceptions.VarAlreadyDeclaredException;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
@@ -62,14 +61,15 @@ public class DeclaredVarsTable {
     }
     
     /**
-     * Experimental function with immediate error effect.
-     * If overlay is allowed it will search for previous 
-     * declaration and adds this one with new number = old + 1.
-     * Else it will throw exception if such variable already was
-     * declared.
+     * If declaration is a function parameter then 
+     * variable number will be increased to determine 
+     * the variable overlay. For over types of declaration
+     * table will be checked if var was already declared
+     * and the Var Already Declared Exception will be 
+     * commited else var will be added to the table.
+     * @param Declaration to add to the table.
      */
     public void tryAdd(VarDeclaration element) 
-            throws VarAlreadyDeclaredException
     {
         int foundVarNumber = findVarNumber(element.getText());
         if (foundVarNumber == -1)
@@ -77,80 +77,92 @@ public class DeclaredVarsTable {
             add(element);
             return;
         }
-        if (element.getDeclType() == VarType.FunctionParam
-                || element.getDeclType() == VarType.FunctionVarDecl)
+        if (element.getDeclType() == VarType.FunctionParameter)
         {
             int newVarNumber = foundVarNumber + 1;
             element.setVarNumber(newVarNumber);
             add(element);
             return;
         }
-        if (contains(element))
-        {
-            throw new VarAlreadyDeclaredException();
-        }
-        add(element);
+        element.commitVarAlreadyDeclaredTypeError();
     }
     
-    /**
-     * If declaration is inside the function or it is a function
-     * parameter then variable number will be increased to
-     * determine the variable overlay. For over types of declaration
-     * var number will not be changed.
-     * @param Declaration to add to the table.
-     */
-    public void addWithIncrease(VarDeclaration element)
+    public void tryAdd(ClassDeclaration element) 
     {
-        if ((element.getDeclType() == VarType.FunctionParam
-                || element.getDeclType() == VarType.FunctionVarDecl)
-                && findVarNumber(element.getText()) != -1)
+        int foundVarNumber = findVarNumber(element.getText());
+        if (foundVarNumber == -1)
         {
-            int newVarNumber = findVarNumber(element.getText())
-                    + element.getVarNumber() + 1;
-            element.setVarNumber(newVarNumber);
+            add(element);
+            return;
         }
-
-        this.add(element);
+        element.commitVarAlreadyDeclaredTypeError();
     }
     
     /**
      * Finds the last declaration for that var and adds var to
-     * table with that declaration var number. If no declaration
-     * was found the element will be added untouched.
+     * table with that declaration var number. If no decl was found
+     * it will be added untouched.
      * @param Variable usage to add to the table.
      */
-    public void addWithIncrease(VarUse element)
+    public void tryAdd(VarUse element)
     {
         int foundVarNumber = findVarNumber(element.getText());
         if (foundVarNumber != -1)
         {
             element.setVarNumber(foundVarNumber);
+            add(element);
+            return;
         }
-
-        this.add(element);
+        //we can't commit error - decl may be earlier
+        //element.commitUndeclaredError();
+        add(element);
     }
     
+    /**
+     * Will check if fun was already declared
+     * and the Var Already Declared Exception will be 
+     * commited else fun will be added to the table.
+     * @param Function declaration to add to the table.
+     */
+    public void tryAdd(FunctionDeclaration element)
+    {
+        if (contains(element))
+        {
+            element.commitVarAlreadyDeclaredTypeError();
+            return;
+        }
+        
+        add(element);
+    }
+    
+    /**
+     * Currently used only in adding function scopes
+     * @param table
+     */
     public void addWithIncrease(DeclaredVarsTable table)
     {
-        ArrayList<String> checked = new ArrayList<String>();
-
         for (VarDeclaration x : table.getDeclaredVars())
         {
             String varName = x.getText();
-            if (x.getDeclType() != VarType.FunctionParam
-                    && x.getDeclType() != VarType.FunctionVarDecl)
+            if (x.getDeclType() == VarType.VarUsage)
             {
-                checked.add(varName);
                 continue;
             }
             int foundVarNumber = findVarNumber(varName);
-            if (foundVarNumber != -1
-                    && !checked.contains(varName)) 
+            if (foundVarNumber == -1)
             {
-                table.increaseVarNumber(foundVarNumber + 1,
-                            x.getVarNumber(), varName);
+                continue;
             }
-            checked.add(varName);
+            if (x.getDeclType() == VarType.FunctionParameter)
+            {                
+                table.increaseVarNumber(foundVarNumber + 1,
+                        x.getVarNumber(), varName);
+                continue;
+            }
+            //now we should increase if higher is class and else
+            //delete FIXME
+            table.increaseVarNumber(foundVarNumber + 1,
+                            x.getVarNumber(), varName);
         }
 
         this.addAll(table);
@@ -229,7 +241,7 @@ public class DeclaredVarsTable {
      * -1 if there was no declaration at all for this var.
      */
     private int findVarNumber(String name)
-    {
+    {//FIXME should find functions too
         int maxNum = -1;
         for (VarDeclaration x : getDeclaredVars())
         {
@@ -281,7 +293,7 @@ public class DeclaredVarsTable {
         {
             if (Num == x.getVarNumber()
                     && x.getText().equals(name)
-                    && !x.getDeclType().equals(VarType.ClassVarDecl)) 
+                    && !x.getDeclType().equals(VarType.ClassVarDeclaration)) 
                 x.setHaxeType(type);
         }
     }
@@ -305,38 +317,26 @@ public class DeclaredVarsTable {
             for (VarDeclaration tree : declaredVars) {
                 if (tree instanceof FunctionDeclaration) {
                     FunctionDeclaration fdn = (FunctionDeclaration) tree;
-                    if (fdn.ifUndefinedType()) {
+                    if (fdn.ifUndefinedType()) 
+                    {
                         fdn.setHaxeType(HaxeType.haxeVoid); //??
                         ifChanged = true;
-                    } /*else if (fdn.getReturnNode() == null) {
-                        fdn.commitNullReturnError();
-                    } else if (!fdn.getReturnNode().ifUndefinedType() // check if right return type
-                               && !fdn.getReturnNode().getHaxeType().equals(fdn.getHaxeType())) {
-                             fdn.getReturnNode().commitIncorrectReturnTypeError();
-                    }*/
+                    }
                 } else if (tree instanceof ClassDeclaration) {
     
                 } else if (tree instanceof VarUse) {
                     VarUse vun = (VarUse) tree;
-                    if (findDeclaredVar(vun.getText()) == null){
-                        //vun.commitUndeclaredError();
-                    } else if (vun.getAssignExpr() != null
+                    if (vun.getAssignExpr() != null
                             && !vun.getAssignExpr().ifUndefinedType()
-                            && vun.ifUndefinedType()) {
+                            && vun.ifUndefinedType()) 
+                    {
                         setDeclaredVarType(vun.getText(),vun.getVarNumber(), 
                                 vun.getAssignExpr().getHaxeType());
                         ifChanged = true;
-                    } else /*if (vun.getAssignExpr() != null
-                            && !vun.getAssignExpr().ifUndefinedType()
-                            && !HaxeType.isAvailableAssignement(vun.getHaxeType(), 
-                                    vun.getAssignExpr().getHaxeType())) {
-                        vun.commitIncorrectAssignmentError();
-                    } else */ if (vun.getAssignExpr() == null) {
+                    } else if (vun.getAssignExpr() == null) 
+                    {
                         //do nothing??
                     }
-                } else if (tree.getDeclType() == VarType.ClassVarDecl
-                        && tree.ifUndefinedType()){
-                    //tree.commitClassUndefinedTypeError();
                 }
             }
         } while (ifChanged);
@@ -362,7 +362,8 @@ public class DeclaredVarsTable {
 
             } else if (tree instanceof VarUse) {
                 VarUse vun = (VarUse) tree;
-                if (findDeclaredVar(vun.getText()) == null){
+                if (findDeclaredVar(vun.getText()) == null)
+                {
                     vun.commitUndeclaredError();
                 } else if (vun.getAssignExpr() != null
                         && !vun.getAssignExpr().ifUndefinedType()
@@ -370,7 +371,7 @@ public class DeclaredVarsTable {
                                 vun.getAssignExpr().getHaxeType())) {
                     vun.commitIncorrectAssignmentError();
                 }
-            } else if (tree.getDeclType() == VarType.ClassVarDecl
+            } else if (tree.getDeclType() == VarType.ClassVarDeclaration
                     && tree.ifUndefinedType())
                 tree.commitClassUndefinedTypeError();
         }

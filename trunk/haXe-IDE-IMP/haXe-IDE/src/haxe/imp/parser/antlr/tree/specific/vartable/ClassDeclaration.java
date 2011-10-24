@@ -21,6 +21,7 @@ public class ClassDeclaration extends VarDeclaration {
 	public ClassDeclaration(CommonToken token, int varNumber) {
 		super(token,varNumber);
 		declaredVars = new DeclaredVarsTable();
+		declType = VarType.ClassDeclaration;
 	}
 	
 	@Override

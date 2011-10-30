@@ -132,13 +132,19 @@ public class FunctionNode extends HaxeTree {
 	}
 	
 	@Override
-	public DeclaredVarsTable calculateScopes(){	
+	public DeclaredVarsTable calculateScopes()
+	{	
 		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 		for (VarUsageNode x: getParametersAsVarUsage())
-			declaredVars.add(new VarDeclaration(VarType.FunctionParameter, x.getToken(), 0));
+		{
+		    VarDeclaration parameter = new VarDeclaration(x.getToken());
+		    
+		    parameter.setVarType(VarType.FunctionParameter);
+			declaredVars.add(parameter);
+		}
 		
 		if (getBlockScope() != null) {
-		    declaredVars.addWithIncrease(getBlockScope().calculateScopes());
+		    declaredVars.addWithIncrease(getBlockScope().calculateFunctionScope());
 		}
 		
 		return declaredVars;

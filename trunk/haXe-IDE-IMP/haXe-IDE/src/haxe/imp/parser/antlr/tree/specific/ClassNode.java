@@ -121,8 +121,10 @@ public class ClassNode extends HaxeTree {
 	public DeclaredVarsTable calculateScopes() {
 	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 
-		if (getBlockScope() != null) {
-			declaredVars.addAll(getBlockScope().calculateScopes());
+	    BlockScopeNode blockScope = getBlockScope();
+		if (blockScope != null) 
+		{		    
+		    declaredVars = blockScope.calculateClassScope();
 		}
 		
 		return declaredVars;

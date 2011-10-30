@@ -28,10 +28,6 @@ public class AssignOperationNode extends HaxeTree {
 		super();
 	}
 	
-	@Override
-	public void printTree(){
-		System.out.println("AssignOperation"+ "{name=" +this.getText()+'}');
-	}
 //MB при создании - уже ищем тип -> залазим в вар декларатион и присваиваем там?
 
 	public HaxeTree getLeftOperand(){

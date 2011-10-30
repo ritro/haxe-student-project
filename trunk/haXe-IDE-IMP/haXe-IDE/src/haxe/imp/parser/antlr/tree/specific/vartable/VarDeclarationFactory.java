@@ -8,8 +8,11 @@ import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.vartable.BinaryExpression.OperatorClasses;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
+import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
+
+import org.antlr.runtime.CommonToken;
 
 public class VarDeclarationFactory
 {
@@ -20,14 +23,15 @@ public class VarDeclarationFactory
      * @param Function Node from tree.
      * @return Ready to operate with Function Declaration.
      */
-    public FunctionDeclaration createFunctionDeclaration(FunctionNode node)
+    public static FunctionDeclaration createFunctionDeclaration(FunctionNode node)
     {
-        FunctionDeclaration functionDeclaration = new FunctionDeclaration(node.getChild(0).getToken(), 0);
+        CommonToken functionToken = node.getChild(0).getToken();
+        FunctionDeclaration functionDeclaration = new FunctionDeclaration(functionToken);
         functionDeclaration.setHaxeType(node.getHaxeType());
         if (node.getReturnNode() != null)
         {
             /*
-            HaxeTree returnN =  ((FunctionNode)tree).getReturnNode();
+            HaxeTree returnN =  node.getReturnNode();
             VarUse vun = new VarUse(returnN, returnN.getToken(), 
                     this.getToken());
             vun.setHaxeType(returnN.getHaxeType());
@@ -38,51 +42,57 @@ public class VarDeclarationFactory
     
     /**
      * Creates declaration usable for Var Declaration Table
-     * for Var node from it's tree node. It created only declaration
+     * for Function Var node from it's tree node. It creates only declaration
      * of var and no info about it's value assignments during declaration.
      * @param Var node.
-     * @return Ready to operate with Var Declaration.
+     * @return Ready to operate with Function Var Declaration.
      */
-    public VarDeclaration createVarDeclaration(
-            VarDeclarationNode node, boolean ifParentClass)
+    public static VarDeclaration createFunctionVarDeclaration(
+            VarDeclarationNode node)
     {
-        VarDeclaration varDeclaration = new VarDeclaration(node,0);
+        VarDeclaration varDeclaration = new VarDeclaration(node);
         varDeclaration.setHaxeType(node.getHaxeType());
-        
-        if (ifParentClass)
-            varDeclaration.setVarType(VarType.ClassVarDeclaration);
-        //else if (this.ifParentIsFunction())
-        //  varDeclaration.setVarType(VarType.FunctionDeclaration);
             
         return varDeclaration;
     }
     
     /**
-     * Creates declaration of assignment for Var node from it's tree 
-     * node info and previously created declaration for this var.
-     * This declaration can be used in Var Declaration Table as normal
-     * Var Use.
+     * Creates declaration usable for Var Declaration Table
+     * for Class Var node from it's tree node. It creates only declaration
+     * of var and no info about it's value assignments during declaration.
+     * @param Var node.
+     * @return Ready to operate with Class Var Declaration.
+     */
+    public static VarDeclaration createClassVarDeclaration(VarDeclarationNode node)
+    {
+        VarDeclaration declaration = createFunctionVarDeclaration(node);
+        
+        declaration.setVarType(VarType.ClassVarDeclaration);
+        
+        return declaration;
+    }
+    
+    /**
+     * Creates declaration of assignment just declared var a value.
      * @param Vars node.
-     * @param Previously created varDeclaration for that var.
      * @return Ready to operate with Var Usage or if where was
      * no usage it returns Null.
      */
-    public VarUse createVarUse(VarDeclarationNode node, VarDeclaration varDeclaration)
+    public static VarUse createVarUse(VarDeclarationNode node)
     {
         HaxeTree init = node.getVAR_INIT_NODE();
-        VarUse varUse = null;
-        if (init != null &&
-            !init.ifUndefinedType() &&//primary
-            varDeclaration.getHaxeType().getClassHierarchy().contains(init.getHaxeType()))//Undef too
-            varDeclaration.setHaxeType(init.getHaxeType());
-        else if (init != null)
+        
+        if (init == null)
         {
-            varUse = createVarUse(node.getChild(0));
-            //varUse.token = varDeclaration.getToken();
-            varUse.setHaxeType(varDeclaration.getHaxeType());
-            varUse.setAssignExpr(createExpression(init));
-            //varUse.getAssignExpr().setHaxeType(init.getHaxeType());
+            return null;
         }
+
+        VarUse varUse = createVarUse(node.getChild(0));
+        HaxeType definedType = node.getHaxeType();
+        //varUse.token = varDeclaration.getToken();
+        varUse.setHaxeType(definedType);
+        varUse.setAssignExpr(createExpression(init));
+        //varUse.getAssignExpr().setHaxeType(init.getHaxeType());
         
         return varUse;
     }
@@ -92,7 +102,7 @@ public class VarDeclarationFactory
      * @param assignOperation
      * @return Ready to operate with Var Usage.
      */
-    public VarUse createVarUse(AssignOperationNode assignOperation)
+    public static VarUse createVarUse(AssignOperationNode assignOperation)
     {
         //left always should be VarUsageNode
         VarUse varBeforeEquation = createVarUse(assignOperation.getLeftOperand());
@@ -102,7 +112,7 @@ public class VarDeclarationFactory
         return varBeforeEquation;
     }
     
-    public VarUse createVarUse (VarUsageNode node)
+    private static VarUse createVarUse (VarUsageNode node)
     {
         VarUse varUse;
         ArrayList<HaxeTree> name = new ArrayList<HaxeTree>();
@@ -119,14 +129,27 @@ public class VarDeclarationFactory
         return varUse;
     }
     
-    public VarUse createVarUse (ConstantNode node)
+    /**
+     * Creates usage of constant.
+     * @param node
+     * @return
+     */
+    private static VarUse createVarUse (ConstantNode node)
     {
         ArrayList<HaxeTree> name = new ArrayList<HaxeTree>();
         name.add(node);
-        return new VarUse(name, node.getToken());
+        VarUse varUse = new VarUse(name, node.getToken());
+        varUse.setHaxeType(node.getHaxeType());
+        return varUse;
     }
     
-    public VarUse createVarUse (HaxeTree node)
+    /**
+     * Creates VarUse records for var table from 
+     * Var Usages nodes and Constant nodes.
+     * @param node
+     * @return
+     */
+    public static VarUse createVarUse (HaxeTree node)
     {
         if (node instanceof VarUsageNode)
         {
@@ -140,7 +163,7 @@ public class VarDeclarationFactory
         return null;
     }
     
-    public VarDeclaration createExpression(HaxeTree node)
+    public static VarDeclaration createExpression(HaxeTree node)
     {
         VarUse varUse = createVarUse(node);
         if (varUse != null)

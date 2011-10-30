@@ -13,13 +13,22 @@ public class VarUse extends VarDeclaration
     private ArrayList<HaxeTree> fullName;
     private VarDeclaration assignment = null;
     private String unarOperator = null;
-    
-    //FIXME thing about better names after struct 
-    //will be proved to work
-    public enum OperatorClasses
+
+    /**
+     * Unar operators, divided into classes
+     * to which types they are applied to.
+     */
+    public enum UnarOperatorClasses
     {
-        IncrDecr,   //++ --
-        Logic       //! 
+        //'++', '--' and '-' 
+        //(only with int and float)
+        Numeric,    
+        //'!'  (only for bool)
+        Logic,      
+        //'~' 
+        //(only for Int - usually for 32 bit Int - 
+        // so does not work on Neko 31-bit int)
+        Compliment  
     }
 
     /* (non-Javadoc)
@@ -86,26 +95,6 @@ public class VarUse extends VarDeclaration
     public void commitUndeclaredError()
     {
         this.commitError(this.getText() + " is not declared.");
-    }
-
-    @Override
-    public void printTree()
-    {
-        if (assignment != null)
-        {
-            System.out.println("Assignment");
-            System.out.println("      Name: " + getText() + ", type: "
-                    + getHaxeType().getTypeName() 
-                    + ", Num: " + getVarNumber());
-            System.out.print("      ");
-            assignment.printTree();
-        }
-        else
-        {
-            System.out.println("UseNode: " + getText() + ", type: "
-                    + getHaxeType().getTypeName() 
-                    + ", Num: " + getVarNumber());
-        }
     }
 
     @Override

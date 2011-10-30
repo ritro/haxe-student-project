@@ -47,15 +47,6 @@ public class VarUsageNode extends HaxeTree {
 	public HaxeType getHaxeType() {
 		return this.haxeType;
 	}
-	
-	@Override
-	public void printTree(){
-		if (isAuxiliary())
-			System.out.println("VarUseDOT");
-		else
-			System.out.println("VarUsage"+ "(name=" +this.getText()+")" +
-				"{"+getHaxeType().getTypeName()+'}');
-	}
 
 	/**
 	 * Instantiates a new var usage.

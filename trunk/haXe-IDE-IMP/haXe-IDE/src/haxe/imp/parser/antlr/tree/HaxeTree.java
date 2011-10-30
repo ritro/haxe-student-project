@@ -45,28 +45,16 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.imp.parser.IMessageHandler;
 
-/**
- * The Class ExtendedCommonTree.
- * 
- * @author Anatoly Kondratyev
- */
-/**
- * @author Ritro
- *
- */
-public class HaxeTree extends CommonTree {
-
-	/** The auxiliary. */
-	private boolean auxiliary = false;
+public class HaxeTree extends CommonTree 
+{
 	private static IMessageHandler messageHandler;
+	private boolean auxiliary = false;
 
 	/**
 	 * Contains most left position of tree/subtree
 	 */
-	private int mostLeftPosition = -1;
-
-	/** The most right position. */
-	private int mostRightPosition = -1;
+	protected int mostLeftPosition = -1;
+	protected int mostRightPosition = -1;
 
 	private enum boolOperations {
 		PLUS,
@@ -86,7 +74,7 @@ public class HaxeTree extends CommonTree {
 	public static final int RETURN_TYPE = HaxeParser.RETURN;
 		
 	public boolean isAuxiliary() { 
-		return this.auxiliary;
+		return auxiliary;
 	}
 
 	public void setAuxiliary(final boolean auxiliary) {
@@ -100,6 +88,33 @@ public class HaxeTree extends CommonTree {
 	public static IMessageHandler getMessageHandler() {
 		return messageHandler;
 	}
+	
+	/**
+	 * Calculates most right position for current tree only
+	 * if position wasn't calculated before. 
+	 */
+	protected void calculateMostRightPosition()
+	{
+	    if (auxiliary == true && getChildCount() > 0)
+        {
+            mostRightPosition = 
+                    getChild(getChildCount() - 1).getMostRightPosition();
+            return;
+        }
+
+        CommonToken token = getToken();
+        assert (token != null);
+
+        mostRightPosition = token.getStartIndex() 
+                + token.getText().length() - 1;
+
+        for (HaxeTree commonTree : getChildren())
+        {
+            mostRightPosition = Math.max(
+                    mostRightPosition, 
+                    commonTree.getMostRightPosition());
+        }
+	}
 
 	/**
 	 * Gets the most left position.
@@ -107,19 +122,19 @@ public class HaxeTree extends CommonTree {
 	 * @return the most left position
 	 */
 	public int getMostLeftPosition() {
-		if (this.auxiliary == true) {
-			if (this.mostLeftPosition == -1 && this.getChildCount() > 0) {
-				this.mostLeftPosition = this.getChild(0).getMostLeftPosition();
+		if (isAuxiliary()) {
+			if (mostLeftPosition == -1 && getChildCount() > 0) {
+				mostLeftPosition = getChild(0).getMostLeftPosition();
 			}
-			return this.mostLeftPosition;
+			return mostLeftPosition;
 		} else {
-			if (this.mostLeftPosition == -1) {
-				this.mostLeftPosition = this.getToken().getStartIndex();
-				if (this.getChildCount() > 0) {
+			if (mostLeftPosition == -1) {
+				mostLeftPosition = getToken().getStartIndex();
+				if (getChildCount() > 0) {
 					for (HaxeTree commonTree : this.getChildren()) {
-						if (this.mostLeftPosition > commonTree
+						if (mostLeftPosition > commonTree
 								.getMostLeftPosition()) {
-							this.mostLeftPosition = commonTree
+							mostLeftPosition = commonTree
 									.getMostLeftPosition();
 						}
 					}
@@ -130,59 +145,17 @@ public class HaxeTree extends CommonTree {
 	}
 
 	/**
-	 * Sets the most left position.
-	 * 
-	 * @param mostLeftPosition
-	 *            the new most left position
-	 */
-	public void setMostLeftPosition(final int mostLeftPosition) {
-		this.mostLeftPosition = mostLeftPosition;
-	}
-
-	/**
-	 * Gets the most right position.
-	 * Overidden for some nodes
-	 * 
 	 * @return the most right position
 	 */
-	public int getMostRightPosition() {
-		if (this.auxiliary == true) {
-			if (this.mostRightPosition == -1 && this.getChildCount() > 0) {
-				this.mostRightPosition = this
-						.getChild(this.getChildCount() - 1)
-						.getMostRightPosition();
-			}
-			return this.mostRightPosition;
-		} else {
-			if (this.mostRightPosition == -1) {
-				assert(this.getToken() != null);
-
-				this.mostRightPosition = this.getToken().getStartIndex()
-						+ this.getToken().getText().length()-1;
-				if (this.getChildCount() > 0) {
-					for (HaxeTree commonTree : this.getChildren()) {
-						if (this.mostRightPosition < commonTree
-								.getMostRightPosition()) {
-							this.mostRightPosition = commonTree
-									.getMostRightPosition();
-						}
-					}
-				}
-			}
-
-			return this.mostRightPosition;
-		}
-	}
-
-	/**
-	 * Sets the most right position.
-	 * 
-	 * @param mostRightPosition
-	 *            the new most right position
-	 */
-	public void setMostRightPosition(final int mostRightPosition) {
-		this.mostRightPosition = mostRightPosition;
-	}
+    public final int getMostRightPosition()
+    {
+        if (mostRightPosition == -1)
+        {
+            calculateMostRightPosition();
+        }        
+        
+        return mostRightPosition;
+    }
 
 	/**
 	 * Instantiates a new extended common tree.
@@ -200,60 +173,47 @@ public class HaxeTree extends CommonTree {
 
 	public HaxeTree(final int ttype, final Token t,
 			final boolean auxiliary) {
-		this.token = t;
-		this.auxiliary = auxiliary;
+	    this(t);
+	    setAuxiliary(auxiliary);
 	}
 
 	public HaxeTree(final int ttype, final String type,
 			final boolean auxiliary) {
-		this.token = new CommonToken(ttype, type);
-		this.auxiliary = auxiliary;
+	    this(ttype, new CommonToken(ttype, type), auxiliary);
 	}
 
 	public HaxeTree(final int ttype, final boolean auxiliary) {
-		this.token = new CommonToken(ttype);
-		this.auxiliary = auxiliary;
+	    this(ttype, new CommonToken(ttype), auxiliary);
 	}
 
 	public HaxeTree(final int ttype) {
-		this.token = new CommonToken(ttype);
+	    this(ttype, false);
 	}
 
 	/**
-	 * Printing error messages in eclipse's text editor (as red circles at the
+	 * Printing error messages in eclipse's text editor (red circles at the
 	 * left).
-	 * 
-	 * @param message
-	 *            the message
-	 * @param offset
-	 *            the offset
-	 * @param length
-	 *            the length
-	 */
-	public void commitError(final String message, final int offset,
-			final int length) {
-		messageHandler.handleSimpleMessage(message, offset,
-				offset + length - 1, 0, 0, 0, 0);
-	}
-	
+	 */	
 	public void commitError(final String message) {
-		messageHandler.handleSimpleMessage(message, 
-				this.getMostLeftPosition(), this.getMostRightPosition(),
-				0, 0, 0, 0);
+	    messageHandler.handleSimpleMessage(
+	            message, 
+	            getMostLeftPosition(), 
+	            getMostRightPosition()
+	            , 0, 0, 0, 0);
 	}
 	
 	private void commitCastError(){
-		this.commitError(this.getText() + ": cast problems");
+		commitError(getText() + ": cast problems");
 	}
 
 	protected DeclaredVarsTable declaredVars;
 	public DeclaredVarsTable getDeclaredVars() {
-		return this.declaredVars;
+		return declaredVars;
 	}
 
 	/**
-	 * Creates Declared Vars table and run the 
-	 * recursive procedure to fill it with declarations of 
+	 * Creates Declared Vars table and fills 
+	 * it with declarations of 
 	 * classes,
 	 * enums.
 	 * As they are the most high instances which may be in
@@ -262,15 +222,12 @@ public class HaxeTree extends CommonTree {
 	public void calculateScope() {
 		declaredVars = new DeclaredVarsTable();
 
-		if (this.getChildCount() > 0) {
-			for (HaxeTree tree : this.getChildren()) {
-				if (tree instanceof ClassNode ||
-					tree instanceof EnumNode)
-					declaredVars.addAll(tree.calculateScopes()); 
-			}
+		for (HaxeTree tree : getChildren()) {
+			if (tree instanceof ClassNode ||
+				tree instanceof EnumNode)
+				declaredVars.addAll(tree.calculateScopes()); 
 		}
 	}
-	
 	
 	/**
 	 * According to the node type, makes the Declaration Vars
@@ -298,14 +255,15 @@ public class HaxeTree extends CommonTree {
 	//TODO complete for other nodes - 
 	public void accept(final HaxeModelVisitor visitor) {
 		try {
-			if (this.token != null) {
-				if (this.token.getType() == MODULE_TYPE) {
-					visitor.visit(this);
-					for (VarDeclaration child : this.getDeclaredVars().getDeclaredVars()) {
-						child.accept(visitor);
-					}
-					visitor.endVisit(this);
-			} }
+			if (token == null || token.getType() != MODULE_TYPE) 
+			{
+			    return;
+			}
+			visitor.visit(this);
+			for (VarDeclaration child : this.getDeclaredVars().getDeclaredVars()) {
+				child.accept(visitor);
+			}
+			visitor.endVisit(this);
 		} catch (NullPointerException nullPointerException) {
 			System.out.println(
 					"Exception caught from invocation of language-specific tree model builder implementation");
@@ -357,47 +315,6 @@ public class HaxeTree extends CommonTree {
 			System.out
 					.println("Exception caught from invocation of language-specific tree model builder implementation");
 			nullPointerException.printStackTrace();
-		}
-	}
-	
-	/**
-	 * The Pair Class.
-	 * @author Anatoly Kondratyev
-	 */
-	public class Pair {
-
-		private int begin = -1;
-		private int end = -1;
-
-
-		public int getBegin() {
-			return this.begin;
-		}
-
-		public void setBegin(final int begin) {
-			this.begin = begin;
-		}
-
-		public int getEnd() {
-			return this.end;
-		}
-
-		public void setEnd(final int end) {
-			this.end = end;
-		}
-
-		public Pair(final int begin, final int end) {
-			super();
-			this.begin = begin;
-			this.end = end;
-		}
-
-		public Pair() {
-			super();
-		}
-
-		public boolean surrounds(final int value) {
-			return (this.begin <= value && this.end > value) ? true : false;
 		}
 	}
 
@@ -540,56 +457,58 @@ public class HaxeTree extends CommonTree {
 	 *            the usage node
 	 * @return the declaration node
 	 */
-	public HaxeTree getDeclarationNode(
-			final HaxeTree usageNode) {
+	public HaxeTree getDeclarationNode(final HaxeTree usageNode) 
+	{
 		HaxeTree parent = (HaxeTree) this.getParent();
-		if (parent != null) {
-			if (this.isVarDeclaration(usageNode) ||
-				this.isClassDeclaration(usageNode)){
-				return this;
-			} else
-				if (this instanceof EnumNode){
-					if (this.isEnumDeclaration(usageNode))
-						return this;
-					else{
-						if (!((EnumNode) this).getAllMembers().isEmpty()) {
-							HaxeTree declaration = usageNode.isDeclaredIn(
-									((EnumNode) this).getAllMembers());
-							if (declaration != null) return declaration;
-						}
-					}
-				}			
-			else 
-				if (this instanceof FunctionNode){
-					if (this.isFuncDeclaration(usageNode))
-						return this;
-					else {
-						HaxeTree params = ((FunctionNode) this).getParamListNode();
-						if (params != null) {
-							HaxeTree declaration = usageNode.isDeclaredIn(params
-									.getChildren());
-							if (declaration != null) return declaration;
-						}
-					}
-			}
-//TODO:think about INSTANCES later ------------>however seems to work well
-			int index = parent.getChildren().indexOf(this);
-			if (index > 0) {
-				return (parent.getChild(index - 1)).getDeclarationNode(usageNode);
-			} else {
-				if (parent instanceof BlockScopeNode) {
-					if (parent.getParent() instanceof ClassNode) {
-						HaxeTree declaration = usageNode.isDeclaredIn((parent).getChildren());
-						if (declaration != null) {
-							return declaration;
-						}
+		
+		if (parent == null) 
+		{
+		    return new HaxeTree(0);
+		}
+		
+		if (this.isVarDeclaration(usageNode) ||
+			this.isClassDeclaration(usageNode)){
+			return this;
+		} else
+			if (this instanceof EnumNode){
+				if (this.isEnumDeclaration(usageNode))
+					return this;
+				else{
+					if (!((EnumNode) this).getAllMembers().isEmpty()) {
+						HaxeTree declaration = usageNode.isDeclaredIn(
+								((EnumNode) this).getAllMembers());
+						if (declaration != null) return declaration;
 					}
 				}
-				return parent.getDeclarationNode(usageNode);
-			}
-		} else {
-			return new HaxeTree(0);
+			}			
+		else 
+			if (this instanceof FunctionNode){
+				if (this.isFuncDeclaration(usageNode))
+					return this;
+				else {
+					HaxeTree params = ((FunctionNode) this).getParamListNode();
+					if (params != null) {
+						HaxeTree declaration = usageNode.isDeclaredIn(params
+								.getChildren());
+						if (declaration != null) return declaration;
+					}
+				}
 		}
+//TODO:think about INSTANCES later ------------>however seems to work well
+		int index = parent.getChildren().indexOf(this);
+		if (index > 0) {
+			return (parent.getChild(index - 1)).getDeclarationNode(usageNode);
+		} else {
+			if (parent instanceof BlockScopeNode) {
+				if (parent.getParent() instanceof ClassNode) {
+					HaxeTree declaration = usageNode.isDeclaredIn((parent).getChildren());
+					if (declaration != null) {
+						return declaration;
+					}
+				}
+			}
+			return parent.getDeclarationNode(usageNode);
+		}	
 	}
 
 	/**
@@ -677,26 +596,7 @@ public class HaxeTree extends CommonTree {
 		}
 		return childs;
 	}
-
-	/**
-	 * Gets the available vars.
-	 * 
-	 * @return the available vars
-	 */
-	/*@SuppressWarnings("unchecked")
-	public ArrayList<HaxeTree> getAvailableVars() {
-		if (this instanceof BlockScopeNode) {
-			ArrayList arrayList = ((BlockScopeNode) this).getDeclaredVars();
-			return arrayList;
-		} else {
-			if (this.getParent() != null) {
-				return ((HaxeTree) this.getParent())
-						.getAvailableVars();
-			} else {
-				return new ArrayList<HaxeTree>();
-			}
-		}
-	}
+	
 /*
 	private class ComparatorByLines implements Comparator<CommonTree> {
 
@@ -736,80 +636,16 @@ public class HaxeTree extends CommonTree {
 		return res;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.BaseTree#getChild(int)
-	 */
 	@Override
 	public HaxeTree getChild(final int i) {
 		// TODO Auto-generated method stub
 		return (HaxeTree) super.getChild(i);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.CommonTree#getToken()
-	 */
 	@Override
 	public CommonToken getToken() {
 		// TODO Auto-generated method stub
 		return (CommonToken) super.getToken();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.CommonTree#toString()
-	 
-	@Override
-	public String toString() {
-		int startOffset = this.getMostLeftPosition();
-		int endOffset = this.getMostRightPosition();
-		return super.toString() + "(" + this.auxiliary + ") " + startOffset
-				+ "-" + endOffset;
-
-		// return "intValue haxe.primaryTypes.Int";
-	}*/
-
-	/**
-	 * Prints full tree into console.
-	 */
-	public void printTree() {
-		declaredVars.print();
-		this.printTree(this, 0);
-	}
-
-	/**
-	 * Prints the tree.
-	 * 
-	 * @param t
-	 *            the t
-	 * @param indent
-	 *            the indent
-	 */
-	public void printTree(final HaxeTree t, final int indent) {
-		if (t != null) {
-			StringBuffer sb = new StringBuffer(indent);
-			for (int i = 0; i < indent; i++) {
-				sb = sb.append("   ");
-			}
-			for (int i = 0; i < t.getChildCount(); i++) {
-					System.out.print(sb.toString());
-				if (t.getChild(i) instanceof AssignOperationNode ||
-					t.getChild(i) instanceof VarUsageNode ||
-					t.getChild(i) instanceof ConstantNode ||
-					t.getChild(i) instanceof ReturnNode)
-					t.getChild(i).printTree();
-				else
-				if (t.getChild(i) instanceof BlockScopeNode){
-					System.out.println("Block scope "+ t.getText());
-				}else
-					System.out.println(t.getChild(i).getText());
-				this.printTree(t.getChild(i), indent + 1);
-			}
-		}
 	}
 	
 	public boolean setHaxeType(HaxeType type){

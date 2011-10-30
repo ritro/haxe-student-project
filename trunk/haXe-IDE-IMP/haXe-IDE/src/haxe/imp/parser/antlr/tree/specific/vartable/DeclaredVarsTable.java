@@ -114,7 +114,6 @@ public class DeclaredVarsTable {
             return;
         }
         //we can't commit error - decl may be earlier
-        //element.commitUndeclaredError();
         add(element);
     }
     
@@ -170,18 +169,61 @@ public class DeclaredVarsTable {
 
     /**
      * Adds declaration to the list without any check.
-     * @param any declaration
+     * @param declaredVar - any declaration
      */
     public void add(final VarDeclaration declaredVar)
     {
+        if (declaredVar instanceof FunctionDeclaration)
+        {
+            add((FunctionDeclaration)declaredVar);
+            return;
+        }
+        
+        if (declaredVar instanceof VarUse)
+        {
+            add((VarUse) declaredVar);
+            return;
+        }
+        
+        //else just add
         declaredVars.add(declaredVar);
+    }
+
+    /**
+     * Adds all declarations from Argument list to
+     * the current table.
+     * @param vars - declaration table.
+     * @return True if adding was successful.
+     */
+    public boolean addAll(ArrayList<VarDeclaration> vars) {
+        if (vars == null || vars.isEmpty())
+        {
+            return false;
+        }
+        
+        return declaredVars.addAll(vars);
+    }
+
+    /**
+     * Adds all declarations from Argument table to
+     * the current table.
+     * @param Declaration table.
+     * @return True if adding was successful.
+     */
+    public boolean addAll(DeclaredVarsTable vars) {
+        if (vars.getDeclaredVars().isEmpty())
+        {
+            return false;
+        }
+
+        return addAll(vars.getDeclaredVars());
     }
 
     /**
      * Adds declaration to the list without any check.
      * @param function declaration
      */
-    public void add(final FunctionDeclaration declaredVar)
+    private void add(final FunctionDeclaration declaredVar)
     {
         declaredVars.add(declaredVar);
     }
@@ -190,23 +232,9 @@ public class DeclaredVarsTable {
      * Adds declaration to the list without any check.
      * @param variable usage
      */
-    public void add(final VarUse declaredVar)
+    private void add(final VarUse declaredVar)
     {
         declaredVars.add(declaredVar);
-    }
-
-    public boolean addAll(ArrayList<VarDeclaration> vars) {
-        if (vars != null && !vars.isEmpty())
-            return declaredVars.addAll(vars);
-        else
-            return false;
-    }
-
-    public boolean addAll(DeclaredVarsTable vars) {
-        if (!vars.getDeclaredVars().isEmpty())
-            return declaredVars.addAll(vars.getDeclaredVars());
-        else
-            return false;
     }
     
     private void increaseVarNumber(int onHow, int fromNumber, String varName)
@@ -391,10 +419,5 @@ public class DeclaredVarsTable {
             }
         }
         return HaxeType.haxeUndefined;
-    }
-
-    public void print() {
-        for (VarDeclaration x : declaredVars)
-            x.printTree();
     }
 }

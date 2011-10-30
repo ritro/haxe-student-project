@@ -16,7 +16,7 @@ import org.antlr.runtime.CommonToken;
 
 public class FunctionDeclaration extends VarDeclaration {
 	
-	private VarDeclaration returnNode = null; //MB varUseNode??
+	private VarDeclaration returnNode = null;
 
 	public VarDeclaration getReturnNode() {
 		return returnNode;
@@ -26,8 +26,14 @@ public class FunctionDeclaration extends VarDeclaration {
 		returnNode = node;
 	}
 	
-	public FunctionDeclaration(CommonToken token,int varNumber) {
-		super(token,varNumber);
+	/**
+	 * Creates new instance of Function Declaration with
+	 * default variable number 0.
+	 * @param functionToken - contains info about function name and
+	 * position in the original text.
+	 */
+	public FunctionDeclaration(CommonToken functionToken) {
+		super(functionToken);
 		declType = VarType.FunctionDeclaration;
 	}
 	
@@ -36,20 +42,13 @@ public class FunctionDeclaration extends VarDeclaration {
 		return "function " + this.getText() + "() : " + this.getHaxeType().getTypeName();
 	}
 	
+	/**
+	 * If function should return some value but there is no return
+	 * statement in the original text, this error should be
+	 * committed.
+	 */
 	public void commitNullReturnError(){
-		this.commitError(this.getText() + " should return value.");
-	}
-	
-	@Override
-	public void printTree(){
-		System.out.print("FunDecl " + getText() + ", type: "+ getHaxeType().getTypeName() + 
-                ", Num: " + getVarNumber());
-		if (returnNode != null){
-			System.out.print(" return: ");
-			returnNode.printTree();
-		} else {
-			System.out.println();
-		}
+		commitError(getText() + " should return value.");
 	}
 	
 	/**

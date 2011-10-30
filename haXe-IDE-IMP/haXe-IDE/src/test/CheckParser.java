@@ -98,7 +98,7 @@ public class CheckParser {
 
 	@Test
 	public void testWhileStatement() throws RecognitionException {
-		parseStatement("testWhile01").printTree();
+		//parseStatement("testWhile01").printTree();
 		assertTreeSize(2, parseStatement("testWhile01"));
 		assertTreeSize(2, parseStatement("testWhile02"));
 	}

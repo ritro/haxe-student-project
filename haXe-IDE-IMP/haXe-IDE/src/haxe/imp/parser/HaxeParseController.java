@@ -14,6 +14,7 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
+import haxe.imp.parser.antlr.tree.HaxeTreePrinter;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
 import haxe_ide.Activator;
@@ -256,7 +257,7 @@ public class HaxeParseController implements IParseController {
     public Object parse(final String input, final IProgressMonitor monitor) {
         this.currentAST = null;
         this.doParse(input);
-        this.currentAST.printTree();
+        HaxeTreePrinter.printTree(currentAST);
         return this.currentAST;
     }
 

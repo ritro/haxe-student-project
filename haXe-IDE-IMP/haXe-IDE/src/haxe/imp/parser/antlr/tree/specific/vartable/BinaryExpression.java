@@ -28,13 +28,20 @@ public class BinaryExpression extends VarDeclaration
         this.leftOperand = leftOperand;
         this.rigtOperand = rightOperand;
         this.operator = operator;
-    }    
-
-    @Override
-    public void printTree()
+    }
+    
+    public VarDeclaration getLeftOperand()
     {
-        leftOperand.printTree();
-        System.out.println("      " + operator.toString());
-        rigtOperand.printTree();
+        return leftOperand;
+    }
+    
+    public VarDeclaration getRightOperand()
+    {
+        return rigtOperand;
+    }
+    
+    public OperatorClasses getOperatorType()
+    {
+        return operator;
     }
 }

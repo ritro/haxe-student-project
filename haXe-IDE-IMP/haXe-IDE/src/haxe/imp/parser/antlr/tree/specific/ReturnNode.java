@@ -48,11 +48,6 @@ public class ReturnNode extends HaxeTree {
 			return this.getChild(0).getHaxeType();
 		else return HaxeType.haxeVoid;
 	}
-	
-	@Override
-	public void printTree(){
-		System.out.println("Return"+ "{"+getHaxeType().getTypeName()+'}');
-	}
 
 	/**
 	 * Instantiates a new var usage.

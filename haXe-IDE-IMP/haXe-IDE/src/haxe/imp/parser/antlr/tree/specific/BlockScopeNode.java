@@ -22,6 +22,7 @@ import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
+import org.eclipse.jdt.internal.compiler.lookup.MostSpecificExceptionMethodBinding;
 
 /**
  * Blocks can execute several expressions.
@@ -33,8 +34,8 @@ import org.antlr.runtime.Token;
  */
 public class BlockScopeNode extends HaxeTree {
 
-	private int lBracketPosition;
-	private int rBracketPosition;
+	private int lBracketPosition = -1;
+	private int rBracketPosition = -1;
 
 	/**
 	 * Gets the l bracket position.
@@ -44,6 +45,25 @@ public class BlockScopeNode extends HaxeTree {
 	public int getlBracketPosition() {
 		return this.lBracketPosition;
 	}
+	
+	private void calculateRightBracketPosition()
+	{
+	    if (getChildCount() == 0) 
+	    {
+	        return;
+	    }
+	    
+        HaxeTree lastchild = getChildren().get(getChildCount()-1);
+        if (lastchild.getType() == HaxeParser.RBRACE) 
+        {
+            rBracketPosition = 
+                    lastchild.getToken().getStopIndex();
+        } else {
+            // no right brace - return something
+            rBracketPosition = 
+                    lastchild.getMostRightPosition();
+        }
+	}
 
 	/**
 	 * Gets the r bracket position.
@@ -51,18 +71,12 @@ public class BlockScopeNode extends HaxeTree {
 	 * @return the r bracket position
 	 */
 	public int getrBracketPosition() {
-		if (this.getChildCount() > 0) {
-			//return this.rBracketPosition;
-			HaxeTree lastchild = getChildren().get(getChildCount()-1);
-			if (lastchild.getType() == HaxeParser.RBRACE) {
-				return lastchild.getToken().getStopIndex();
-			} else {
-				// no right brace - return something
-				return lastchild.getMostRightPosition();
-			}
-		} else {
-			return this.lBracketPosition;
+		if (rBracketPosition == -1)
+		{
+		    calculateRightBracketPosition();
 		}
+		
+		return rBracketPosition;
 	}
 
 	/**
@@ -77,12 +91,13 @@ public class BlockScopeNode extends HaxeTree {
 	
 	@Override
 	public int getMostLeftPosition() {
-		return this.getlBracketPosition();
+		return getlBracketPosition();
 	}
 	
 	@Override
-	public int getMostRightPosition() {
-		return this.getrBracketPosition();
+	protected void calculateMostRightPosition()
+	{
+	    mostRightPosition = getrBracketPosition();
 	}
 	
 	/**
@@ -99,100 +114,110 @@ public class BlockScopeNode extends HaxeTree {
 	public BlockScopeNode(final int blockScope, final String string,
 			final boolean b, final Token lBracket) {
 		super(blockScope, string, b);
-		this.lBracketPosition = ((CommonToken) lBracket).getStartIndex();
+		lBracketPosition = ((CommonToken) lBracket).getStartIndex();
 	}
 	
-	private boolean ifParentIsClass(){
-		HaxeTree parent = this.getParent();
-		
-		while (parent != null){
-			if (parent instanceof ClassNode)
-				return true;
-			else if (parent instanceof FunctionNode ||
-					 parent instanceof EnumNode)
-				return false;
-			else
-				parent = parent.getParent();
-		}
-		
-		return false;
-	}
-	
-	private boolean ifParentIsFunction(){
-		HaxeTree parent = this.getParent();
-		
-		while (parent != null){
-			if (parent instanceof FunctionNode)
-				return true;
-			else if (parent instanceof ClassNode ||
-					 parent instanceof EnumNode)
-				return false;
-			else
-				parent = parent.getParent();
-		}
-		
-		return false;
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see haxe.imp.parser.antlr.tree.HaxeTree#calculateScopes()
-	 * Checks met vars and according to the type calculates scopes
-	 * for them or just insert into vars table.
+	/**
+	 * We can have Variable Declarations with defined type, 
+	 * function declarations. TODO what else?
+	 * @return Variable table for class.
 	 */
-	@Override
-	public DeclaredVarsTable calculateScopes()
+	public DeclaredVarsTable calculateClassScope()
 	{
-		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-		VarDeclarationFactory declaFactory = new VarDeclarationFactory();
-
-		for (HaxeTree tree : this.getChildren()) 
-		{
-			if (tree instanceof ClassNode)
-			{
-			    ClassDeclaration scdn = new ClassDeclaration(this.getToken(), 0);
-			    scdn.addAllToDeclaredVars(tree.calculateScopes());
-			    
-				declaredVars.tryAdd(scdn);
-			}
-			else if (tree instanceof FunctionNode)
-			{
-				FunctionDeclaration functionDeclaration = 
-				        declaFactory.createFunctionDeclaration((FunctionNode)tree);
-				declaredVars.tryAdd(functionDeclaration);
-				declaredVars.addWithIncrease(tree.calculateScopes());
-			}
-			else if (tree instanceof VarDeclarationNode)
-			{
-				VarDeclarationNode node = (VarDeclarationNode)tree;
-				
-				VarDeclaration varDeclaration = 
-				        declaFactory.createVarDeclaration(node, ifParentIsClass());
-				//during declaration there could be an assignment for var
-				VarUse varUse = 
-				        declaFactory.createVarUse(node, varDeclaration);
-				
-				declaredVars.tryAdd(varDeclaration);
-				if (varUse != null)
-				{
-				    declaredVars.tryAdd(varUse);
-				}
-			}
-			else if (tree instanceof VarUsageNode)
-			{
-				VarUse vun = 
-				        declaFactory.createVarUse(tree);
-				declaredVars.tryAdd(vun);
-			}
-			else if (tree instanceof AssignOperationNode)
-			{
-				VarUse varWithAssignment = 
-				        declaFactory.createVarUse((AssignOperationNode)tree);
-				declaredVars.tryAdd(varWithAssignment);
-			}
-		}
-		
-		return declaredVars;
+	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
+	    
+	    for (HaxeTree tree : getChildren()) 
+        {
+	        if (tree instanceof FunctionNode)
+            {
+                FunctionDeclaration functionDeclaration = 
+                        VarDeclarationFactory.createFunctionDeclaration((FunctionNode)tree);
+                declaredVars.tryAdd(functionDeclaration);
+                declaredVars.addWithIncrease(tree.calculateScopes());
+            }
+	        else if (tree instanceof VarDeclarationNode)
+            {
+                VarDeclarationNode node = (VarDeclarationNode)tree;
+                
+                VarDeclaration varDeclaration = 
+                        VarDeclarationFactory.createClassVarDeclaration(node);
+                //during declaration there could be an assignment for var
+                VarUse varUse = 
+                        VarDeclarationFactory.createVarUse(node);
+                
+                declaredVars.tryAdd(varDeclaration);
+                if (varUse != null)
+                {
+                    declaredVars.tryAdd(varUse);
+                }
+            }
+            else if (tree.getType() == HaxeParser.RBRACE)
+            {
+                //right braces were added separately as IMP
+                //wasn't counting them as meaningful chars
+                continue;
+            }
+	        else
+	        {
+	            tree.commitError("Not supposed be here. (?)");
+	        }
+        }
+	    
+	    return declaredVars;
+	}
+	
+	/**
+	 * We can meet Var Declarations, Var Usages,
+	 * TODO - if, while, for scopes,
+	 * assignments (local functions also assignments).
+	 * @return
+	 */
+	public DeclaredVarsTable calculateFunctionScope()
+	{
+	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
+	    for (HaxeTree tree : getChildren()) 
+        {
+            if (tree instanceof VarDeclarationNode)
+            {
+                VarDeclarationNode node = (VarDeclarationNode)tree;
+                
+                VarDeclaration varDeclaration = 
+                        VarDeclarationFactory.createFunctionVarDeclaration(node);
+                //during declaration there could be an assignment for var
+                VarUse varUse = 
+                        VarDeclarationFactory.createVarUse(node);
+                
+                declaredVars.tryAdd(varDeclaration);
+                if (varUse != null)
+                {
+                    declaredVars.tryAdd(varUse);
+                }
+            }
+            else if (tree instanceof VarUsageNode)
+            {
+                VarUse vun = 
+                        VarDeclarationFactory.createVarUse(tree);
+                declaredVars.tryAdd(vun);
+            }
+            else if (tree instanceof AssignOperationNode)
+            {
+                VarUse varWithAssignment = 
+                        VarDeclarationFactory.createVarUse((AssignOperationNode)tree);
+                declaredVars.tryAdd(varWithAssignment);
+            }
+            else if (tree.getType() == HaxeParser.RBRACE)
+            {
+                //right braces were added separately as IMP
+                //wasn't counting them as meaningful chars
+                continue;
+            }
+            else
+            {
+                tree.commitError("Not supposed be here. (?)");
+            }
+        }
+	    
+	    return declaredVars;
 	}
 
 }

@@ -29,12 +29,6 @@ public class ConstantNode extends HaxeTree {
 	public HaxeType getHaxeType() {
 		return this.haxeType;
 	}
-	
-	@Override
-	public void printTree(){
-		System.out.println("Const"+"(name="+this.getText() +")"
-				+"{"+getHaxeType().getTypeName()+'}');
-	}
 
 	/**
 	 * Instantiates a new var usage.

@@ -9,20 +9,26 @@ import org.antlr.runtime.CommonToken;
 
 public class VarDeclaration extends HaxeTree
 {
+    
+    public enum Modifiers
+    {
+        staticDeclaration,
+        commonDeclaration
+    }
 
     public enum VarType
     {
-        ClassDeclaration,//Class
-        ClassVarDeclaration,//Class var (cant set type)
-        FunctionDeclaration,//fun decl
-        FunctionParameter, //fun parameter
-        VarDeclaration,//function and else decl
-        VarUsage
+        ClassDeclaration,       // Class
+        ClassVarDeclaration,    // Class var (cant set type)
+        FunctionDeclaration,    // function
+        FunctionParameter,  // function parameter
+        VarDeclaration,     // other then classes var declarations
+        VarUsage            // usages, assignes of vars
     };
 
-    private HaxeType haxeType  = HaxeType.haxeUndefined;
-    protected VarType  declType  = VarType.VarDeclaration;
-    private int      varNumber = 0;
+    private HaxeType  haxeType  = HaxeType.haxeUndefined;
+    protected VarType declType  = VarType.VarDeclaration;
+    private int       varNumber = 0;
 
     public VarType getDeclType()
     {
@@ -74,21 +80,21 @@ public class VarDeclaration extends HaxeTree
     @Override
     public boolean setHaxeType(final HaxeType varType)
     {
-        this.haxeType = varType;
+        haxeType = varType;
         return true;
     }
 
     public String getNameWithType()
     {
-        return this.getText() + " : " + this.getHaxeType().getTypeName();
+        return getText() + " : " + this.getHaxeType().getTypeName();
     }
 
     /**
      * Creates var declaration with custom variable number.
      * 
      * @param token
-     * @param Variable
-     * number which will show that this declaration
+     * @param Variable number 
+     * which will show that this declaration
      * is not the first for variable with such name.
      */
     public VarDeclaration(CommonToken token, int varNumber) {
@@ -97,8 +103,7 @@ public class VarDeclaration extends HaxeTree
     }
 
     /**
-     * Creates Var Declaration with default. Default variable number
-     * will be 0.
+     * Creates Var Declaration with default variable number 0.
      * 
      * @param token
      */
@@ -107,16 +112,23 @@ public class VarDeclaration extends HaxeTree
         super(token);
     }
 
-    public VarDeclaration(VarDeclarationNode vd, int varNumber) {
+    /**
+     * Creates Var Declaration from Declaration Node
+     * with default variable number 0.
+     * 
+     * @param token
+     */
+    public VarDeclaration(VarDeclarationNode vd) 
+    {
         super(vd.getVarNameNode().getToken());
-        setVarNumber(varNumber);
+        setVarNumber(0);
         try
         {
             for (HaxeTree tree : this.getChildren())
             {
                 if (tree.getToken().getType() == TYPE_TAG_TYPE)
                 {
-                    this.setHaxeType(
+                    setHaxeType(
                             (HaxeType.tryGetPrimaryType(tree.getChild(0)
                                     .getText()) != null) ?
                                     HaxeType.tryGetPrimaryType(tree.getChild(0)
@@ -145,32 +157,34 @@ public class VarDeclaration extends HaxeTree
         this.declType = type;
     }
 
+    /**
+     * Class var declaration should have type.
+     */
     public void commitClassUndefinedTypeError()
     {
         this.commitError("Class var declaration should have type.");
     }
     
+    /**
+     * Var is already declared.
+     */
     public void commitVarAlreadyDeclaredTypeError()
     {
         this.commitError("Var is already declared");
     }
 
+    /**
+     * Returned value doesn't match function value.
+     */
     public void commitIncorrectReturnTypeError()
     {
         this.commitError("Returned value doesn't match function value.");
     }
 
+    @Override
     public boolean ifUndefinedType()
     {
-        return this.getHaxeType().equals(HaxeType.haxeUndefined);
-    }
-
-    @Override
-    public void printTree()
-    {
-        System.out.println("DeclNode: " + getText() + ", type: "
-                + getHaxeType().getTypeName() +
-                ", Num: " + this.getVarNumber());
+        return haxeType.equals(HaxeType.haxeUndefined);
     }
 
     /**

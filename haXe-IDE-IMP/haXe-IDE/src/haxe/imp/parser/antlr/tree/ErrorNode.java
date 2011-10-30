@@ -59,7 +59,8 @@ public class ErrorNode extends HaxeTree {
 	}
 	
 	@Override
-	public int getMostRightPosition() {
-		return ((CommonToken)delegate.stop).getStopIndex();
+	protected void calculateMostRightPosition() 
+	{
+		mostRightPosition = ((CommonToken)delegate.stop).getStopIndex();
 	}
 }

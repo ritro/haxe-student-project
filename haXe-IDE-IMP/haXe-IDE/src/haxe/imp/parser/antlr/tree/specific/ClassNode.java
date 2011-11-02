@@ -118,7 +118,8 @@ public class ClassNode extends HaxeTree {
 	}
 
 	@Override
-	public DeclaredVarsTable calculateScopes() {
+	public DeclaredVarsTable calculateScopes() 
+	{
 	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 
 	    BlockScopeNode blockScope = getBlockScope();

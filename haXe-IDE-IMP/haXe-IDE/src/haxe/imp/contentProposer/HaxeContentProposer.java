@@ -77,7 +77,7 @@ public class HaxeContentProposer implements IContentProposer {
 			}
 		}
 		ArrayList<VarDeclaration> availableVars = this.filterVars(
-				sourceNode.getDeclaredVars().getDeclaredVars(), sourceString);
+				sourceNode.getDeclaredVars(), sourceString);
 		return this.createSourceProposals(availableVars, sourceString, offset);
 	}
 

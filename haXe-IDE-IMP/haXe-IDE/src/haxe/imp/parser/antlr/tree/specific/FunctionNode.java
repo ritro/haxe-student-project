@@ -144,7 +144,7 @@ public class FunctionNode extends HaxeTree {
 		}
 		
 		if (getBlockScope() != null) {
-		    declaredVars.addWithIncrease(getBlockScope().calculateFunctionScope());
+		    declaredVars.addAll(getBlockScope().calculateFunctionScope());
 		}
 		
 		return declaredVars;

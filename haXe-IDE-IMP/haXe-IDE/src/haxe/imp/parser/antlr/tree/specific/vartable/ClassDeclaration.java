@@ -3,8 +3,14 @@ package haxe.imp.parser.antlr.tree.specific.vartable;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import org.antlr.runtime.CommonToken;
+import org.eclipse.jdt.internal.core.CommitWorkingCopyOperation;
 
-public class ClassDeclaration extends VarDeclaration {
+public class ClassDeclaration extends VarDeclaration 
+{
+    public ClassDeclaration(CommonToken token)
+    {
+        super(token);
+    }
 	
 	/**
 	 * Replaces the content's of classes Var Table with
@@ -46,7 +52,7 @@ public class ClassDeclaration extends VarDeclaration {
 	@Override
 	public void accept(final HaxeModelVisitor visitor){
 		visitor.visit(this);
-		for (VarDeclaration x: declaredVars.getDeclaredVars())
+		for (VarDeclaration x: declaredVars)
 			x.accept(visitor);
 		visitor.endVisit(this);
 	}

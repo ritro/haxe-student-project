@@ -16,262 +16,203 @@ import org.antlr.runtime.CommonToken;
  * @author Savenko Maria
  *
  */
-public class DeclaredVarsTable {
-
-    private ArrayList<VarDeclaration> declaredVars = new ArrayList<VarDeclaration>();
-
-    public ArrayList<VarDeclaration> getDeclaredVars()
-    {
-        return declaredVars;
-    }
-
+public class DeclaredVarsTable extends ArrayList<VarDeclaration> 
+{    
     /**
-     * Checks if declaration for var, class or function
-     * already exists in the table.
-     * @param var
-     * @return true if table contains variable
-     */
-    public boolean contains(VarDeclaration var)
-    {
-        for (VarDeclaration tree : declaredVars)
-        {
-            //we look only for declarations
-            if (tree instanceof VarUse)
-            {
-                continue;
-            }
-            if (tree.getToken().equals(var.getToken()))
-                break; // looking for the previous vars with the same text FIXME????
-            if (tree instanceof FunctionDeclaration 
-                    && var.getText().equals(((FunctionDeclaration) tree).getText()) 
-                    // FIXME && parameters equals... ??
-                    && !var.getToken().equals(((FunctionDeclaration) tree).getToken()))
-            {
-                    return true; // another var with the same name
-            }
-            if (!(tree instanceof FunctionDeclaration)
-                    && var.getText().equals(tree.getText())
-                    //&& parameters equals... && blockscope mark equals
-                    && !var.getToken().equals(tree.getToken()))
-            {
-                return true; // another var with the same name
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * If declaration is a function parameter then 
-     * variable number will be increased to determine 
-     * the variable overlay. For over types of declaration
-     * table will be checked if var was already declared
-     * and the Var Already Declared Exception will be 
-     * commited else var will be added to the table.
+     * If local class or function variable was already declared 
+     * and has the same declaration type (Function variable declaration, 
+     * parameter...) then Var Already Declared Exception 
+     * will be committed else declaration will be added to the end of the table.
      * @param Declaration to add to the table.
+     * @return True - if declaration was successfully added.
      */
-    public void tryAdd(VarDeclaration element) 
+    public boolean tryAdd(VarDeclaration element) 
     {
-        int foundVarNumber = findVarNumber(element.getText());
-        if (foundVarNumber == -1)
+        //possible declaration types - function variable decl,
+        //class variable decl, function parameter.
+        VarType declType = element.getDeclType();
+        if (containsDeclaration(element.getText(), declType))
         {
-            add(element);
-            return;
+            element.commitVarAlreadyDeclaredTypeError();
+            return false;
         }
-        if (element.getDeclType() == VarType.FunctionParameter)
+        //maybe declaration with the same name exists but
+        //we can overlay it -> new number needed for the new decl.
+        int foundVarNumber = findLastDeclarationNumber(element.getText());
+        if (foundVarNumber != -1)
         {
-            int newVarNumber = foundVarNumber + 1;
-            element.setVarNumber(newVarNumber);
-            add(element);
-            return;
+            return super.add(element);
         }
-        element.commitVarAlreadyDeclaredTypeError();
+        VarDeclaration declaration = findDeclaredVar(element.getText());
+        if (declaration.getDeclType() == VarType.FunctionParameter
+                && element.declType == VarType.VarDeclaration)
+        {
+            element.commitVarAlreadyDeclaredTypeError();
+            return false;
+        }
+        int newVarNumber = foundVarNumber + 1;
+        element.setVarNumber(newVarNumber);
+        return super.add(element);
     }
     
-    public void tryAdd(ClassDeclaration element) 
+    /**
+     * Will check if Class with the same name was already declared
+     * and in that case will commit the VarAlreadyDeclared
+     * Exception. Else will add declaration to the end of the list.
+     * @param element
+     * @return
+     */
+    public boolean tryAdd(ClassDeclaration element) 
     {
-        int foundVarNumber = findVarNumber(element.getText());
-        if (foundVarNumber == -1)
+        if (containsDeclaration(element.getText(), VarType.ClassDeclaration))
         {
-            add(element);
-            return;
+            element.commitVarAlreadyDeclaredTypeError();
+            return false;
         }
-        element.commitVarAlreadyDeclaredTypeError();
+        return super.add(element);
     }
     
     /**
      * Finds the last declaration for that var and adds var to
-     * table with that declaration var number. If no decl was found
-     * it will be added untouched.
+     * table with that declaration var number. If no declaration 
+     * was found it will be added unchanged due to possibility
+     * of external tables declaration of that variable.
      * @param Variable usage to add to the table.
+     * @return True if adding was successful.
      */
-    public void tryAdd(VarUse element)
+    public boolean tryAdd(VarUse element)
     {
-        int foundVarNumber = findVarNumber(element.getText());
+        //we can't commit error anyway - decl may be earlier
+        int foundVarNumber = findLastDeclarationNumber(element.getText());
         if (foundVarNumber != -1)
         {
             element.setVarNumber(foundVarNumber);
-            add(element);
-            return;
         }
-        //we can't commit error - decl may be earlier
-        add(element);
+        return super.add(element);
     }
     
     /**
-     * Will check if fun was already declared
-     * and the Var Already Declared Exception will be 
-     * commited else fun will be added to the table.
+     * Will check if function with the same name 
+     * was already declared and the Var Already Declared 
+     * Exception will be committed if so. Else will add
+     * declaration to the end of the list. 
      * @param Function declaration to add to the table.
      */
-    public void tryAdd(FunctionDeclaration element)
+    public boolean tryAdd(FunctionDeclaration element)
     {
-        if (contains(element))
+        if (containsDeclaration(element.getText(), VarType.FunctionDeclaration))
         {
             element.commitVarAlreadyDeclaredTypeError();
-            return;
+            return false;
         }
         
-        add(element);
+        return super.add(element);
     }
-    
+     
     /**
-     * Currently used only in adding function scopes
-     * @param table
+     * Adds all declarations from table to the current list
+     * with increasing the declaration number if var with
+     * the same name is declared.
+     * @param table from which variables will be taken.
      */
-    public void addWithIncrease(DeclaredVarsTable table)
+    public boolean addAll(DeclaredVarsTable table)
     {
-        for (VarDeclaration x : table.getDeclaredVars())
+        for (VarDeclaration x : table)
         {
             String varName = x.getText();
             if (x.getDeclType() == VarType.VarUsage)
             {
                 continue;
             }
-            int foundVarNumber = findVarNumber(varName);
+            int foundVarNumber = findLastDeclarationNumber(varName);
             if (foundVarNumber == -1)
             {
                 continue;
             }
-            if (x.getDeclType() == VarType.FunctionParameter)
-            {                
-                table.increaseVarNumber(foundVarNumber + 1,
-                        x.getVarNumber(), varName);
-                continue;
-            }
-            //now we should increase if higher is class and else
-            //delete FIXME
-            table.increaseVarNumber(foundVarNumber + 1,
-                            x.getVarNumber(), varName);
+            int oldNumber = x.getVarNumber();
+            table.changeVarNumber(foundVarNumber + 1 - oldNumber,
+                            oldNumber, varName);
         }
 
-        this.addAll(table);
-    }
-
-    /**
-     * Adds declaration to the list without any check.
-     * @param declaredVar - any declaration
-     */
-    public void add(final VarDeclaration declaredVar)
-    {
-        if (declaredVar instanceof FunctionDeclaration)
-        {
-            add((FunctionDeclaration)declaredVar);
-            return;
-        }
-        
-        if (declaredVar instanceof VarUse)
-        {
-            add((VarUse) declaredVar);
-            return;
-        }
-        
-        //else just add
-        declaredVars.add(declaredVar);
-    }
-
-    /**
-     * Adds all declarations from Argument list to
-     * the current table.
-     * @param vars - declaration table.
-     * @return True if adding was successful.
-     */
-    public boolean addAll(ArrayList<VarDeclaration> vars) {
-        if (vars == null || vars.isEmpty())
-        {
-            return false;
-        }
-        
-        return declaredVars.addAll(vars);
-    }
-
-    /**
-     * Adds all declarations from Argument table to
-     * the current table.
-     * @param Declaration table.
-     * @return True if adding was successful.
-     */
-    public boolean addAll(DeclaredVarsTable vars) {
-        if (vars.getDeclaredVars().isEmpty())
-        {
-            return false;
-        }
-
-        return addAll(vars.getDeclaredVars());
-    }
-
-    /**
-     * Adds declaration to the list without any check.
-     * @param function declaration
-     */
-    private void add(final FunctionDeclaration declaredVar)
-    {
-        declaredVars.add(declaredVar);
-    }
-
-    /**
-     * Adds declaration to the list without any check.
-     * @param variable usage
-     */
-    private void add(final VarUse declaredVar)
-    {
-        declaredVars.add(declaredVar);
+        return super.addAll(table);
     }
     
-    private void increaseVarNumber(int onHow, int fromNumber, String varName)
+    /**
+     * Adds variables and declarations without overlay
+     * possibility. Commits error then adding wasn't
+     * successful and continues without that declaration.
+     * @param table from which variables will be taken.
+     * @return
+     */
+    public boolean tryAddAll(DeclaredVarsTable table)
     {
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : table)
+        {
+            String varName = x.getText();
+            if (x.getDeclType() == VarType.VarUsage)
+            {
+                continue;
+            }
+            int foundVarNumber = findLastDeclarationNumber(varName);
+            if (foundVarNumber == -1)
+            {
+                continue;
+            }
+            x.commitVarAlreadyDeclaredTypeError();
+            table.remove(x);
+        }
+
+        return super.addAll(table);
+    }
+    
+    /**
+     * Changes all variables' numbers with the specific name and number
+     * to new value. This is used for overlaying the previous 
+     * declaration and all it's usages in the scope.
+     * @param onNumber - what number it should be.
+     * @param fromNumber - old that declaration's number.
+     * @param varName - declaration's or usages' number.
+     */
+    private void changeVarNumber(int onNumber, int fromNumber, String varName)
+    {
+        for (VarDeclaration x : this)
         {
             if (x.getText().equals(varName)
                     && x.getVarNumber() >= fromNumber)
             {
-                x.setVarNumber(x.getVarNumber() + onHow);
+                x.setVarNumber(x.getVarNumber() + onNumber);
             }
             if (!(x instanceof VarUse))
             {
                 continue;
-            }
+            }//FIXME add binary usages and complex expressions
             VarUse varUse = (VarUse) x;
-            if (varUse.getAssignExpr() != null
-                    && varUse.getAssignExpr().getText().equals(varName)
-                    && varUse.getAssignExpr().getVarNumber() >= fromNumber)
+            VarDeclaration assignment = varUse.getAssignExpr();
+            if (assignment == null)
             {
-                varUse.getAssignExpr().setVarNumber(
-                        x.getVarNumber() + onHow);
+                continue;
+            }
+            if (assignment.getText().equals(varName)
+                    && assignment.getVarNumber() >= fromNumber)
+            {
+                assignment.setVarNumber(
+                        x.getVarNumber() + onNumber);
             }
         }
     }
     
     /**
-     * Finds last declaration's var number to determine,
-     * which var actually is in use.
+     * Finds last declaration's number to determine,
+     * which variable actually is in use. Searches in
+     * the whole table.
      * @param Variable name.
      * @return Largest suitable variable number or 
      * -1 if there was no declaration at all for this var.
      */
-    private int findVarNumber(String name)
-    {//FIXME should find functions too
+    private int findLastDeclarationNumber(String name)
+    {
         int maxNum = -1;
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : this)
         {
             if (x.getText().equals(name)
                     && maxNum < x.getVarNumber())
@@ -282,14 +223,41 @@ public class DeclaredVarsTable {
 
         return maxNum;
     }
-
+    
+    /**
+     * Searches for declaration in the table of the same name
+     * and type. Used in checking for possibility of overlaying
+     * the declaration. 
+     * @param name - declaration name.
+     * @param type - declaration type.
+     * @return True if declaration with the same name 
+     * and type was found.
+     */
+    private boolean containsDeclaration(String name, VarType type)
+    {
+        for (VarDeclaration tree : this)
+        {
+            if (tree instanceof VarUse)
+            {
+                continue;
+            }
+            
+            if (tree.getText().equals(name) 
+                    && tree.getDeclType().equals(type))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 
     public VarDeclaration findDeclaredVar(CommonToken declToken)
     {
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : this)
             if (x.getToken().equals(declToken)) 
                 return x;
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : this)
             if (x instanceof ClassDeclaration) 
                 return x.getDeclaredVars().findDeclaredVar(declToken);
         return null;
@@ -297,11 +265,11 @@ public class DeclaredVarsTable {
     
     public VarDeclaration findDeclaredVar(String name)
     {
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : this)
             if (x.getText().equals(name)
                     && x.ifVarDeclaration()) 
                 return x;
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : this)
             if (x instanceof ClassDeclaration) 
                 return x.getDeclaredVars().findDeclaredVar(name);
         return null;
@@ -317,7 +285,7 @@ public class DeclaredVarsTable {
     
     public void setDeclaredVarType(String name, int Num, HaxeType type)
     {
-        for (VarDeclaration x : getDeclaredVars())
+        for (VarDeclaration x : this)
         {
             if (Num == x.getVarNumber()
                     && x.getText().equals(name)
@@ -334,15 +302,16 @@ public class DeclaredVarsTable {
      */
     public void setDeclaredVars(final ArrayList<VarDeclaration> declaredVars)
     {
-        declaredVars.clear();
+        this.clear();
         addAll(declaredVars);
     }
+    
     public void calculateTypes() {
         boolean ifChanged = false;
         
         do {
             ifChanged = false;
-            for (VarDeclaration tree : declaredVars) {
+            for (VarDeclaration tree : this) {
                 if (tree instanceof FunctionDeclaration) {
                     FunctionDeclaration fdn = (FunctionDeclaration) tree;
                     if (fdn.ifUndefinedType()) 
@@ -371,8 +340,9 @@ public class DeclaredVarsTable {
         markErrors();
     }
     
-    public void markErrors(){
-        for (VarDeclaration tree : declaredVars) {
+    public void markErrors()
+    {
+        for (VarDeclaration tree : this) {
             if (tree instanceof FunctionDeclaration) {
                 FunctionDeclaration fdn = (FunctionDeclaration) tree;
                 if (fdn.getHaxeType().equals(HaxeType.haxeVoid) 
@@ -412,9 +382,12 @@ public class DeclaredVarsTable {
      *            the var name
      * @return the var in scope type
      */
-    public HaxeType getVarType(final String varName) {
-        for (HaxeTree usage : this.declaredVars) {
-            if (usage.getText().equals(varName)) {
+    public HaxeType getVarType(final String varName) 
+    {
+        for (HaxeTree usage : this) 
+        {
+            if (usage.getText().equals(varName)) 
+            {
                 return ((VarDeclaration) usage).getHaxeType();
             }
         }

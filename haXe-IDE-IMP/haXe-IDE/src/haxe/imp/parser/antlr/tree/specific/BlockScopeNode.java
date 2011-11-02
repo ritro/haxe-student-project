@@ -125,6 +125,7 @@ public class BlockScopeNode extends HaxeTree {
 	public DeclaredVarsTable calculateClassScope()
 	{
 	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
+	    DeclaredVarsTable functions = new DeclaredVarsTable();
 	    
 	    for (HaxeTree tree : getChildren()) 
         {
@@ -132,8 +133,8 @@ public class BlockScopeNode extends HaxeTree {
             {
                 FunctionDeclaration functionDeclaration = 
                         VarDeclarationFactory.createFunctionDeclaration((FunctionNode)tree);
-                declaredVars.tryAdd(functionDeclaration);
-                declaredVars.addWithIncrease(tree.calculateScopes());
+                functions.tryAdd(functionDeclaration);
+                functions.addAll(tree.calculateScopes());
             }
 	        else if (tree instanceof VarDeclarationNode)
             {
@@ -163,6 +164,7 @@ public class BlockScopeNode extends HaxeTree {
 	        }
         }
 	    
+	    declaredVars.addAll(functions);
 	    return declaredVars;
 	}
 	

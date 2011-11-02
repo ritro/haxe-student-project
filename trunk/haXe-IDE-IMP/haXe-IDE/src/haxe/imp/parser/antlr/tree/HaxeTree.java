@@ -29,6 +29,7 @@ import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
 import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
+import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
 import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
@@ -222,10 +223,22 @@ public class HaxeTree extends CommonTree
 	public void calculateScope() {
 		declaredVars = new DeclaredVarsTable();
 
-		for (HaxeTree tree : getChildren()) {
-			if (tree instanceof ClassNode ||
-				tree instanceof EnumNode)
-				declaredVars.addAll(tree.calculateScopes()); 
+		for (HaxeTree tree : getChildren()) 
+		{
+		    //hight levels only this
+			if (tree instanceof ClassNode)
+			{
+    		    ClassDeclaration declaration = 
+    		            new ClassDeclaration(tree.getToken());
+    		    declaration.setVarType(VarType.ClassDeclaration);
+    		    declaration.addAllToDeclaredVars(tree.calculateScopes());
+    		    declaredVars.tryAdd(declaration);
+			}
+			if (tree instanceof EnumNode)
+			{
+			    //FIXME not implemented yet
+			    continue; 
+			}
 		}
 	}
 	
@@ -239,7 +252,6 @@ public class HaxeTree extends CommonTree
 	 * It is the stub. The same method will be implemented
 	 * in classes nested from HaxedTree.
 	 * @return null
-	 * FIXME make it abstract??
 	 */
 	public DeclaredVarsTable calculateScopes() {
 		return null;
@@ -260,7 +272,7 @@ public class HaxeTree extends CommonTree
 			    return;
 			}
 			visitor.visit(this);
-			for (VarDeclaration child : this.getDeclaredVars().getDeclaredVars()) {
+			for (VarDeclaration child : this.getDeclaredVars()) {
 				child.accept(visitor);
 			}
 			visitor.endVisit(this);
@@ -268,7 +280,6 @@ public class HaxeTree extends CommonTree
 			System.out.println(
 					"Exception caught from invocation of language-specific tree model builder implementation");
 			nullPointerException.printStackTrace();
-			//throw nullPointerException;
 		}
 	}
 
@@ -654,8 +665,8 @@ public class HaxeTree extends CommonTree
 	
 	//only first lvl
 	public void calculateTypes(){ //begin with module
-		if (!this.getDeclaredVars().getDeclaredVars().isEmpty()) {
-		    this.getDeclaredVars().calculateTypes();
+		if (!getDeclaredVars().isEmpty()) {
+		    getDeclaredVars().calculateTypes();
 		}
 	}
 	

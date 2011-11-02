@@ -50,7 +50,7 @@ public class HaxeTreePrinter
             sb = sb.append("   ");
         }
         
-        for (VarDeclaration declaration : table.getDeclaredVars())
+        for (VarDeclaration declaration : table)
         {
             System.out.print(sb.toString());
             if (declaration instanceof VarUse)

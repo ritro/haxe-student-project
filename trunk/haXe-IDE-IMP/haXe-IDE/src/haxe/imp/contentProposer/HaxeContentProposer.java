@@ -13,8 +13,11 @@ package haxe.imp.contentProposer;
 import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.Environment;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -36,13 +39,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
  */
 public class HaxeContentProposer implements IContentProposer {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.services.IContentProposer#getContentProposals(org.eclipse
-	 * .imp.parser.IParseController, int, org.eclipse.jface.text.ITextViewer)
-	 */
 	@Override
 	public ICompletionProposal[] getContentProposals(
 			final IParseController controller, final int offset,
@@ -52,13 +48,14 @@ public class HaxeContentProposer implements IContentProposer {
 
 		HaxeParseController haxeController = (HaxeParseController) controller;
 		try {
-			sourceNode = ((HaxeTree) controller.getCurrentAst())
+			sourceNode = 
+			        ((HaxeTree) controller.getCurrentAst())
 					.getNodeByPosition(offset);
 			sourceString = "";
 			System.out.println(sourceNode);
 		} catch (NullPointerException nullPointerException) {
-			CommonToken sourceToken = this.getTokenAtPosition(haxeController
-					.getTokenStream(), offset);
+			CommonToken sourceToken = 
+			        getTokenAtPosition(haxeController.getTokenStream(), offset);
 			sourceString = sourceToken.getText();
 			if (sourceToken.getType() == HaxeLexer.COMMENT) {
 				return null;
@@ -76,9 +73,9 @@ public class HaxeContentProposer implements IContentProposer {
 				return null;
 			}
 		}
-		ArrayList<VarDeclaration> availableVars = this.filterVars(
-				sourceNode.getDeclaredVars(), sourceString);
-		return this.createSourceProposals(availableVars, sourceString, offset);
+		//TODO look in the Environment
+		Environment availableProposals = filterVars(sourceNode, sourceString);
+		return createSourceProposals(availableProposals, sourceString, offset);
 	}
 
 	/**
@@ -105,20 +102,32 @@ public class HaxeContentProposer implements IContentProposer {
 	}
 
 	/**
-	 * Filter vars.
-	 * 
-	 * @param vars
-	 *            the vars
-	 * @param prefix
-	 *            the prefix
+	 * Make a list of available proposals for
+	 * sertain node.
+	 * @param nodeToStart - node, the search will
+	 * be started from.
+	 * @param prefix - the found nodes' name should
+	 * begin with.
 	 * @return the array list
 	 */
-	private ArrayList<VarDeclaration> filterVars(
-			final ArrayList<VarDeclaration> vars, final String prefix) {
-		ArrayList<VarDeclaration> result = new ArrayList<VarDeclaration>();
-		for (VarDeclaration commonTree : vars) {
-			if (commonTree.getText().startsWith(prefix)) {
-				result.add(commonTree);
+	private Environment filterVars(
+			final HaxeTree nodeToStart, final String prefix) 
+	{
+	    Environment result = new Environment();
+		HaxeTree parent = nodeToStart.getParent();
+		if (parent == null)
+		{
+		    return result;
+		}
+		result.addAll(filterVars(parent, prefix));
+		for (HaxeTree commonTree : parent.getAllChildren()) 
+		{
+			if (commonTree.getText().startsWith(prefix)
+			        && (commonTree instanceof VarDeclarationNode
+			        || commonTree instanceof ClassNode
+			        || commonTree instanceof FunctionNode)) 
+			{
+				result.add(commonTree, false);
 			}
 		}
 		return result;
@@ -136,13 +145,13 @@ public class HaxeContentProposer implements IContentProposer {
 	 * @return the source proposal[]
 	 */
 	private SourceProposal[] createSourceProposals(
-			final ArrayList<VarDeclaration> availableVars,
+			final ArrayList<HaxeTree> availableVars,
 			final String prefix, final int offset) {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
-		for (VarDeclaration commonTree : availableVars) {
-			VarDeclaration usage = (VarDeclaration) commonTree;
-			result.add(new ComparableSourceProposal(usage.getTextWithType(),
+		for (HaxeTree commonTree : availableVars) {
+			VarDeclarationNode usage = (VarDeclarationNode) commonTree;
+			result.add(new ComparableSourceProposal(usage.getHaxeType().toString(),
 					usage.getText(), prefix, offset));
 		}
 		return result.toArray(new SourceProposal[0]);
@@ -270,11 +279,6 @@ public class HaxeContentProposer implements IContentProposer {
 			super(proposal, newText, prefix, region, addlInfo);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Comparable#compareTo(java.lang.Object)
-		 */
 		@Override
 		/*
 		 * FIXME this method is not accurate, but I need it just to implement

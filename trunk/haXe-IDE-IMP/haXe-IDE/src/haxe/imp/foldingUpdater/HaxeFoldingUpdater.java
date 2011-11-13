@@ -104,13 +104,6 @@ public class HaxeFoldingUpdater extends FolderBase {
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.services.base.FolderBase#sendVisitorToAST(java.util.HashMap
-	 * , java.util.List, java.lang.Object)
-	 */
 	@Override
 	protected void sendVisitorToAST(
 			final HashMap<Annotation, Position> newAnnotations,

@@ -10,19 +10,14 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import java.util.ArrayList;
+
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclarationFactory;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-import org.eclipse.jdt.internal.compiler.lookup.MostSpecificExceptionMethodBinding;
 
 /**
  * Blocks can execute several expressions.
@@ -120,37 +115,21 @@ public class BlockScopeNode extends HaxeTree {
 	/**
 	 * We can have Variable Declarations with defined type, 
 	 * function declarations. TODO what else?
-	 * @return Variable table for class.
 	 */
-	public DeclaredVarsTable calculateClassScope()
+	public void calculateClassScope(Environment declarations)
 	{
-	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-	    DeclaredVarsTable functions = new DeclaredVarsTable();
-	    
+	    ArrayList<FunctionNode> functions = new ArrayList<FunctionNode>();
 	    for (HaxeTree tree : getChildren()) 
         {
 	        if (tree instanceof FunctionNode)
             {
-                FunctionDeclaration functionDeclaration = 
-                        VarDeclarationFactory.createFunctionDeclaration((FunctionNode)tree);
-                functions.tryAdd(functionDeclaration);
-                functions.addAll(tree.calculateScopes());
+	            FunctionNode function = (FunctionNode)tree;
+	            functions.add(function);
+	            declarations.add(function);
             }
 	        else if (tree instanceof VarDeclarationNode)
             {
-                VarDeclarationNode node = (VarDeclarationNode)tree;
-                
-                VarDeclaration varDeclaration = 
-                        VarDeclarationFactory.createClassVarDeclaration(node);
-                //during declaration there could be an assignment for var
-                VarUse varUse = 
-                        VarDeclarationFactory.createVarUse(node);
-                
-                declaredVars.tryAdd(varDeclaration);
-                if (varUse != null)
-                {
-                    declaredVars.tryAdd(varUse);
-                }
+                tree.calculateScopes(declarations.addToCopy(tree));
             }
             else if (tree.getType() == HaxeParser.RBRACE)
             {
@@ -160,52 +139,37 @@ public class BlockScopeNode extends HaxeTree {
             }
 	        else
 	        {
-	            tree.commitError("Not supposed be here. (?)");
+	            tree.commitUnexpectedError();
 	        }
         }
 	    
-	    declaredVars.addAll(functions);
-	    return declaredVars;
+	    for (FunctionNode function : functions)
+	    {
+	        function.calculateScopes(declarations);
+	    }
 	}
 	
 	/**
 	 * We can meet Var Declarations, Var Usages,
 	 * TODO - if, while, for scopes,
 	 * assignments (local functions also assignments).
-	 * @return
 	 */
-	public DeclaredVarsTable calculateFunctionScope()
+	public void calculateFunctionScope(Environment declarations)
 	{
-	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
 	    for (HaxeTree tree : getChildren()) 
         {
             if (tree instanceof VarDeclarationNode)
             {
-                VarDeclarationNode node = (VarDeclarationNode)tree;
-                
-                VarDeclaration varDeclaration = 
-                        VarDeclarationFactory.createFunctionVarDeclaration(node);
-                //during declaration there could be an assignment for var
-                VarUse varUse = 
-                        VarDeclarationFactory.createVarUse(node);
-                
-                declaredVars.tryAdd(varDeclaration);
-                if (varUse != null)
-                {
-                    declaredVars.tryAdd(varUse);
-                }
+                declarations.add(tree);
+                tree.calculateScopes(declarations);
             }
             else if (tree instanceof VarUsageNode)
             {
-                VarUse vun = 
-                        VarDeclarationFactory.createVarUse(tree);
-                declaredVars.tryAdd(vun);
+                tree.calculateScopes(declarations);
             }
             else if (tree instanceof AssignOperationNode)
             {
-                VarUse varWithAssignment = 
-                        VarDeclarationFactory.createVarUse((AssignOperationNode)tree);
-                declaredVars.tryAdd(varWithAssignment);
+                tree.calculateScopes(declarations);
             }
             else if (tree.getType() == HaxeParser.RBRACE)
             {
@@ -215,11 +179,78 @@ public class BlockScopeNode extends HaxeTree {
             }
             else
             {
-                tree.commitError("Not supposed be here. (?)");
+                tree.commitUnexpectedError();
             }
         }
-	    
-	    return declaredVars;
 	}
+	
+    /*
+    public void calculateTypes() {
+        boolean ifChanged = false;
+        
+        do {
+            ifChanged = false;
+            for (VarDeclaration tree : this) {
+                if (tree instanceof FunctionDeclaration) {
+                    FunctionDeclaration fdn = (FunctionDeclaration) tree;
+                    if (fdn.ifUndefinedType()) 
+                    {
+                        fdn.setHaxeType(HaxeType.haxeVoid); //??
+                        ifChanged = true;
+                    }
+                } else if (tree instanceof ClassDeclaration) {
+    
+                } else if (tree instanceof VarUse) {
+                    VarUse vun = (VarUse) tree;
+                    if (vun.getAssignExpr() != null
+                            && !vun.getAssignExpr().ifUndefinedType()
+                            && vun.ifUndefinedType()) 
+                    {
+                        setDeclaredVarType(vun.getText(),vun.getVarNumber(), 
+                                vun.getAssignExpr().getHaxeType());
+                        ifChanged = true;
+                    } else if (vun.getAssignExpr() == null) 
+                    {
+                        //do nothing??
+                    }
+                }
+            }
+        } while (ifChanged);
+        markErrors();
+    }
+    
+    public void markErrors()
+    {
+        for (VarDeclaration tree : this) {
+            if (tree instanceof FunctionDeclaration) {
+                FunctionDeclaration fdn = (FunctionDeclaration) tree;
+                if (fdn.getHaxeType().equals(HaxeType.haxeVoid) 
+                        && fdn.getReturnNode() != null) {
+                    //fdn.getReturnNode().commitStrangeDecl();
+                } else if (!fdn.getHaxeType().equals(HaxeType.haxeVoid) 
+                           && fdn.getReturnNode() == null) {
+                    fdn.commitNullReturnError();
+                } else if (!fdn.getHaxeType().equals(HaxeType.haxeVoid) 
+                           && !fdn.getReturnNode().ifUndefinedType() // check if right return type
+                           && !fdn.getReturnNode().getHaxeType().equals(fdn.getHaxeType())) {
+                         fdn.getReturnNode().commitIncorrectReturnTypeError();
+                }
+            } else if (tree instanceof ClassDeclaration) {
 
+            } else if (tree instanceof VarUse) {
+                VarUse vun = (VarUse) tree;
+                if (findDeclaredVar(vun.getText()) == null)
+                {
+                    vun.commitUndeclaredError();
+                } else if (vun.getAssignExpr() != null
+                        && !vun.getAssignExpr().ifUndefinedType()
+                        && !HaxeType.isAvailableAssignement(vun.getHaxeType(), 
+                                vun.getAssignExpr().getHaxeType())) {
+                    vun.commitIncorrectAssignmentError();
+                }
+            } else if (tree.getDeclType() == VarType.ClassVarDeclaration
+                    && tree.ifUndefinedType())
+                tree.commitClassUndefinedTypeError();
+        }
+    }*/
 }

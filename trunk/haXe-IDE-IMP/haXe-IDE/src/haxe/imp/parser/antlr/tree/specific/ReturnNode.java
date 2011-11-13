@@ -11,7 +11,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.Token;
@@ -21,33 +20,9 @@ import org.antlr.runtime.Token;
  * 
  * @author kondratyev
  */
-public class ReturnNode extends HaxeTree {
-	
-	private HaxeType haxeType = HaxeType.haxeUndefined;
-
-	/**
-	 * Sets the var type.
-	 * 
-	 * @param varType
-	 *            the varType to set
-	 */
-	@Override
-	public boolean setHaxeType(final HaxeType varType) {
-		this.haxeType = varType;
-		return true;
-	}
-	
-	/**
-	 * Gets the var type.
-	 * 
-	 * @return the varType
-	 */
-	@Override
-	public HaxeType getHaxeType() {
-		if (this.getChildCount() >0 )
-			return this.getChild(0).getHaxeType();
-		else return HaxeType.haxeVoid;
-	}
+public class ReturnNode extends HaxeTree 
+{
+    private FunctionNode function = null;
 
 	/**
 	 * Instantiates a new var usage.
@@ -56,7 +31,7 @@ public class ReturnNode extends HaxeTree {
 	 *            the t
 	 */
 	public ReturnNode(final Token t) {
-		this.token = t;
+		super(t);
 	}
 	
 	/**
@@ -68,16 +43,58 @@ public class ReturnNode extends HaxeTree {
 		if (this.getChildCount() == 0) 
 			return super.getText();
 		
-		return this.getChild(0).getText();//.getAllChildren().get(this.getAllChildren().size()-1)
-	}
-
-	public ReturnNode(final int ttype, final boolean auxiliary) {
-		super(ttype, auxiliary);
+		return getExpression().getText();
 	}
 	
 	@Override
-	public DeclaredVarsTable calculateScopes(){
-		return null;
+	public void calculateScopes(Environment declarations)
+	{
+	    HaxeTree expression = getExpression();
+	    HaxeType type = getHaxeType();
+	    if (expression == null && type == haxeType.haxeVoid)
+	    {
+	        return;
+	    }
+	    if (expression == null && type != haxeType.haxeUndefined)
+	    {
+	        commitError("Void should be " + type.toString());
+	    }
+	    expression.calculateScopes(declarations);
+	    if (expression.getHaxeType() != type)
+	    {
+	        expression.commitError(expression.getHaxeType()
+	                + " should be " + type);
+	    }
 	}
-
+	
+	public void setFunction(FunctionNode function)
+	{
+	    this.function = function;
+	}
+	
+	@Override
+	public HaxeType getHaxeType()
+	{
+	    if (function == null)
+	    {
+	        return HaxeType.haxeUndefined;
+	    }
+	    return function.getHaxeType();
+	}
+	
+	/**
+	 * Gets the expression which will be
+	 * returned.
+	 * @return Returning expression or null
+	 * if nothing being returned.
+	 */
+	private HaxeTree getExpression()
+	{
+	    if (getChildCount() == 0 )
+	    {
+	        return null;
+	    }
+	    
+	    return getChild(0);
+	}
 }

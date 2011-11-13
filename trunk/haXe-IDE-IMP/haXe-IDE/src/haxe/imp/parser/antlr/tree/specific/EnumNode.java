@@ -2,7 +2,6 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -89,18 +88,6 @@ public class EnumNode extends HaxeTree {
 		//TODO????
 		return HaxeType.haxeEnum;
 	}
-	
-	/**
-	 * Creating class outline
-	 */
-	@Override
-	public void accept(final HaxeModelVisitor visitor){
-		visitor.visit(this);
-		for (HaxeTree child : this.getBlockScope().getChildren()) {
-			child.accept(visitor);
-		}
-		visitor.endVisit(this);
-	}
 
 	/**
 	 * Gets the all declared vars.
@@ -116,11 +103,12 @@ public class EnumNode extends HaxeTree {
 		return list;
 	}
 	
-	public DeclaredVarsTable calculateScopes() {
+	@Override
+	public void calculateScopes(Environment declarations) 
+	{
 		if (getBlockScope() != null) {
-			return getBlockScope().calculateScopes();
+			getBlockScope().calculateScopes(declarations);
 		}
-		else return null;
 	}
 
 }

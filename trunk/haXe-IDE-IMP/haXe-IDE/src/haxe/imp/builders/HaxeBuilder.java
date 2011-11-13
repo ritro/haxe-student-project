@@ -1,15 +1,10 @@
 package haxe.imp.builders;
 
-import java.awt.List;
-import java.util.ArrayList;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import org.eclipse.imp.builder.BuilderUtils;
-import org.eclipse.imp.builder.MarkerCreator;
 import org.eclipse.imp.builder.MarkerCreatorWithBatching;
 import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.language.Language;
@@ -19,13 +14,9 @@ import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.ModelException;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.runtime.PluginBase;
-import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 
 import haxe_ide.Activator;
 import haxe.imp.parser.HaxeParseController;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
 
 /**
  * A builder may be activated on a file containing haxe code every time it

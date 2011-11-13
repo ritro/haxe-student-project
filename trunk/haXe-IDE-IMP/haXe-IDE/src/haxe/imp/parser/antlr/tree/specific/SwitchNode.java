@@ -19,35 +19,16 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class SwitchNode extends HaxeTree {
-
-	/**
-	 * Instantiates a new switch node.
-	 */
-	public SwitchNode() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new switch node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public SwitchNode(final HaxeTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
+public class SwitchNode extends HaxeTree 
+{
 	/**
 	 * Instantiates a new switch node.
 	 * 
 	 * @param t
 	 *            the t
 	 */
-	public SwitchNode(final Token t) {
+	public SwitchNode(final Token t) 
+	{
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 }

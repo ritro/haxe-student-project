@@ -19,27 +19,8 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class WhileNode extends HaxeTree {
-
-	/**
-	 * Instantiates a new while node.
-	 */
-	public WhileNode() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new while node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public WhileNode(final HaxeTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
+public class WhileNode extends HaxeTree 
+{
 	/**
 	 * Instantiates a new while node.
 	 * 
@@ -48,7 +29,6 @@ public class WhileNode extends HaxeTree {
 	 */
 	public WhileNode(final Token t) {
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 
 }

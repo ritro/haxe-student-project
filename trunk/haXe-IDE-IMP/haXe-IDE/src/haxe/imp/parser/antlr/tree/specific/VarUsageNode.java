@@ -11,10 +11,8 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
-import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
 /**
@@ -23,29 +21,28 @@ import org.antlr.runtime.Token;
  * @author kondratyev
  */
 public class VarUsageNode extends HaxeTree {
-	
-	private HaxeType haxeType = HaxeType.haxeUndefined;
 
+    private HaxeTree declaration = null;
+    
 	/**
-	 * Sets the var type.
-	 * 
-	 * @param varType
-	 *            the varType to set
+	 * Sets type to declaration of that variable
+	 * and all it's entries.
+	 * @param varType - the varType to set
 	 */
-	@Override
-	public boolean setHaxeType(final HaxeType varType) {
-		this.haxeType = varType;
-		return true;
+    @Override
+	public boolean setHaxeType(final HaxeType varType) 
+	{
+	    return declaration.setHaxeType(varType);
 	}
 	
-	/**
-	 * Gets the var type.
-	 * 
-	 * @return the varType
-	 */
 	@Override
-	public HaxeType getHaxeType() {
-		return this.haxeType;
+	public HaxeType getHaxeType()
+	{
+	    if (declaration == null)
+	    {
+	        return super.getHaxeType();
+	    }
+	    return declaration.getHaxeType();
 	}
 
 	/**
@@ -55,7 +52,7 @@ public class VarUsageNode extends HaxeTree {
 	 *            the t
 	 */
 	public VarUsageNode(final Token t) {
-		this.token = t;
+		token = t;
 	}
 	
 	/**
@@ -63,14 +60,13 @@ public class VarUsageNode extends HaxeTree {
 	 * @return if getText != null then getText, else lastchild.getText
 	 */
 	@Override
-	public String getText() {
-		if (this.isAuxiliary())
-			return "DOT";
-		
-		if (this.getChildCount() == 0) 
+	public String getText() 
+	{
+		//FIXME
+		if (getChildCount() == 0) 
 			return super.getText();
 		
-		return this.getAllChildren().get(this.getAllChildren().size()-1).getText();
+		return getAllChildren().get(this.getAllChildren().size()-1).getText();
 	}
 	
 	/**
@@ -86,68 +82,48 @@ public class VarUsageNode extends HaxeTree {
 		super(ttype, auxiliary);
 	}
 	
-
-	/**
-	 * Gets the clone.
-	 * 
-	 * @return the clone
-	 */
-	public VarUsageNode getClone() {
-		VarUsageNode varUsageNode = new VarUsageNode(this.getToken());
-		varUsageNode.setHaxeType(this.getHaxeType());
-		varUsageNode.addChild(this.getChild(0));
-		return varUsageNode;
-	}
-
-	/**
-	 * Gets the text with type.
-	 * 
-	 * @return the text with type
-	 */
-	public String getTextWithType() {
-		if (this.getParent() instanceof FunctionNode) {
-			return ((FunctionNode) this.getParent())
-					.getFullNameWithParameters();
-		}
-		return this.getText() + " : " + this.getHaxeType().getTypeName();
+	@Override
+	public void calculateScopes(Environment declarations)
+	{
+	    declaration = declarations.getDeclaration(getText());
+	    if (declaration == null)
+	    {
+	        //FIXME packets, classes, else?
+	        commitUndeclaredError();
+	        return;
+	    }
+	    
+	    setDeclarationNode(declaration);
 	}
 	
-	@Override
-	public DeclaredVarsTable calculateScopes(){/*
-		if (getHaxeType().equals(HaxeType.haxeNotYetRecognized)) {
-			if (!isAuxiliary()){					
-				if (blockScope.doScopeContainsVarName(getText())) {
-					setHaxeType(blockScope.getVarType(getText()));
-				} else {
-					//try find class or enum declaration
-					this.commitError(getText()+ " is not declared");
-					return;
-				}
-			}
-			else{ 
-				HaxeTree y = getChild(0).getDeclarationNode(getChild(0));
-				//simple identifier
-				if (getChild(0).getChildCount()==0){
-					if (blockScope.doScopeContainsVarName(getText())) {
-						setHaxeType(blockScope.getVarType(getText()));
-					} else if (y.getType() != 0){
-						setHaxeType(y.getHaxeType());
-					} else {
-						this.commitError(getText()
-								+ " is not declared", getMostLeftPosition(),
-								getMostRightPosition()-getMostLeftPosition());
-						return;
-					}}
-				else{
-					//TODO здесь искать по пакетам, параметрам других классов и тп
-					this.commitError(getText()+ " can't yet define Those", 
-							getMostLeftPosition(),
-							getMostRightPosition()-getMostLeftPosition());
-					return;
-				}
-			}
-		}*/
-		return null;
+	public HaxeTree getDeclarationNode()
+	{
+	    return declaration;
+	}
+	
+	public void setDeclarationNode(HaxeTree declaration)
+	{
+	    this.declaration = declaration; 
 	}
 
+    /**
+     * Error then user variable wan't declared before.
+     */
+    public void commitUndeclaredError()
+    {
+        commitError(getText() + " is not declared.");
+    }
+    
+    /**
+     * Error when we using defined, but not initialized
+     * variable.
+     * Official Haxe  error text used.
+     */
+    public void commitUninitializedUsingError()
+    {
+        commitError(
+                "Local variable " 
+                + getText() 
+                + " used without being initialized");
+    }
 }

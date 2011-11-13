@@ -10,12 +10,17 @@
  *******************************************************************************/
 package haxe.imp.treeModelBuilder;
 
+import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 
 import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HaxeTreeModelBuilder.
  * 
@@ -23,23 +28,84 @@ import org.eclipse.imp.services.base.TreeModelBuilderBase;
  */
 public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.services.base.TreeModelBuilderBase#visitTree(java.lang
-	 * .Object)
-	 */
+    private HaxeModelVisitor visitor = null;
+    
 	@Override
 	public void visitTree(final Object root) {
 		if (root == null) {
 			return;
 		}
 		HaxeTree rootNode = (HaxeTree) root;
-		HaxeModelVisitor visitor = new HaxeModelVisitor();
+		visitor = new HaxeModelVisitor();
 
-		rootNode.accept(visitor);
+		accept(rootNode);
 	}
+	
+	private void accept(HaxeTree node)
+    {
+        try {
+            if (node instanceof FunctionNode) 
+            {
+                accept((FunctionNode)node);
+            } 
+            else if (node instanceof ClassNode) 
+            {
+                accept((ClassNode)node);
+            } 
+            else if (node instanceof VarDeclarationNode)
+            {
+                accept((VarDeclarationNode)node);
+            } 
+            else if (node instanceof EnumNode)
+            {
+                accept((EnumNode)node);
+            }
+            else if (node.token != null && node.token.getType() == HaxeParser.MODULE) 
+            {
+                for (HaxeTree child : node.getChildren()) 
+                {
+                    accept(child);
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            System.out
+                    .println("Exception caught from invocation of language-specific tree model builder implementation");
+            nullPointerException.printStackTrace();
+        }
+    }
+    
+    private void accept(FunctionNode node)
+    {
+        visitor.visit(node);
+        visitor.endVisit(node);
+    }
+    
+    private void accept(ClassNode node)
+    {
+        visitor.visit(node);
+        BlockScopeNode blockScope = node.getBlockScope();
+        for (HaxeTree child : blockScope.getChildren()) 
+        {
+            accept(child);
+        }
+        visitor.endVisit(node);
+    }   
+    
+    private void accept(EnumNode node)
+    {
+        visitor.visit(node);
+        for (HaxeTree child : node.getBlockScope().getChildren()) 
+        {
+            accept(child);
+        }
+        visitor.endVisit(node);
+    }
+    
+    private void accept(VarDeclarationNode node)
+    {
+        visitor.visit(node);
+        visitor.endVisit(node);
+    }
 
 	/**
 	 * The Class HaxeModelVisitor.
@@ -48,40 +114,18 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 	 */
 	public class HaxeModelVisitor extends AbstractVisitor {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor
-		 * #unimplementedVisitor(java.lang.String)
-		 */
 		@Override
 		public void unimplementedVisitor(final String s) {
 			System.out.println("unemplementedVisitor \n" + s);
 		}
 
-		/**
-		 * Visit.
-		 * 
-		 * @param n
-		 *            the n
-		 * @return true, if successful
-		 */
+
 		public boolean visit(final Object n) {
 			//pushSubItem(n);//???why not this
 			HaxeTreeModelBuilder.this.pushSubItem(n);
 			return true;
 		}
 
-		/**
-		 * Visit.
-		 * 
-		 * @param node
-		 *            the node
-		 * @param doCreateSubItem
-		 *            the do create sub item
-		 * @return true, if successful
-		 */
 		public boolean visit(final HaxeTree node,
 				final boolean doCreateSubItem) {
 			if (doCreateSubItem) {
@@ -92,12 +136,6 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 			return true;
 		}
 
-		/**
-		 * End visit.
-		 * 
-		 * @param n
-		 *            the n
-		 */
 		public void endVisit(final Object n) {
 			//popSubItem();//???why not this
 			HaxeTreeModelBuilder.this.popSubItem();

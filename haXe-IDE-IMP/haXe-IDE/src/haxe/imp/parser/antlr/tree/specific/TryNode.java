@@ -19,27 +19,8 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class TryNode extends HaxeTree {
-
-	/**
-	 * Instantiates a new try node.
-	 */
-	public TryNode() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new try node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public TryNode(final HaxeTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
+public class TryNode extends HaxeTree 
+{
 	/**
 	 * Instantiates a new try node.
 	 * 

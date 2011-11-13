@@ -11,13 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
 import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -33,30 +27,42 @@ public class FunctionNode extends HaxeTree {
 
 	/** The full name with parameters. */
 	private String fullNameWithParameters = "";
+	
+	/**
+	 * Generates the string containing function
+	 * name, function type, all parameters and 
+	 * their's types.
+	 */
+	private void generateNameWithParameters()
+	{
+	    ArrayList<VarDeclarationNode> paramList = 
+	            getParametersAsDeclarations();
+		String parameters = "";
+		String comma = "";
+		for (VarDeclarationNode commonTree : paramList) 
+		{
+			parameters += comma
+			        + commonTree.getText() + " : "
+					+ commonTree.getHaxeType().getShortTypeName();
+			comma = ", ";
+		}
+		fullNameWithParameters = getText() + " ("
+				+ parameters + ") : "
+				+ getHaxeType().getShortTypeName();
+	}
 
 	/**
 	 * Gets the full name with parameters.
 	 * 
 	 * @return the full name with parameters
 	 */
-	public String getFullNameWithParameters() {
-		if (this.fullNameWithParameters.equals("")) {
-			HaxeTree paramList = this.getParamListNode();
-			String parameters = "";
-			String comma = "";
-			if (paramList != null && paramList.getChildCount() != 0) {
-				for (HaxeTree commonTree : paramList.getChildren()) {
-					parameters += comma
-							+ ((VarDeclarationNode) commonTree).getHaxeType()
-									.getTypeName();
-					comma = ", ";
-				}
-			}
-			this.fullNameWithParameters = this.getFunctionName() + "("
-					+ parameters + ") : "
-					+ this.getHaxeType().getTypeName();
+	public String getFullNameWithParameters() 
+	{
+		if (fullNameWithParameters.equals("")) 
+		{
+		    generateNameWithParameters();
 		}
-		return this.fullNameWithParameters;
+		return fullNameWithParameters;
 	}
 
 	public FunctionNode(final Token t) {
@@ -67,22 +73,10 @@ public class FunctionNode extends HaxeTree {
 	 * @return the param list node
 	 */
 	public HaxeTree getParamListNode() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>) this
-				.getChildren()) {
+		for (HaxeTree tree : getChildren()) 
+		{
 			Token token = (CommonToken) tree.getToken();
 			if (token.getType() == PARAM_LIST_TYPE) {
-				return tree;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @return the param list node
-	 */
-	public HaxeTree getReturnNode() {
-		for (HaxeTree tree : this.getBlockScope().getChildren()) {
-			if (tree instanceof ReturnNode) {
 				return tree;
 			}
 		}
@@ -94,60 +88,77 @@ public class FunctionNode extends HaxeTree {
 	 * FIXME
 	 * @return the parameters as var usage
 	 */ 
-	public ArrayList<VarUsageNode> getParametersAsVarUsage() {
-		ArrayList<VarUsageNode> list = new ArrayList<VarUsageNode>();
-		HaxeTree parameters = this.getParamListNode();
-		if (parameters != null) {
-			for (HaxeTree varDecl : parameters.getChildren()) {
-				VarDeclarationNode varDeclarationNode = (VarDeclarationNode) varDecl;
-				VarUsageNode varUsageNode = varDeclarationNode.getVarNameNode().getClone();
-				list.add(varUsageNode);
-			}
+	public ArrayList<VarDeclarationNode> getParametersAsDeclarations() {
+		ArrayList<VarDeclarationNode> list = new ArrayList<VarDeclarationNode>();
+		HaxeTree parameters = getParamListNode();
+		if (parameters == null)
+		{
+		    return list;
+		}
+		for (HaxeTree varDecl : parameters.getChildren()) 
+		{
+			list.add((VarDeclarationNode) varDecl);
 		}
 		return list;
 	}
 
 	/**
-	 * Gets the function name.
-	 * 
-	 * @return the function name
+	 * Gets the function name. 
+	 * @return Only the function name.
 	 */
-	public String getFunctionName() {
-		return this.getChild(0).getText();
+	@Override
+	public String getText() 
+	{
+		return getChild(0).getText();
 	}
 	
 	@Override
-	public HaxeType getHaxeType(){
-		try {
-			for (HaxeTree tree : this.getChildren()) {
-				if (tree.getToken().getType() == TYPE_TAG_TYPE) {
-					return new HaxeType(tree.getChild(0).getText());
-				}
-			}
-		} catch (NullPointerException nullPointerException) {
-			return HaxeType.haxeUndefined;
-		}
-		
-		return HaxeType.haxeUndefined;
-	}
-	
-	@Override
-	public DeclaredVarsTable calculateScopes()
-	{	
-		DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-		for (VarUsageNode x: getParametersAsVarUsage())
+	public HaxeType getHaxeType()
+	{
+		if (ifUndefinedType())
 		{
-		    VarDeclaration parameter = new VarDeclaration(x.getToken());
-		    
-		    parameter.setVarType(VarType.FunctionParameter);
-			declaredVars.add(parameter);
+		    findHaxeType();
 		}
 		
-		if (getBlockScope() != null) {
-		    declaredVars.addAll(getBlockScope().calculateFunctionScope());
+		return super.getHaxeType();
+	}
+	
+	/**
+	 * Tries to extract type from TYPE TAG of function.
+	 */
+	private void findHaxeType()
+	{
+	    for (HaxeTree tree : getChildren()) 
+	    {
+            if (tree.getToken().getType() == TYPE_TAG_TYPE) 
+            {
+                try {
+                    HaxeType type = new HaxeType(tree.getChild(0).getText());
+                    setHaxeType(type);
+                } catch (NullPointerException nullPointerException) {
+                    return;
+                }
+            }
+        }
+	}
+	
+	@Override
+	public void calculateScopes(Environment declarations)
+	{	
+	    Environment funEnv = new Environment(declarations);
+		for (VarDeclarationNode x: getParametersAsDeclarations())
+		{
+		    //x.setdeclaType = parameter;
+		    funEnv.addToCopy(x);
 		}
 		
-		return declaredVars;
+		BlockScopeNode blockScope = getBlockScope();
+		if ( blockScope == null) 
+		{
+		    return;
+		}
+		
+		blockScope.calculateFunctionScope(funEnv);
 	}
 
 	/**
@@ -155,12 +166,13 @@ public class FunctionNode extends HaxeTree {
 	 * 
 	 * @return the block scope
 	 */
-	public BlockScopeNode getBlockScope() {
-		if (this.getChildCount() > 0) {
-			for (HaxeTree tree : this.getChildren()) {
-				if (tree instanceof BlockScopeNode) {
-					return (BlockScopeNode) tree;
-				}
+	public BlockScopeNode getBlockScope() 
+	{
+		for (HaxeTree tree : getChildren()) 
+		{
+			if (tree instanceof BlockScopeNode) 
+			{
+				return (BlockScopeNode) tree;
 			}
 		}
 		return null;

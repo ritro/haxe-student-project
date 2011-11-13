@@ -12,7 +12,6 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,16 @@ public class VarDeclarationNode extends HaxeTree {
 
 	/** The name with type. */
 	private String nameWithType = "";
+    protected DeclarationType declType  = DeclarationType.VarDeclaration;
+
+    public enum DeclarationType
+    {
+        //ClassDeclaration,       // Class
+        ClassVarDeclaration,    // Class var (cant set type)
+        //FunctionDeclaration,    // function
+        FunctionParameter,  // function parameter
+        VarDeclaration     // other then classes var declarations
+    };
 
 	/**
 	 * Gets the name with type.
@@ -36,8 +45,8 @@ public class VarDeclarationNode extends HaxeTree {
 	 */
 	public String getNameWithType() {
 		if (this.nameWithType.equals("")) {
-			this.nameWithType = this.getVarName() + " : "
-					+ this.getHaxeType().getTypeName();
+			this.nameWithType = getText() + " : "
+					+ getHaxeType().getShortTypeName();
 		}
 		return this.nameWithType;
 	}
@@ -75,35 +84,33 @@ public class VarDeclarationNode extends HaxeTree {
 	 * 
 	 * @return the var name
 	 */
-	public String getVarName() {
-		return this.getVarNameNode().getText();
+	public String getText() {
+		return getVarNameNode().getText();
 	}
-
-	/**
-	 * Gets the var type.
-	 * 
-	 * @return the var type
-	 */
-	@Override
-	public HaxeType getHaxeType() {
-		try {
-			for (HaxeTree tree : this.getChildren()) {
-				if ( tree.getToken().getType() == TYPE_TAG_TYPE) {
-					return (HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) != null)?
-							HaxeType.tryGetPrimaryType(tree.getChild(0).getText()) :
-								new HaxeType(tree.getChild(0).getText());
-				}
-			}
-		} catch (NullPointerException nullPointerException) {
-			System.out.println("Problems on getting varType");
-		}
-		
-		return HaxeType.haxeUndefined;
+	
+	public DeclarationType getDeclaratonType()
+	{
+	    return declType;
+	}
+	
+	private void tryExtractType()
+	{
+	    for (HaxeTree tree : getChildren()) 
+	    {
+            if (tree.getToken().getType() == TYPE_TAG_TYPE
+                    && tree.getChildCount() != 0) 
+            {
+                String typeName = tree.getChild(0).getText();
+                haxeType = HaxeType.tryGetPrimaryType(typeName) != null
+                        ? HaxeType.tryGetPrimaryType(typeName) 
+                        : new HaxeType(typeName);
+            }
+        }
 	}
 	
 	@Override
 	public boolean setHaxeType(HaxeType type){
-		this.getVarNameNode().setHaxeType(type);
+		getVarNameNode().setHaxeType(type);
 			
 		return true;
 	}
@@ -114,8 +121,7 @@ public class VarDeclarationNode extends HaxeTree {
 	 * @return the var init node
 	 */
 	public HaxeTree getVAR_INIT_NODE() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>) this
-				.getChildren()) {
+		for (HaxeTree tree : (ArrayList<HaxeTree>)getChildren()) {
 			Token token = (CommonToken) tree.getToken();
 			if (token.getType() == VAR_INIT_TYPE) {
 				return tree.getChild(0);
@@ -123,4 +129,42 @@ public class VarDeclarationNode extends HaxeTree {
 		}
 		return null;
 	}
+	
+	public void calculateScopes(Environment environment)
+	{
+	    tryExtractType();
+	    VarUsageNode varUsage = getVarNameNode();
+	    varUsage.setDeclarationNode(this);
+	    HaxeTree initialization = getVAR_INIT_NODE();
+	    if (initialization == null)
+	    {
+	        return;
+	    }
+	    initialization.calculateScopes();
+	    if (getHaxeType() == HaxeType.haxeUndefined)
+	    {
+	        setHaxeType(initialization.getHaxeType());
+	    }
+	    else if (!HaxeType.isAvailableAssignement(getHaxeType(), initialization.getHaxeType()))
+	    {
+	        varUsage.commitError(
+	                initialization.getHaxeType() + " should be " + getHaxeType());
+	    }
+	}
+
+    /**
+     * Class var declaration should have type.
+     */
+    public void commitClassUndefinedTypeError()
+    {
+        this.commitError("Class var declaration should have type.");
+    }
+    
+    /**
+     * Var is already declared.
+     */
+    public void commitVarAlreadyDeclaredTypeError()
+    {
+        this.commitError("Var is already declared");
+    }
 }

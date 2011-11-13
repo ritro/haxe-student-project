@@ -188,8 +188,8 @@ public class HaxeType {
 	 * 
 	 * @return the typeName
 	 */
-	public String getTypeName() {
-		return this.typeName;
+	public String getShortTypeName() {
+		return typeName;
 	}
 
 	/**
@@ -208,17 +208,7 @@ public class HaxeType {
 	 * @return the fullTypeName
 	 */
 	public String getFullTypeName() {
-		return this.fullTypeName;
-	}
-
-	/**
-	 * Sets the full type name.
-	 * 
-	 * @param fullTypeName
-	 *            the fullTypeName to set
-	 */
-	public void setFullTypeName(final String fullTypeName) {
-		this.fullTypeName = fullTypeName;
+		return fullTypeName;
 	}
 
 	/**
@@ -229,20 +219,20 @@ public class HaxeType {
 	 */
 	public HaxeType(final String fullTypeName) {
 		if (fullTypeName.equalsIgnoreCase("Int")) {
-			this.setIdenticalProperties(haxeInt);
+			setIdenticalProperties(haxeInt);
 		} else if (fullTypeName.equalsIgnoreCase("FLOAT")) {
-			this.setIdenticalProperties(haxeFloat);
+			setIdenticalProperties(haxeFloat);
 		} else if (fullTypeName.equalsIgnoreCase("STRING")) {
-			this.setIdenticalProperties(haxeString);
+			setIdenticalProperties(haxeString);
 		} else if (fullTypeName.equalsIgnoreCase("BOOL")) {
-			this.setIdenticalProperties(haxeBool);
+			setIdenticalProperties(haxeBool);
 		} else if (fullTypeName.equalsIgnoreCase("void")) {
-			this.setIdenticalProperties(haxeVoid);
+			setIdenticalProperties(haxeVoid);
 		} else if (fullTypeName.equalsIgnoreCase("Undefined")) {
-			this.setIdenticalProperties(haxeUndefined);
+			setIdenticalProperties(haxeUndefined);
 		} {
 			this.fullTypeName = fullTypeName;
-			this.typeName = (fullTypeName.lastIndexOf(".") == -1) ? fullTypeName
+			typeName = (fullTypeName.lastIndexOf(".") == -1) ? fullTypeName
 					: fullTypeName.substring(fullTypeName.lastIndexOf(".") + 1);
 		}
 	}
@@ -276,13 +266,11 @@ public class HaxeType {
 		this.typeName = type.typeName;
 	}
 
-	public HaxeType() {
-	}
-
 	@Override
 	public String toString() {
-		return this.getFullTypeName().length() != 0 ? this.getFullTypeName()
-				: this.getTypeName();
+		return getFullTypeName().length() != 0 
+		        ? getFullTypeName()
+				: getShortTypeName();
 	}
 
 	@Override
@@ -290,7 +278,7 @@ public class HaxeType {
 		/**
 		 * FIXME 
 		 */
-		return ((HaxeType) arg0).getTypeName().equals(this.getTypeName());
+		return ((HaxeType) arg0).getShortTypeName().equals(this.getShortTypeName());
 	}
 
 }

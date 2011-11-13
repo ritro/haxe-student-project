@@ -10,10 +10,9 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.foldingUpdater.HaxeFoldingUpdater.HaxeFoldingVisitor;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -118,17 +117,14 @@ public class ClassNode extends HaxeTree {
 	}
 
 	@Override
-	public DeclaredVarsTable calculateScopes() 
+	public void calculateScopes(Environment declarations) 
 	{
-	    DeclaredVarsTable declaredVars = new DeclaredVarsTable();
-
 	    BlockScopeNode blockScope = getBlockScope();
-		if (blockScope != null) 
+		if (blockScope == null) 
 		{		    
-		    declaredVars = blockScope.calculateClassScope();
+		    return;
 		}
 		
-		return declaredVars;
+		blockScope.calculateClassScope(declarations);
 	}
-
 }

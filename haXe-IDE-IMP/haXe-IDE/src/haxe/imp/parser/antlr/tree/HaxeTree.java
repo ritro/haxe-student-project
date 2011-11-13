@@ -16,30 +16,18 @@ import haxe.imp.foldingUpdater.HaxeFoldingUpdater.HaxeFoldingVisitor;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
-import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
+import haxe.imp.parser.antlr.tree.specific.Environment;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.ClassDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration.VarType;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -50,6 +38,7 @@ public class HaxeTree extends CommonTree
 {
 	private static IMessageHandler messageHandler;
 	private boolean auxiliary = false;
+	protected HaxeType haxeType = HaxeType.haxeUndefined;
 
 	/**
 	 * Contains most left position of tree/subtree
@@ -81,6 +70,61 @@ public class HaxeTree extends CommonTree
 	public void setAuxiliary(final boolean auxiliary) {
 		this.auxiliary = auxiliary;
 	}
+    
+    public boolean setHaxeType(HaxeType type)
+    {
+        haxeType = type;
+        return true;
+    }
+
+    public HaxeType getHaxeType() 
+    {
+        return haxeType;
+    }
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<HaxeTree> getChildren() 
+    {
+        List<HaxeTree> res = (List<HaxeTree>)super.getChildren();
+        
+        if (res == null) return new ArrayList<HaxeTree>();
+        
+        return res;
+    }
+
+    /**
+     * Gets the all children of current node and
+     * all children of his children ... 
+     * @return the all children starting from that
+     * node
+     */
+    public ArrayList<HaxeTree> getAllChildren() 
+    {
+        ArrayList<HaxeTree> childs = new ArrayList<HaxeTree>();
+        if (getChildCount() == 0) 
+        {
+            childs.add(this);//???????? FIXME
+            return childs;            
+        } 
+        for (HaxeTree child : getChildren()) 
+        {
+            childs.addAll(child.getAllChildren());
+        }
+        return childs;
+    }
+
+    @Override
+    public HaxeTree getChild(final int i) 
+    {
+        return (HaxeTree) super.getChild(i);
+    }
+
+    @Override
+    public CommonToken getToken() 
+    {
+        return (CommonToken) super.getToken();
+    }
 
 	public static void setMessageHandler(final IMessageHandler messageHandler) {
 		HaxeTree.messageHandler = messageHandler;
@@ -206,41 +250,6 @@ public class HaxeTree extends CommonTree
 	private void commitCastError(){
 		commitError(getText() + ": cast problems");
 	}
-
-	protected DeclaredVarsTable declaredVars;
-	public DeclaredVarsTable getDeclaredVars() {
-		return declaredVars;
-	}
-
-	/**
-	 * Creates Declared Vars table and fills 
-	 * it with declarations of 
-	 * classes,
-	 * enums.
-	 * As they are the most high instances which may be in
-	 * a correct program.
-	 */
-	public void calculateScope() {
-		declaredVars = new DeclaredVarsTable();
-
-		for (HaxeTree tree : getChildren()) 
-		{
-		    //hight levels only this
-			if (tree instanceof ClassNode)
-			{
-    		    ClassDeclaration declaration = 
-    		            new ClassDeclaration(tree.getToken());
-    		    declaration.setVarType(VarType.ClassDeclaration);
-    		    declaration.addAllToDeclaredVars(tree.calculateScopes());
-    		    declaredVars.tryAdd(declaration);
-			}
-			if (tree instanceof EnumNode)
-			{
-			    //FIXME not implemented yet
-			    continue; 
-			}
-		}
-	}
 	
 	/**
 	 * According to the node type, makes the Declaration Vars
@@ -253,34 +262,38 @@ public class HaxeTree extends CommonTree
 	 * in classes nested from HaxedTree.
 	 * @return null
 	 */
-	public DeclaredVarsTable calculateScopes() {
-		return null;
+	public void calculateScopes(Environment declaration) 
+	{
+	    for (HaxeTree tree : getChildren()) 
+        {
+            //hight levels only this
+            if (tree instanceof ClassNode
+                    || tree instanceof EnumNode)
+            {
+                tree.calculateScopes();
+            }
+        }
+	}
+	
+	public void calculateExpressionScopes(Environment declaration)
+	{
+	    if (!ifNumOperation())
+	    {
+	        //FIXME may just a var
+	        return;
+	    }
+	}
+	
+	/**
+	 * Run the scope calculations with empty environment.
+	 */
+	public final void calculateScopes()
+	{
+	    calculateScopes(new Environment());
 	}
 	
 	public HaxeTree getParent(){
 		return (HaxeTree)super.getParent();
-	}
-
-	/**
-	 * Construction of outline
-	 */
-	//TODO complete for other nodes - 
-	public void accept(final HaxeModelVisitor visitor) {
-		try {
-			if (token == null || token.getType() != MODULE_TYPE) 
-			{
-			    return;
-			}
-			visitor.visit(this);
-			for (VarDeclaration child : this.getDeclaredVars()) {
-				child.accept(visitor);
-			}
-			visitor.endVisit(this);
-		} catch (NullPointerException nullPointerException) {
-			System.out.println(
-					"Exception caught from invocation of language-specific tree model builder implementation");
-			nullPointerException.printStackTrace();
-		}
 	}
 
 	public void accept(final HaxeFoldingVisitor visitor) {
@@ -372,19 +385,19 @@ public class HaxeTree extends CommonTree
 	}*/
 
 	/**
-	 * Get most-inner node of AST tree by it's offset.
-	 * 
+	 * Get most-inner node of AST tree by it's offset. 
 	 * @param offset
 	 *            the offset
 	 * @return the node by position
 	 */
-	public HaxeTree getNodeByPosition(final int offset) {
-		if (this.getChildCount() > 0) {
-			for (HaxeTree child : this.getChildren()) {
-				if (child.getMostLeftPosition() <= offset
-						&& offset <= child.getMostRightPosition()) {
-					return child.getNodeByPosition(offset);
-				}
+	public HaxeTree getNodeByPosition(final int offset) 
+	{
+	    //FIXME for suffix nodes maybe not that good to
+	    //take the most inner node?
+		for (HaxeTree child : this.getChildren()) {
+			if (child.getMostLeftPosition() <= offset
+					&& offset <= child.getMostRightPosition()) {
+				return child.getNodeByPosition(offset);
 			}
 		}
 		return this;
@@ -462,150 +475,19 @@ public class HaxeTree extends CommonTree
 	}*/
 
 	/**
-	 * Gets the declaration node.
-	 * 
+	 * Gets the declaration node. 
 	 * @param usageNode
 	 *            the usage node
 	 * @return the declaration node
 	 */
 	public HaxeTree getDeclarationNode(final HaxeTree usageNode) 
 	{
-		HaxeTree parent = (HaxeTree) this.getParent();
-		
-		if (parent == null) 
+		if (usageNode instanceof VarUsageNode)
 		{
-		    return new HaxeTree(0);
-		}
-		
-		if (this.isVarDeclaration(usageNode) ||
-			this.isClassDeclaration(usageNode)){
-			return this;
-		} else
-			if (this instanceof EnumNode){
-				if (this.isEnumDeclaration(usageNode))
-					return this;
-				else{
-					if (!((EnumNode) this).getAllMembers().isEmpty()) {
-						HaxeTree declaration = usageNode.isDeclaredIn(
-								((EnumNode) this).getAllMembers());
-						if (declaration != null) return declaration;
-					}
-				}
-			}			
-		else 
-			if (this instanceof FunctionNode){
-				if (this.isFuncDeclaration(usageNode))
-					return this;
-				else {
-					HaxeTree params = ((FunctionNode) this).getParamListNode();
-					if (params != null) {
-						HaxeTree declaration = usageNode.isDeclaredIn(params
-								.getChildren());
-						if (declaration != null) return declaration;
-					}
-				}
-		}
-//TODO:think about INSTANCES later ------------>however seems to work well
-		int index = parent.getChildren().indexOf(this);
-		if (index > 0) {
-			return (parent.getChild(index - 1)).getDeclarationNode(usageNode);
-		} else {
-			if (parent instanceof BlockScopeNode) {
-				if (parent.getParent() instanceof ClassNode) {
-					HaxeTree declaration = usageNode.isDeclaredIn((parent).getChildren());
-					if (declaration != null) {
-						return declaration;
-					}
-				}
-			}
-			return parent.getDeclarationNode(usageNode);
-		}	
-	}
+		    return ((VarUsageNode)usageNode).getDeclarationNode();
+		}		
 
-	/**
-	 * Checks if it is declaration of current object in passed list. If not,
-	 * returns null;
-	 * 
-	 * @param declarations
-	 *            the declarations
-	 * @return the extended common tree
-	 */
-	private HaxeTree isDeclaredIn(final List<HaxeTree> declarations) {
-		for (HaxeTree tree : declarations) {
-			if (tree.isVarDeclaration(this) || 
-				tree.isFuncDeclaration(this)||
-				tree.isClassDeclaration(this)||
-				tree.isEnumDeclaration(this)) {
-				return tree;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Checks if this object is declaration of usage.
-	 * 
-	 * @param usage
-	 *            the usage
-	 * @return true, if is declaration
-	 */
-	private boolean isVarDeclaration(final HaxeTree usage) {
-		return ((this instanceof VarDeclarationNode)&& 
-				(this.getChildren() != null) && 
-				(this.getChild(0).getText().equals(usage.getText())));
-	}
-
-	/**
-	 * Checks if is func declaration.
-	 * 
-	 * @param usage
-	 *            the usage
-	 * @return true, if is func declaration
-	 */
-	private boolean isFuncDeclaration(final HaxeTree usage) {
-		return ((this instanceof FunctionNode)&&
-				(this.getChild(0).getText().equals(usage.getText()))); //getFunctonName?
-	}
-
-	/**
-	 * Checks if is class declaration.
-	 * 
-	 * @param usage
-	 *            the usage
-	 * @return true, if is class declaration
-	 */
-	private boolean isClassDeclaration(final HaxeTree usage) {
-		return ((this instanceof ClassNode) && (this.getText()
-				.equals(usage.getText())));
-	}
-
-	/**
-	 * Checks if is enum declaration.
-	 * 
-	 * @param usage
-	 *            the usage
-	 * @return true, if is enum declaration
-	 */
-	private boolean isEnumDeclaration(final HaxeTree usage) {
-		return ((this instanceof EnumNode) && (this.getText()
-				.equals(usage.getText())));
-	}
-
-	/**
-	 * Gets the all children.
-	 * 
-	 * @return the all children
-	 */
-	public ArrayList<HaxeTree> getAllChildren() {
-		ArrayList<HaxeTree> childs = new ArrayList<HaxeTree>();
-		if (this.getChildCount() != 0) {
-			for (HaxeTree child : this.getChildren()) {
-				childs.addAll(child.getAllChildren());
-			}
-		} else {
-			childs.add(this);
-		}
-		return childs;
+		return new HaxeTree(0);
 	}
 	
 /*
@@ -636,89 +518,43 @@ public class HaxeTree extends CommonTree
 			}
 		}
 	}*/
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<HaxeTree> getChildren() {
-		List<HaxeTree> res = (List<HaxeTree>)super.getChildren();
-		
-		if (res == null) return new ArrayList<HaxeTree>();
-		
-		return res;
-	}
-
-	@Override
-	public HaxeTree getChild(final int i) {
-		// TODO Auto-generated method stub
-		return (HaxeTree) super.getChild(i);
-	}
-
-	@Override
-	public CommonToken getToken() {
-		// TODO Auto-generated method stub
-		return (CommonToken) super.getToken();
+	
+    public boolean ifUndefinedType()
+    {
+        return haxeType.equals(HaxeType.haxeUndefined);
+    }
+	
+	/**
+	 * Then we see symbol we are not expected to see
+	 * commit this error.
+	 * Official haxe error text used.
+	 */
+	public void commitUnexpectedError()
+	{
+	    commitError("Unexpected " + getText());
 	}
 	
-	public boolean setHaxeType(HaxeType type){
-		return false;
-	}
-	
-	//only first lvl
-	public void calculateTypes(){ //begin with module
-		if (!getDeclaredVars().isEmpty()) {
-		    getDeclaredVars().calculateTypes();
-		}
-	}
-	
-	public BlockScopeNode getBlockScope(){
-		return null;
-	}
-	
+	//this is regarding Binaty Expt until special will be done in ANTLR
 	private boolean ifNumOperation(){
-		return (this.getText().equals("+")||
-				this.getText().equals("-")||
-				this.getText().equals("*")||
-				this.getText().equals("/"));
+		return (getText().equals("+")||
+				getText().equals("-")||
+				getText().equals("*")||
+				getText().equals("/"));
 	}
-    
-    public boolean ifVarDeclaration(){
-        return !(this instanceof ClassDeclaration||
-                this instanceof VarUse ||
-                this instanceof FunctionDeclaration);
-    }
-
-    public boolean ifUndefinedType(){
-        return this.getHaxeType().equals(HaxeType.haxeUndefined);
-    }
 	
 	private boolOperations getBoolOperation(){
-		if (this.getText().equals("+"))
+		if (getText().equals("+"))
 			return boolOperations.PLUS;
-		else if (this.getText().equals("-"))
+		else if (getText().equals("-"))
 			return boolOperations.MINUS;
-		else if (this.getText().equals("*"))
+		else if (getText().equals("*"))
 			return boolOperations.MULTY;
-		else if (this.getText().equals("/"))
+		else if (getText().equals("/"))
 			return boolOperations.DIV;
-		else if (this.getText().equals("="))
+		else if (getText().equals("="))
 			return boolOperations.EQ;
 		
 		return null;
-	}
-
-	//FIXME not all special nodes have their own functions and not sure about HaxeTree
-	public HaxeType getHaxeType() {
-		if (this instanceof HaxeTree) {			
-			if (this.getType() == SUFFIX_EXPR_TYPE ||
-				this.getType() == RETURN_TYPE)
-				return this.getChild(0).getHaxeType(); //?TODO??????? 
-			else if (this.getChildCount() == 1) //prefix expr
-				return this.getUnarOperationType();
-			else //2 children -> bool operation
-				return this.getBoolOperationType();
-		}
-		
-		return HaxeType.haxeUndefined;
 	}
 	
 	private HaxeType getUnarOperationType(){

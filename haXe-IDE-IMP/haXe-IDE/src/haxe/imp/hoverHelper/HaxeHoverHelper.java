@@ -14,9 +14,6 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.vartable.FunctionDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarUse;
 import haxe_ide.Activator;
 
 import java.util.List;
@@ -64,24 +61,31 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	 * parser.IParseController, org.eclipse.jface.text.source.ISourceViewer,
 	 * int)
 	 */
-	public String getHoverHelpAt(final IParseController parseController,
-			final ISourceViewer srcViewer, final int offset) {
+	public String getHoverHelpAt(
+	        final IParseController parseController,
+			final ISourceViewer srcViewer, 
+			final int offset) 
+	{
 		// If there are any annotations associated with the line that contains
 		// the given offset, return those
-		try {
-			List<Annotation> annotations = AnnotationHoverBase.getSourceAnnotationsForLine(
+		try 
+		{
+			List<Annotation> annotations = 
+			        AnnotationHoverBase.getSourceAnnotationsForLine(
 					srcViewer, srcViewer.getDocument().getLineOfOffset(offset));
-			if (annotations != null && annotations.size() > 0) {
+			if (annotations != null && annotations.size() > 0) 
+			{
 				// Some annotations have no text, such as breakpoint
 				// annotations;
 				// if that's all we have, then don't bother returning it
-				String msg = AnnotationHoverBase
-						.formatAnnotationList(annotations);
+				String msg = AnnotationHoverBase.formatAnnotationList(annotations);
 				if (msg != null) {
 					return msg;
 				}
 			}
-		} catch (BadLocationException e) {
+		} 
+		catch (BadLocationException e) 
+		{
 			return "??? (BadLocationException for annotation)";
 		}
 
@@ -141,23 +145,26 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		// if so, check whether it provides documentation for the help node;
 		// if so, return that documentation
 		IDocumentationProvider docProvider = null;
-		if (this.fLanguage != null && true) {
-			try {
+		if (fLanguage != null) 
+		{
+			try 
+			{
 				docProvider = ServiceFactory.getInstance()
-						.getDocumentationProvider(this.fLanguage);
-
-			} catch (Exception e) {
-				Activator
-						.getInstance()
+						.getDocumentationProvider(fLanguage);
+			} 
+			catch (Exception e) 
+			{
+				Activator.getInstance()
 						.writeErrorMsg(
 								"Exception getting Documentation Provider Service from service factory");
-				this.fResolver = null;
+				fResolver = null;
 			}
 		}
-		if (docProvider != null) {
-			msg = (docProvider != null) ? docProvider.getDocumentation(
-					helpNode, parseController) : null;
-			if (msg != null) {
+		if (docProvider != null) 
+		{
+		    msg = docProvider.getDocumentation(helpNode, parseController);
+			if (msg != null) 
+			{
 				return msg;
 			}
 		}
@@ -165,26 +172,55 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		HaxeTree currentAst = (HaxeTree)parseController.getCurrentAst();
 		// Otherwise, base the help message on the text that is represented
 		// by the help node
-		/** TODO add help cover for class nodes */
-		/*
-		if (helpNode instanceof VarUsage) {
-			VarUsage def = (VarUsage) helpNode;
-			msg = "not implemented yet in hoover";
-		}else*/ if (helpNode instanceof FunctionNode ||
-					((HaxeTree)helpNode).getParent() instanceof FunctionNode) {
-			FunctionNode def = (FunctionNode) ((helpNode instanceof FunctionNode) ? helpNode :
-								((HaxeTree)helpNode).getParent());
-			CommonToken ftoken = def.getChild(0).getToken();
-			FunctionDeclaration x = (FunctionDeclaration)
-				(currentAst.getDeclaredVars().findDeclaredVar(ftoken));
-			msg = x.getHaxeType().getFullTypeName() + " " + x.getText();
-		}else if (helpNode instanceof VarDeclarationNode){
-			VarDeclaration def = (VarDeclaration)
-				(currentAst.getDeclaredVars().findDeclaredVar
-							(((VarDeclarationNode)helpNode).getVarNameNode().getToken()));
-			msg = def.getHaxeType().getFullTypeName() + " " + def.getText();
-		}
+		msg = getMessageForNodeClass((HaxeTree)helpNode);
 		return msg;
+	}
+	
+	/**
+	 * Gets the messages apropriate for general HaxeTree
+	 * nodes (e.g. VarDeclarationNodes, VarUsages and else).
+	 * @param node - to return info about.
+	 * @return string with info for node or null if 
+	 * node's type wasn't implemented.
+	 */
+	private String getMessageForNodeClass(HaxeTree node)
+	{
+		/** TODO add help cover for class nodes */
+	    if (node instanceof VarUsageNode ||
+	            node instanceof FunctionNode ||
+	            node instanceof VarDeclarationNode) 
+	    {
+            return getNodeTypeAndName(node);
+        }
+        else if (node.getParent() instanceof FunctionNode)
+        {            
+            return getMessageForNodeClass(node.getParent());
+        }
+        else if (node.getParent().getText().equals("DECL_ATTR_LIST"))
+        {
+            return getMessageForNodeClass(node.getParent());
+        }
+        return null;
+	}
+	
+	/**
+	 * Gets the string containing full type name of node
+	 * and it's name.
+	 * @param node - to return info about.
+	 * @return string in the form of 
+	 * "[FullTypeName] [NodeName]"
+	 */
+	private String getNodeTypeAndName(HaxeTree node)
+	{
+	    if (node == null)
+	    {
+	        return null;
+	    }
+	    
+	    return 
+	            node.getHaxeType().getFullTypeName() + 
+	            " " + 
+	            node.getText();
 	}
 
 	/**

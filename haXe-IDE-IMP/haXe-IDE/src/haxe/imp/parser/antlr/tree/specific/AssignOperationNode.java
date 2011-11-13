@@ -11,11 +11,8 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.HaxeType;
 
-import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-import org.antlr.runtime.tree.CommonTree;
 
 /**
  * The Class AssignOperationNode.
@@ -23,32 +20,24 @@ import org.antlr.runtime.tree.CommonTree;
  * @author kondratyev
  */
 public class AssignOperationNode extends HaxeTree {
-	
-	public AssignOperationNode() {
-		super();
-	}
-	
-//MB при создании - уже ищем тип -> залазим в вар декларатион и присваиваем там?
 
-	public HaxeTree getLeftOperand(){
+	/**
+	 * Gets the left part of equation.
+	 * @return Left part of equation.
+	 */
+	public HaxeTree getLeftOperand()
+	{
 		// it could be not only VarUsage but also field access or slice
-		return this.getChild(0);
+		return getChild(0);
 	}
 	
-	public HaxeTree getRightOperand(){
-		return this.getChild(1);
-	}
-	
-	public AssignOperationNode(final CommonTree node) {
-		super(node);
-	}
-
-	public AssignOperationNode(final Token t) {
-		super(t);
-	}
-
-	public AssignOperationNode(final int ttype, final String type) {
-		this.token = new CommonToken(ttype, type);
+	/**
+	 * Gets the right part of equation.
+	 * @return Right part of equation.
+	 */
+	public HaxeTree getRightOperand()
+	{
+		return getChild(1);
 	}
 
 	public AssignOperationNode(final int ttype, final Token token) {
@@ -58,9 +47,30 @@ public class AssignOperationNode extends HaxeTree {
 	public AssignOperationNode(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
 	}
-
-	public AssignOperationNode(final int ttype) {
-		super(ttype);
+	
+	public void calculateScopes(Environment environment)
+	{
+	    getRightOperand().calculateScopes(environment);
+	    getLeftOperand().calculateScopes(environment);
+	    //FIXME chechk types
 	}
 
+    /**
+     * The right part's type is not appropriate.
+     */
+    public void commitIncorrectTypeError()
+    {
+        commitError(getText() 
+                + " should be "
+                + getHaxeType().getShortTypeName());
+    }
+
+    /**
+     * Then assignment is not in the right form.
+     * This is haxe official error.
+     */
+    public void commitInvalidAssignmentError()
+    {
+        commitError("Invalid assign.");
+    }
 }

@@ -15,8 +15,6 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.imp.parser.antlr.tree.HaxeTreePrinter;
-import haxe.imp.parser.antlr.tree.specific.vartable.DeclaredVarsTable;
-import haxe.imp.parser.antlr.tree.specific.vartable.VarDeclaration;
 import haxe_ide.Activator;
 
 import java.util.ArrayList;
@@ -26,7 +24,6 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.imp.language.Language;
@@ -245,8 +242,7 @@ public class HaxeParseController implements IParseController {
             System.out.println("success!");
             HaxeTree.setMessageHandler(this.handler);
             this.handler.clearMessages();
-            this.currentAST.calculateScope();
-            //this.currentAST.calculateTypes();
+            this.currentAST.calculateScopes();
         } catch (RecognitionException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

@@ -85,7 +85,7 @@ public class VarUsageNode extends HaxeTree {
 	@Override
 	public void calculateScopes(Environment declarations)
 	{
-	    declaration = declarations.getDeclaration(getText());
+	    declaration = declarations.get(getText());
 	    if (declaration == null)
 	    {
 	        //FIXME packets, classes, else?

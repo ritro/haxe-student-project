@@ -119,7 +119,7 @@ public class HaxeContentProposer implements IContentProposer {
 		{
 		    return result;
 		}
-		result.addAll(filterVars(parent, prefix));
+		result.putAll(filterVars(parent, prefix));
 		for (HaxeTree commonTree : parent.getAllChildren()) 
 		{
 			if (commonTree.getText().startsWith(prefix)
@@ -127,7 +127,7 @@ public class HaxeContentProposer implements IContentProposer {
 			        || commonTree instanceof ClassNode
 			        || commonTree instanceof FunctionNode)) 
 			{
-				result.add(commonTree, false);
+				result.put(commonTree, false);
 			}
 		}
 		return result;
@@ -145,13 +145,14 @@ public class HaxeContentProposer implements IContentProposer {
 	 * @return the source proposal[]
 	 */
 	private SourceProposal[] createSourceProposals(
-			final ArrayList<HaxeTree> availableVars,
+			final Environment availableVars,
 			final String prefix, final int offset) {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
-		for (HaxeTree commonTree : availableVars) {
+		for (HaxeTree commonTree : availableVars.values()) {
 			VarDeclarationNode usage = (VarDeclarationNode) commonTree;
-			result.add(new ComparableSourceProposal(usage.getHaxeType().toString(),
+			result.add(new ComparableSourceProposal(
+			        usage.getHaxeType().toString(),
 					usage.getText(), prefix, offset));
 		}
 		return result.toArray(new SourceProposal[0]);

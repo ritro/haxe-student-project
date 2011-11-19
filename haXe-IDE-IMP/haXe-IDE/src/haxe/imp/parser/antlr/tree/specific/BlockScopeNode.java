@@ -125,7 +125,7 @@ public class BlockScopeNode extends HaxeTree {
             {
 	            FunctionNode function = (FunctionNode)tree;
 	            functions.add(function);
-	            declarations.add(function);
+	            declarations.put(function);
             }
 	        else if (tree instanceof VarDeclarationNode)
             {
@@ -160,7 +160,7 @@ public class BlockScopeNode extends HaxeTree {
         {
             if (tree instanceof VarDeclarationNode)
             {
-                declarations.add(tree);
+                declarations.put(tree);
                 tree.calculateScopes(declarations);
             }
             else if (tree instanceof VarUsageNode)

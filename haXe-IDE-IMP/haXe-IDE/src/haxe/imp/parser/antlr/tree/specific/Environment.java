@@ -4,6 +4,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * List of declarations valid in the current scope
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @author Savenko Maria
  *
  */
-public class Environment extends ArrayList<HaxeTree>
+public class Environment extends HashMap<String, HaxeTree>
 {
     private static final long serialVersionUID = -567500510015429577L;
 
@@ -34,7 +35,7 @@ public class Environment extends ArrayList<HaxeTree>
     public Environment(Environment environment)
     {
         this();
-        addAll(environment);
+        putAll(environment);
     }
     
     /**
@@ -48,7 +49,7 @@ public class Environment extends ArrayList<HaxeTree>
     public Environment addToCopy(HaxeTree declaration)
     {
         Environment env = new Environment(this);
-        env.add(declaration);
+        env.put(declaration);
         return env;
     }
     
@@ -65,17 +66,19 @@ public class Environment extends ArrayList<HaxeTree>
         Environment env = new Environment(this);
         for (HaxeTree node : declarations)
         {
-            env.add(node);
+            env.put(node);
         }
         return env;
     }
     
-    public boolean add(HaxeTree declaration, boolean reportErrors)
+    public boolean put(HaxeTree declaration, boolean reportErrors)
     {
-        HaxeTree decl = getDeclaration(declaration.getText());
+        String name = declaration.getText();
+        HaxeTree decl = get(name);
         if (decl == null)
         {
-            return super.add(declaration);
+            super.put(name, declaration);
+            return true;
         }
         if (decl instanceof VarDeclarationNode)
         {
@@ -91,8 +94,8 @@ public class Environment extends ArrayList<HaxeTree>
                 }
                 return false;
             }
-            remove(decl);
-            return super.add(declaration);
+            super.put(name, declaration);
+            return true;
         }
         // classes and function could not be overlaid
         // instead of implementing - TODO
@@ -103,87 +106,8 @@ public class Environment extends ArrayList<HaxeTree>
         return false;
     }
     
-    @Override
-    public boolean add(HaxeTree declaration)
+    public boolean put(HaxeTree declaration)
     {
-        return add(declaration, true);
-    }
-    
-    /**
-     * Checks environment for containing a declarations
-     * with a special name.
-     * @param declarationName - name to look for.
-     * @return True if such declaration was found.
-     */
-    private boolean contatins(String declarationName)
-    {
-        for (HaxeTree declaration : this)
-        {
-            if (declaration.getText().equals(declarationName))
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    /**
-     * Removes declaration from current table by it's name
-     * if there was such declaration.
-     * @param declarationName - declaration to look for.
-     */
-    public void remove(String declarationName)
-    {
-        for (HaxeTree declaration : this)
-        {
-            if (declaration.getText().equals(declarationName))
-            {
-                remove(declaration);
-            }
-        }
-    }
-    
-    /**
-     * Searching for declaration with certain name.
-     * @param variableName - name by which declaration will
-     * be searched.
-     * @return Declaration searched for, or null if nothing
-     * was found.
-     */
-    public HaxeTree getDeclaration(String variableName)
-    {
-        //TODO: can class and variable have same names?
-        for (HaxeTree decl : this)
-        {
-            if (decl.getText().equals(variableName))
-            {
-                return decl;
-            }
-        }
-        return null;
-    }
-    
-    /**
-     * Search for variables declarations exclusively.
-     * @param variableName - declaration to search for.
-     * @return found declaration or null if nothing found.
-     */
-    public VarDeclarationNode getVarDeclaration(String variableName)
-    {
-        //no need to search for last - in the current
-        //environment there can be only one decl per name
-        for (HaxeTree decl : this)
-        {
-            if (!(decl instanceof VarDeclarationNode))
-            {
-                continue;
-            }
-            if (decl.getText() == variableName)
-            {
-                return (VarDeclarationNode)decl;
-            }
-        }
-        return null;
+        return put(declaration, true);
     }
 }

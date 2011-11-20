@@ -37,25 +37,26 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		super();
 		
 		Display display = Display.getDefault();
-		this.keywordAttribute = new TextAttribute(display
+		keywordAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_MAGENTA), null, SWT.BOLD);
-		this.functionAttribute = new TextAttribute(display
+		functionAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_RED), null, SWT.BOLD);
-		this.defaultAttribute = new TextAttribute(display
+		defaultAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLACK));
-		this.numberAttribute = new TextAttribute(display
+		numberAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_RED));
-		this.commentAttribute = new TextAttribute(display
+		commentAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_GREEN));
-		this.stringAttribute = new TextAttribute(display
+		stringAttribute = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_BLUE));
-		this.processorCommand = new TextAttribute(display
+		processorCommand = new TextAttribute(display
 				.getSystemColor(SWT.COLOR_DARK_GRAY));
 	}
 	
 	@Override
-	public TextAttribute getColoring(final IParseController controller,
-									final Object o) {
+	public TextAttribute getColoring(
+	        final IParseController controller, final Object o) 
+	{
 		if (o == null) {
 			return null;
 		}
@@ -90,22 +91,22 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case TRY:
 		case CATCH:
 		case WHILE:
-			return this.functionAttribute;
+			return functionAttribute;
 		case CHARLITERAL:
 		case STRINGLITERAL:
-			return this.stringAttribute;
+			return stringAttribute;
 		case INT:
 		case FLOAT:
 		case BOOLEAN:
 		case NULL:
 		case FLOATNUM:
-			return this.numberAttribute;
+			return numberAttribute;
 		case COMMENT:
-			return this.commentAttribute;
+			return commentAttribute;
 		//case PREPROCESSOR_DIRECTIVE:
 		//	return this.processorCommand;
 		default:
-			return this.defaultAttribute;
+			return defaultAttribute;
 		}
 	}
 

@@ -31,7 +31,7 @@ public class VarDeclarationNode extends HaxeTree {
 	/** The name with type. */
 	private String nameWithType = "";
     protected DeclarationType declType  = DeclarationType.VarDeclaration;
-
+    
     public enum DeclarationType
     {
         //ClassDeclaration,       // Class
@@ -113,9 +113,7 @@ public class VarDeclarationNode extends HaxeTree {
 	
 	@Override
 	public boolean setHaxeType(HaxeType type){
-		getVarNameNode().setHaxeType(type);
-			
-		return true;
+		return super.setHaxeType(type); 
 	}
 
 	/**

@@ -7,7 +7,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 public class BinaryExpressionNode extends HaxeTree
 {
 
-    public BinaryExpressionNode(int binarye, Token nextToken) 
+    public BinaryExpressionNode(Token nextToken) 
     {
         super(nextToken);
     }

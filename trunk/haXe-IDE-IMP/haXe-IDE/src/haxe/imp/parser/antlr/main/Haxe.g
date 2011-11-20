@@ -45,6 +45,7 @@ package haxe.imp.parser.antlr.main;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
+import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
@@ -229,7 +230,10 @@ statement
     :    block
     |    assignExpr SEMI!
     |    varDecl
-    |    IF parExpression st1=statement (ELSE st2=statement)?     -> ^(IF<IfNode> parExpression $st1 ^(ELSE $st2)?)          
+    |    IF parExpression s1=statement
+         ( ELSE s2=statement -> ^(IF<IfNode> parExpression $s1 $s2)
+         |                   -> ^(IF<IfNode> parExpression $s1)
+         )
     |    FOR LPAREN exp1=expr IN exp2=expr RPAREN statement     -> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement?)
     |    WHILE parExpression statement                 -> ^(WHILE<WhileNode> parExpression? statement?)
     |    DO statement WHILE parExpression SEMI             -> ^(DO<DoWhileNode> parExpression? statement?)
@@ -305,35 +309,48 @@ assignExpr
     ;
 
 iterExpr
-    :    ternaryExpr (ELLIPSIS^ ternaryExpr)?
+    :    ternaryExpr (ELLIPSIS<BinaryExpressionNode>^ ternaryExpr)?
     ;
 
 ternaryExpr
-    :    logicOrExpr (QUES^ expr COLON! logicOrExpr)? //????
+    :    logicOrExpr (QUES<BinaryExpressionNode>^ expr COLON! logicOrExpr)? // TODO: it should not be BinaryExpressionNode
     ;
 
 logicOrExpr
-    :    logicAndExpr (BARBAR^ logicAndExpr)*
+    :    logicAndExpr (BARBAR<BinaryExpressionNode>^ logicAndExpr)*
     ;
     
 logicAndExpr
-    :    (cmpExpr) (AMPAMP^ cmpExpr)*
+    :    
+    cmpExpr 
+    (AMPAMP<BinaryExpressionNode>^ cmpExpr)*
     ;
     
-cmpExpr :    (bitExpr) ((EQEQ^| BANGEQ^ | GTEQ^ | LTEQ^ | GT^ | LT^)  bitExpr)*
+cmpExpr :    
+    bitExpr 
+    ((EQEQ<BinaryExpressionNode>^ 
+      | BANGEQ<BinaryExpressionNode>^ 
+      | GTEQ<BinaryExpressionNode>^ 
+      | LTEQ<BinaryExpressionNode>^ 
+      | GT<BinaryExpressionNode>^ 
+      | LT<BinaryExpressionNode>^)  
+
+     bitExpr
+    )*
     ;
     
-bitExpr :    (shiftExpr) (BAR^ shiftExpr | AMP^ shiftExpr |CARET^ shiftExpr)*  //???????
+bitExpr :    (shiftExpr) ((BAR<BinaryExpressionNode>^ | AMP<BinaryExpressionNode>^ | CARET<BinaryExpressionNode>^) shiftExpr)*  //???????
         ;
 
+    // TODO: Fix "GT GT" case node construction
 shiftExpr
-    :    (addExpr) (LTLT^  addExpr | (GT GT)^  addExpr | GTGTGT^ addExpr)*
+    :    (addExpr) ((LTLT<BinaryExpressionNode>^ | (GT<BinaryExpressionNode> GT)^ | GTGTGT<BinaryExpressionNode>^) addExpr)*
     ;
 
-addExpr :     (multExpr) ((PLUS^ | SUB^) multExpr )*
+addExpr :     (multExpr) ((PLUS<BinaryExpressionNode>^ | SUB<BinaryExpressionNode>^) multExpr )*
         ;
     
-multExpr:    (psExpr) ((STAR^|SLASH^|PERCENT^) psExpr)*
+multExpr:    (psExpr) ((STAR<BinaryExpressionNode> | SLASH<BinaryExpressionNode> | PERCENT<BinaryExpressionNode>)^ psExpr)*
         ;
         
 psExpr
@@ -356,8 +373,8 @@ suffixExpr
     ;
 
 methodCallOrSlice
-    :    LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall",true] exprListOpt?)
-    |    LBRACKET expr RBRACKET -> ^(SUFFIX_EXPR<HaxeTree>["Slice",true] expr?)
+    :    LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", false] LPAREN<HaxeTree>[$LPAREN, true] exprListOpt? RPAREN<HaxeTree>[$LPAREN, true])
+    |    LBRACKET expr RBRACKET -> ^(SUFFIX_EXPR<HaxeTree>["Slice", false] LBRACKET<HaxeTree>[$LBRACKET, true] expr? RBRACKET<HaxeTree>[$RBRACKET, true])
     ;
 
 methodCallOrSliceList

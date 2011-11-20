@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 
 import org.antlr.runtime.Token;
 

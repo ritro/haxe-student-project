@@ -10,11 +10,11 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.foldingUpdater.HaxeFoldingUpdater.HaxeFoldingVisitor;
 import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class ClassNode extends HaxeTree {
+public class ClassNode extends BlockScopeContainer {
 
 	/** The class name. */
 	private String className = "";
@@ -44,42 +44,12 @@ public class ClassNode extends HaxeTree {
 
 	/**
 	 * Instantiates a new class node.
-	 */
-	public ClassNode() {
-		super();
-	}
-
-	/**
-	 * @param node
-	 *            the node
-	 */
-	public ClassNode(final HaxeTree node) {
-		super(node);
-	}
-
-	/**
-	 * Instantiates a new class node.
 	 * 
 	 * @param t
 	 *            the t
 	 */
 	public ClassNode(final Token t) {
 		super(t);
-	}
-
-	/**
-	 * Gets the block scope.
-	 * 
-	 * @return the block scope
-	 */
-	public BlockScopeNode getBlockScope() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>) this
-				.getChildren()) {
-			if (tree instanceof BlockScopeNode) {
-				return (BlockScopeNode) tree;
-			}
-		}
-		return null;
 	}
 	
 	public HaxeTree getInherits() {

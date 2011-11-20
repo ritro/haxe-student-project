@@ -1,15 +1,16 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 
 import org.antlr.runtime.Token;
 
-public class EnumNode extends HaxeTree {
+public class EnumNode extends BlockScopeContainer {
 
 	/** The class name. */
 	private String enumName = "";
@@ -25,22 +26,7 @@ public class EnumNode extends HaxeTree {
 		}
 		return this.enumName;
 	}
-
-	/**
-	 * Instantiates a new class node.
-	 */
-	public EnumNode() {
-		super();
-	}
-
-	/**
-	 * @param node
-	 *            the node
-	 */
-	public EnumNode(final HaxeTree node) {
-		super(node);
-	}
-
+	
 	/**
 	 * Instantiates a new class node.
 	 * 
@@ -49,21 +35,6 @@ public class EnumNode extends HaxeTree {
 	 */
 	public EnumNode(final Token t) {
 		super(t);
-	}
-	
-	/**
-	 * Gets the block scope.
-	 * 
-	 * @return the block scope
-	 */
-	public BlockScopeNode getBlockScope() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>) this
-				.getChildren()) {
-			if (tree instanceof BlockScopeNode) {
-				return (BlockScopeNode) tree;
-			}
-		}
-		return null;
 	}
 
 	public HaxeTree getInherits() {
@@ -97,7 +68,7 @@ public class EnumNode extends HaxeTree {
 	public ArrayList<HaxeTree> getAllMembers() {
 		ArrayList<HaxeTree> list = new ArrayList<HaxeTree>();
 
-		for (HaxeTree x: this.getBlockScope().getChildren())
+		for (HaxeTree x: getBlockScope().getChildren())
 			if (x instanceof VarDeclarationNode)
 				list.add(x);
 		return list;

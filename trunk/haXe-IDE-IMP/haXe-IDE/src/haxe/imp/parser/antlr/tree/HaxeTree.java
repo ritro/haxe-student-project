@@ -19,10 +19,10 @@ import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
-import haxe.imp.parser.antlr.tree.specific.Environment;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
 import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
@@ -55,13 +55,8 @@ public class HaxeTree extends CommonTree
 		PERCENT
 	};
 
-	public static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST; 
 	public static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 	public static final int SUFFIX_EXPR_TYPE = HaxeParser.SUFFIX_EXPR;
-	public static final int VAR_INIT_TYPE = HaxeParser.VAR_INIT;
-	public static final int MODULE_TYPE = HaxeParser.MODULE;
-	public static final int ENUM_TYPE = HaxeParser.ENUM;
-	public static final int RETURN_TYPE = HaxeParser.RETURN;
 		
 	public boolean isAuxiliary() { 
 		return auxiliary;
@@ -294,52 +289,6 @@ public class HaxeTree extends CommonTree
 	
 	public HaxeTree getParent(){
 		return (HaxeTree)super.getParent();
-	}
-
-	public void accept(final HaxeFoldingVisitor visitor) {
-		try {
-			if (this instanceof FunctionNode) {
-				visitor.visit(this);
-				// visitor.endVisit(this);
-			} else if (this instanceof ClassNode) {
-				visitor.visit(this);
-				for (HaxeTree child : this.getChildren()) {
-					child.accept(visitor);
-				}
-				// visitor.endVisit(this);
-			} else if (this instanceof BlockScopeNode) {
-				boolean isParentClass = (this.parent instanceof ClassNode);
-				if (!isParentClass) {
-					// visitor.visit(this, false);
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-					// visitor.endVisit(this);
-				} else {
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-				}
-			} else if (this.token != null) {
-				if (this.token.getType() == MODULE_TYPE) {
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-				} else if (this.token.getType() == ENUM_TYPE) {
-					visitor.visit(this);
-					for (HaxeTree child : this.getChildren()) {
-						child.accept(visitor);
-					}
-					// visitor.endVisit(this);
-				} else if (this.token.getType() == HaxeLexer.COMMENT) {
-					visitor.visit(this);
-				}
-			}
-		} catch (NullPointerException nullPointerException) {
-			System.out
-					.println("Exception caught from invocation of language-specific tree model builder implementation");
-			nullPointerException.printStackTrace();
-		}
 	}
 
 	/**

@@ -10,7 +10,10 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
@@ -23,7 +26,9 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class FunctionNode extends HaxeTree {
+public class FunctionNode extends BlockScopeContainer 
+{
+    private static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST; 
 
 	/** The full name with parameters. */
 	private String fullNameWithParameters = "";
@@ -159,22 +164,5 @@ public class FunctionNode extends HaxeTree {
 		}
 		
 		blockScope.calculateFunctionScope(funEnv);
-	}
-
-	/**
-	 * Gets the block scope.
-	 * 
-	 * @return the block scope
-	 */
-	public BlockScopeNode getBlockScope() 
-	{
-		for (HaxeTree tree : getChildren()) 
-		{
-			if (tree instanceof BlockScopeNode) 
-			{
-				return (BlockScopeNode) tree;
-			}
-		}
-		return null;
 	}
 }

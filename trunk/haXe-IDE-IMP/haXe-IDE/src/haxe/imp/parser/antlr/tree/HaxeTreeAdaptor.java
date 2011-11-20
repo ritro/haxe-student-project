@@ -10,6 +10,8 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree;
 
+import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
@@ -22,22 +24,11 @@ import org.antlr.runtime.tree.CommonTreeAdaptor;
  */
 public class HaxeTreeAdaptor extends CommonTreeAdaptor {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.antlr.runtime.tree.CommonTreeAdaptor#create(org.antlr.runtime.Token)
-	 */
 	@Override
 	public Object create(final Token token) {
 		return new HaxeTree(token);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.antlr.runtime.tree.CommonTreeAdaptor#dupNode(java.lang.Object)
-	 */
 	@Override
 	public Object dupNode(final Object t) {
 		if (t == null) {
@@ -46,13 +37,6 @@ public class HaxeTreeAdaptor extends CommonTreeAdaptor {
 		return this.create(((HaxeTree) t).token);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seeorg.antlr.runtime.tree.BaseTreeAdaptor#errorNode(org.antlr.runtime.
-	 * TokenStream, org.antlr.runtime.Token, org.antlr.runtime.Token,
-	 * org.antlr.runtime.RecognitionException)
-	 */
 	@Override
 	public Object errorNode(final TokenStream input, final Token start,
 			final Token stop, final RecognitionException e) {

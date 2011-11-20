@@ -14,10 +14,10 @@ import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.Environment;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.utils.Environment;
 
 import java.util.ArrayList;
 import java.util.Set;

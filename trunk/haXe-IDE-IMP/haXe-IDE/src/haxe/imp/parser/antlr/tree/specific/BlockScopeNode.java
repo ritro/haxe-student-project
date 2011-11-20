@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 
 
 import org.antlr.runtime.CommonToken;

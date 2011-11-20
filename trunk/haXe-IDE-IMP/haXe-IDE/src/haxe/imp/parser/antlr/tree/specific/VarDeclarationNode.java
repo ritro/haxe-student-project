@@ -10,7 +10,9 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import org.antlr.runtime.Token;
  */
 public class VarDeclarationNode extends HaxeTree {
 
+    private static final int VAR_INIT_TYPE = HaxeParser.VAR_INIT;
 	/** The name with type. */
 	private String nameWithType = "";
     protected DeclarationType declType  = DeclarationType.VarDeclaration;

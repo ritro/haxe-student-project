@@ -10,10 +10,11 @@
  *******************************************************************************/
 package haxe.imp.foldingUpdater;
 
+import haxe.imp.parser.antlr.main.HaxeLexer;
+import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,69 +48,99 @@ public class HaxeFoldingUpdater extends FolderBase {
 	 */
 	public class HaxeFoldingVisitor extends AbstractVisitor {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor
-		 * #unimplementedVisitor(java.lang.String)
-		 */
 		@Override
 		public void unimplementedVisitor(final String s) {
 		}
 
-		// START_HERE
-		//
-		// Include visit(..) functions for various types of AST nodes that are
-		// associated with folding. These functions should call one of the two
-		// versions of makeAnnotation(..) that are defined in FolderBase. The
-		// usual case is to call the version of makeAnnotation that creates a
-		// folding annotation corresponding to the extent of a particular AST
-		// node.
-		// The other possibility is to create an annotation with an extent that
-		// is explicitly provided. An example is shown below ...
+		/* 
+		 * START_HERE
+		 * 
+		 * Include visit(..) functions for various types of AST nodes that are
+		 * associated with folding. These functions should call one of the two
+		 * versions of makeAnnotation(..) that are defined in FolderBase. The
+		 * usual case is to call the version of makeAnnotation that creates a
+		 * folding annotation corresponding to the extent of a particular AST
+		 * node.
+		 * The other possibility is to create an annotation with an extent that
+		 * is explicitly provided. An example is shown below ... 
+		 */
 
 		/**
-		 * Visit.
-		 * 
-		 * @param n
-		 *            the n
+		 * Creates folding for nodes.
+		 * @param node - the node to create folding.
 		 * @return true, if successful
 		 */
-		public boolean visit(final HaxeTree n) {
-			int start = 0;
-			int len = 0;
-			if (n instanceof ClassNode) {
-				ClassNode classNode = (ClassNode) n;
-				BlockScopeNode blockScopeNode = classNode.getBlockScope();
-				if (blockScopeNode != null) {
-					start = blockScopeNode.getlBracketPosition();
-					len = blockScopeNode.getrBracketPosition() - start; 
-					assert(len > 0);
-					HaxeFoldingUpdater.this.makeAnnotation(start, len);
-					return true;
-				}
-			} else if (n instanceof FunctionNode) {
-				FunctionNode functionNode = (FunctionNode) n;
-				BlockScopeNode blockScopeNode = functionNode.getBlockScope();
-				if (blockScopeNode != null) {
-					start = blockScopeNode.getlBracketPosition();
-					len = blockScopeNode.getrBracketPosition() - start;
-					HaxeFoldingUpdater.this.makeAnnotation(start, len + 1);
-					return true;
-				} 
-			}
-			return false;
-
+		public boolean visit(final HaxeTree node) 
+		{
+		    int start = node.getMostLeftPosition();
+            int len = node.getMostRightPosition() - start;
+            assert(len > 0);
+            HaxeFoldingUpdater.this.makeAnnotation(start, len + 1);
+			return true;
 		}
 	};
+	
+	private HaxeFoldingVisitor visitor = null;
+	
+    public static final int MODULE_TYPE = HaxeParser.MODULE;
 
 	@Override
 	protected void sendVisitorToAST(
 			final HashMap<Annotation, Position> newAnnotations,
 			final List<Annotation> annotations, final Object ast) {
-		HaxeFoldingVisitor visitor = new HaxeFoldingVisitor();
-		HaxeTree node = (HaxeTree) ast;
-		node.accept(visitor);
+		visitor = new HaxeFoldingVisitor();
+		accept((HaxeTree) ast);
 	}
+
+    /**
+     * Chooses according to the node type what nodes
+     * should be visited to create folding.
+     * @param node
+     */
+    private void accept(final HaxeTree node) 
+    {
+        try 
+        {
+            if (node instanceof BlockScopeContainer) 
+            {
+                BlockScopeNode blockscope 
+                    = ((BlockScopeContainer)node).getBlockScope();
+                accept(blockscope);
+            }
+            else if (node instanceof BlockScopeNode)
+            {
+                visitor.visit((BlockScopeNode)node);
+                for (HaxeTree child : node.getChildren()) 
+                {
+                    accept(child);
+                }
+            }
+            else if (node.token != null) 
+            {
+                int tokenType = node.getToken().getType();
+                //The root of all tree - users don't know about it
+                if (tokenType == MODULE_TYPE) 
+                {
+                    for (HaxeTree child : node.getChildren()) 
+                    {
+                        accept(child);
+                    }
+                } 
+                // TODO What is considered as comment?? 
+                // (/**/ ; /// and // blocks not considered)
+                // Maybe fix somewhere else needed?
+                else if (tokenType == HaxeLexer.COMMENT) 
+                {
+                    visitor.visit(node);
+                }
+            }
+        } 
+        catch (NullPointerException nullPointerException) 
+        {
+            System.out.println(
+                    "Exception caught from invocation of" + 
+                    " language-specific tree model builder implementation");
+            nullPointerException.printStackTrace();
+        }
+    }
 }

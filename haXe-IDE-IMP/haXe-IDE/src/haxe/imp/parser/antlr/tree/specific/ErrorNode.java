@@ -8,7 +8,9 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser.antlr.tree;
+package haxe.imp.parser.antlr.tree.specific;
+
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;

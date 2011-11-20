@@ -105,7 +105,7 @@ public class HaxeFoldingUpdater extends FolderBase {
             {
                 BlockScopeNode blockscope 
                     = ((BlockScopeContainer)node).getBlockScope();
-                accept(blockscope);
+                if (blockscope != null) accept(blockscope);
             }
             else if (node instanceof BlockScopeNode)
             {

@@ -11,13 +11,16 @@
 package test;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
+import static test.TestHelper.parseExpression;
 import static test.TestHelper.parseHaxeFile;
 import static test.TestHelper.createHaxeParser;
 import static test.TestHelper.assertTreeSize;
@@ -52,7 +55,7 @@ public class CheckParser {
 	@Test
 	public void checkInvalidAssigment() {
 		HaxeParser parser = createHaxeParser(pathToTests + "checkAssigments.hx");
-		assertEquals(7, parser.getNumberOfSyntaxErrors());
+		assertEquals(7, parser.getNumberOfSyntaxErrors()); // FIXME: not sure, if these errrors should be syntax... 
 	}
 	
 	@Test
@@ -106,6 +109,12 @@ public class CheckParser {
 	@Test
 	public void testSwitchStatement() throws RecognitionException {
 		assertTreeSize(5, parseStatement("testSwitch01"));
+	}
+	
+	@Test
+	public void testBinOp() throws RecognitionException {
+		HaxeTree tree = parseExpression("1+2");
+		assertTrue(tree instanceof BinaryExpressionNode);
 	}
 	
 }

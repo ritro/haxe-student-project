@@ -238,8 +238,8 @@ public class HaxeTree extends CommonTree
 	    messageHandler.handleSimpleMessage(
 	            message, 
 	            getMostLeftPosition(), 
-	            getMostRightPosition()
-	            , 0, 0, 0, 0);
+	            getMostRightPosition(),
+	            0, 0, 1, 1);
 	}
 	
 	private void commitCastError(){
@@ -364,10 +364,8 @@ public class HaxeTree extends CommonTree
 	 * @return the node by position
 	 *//*
 	@Deprecated
-	public HaxeTree getNodeByPosition(final int line,
-			final int posInLine) {
-		List<HaxeTree> nodes = new ArrayList<HaxeTree>(
-				this.getChildren());
+	public HaxeTree getNodeByPosition(final int line, final int posInLine) {
+		List<HaxeTree> nodes = new ArrayList<HaxeTree>(this.getChildren());
 
 		if (this.getLine() != line) {
 			Collections.sort(nodes, new ComparatorByLines());
@@ -379,8 +377,7 @@ public class HaxeTree extends CommonTree
 			}
 			if (nodes.get(nodes.size() - 1).getLine() <= line) {
 				if (nodes.get(nodes.size() - 1).getChildren() != null) {
-					return nodes.get(nodes.size() - 1).getNodeByPosition(line,
-							posInLine);
+					return nodes.get(nodes.size() - 1).getNodeByPosition(line, posInLine);
 				} else {
 					return this;
 				}
@@ -409,7 +406,9 @@ public class HaxeTree extends CommonTree
 			}
 
 			if (pretender.getCharPositionInLine()
-					+ pretender.getText().length() > posInLine
+					+ pretender.getTokenStopIndex() - pretender.getTokenStartIndex() - 1
+					+ pretender.getText().length()
+						> posInLine
 					&& pretender.getCharPositionInLine() <= posInLine
 					&& pretender.auxiliary == false) {
 				return pretender;

@@ -68,17 +68,22 @@ public class EnumNode extends BlockScopeContainer {
 	public ArrayList<HaxeTree> getAllMembers() {
 		ArrayList<HaxeTree> list = new ArrayList<HaxeTree>();
 
-		for (HaxeTree x: getBlockScope().getChildren())
-			if (x instanceof VarDeclarationNode)
-				list.add(x);
+		BlockScopeNode blockScope = getBlockScope();
+		if (blockScope != null) 
+		{
+			for (HaxeTree x: blockScope.getChildren())
+				if (x instanceof VarDeclarationNode)
+					list.add(x);
+		}
 		return list;
 	}
 	
 	@Override
 	public void calculateScopes(Environment declarations) 
 	{
-		if (getBlockScope() != null) {
-			getBlockScope().calculateScopes(declarations);
+		BlockScopeNode blockScope = getBlockScope();
+		if (blockScope != null) {
+			blockScope.calculateScopes(declarations);
 		}
 	}
 

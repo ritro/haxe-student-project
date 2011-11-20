@@ -439,35 +439,6 @@ public class HaxeTree extends CommonTree
 		return new HaxeTree(0);
 	}
 	
-/*
-	private class ComparatorByLines implements Comparator<CommonTree> {
-
-		@Override
-		public int compare(final CommonTree arg0, final CommonTree arg1) {
-			if (arg0.getLine() < arg1.getLine()) {
-				return -1;
-			} else if (arg0.getLine() > arg1.getLine()) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-	}
-	
-	private class ComparatorByPosInLine implements Comparator<CommonTree> {
-
-		@Override
-		public int compare(final CommonTree arg0, final CommonTree arg1) {
-			if (arg0.getCharPositionInLine() < arg1.getCharPositionInLine()) {
-				return -1;
-			} else if (arg0.getCharPositionInLine() > arg1.getCharPositionInLine()) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-	}*/
-	
     public boolean ifUndefinedType()
     {
         return haxeType.equals(HaxeType.haxeUndefined);

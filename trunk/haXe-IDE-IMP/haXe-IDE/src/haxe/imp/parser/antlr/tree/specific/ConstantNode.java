@@ -1,6 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.Token;
@@ -61,27 +62,23 @@ public class ConstantNode extends HaxeTree {
 	 */
 	public ConstantNode(final int ttype, final Token t, final String varType) {
 		this.token = t;
-		if (varType.equals("INT")) {
-			this.setHaxeType(HaxeType.haxeInt);
-		} else if (varType.equals("FLOAT")) {
-			this.setHaxeType(HaxeType.haxeFloat);
-		} else if (varType.equals("STRING")) {
-			this.setHaxeType(HaxeType.haxeString);
-		} else if (varType.equals("VOID")) {
-			this.setHaxeType(HaxeType.haxeVoid);
-		} else if (varType.equals("BOOL")) {
-			this.setHaxeType(HaxeType.haxeBool);
-		} else if (varType.equals("DYNAMIC")) {
-			this.setHaxeType(HaxeType.haxeDynamic);
-		} else if (varType.equals("Unknown<0>")){
-			this.setHaxeType(HaxeType.haxeUnknown);
+		if (varType.equalsIgnoreCase("INT")) {
+			setHaxeType(HaxeType.haxeInt);
+		} else if (varType.equalsIgnoreCase("FLOAT")) {
+			setHaxeType(HaxeType.haxeFloat);
+		} else if (varType.equalsIgnoreCase("STRING")) {
+			setHaxeType(HaxeType.haxeString);
+		} else if (varType.equalsIgnoreCase("VOID")) {
+			setHaxeType(HaxeType.haxeVoid);
+		} else if (varType.equalsIgnoreCase("BOOL")) {
+			setHaxeType(HaxeType.haxeBool);
+		} else if (varType.equalsIgnoreCase("DYNAMIC")) {
+			setHaxeType(HaxeType.haxeDynamic);
+		} else if (varType.equalsIgnoreCase("Unknown<0>")){
+			setHaxeType(HaxeType.haxeUnknown);
 		}else{
-			this.setHaxeType(HaxeType.haxeUndefined);
+			setHaxeType(HaxeType.haxeUndefined);
 		}
-	}
-
-	public ConstantNode(final int ttype, final boolean auxiliary) {
-		super(ttype, auxiliary);
 	}
 	
 	public ConstantNode getClone() {
@@ -90,4 +87,9 @@ public class ConstantNode extends HaxeTree {
 		return varUsage;
 	}
 
+	@Override
+	public void calculateScopes(Environment declarations)
+	{
+	    
+	}
 }

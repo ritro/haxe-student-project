@@ -128,16 +128,10 @@ public class BlockScopeNode extends HaxeTree {
 	            functions.add(function);
 	            declarations.put(function);
             }
-	        else if (tree instanceof VarDeclarationNode)
-            {
-                tree.calculateScopes(declarations.addToCopy(tree));
-            }
-            else if (tree.getType() == HaxeParser.RBRACE)
-            {
-                //right braces were added separately as IMP
-                //wasn't counting them as meaningful chars
-                continue;
-            }
+	        else if (checkForCommonClassMember(declarations, tree))
+	        {
+	            continue;
+	        }
 	        else
 	        {
 	            tree.commitUnexpectedError();
@@ -159,10 +153,9 @@ public class BlockScopeNode extends HaxeTree {
 	{
 	    for (HaxeTree tree : getChildren()) 
         {
-            if (tree instanceof VarDeclarationNode)
+            if (checkForCommonClassMember(declarations, tree))
             {
-                declarations.put(tree);
-                tree.calculateScopes(declarations);
+                continue;
             }
             else if (tree instanceof VarUsageNode)
             {
@@ -172,17 +165,39 @@ public class BlockScopeNode extends HaxeTree {
             {
                 tree.calculateScopes(declarations);
             }
-            else if (tree.getType() == HaxeParser.RBRACE)
+            else if (tree instanceof IfNode)
             {
-                //right braces were added separately as IMP
-                //wasn't counting them as meaningful chars
-                continue;
+                tree.calculateScopes(declarations);
             }
             else
             {
                 tree.commitUnexpectedError();
             }
         }
+	}
+	
+	@Override
+	public void calculateScopes(Environment declarations)
+	{
+	    calculateFunctionScope(declarations);
+	}
+	
+	private boolean checkForCommonClassMember(Environment declarations, HaxeTree tree)
+	{
+        if (tree instanceof VarDeclarationNode)
+        {
+            declarations.put(tree);
+            tree.calculateScopes(declarations);
+            return true;
+        }
+        else if (tree.getType() == HaxeParser.RBRACE)
+        {
+            //right braces were added separately as IMP
+            //wasn't counting them as meaningful chars
+            return true;
+        }
+        
+        return false;
 	}
 	
     /*

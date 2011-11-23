@@ -10,21 +10,12 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree;
 
-import static haxe.imp.parser.antlr.utils.HaxeType.areBothNumbers;
-import static haxe.imp.parser.antlr.utils.HaxeType.getCommonNumberType;
-import haxe.imp.foldingUpdater.HaxeFoldingUpdater.HaxeFoldingVisitor;
-import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
-import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
-import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.treeModelBuilder.HaxeTreeModelBuilder.HaxeModelVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +36,6 @@ public class HaxeTree extends CommonTree
 	 */
 	protected int mostLeftPosition = -1;
 	protected int mostRightPosition = -1;
-
-	private enum boolOperations {
-		PLUS,
-		MINUS,
-		MULTY,
-		DIV,
-		EQ,
-		PERCENT
-	};
 
 	public static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 	public static final int SUFFIX_EXPR_TYPE = HaxeParser.SUFFIX_EXPR;
@@ -242,10 +224,6 @@ public class HaxeTree extends CommonTree
 	            0, 0, 1, 1);
 	}
 	
-	private void commitCastError(){
-		commitError(getText() + ": cast problems");
-	}
-	
 	/**
 	 * According to the node type, makes the Declaration Vars
 	 * table for all vars met in that node. The method should
@@ -268,15 +246,6 @@ public class HaxeTree extends CommonTree
                 tree.calculateScopes();
             }
         }
-	}
-	
-	public void calculateExpressionScopes(Environment declaration)
-	{
-	    if (!ifNumOperation())
-	    {
-	        //FIXME may just a var
-	        return;
-	    }
 	}
 	
 	/**
@@ -452,87 +421,4 @@ public class HaxeTree extends CommonTree
 	{
 	    commitError("Unexpected " + getText());
 	}
-	
-	//this is regarding Binaty Expt until special will be done in ANTLR
-	private boolean ifNumOperation(){
-		return (getText().equals("+")||
-				getText().equals("-")||
-				getText().equals("*")||
-				getText().equals("/"));
-	}
-	
-	private boolOperations getBoolOperation(){
-		if (getText().equals("+"))
-			return boolOperations.PLUS;
-		else if (getText().equals("-"))
-			return boolOperations.MINUS;
-		else if (getText().equals("*"))
-			return boolOperations.MULTY;
-		else if (getText().equals("/"))
-			return boolOperations.DIV;
-		else if (getText().equals("="))
-			return boolOperations.EQ;
-		
-		return null;
-	}
-	
-	private HaxeType getUnarOperationType(){
-		if (this.ifNumOperation() &&
-			this.getChild(0).getHaxeType().isNumericType()) //+/*- can be used thiw other types??
-				return this.getChild(0).getHaxeType();
-		//else commit Error???
-		return HaxeType.haxeUndefined;
-	}
-	
-	private HaxeType getBoolOperationType() throws HaxeCastException {
-		HaxeTree leftNode = this.getChild(0);
-		HaxeTree rightNode = this.getChild(1);
-		HaxeType leftType = leftNode.getHaxeType();
-		HaxeType rightType = rightNode.getHaxeType();
-
-		switch (this.getBoolOperation()) {
-		case EQ:
-		case PLUS: {
-			if (leftType.equals(HaxeType.haxeString)|| 
-				rightType.equals(HaxeType.haxeString)) {
-				return HaxeType.haxeString;
-			} else if (areBothNumbers(leftType, rightType)) {
-				return getCommonNumberType(leftType, rightType);
-			} else {
-				this.commitCastError();
-				return HaxeType.haxeObject;
-			}
-		}
-		case DIV: {
-			if (areBothNumbers(leftType, rightType)) {
-				return HaxeType.haxeFloat;
-			} else {
-				this.commitCastError();
-				return HaxeType.haxeObject;
-			}
-		}
-		case MINUS: {
-			if (areBothNumbers(leftType, rightType)) {
-				return getCommonNumberType(leftType, rightType);
-			} else {
-				this.commitCastError();
-				return HaxeType.haxeObject;
-			}
-		}
-		case MULTY: {
-			if (areBothNumbers(leftType, rightType)) {
-				if (leftType.equals(HaxeType.haxeInt)
-						&& rightType.equals(HaxeType.haxeInt)) {
-					return HaxeType.haxeInt;
-				}
-				return HaxeType.haxeFloat;
-			} else {
-				this.commitCastError();
-				return HaxeType.haxeObject;
-			}
-		}
-		}
-		throw new HaxeCastException((HaxeTree) leftNode.parent);
-	}
-
 }

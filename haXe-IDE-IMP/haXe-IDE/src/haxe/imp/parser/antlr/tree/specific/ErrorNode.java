@@ -31,28 +31,35 @@ public class ErrorNode extends HaxeTree {
 
 
 	public ErrorNode(final TokenStream input, final Token start,
-			final Token stop, final RecognitionException e) {
-		this.delegate = new CommonErrorNode(input, start, stop, e);
+			final Token stop, final RecognitionException e) 
+	{
+		delegate = new CommonErrorNode(input, start, stop, e);
+	}
+	
+	@Override
+	public CommonToken getToken()
+	{
+	    return (CommonToken)delegate.stop;
 	}
 
 	@Override
 	public boolean isNil() {
-		return this.delegate.isNil();
+		return delegate.isNil();
 	}
 	
 	@Override
 	public int getType() {
-		return this.delegate.getType();
+		return delegate.getType();
 	}
 
 	@Override
 	public String getText() {
-		return this.delegate.getText();
+		return delegate.getText();
 	}
 
 	@Override
 	public String toString() {
-		return this.delegate.toString();
+		return delegate.toString();
 	}
 	
 	@Override

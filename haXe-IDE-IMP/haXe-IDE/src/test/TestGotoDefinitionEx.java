@@ -10,16 +10,6 @@
  *******************************************************************************/
 package test;
 
-import static junit.framework.Assert.assertEquals;
-import static test.TestHelper.parseHaxeFile;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-
-import org.antlr.runtime.RecognitionException;
-import org.junit.Test;
-
 public class TestGotoDefinitionEx {
 /*
 	@SuppressWarnings("deprecation")

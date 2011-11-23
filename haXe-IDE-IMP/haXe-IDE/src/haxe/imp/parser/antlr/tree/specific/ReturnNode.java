@@ -52,11 +52,11 @@ public class ReturnNode extends HaxeTree
 	{
 	    HaxeTree expression = getExpression();
 	    HaxeType type = getHaxeType();
-	    if (expression == null && type == haxeType.haxeVoid)
+	    if (expression == null && type == HaxeType.haxeVoid)
 	    {
 	        return;
 	    }
-	    if (expression == null && type != haxeType.haxeUndefined)
+	    if (expression == null && type != HaxeType.haxeUndefined)
 	    {
 	        commitError("Void should be " + type.toString());
 	    }

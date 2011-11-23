@@ -135,18 +135,49 @@ public class HaxeType {
 	}
 
 	/**
-	 * Applied in case when user is sure, that both of parameters are numbers. (
-	 * <code>areBothNumbers</code> returning true)
-	 * 
-	 * @return the common number type
+	 * For two types returns the type which hierarhy consumes
+	 * another type. 
+	 * @return the common type or null if they have nothing in
+	 * common
 	 */
-	public static HaxeType getCommonNumberType(final HaxeType type1,
-			final HaxeType type2) {
-		if (type1.equals(haxeInt) && type2.equals(haxeInt)) {
-			return haxeInt;
-		} else {
-			return haxeFloat;
-		}
+	public static HaxeType getCommonPrimaryType(
+	        final HaxeType type1,
+			final HaxeType type2) 
+	{
+	    if (type1.equals(type2))
+	    {
+	        return type1;
+	    }
+	    
+	    ArrayList<HaxeType> type1Hierarchy = type1.getClassHierarchy();
+	    if (type1Hierarchy != null && type1Hierarchy.contains(type2))
+	    {
+	        return type2;
+	    }
+	    
+	    HaxeType typeFromHierarhy = null;
+	    for (HaxeType type : type1Hierarchy)
+	    {
+	        typeFromHierarhy = getCommonPrimaryType(type, type1);
+	    }
+	    
+	    if (typeFromHierarhy != null)
+	    {
+	        return typeFromHierarhy;
+	    }
+	    
+        ArrayList<HaxeType> type2Hierarchy = type2.getClassHierarchy();
+	    if (type2Hierarchy != null && type2Hierarchy.contains(type1))
+	    {
+	        return type1;
+	    }
+        
+        for (HaxeType type : type2Hierarchy)
+        {
+            typeFromHierarhy = getCommonPrimaryType(type, type2);
+        }
+	    
+	    return typeFromHierarhy;
 	}
 
 	/**

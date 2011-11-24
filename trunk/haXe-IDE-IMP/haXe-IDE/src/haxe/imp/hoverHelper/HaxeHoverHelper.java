@@ -10,11 +10,11 @@
  *******************************************************************************/
 package haxe.imp.hoverHelper;
 
+import haxe.ide.Activator;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe_ide.Activator;
 
 import java.util.List;
 

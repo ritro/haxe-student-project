@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe_ide;
+package haxe.ide;
 
 import org.eclipse.imp.runtime.PluginBase;
 import org.osgi.framework.BundleContext;

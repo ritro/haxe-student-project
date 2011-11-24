@@ -240,9 +240,9 @@ public class HaxeParseController implements IParseController {
             HaxeParser.module_return parserResult = parser.module();
             this.currentAST = (HaxeTree) parserResult.getTree();
             System.out.println("success!");
-            HaxeTree.setMessageHandler(this.handler);
-            this.handler.clearMessages();
-            this.currentAST.calculateScopes();
+            HaxeTree.setMessageHandler(handler);
+            handler.clearMessages();
+            currentAST.calculateScopes();
         } catch (RecognitionException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -251,10 +251,10 @@ public class HaxeParseController implements IParseController {
 
     @Override
     public Object parse(final String input, final IProgressMonitor monitor) {
-        this.currentAST = null;
-        this.doParse(input);
+        currentAST = null;
+        doParse(input);
         HaxeTreePrinter.printTree(currentAST);
-        return this.currentAST;
+        return currentAST;
     }
 
 }

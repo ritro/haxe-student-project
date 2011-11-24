@@ -179,6 +179,16 @@ public class HaxeType {
 	    
 	    return typeFromHierarhy;
 	}
+	
+	/**
+	 * Compares two types to detect if they can be compared (?)
+	 * @return true if ...
+	 */
+	public static boolean ifCommonType(final HaxeType type1, final HaxeType type2)
+	{
+	    //FIXME implement
+	    return false;
+	}
 
 	/**
 	 * Gets the class hierarchy.

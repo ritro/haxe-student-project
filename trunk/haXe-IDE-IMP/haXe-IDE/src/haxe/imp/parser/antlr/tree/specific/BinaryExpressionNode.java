@@ -13,22 +13,14 @@ public class BinaryExpressionNode extends HaxeTree
 {
     private enum BoolOperations {
         PLUS,
-        MINUS,
-        MULTY,
-        DIV,
-        EQ,
-        PERCENT
+        NUMERABLE,
+        DIVIDE,
+        BITWISE,
+        COMPARISON,
+        BOOLEAN
     };
     
     private BoolOperations operationType = null;
-    
-    private HaxeType getUnarOperationType(){
-        if (ifNumericOperation() &&
-            getChild(0).getHaxeType().isNumericType()) //+/*- can be used thiw other types??
-                return this.getChild(0).getHaxeType();
-        //else commit Error???
-        return HaxeType.haxeUndefined;
-    }
     
     private void defineOperationType()
     {
@@ -38,26 +30,37 @@ public class BinaryExpressionNode extends HaxeTree
             case "+" : 
                 operationType = BoolOperations.PLUS;
                 break;
-            case "-" : 
-                operationType = BoolOperations.MINUS;
-                break;
+            case "%" : 
             case "*" : 
-                operationType = BoolOperations.MULTY;
+            case "-" : 
+                operationType = BoolOperations.NUMERABLE;
                 break;
             case "/" : 
-                operationType = BoolOperations.DIV;
+                operationType = BoolOperations.DIVIDE;
                 break;
+            //shifts
+            case "<<":
+            case ">>":
+            case ">>>":
+            //other
+            case "|":
+            case "&":
+            case "^":
+                operationType = BoolOperations.BITWISE;
+                break; 
             case "==":
-                operationType = BoolOperations.EQ;
+            case "!=":
+            case ">":
+            case "<":
+            case ">=":
+            case "<=":
+                operationType = BoolOperations.COMPARISON;
+                break;
+            case "&&":
+            case "||":
+                operationType = BoolOperations.BOOLEAN;
                 break;
         }
-    }
-    
-    private boolean ifNumericOperation(){
-        return (operationType == BoolOperations.PLUS  ||
-                operationType == BoolOperations.MINUS ||
-                operationType == BoolOperations.MULTY ||
-                operationType == BoolOperations.DIV);
     }
     
     private void commitCastError(){
@@ -96,9 +99,9 @@ public class BinaryExpressionNode extends HaxeTree
 
         switch (operationType) 
         {
-            case EQ:
+            //If both expressions are Int then return Int, else if both 
+            //expressions are either Int or Float then return Float, else return String.
             case PLUS: 
-            {
                 if (HaxeType.primaryTypes.contains(leftType.getShortTypeName()) && 
                         HaxeType.primaryTypes.contains(rightType.getShortTypeName())) 
                 {
@@ -108,8 +111,8 @@ public class BinaryExpressionNode extends HaxeTree
                 
                 commitCastError();
                 // HaxeType.haxeObject; ???
-            }
-            case DIV: {
+            //Divide two numbers, return Float.
+            case DIVIDE:
                 if (areBothNumbers(leftType, rightType)) 
                 {
                     definedType = HaxeType.haxeFloat;
@@ -117,21 +120,45 @@ public class BinaryExpressionNode extends HaxeTree
                 } 
 
                 commitCastError();
-            } 
-            case MINUS:
-            case MULTY: {
+            // Return Int if both are Int and return Float 
+            // if they are either both Float or mixed.
+            case NUMERABLE:
                 if (areBothNumbers(leftType, rightType)) 
                 {
-                    if (leftType.equals(HaxeType.haxeInt)
-                            && rightType.equals(HaxeType.haxeInt)) {
-                        definedType = HaxeType.haxeInt;
-                    }
-                    definedType = HaxeType.haxeFloat;
+                    definedType = getCommonPrimaryType(leftType, rightType);
                     break;
                 } 
 
                 commitCastError();
-            }
+            // bitwise operations between two Int expressions. Returns Int.
+            case BITWISE:
+                if (leftType.equals(HaxeType.haxeInt) && rightType.equals(HaxeType.haxeInt))
+                {
+                    definedType = HaxeType.haxeInt;
+                    break;
+                }
+                
+                commitCastError();
+            //perform normal or physical comparisons between two 
+            //expressions sharing a common type. Returns Bool.
+            //TODO we can compare two strings ???????
+            case COMPARISON:
+                if (HaxeType.ifCommonType(leftType, rightType))
+                {
+                    definedType = HaxeType.haxeBool;
+                    break;
+                }
+                
+                commitCastError();
+            //Both e1 and e2 must be Bool
+            case BOOLEAN:
+                if (leftType.equals(HaxeType.haxeBool) && rightType.equals(HaxeType.haxeBool))
+                {
+                    definedType = leftType;
+                    break;
+                }
+                
+                commitCastError();
         }
         
         setHaxeType(definedType);

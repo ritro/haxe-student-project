@@ -1,6 +1,7 @@
 package haxe.imp.parser.antlr.tree;
 
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
+import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
@@ -55,6 +56,10 @@ public class HaxeTreePrinter
             {
                 printTree((ConstantNode)child);
             }
+            else if (child instanceof BinaryExpressionNode)
+            {
+                printTree((BinaryExpressionNode)child);
+            }
             else if (child instanceof ReturnNode)
             {
                 printTree((ReturnNode)child);
@@ -92,6 +97,12 @@ public class HaxeTreePrinter
             System.out.println("VarUseDOT");
         else
             System.out.println("VarUsage"+ "(name=" +node.getText()+")" +
+                "{"+node.getHaxeType().getShortTypeName()+'}');
+    }
+    
+    private static void printTree(final BinaryExpressionNode node)
+    {
+        System.out.println("BinaryExpression"+ "(" +node.getText()+")" +
                 "{"+node.getHaxeType().getShortTypeName()+'}');
     }
 }

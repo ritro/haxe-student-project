@@ -111,10 +111,4 @@ public class CheckParser {
 		assertTreeSize(5, parseStatement("testSwitch01"));
 	}
 	
-	@Test
-	public void testBinOp() throws RecognitionException {
-		HaxeTree tree = parseExpression("1+2");
-		assertTrue(tree instanceof BinaryExpressionNode);
-	}
-	
 }

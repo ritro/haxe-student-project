@@ -6,7 +6,6 @@ import static haxe.imp.parser.antlr.utils.HaxeType.getCommonPrimaryType;
 import org.antlr.runtime.Token;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.exceptions.HaxeCastException;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
 

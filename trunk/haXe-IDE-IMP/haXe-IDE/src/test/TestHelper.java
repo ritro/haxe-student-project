@@ -126,7 +126,6 @@ public final class TestHelper {
 	
 	public static void assertTreeSize(int size, HaxeTree tree) {
 		assertEquals(size, tree.getChildCount());
-		//assertEquals(size, tree.getChildren().size());
 	}	
 	/**
 	 * Prints the tree.

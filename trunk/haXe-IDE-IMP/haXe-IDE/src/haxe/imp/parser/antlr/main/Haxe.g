@@ -350,7 +350,7 @@ shiftExpr
 addExpr :     (multExpr) ((PLUS<BinaryExpressionNode>^ | SUB<BinaryExpressionNode>^) multExpr )*
         ;
     
-multExpr:    (psExpr) ((STAR<BinaryExpressionNode> | SLASH<BinaryExpressionNode> | PERCENT<BinaryExpressionNode>)^ psExpr)*
+multExpr:    (psExpr) ((STAR<BinaryExpressionNode>^ | SLASH<BinaryExpressionNode>^ | PERCENT<BinaryExpressionNode>^) psExpr)*
         ;
         
 psExpr

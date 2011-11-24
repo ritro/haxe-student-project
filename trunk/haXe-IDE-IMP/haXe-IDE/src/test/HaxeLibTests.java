@@ -5,8 +5,6 @@ import static test.TestHelper.parseExpression;
 import static test.TestHelper.parseStatement;
 import static test.TestHelper.parseModule;
 
-import java.text.ParseException;
-
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 

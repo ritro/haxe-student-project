@@ -10,6 +10,8 @@
  *******************************************************************************/
 package haxe.imp.treeModelBuilder;
 
+import haxe.ide.Activator;
+import haxe.ide.IHaxeResources;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
@@ -18,8 +20,6 @@ import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe_ide.Activator;
-import haxe_ide.IHaxeResources;
 
 import java.util.HashSet;
 import java.util.Set;

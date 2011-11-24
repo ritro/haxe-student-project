@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: HaXe_IDE
 Bundle-SymbolicName: haXe_IDE;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: haxe_ide.Activator
+Bundle-Activator: haxe.ide.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -19,5 +19,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
  JavaSE-1.6
 Eclipse-LazyStart: true
-Bundle-ClassPath: lib/antlr-3.3-complete.jar,
+Bundle-ClassPath: lib/antlr-3.4-complete.jar,
  .

@@ -15,7 +15,7 @@ import org.eclipse.imp.model.ModelFactory.ModelException;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.runtime.PluginBase;
 
-import haxe_ide.Activator;
+import haxe.ide.Activator;
 import haxe.imp.parser.HaxeParseController;
 
 /**

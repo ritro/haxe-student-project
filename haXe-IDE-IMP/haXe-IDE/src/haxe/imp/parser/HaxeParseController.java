@@ -10,12 +10,12 @@
  *******************************************************************************/
 package haxe.imp.parser;
 
+import haxe.ide.Activator;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.imp.parser.antlr.tree.HaxeTreePrinter;
-import haxe_ide.Activator;
 
 import java.util.ArrayList;
 import java.util.Iterator;

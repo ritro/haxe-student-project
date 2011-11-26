@@ -144,26 +144,18 @@ public class HaxeType {
 	        final HaxeType type1,
 			final HaxeType type2) 
 	{
+	    // if the equal then this is the common type
 	    if (type1.equals(type2))
 	    {
 	        return type1;
 	    }
 	    
+	    // mb One of them is in the hierarchy of Other
+	    // then Other is their common type
 	    ArrayList<HaxeType> type1Hierarchy = type1.getClassHierarchy();
 	    if (type1Hierarchy != null && type1Hierarchy.contains(type2))
 	    {
 	        return type2;
-	    }
-	    
-	    HaxeType typeFromHierarhy = null;
-	    for (HaxeType type : type1Hierarchy)
-	    {
-	        typeFromHierarhy = getCommonPrimaryType(type, type1);
-	    }
-	    
-	    if (typeFromHierarhy != null)
-	    {
-	        return typeFromHierarhy;
 	    }
 	    
         ArrayList<HaxeType> type2Hierarchy = type2.getClassHierarchy();
@@ -171,10 +163,22 @@ public class HaxeType {
 	    {
 	        return type1;
 	    }
+	    
+	    // we have to look their hierarchies deeper
+	    HaxeType typeFromHierarhy = null;
+	    for (HaxeType type : type1Hierarchy)
+	    {
+	        typeFromHierarhy = getCommonPrimaryType(type, type2);
+	    }
+	    
+	    if (typeFromHierarhy != null)
+	    {
+	        return typeFromHierarhy;
+	    }
         
         for (HaxeType type : type2Hierarchy)
         {
-            typeFromHierarhy = getCommonPrimaryType(type, type2);
+            typeFromHierarhy = getCommonPrimaryType(type, type1);
         }
 	    
 	    return typeFromHierarhy;
@@ -196,7 +200,7 @@ public class HaxeType {
 	 * @return the classHierarchy
 	 */
 	public ArrayList<HaxeType> getClassHierarchy() {
-		return this.classHierarchy;
+		return classHierarchy;
 	}
 
 	/**

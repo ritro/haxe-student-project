@@ -140,13 +140,71 @@ public class BinaryOperationTests
     // Comples Expressions
     //
     
+    // With Parenthesis
     @Test
     public void testBinOpWithParenthesis() throws RecognitionException {
         HaxeTree tree = parseExpression("3*(1*2)");
         assertTrue(tree instanceof BinaryExpressionNode);
         assertTrue(tree.getChildCount() == 2);
-        assertTrue(tree.getChild(0) instanceof ConstantNode);
-        assertTrue(tree.getChild(1) instanceof BinaryExpressionNode);
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
     }
-
+    
+    // Priority without parenthesis
+    @Test
+    public void testBinOpPriority1() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 || 1 && 2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority2() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 && 1 != 2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority3() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 <= 1|2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority4() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 | 1 << 2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority5() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 << 1 + 2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority6() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 << 1 + 2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority7() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 - 1 * 2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
 }

@@ -10,8 +10,10 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
+import haxe.imp.parser.antlr.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -20,40 +22,59 @@ import org.antlr.runtime.Token;
  * 
  * @author kondratyev
  */
-public class AssignOperationNode extends HaxeTree {
+public class AssignOperationNode extends BinaryOperaionContainer {
 
-	/**
-	 * Gets the left part of equation.
-	 * @return Left part of equation.
-	 */
-	public HaxeTree getLeftOperand()
-	{
-		// it could be not only VarUsage but also field access or slice
-		return getChild(0);
-	}
+    @Override
+    protected void defineOperationType()
+    {
+        String name = getText();
+        String operationName = name.substring(0, Math.max(0, name.length() - 1));
+        BoolOperations type = getOperationTypeByToken(operationName);
+        // there is no way that can be not one of the following
+        // types after this operation 
+        // - PLUS, NUMERABLE, DIVIDE, BITWISE, Null
+        setOperationType(type);
+    }
 	
-	/**
-	 * Gets the right part of equation.
-	 * @return Right part of equation.
-	 */
-	public HaxeTree getRightOperand()
-	{
-		return getChild(1);
-	}
+    public AssignOperationNode(final Token t) {
+        super(t);
+    }
 
 	public AssignOperationNode(final int ttype, final Token token) {
-		this.token = token;
-	}
-
-	public AssignOperationNode(final int ttype, final boolean auxiliary) {
-		super(ttype, auxiliary);
+		super(token);
 	}
 	
 	public void calculateScopes(Environment environment)
 	{
-	    getRightOperand().calculateScopes(environment);
-	    getLeftOperand().calculateScopes(environment);
-	    //FIXME chechk types
+        HaxeTree leftOperand = getLeftOperand();
+        HaxeTree rightOperand = getRightOperand();
+        
+	    leftOperand.calculateScopes(environment);
+        rightOperand.calculateScopes(environment);
+	    
+	    HaxeType assignmentType;
+	    BoolOperations operationType = getOperationType();
+	    
+	    // null = means we have simple assingment
+	    if (operationType != null)
+	    {
+	        assignmentType = defineResultType(operationType);
+	        if (assignmentType == null)
+	        {
+	            commitInvalidAssignmentError();
+	            return;
+	        }
+	    }
+	    else
+	    {
+	        assignmentType = rightOperand.getHaxeType();	        
+	    }
+	    
+	    setHaxeType(assignmentType);
+	    if (leftOperand.ifUndefinedType())
+	    {
+	        leftOperand.setHaxeType(assignmentType);
+	    }
 	}
 
     /**
@@ -68,7 +89,7 @@ public class AssignOperationNode extends HaxeTree {
 
     /**
      * Then assignment is not in the right form.
-     * This is haxe official error.
+     * This is haxe official error message.
      */
     public void commitInvalidAssignmentError()
     {

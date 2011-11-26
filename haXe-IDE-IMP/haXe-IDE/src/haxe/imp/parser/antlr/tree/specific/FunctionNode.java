@@ -120,7 +120,7 @@ public class FunctionNode extends BlockScopeContainer
 	@Override
 	public HaxeType getHaxeType()
 	{
-		if (ifUndefinedType())
+		if (super.getHaxeType() == HaxeType.haxeUndefined)
 		{
 		    findHaxeType();
 		}

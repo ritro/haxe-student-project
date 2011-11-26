@@ -409,7 +409,12 @@ public class HaxeTree extends CommonTree
 	
     public boolean ifUndefinedType()
     {
-        return haxeType.equals(HaxeType.haxeUndefined);
+        return getHaxeType() == HaxeType.haxeUndefined;
+    }
+    
+    public boolean ifClosingBraceNode()
+    {
+        return getText().equals("}");
     }
 	
 	/**

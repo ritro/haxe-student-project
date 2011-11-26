@@ -1,11 +1,14 @@
 package haxe.imp.parser.antlr.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * List of declarations valid in the current scope
@@ -110,5 +113,21 @@ public class Environment extends HashMap<String, HaxeTree>
     public boolean put(HaxeTree declaration)
     {
         return put(declaration, true);
+    }
+    
+    public FunctionNode getLastFunction()
+    {
+        HaxeTree[] values = (HaxeTree[]) values().toArray();
+        int size = values.length;
+        for (int i = size - 1; i >= 0; i--)
+        {
+            HaxeTree node = values[i];
+            if (node instanceof FunctionNode)
+            {
+                return (FunctionNode)node;
+            }
+        }
+        
+        return null;
     }
 }

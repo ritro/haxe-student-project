@@ -11,11 +11,12 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
  */
 public class BlockScopeContainer extends HaxeTree
 {
+    private BlockScopeNode blockScope = null;
+    
     public BlockScopeContainer(Token t) 
     {
         super(t);
-    }
-    
+    }    
 
     /**
      * Gets block scope from current tree. 
@@ -23,13 +24,19 @@ public class BlockScopeContainer extends HaxeTree
      */
     public BlockScopeNode getBlockScope()
     {
+        if (blockScope != null)
+        {
+            return blockScope;
+        }
+        
         for (HaxeTree tree : getChildren()) 
         {
             if (tree instanceof BlockScopeNode) 
             {
-                return (BlockScopeNode) tree;
+                blockScope = (BlockScopeNode) tree;
             }
         }
-        return null;
+        
+        return blockScope;
     }
 }

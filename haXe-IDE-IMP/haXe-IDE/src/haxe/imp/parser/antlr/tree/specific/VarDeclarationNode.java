@@ -110,11 +110,6 @@ public class VarDeclarationNode extends HaxeTree {
             }
         }
 	}
-	
-	@Override
-	public boolean setHaxeType(HaxeType type){
-		return super.setHaxeType(type); 
-	}
 
 	/**
 	 * ???
@@ -152,13 +147,22 @@ public class VarDeclarationNode extends HaxeTree {
 	                initialization.getHaxeType() + " should be " + getHaxeType());
 	    }
 	}
+	
+	public void reportErrors()
+	{
+	    if (ifUndefinedType() && 
+	            getDeclaratonType() == DeclarationType.ClassVarDeclaration)
+	    {
+	        commitClassUndefinedTypeError();
+	    }
+	}
 
     /**
      * Class var declaration should have type.
      */
     public void commitClassUndefinedTypeError()
     {
-        this.commitError("Class var declaration should have type.");
+        commitError("Class var declaration should have type.");
     }
     
     /**
@@ -166,6 +170,6 @@ public class VarDeclarationNode extends HaxeTree {
      */
     public void commitVarAlreadyDeclaredTypeError()
     {
-        this.commitError("Var is already declared");
+        commitError("Var is already declared");
     }
 }

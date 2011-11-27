@@ -50,22 +50,37 @@ public class ReturnNode extends HaxeTree
 	@Override
 	public void calculateScopes(Environment declarations)
 	{
+	    // due to Antlr grammar the places there Return wasnt
+	    // expected already marked as Error nodes - so there
+	    // is no variant that function will be null
+	    setFunction(declarations.getLastFunction());
+	    
 	    HaxeTree expression = getExpression();
-	    HaxeType type = getHaxeType();
-	    if (expression == null && type == HaxeType.haxeVoid)
+	    //nothing to do anymore
+	    if (expression == null)
 	    {
 	        return;
 	    }
-	    if (expression == null && type != HaxeType.haxeUndefined)
+	    expression.calculateScopes(declarations);
+	}
+	
+	@Override
+	public void reportErrors()
+	{
+        HaxeTree expression = getExpression();
+        HaxeType type = getHaxeType();
+        
+	    if (function != null && type == HaxeType.haxeVoid)
 	    {
 	        commitError("Void should be " + type.toString());
+	        return;
 	    }
-	    expression.calculateScopes(declarations);
-	    if (expression.getHaxeType() != type)
+	    
+	    if (function.getHaxeType() != type)
 	    {
 	        expression.commitError(expression.getHaxeType()
 	                + " should be " + type);
-	    }
+	    }	    
 	}
 	
 	public void setFunction(FunctionNode function)
@@ -76,11 +91,16 @@ public class ReturnNode extends HaxeTree
 	@Override
 	public HaxeType getHaxeType()
 	{
-	    if (function == null)
+	    HaxeTree expression = getExpression(); 
+	    if (expression == null)
+        {
+	        setHaxeType(HaxeType.haxeVoid);
+        }
+	    else
 	    {
-	        return HaxeType.haxeUndefined;
+	        setHaxeType(expression.getHaxeType());
 	    }
-	    return function.getHaxeType();
+	    return super.getHaxeType();
 	}
 	
 	/**

@@ -213,8 +213,8 @@ public class HaxeTree extends CommonTree
 	}
 
 	/**
-	 * Printing error messages in eclipse's text editor (red circles at the
-	 * left).
+	 * Printing error messages in eclipse's text editor 
+	 * (red circles at the left).
 	 */	
 	public void commitError(final String message) {
 	    messageHandler.handleSimpleMessage(
@@ -230,11 +230,6 @@ public class HaxeTree extends CommonTree
 	 * be implemented for each of node type separately.
 	 * @return vars table for current node.
 	 */
-	/*
-	 * It is the stub. The same method will be implemented
-	 * in classes nested from HaxedTree.
-	 * @return null
-	 */
 	public void calculateScopes(Environment declaration) 
 	{
 	    for (HaxeTree tree : getChildren()) 
@@ -248,12 +243,16 @@ public class HaxeTree extends CommonTree
         }
 	}
 	
+	public void reportErrors() {}
+	
 	/**
 	 * Run the scope calculations with empty environment.
 	 */
 	public final void calculateScopes()
 	{
 	    calculateScopes(new Environment());
+	    
+	    reportErrors();
 	}
 	
 	public HaxeTree getParent(){

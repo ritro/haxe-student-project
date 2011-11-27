@@ -11,16 +11,13 @@
 package test;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
-import static test.TestHelper.parseExpression;
 import static test.TestHelper.parseHaxeFile;
 import static test.TestHelper.createHaxeParser;
 import static test.TestHelper.assertTreeSize;

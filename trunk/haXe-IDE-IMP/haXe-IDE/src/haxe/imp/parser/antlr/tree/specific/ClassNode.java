@@ -97,4 +97,12 @@ public class ClassNode extends BlockScopeContainer {
 		
 		blockScope.calculateClassScope(declarations);
 	}
+	
+	@Override
+	public void reportErrors()
+	{
+	    BlockScopeNode blockScope = getBlockScope();
+	    
+	    blockScope.reportErrors();
+	}
 }

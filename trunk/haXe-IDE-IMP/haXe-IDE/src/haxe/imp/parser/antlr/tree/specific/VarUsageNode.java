@@ -21,8 +21,8 @@ import org.antlr.runtime.Token;
  * 
  * @author kondratyev
  */
-public class VarUsageNode extends HaxeTree {
-
+public class VarUsageNode extends HaxeTree 
+{
     private HaxeTree declaration = null;
     
 	/**
@@ -53,7 +53,7 @@ public class VarUsageNode extends HaxeTree {
 	 *            the t
 	 */
 	public VarUsageNode(final Token t) {
-		token = t;
+		super(t);
 	}
 	
 	/**
@@ -64,19 +64,11 @@ public class VarUsageNode extends HaxeTree {
 	public String getText() 
 	{
 		//FIXME
-		if (getChildCount() == 0) 
+	    int childCount = getChildCount();
+		if (childCount == 0) 
 			return super.getText();
 		
-		return getAllChildren().get(this.getAllChildren().size()-1).getText();
-	}
-	
-	/**
-	 * Get Node by index
-	 * @return Node at required deph or null if index is greater than max deph
-	 */
-	public HaxeTree getNodePart(int i){
-		int lenth = this.getAllChildren().size();
-		return (lenth>i)? this.getAllChildren().get(lenth-1 - i): null;
+		return getChild(childCount-1).getText();
 	}
 
 	public VarUsageNode(final int ttype, final boolean auxiliary) {
@@ -87,14 +79,24 @@ public class VarUsageNode extends HaxeTree {
 	public void calculateScopes(Environment declarations)
 	{
 	    declaration = declarations.get(getText());
+	    
+	    setDeclarationNode(declaration);
+	}
+	
+	public void reportErrors()
+	{
 	    if (declaration == null)
 	    {
 	        //FIXME packets, classes, else?
 	        commitUndeclaredError();
-	        return;
 	    }
-	    
-	    setDeclarationNode(declaration);
+
+	    // FIXME - what about usage in Declarations?
+	    // look on parent isn't good looking
+	    if (ifUndefinedType())
+	    {
+	        commitUninitializedUsingError();
+	    }
 	}
 	
 	public HaxeTree getDeclarationNode()
@@ -109,6 +111,7 @@ public class VarUsageNode extends HaxeTree {
 
     /**
      * Error then user variable wan't declared before.
+     * This is official Haxe error message.
      */
     public void commitUndeclaredError()
     {

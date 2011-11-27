@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
+import haxe.imp.parser.antlr.utils.HaxeType;
 
 
 import org.antlr.runtime.CommonToken;
@@ -30,64 +31,56 @@ import org.antlr.runtime.Token;
  */
 public class BlockScopeNode extends HaxeTree {
 
-	private int lBracketPosition = -1;
-	private int rBracketPosition = -1;
+	private int leftBracketPosition = -1;
+	private int rightBracketPosition = -1;
 
 	/**
-	 * Gets the l bracket position.
-	 * 
-	 * @return the l bracket position
+	 * Gets the left bracket position in original text. 
+	 * @return the left bracket position
 	 */
-	public int getlBracketPosition() {
-		return this.lBracketPosition;
+	public int getLeftBracketPosition() {
+		return leftBracketPosition;
 	}
 	
 	private void calculateRightBracketPosition()
 	{
-	    if (getChildCount() == 0) 
+	    int childCount = getChildCount();
+	    if (childCount == 0) 
 	    {
 	        return;
 	    }
 	    
-        HaxeTree lastchild = getChildren().get(getChildCount()-1);
+        HaxeTree lastchild = getChildren().get(childCount-1);
         if (lastchild.getType() == HaxeParser.RBRACE) 
         {
-            rBracketPosition = 
+            rightBracketPosition = 
                     lastchild.getToken().getStopIndex();
         } else {
             // no right brace - return something
-            rBracketPosition = 
+            rightBracketPosition = 
                     lastchild.getMostRightPosition();
         }
 	}
 
 	/**
-	 * Gets the r bracket position.
-	 * 
-	 * @return the r bracket position
+	 * Gets the right bracket position in 
+	 * original text.
+	 * @return the right bracket position
 	 */
-	public int getrBracketPosition() {
-		if (rBracketPosition == -1)
+	public int getrBracketPosition() 
+	{
+		if (rightBracketPosition == -1)
 		{
 		    calculateRightBracketPosition();
 		}
 		
-		return rBracketPosition;
-	}
-
-	/**
-	 * Sets the r bracket position.
-	 * 
-	 * @param rBracketPosition
-	 *            the new r bracket position
-	 */
-	public void setrBracketPosition(final int rBracketPosition) {
-		this.rBracketPosition = rBracketPosition;
+		return rightBracketPosition;
 	}
 	
 	@Override
-	public int getMostLeftPosition() {
-		return getlBracketPosition();
+	public int getMostLeftPosition() 
+	{
+		return getLeftBracketPosition();
 	}
 	
 	@Override
@@ -100,17 +93,23 @@ public class BlockScopeNode extends HaxeTree {
 	 * A block evaluates to the TYPE of the last expression of the block.
 	 * As an exception, the empty block { } evaluates to Void.
 	 */
-	/*@Override
-	public HaxeType getHaxeType(){
-		return (this.getDeclaredVars().size() > 0) ? 
-				this.getDeclaredVars().get((this.getDeclaredVars().size()-1)).getHaxeType() :
-					HaxeType.haxeVoid;
-	}*/
+	@Override
+	public HaxeType getHaxeType()
+	{
+	    int childCount = getChildCount();
+	    if (childCount == 0)
+	    {
+	        return HaxeType.haxeVoid;
+	    }
+	    
+	    HaxeTree lastChild = getChild(childCount - 1);
+		return lastChild.getHaxeType();
+	}
 
 	public BlockScopeNode(final int blockScope, final String string,
 			final boolean b, final Token lBracket) {
 		super(blockScope, string, b);
-		lBracketPosition = ((CommonToken) lBracket).getStartIndex();
+		leftBracketPosition = ((CommonToken) lBracket).getStartIndex();
 	}
 	
 	/**
@@ -200,73 +199,12 @@ public class BlockScopeNode extends HaxeTree {
         return false;
 	}
 	
-    /*
-    public void calculateTypes() {
-        boolean ifChanged = false;
-        
-        do {
-            ifChanged = false;
-            for (VarDeclaration tree : this) {
-                if (tree instanceof FunctionDeclaration) {
-                    FunctionDeclaration fdn = (FunctionDeclaration) tree;
-                    if (fdn.ifUndefinedType()) 
-                    {
-                        fdn.setHaxeType(HaxeType.haxeVoid); //??
-                        ifChanged = true;
-                    }
-                } else if (tree instanceof ClassDeclaration) {
-    
-                } else if (tree instanceof VarUse) {
-                    VarUse vun = (VarUse) tree;
-                    if (vun.getAssignExpr() != null
-                            && !vun.getAssignExpr().ifUndefinedType()
-                            && vun.ifUndefinedType()) 
-                    {
-                        setDeclaredVarType(vun.getText(),vun.getVarNumber(), 
-                                vun.getAssignExpr().getHaxeType());
-                        ifChanged = true;
-                    } else if (vun.getAssignExpr() == null) 
-                    {
-                        //do nothing??
-                    }
-                }
-            }
-        } while (ifChanged);
-        markErrors();
-    }
-    
-    public void markErrors()
+	@Override
+	public void reportErrors()
     {
-        for (VarDeclaration tree : this) {
-            if (tree instanceof FunctionDeclaration) {
-                FunctionDeclaration fdn = (FunctionDeclaration) tree;
-                if (fdn.getHaxeType().equals(HaxeType.haxeVoid) 
-                        && fdn.getReturnNode() != null) {
-                    //fdn.getReturnNode().commitStrangeDecl();
-                } else if (!fdn.getHaxeType().equals(HaxeType.haxeVoid) 
-                           && fdn.getReturnNode() == null) {
-                    fdn.commitNullReturnError();
-                } else if (!fdn.getHaxeType().equals(HaxeType.haxeVoid) 
-                           && !fdn.getReturnNode().ifUndefinedType() // check if right return type
-                           && !fdn.getReturnNode().getHaxeType().equals(fdn.getHaxeType())) {
-                         fdn.getReturnNode().commitIncorrectReturnTypeError();
-                }
-            } else if (tree instanceof ClassDeclaration) {
-
-            } else if (tree instanceof VarUse) {
-                VarUse vun = (VarUse) tree;
-                if (findDeclaredVar(vun.getText()) == null)
-                {
-                    vun.commitUndeclaredError();
-                } else if (vun.getAssignExpr() != null
-                        && !vun.getAssignExpr().ifUndefinedType()
-                        && !HaxeType.isAvailableAssignement(vun.getHaxeType(), 
-                                vun.getAssignExpr().getHaxeType())) {
-                    vun.commitIncorrectAssignmentError();
-                }
-            } else if (tree.getDeclType() == VarType.ClassVarDeclaration
-                    && tree.ifUndefinedType())
-                tree.commitClassUndefinedTypeError();
+	    for (HaxeTree tree : getChildren()) 
+        {
+	        tree.reportErrors();
         }
-    }*/
+    }
 }

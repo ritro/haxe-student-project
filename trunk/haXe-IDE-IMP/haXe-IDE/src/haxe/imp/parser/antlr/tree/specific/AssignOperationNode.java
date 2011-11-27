@@ -76,6 +76,12 @@ public class AssignOperationNode extends BinaryOperaionContainer {
 	        leftOperand.setHaxeType(assignmentType);
 	    }
 	}
+	
+	@Override
+	public void reportErrors()
+	{
+	    
+	}
 
     /**
      * The right part's type is not appropriate.

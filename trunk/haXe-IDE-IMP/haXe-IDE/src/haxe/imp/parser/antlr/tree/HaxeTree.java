@@ -112,8 +112,7 @@ public class HaxeTree extends CommonTree
 	}
 	
 	/**
-	 * Calculates most right position for current tree only
-	 * if position wasn't calculated before. 
+	 * Calculates most right position for current tree only. 
 	 */
 	protected void calculateMostRightPosition()
 	{
@@ -137,36 +136,50 @@ public class HaxeTree extends CommonTree
                     commonTree.getMostRightPosition());
         }
 	}
-
+	
 	/**
-	 * Gets the most left position.
-	 * 
-	 * @return the most left position
+	 * Calculates most left position for current tree only. 
 	 */
-	public int getMostLeftPosition() {
-		if (isAuxiliary()) {
-			if (mostLeftPosition == -1 && getChildCount() > 0) {
-				mostLeftPosition = getChild(0).getMostLeftPosition();
-			}
-			return mostLeftPosition;
-		} else {
-			if (mostLeftPosition == -1) {
-				mostLeftPosition = getToken().getStartIndex();
-				if (getChildCount() > 0) {
-					for (HaxeTree commonTree : this.getChildren()) {
-						if (mostLeftPosition > commonTree
-								.getMostLeftPosition()) {
-							mostLeftPosition = commonTree
-									.getMostLeftPosition();
-						}
-					}
+	protected void calculateMostLeftPosition()
+	{
+		if (isAuxiliary()) 
+		{
+			mostLeftPosition =
+					getChild(0).getMostLeftPosition();
+		} 
+		else
+		{
+			mostLeftPosition = getToken().getStartIndex();
+			for (HaxeTree commonTree : getChildren()) 
+			{
+				int possibleMLP = 
+						commonTree.getMostLeftPosition();
+				if (mostLeftPosition > possibleMLP) 
+				{
+					mostLeftPosition = possibleMLP;
 				}
 			}
-			return this.mostLeftPosition;
 		}
 	}
 
 	/**
+	 * Gets the most left position. If it is undefined
+	 * then if tries to calculate it first.
+	 * @return the most left position
+	 */
+	public int getMostLeftPosition() 
+	{
+		if (mostLeftPosition == -1)
+		{
+			calculateMostLeftPosition();
+		}
+		
+		return mostLeftPosition;
+	}
+
+	/**
+	 * Gets most right position. If it is undefined
+	 * then if tries to calculate it first.
 	 * @return the most right position
 	 */
     public final int getMostRightPosition()

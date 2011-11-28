@@ -9,8 +9,8 @@ import org.antlr.runtime.Token;
 public class BinaryOperaionContainer extends HaxeTree
 {
     /**
-     * Different types for Boolean Operations devided by their
-     * type extracting rules.
+     * Different types for Boolean Operations divided 
+     * by their type extracting rules.
      * @author Savenko Maria
      */
     protected enum BoolOperations {
@@ -37,6 +37,18 @@ public class BinaryOperaionContainer extends HaxeTree
         }
         return operationType;
     }
+	
+	protected void calculateMostRightPosition()
+	{
+		mostRightPosition = 
+				getRightOperand().getMostRightPosition();
+	}
+	
+	protected void calculateMostLeftPosition()
+	{
+		mostLeftPosition = 
+				getLeftOperand().getMostLeftPosition();
+	}
     
     protected void commitCastError(){
         commitError(getText() + ": cast problems");

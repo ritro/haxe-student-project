@@ -13,6 +13,7 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -70,7 +71,7 @@ public class ReturnNode extends HaxeTree
         HaxeTree expression = getExpression();
         HaxeType type = getHaxeType();
         
-	    if (function != null && type == HaxeType.haxeVoid)
+	    if (function != null && type == PrimaryHaxeType.haxeVoid)
 	    {
 	        commitError("Void should be " + type.toString());
 	        return;
@@ -94,7 +95,7 @@ public class ReturnNode extends HaxeTree
 	    HaxeTree expression = getExpression(); 
 	    if (expression == null)
         {
-	        setHaxeType(HaxeType.haxeVoid);
+	        setHaxeType(PrimaryHaxeType.haxeVoid);
         }
 	    else
 	    {

@@ -13,6 +13,7 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -91,7 +92,7 @@ public class IfNode extends HaxeTree
 	        // (like in the middle of a Block)
 	        // then both expr-1 and expr-2 can have different types 
 	        // and the if block type will be Void.
-	        setHaxeType(HaxeType.haxeVoid);
+	        setHaxeType(PrimaryHaxeType.haxeVoid);
 	        return;
 	    }
 	    

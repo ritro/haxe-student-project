@@ -1,8 +1,8 @@
 package haxe.imp.parser.antlr.tree;
 
-import static haxe.imp.parser.antlr.utils.HaxeType.areBothNumbers;
 import static haxe.imp.parser.antlr.utils.HaxeType.getCommonPrimaryType;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -107,29 +107,30 @@ public class BinaryOperaionContainer extends HaxeTree
             //If both expressions are Int then return Int, else if both 
             //expressions are either Int or Float then return Float, else return String.
             case PLUS: 
-                if (HaxeType.primaryTypes.contains(leftType.getShortTypeName()) && 
-                        HaxeType.primaryTypes.contains(rightType.getShortTypeName())) 
+                if (PrimaryHaxeType.ifPrimaryType(leftType.getShortTypeName()) && 
+                        PrimaryHaxeType.ifPrimaryType(rightType.getShortTypeName())) 
                 {
                     return getCommonPrimaryType(leftType, rightType);
                 }
             //Divide two numbers, return Float.
             case DIVIDE:
-                if (areBothNumbers(leftType, rightType)) 
+                if (PrimaryHaxeType.areBothNumbers(leftType, rightType)) 
                 {
-                    return HaxeType.haxeFloat;
+                    return PrimaryHaxeType.haxeFloat;
                 }
             // Return Int if both are Int and return Float 
             // if they are either both Float or mixed.
             case NUMERABLE:
-                if (areBothNumbers(leftType, rightType)) 
+                if (PrimaryHaxeType.areBothNumbers(leftType, rightType)) 
                 {
                     return getCommonPrimaryType(leftType, rightType);
                 }
             // bitwise operations between two Int expressions. Returns Int.
             case BITWISE:
-                if (leftType.equals(HaxeType.haxeInt) && rightType.equals(HaxeType.haxeInt))
+                if (leftType.equals(PrimaryHaxeType.haxeInt) 
+                        && rightType.equals(PrimaryHaxeType.haxeInt))
                 {
-                    return HaxeType.haxeInt;
+                    return PrimaryHaxeType.haxeInt;
                 }
             //perform normal or physical comparisons between two 
             //expressions sharing a common type. Returns Bool.
@@ -137,11 +138,12 @@ public class BinaryOperaionContainer extends HaxeTree
             case COMPARISON:
                 if (HaxeType.ifCommonType(leftType, rightType))
                 {
-                    return HaxeType.haxeBool;
+                    return PrimaryHaxeType.haxeBool;
                 }
             //Both e1 and e2 must be Bool
             case BOOLEAN:
-                if (leftType.equals(HaxeType.haxeBool) && rightType.equals(HaxeType.haxeBool))
+                if (leftType.equals(PrimaryHaxeType.haxeBool) 
+                        && rightType.equals(PrimaryHaxeType.haxeBool))
                 {
                     return leftType;
                 }

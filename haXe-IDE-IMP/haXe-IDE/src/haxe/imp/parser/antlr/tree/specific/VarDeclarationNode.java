@@ -14,6 +14,7 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 
@@ -104,8 +105,9 @@ public class VarDeclarationNode extends HaxeTree {
                     && tree.getChildCount() != 0) 
             {
                 String typeName = tree.getChild(0).getText();
-                haxeType = HaxeType.tryGetPrimaryType(typeName) != null
-                        ? HaxeType.tryGetPrimaryType(typeName) 
+                HaxeType primatyType = PrimaryHaxeType.tryGetPrimaryType(typeName);
+                haxeType = primatyType != null
+                        ? primatyType
                         : new HaxeType(typeName);
             }
         }
@@ -137,7 +139,7 @@ public class VarDeclarationNode extends HaxeTree {
 	        return;
 	    }
 	    initialization.calculateScopes();
-	    if (getHaxeType() == HaxeType.haxeUndefined)
+	    if (getHaxeType() == PrimaryHaxeType.haxeUndefined)
 	    {
 	        setHaxeType(initialization.getHaxeType());
 	    }

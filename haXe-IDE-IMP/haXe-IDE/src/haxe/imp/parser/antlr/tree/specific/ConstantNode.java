@@ -3,13 +3,14 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
 public class ConstantNode extends HaxeTree {
 	
 	/** The var type. */
-	private HaxeType haxeType = HaxeType.haxeUndefined;
+	private HaxeType haxeType = PrimaryHaxeType.haxeUndefined;
 
 	/**
 	 * Sets the var type.
@@ -63,21 +64,21 @@ public class ConstantNode extends HaxeTree {
 	public ConstantNode(final int ttype, final Token t, final String varType) {
 		this.token = t;
 		if (varType.equalsIgnoreCase("INT")) {
-			setHaxeType(HaxeType.haxeInt);
+			setHaxeType(PrimaryHaxeType.haxeInt);
 		} else if (varType.equalsIgnoreCase("FLOAT")) {
-			setHaxeType(HaxeType.haxeFloat);
+			setHaxeType(PrimaryHaxeType.haxeFloat);
 		} else if (varType.equalsIgnoreCase("STRING")) {
-			setHaxeType(HaxeType.haxeString);
+			setHaxeType(PrimaryHaxeType.haxeString);
 		} else if (varType.equalsIgnoreCase("VOID")) {
-			setHaxeType(HaxeType.haxeVoid);
+			setHaxeType(PrimaryHaxeType.haxeVoid);
 		} else if (varType.equalsIgnoreCase("BOOL")) {
-			setHaxeType(HaxeType.haxeBool);
+			setHaxeType(PrimaryHaxeType.haxeBool);
 		} else if (varType.equalsIgnoreCase("DYNAMIC")) {
-			setHaxeType(HaxeType.haxeDynamic);
+			setHaxeType(PrimaryHaxeType.haxeDynamic);
 		} else if (varType.equalsIgnoreCase("Unknown<0>")){
-			setHaxeType(HaxeType.haxeUnknown);
+			setHaxeType(PrimaryHaxeType.haxeUnknown);
 		}else{
-			setHaxeType(HaxeType.haxeUndefined);
+			setHaxeType(PrimaryHaxeType.haxeUndefined);
 		}
 	}
 	

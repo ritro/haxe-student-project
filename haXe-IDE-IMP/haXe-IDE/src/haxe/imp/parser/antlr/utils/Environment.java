@@ -6,9 +6,7 @@ import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * List of declarations valid in the current scope

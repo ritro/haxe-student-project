@@ -19,10 +19,12 @@ import org.antlr.runtime.Token;
 
 /**
  * The Class AssignOperationNode.
- * 
+ * Type of the Assignment is type of assigned
+ * expression.
  * @author kondratyev
  */
-public class AssignOperationNode extends BinaryOperaionContainer {
+public class AssignOperationNode extends BinaryOperaionContainer 
+{
 
     @Override
     protected void defineOperationType()
@@ -55,7 +57,7 @@ public class AssignOperationNode extends BinaryOperaionContainer {
 	    HaxeType assignmentType;
 	    BoolOperations operationType = getOperationType();
 	    
-	    // null = means we have simple assingment
+	    // null = means we have simple assignment
 	    if (operationType != null)
 	    {
 	        assignmentType = defineResultType(operationType);
@@ -80,7 +82,18 @@ public class AssignOperationNode extends BinaryOperaionContainer {
 	@Override
 	public void reportErrors()
 	{
-	    
+        HaxeTree leftOperand = getLeftOperand();
+        HaxeTree rightOperand = getRightOperand();
+        
+        leftOperand.reportErrors();
+        rightOperand.reportErrors();
+        
+        if (!HaxeType.isAvailableAssignement(
+        		leftOperand.getHaxeType(), 
+        		rightOperand.getHaxeType()))
+        {
+        	commitCastError();
+        }
 	}
 
     /**
@@ -88,13 +101,16 @@ public class AssignOperationNode extends BinaryOperaionContainer {
      */
     public void commitIncorrectTypeError()
     {
-        commitError(getText() 
+    	getRightOperand().commitError(
+    			getRightOperand().getText() 
                 + " should be "
                 + getHaxeType().getShortTypeName());
     }
 
     /**
      * Then assignment is not in the right form.
+     * TODO not really this class message - 
+     * 		error nodes should have this
      * This is haxe official error message.
      */
     public void commitInvalidAssignmentError()

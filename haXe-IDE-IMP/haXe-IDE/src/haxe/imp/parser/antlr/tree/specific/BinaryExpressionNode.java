@@ -23,9 +23,9 @@ public class BinaryExpressionNode extends BinaryOperaionContainer
         setOperationType(type);
     }
     
-    public BinaryExpressionNode(Token nextToken) 
+    public BinaryExpressionNode(Token token) 
     {
-        super(nextToken);
+        super(token);
     }
     
     @Override

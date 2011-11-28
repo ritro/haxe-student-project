@@ -5,6 +5,7 @@ import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 
@@ -57,7 +58,7 @@ public class EnumNode extends BlockScopeContainer {
 	@Override
 	public HaxeType getHaxeType(){
 		//TODO????
-		return HaxeType.haxeEnum;
+		return PrimaryHaxeType.haxeEnum;
 	}
 
 	/**

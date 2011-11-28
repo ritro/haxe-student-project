@@ -11,7 +11,6 @@
 package haxe.imp.parser.antlr.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * The Class HaxeType.
@@ -20,80 +19,48 @@ import java.util.Arrays;
  */
 public class HaxeType {
 
-	private static final String HAXE_PRIMARY_TYPES_PATH = "haxe.primaryTypes";
 	private ArrayList<HaxeType> classHierarchy = new ArrayList<HaxeType>();
 	private ArrayList<HaxeType> implementedTypes = new ArrayList<HaxeType>();
 
-	private String typeName;
-	private String fullTypeName;
+	protected String typeName;
+	protected String fullTypeName;
 
-	public static ArrayList<String> primaryTypes = new ArrayList<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			this.addAll(Arrays.asList(new String[] { "Int", "Number", "Float",
-					"String", "Void", "Object", "Bool"}));//,, "Unknown<0>" "Undefined", "Dynamic" 
-		}
-	};
+    /**
+     * Gets the class hierarchy.
+     * 
+     * @return the classHierarchy
+     */
+    public ArrayList<HaxeType> getClassHierarchy() {
+        return classHierarchy;
+    }
 
-	/** Primary Haxe Types. */
-	public static final HaxeType haxeFloat;
-	public static final HaxeType haxeInt;
-	public static final HaxeType haxeVoid;
-	public static final HaxeType haxeBool;
-	public static final HaxeType haxeString;
-	public static final HaxeType haxeDynamic;
-	public static final HaxeType haxeObject;
-	public static final HaxeType haxeUndefined;
-	//Unknown<0> - special value usable for any type with behavior diff from Dynamic
-	//NULL have this type and it used only(?) for it
-	public static final HaxeType haxeUnknown;
-	public static final HaxeType haxeEnum;
+    /**
+     * Sets the class hierarchy.
+     * 
+     * @param classHierarchy
+     *            the classHierarchy to set
+     */
+    public void setClassHierarchy(final ArrayList<HaxeType> classHierarchy) {
+        this.classHierarchy = classHierarchy;
+    }
 
-	static {
-		haxeString = new HaxeType(HAXE_PRIMARY_TYPES_PATH, "String");
-		haxeFloat = new HaxeType(HAXE_PRIMARY_TYPES_PATH, "Float");
-		haxeFloat.setClassHierarchy(new ArrayList<HaxeType>() {
-			private static final long serialVersionUID = 1L;
-			{
-				this.add(haxeString);
-			}
-		});
-		haxeInt = new HaxeType(HAXE_PRIMARY_TYPES_PATH, "Int");
-		haxeInt.setClassHierarchy(new ArrayList<HaxeType>() {
-			private static final long serialVersionUID = 1L;
-			{
-				this.add(haxeFloat);
-			}
-		});
-		haxeVoid = new HaxeType(HAXE_PRIMARY_TYPES_PATH, "Void");
-		haxeBool = new HaxeType(HAXE_PRIMARY_TYPES_PATH, "Bool");
-		haxeDynamic = new HaxeType(HAXE_PRIMARY_TYPES_PATH, "Dynamic");
-		haxeObject = new HaxeType("haxe", "Object");
-		haxeUndefined = new HaxeType("haxe", "Undefined");
-		haxeUnknown = new HaxeType("haxe" , "Unknown<0>");
-		haxeUnknown.setClassHierarchy(new ArrayList<HaxeType>() {
-			private static final long serialVersionUID = 1L;
-			{
-				this.add(haxeString);
-				this.add(haxeObject);
-			}
-		});
-		haxeEnum = new HaxeType("haxe" , "Enum");
-	}
+    /**
+     * Gets the type name.
+     * 
+     * @return the typeName
+     */
+    public String getShortTypeName() {
+        return typeName;
+    }
 
-	/**
-	 * @param type
-	 *            the type
-	 * @param type2
-	 *            the type2
-	 * @return true, if successful
-	 */
-	public static boolean areBothNumbers(
-	        final HaxeType type,final HaxeType type2) 
-	{
-		return ((type.equals(haxeInt) || type.equals(haxeFloat)) && (type2
-				.equals(haxeInt) || type2.equals(haxeFloat)));
-	}
+    /**
+     * Gets the full type name.
+     * 
+     * @return the fullTypeName
+     */
+    public String getFullTypeName() {
+        return fullTypeName;
+    }
 
 	/**
 	 * Checks if is available assignement.
@@ -117,21 +84,22 @@ public class HaxeType {
 	public static boolean isExtendedClass(
 	        final HaxeType parent, final HaxeType child) 
 	{
-		if (child.getClassHierarchy() != null){
-			if (child.getClassHierarchy().contains(parent)) {
+		if (child.getClassHierarchy() != null)
+		{
+	        return false;
+		}
+		
+		if (child.getClassHierarchy().contains(parent)) 
+		{
+			return true;
+		} 
+		else for (HaxeType i : child.getClassHierarchy())
+		{
+			if (isExtendedClass(parent, i))
 				return true;
-			} else
-				for (HaxeType i : child.getClassHierarchy())
-					if (isExtendedClass(parent, i))
-						return true;
 		}
 		
 		return false;
-	}
-
-	public boolean isNumericType()
-	{
-		return (equals(haxeInt) || equals(haxeFloat));
 	}
 
 	/**
@@ -195,146 +163,11 @@ public class HaxeType {
 	}
 
 	/**
-	 * Gets the class hierarchy.
-	 * 
-	 * @return the classHierarchy
-	 */
-	public ArrayList<HaxeType> getClassHierarchy() {
-		return classHierarchy;
-	}
-
-	/**
-	 * Sets the class hierarchy.
-	 * 
-	 * @param classHierarchy
-	 *            the classHierarchy to set
-	 */
-	public void setClassHierarchy(final ArrayList<HaxeType> classHierarchy) {
-		this.classHierarchy = classHierarchy;
-	}
-
-	/**
-	 * Gets the implemented types.
-	 * 
-	 * @return the implementedTypes
-	 *//*
-	public ArrayList<HaxeType> getImplementedTypes() {
-		return this.implementedTypes;
-	}
-
-	/**
-	 * Sets the implemented types.
-	 * 
-	 * @param implementedTypes
-	 *            the implementedTypes to set
-	 *//*
-	public void setImplementedTypes(final ArrayList<HaxeType> implementedTypes) {
-		this.implementedTypes = implementedTypes;
-	}*/
-
-	/**
-	 * Gets the type name.
-	 * 
-	 * @return the typeName
-	 */
-	public String getShortTypeName() {
-		return typeName;
-	}
-
-	/**
-	 * Sets the type name.
-	 * 
-	 * @param typeName
-	 *            the typeName to set
-	 */
-	public void setTypeName(final String typeName) {
-		this.typeName = typeName;
-	}
-
-	/**
-	 * Gets the full type name.
-	 * 
-	 * @return the fullTypeName
-	 */
-	public String getFullTypeName() {
-		return fullTypeName;
-	}
-	
-	/**
-	 * Used for creating primary types.
-	 */
-	private HaxeType(
-	        final String pathToType, final String shortTypeName) 
-	{ 
-	    fullTypeName = pathToType + "." + shortTypeName;
-        typeName = shortTypeName;
-	}
-
-	/**
-	 * Instantiates a new haxe type.
-	 * @param typeName - if you expect to create a whole new type
-	 * provide a full name, else you can use a short name - the type
-	 * properties will be copied from already existing type.
-	 */
-	public HaxeType(final String typeName) 
-	{
-	    HaxeType primatyType = tryGetPrimaryType(typeName);
-	    if (primatyType != null)
-	    {
-	        setIdenticalProperties(primatyType);
-	    }
-		else if (typeName.equalsIgnoreCase("Undefined")) 
-		{
-			setIdenticalProperties(haxeUndefined);
-		}
-		fullTypeName = typeName;
-		this.typeName = (typeName.lastIndexOf(".") == -1) 
-		        ? typeName
-				: typeName.substring(typeName.lastIndexOf(".") + 1);
-	}
-	
-	/**
-	 * Identifies if the Name is actualy a primary type name.
-	 * @param typeName - name to check for primary type.
-	 * @return Instance of haxe primary type or null.
-	 */
-	public static HaxeType tryGetPrimaryType(final String typeName)
-	{
-		//FIXME "Object"?? "Number"??
-		if (typeName.equalsIgnoreCase(haxeInt.typeName) 
-		        || typeName.equals(haxeInt.fullTypeName)) 
-		{
-			return haxeInt;
-		} 
-		else if (typeName.equalsIgnoreCase(haxeFloat.typeName) 
-                || typeName.equals(haxeFloat.fullTypeName)) 
-		{
-			return haxeFloat;
-		} 
-		else if (typeName.equalsIgnoreCase(haxeString.typeName) 
-                || typeName.equals(haxeString.fullTypeName)) 
-		{
-			return haxeString;
-		} 
-		else if (typeName.equalsIgnoreCase(haxeBool.typeName) 
-                || typeName.equals(haxeBool.fullTypeName)) 
-		{
-			return haxeBool;
-		}
-		else if (typeName.equalsIgnoreCase(haxeVoid.typeName) 
-                || typeName.equals(haxeVoid.fullTypeName)) 
-		{
-			return haxeVoid;
-		}
-		return null;
-	}
-
-	/**
 	 * Sets properties identical to some already known type.
 	 * Usually to some primaty type.
 	 * @param type - from which properties will be copied.
 	 */
-	private void setIdenticalProperties(final HaxeType type) {
+	protected void setIdenticalProperties(final HaxeType type) {
 		classHierarchy = type.classHierarchy;
 		fullTypeName = type.fullTypeName;
 		implementedTypes = type.implementedTypes;
@@ -349,11 +182,48 @@ public class HaxeType {
 	}
 
 	@Override
-	public boolean equals(final Object arg0) {
+	public boolean equals(final Object arg0) 
+	{
 		/**
 		 * FIXME 
 		 */
-		return ((HaxeType) arg0).getShortTypeName().equals(this.getShortTypeName());
+	    HaxeType type = (HaxeType)arg0;
+	    String shortName = type.getShortTypeName();
+		return shortName.equals(getShortTypeName());
 	}
-
+	
+	protected HaxeType(){};
+	
+    /**
+     * Instantiates a new haxe type.
+     * @param fullTypeName - if you expect to create a whole new type
+     * provide a full name, else you can use a short name - the type
+     * properties will be copied from already existing type.
+     */
+    public HaxeType(final String fullTypeName) 
+    {
+        HaxeType primatyType = PrimaryHaxeType.tryGetPrimaryType(fullTypeName);
+        if (primatyType != null)
+        {
+            setIdenticalProperties(primatyType);
+            return;
+        }
+        else if (fullTypeName.equalsIgnoreCase("Undefined")) 
+        {
+            setIdenticalProperties(PrimaryHaxeType.haxeUndefined);
+            return;
+        }
+        this.fullTypeName = fullTypeName;
+        typeName = extractShortName(fullTypeName);
+    }
+    
+    protected String extractShortName(String fullTypeName)
+    {
+        int dotIndex = fullTypeName.lastIndexOf("."); 
+        if (dotIndex == -1)
+        {
+            return fullTypeName;
+        }
+        return fullTypeName.substring(dotIndex + 1);
+    }
 }

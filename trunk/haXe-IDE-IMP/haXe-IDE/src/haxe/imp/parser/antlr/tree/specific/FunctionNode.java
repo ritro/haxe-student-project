@@ -15,6 +15,7 @@ import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 
@@ -120,7 +121,7 @@ public class FunctionNode extends BlockScopeContainer
 	@Override
 	public HaxeType getHaxeType()
 	{
-		if (super.getHaxeType() == HaxeType.haxeUndefined)
+		if (super.getHaxeType() == PrimaryHaxeType.haxeUndefined)
 		{
 		    findHaxeType();
 		}

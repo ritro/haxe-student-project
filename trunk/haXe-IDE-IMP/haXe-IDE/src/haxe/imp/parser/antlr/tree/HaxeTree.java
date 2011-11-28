@@ -16,6 +16,7 @@ import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.utils.Environment;
 import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class HaxeTree extends CommonTree
 {
 	private static IMessageHandler messageHandler;
 	private boolean auxiliary = false;
-	protected HaxeType haxeType = HaxeType.haxeUndefined;
+	protected HaxeType haxeType = PrimaryHaxeType.haxeUndefined;
 
 	/**
 	 * Contains most left position of tree/subtree
@@ -421,7 +422,7 @@ public class HaxeTree extends CommonTree
 	
     public boolean ifUndefinedType()
     {
-        return getHaxeType() == HaxeType.haxeUndefined;
+        return getHaxeType() == PrimaryHaxeType.haxeUndefined;
     }
     
     public boolean ifClosingBraceNode()

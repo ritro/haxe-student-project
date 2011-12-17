@@ -13,9 +13,8 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 
@@ -146,24 +145,5 @@ public class FunctionNode extends BlockScopeContainer
                 }
             }
         }
-	}
-	
-	@Override
-	public void calculateScopes(Environment declarations)
-	{	
-	    Environment funEnv = new Environment(declarations);
-		for (VarDeclarationNode x: getParametersAsDeclarations())
-		{
-		    //x.setdeclaType = parameter;
-		    funEnv.addToCopy(x);
-		}
-		
-		BlockScopeNode blockScope = getBlockScope();
-		if ( blockScope == null) 
-		{
-		    return;
-		}
-		
-		blockScope.calculateFunctionScope(funEnv);
 	}
 }

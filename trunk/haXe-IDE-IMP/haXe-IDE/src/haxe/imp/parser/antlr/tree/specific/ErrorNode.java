@@ -36,7 +36,11 @@ public class ErrorNode extends HaxeTree {
 		delegate = new CommonErrorNode(input, start, stop, e);
 	}
 	
-	@Override
+	public ErrorNode(int throw1) {
+        super(throw1);
+    }
+
+    @Override
 	public CommonToken getToken()
 	{
 	    return (CommonToken)delegate.stop;

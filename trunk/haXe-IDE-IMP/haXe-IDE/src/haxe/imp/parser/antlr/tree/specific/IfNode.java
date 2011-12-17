@@ -11,10 +11,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
-
 import org.antlr.runtime.Token;
 
 /**
@@ -65,57 +61,9 @@ public class IfNode extends HaxeTree
 	{
 	    ifLastInTheScope = value;
 	}
-	
-	@Override
-	public void calculateScopes(Environment declarations)
+    
+    public boolean getIfLastInScope()
     {
-	    int thisIndex = getChildIndex();
-	    int maxIndex = parent.getChildCount();
-	    if (parent instanceof BlockScopeNode)
-	    {
-	        //Last in all Blockscopes always '}'
-	        ifLastInTheScope = thisIndex == maxIndex - 2;	        
-	    }
-	    else
-	    {
-	        ifLastInTheScope = thisIndex == maxIndex - 1;
-	    }
-		
-	    HaxeTree ifBlock = getIfBlock();
-	    HaxeTree elseBlock = getElseBlock();
-	    
-	    ifBlock.calculateScopes(declarations);
-	    
-	    if (!ifLastInTheScope)
-	    {
-	        // If an if block is not supposed to return any value 
-	        // (like in the middle of a Block)
-	        // then both expr-1 and expr-2 can have different types 
-	        // and the if block type will be Void.
-	        setHaxeType(PrimaryHaxeType.haxeVoid);
-	        return;
-	    }
-	    
-	    if (elseBlock == null)
-        {
-	        // If there is no else, and the if expression is false, 
-	        // then the entire expression has type Void. 
-	        // TODO check for if expr is false and setting the type accordingly?
-            return;
-        }
-	    
-	    elseBlock.calculateScopes(declarations);
-	    
-	    HaxeType type = ifBlock.getHaxeType();
-	    if (elseBlock.getHaxeType().equals(type))
-	    {
-	        // If there is an else, then expr-1 and expr-2 must be of the same type and 
-	        // this will be the type of the if expression
-	        setHaxeType(type);	        
-	    }
-	    else
-	    {
-	        commitError("The blocks returns different value types.");	        
-	    }
+        return ifLastInTheScope;
     }
 }

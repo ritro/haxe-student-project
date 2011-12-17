@@ -11,12 +11,9 @@
 package haxe.imp.parser.antlr.tree;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -236,37 +233,6 @@ public class HaxeTree extends CommonTree
 	            getMostLeftPosition(), 
 	            getMostRightPosition(),
 	            0, 0, 1, 1);
-	}
-	
-	/**
-	 * According to the node type, makes the Declaration Vars
-	 * table for all vars met in that node. The method should
-	 * be implemented for each of node type separately.
-	 * @return vars table for current node.
-	 */
-	public void calculateScopes(Environment declaration) 
-	{
-	    for (HaxeTree tree : getChildren()) 
-        {
-            //hight levels only this
-            if (tree instanceof ClassNode
-                    || tree instanceof EnumNode)
-            {
-                tree.calculateScopes();
-            }
-        }
-	}
-	
-	public void reportErrors() {}
-	
-	/**
-	 * Run the scope calculations with empty environment.
-	 */
-	public final void calculateScopes()
-	{
-	    calculateScopes(new Environment());
-	    
-	    reportErrors();
 	}
 	
 	public HaxeTree getParent(){

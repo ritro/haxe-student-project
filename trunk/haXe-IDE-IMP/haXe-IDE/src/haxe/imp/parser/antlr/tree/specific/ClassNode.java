@@ -13,8 +13,7 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.tree.utils.HaxeType;
 
 import java.util.ArrayList;
 
@@ -84,25 +83,5 @@ public class ClassNode extends BlockScopeContainer {
 		//FIXME not sure if I understood right - types from  Hierarhy and Implemented are the same?????
 		type.setClassHierarchy(list);
 		return type;
-	}
-
-	@Override
-	public void calculateScopes(Environment declarations) 
-	{
-	    BlockScopeNode blockScope = getBlockScope();
-		if (blockScope == null) 
-		{		    
-		    return;
-		}
-		
-		blockScope.calculateClassScope(declarations);
-	}
-	
-	@Override
-	public void reportErrors()
-	{
-	    BlockScopeNode blockScope = getBlockScope();
-	    
-	    blockScope.reportErrors();
 	}
 }

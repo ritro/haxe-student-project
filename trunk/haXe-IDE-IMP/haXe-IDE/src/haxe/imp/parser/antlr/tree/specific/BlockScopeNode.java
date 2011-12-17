@@ -10,13 +10,10 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import java.util.ArrayList;
-
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 
 import org.antlr.runtime.CommonToken;
@@ -112,100 +109,4 @@ public class BlockScopeNode extends HaxeTree {
 		super(blockScope, string, b);
 		leftBracketPosition = ((CommonToken) lBracket).getStartIndex();
 	}
-	
-	/**
-	 * We can have Variable Declarations with defined type, 
-	 * function declarations. TODO what else?
-	 */
-	public void calculateClassScope(Environment declarations)
-	{
-	    ArrayList<FunctionNode> functions = new ArrayList<FunctionNode>();
-	    for (HaxeTree tree : getChildren()) 
-        {
-	        if (tree instanceof FunctionNode)
-            {
-	            FunctionNode function = (FunctionNode)tree;
-	            functions.add(function);
-	            declarations.put(function);
-            }
-	        else if (checkForCommonClassMember(declarations, tree))
-	        {
-	            continue;
-	        }
-	        else
-	        {
-	            tree.commitUnexpectedError();
-	        }
-        }
-	    
-	    for (FunctionNode function : functions)
-	    {
-	        function.calculateScopes(declarations);
-	    }
-	}
-	
-	/**
-	 * We can meet Var Declarations, Var Usages,
-	 * TODO - if, while, for scopes,
-	 * assignments (local functions also assignments).
-	 */
-	public void calculateFunctionScope(Environment declarations)
-	{
-	    for (HaxeTree tree : getChildren()) 
-        {
-            if (checkForCommonClassMember(declarations, tree))
-            {
-                continue;
-            }
-            else if (tree instanceof VarUsageNode)
-            {
-                tree.calculateScopes(declarations);
-            }
-            else if (tree instanceof AssignOperationNode)
-            {
-                tree.calculateScopes(declarations);
-            }
-            else if (tree instanceof IfNode)
-            {
-                tree.calculateScopes(declarations);
-            }
-            else
-            {
-                tree.commitUnexpectedError();
-            }
-        }
-	}
-	
-	@Override
-	public void calculateScopes(Environment declarations)
-	{
-	    calculateFunctionScope(declarations);
-	}
-	
-	private boolean checkForCommonClassMember(Environment declarations, HaxeTree tree)
-	{
-        if (tree instanceof VarDeclarationNode)
-        {
-            declarations.put(tree);
-            tree.calculateScopes(declarations);
-            return true;
-        }
-        else if (tree.getType() == HaxeParser.RBRACE)
-        {
-            //right braces were added separately as IMP
-            //wasn't counting them as meaningful chars
-            return true;
-        }
-        
-        return false;
-	}
-	
-	@Override
-	public void reportErrors()
-    {
-	    for (HaxeTree tree : getChildren()) 
-        {
-	        tree.reportErrors();
-        }
-    }
 }

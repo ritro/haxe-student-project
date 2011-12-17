@@ -11,8 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
+import haxe.tree.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -71,30 +70,6 @@ public class VarUsageNode extends HaxeTree
 
 	public VarUsageNode(final int ttype, final boolean auxiliary) {
 		super(ttype, auxiliary);
-	}
-	
-	@Override
-	public void calculateScopes(Environment declarations)
-	{
-	    declaration = declarations.get(getText());
-	    
-	    setDeclarationNode(declaration);
-	}
-	
-	public void reportErrors()
-	{
-	    if (declaration == null)
-	    {
-	        //FIXME packets, classes, else?
-	        commitUndeclaredError();
-	    }
-
-	    // FIXME - what about usage in Declarations?
-	    // look on parent isn't good looking
-	    if (ifUndefinedType())
-	    {
-	        commitUninitializedUsingError();
-	    }
 	}
 	
 	public HaxeTree getDeclarationNode()

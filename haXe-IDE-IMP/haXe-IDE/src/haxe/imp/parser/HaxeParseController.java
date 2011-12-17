@@ -15,7 +15,9 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
-import haxe.imp.parser.antlr.tree.HaxeTreePrinter;
+import haxe.tree.utils.HaxeTreeErrorProvider;
+import haxe.tree.utils.HaxeTreeLinker;
+import haxe.tree.utils.HaxeTreePrinter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -242,7 +244,6 @@ public class HaxeParseController implements IParseController {
             System.out.println("success!");
             HaxeTree.setMessageHandler(handler);
             handler.clearMessages();
-            currentAST.calculateScopes();
         } catch (RecognitionException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -253,6 +254,13 @@ public class HaxeParseController implements IParseController {
     public Object parse(final String input, final IProgressMonitor monitor) {
         currentAST = null;
         doParse(input);
+        
+        HaxeTreeLinker linker = new HaxeTreeLinker();
+        linker.visit(currentAST);
+        
+        HaxeTreeErrorProvider eProvider = new HaxeTreeErrorProvider();
+        eProvider.visit(currentAST);
+        
         HaxeTreePrinter.printTree(currentAST);
         return currentAST;
     }

@@ -11,9 +11,8 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -48,46 +47,15 @@ public class ReturnNode extends HaxeTree
 		return getExpression().getText();
 	}
 	
-	@Override
-	public void calculateScopes(Environment declarations)
-	{
-	    // due to Antlr grammar the places there Return wasnt
-	    // expected already marked as Error nodes - so there
-	    // is no variant that function will be null
-	    setFunction(declarations.getLastFunction());
-	    
-	    HaxeTree expression = getExpression();
-	    //nothing to do anymore
-	    if (expression == null)
-	    {
-	        return;
-	    }
-	    expression.calculateScopes(declarations);
-	}
-	
-	@Override
-	public void reportErrors()
-	{
-        HaxeTree expression = getExpression();
-        HaxeType type = getHaxeType();
-        
-	    if (function != null && type == PrimaryHaxeType.haxeVoid)
-	    {
-	        commitError("Void should be " + type.toString());
-	        return;
-	    }
-	    
-	    if (function.getHaxeType() != type)
-	    {
-	        expression.commitError(expression.getHaxeType()
-	                + " should be " + type);
-	    }	    
-	}
-	
 	public void setFunction(FunctionNode function)
 	{
 	    this.function = function;
 	}
+    
+    public FunctionNode getFunction()
+    {
+        return function;
+    }
 	
 	@Override
 	public HaxeType getHaxeType()
@@ -110,7 +78,7 @@ public class ReturnNode extends HaxeTree
 	 * @return Returning expression or null
 	 * if nothing being returned.
 	 */
-	private HaxeTree getExpression()
+	public HaxeTree getExpression()
 	{
 	    if (getChildCount() == 0 )
 	    {

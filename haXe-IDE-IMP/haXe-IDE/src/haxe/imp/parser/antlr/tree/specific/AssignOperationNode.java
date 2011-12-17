@@ -11,10 +11,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-
 import org.antlr.runtime.Token;
 
 /**
@@ -44,56 +40,6 @@ public class AssignOperationNode extends BinaryOperaionContainer
 
 	public AssignOperationNode(final int ttype, final Token token) {
 		super(token);
-	}
-	
-	public void calculateScopes(Environment environment)
-	{
-        HaxeTree leftOperand = getLeftOperand();
-        HaxeTree rightOperand = getRightOperand();
-        
-	    leftOperand.calculateScopes(environment);
-        rightOperand.calculateScopes(environment);
-	    
-	    HaxeType assignmentType;
-	    BoolOperations operationType = getOperationType();
-	    
-	    // null = means we have simple assignment
-	    if (operationType != null)
-	    {
-	        assignmentType = defineResultType(operationType);
-	        if (assignmentType == null)
-	        {
-	            commitInvalidAssignmentError();
-	            return;
-	        }
-	    }
-	    else
-	    {
-	        assignmentType = rightOperand.getHaxeType();	        
-	    }
-	    
-	    setHaxeType(assignmentType);
-	    if (leftOperand.ifUndefinedType())
-	    {
-	        leftOperand.setHaxeType(assignmentType);
-	    }
-	}
-	
-	@Override
-	public void reportErrors()
-	{
-        HaxeTree leftOperand = getLeftOperand();
-        HaxeTree rightOperand = getRightOperand();
-        
-        leftOperand.reportErrors();
-        rightOperand.reportErrors();
-        
-        if (!HaxeType.isAvailableAssignement(
-        		leftOperand.getHaxeType(), 
-        		rightOperand.getHaxeType()))
-        {
-        	commitCastError();
-        }
 	}
 
     /**

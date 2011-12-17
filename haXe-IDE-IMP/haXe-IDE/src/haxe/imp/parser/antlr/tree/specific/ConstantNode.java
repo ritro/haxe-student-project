@@ -1,9 +1,8 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -86,11 +85,5 @@ public class ConstantNode extends HaxeTree {
 		ConstantNode varUsage = new ConstantNode(this.getToken());
 		varUsage.setHaxeType(this.getHaxeType());
 		return varUsage;
-	}
-
-	@Override
-	public void calculateScopes(Environment declarations)
-	{
-	    
 	}
 }

@@ -1,10 +1,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-
 import org.antlr.runtime.Token;
 
 public class BinaryExpressionNode extends BinaryOperaionContainer
@@ -26,27 +22,6 @@ public class BinaryExpressionNode extends BinaryOperaionContainer
     public BinaryExpressionNode(Token token) 
     {
         super(token);
-    }
-    
-    @Override
-    public void calculateScopes(Environment declarations)
-    {
-        HaxeTree leftNode = getLeftOperand();
-        HaxeTree rightNode = getRightOperand();
-        
-        leftNode.calculateScopes(declarations);
-        rightNode.calculateScopes(declarations);
-        
-        BoolOperations operationType = getOperationType();
-        HaxeType definedType = defineResultType(operationType);
-        if (definedType == null)
-        {
-            commitCastError();
-        }
-        else
-        {
-            setHaxeType(definedType);
-        }
     }
 
 }

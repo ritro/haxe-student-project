@@ -1,8 +1,8 @@
 package haxe.imp.parser.antlr.tree;
 
-import static haxe.imp.parser.antlr.utils.HaxeType.getCommonPrimaryType;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import static haxe.tree.utils.HaxeType.getCommonPrimaryType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -13,7 +13,7 @@ public class BinaryOperaionContainer extends HaxeTree
      * by their type extracting rules.
      * @author Savenko Maria
      */
-    protected enum BoolOperations {
+    public enum BoolOperations {
         PLUS,
         NUMERABLE,
         DIVIDE,
@@ -29,7 +29,7 @@ public class BinaryOperaionContainer extends HaxeTree
         operationType = type;
     }
     
-    protected BoolOperations getOperationType()
+    public BoolOperations getOperationType()
     {
         if (operationType == null)
         {
@@ -50,7 +50,7 @@ public class BinaryOperaionContainer extends HaxeTree
 				getLeftOperand().getMostLeftPosition();
 	}
     
-    protected void commitCastError(){
+    public void commitCastError(){
         commitError(getText() + ": cast problems");
     }    
     
@@ -97,7 +97,7 @@ public class BinaryOperaionContainer extends HaxeTree
         return null;
     }
     
-    protected HaxeType defineResultType(BoolOperations operationType)
+    public HaxeType defineResultType(BoolOperations operationType)
     {
         HaxeType leftType = getLeftOperand().getHaxeType();
         HaxeType rightType = getRightOperand().getHaxeType();

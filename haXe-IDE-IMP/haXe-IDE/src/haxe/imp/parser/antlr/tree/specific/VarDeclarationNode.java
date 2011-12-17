@@ -12,9 +12,8 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.utils.Environment;
-import haxe.imp.parser.antlr.utils.HaxeType;
-import haxe.imp.parser.antlr.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 
@@ -91,13 +90,18 @@ public class VarDeclarationNode extends HaxeTree {
 	public String getText() {
 		return getVarNameNode().getText();
 	}
+    
+    public void setDeclaratonType(DeclarationType type)
+    {
+        declType = type;
+    }
 	
 	public DeclarationType getDeclaratonType()
 	{
 	    return declType;
 	}
 	
-	private void tryExtractType()
+	public void tryExtractType()
 	{
 	    for (HaxeTree tree : getChildren()) 
 	    {
@@ -126,37 +130,6 @@ public class VarDeclarationNode extends HaxeTree {
 			}
 		}
 		return null;
-	}
-	
-	public void calculateScopes(Environment environment)
-	{
-	    tryExtractType();
-	    VarUsageNode varUsage = getVarNameNode();
-	    varUsage.setDeclarationNode(this);
-	    HaxeTree initialization = getVAR_INIT_NODE();
-	    if (initialization == null)
-	    {
-	        return;
-	    }
-	    initialization.calculateScopes();
-	    if (getHaxeType() == PrimaryHaxeType.haxeUndefined)
-	    {
-	        setHaxeType(initialization.getHaxeType());
-	    }
-	    else if (!HaxeType.isAvailableAssignement(getHaxeType(), initialization.getHaxeType()))
-	    {
-	        varUsage.commitError(
-	                initialization.getHaxeType() + " should be " + getHaxeType());
-	    }
-	}
-	
-	public void reportErrors()
-	{
-	    if (ifUndefinedType() && 
-	            getDeclaratonType() == DeclarationType.ClassVarDeclaration)
-	    {
-	        commitClassUndefinedTypeError();
-	    }
 	}
 
     /**

@@ -1,4 +1,4 @@
-package haxe.imp.parser.antlr.utils;
+package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;

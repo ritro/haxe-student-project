@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.tokenColorer;
+package haxe.imp.utilsImplementations;
 
 import haxe.imp.parser.HaxeParsersym;
 

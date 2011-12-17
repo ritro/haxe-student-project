@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.contentProposer;
+package haxe.imp.utilsImplementations;
 
 import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.main.HaxeLexer;
@@ -16,7 +16,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.utils.Environment;
+import haxe.tree.utils.Environment;
 
 import java.util.ArrayList;
 import java.util.Set;

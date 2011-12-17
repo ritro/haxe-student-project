@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.foldingUpdater;
+package haxe.imp.utilsImplementations;
 
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;

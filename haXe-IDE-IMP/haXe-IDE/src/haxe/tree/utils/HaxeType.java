@@ -8,7 +8,8 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser.antlr.utils;
+package haxe.tree.utils;
+
 
 import java.util.ArrayList;
 

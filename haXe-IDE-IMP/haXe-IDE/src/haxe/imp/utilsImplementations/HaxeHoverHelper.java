@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.hoverHelper;
+package haxe.imp.utilsImplementations;
 
 import haxe.ide.Activator;
 import haxe.imp.parser.antlr.tree.HaxeTree;
@@ -20,7 +20,6 @@ import java.util.List;
 
 import lpg.runtime.IToken;
 
-import org.antlr.runtime.CommonToken;
 import org.eclipse.imp.editor.AnnotationHoverBase;
 import org.eclipse.imp.language.ServiceFactory;
 import org.eclipse.imp.parser.IParseController;

@@ -126,7 +126,7 @@ public class HaxeContentProposer implements IContentProposer {
 			        || commonTree instanceof ClassNode
 			        || commonTree instanceof FunctionNode)) 
 			{
-				result.put(commonTree, false);
+				result.put(commonTree);
 			}
 		}
 		return result;

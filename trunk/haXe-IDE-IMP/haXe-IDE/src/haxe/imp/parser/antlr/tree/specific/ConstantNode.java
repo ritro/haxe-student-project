@@ -6,84 +6,41 @@ import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
+/**
+ * Constants in haXe are:
+ * Integers:    0; -134; 0xFF00
+ * Floats:      123.0; .14179; 13e50; -1e-99
+ * Strings:     "hello"; "hello \"world\" !"; 
+ *              'hello "world" !'
+ * Booleans:    true; false
+ * Unknown<0>:  null
+ * EReg - regular expression : ~/[a-z]+/i
+ * @author Savenko Maria
+ */
 public class ConstantNode extends HaxeTree {
-	
-	/** The var type. */
-	private HaxeType haxeType = PrimaryHaxeType.haxeUndefined;
 
-	/**
-	 * Sets the var type.
-	 * 
-	 * @param varType
-	 *            the varType to set
-	 */
-	public boolean setHaxeType(final HaxeType varType) {
-		this.haxeType = varType;
-		return true;
-	}
-	
-	/**
-	 * Gets the var type.
-	 * 
-	 * @return the varType
-	 */
-	public HaxeType getHaxeType() {
-		return this.haxeType;
+	public ConstantNode(final Token token) {
+		this.token = token;
 	}
 
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public ConstantNode(final Token t) {
-		this.token = t;
-	}
-	
-	/**
-	 * Get Node by index
-	 * @return Node at required deph or null if index is greater than max deph
-	 */
-	public HaxeTree getNodePart(int i){
-		int lenth = this.getAllChildren().size();
-		return (lenth>i)? this.getAllChildren().get(lenth-1 - i): null;
-	}
-
-	/**
-	 * Instantiates a new var usage.
-	 * 
-	 * @param ttype
-	 *            the ttype
-	 * @param t
-	 *            the t
-	 * @param varType
-	 *            the var type
-	 */
-	public ConstantNode(final int ttype, final Token t, final String varType) {
-		this.token = t;
-		if (varType.equalsIgnoreCase("INT")) {
-			setHaxeType(PrimaryHaxeType.haxeInt);
-		} else if (varType.equalsIgnoreCase("FLOAT")) {
-			setHaxeType(PrimaryHaxeType.haxeFloat);
-		} else if (varType.equalsIgnoreCase("STRING")) {
-			setHaxeType(PrimaryHaxeType.haxeString);
-		} else if (varType.equalsIgnoreCase("VOID")) {
-			setHaxeType(PrimaryHaxeType.haxeVoid);
-		} else if (varType.equalsIgnoreCase("BOOL")) {
-			setHaxeType(PrimaryHaxeType.haxeBool);
-		} else if (varType.equalsIgnoreCase("DYNAMIC")) {
-			setHaxeType(PrimaryHaxeType.haxeDynamic);
-		} else if (varType.equalsIgnoreCase("Unknown<0>")){
-			setHaxeType(PrimaryHaxeType.haxeUnknown);
-		}else{
+	public ConstantNode(
+	        final int ttype, final Token token, final String varType) 
+	{
+	    this(token);
+		HaxeType constantType = PrimaryHaxeType.tryGetConstantType(varType);
+		if (constantType == null)
+		{
 			setHaxeType(PrimaryHaxeType.haxeUndefined);
+		}
+		else
+		{
+		    setHaxeType(constantType);
 		}
 	}
 	
 	public ConstantNode getClone() {
-		ConstantNode varUsage = new ConstantNode(this.getToken());
-		varUsage.setHaxeType(this.getHaxeType());
-		return varUsage;
+		ConstantNode constant = new ConstantNode(getToken());
+		constant.setHaxeType(getHaxeType());
+		return constant;
 	}
 }

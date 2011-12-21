@@ -28,17 +28,34 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(FunctionNode node, Object data)
     {
-        // TODO Auto-generated method stub
-
+        if (node.isConstructor() && node.isDuplicate())
+        {
+            ErrorPublisher.commitDuplicateConstructorError(node);
+        }
+        else if (node.isDuplicate())
+        {
+            ErrorPublisher.commitDuplicateFieldError(node);
+        }
+        // making 'override' modifier of function 
+        // even in class without
+        // extending - shows no errors
+        
+        BlockScopeNode blockScope = node.getBlockScope();
+        
+        visit(blockScope, data);
     }
 
     @Override
     protected void visit(VarDeclarationNode node, Object data)
     {
+        if (node.isDuplicate())
+        {
+            ErrorPublisher.commitDuplicateFieldError(node);
+        }
         if (node.ifUndefinedType() && 
                 node.getDeclaratonType() == DeclarationType.ClassVarDeclaration)
         {
-            node.commitClassUndefinedTypeError();
+            ErrorPublisher.commitClassUndefinedTypeError(node);
         }
     }
 
@@ -47,7 +64,6 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     {
         if (node.getDeclarationNode() == null)
         {
-            //FIXME packets, classes, else?
             node.commitUndeclaredError();
             return;
         }
@@ -69,9 +85,14 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         visit(leftOperand, data);
         visit(rightOperand, data);
         
-        if (!HaxeType.isAvailableAssignement(
-                leftOperand.getHaxeType(), 
-                rightOperand.getHaxeType()))
+        HaxeType firstType = leftOperand.getHaxeType();
+        HaxeType secondType = rightOperand.getHaxeType();        
+        if (data != null)
+        {
+            // we previosly marked error
+            return;
+        }
+        else if (!HaxeType.isAvailableAssignement(firstType, secondType))
         {
             node.commitCastError();
         }
@@ -80,34 +101,44 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(ConstantNode node, Object data)
     {
-        // TODO Auto-generated method stub
-
+        //seems it needs no errors yet
     }
 
     @Override
     protected void visit(ReturnNode node, Object data)
     {
-        HaxeTree expression = node.getExpression();
         HaxeType type = node.getHaxeType();
+        FunctionNode function = node.getFunction();
         
-        if (node.getFunction() != null && type == PrimaryHaxeType.haxeVoid)
+        HaxeType funType = function == null 
+                ? PrimaryHaxeType.haxeVoid : function.getHaxeType();
+        if (!HaxeType.isAvailableAssignement(funType, type))
         {
-            node.commitError("Void should be " + type.toString());
-            return;
-        }
-        
-        if (node.getFunction().getHaxeType() != type)
-        {
-            expression.commitError(expression.getHaxeType()
-                    + " should be " + type);
+            ErrorPublisher.commitCastError(node, funType);
         }
     }
 
     @Override
     protected void visit(BinaryExpressionNode node, Object data)
     {
-        // TODO Auto-generated method stub
-
+        HaxeTree leftOperand = node.getLeftOperand();
+        HaxeTree rightOperand = node.getRightOperand();
+        
+        visit(leftOperand, data);
+        visit(rightOperand, data);
+        
+        HaxeType firstType = leftOperand.getHaxeType();
+        HaxeType secondType = rightOperand.getHaxeType();
+        if (data != null)
+        {
+            return;
+        }
+        else if (!HaxeType.isAvailableAssignement(firstType, secondType) 
+                && !HaxeType.isAvailableAssignement(secondType, firstType))
+        {
+            data = node;
+            node.commitCastError();
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 
 import org.antlr.runtime.Token;
 
@@ -19,16 +19,11 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class WhileNode extends HaxeTree 
+public class WhileNode extends BlockScopeContainer 
 {
-	/**
-	 * Instantiates a new while node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public WhileNode(final Token t) {
-		super(t);
+	public WhileNode(final Token token) 
+	{
+		super(token);
 	}
 
 }

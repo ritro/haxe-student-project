@@ -14,6 +14,7 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 
@@ -34,31 +35,45 @@ public class ClassNode extends BlockScopeContainer {
 	 * 
 	 * @return the class name
 	 */
-	public String getClassName() {
-		if (this.className.equals("")) {
-			this.className = this.getText();
+	public String getClassName() 
+	{
+		if (className.equals("")) 
+		{
+			className = getText();
 		}
-		return this.className;
+		return className;
 	}
 
-	/**
-	 * Instantiates a new class node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
 	public ClassNode(final Token t) {
 		super(t);
 	}
 	
 	public HaxeTree getInherits() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>) this
-				.getChildren()) {
-			if (tree.getType() == HaxeParser.INHERIT_LIST_OPT) {
-				return (HaxeTree) tree;
+		for (HaxeTree tree : getChildren()) 
+		{
+			if (tree.getType() == HaxeParser.INHERIT_LIST_OPT) 
+			{
+				return tree;
 			}
 		}
 		return null;
+	}
+	
+	private void initializeHaxeType()
+	{
+		//FIXME That's just name, not full name (missing packege declaration)
+	    HaxeType type = new HaxeType(getClassName()); 
+		
+		if (getInherits() != null)
+		{
+	        ArrayList<HaxeType> list = new ArrayList<HaxeType>();
+	        for (HaxeTree i : getInherits().getChildren())
+	            list.add(new HaxeType(i.getChild(0).getText()));
+
+	        type.setClassHierarchy(list);
+		}
+
+        setHaxeType(type);    
 	}
 	
 	/**
@@ -69,19 +84,13 @@ public class ClassNode extends BlockScopeContainer {
 	 * it extended/implemented
 	 */
 	@Override
-	public HaxeType getHaxeType(){
-		//FIXME That's just name, not full name (missing packege declaration)
-		HaxeType type = new HaxeType(this.getClassName()); 
-		
-		if (getInherits() == null)
-			return type;
+	public HaxeType getHaxeType()
+	{
+	    if (super.getHaxeType() == PrimaryHaxeType.haxeUndefined)
+	    {
+	        initializeHaxeType();
+	    }
 
-		ArrayList<HaxeType> list = new ArrayList<HaxeType>();
-		for (HaxeTree i : getInherits().getChildren())
-			list.add(new HaxeType(i.getChild(0).getText()));
-		
-		//FIXME not sure if I understood right - types from  Hierarhy and Implemented are the same?????
-		type.setClassHierarchy(list);
-		return type;
+		return super.getHaxeType();
 	}
 }

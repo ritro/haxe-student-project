@@ -12,10 +12,9 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.NodeWithModifier;
 import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
-
-import java.util.ArrayList;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -25,20 +24,19 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class VarDeclarationNode extends HaxeTree {
+public class VarDeclarationNode extends NodeWithModifier {
 
     private static final int VAR_INIT_TYPE = HaxeParser.VAR_INIT;
+    private static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 	/** The name with type. */
 	private String nameWithType = "";
     protected DeclarationType declType  = DeclarationType.VarDeclaration;
     
     public enum DeclarationType
     {
-        //ClassDeclaration,       // Class
-        ClassVarDeclaration,    // Class var (cant set type)
-        //FunctionDeclaration,    // function
+        ClassVarDeclaration,// Class variable
         FunctionParameter,  // function parameter
-        VarDeclaration     // other then classes var declarations
+        VarDeclaration      // other then class var declarations
     };
 
 	/**
@@ -101,7 +99,13 @@ public class VarDeclarationNode extends HaxeTree {
 	    return declType;
 	}
 	
-	public void tryExtractType()
+	public void updateInfo()
+	{
+	    tryExtractType();
+	    updateModifier();
+	}
+	
+	private void tryExtractType()
 	{
 	    for (HaxeTree tree : getChildren()) 
 	    {
@@ -117,34 +121,16 @@ public class VarDeclarationNode extends HaxeTree {
         }
 	}
 
-	/**
-	 * ???
-	 * 
-	 * @return the var init node
-	 */
-	public HaxeTree getVAR_INIT_NODE() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>)getChildren()) {
+	public HaxeTree getInitializationNode() 
+	{
+		for (HaxeTree tree : getChildren()) 
+		{
 			Token token = (CommonToken) tree.getToken();
-			if (token.getType() == VAR_INIT_TYPE) {
+			if (token.getType() == VAR_INIT_TYPE) 
+			{
 				return tree.getChild(0);
 			}
 		}
 		return null;
 	}
-
-    /**
-     * Class var declaration should have type.
-     */
-    public void commitClassUndefinedTypeError()
-    {
-        commitError("Class var declaration should have type.");
-    }
-    
-    /**
-     * Var is already declared.
-     */
-    public void commitVarAlreadyDeclaredTypeError()
-    {
-        commitError("Var is already declared");
-    }
 }

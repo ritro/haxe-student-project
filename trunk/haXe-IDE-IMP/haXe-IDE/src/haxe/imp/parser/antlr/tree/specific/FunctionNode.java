@@ -11,8 +11,9 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
-import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.Modifiers;
+import haxe.imp.parser.antlr.tree.NodeWithScopeAndModifier;
 import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
 
@@ -26,9 +27,10 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class FunctionNode extends BlockScopeContainer 
+public class FunctionNode extends NodeWithScopeAndModifier
 {
-    private static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST; 
+    private static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST;
+    private static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 
 	/** The full name with parameters. */
 	private String fullNameWithParameters = "";
@@ -106,6 +108,20 @@ public class FunctionNode extends BlockScopeContainer
 		}
 		return list;
 	}
+	
+	/**
+	 * Constructor is the not-static function called "new".
+	 * @return true - if it is constructor
+	 */
+	public boolean isConstructor()
+	{
+	    if (getText().equals("new") && modifier != Modifiers.STATIC)
+	    {
+	        return true;
+	    }
+	    
+	    return false;
+	}
 
 	/**
 	 * Gets the function name. 
@@ -117,33 +133,32 @@ public class FunctionNode extends BlockScopeContainer
 		return getChild(0).getText();
 	}
 	
-	@Override
-	public HaxeType getHaxeType()
+	public void updateInfo()
 	{
-		if (super.getHaxeType() == PrimaryHaxeType.haxeUndefined)
-		{
-		    findHaxeType();
-		}
-		
-		return super.getHaxeType();
+	    updateHaxeType();
+	    updateModifier();
 	}
 	
 	/**
 	 * Tries to extract type from TYPE TAG of function.
 	 */
-	private void findHaxeType()
+	private void updateHaxeType()
 	{
 	    for (HaxeTree tree : getChildren()) 
 	    {
-            if (tree.getToken().getType() == TYPE_TAG_TYPE) 
+            if (tree.getToken().getType() != TYPE_TAG_TYPE) 
             {
-                try {
-                    HaxeType type = new HaxeType(tree.getChild(0).getText());
-                    setHaxeType(type);
-                } catch (NullPointerException nullPointerException) {
-                    return;
-                }
+                continue;
             }
+            try 
+            {
+                HaxeType type = new HaxeType(tree.getChild(0).getText());
+                setHaxeType(type);
+            } 
+            catch (NullPointerException nullPointerException)  { }
+            return;
         }
+	    
+	    setHaxeType(PrimaryHaxeType.haxeVoid);
 	}
 }

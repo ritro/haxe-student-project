@@ -27,6 +27,7 @@ public class HaxeTree extends CommonTree
 {
 	private static IMessageHandler messageHandler;
 	private boolean auxiliary = false;
+	private boolean isDuplicate = false;
 	protected HaxeType haxeType = PrimaryHaxeType.haxeUndefined;
 
 	/**
@@ -35,8 +36,8 @@ public class HaxeTree extends CommonTree
 	protected int mostLeftPosition = -1;
 	protected int mostRightPosition = -1;
 
-	public static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 	public static final int SUFFIX_EXPR_TYPE = HaxeParser.SUFFIX_EXPR;
+	
 		
 	public boolean isAuxiliary() { 
 		return auxiliary;
@@ -44,6 +45,16 @@ public class HaxeTree extends CommonTree
 
 	public void setAuxiliary(final boolean auxiliary) {
 		this.auxiliary = auxiliary;
+	}
+	
+	public boolean isDuplicate()
+	{
+	    return isDuplicate;
+	}
+	
+	public void setDuplicate(boolean isDuplicate)
+	{
+	    this.isDuplicate = isDuplicate;
 	}
     
     public boolean setHaxeType(HaxeType type)

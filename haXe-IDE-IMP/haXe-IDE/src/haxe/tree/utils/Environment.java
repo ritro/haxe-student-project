@@ -73,7 +73,7 @@ public class Environment extends HashMap<String, HaxeTree>
         return env;
     }
     
-    public boolean put(HaxeTree declaration, boolean reportErrors)
+    public boolean put(HaxeTree declaration)
     {
         String name = declaration.getText();
         HaxeTree decl = get(name);
@@ -88,34 +88,25 @@ public class Environment extends HashMap<String, HaxeTree>
                     ((VarDeclarationNode)decl).getDeclaratonType();
             DeclarationType addType = 
                     ((VarDeclarationNode)declaration).getDeclaratonType();
-            if (foundType == addType)
+            if (foundType != addType ||
+                    addType != DeclarationType.ClassVarDeclaration)
             {
-                if (reportErrors)
-                {
-                    ((VarDeclarationNode)declaration).commitVarAlreadyDeclaredTypeError();
-                }
-                return false;
+
+                super.put(name, declaration);
+                return true;
             }
-            super.put(name, declaration);
-            return true;
         }
+        
+        declaration.setDuplicate(true);
         // classes and function could not be overlaid
-        // instead of implementing - TODO
-        if (reportErrors)
-        {
-            declaration.commitError("Alredy exists");
-        }
+        // instead of implementing - TODO - not here?
         return false;
-    }
-    
-    public boolean put(HaxeTree declaration)
-    {
-        return put(declaration, true);
     }
     
     public FunctionNode getLastFunction()
     {
-        HaxeTree[] values = (HaxeTree[]) values().toArray();
+        HaxeTree[] values = new HaxeTree[values().size()];
+        values().toArray(values);
         int size = values.length;
         for (int i = size - 1; i >= 0; i--)
         {

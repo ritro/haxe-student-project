@@ -1,6 +1,5 @@
 package haxe.tree.utils;
 
-import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer.BoolOperations;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
@@ -170,10 +169,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         Environment declarations = (Environment)data;
         declarations.put(node);        
 
-        node.tryExtractType();
+        node.updateInfo();
         VarUsageNode varUsage = node.getVarNameNode();
         varUsage.setDeclarationNode(node);
-        HaxeTree initialization = node.getVAR_INIT_NODE();
+        HaxeTree initialization = node.getInitializationNode();
         if (initialization == null)
         {
             return;
@@ -200,6 +199,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             x.setDeclaratonType(DeclarationType.FunctionParameter);
             funEnv.put(x);
         }
+        
+        node.updateInfo();
         
         BlockScopeNode blockScope = node.getBlockScope();
 

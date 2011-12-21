@@ -85,7 +85,7 @@ public class HaxeType {
 	public static boolean isExtendedClass(
 	        final HaxeType parent, final HaxeType child) 
 	{
-		if (child.getClassHierarchy() != null)
+		if (child.getClassHierarchy() == null)
 		{
 	        return false;
 		}

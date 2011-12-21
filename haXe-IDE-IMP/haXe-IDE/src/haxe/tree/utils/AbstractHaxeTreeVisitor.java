@@ -81,8 +81,10 @@ public abstract class AbstractHaxeTreeVisitor
            //right braces were added separately as IMP
            //wasn't counting them as meaningful chars
        } 
-
-       visitUnknown(t, data);
+       else
+       {
+           visitUnknown(t, data);
+       }
    }
    
    public void visitAllChildren(final HaxeTree t, Object data)

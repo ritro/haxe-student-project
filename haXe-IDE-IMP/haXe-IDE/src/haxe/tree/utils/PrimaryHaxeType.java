@@ -32,6 +32,7 @@ public class PrimaryHaxeType extends HaxeType
     //NULL have this type and it used only(?) for it
     public static final HaxeType haxeUnknown;
     public static final HaxeType haxeEnum;
+    public static final HaxeType haxeEReg;
 
     static {
         haxeString = new PrimaryHaxeType("String");
@@ -62,6 +63,7 @@ public class PrimaryHaxeType extends HaxeType
                 add(haxeObject);
             }
         });
+        haxeEReg = new PrimaryHaxeType("EReg");
         haxeEnum = new PrimaryHaxeType("Enum");
     }
 
@@ -91,8 +93,28 @@ public class PrimaryHaxeType extends HaxeType
     public static HaxeType tryGetPrimaryType(final String typeName)
     {
         //FIXME "Object"?? "Number"??
+        HaxeType result = tryGetConstantType(typeName);
+        if (result != null) 
+        {
+            return result;
+        }
+        else if (typeName.equalsIgnoreCase(haxeVoid.typeName) 
+                || typeName.equals(haxeVoid.fullTypeName)) 
+        {
+            return haxeVoid;
+        }
+        return null;
+    }
+    
+    /**
+     * This types Constants can have in haXe.
+     * @param typeName - name to check for constant type.
+     * @return Instance of haxe primary type or null.
+     */
+    public static HaxeType tryGetConstantType(final String typeName)
+    {
         if (typeName.equalsIgnoreCase(haxeInt.typeName) 
-                || typeName.equals(haxeInt.fullTypeName)) 
+            || typeName.equals(haxeInt.fullTypeName)) 
         {
             return haxeInt;
         } 
@@ -111,11 +133,17 @@ public class PrimaryHaxeType extends HaxeType
         {
             return haxeBool;
         }
-        else if (typeName.equalsIgnoreCase(haxeVoid.typeName) 
-                || typeName.equals(haxeVoid.fullTypeName)) 
+        else if (typeName.equalsIgnoreCase(haxeUnknown.typeName) 
+                || typeName.equals(haxeUnknown.fullTypeName)) 
         {
-            return haxeVoid;
+            return haxeUnknown;
         }
+        else if (typeName.equalsIgnoreCase(haxeEReg.typeName) 
+                || typeName.equals(haxeEReg.fullTypeName)) 
+        {
+            return haxeEReg;
+        }
+        
         return null;
     }
     

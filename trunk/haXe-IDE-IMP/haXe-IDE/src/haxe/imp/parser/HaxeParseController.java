@@ -254,15 +254,22 @@ public class HaxeParseController implements IParseController {
     public Object parse(final String input, final IProgressMonitor monitor) {
         currentAST = null;
         doParse(input);
+
+        linkAndMarkErrors();
         
+        return currentAST;
+    }
+    
+    private void linkAndMarkErrors()
+    {        
         HaxeTreeLinker linker = new HaxeTreeLinker();
         linker.visit(currentAST);
         
         HaxeTreeErrorProvider eProvider = new HaxeTreeErrorProvider();
         eProvider.visit(currentAST);
         
-        HaxeTreePrinter.printTree(currentAST);
-        return currentAST;
+        HaxeTreePrinter printer = new HaxeTreePrinter();
+        printer.visit(currentAST);
     }
 
 }

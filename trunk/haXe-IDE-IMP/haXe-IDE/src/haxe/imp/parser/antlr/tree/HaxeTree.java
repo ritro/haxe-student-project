@@ -204,37 +204,37 @@ public class HaxeTree extends CommonTree
 	/**
 	 * Instantiates a new extended common tree.
 	 */
-	public HaxeTree() {
+	public HaxeTree() 
+	{
 	}
 
-	public HaxeTree(final CommonTree node) {
+	public HaxeTree(final CommonTree node) 
+	{
 		super(node);
 	}
 
-	public HaxeTree(final Token t) {
+	public HaxeTree(final Token t) 
+	{
 		super(t);
 	}
 
-	public HaxeTree(final int ttype, final Token t,
-			final boolean auxiliary) {
-	    this(t);
-	    setAuxiliary(auxiliary);
+	public HaxeTree(final int ttype) 
+	{
+	    this(new CommonToken(ttype));
 	}
 
-	public HaxeTree(final int ttype, final String type,
-			final boolean auxiliary) {
-	    this(ttype, new CommonToken(ttype, type), auxiliary);
-	}
+    public HaxeTree(final int ttype, final String type) 
+    {
+        this(new CommonToken(ttype, type));
+    }
 
-	public HaxeTree(final int ttype, final boolean auxiliary) {
-	    this(ttype, new CommonToken(ttype), auxiliary);
-	}
+    public HaxeTree(int ttype, Token token) 
+    {
+        this(token);
+    }
+    
 
-	public HaxeTree(final int ttype) {
-	    this(ttype, false);
-	}
-
-	/**
+    /**
 	 * Printing error messages in eclipse's text editor 
 	 * (red circles at the left).
 	 */	

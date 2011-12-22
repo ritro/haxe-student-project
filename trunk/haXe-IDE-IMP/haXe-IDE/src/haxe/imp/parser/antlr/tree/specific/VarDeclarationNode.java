@@ -52,32 +52,15 @@ public class VarDeclarationNode extends NodeWithModifier {
 		return this.nameWithType;
 	}
 
-	public VarDeclarationNode(final int ttype, final Token token) {
-		this.token = token;
+	public VarDeclarationNode(final int ttype, final Token token)
+	{
+	    this(token);
 	}
 
-	public VarDeclarationNode(final int ttype, final Token token,
-			final boolean auxiliary) {
-		this.token = token;
-		this.setAuxiliary(auxiliary);
-	}
-
-	/**
-	 * Returns node correspond for var name (in var tmp:Int = foo+bar; it will
-	 * return node for "tmp").
-	 * Also set type from declaration if previously not set;
-	 * 
-	 * @return the var name node
-	 */
-	public VarUsageNode getVarNameNode() {
-		for (HaxeTree child : this.getChildren()) {
-			if (child instanceof VarUsageNode) {
-				return (VarUsageNode) child;
-			}
-		}
-		System.out.println("No var name in var declaration");
-		return (VarUsageNode) this.getChild(0);
-	}
+	public VarDeclarationNode(final Token token) 
+	{
+	    this.token = token;
+    }
 
 	/**
 	 * Returns node correspond for var name (in var tmp:Int = foo+bar; it will
@@ -86,7 +69,7 @@ public class VarDeclarationNode extends NodeWithModifier {
 	 * @return the var name
 	 */
 	public String getText() {
-		return getVarNameNode().getText();
+		return getToken().getText();
 	}
     
     public void setDeclaratonType(DeclarationType type)

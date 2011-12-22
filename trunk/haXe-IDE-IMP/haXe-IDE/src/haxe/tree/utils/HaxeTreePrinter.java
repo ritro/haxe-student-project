@@ -4,8 +4,13 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 /**
@@ -13,97 +18,143 @@ import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
  * make easier to debug.
  * @author Savenko Maria
  */
-public class HaxeTreePrinter
+public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
 {
     /**
      * Prints HaxeTree to console along with printing all
      * subtrees.
      * @param t - main root of tree.
      */
-    public static void printTree(final HaxeTree t)
+    @Override
+    public void visit(final HaxeTree t)
     {
-        printTree(t, 0);
+        visit(t, 0);
     }
     
-    /**
-     * Prints some subtree to console with certain offset
-     * from left border of console for that subtree.
-     * @param t - subtree to print.
-     * @param indent - offset from left border of console.
-     */
-    private static void printTree(final HaxeTree t, final int indent) 
+    private String getIndent(Object data) 
     {
-        if (t == null) 
-        {
-            return;
-        }
-        
-        StringBuffer sb = new StringBuffer(indent);
-        for (int i = 0; i < indent; i++) {
+        int capacity = (int)data;
+        StringBuffer sb = new StringBuffer(capacity);
+        for (int i = 0; i < capacity; i++) {
             sb = sb.append("   ");
         }
-        for (HaxeTree child : t.getChildren()) 
+        
+        return sb.toString();
+    }
+
+    @Override
+    protected void visitHighLevel(HaxeTree node, Object data)
+    {
+        if (data == null)
         {
-            System.out.print(sb.toString());
-            if (child instanceof AssignOperationNode)
-            {
-                printTree((AssignOperationNode)child);
-            }
-            else if (child instanceof VarUsageNode)
-            {
-                printTree((VarUsageNode)child);
-            }
-            else if (child instanceof ConstantNode)
-            {
-                printTree((ConstantNode)child);
-            }
-            else if (child instanceof BinaryExpressionNode)
-            {
-                printTree((BinaryExpressionNode)child);
-            }
-            else if (child instanceof ReturnNode)
-            {
-                printTree((ReturnNode)child);
-            } 
-            else if (child instanceof BlockScopeNode)
-            {
-                System.out.println("Block scope "+ t.getText());
-            } 
-            else
-            {
-                System.out.println(child.getText());
-            }
-            printTree(child, indent + 1);
+            data = 0;
         }
-    }
-    
-    private static void printTree(final AssignOperationNode node)
-    {
-        System.out.println("AssignOperation"+ "{name=" +node.getText()+'}');
+        visitAllChildren(node, data);
     }
 
-    private static void printTree(final ConstantNode node)
+    @Override
+    protected void visit(ClassNode node, Object data)
     {
-        System.out.println("Const"+"(name="+node.getText() +")"
-                +"{"+node.getHaxeType().getShortTypeName()+'}');
+        System.out.print(getIndent(data));
+        System.out.println("class "+ node.getText());
+        visitAllChildren(node, data);
     }
 
-    private static void printTree(final ReturnNode node){
-        System.out.println("Return"+ "{"+node.getHaxeType().getShortTypeName()+'}');
-    }
-    
-    private static void printTree(final VarUsageNode node)
+    @Override
+    protected void visit(FunctionNode node, Object data)
     {
+        System.out.print(getIndent(data));
+        System.out.println("function "+ node.getText());
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
+    protected void visit(VarDeclarationNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("Declaration " +
+                "\"" + node.getText() + "\"" +
+                " {" + node.getHaxeType().getShortTypeName() + '}');
+    }
+
+    @Override
+    protected void visit(VarUsageNode node, Object data)
+    {
+        System.out.print(getIndent(data));
         if (node.isAuxiliary())
             System.out.println("VarUseDOT");
         else
-            System.out.println("VarUsage"+ "(name=" +node.getText()+")" +
-                "{"+node.getHaxeType().getShortTypeName()+'}');
+            System.out.println("VarUsage " +
+                    "\"" + node.getText() + "\"" +
+                    " {" + node.getHaxeType().getShortTypeName() + '}');
+        visitAllChildren(node, (int)data + 1);
     }
-    
-    private static void printTree(final BinaryExpressionNode node)
+
+    @Override
+    protected void visit(AssignOperationNode node, Object data)
     {
-        System.out.println("BinaryExpression"+ "(" +node.getText()+")" +
-                "{"+node.getHaxeType().getShortTypeName()+'}');
+        System.out.print(getIndent(data));
+        System.out.println("AssignOperation " + 
+                "{name=" + node.getText() + '}');     
+        visitAllChildren(node, (int)data + 1);   
+    }
+
+    @Override
+    protected void visit(ConstantNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("Constant " + 
+                "(name=" + node.getText() + ")" +
+                "{" + node.getHaxeType().getShortTypeName() + '}');
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
+    protected void visit(ReturnNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("Return " + 
+                "{" + node.getHaxeType().getShortTypeName() + '}');
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
+    protected void visit(BinaryExpressionNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("BinaryExpression " + 
+                "(" + node.getText() + ")" +
+                "{" + node.getHaxeType().getShortTypeName() + '}');
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
+    protected void visit(BlockScopeNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("BlockScope");
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
+    protected void visit(ErrorNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("ErrorNode");
+    }
+
+    @Override
+    protected void visit(IfNode node, Object data)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void visitUnknown(HaxeTree node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println(node.getText());
+        visitAllChildren(node, (int)data + 1);
     }
 }

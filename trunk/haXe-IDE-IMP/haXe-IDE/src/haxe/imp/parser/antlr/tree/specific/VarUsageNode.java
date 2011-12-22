@@ -67,10 +67,6 @@ public class VarUsageNode extends HaxeTree
 		
 		return getChild(childCount-1).getText();
 	}
-
-	public VarUsageNode(final int ttype, final boolean auxiliary) {
-		super(ttype, auxiliary);
-	}
 	
 	public HaxeTree getDeclarationNode()
 	{

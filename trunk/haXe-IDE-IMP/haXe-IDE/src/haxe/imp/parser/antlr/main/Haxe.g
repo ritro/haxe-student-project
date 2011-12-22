@@ -48,6 +48,7 @@ import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.DoWhileNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
@@ -62,25 +63,23 @@ import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
-module
-    : myPackage? topLevelList -> ^(MODULE<HaxeTree>["MODULE",true] myPackage? topLevelList?)
-    ;
+module          : myPackage? topLevelList -> ^(MODULE<HaxeTree>["MODULE"] myPackage? topLevelList?)
+                ;
     
-topLevelList
-    : (topLevel)*
-    ;
+topLevelList    : (topLevel)*
+                ;
 
-topLevel
-    : myImport
-//    |   pp
-    | topLevelDecl
-    ;
+topLevel        : IMPORT^ dotIdent SEMI!
+                | USING^ dotIdent SEMI!
+                | topLevelDecl
+//              | pp //preprocessor
+                ;
 
-myPackage
-    : PACKAGE dotIdent SEMI -> ^(PACKAGE dotIdent?)
-    ;
+myPackage       : PACKAGE^ dotIdent SEMI!
+                ;
 
-meta    : MONKEYS_AT metaName (LPAREN paramList RPAREN)?
+////////////////////////UNCHECKED BEGIN
+meta    : MONKEYS_AT metaName (LPAREN paramList? RPAREN)?
     ;
 
 metaName
@@ -93,68 +92,64 @@ metaName
 typeDeclFlags
     : (meta)* (EXTERN | PRIVATE)*
     ;
+                
+//////////////////////UNCKECK END
     
-qualifiedIdentifier
-    : (a=IDENTIFIER  ->  $a) (DOT ident=IDENTIFIER  ->  ^(DOT $qualifiedIdentifier $ident) )*
-    ;
+/* ------------------------- Basics ---------------------------*/
+topLevelAccess  : PRIVATE
+                | EXTERN
+                ;
+
+access          : PUBLIC
+                | PRIVATE
+                ;
+
+declAttr        : STATIC
+                | INLINE
+                | DYNAMIC
+                | OVERRIDE
+                | access
+                ;
+
+
+declAttrList    : declAttr+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST"] declAttr+)
+                ;
+
+paramList       : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST"] param+)
+                ;
+
+param           : QUES? IDENTIFIER typeTag? varInit? -> ^(VAR<VarDeclarationNode>[$IDENTIFIER] typeTag? varInit? QUES?)
+                ;
     
-myImport
-    : IMPORT^ dotIdent SEMI!
-    | USING^ dotIdent SEMI!
-    ;
-// -------- Basics
+id              : IDENTIFIER<VarUsageNode>
+                | THIS<VarUsageNode>
+                ;
 
-access
-    : PUBLIC
-    | PRIVATE
-    ;
+dotIdent        : id DOT a=dotIdent ->  ^(DOT<VarUsageNode> id $a)
+                | id -> id
+                ;
 
-declAttr
-    : STATIC
-    | INLINE
-    | DYNAMIC
-    | OVERRIDE
-    | access
-    ;
+assignOp        : EQ       -> EQ<AssignOperationNode>
+                | PLUSEQ   -> PLUSEQ<AssignOperationNode>
+                | SUBEQ    -> SUBEQ<AssignOperationNode>
+                | STAREQ   -> STAREQ<AssignOperationNode>
+                | SLASHEQ  -> SLASHEQ<AssignOperationNode>
+                | PERCENTEQ -> PERCENTEQ<AssignOperationNode>
+                | AMPEQ    -> AMPEQ<AssignOperationNode>
+                | BAREQ    -> BAREQ<AssignOperationNode>
+                | CARETEQ  -> CARETEQ<AssignOperationNode>
+                | LTLTEQ   -> LTLTEQ<AssignOperationNode>
+                | GTGTEQ   -> GTGTEQ<AssignOperationNode>
+                | GTGTGTEQ -> GTGTGTEQ<AssignOperationNode>
+                ;
+                
+funcLit         : FUNCTION<FunctionNode>^ LPAREN! paramList? RPAREN! typeTag? block
+                ;
 
-declAttrList
-    : (declAttr)+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST", true] declAttr+)
-    ;
-
-paramList
-    : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST", true] param+)
-    |
-    ;
-
-param
-    : QUES? IDENTIFIER typeTagOpt varInit -> ^(VAR<VarDeclarationNode>[$IDENTIFIER, true] IDENTIFIER<VarUsageNode>? typeTagOpt? varInit? QUES?)
-    ;
-    
-id  :    IDENTIFIER -> ^(IDENTIFIER<VarUsageNode>)
-    |    THIS -> ^(THIS<VarUsageNode>)
-    ;
-
-dotIdent
-    :    id DOT a=dotIdent ->  ^(DOT<VarUsageNode>[true] id $a)
-    |    id -> id
-    ;
-
-assignOp
-    :    EQ        -> EQ<AssignOperationNode>[$EQ]
-    |    PLUSEQ     -> PLUSEQ<AssignOperationNode>[$PLUSEQ]
-    |    SUBEQ    -> SUBEQ<AssignOperationNode>[$SUBEQ]
-    |    SLASHEQ    -> SLASHEQ<AssignOperationNode>[$SLASHEQ]
-    |    PERCENTEQ    -> PERCENTEQ<AssignOperationNode>[$PERCENTEQ]
-    |    AMPEQ    -> AMPEQ<AssignOperationNode>[$AMPEQ]
-    ;
-
-    
-funcLit : FUNCTION LPAREN paramList RPAREN typeTagOpt? block -> ^(FUNCTION<FunctionNode> paramList? typeTagOpt? block?)
-        ;
-arrayLit    : LBRACKET! exprListOpt RBRACKET!
-            ;
+arrayLit        : LBRACKET! exprList? RBRACKET!
+                ;
 /*
-! -------- Preprocessor
+! -------------- Preprocessor----------------------------------
 ! Not actually implemented as a preprocessor though.
 */
 /*pp                : ppIf
@@ -177,43 +172,30 @@ ppError           : PP_ERROR
     ;
 */
     
-//! -------- Types
+/* --------------- Types --------------------------------------*/
 
-typeTag : COLON! funcType
-        ;
-    
-typeTagOpt
-    :    typeTag -> ^(TYPE_TAG<HaxeTree>["TYPE_TAG",true] typeTag?)
-    |
-    ;
-    
-typeList
-    :    type (COMMA! type)*    
-    |    typeConstraint (COMMA! typeConstraint )* 
-    ;
+typeTag         : COLON funcType -> ^(TYPE_TAG<HaxeTree>["TYPE_TAG"] funcType)
+                ;
 
-funcType
-    :    (type) (MINUS_BIGGER! type)*
-    |    VOID
-    ;
+typeList        : funcType (COMMA! typeList)?
+                | typeConstraint (COMMA! typeList)? 
+                ;
+
+funcType        : type (MINUS_BIGGER! type)*
+                ;
     
-primitiveType
-    :    INT | FLOAT | DYNAMIC | BOOLEAN | VOID
-    ;
+primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID
+                ;
 
 type    :    (anonType^ | dotIdent^ | primitiveType^ ) (typeParam)*
-        |    				//????
+        |                    //????
         ;
     
-typeParam
-    :    LT! typeList GT!
-    |    LT! typeList LT! typeList GTGT!
-    |    LT! typeList LT! typeList LT! typeList GTGTGT!
-//    :    LT! typeList GT!
-    ;
+typeParam       : LT! typeList typeParam? GT!
+                ;
     
 typeParamOpt      
-    :    typeParam -> ^(TYPE_PARAM_OPT<HaxeTree>["TYPE_PARAM_OPT",true] typeParam?)
+    :    typeParam -> ^(TYPE_PARAM_OPT<HaxeTree>["TYPE_PARAM_OPT"] typeParam?)
     |    
     ;
        
@@ -221,26 +203,23 @@ typeConstraint
     :   IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER? typeList?)
     ;
     
-
+/*-------------------------Statements--------------------------*/
 functionReturn
-    :    declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block? )
+    :    declAttrList? FUNCTION NEW LPAREN paramList? RPAREN typeTag? block -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTag? block? )
     ;    
 
 statement 
     :    block
     |    assignExpr SEMI!
     |    varDecl
-    |    IF parExpression s1=statement
-         ( ELSE s2=statement -> ^(IF<IfNode> parExpression $s1 $s2)
-         |                   -> ^(IF<IfNode> parExpression $s1)
-         )
-    |    FOR LPAREN exp1=expr IN exp2=expr RPAREN statement     -> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement?)
-    |    WHILE parExpression statement                 -> ^(WHILE<WhileNode> parExpression? statement?)
-    |    DO statement WHILE parExpression SEMI             -> ^(DO<DoWhileNode> parExpression? statement?)
-    |    TRY block catchStmtList                 -> ^(TRY<TryNode> block? catchStmtList?)
-    |    SWITCH LPAREN expr RPAREN LBRACE caseStmt+ RBRACE     -> ^(SWITCH<SwitchNode> expr? caseStmt+)
-    |    RETURN (expr)? SEMI                    -> ^(RETURN<ReturnNode> expr?)
-    |    THROW expr SEMI                     -> ^(THROW expr?)
+                | IF<IfNode>^ parExpression statement (ELSE! statement)?
+                | FOR LPAREN exp1=expr IN exp2=expr RPAREN statement -> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement)
+                | WHILE<WhileNode>^ parExpression statement
+                | DO<DoWhileNode>^ statement WHILE! parExpression SEMI!
+                | TRY<TryNode>^ block catchStmt+
+                | SWITCH<SwitchNode>^ LPAREN! expr RPAREN! LBRACE! caseStmt+ RBRACE!
+                | RETURN<ReturnNode>^ expr? SEMI!
+                | THROW^ expr SEMI!
     |    BREAK (IDENTIFIER)? SEMI                -> ^(BREAK IDENTIFIER?)
     |    CONTINUE (IDENTIFIER)? SEMI                 -> ^(CONTINUE IDENTIFIER?)
     |    expr  SEMI!
@@ -252,48 +231,30 @@ parExpression
     :   LPAREN! expr RPAREN!
     ;
 
-block   :    LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] blockStmt* RBRACE<HaxeTree>[$RBRACE, true]) 
-        |    SEMI!
-        ;
-    
+block           : LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] blockStmt*) 
+                | SEMI!
+                ;
+
 blockStmt
     :    varDecl
     |    classDecl
     |    statement
     ;
     
-breakStmt
-    :    BREAK SEMI!
-    ;
+breakStmt       : BREAK SEMI!
+                ;
     
-continueStmt
-    :    CONTINUE SEMI!
-    ;
+continueStmt    : CONTINUE SEMI!
+                ;
     
-caseStmt
-    :    CASE exprList COLON statement  -> ^(CASE exprList? statement?)
-    |    DEFAULT COLON statement        -> ^(DEFAULT statement?)
-    ;
+caseStmt        : CASE^ exprList COLON! statement
+                | DEFAULT^ COLON! statement
+                ;
     
-defaultStmt
-    :    DEFAULT COLON!
-    ;
-    
-catchStmtList
-    : catchStmt catchStmtList
-    |
-    ;
-    
-catchStmt
-    :    CATCH LPAREN param RPAREN block -> ^(CATCH param? block?)
-    ;
-    
-//! -------- Expressions
-
-exprListOpt
-    :    exprList
-    |
-    ;
+catchStmt       
+: CATCH<HaxeTree>^ LPAREN! param RPAREN! block
+;
+/*----------------------Expressions----------------------------*/
     
 exprList
     :    expr (COMMA! expr)*
@@ -307,74 +268,83 @@ expr
 assignExpr
     :     iterExpr (assignOp^ iterExpr)? 
     ;
-
-iterExpr
-    :    ternaryExpr (ELLIPSIS<BinaryExpressionNode>^ ternaryExpr)?
-    ;
+    
+// TODO: should it be after logicAndExpr ????
+iterExpr        : ternaryExpr (
+                    ELLIPSIS<BinaryExpressionNode>^ ternaryExpr)?
+                ;
 
 ternaryExpr
-    :    logicOrExpr (QUES<BinaryExpressionNode>^ expr COLON! logicOrExpr)? // TODO: it should not be BinaryExpressionNode
+    :    logicOrExpr (QUES<HaxeTree>^ expr COLON! logicOrExpr)? // TODO: it should not be BinaryExpressionNode
     ;
 
-logicOrExpr
-    :    logicAndExpr (BARBAR<BinaryExpressionNode>^ logicAndExpr)*
-    ;
+logicOrExpr     : logicAndExpr (
+                    BARBAR<BinaryExpressionNode>^ logicAndExpr)*
+                ;
     
-logicAndExpr
-    :    
-    cmpExpr 
-    (AMPAMP<BinaryExpressionNode>^ cmpExpr)*
-    ;
+logicAndExpr    : cmpExpr(AMPAMP<BinaryExpressionNode>^ cmpExpr)*
+                ;
     
-cmpExpr :    
-    bitExpr 
-    ((EQEQ<BinaryExpressionNode>^ 
-      | BANGEQ<BinaryExpressionNode>^ 
-      | GTEQ<BinaryExpressionNode>^ 
-      | LTEQ<BinaryExpressionNode>^ 
-      | GT<BinaryExpressionNode>^ 
-      | LT<BinaryExpressionNode>^)  
+cmpExpr         : bitExpr ((
+                      EQEQ<BinaryExpressionNode>^ 
+                    | BANGEQ<BinaryExpressionNode>^ 
+                    | GTEQ<BinaryExpressionNode>^ 
+                    | LTEQ<BinaryExpressionNode>^ 
+                    | GT<BinaryExpressionNode>^ 
+                    | LT<BinaryExpressionNode>^) bitExpr)*
+                ;
+    
+bitExpr         : shiftExpr ((
+                      BAR<BinaryExpressionNode>^ 
+                    | AMP<BinaryExpressionNode>^ 
+                    | CARET<BinaryExpressionNode>^) shiftExpr)*
+                ;
 
-     bitExpr
-    )*
-    ;
-    
-bitExpr :    (shiftExpr) ((BAR<BinaryExpressionNode>^ | AMP<BinaryExpressionNode>^ | CARET<BinaryExpressionNode>^) shiftExpr)*  //???????
-        ;
+shiftExpr       : addExpr ((
+                      LTLT<BinaryExpressionNode>^ 
+                    | GTGT<BinaryExpressionNode>^ 
+                    | GTGTGT<BinaryExpressionNode>^) addExpr)*
+                ;
 
-    // TODO: Fix "GT GT" case node construction
-shiftExpr
-    :    (addExpr) ((LTLT<BinaryExpressionNode>^ | (GT<BinaryExpressionNode> GT)^ | GTGTGT<BinaryExpressionNode>^) addExpr)*
-    ;
-
-addExpr :     (multExpr) ((PLUS<BinaryExpressionNode>^ | SUB<BinaryExpressionNode>^) multExpr )*
-        ;
+addExpr         : multExpr ((
+                      PLUS<BinaryExpressionNode>^ 
+                    | SUB<BinaryExpressionNode>^) multExpr )*
+                ;
     
-multExpr:    (psExpr) ((STAR<BinaryExpressionNode>^ | SLASH<BinaryExpressionNode>^ | PERCENT<BinaryExpressionNode>^) psExpr)*
-        ;
+multExpr        : psExpr ((
+                      STAR<BinaryExpressionNode>^ 
+                    | SLASH<BinaryExpressionNode>^ 
+                    | PERCENT<BinaryExpressionNode>^) psExpr)*
+                ;
         
 psExpr
-    	:	prefixExpr
-    	|	suffixExpr
-    	| 	value
-    	;
+    :    prefixExpr
+    |    suffixExpr
+    |    value
+    ;
     
 prefixExpr
-	:    (SUB|SUBSUB|PLUS|PLUSPLUS|BANG|TILDE)^ value
-	|	newExpr
-    	|	cast    	
-    	|	funcLit 
-	;
+    :    (SUB|SUBSUB|PLUS|PLUSPLUS|BANG|TILDE)^ value
+    |    newExpr
+    |    cast        
+    |    funcLit 
+    ;
     
 suffixExpr
-    :    value methodCallOrSliceList -> ^(SUFFIX_EXPR<HaxeTree>["CallOrSlice",true] value? methodCallOrSliceList?)
-    |    value PLUSPLUS             -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? PLUSPLUS?)
-    |    value SUBSUB             -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR",true] value? SUBSUB)
+    :    value methodCallOrSliceList -> ^(SUFFIX_EXPR<HaxeTree>["CallOrSlice"] value? methodCallOrSliceList?)
+    |    value PLUSPLUS              -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR"] value? PLUSPLUS?)
+    |    value SUBSUB                -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR"] value? SUBSUB)
     ;
 
 methodCallOrSlice
-    :    LPAREN exprListOpt RPAREN -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", false] LPAREN<HaxeTree>[$LPAREN, true] exprListOpt? RPAREN<HaxeTree>[$LPAREN, true])
-    |    LBRACKET expr RBRACKET -> ^(SUFFIX_EXPR<HaxeTree>["Slice", false] LBRACKET<HaxeTree>[$LBRACKET, true] expr? RBRACKET<HaxeTree>[$RBRACKET, true])
+    :    LPAREN exprList? RPAREN -> ^(
+                SUFFIX_EXPR<HaxeTree>["MethodCall"] 
+                LPAREN<HaxeTree>[$LPAREN] 
+                exprList? RPAREN<HaxeTree>[$LPAREN])
+    |    LBRACKET expr RBRACKET -> ^(
+                SUFFIX_EXPR<HaxeTree>["Slice"] 
+                LBRACKET<HaxeTree>[$LBRACKET] 
+                expr? RBRACKET<HaxeTree>[$RBRACKET])
     ;
 
 methodCallOrSliceList
@@ -392,105 +362,84 @@ value
     ;
 
 newExpr           
-    :   NEW type LPAREN exprListOpt RPAREN -> ^(NEW type? exprListOpt?)
+    :   NEW type LPAREN exprList? RPAREN -> ^(NEW type? exprList?)
     ;
 
-cast    :   CAST LPAREN expr (COMMA funcType)? RPAREN   -> ^(CAST expr? funcType?)
-        |   CAST LPAREN expr RPAREN                     -> ^(CAST expr?)
-    //  |   CAST expr                                   -> ^(CAST expr?)
-        ;
-
-//! -------- Declarations
-
-topLevelDecl      
-    :   classDecl
-    |   interfaceDecl
-    |   enumDecl
-    |   typedefDecl
+cast    
+    :   CAST LPAREN expr (COMMA funcType)? RPAREN   -> ^(CAST expr? funcType?)
+    |   CAST LPAREN expr RPAREN                     -> ^(CAST expr?)
+//  |   CAST expr                                   -> ^(CAST expr?)
     ;
+/*-------------------- Declarations----------------------------*/
+
+topLevelDecl    : classDecl
+                | interfaceDecl
+                | enumDecl
+                | typedefDecl
+                ;
     
-enumDecl:   typeDeclFlags ENUM IDENTIFIER typeParamOpt enumBody -> ^(IDENTIFIER<EnumNode> typeParamOpt? enumBody?)
-        ;
+enumDecl        : topLevelAccess? ENUM IDENTIFIER typeParamOpt enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccess? typeParamOpt? enumBody?)
+                ;
 
-enumBody:   LBRACE (enumValueDecl)* RBRACE
-            -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] enumValueDecl* RBRACE<HaxeTree>[$RBRACE, true])
-        ;
+enumBody        : LBRACE (enumValueDecl)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] enumValueDecl*)
+                ;
 
-enumValueDecl     
-    :   IDENTIFIER LPAREN paramList RPAREN SEMI -> ^(IDENTIFIER<VarDeclarationNode>[$IDENTIFIER] IDENTIFIER<VarUsageNode>? paramList? )    
-    |   IDENTIFIER SEMI                         -> ^(IDENTIFIER<VarDeclarationNode>[$IDENTIFIER] IDENTIFIER<VarUsageNode>?)
-//  |   pp
-    ;
-
-varDeclList
-    :   varDecl varDeclList
-    ;
-
-varDecl :   (declAttrList)? VAR varDeclPartList SEMI -> ^(VAR<VarDeclarationNode>[$VAR] declAttrList? varDeclPartList?)
-        ;
+enumValueDecl   : IDENTIFIER<VarDeclarationNode>^ LPAREN! paramList? RPAREN! SEMI!  
+                | IDENTIFIER<VarDeclarationNode> SEMI!
+            //  |   pp
+                ;
     
-varDeclPartList   
-    :   varDeclPart (COMMA! varDeclPart)*
-    ;
+classDecl       : topLevelAccess? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^(IDENTIFIER<ClassNode> topLevelAccess? typeParamOpt? inheritListOpt? classBodyScope?)
+                ;
 
-varDeclPart
-    :   IDENTIFIER<VarUsageNode> propDeclOpt typeTagOpt varInit
-    ;
-
-propDecl:   LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL",true] $a1? $a2?)
-        ;
-
-propAccessor    
-        :   IDENTIFIER  
-        |   NULL
-        |   DEFAULT
-        |   DYNAMIC
-        ;
+classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] classMember*)
+                ;
     
-propDeclOpt
-    :   propDecl    
-    |
-    ;
+classMember     : varDecl 
+                | funcDecl 
+            //  | pp classBody
+                ;
 
-varInit :   EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT",true] expr?)
-        |   
-        ;
+varDeclList     : varDecl varDeclList
+                ;
+
+varDecl         : varDeclPartList SEMI!
+                ;
+ 
+varDeclPartList : declAttrList? VAR IDENTIFIER propDecl? (COMMA IDENTIFIER propDecl?)*  typeTag? varInit? -> (^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag? varInit?))+
+                ;
+
+propDecl        : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL"] $a1? $a2?)
+                ;
+
+propAccessor    : IDENTIFIER  
+                | NULL
+                | DEFAULT
+                | DYNAMIC
+                ;
+
+varInit         : EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT"] expr)
+                ;
     
-funcDecl:   declAttrList? FUNCTION NEW LPAREN paramList RPAREN typeTagOpt block 
-                -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTagOpt? block? )
-        |   declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt block 
-                -> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTagOpt? block? typeParamOpt?)
+funcDecl:   declAttrList? FUNCTION NEW LPAREN paramList? RPAREN typeTag? block 
+                -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTag? block? )
+        |   declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList? RPAREN typeTag? block 
+                -> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTag? block? typeParamOpt?)
         ;
     
 funcProtoDecl
-    :   declAttrList FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI 
-            -> ^(FUNCTION NEW? paramList? typeTagOpt? declAttrList?)
-    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI 
-            -> ^(FUNCTION IDENTIFIER? paramList? typeTagOpt? declAttrList? typeParamOpt?)
-    |   FUNCTION NEW LPAREN paramList RPAREN typeTagOpt SEMI 
-            -> ^(FUNCTION NEW? paramList? typeTagOpt?)
-    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList RPAREN typeTagOpt SEMI 
-            -> ^(FUNCTION IDENTIFIER? paramList? typeTagOpt? typeParamOpt?)
-    ;
-    
-classDecl
-    :   typeDeclFlags CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope
-            -> ^(IDENTIFIER<ClassNode> typeDeclFlags? typeParamOpt? inheritListOpt? classBodyScope?)
-    ;
-    
-classBodyScope
-    :   LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>["BLOCK_SCOPE", true, $LBRACE] classMember* RBRACE<HaxeTree>[$RBRACE, true])
-    ;
-
-classMember
-    :   varDecl 
-    |   funcDecl 
-//  |   pp classBody
-    |   enumDecl 
+    :   declAttrList FUNCTION NEW LPAREN paramList? RPAREN typeTag? SEMI 
+            -> ^(FUNCTION NEW? paramList? typeTag? declAttrList?)
+    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList? RPAREN typeTag? SEMI 
+            -> ^(FUNCTION IDENTIFIER? paramList? typeTag? declAttrList? typeParamOpt?)
+    |   FUNCTION NEW LPAREN paramList? RPAREN typeTag? SEMI 
+            -> ^(FUNCTION NEW? paramList? typeTag?)
+    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList? RPAREN typeTag? SEMI 
+            -> ^(FUNCTION IDENTIFIER? paramList? typeTag? typeParamOpt?)
     ;
     
 interfaceDecl     
-    :   typeDeclFlags INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
+    :   topLevelAccess? INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
     ;
     
 interfaceBody
@@ -505,7 +454,7 @@ inheritList
     ;
     
 inheritListOpt    
-    :    inheritList -> ^(INHERIT_LIST_OPT<HaxeTree>["INHERIT_LIST_OPT",true] inheritList?)
+    :    inheritList -> ^(INHERIT_LIST_OPT<HaxeTree>["INHERIT_LIST_OPT"] inheritList?)
     |    
     ;
     
@@ -570,9 +519,7 @@ WS  :   ( ' '
         ) {$channel=HIDDEN;}
     ;
     
-/*--------------------------------
-LEXER SECTION (????? ? ?????)
---------------------------------*/
+/*-------------------------LEXER SECTION-------------------------*/
 LONGLITERAL
     :   IntegerNumber LongSuffix
     ;
@@ -737,18 +684,10 @@ AMPEQ       :   '&=';
 BAREQ       :   '|=';
 CARETEQ     :   '^=';
 PERCENTEQ   :   '%=';
-PERCENTDLQ  :   '%%<<%%=';
-PERCENTDBQ  :   '%%>>%%=';
-PERCENTDBBQ :   '%%>>>%%=';
-EQEQEQ      :   '===';
-PERCENTLESQ :   '%%<=%%';
 BANGEQQ     :   '!==';
 MONKEYS_AT  :   '@';
 BANGEQ      :   '!=';
 MINUS_BIGGER:   '->';
-PERCENTLL   :   '%%<<%%';
-PERCENTBB   :   '%%>>%%';
-PERCENTBBB  :   '%%>>>%%';
 GT      :   '>';
 GTGT    :   '>>';
 LTLT    :   '<<';

@@ -36,7 +36,8 @@ public class BlockScopeNode extends HaxeTree {
 	 * Gets the left bracket position in original text. 
 	 * @return the left bracket position
 	 */
-	public int getLeftBracketPosition() {
+	public int getLeftBracketPosition() 
+	{
 		return leftBracketPosition;
 	}
 	
@@ -49,15 +50,8 @@ public class BlockScopeNode extends HaxeTree {
 	    }
 	    
         HaxeTree lastchild = getChildren().get(childCount-1);
-        if (lastchild.getType() == HaxeParser.RBRACE) 
-        {
-            rightBracketPosition = 
-                    lastchild.getToken().getStopIndex();
-        } else {
-            // no right brace - return something
-            rightBracketPosition = 
+        rightBracketPosition = 
                     lastchild.getMostRightPosition();
-        }
 	}
 
 	/**
@@ -65,7 +59,7 @@ public class BlockScopeNode extends HaxeTree {
 	 * original text.
 	 * @return the right bracket position
 	 */
-	public int getrBracketPosition() 
+	public int getRBracketPosition() 
 	{
 		if (rightBracketPosition == -1)
 		{
@@ -84,7 +78,7 @@ public class BlockScopeNode extends HaxeTree {
 	@Override
 	protected void calculateMostRightPosition()
 	{
-	    mostRightPosition = getrBracketPosition();
+	    mostRightPosition = getRBracketPosition();
 	}
 	
 	/**
@@ -103,10 +97,17 @@ public class BlockScopeNode extends HaxeTree {
 	    HaxeTree lastChild = getChild(childCount - 1);
 		return lastChild.getHaxeType();
 	}
-
-	public BlockScopeNode(final int blockScope, final String string,
-			final boolean b, final Token lBracket) {
-		super(blockScope, string, b);
-		leftBracketPosition = ((CommonToken) lBracket).getStartIndex();
+	
+	@Override
+	public String getText()
+	{
+	    return parent.getText();
 	}
+
+    public BlockScopeNode(int blockScope, final Token lBracket, final Token rBracket) 
+    {
+        super(blockScope);
+        leftBracketPosition = ((CommonToken) lBracket).getStartIndex();
+        rightBracketPosition = ((CommonToken) rBracket).getStartIndex();
+    }
 }

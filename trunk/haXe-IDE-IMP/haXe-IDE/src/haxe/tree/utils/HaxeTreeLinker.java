@@ -170,8 +170,6 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         declarations.put(node);        
 
         node.updateInfo();
-        VarUsageNode varUsage = node.getVarNameNode();
-        varUsage.setDeclarationNode(node);
         HaxeTree initialization = node.getInitializationNode();
         if (initialization == null)
         {
@@ -185,7 +183,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         else if (!HaxeType.isAvailableAssignement(type, initialization.getHaxeType()))
         {
-            varUsage.commitError(
+            node.commitError(
                     initialization.getHaxeType() + " should be " + type);
         }
     }

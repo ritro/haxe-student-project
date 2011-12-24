@@ -33,6 +33,18 @@ public class VarDeclarationTests
     }
     
     @Test
+    public void testDeclarationList2() throws RecognitionException 
+    {
+        HaxeTree tree = parseStatement("public var x,c: Int, z : Int;");
+        
+        assertTrue(tree.getChildCount() == 3);
+        assertTrue(tree.getChild(0) instanceof VarDeclarationNode);
+        assertTrue(tree.getChild(1) instanceof VarDeclarationNode);
+        assertTrue(tree.getChild(2) instanceof VarDeclarationNode);
+    }
+    
+    
+    @Test
     public void testDeclarationListFields() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x,c : Int = 5;");        

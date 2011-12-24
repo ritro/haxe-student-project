@@ -187,7 +187,7 @@ funcType        : type (MINUS_BIGGER! type)*
 primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID
                 ;
 
-type    :    (anonType^ | dotIdent^ | primitiveType^ ) (typeParam)*
+type    :    (anonType^ | IDENTIFIER^ | primitiveType^ ) (typeParam)*
         |                    //????
         ;
     
@@ -311,64 +311,59 @@ addExpr         : multExpr ((
                     | SUB<BinaryExpressionNode>^) multExpr )*
                 ;
     
-multExpr        : psExpr ((
+multExpr        : unarExpr ((
                       STAR<BinaryExpressionNode>^ 
                     | SLASH<BinaryExpressionNode>^ 
-                    | PERCENT<BinaryExpressionNode>^) psExpr)*
+                    | PERCENT<BinaryExpressionNode>^) unarExpr)*
                 ;
-        
+
+unarExpr        : (
+            SUB<UnarExpressionNode>^|
+            SUBSUB<UnarExpressionNode>^|
+            PLUSPLUS<UnarExpressionNode>^|
+            BANG<UnarExpressionNode>^|
+            TILDE<UnarExpressionNode>^) psExpr
+                | psExpr PLUSPLUS                           -> ^(PLUSPLUS<UnarExpressionNode> psExpr)
+                | psExpr SUBSUB                             -> ^(SUBSUB<UnarExpressionNode> psExpr)
+                | psExpr
+                ;
+
 psExpr
-    :    prefixExpr
-    |    suffixExpr
-    |    value
+    : prefixExpr
+    | suffixExpr
+    ;
+    
+suffixExpr  : methodCallOrSlice
+            | value
+            ;
+            
+methodCallOrSlice : value LPAREN exprList? RPAREN pureCallOrSlice? -> ^(
+                SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
+            | value LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
+                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr? pureCallOrSlice?)
+                | value DOT suffixExpr? -> ^(value suffixExpr?)
+;
+
+pureCallOrSlice : LPAREN exprList? RPAREN pureCallOrSlice? -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] exprList? pureCallOrSlice?)
+                |LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
+                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr? pureCallOrSlice?)
+|DOT! methodCallOrSlice
+;
+
+value
+    //|   RegexLit?
+    :   objLit
+    | funcLit
+    | arrayLit
+    |   elementarySymbol
+    |   LPAREN! (expr|statement) RPAREN!
+    // TODO: if id is in callAlSlice and else we can't use THIS
+    |   id typeParamOpt 
     ;
     
 prefixExpr
-    :    (SUB|SUBSUB|PLUS|PLUSPLUS|BANG|TILDE)^ value
-    |    newExpr
-    |    cast        
-    |    funcLit 
-    ;
-    
-suffixExpr
-    :    value methodCallOrSliceList -> ^(SUFFIX_EXPR<HaxeTree>["CallOrSlice"] value? methodCallOrSliceList?)
-    |    value PLUSPLUS              -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR"] value? PLUSPLUS?)
-    |    value SUBSUB                -> ^(SUFFIX_EXPR<HaxeTree>["SUFFIX_EXPR"] value? SUBSUB)
-    ;
-
-methodCallOrSlice
-    :    LPAREN exprList? RPAREN -> ^(
-                SUFFIX_EXPR<HaxeTree>["MethodCall"] 
-                LPAREN<HaxeTree>[$LPAREN] 
-                exprList? RPAREN<HaxeTree>[$LPAREN])
-    |    LBRACKET expr RBRACKET -> ^(
-                SUFFIX_EXPR<HaxeTree>["Slice"] 
-                LBRACKET<HaxeTree>[$LBRACKET] 
-                expr? RBRACKET<HaxeTree>[$RBRACKET])
-    ;
-
-methodCallOrSliceList
-    :    methodCallOrSlice methodCallOrSliceList
-    |    methodCallOrSlice
-    ;
-
-value
-    //:   funcLit 
-    //|   arrayLit //Slice???
-    :   objLit
-    |   elementarySymbol
-    |   LPAREN! (expr|statement) RPAREN!
-    |   dotIdent typeParamOpt
-    ;
-
-newExpr           
-    :   NEW type LPAREN exprList? RPAREN -> ^(NEW type? exprList?)
-    ;
-
-cast    
-    :   CAST LPAREN expr (COMMA funcType)? RPAREN   -> ^(CAST expr? funcType?)
-    |   CAST LPAREN expr RPAREN                     -> ^(CAST expr?)
-//  |   CAST expr                                   -> ^(CAST expr?)
+    : NEW^ type LPAREN! exprList? RPAREN!
+    | CAST^ LPAREN! expr (COMMA! funcType)? RPAREN!
     ;
 /*-------------------- Declarations----------------------------*/
 
@@ -395,7 +390,7 @@ classDecl       : topLevelAccess? CLASS IDENTIFIER typeParamOpt inheritListOpt c
 classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] classMember*)
                 ;
     
-classMember     : varDecl 
+classMember     : varDeclClass
                 | funcDecl 
             //  | pp classBody
                 ;
@@ -403,10 +398,13 @@ classMember     : varDecl
 varDeclList     : varDecl varDeclList
                 ;
 
-varDecl         : varDeclPartList SEMI!
+varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag? varInit? SEMI -> ^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag? varInit?)
                 ;
- 
-varDeclPartList : declAttrList? VAR IDENTIFIER propDecl? (COMMA IDENTIFIER propDecl?)*  typeTag? varInit? -> (^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag? varInit?))+
+                
+varDecl    : VAR! varDeclPartList (COMMA! varDeclPartList)* SEMI!
+           ;
+
+varDeclPartList : IDENTIFIER propDecl? typeTag? varInit? -> ^(IDENTIFIER<VarDeclarationNode> propDecl? typeTag? varInit?)
                 ;
 
 propDecl        : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL"] $a1? $a2?)

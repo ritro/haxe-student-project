@@ -234,6 +234,12 @@ public class HaxeTree extends CommonTree
     }
     
 
+    public HaxeTree(int suffixExpr, String string, Token lPAREN242,
+            Token rPAREN244) 
+    {
+        this(suffixExpr, string);
+    }
+
     /**
 	 * Printing error messages in eclipse's text editor 
 	 * (red circles at the left).

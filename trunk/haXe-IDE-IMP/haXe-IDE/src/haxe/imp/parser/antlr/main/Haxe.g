@@ -256,30 +256,25 @@ catchStmt
 ;
 /*----------------------Expressions----------------------------*/
     
-exprList
-    :    expr (COMMA! expr)*
-    ;
+exprList        : expr (COMMA! expr)*
+                ;
     
-expr
-    :    assignExpr
-    |    UNTYPED assignExpr    -> ^(UNTYPED assignExpr)
-    ;
+expr            : UNTYPED^ assignExpr
+                | assignExpr
+                ;
 
-assignExpr
-    :     iterExpr (assignOp^ iterExpr)? 
-    ;
+assignExpr      : iterExpr (assignOp^ iterExpr)? 
+                ;
     
 // TODO: should it be after logicAndExpr ????
 iterExpr        : ternaryExpr (
                     ELLIPSIS<BinaryExpressionNode>^ ternaryExpr)?
                 ;
 
-ternaryExpr
-    :    logicOrExpr (QUES<HaxeTree>^ expr COLON! logicOrExpr)? // TODO: it should not be BinaryExpressionNode
-    ;
+ternaryExpr     : logicOrExpr (QUES^ expr COLON! ternaryExpr)?
+                ;
 
-logicOrExpr     : logicAndExpr (
-                    BARBAR<BinaryExpressionNode>^ logicAndExpr)*
+logicOrExpr     : logicAndExpr (BARBAR<BinaryExpressionNode>^ logicAndExpr)*
                 ;
     
 logicAndExpr    : cmpExpr(AMPAMP<BinaryExpressionNode>^ cmpExpr)*
@@ -322,33 +317,32 @@ unarExpr        : (
             SUBSUB<UnarExpressionNode>^|
             PLUSPLUS<UnarExpressionNode>^|
             BANG<UnarExpressionNode>^|
-            TILDE<UnarExpressionNode>^) psExpr
-                | psExpr PLUSPLUS                           -> ^(PLUSPLUS<UnarExpressionNode> psExpr)
-                | psExpr SUBSUB                             -> ^(SUBSUB<UnarExpressionNode> psExpr)
-                | psExpr
+            TILDE<UnarExpressionNode>^) prefixExpr
+                | prefixExpr (PLUSPLUS<UnarExpressionNode>^|SUBSUB<UnarExpressionNode>^)?
+                ;  
+    
+prefixExpr      : NEW^ type LPAREN! exprList? RPAREN!
+                | CAST^ LPAREN! expr (COMMA! funcType)? RPAREN!
+                | methodCallOrSlice
+                ;
+            
+methodCallOrSlice 
+                : value (
+              (LPAREN exprList? RPAREN pureCallOrSlice?
+            -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?))
+            | (LBRACKET expr RBRACKET pureCallOrSlice? 
+            -> ^(SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr pureCallOrSlice?))
+            | (DOT methodCallOrSlice
+            -> ^(value methodCallOrSlice)))
+                | value
                 ;
 
-psExpr
-    : prefixExpr
-    | suffixExpr
-    ;
-    
-suffixExpr  : methodCallOrSlice
-            | value
-            ;
-            
-methodCallOrSlice : value LPAREN exprList? RPAREN pureCallOrSlice? -> ^(
-                SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
-            | value LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
-                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr? pureCallOrSlice?)
-                | value DOT suffixExpr? -> ^(value suffixExpr?)
-;
-
-pureCallOrSlice : LPAREN exprList? RPAREN pureCallOrSlice? -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] exprList? pureCallOrSlice?)
+pureCallOrSlice : LPAREN exprList? RPAREN pureCallOrSlice? 
+                -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] exprList? pureCallOrSlice?)
                 |LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
-                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr? pureCallOrSlice?)
-|DOT! methodCallOrSlice
-;
+                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr pureCallOrSlice?)
+                |DOT! methodCallOrSlice
+                ;
 
 value
     //|   RegexLit?
@@ -359,11 +353,6 @@ value
     |   LPAREN! (expr|statement) RPAREN!
     // TODO: if id is in callAlSlice and else we can't use THIS
     |   id typeParamOpt 
-    ;
-    
-prefixExpr
-    : NEW^ type LPAREN! exprList? RPAREN!
-    | CAST^ LPAREN! expr (COMMA! funcType)? RPAREN!
     ;
 /*-------------------- Declarations----------------------------*/
 
@@ -464,58 +453,48 @@ typedefDecl
     :    TYPEDEF IDENTIFIER EQ funcType
     ;
     
-typeExtend
-    :    GT funcType COMMA!
-    ;
+typeExtend      : GT^ funcType COMMA!
+                ;
     
-anonType
-    :   LBRACE!
-            ( 
-            |   anonTypeFieldList 
-            |   varDeclList 
-            |   typeExtend (
-                        |   anonTypeFieldList
-                        |   varDeclList) 
-            ) 
-        RBRACE!
-    ;
+anonType        : LBRACE!
+                    ( 
+                      anonTypeFieldList 
+                    | varDeclList 
+                    | typeExtend ( anonTypeFieldList | varDeclList)? 
+                    )? 
+                  RBRACE!
+                ;
     
 anonTypeFieldList 
-    :    anonTypeField (COMMA! anonTypeField)*
-    ;
+                : anonTypeField (COMMA! anonTypeField)*
+                ;
 
-objLit  : '{'! objLitElemList '}'!
-        ;
+objLit          : LBRACE! objLitElemList RBRACE!
+                ;
 
-anonTypeField
-    :    IDENTIFIER COLON! funcType
-    ;
+anonTypeField   : IDENTIFIER COLON! funcType
+                ;
     
-objLitElemList    
-    :    objLitElem (COMMA! objLitElem)*
-    ;
+objLitElemList  : objLitElem (COMMA! objLitElem)*
+                ;
     
-objLitElem
-    :    IDENTIFIER COLON! expr
-    ;
+objLitElem      : IDENTIFIER COLON! expr
+                ;
     
+// TODO: REGEXPR
 elementarySymbol
-    :   LONGLITERAL    -> LONGLITERAL<ConstantNode>[$LONGLITERAL, "INT"]
-    |   NULL -> ^(NULL<ConstantNode>[$NULL,"Unknown<0>"])
-    |   INTLITERAL    -> INTLITERAL<ConstantNode>[$INTLITERAL, "INT"]
-    |   STRINGLITERAL    -> STRINGLITERAL<ConstantNode>[$STRINGLITERAL,"STRING"]
-    |   CHARLITERAL    -> CHARLITERAL<ConstantNode>[$CHARLITERAL, "STRING"]
-    |   FLOATNUM    -> FLOATNUM<ConstantNode>[$FLOATNUM, "FLOAT"]
-    |   TRUE        -> TRUE<ConstantNode>[$TRUE,"BOOL"]
-    |   FALSE        -> FALSE<ConstantNode>[$FALSE,"BOOL"]
+    : LONGLITERAL   -> LONGLITERAL<ConstantNode>[$LONGLITERAL, "INT"]
+    | NULL          -> NULL<ConstantNode>[$NULL,"Unknown<0>"]
+    | INTLITERAL    -> INTLITERAL<ConstantNode>[$INTLITERAL, "INT"]
+    | STRINGLITERAL -> STRINGLITERAL<ConstantNode>[$STRINGLITERAL,"STRING"]
+    | CHARLITERAL   -> CHARLITERAL<ConstantNode>[$CHARLITERAL, "STRING"]
+    | FLOATNUM      -> FLOATNUM<ConstantNode>[$FLOATNUM, "FLOAT"]
+    | TRUE          -> TRUE<ConstantNode>[$TRUE,"BOOL"]
+    | FALSE         -> FALSE<ConstantNode>[$FALSE,"BOOL"]
     ;
 
-WS  :   ( ' '
-        | '\t'
-        | '\r'
-        | '\n'
-        ) {$channel=HIDDEN;}
-    ;
+WS      : ( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;}
+        ;
     
 /*-------------------------LEXER SECTION-------------------------*/
 LONGLITERAL

@@ -8,11 +8,13 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
 public abstract class AbstractHaxeTreeVisitor
 {
@@ -64,6 +66,14 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((IfNode)t, data);
        }
+       else if (t instanceof ForNode)
+       {
+           visit((ForNode)t, data);
+       }
+       else if (t instanceof WhileNode)
+       {
+           visit((WhileNode)t, data);
+       }
        else if (t instanceof ReturnNode)
        {
            visit((ReturnNode)t, data);
@@ -107,6 +117,8 @@ public abstract class AbstractHaxeTreeVisitor
    protected abstract void visit(final BlockScopeNode node, Object data);
    protected abstract void visit(final ErrorNode node, Object data);
    protected abstract void visit(final IfNode node, Object data);
+   protected abstract void visit(final ForNode node, Object data);
+   protected abstract void visit(final WhileNode node, Object data);
    
    protected abstract void visitUnknown(final HaxeTree node, Object data);
 }

@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.BlockScopeContainer;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.Token;
 
@@ -25,5 +26,16 @@ public class WhileNode extends BlockScopeContainer
 	{
 		super(token);
 	}
-
+    
+    public HaxeTree getScope()
+    {
+        // the existence of block should be checked during
+        // syntax parsing
+        return getChild(1);
+    }
+    
+    public HaxeTree getCondition()
+    {
+        return getChild(0);
+    }
 }

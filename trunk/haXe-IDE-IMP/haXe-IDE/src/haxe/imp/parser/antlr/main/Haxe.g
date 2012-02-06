@@ -50,6 +50,7 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
+import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.DoWhileNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -210,7 +211,7 @@ functionReturn
 
 statement 
     :    block
-    |    assignExpr SEMI!
+    |    (assignExpr|expr) SEMI!
     |    varDecl
                 | IF<IfNode>^ parExpression statement (ELSE! statement)?
                 | FOR LPAREN exp1=expr IN exp2=expr RPAREN statement -> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement)
@@ -220,10 +221,8 @@ statement
                 | SWITCH<SwitchNode>^ LPAREN! expr RPAREN! LBRACE! caseStmt+ RBRACE!
                 | RETURN<ReturnNode>^ expr? SEMI!
                 | THROW^ expr SEMI!
-    |    BREAK (IDENTIFIER)? SEMI                -> ^(BREAK IDENTIFIER?)
-    |    CONTINUE (IDENTIFIER)? SEMI                 -> ^(CONTINUE IDENTIFIER?)
-    |    expr  SEMI!
-    |    IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
+                | (BREAK | CONTINUE) SEMI!
+    |  IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
     |    SEMI!
     ;
    
@@ -240,12 +239,6 @@ blockStmt
     |    classDecl
     |    statement
     ;
-    
-breakStmt       : BREAK SEMI!
-                ;
-    
-continueStmt    : CONTINUE SEMI!
-                ;
     
 caseStmt        : CASE^ exprList COLON! statement
                 | DEFAULT^ COLON! statement

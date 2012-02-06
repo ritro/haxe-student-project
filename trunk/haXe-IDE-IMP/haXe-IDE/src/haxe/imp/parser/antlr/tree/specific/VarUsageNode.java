@@ -77,26 +77,4 @@ public class VarUsageNode extends HaxeTree
 	{
 	    this.declaration = declaration; 
 	}
-
-    /**
-     * Error then user variable wan't declared before.
-     * This is official Haxe error message.
-     */
-    public void commitUndeclaredError()
-    {
-        commitError(getText() + " is not declared.");
-    }
-    
-    /**
-     * Error when we using defined, but not initialized
-     * variable.
-     * Official Haxe  error text used.
-     */
-    public void commitUninitializedUsingError()
-    {
-        commitError(
-                "Local variable " 
-                + getText() 
-                + " used without being initialized");
-    }
 }

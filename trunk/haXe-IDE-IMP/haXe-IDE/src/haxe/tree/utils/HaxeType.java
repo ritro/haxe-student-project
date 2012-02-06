@@ -162,6 +162,16 @@ public class HaxeType {
 	    //FIXME implement
 	    return false;
 	}
+    
+    /**
+     * Checks type for ability to be compared to another type.
+     * @return true if ...
+     */
+    public static boolean ifCommonType(final HaxeType type1)
+    {
+        //FIXME implement
+        return false;
+    }
 
 	/**
 	 * Sets properties identical to some already known type.

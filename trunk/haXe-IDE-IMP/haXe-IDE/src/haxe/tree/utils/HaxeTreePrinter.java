@@ -7,11 +7,13 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
 /**
  * Can print Haxe Trees and Variable Tables to console, to
@@ -133,7 +135,14 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     {
         System.out.print(getIndent(data));
         System.out.println("BlockScope");
-        visitAllChildren(node, (int)data + 1);
+        if (node == null)
+        {
+            System.out.println("{empty}");
+        }
+        else
+        {
+            visitAllChildren(node, (int)data + 1);
+        }
     }
 
     @Override
@@ -145,6 +154,29 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
 
     @Override
     protected void visit(IfNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("IF ");
+        visit(node.getCondition(), (int)data + 1);
+        System.out.print(getIndent(data));
+        System.out.println("THEN ");
+        visit(node.getIfBlock(), (int)data + 1);
+        if (node.getElseBlock() != null)
+        {
+            System.out.print("ELSE ");
+            visit(node.getElseBlock(), data);
+        }
+    }
+
+    @Override
+    protected void visit(ForNode node, Object data)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void visit(WhileNode node, Object data)
     {
         // TODO Auto-generated method stub
         

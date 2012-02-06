@@ -19,36 +19,16 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class ForNode extends HaxeTree {
-
-	/**
-	 * Instantiates a new for node.
-	 */
-	public ForNode() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new for node.
-	 * 
-	 * @param node
-	 *            the node
-	 */
-	public ForNode(final HaxeTree node) {
-		super(node);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * Instantiates a new for node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public ForNode(final Token t) {
+public class ForNode extends HaxeTree 
+{	
+	public ForNode(final Token t) 
+	{
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
-
+	
+	public HaxeTree getScope()
+	{
+	    // TODO: check the child index for scope
+	    return null;
+	}
 }

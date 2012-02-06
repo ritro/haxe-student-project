@@ -8,10 +8,12 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.WhileNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
@@ -21,7 +23,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
 {
     private enum ScopeTypes {Class, Function};
     private ScopeTypes currentScope = ScopeTypes.Class;
-
+    
     @Override
     protected void visit(AssignOperationNode node, Object data)
     {
@@ -87,11 +89,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         
         BoolOperations operationType = node.getOperationType();
         HaxeType definedType = node.defineResultType(operationType);
-        if (definedType == null)
-        {
-            node.commitCastError();
-        }
-        else
+        if (definedType != null)
         {
             node.setHaxeType(definedType);
         }
@@ -136,8 +134,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         else
         {
-            // varDecl, Brace, VarUse, Assign, IfNode
-    
+            // varDecl, Brace, VarUse, Assign, IfNode    
             visitAllChildren(node, declarations);            
         }
         
@@ -181,11 +178,6 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         {
             node.setHaxeType(initialization.getHaxeType());
         }
-        else if (!HaxeType.isAvailableAssignement(type, initialization.getHaxeType()))
-        {
-            node.commitError(
-                    initialization.getHaxeType() + " should be " + type);
-        }
     }
 
     @Override
@@ -198,7 +190,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             funEnv.put(x);
         }
         
-        node.updateInfo();
+        node.updateInfo();        
         
         BlockScopeNode blockScope = node.getBlockScope();
 
@@ -229,6 +221,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         if (node.parent instanceof BlockScopeNode)
         {
             //Last in all Blockscopes always '}'
+            // TODO: now is not??
             node.setIfLastInScope(thisIndex == maxIndex - 2);           
         }
         else
@@ -266,12 +259,23 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         {
             // If there is an else, then expr-1 and expr-2 must be of the same type and 
             // this will be the type of the if expression
+            // TODO: maybe equals not the right part - available assignment?
             node.setHaxeType(type);          
         }
-        else
-        {
-            node.commitError("The blocks returns different value types.");           
-        }
+    }
+
+    @Override
+    protected void visit(ForNode node, Object data)
+    {
+        // TODO Auto-generated method stub
+        visitUnknown(node, data);
+    }
+
+    @Override
+    protected void visit(WhileNode node, Object data)
+    {
+        // TODO Auto-generated method stub
+        visitUnknown(node, data);
     }
 
     @Override

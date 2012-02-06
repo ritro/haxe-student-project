@@ -1,10 +1,13 @@
 package test;
 
 import static junit.framework.Assert.assertTrue;
-import static test.TestHelper.parseExpression;
+import static test.TestHelper.*;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.tree.utils.Environment;
+import haxe.tree.utils.HaxeTreeLinker;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -206,5 +209,41 @@ public class BinaryOperationTests
         BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
         assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
         assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    //
+    // Type interference tests
+    //
+    private BinaryExpressionNode getBinExpr(HaxeTree tree)
+    {
+        for (HaxeTree i : tree.getChildren())
+        {
+            if (i instanceof BinaryExpressionNode)
+            {
+                return (BinaryExpressionNode)i;
+            }
+            else if (i.getChildCount() > 0)
+            {
+                BinaryExpressionNode result = getBinExpr(i);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    HaxeTreeLinker linker = new HaxeTreeLinker();
+
+    @Test
+    public void testAdditionOfInts() throws RecognitionException 
+    {
+        HaxeTree tree = parseFunction("function main() { var x; x=123 + 1; }");
+        linker.visit(tree, new Environment());
+        BinaryExpressionNode node = getBinExpr(tree);
+        
+        assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeInt);
     }
 }

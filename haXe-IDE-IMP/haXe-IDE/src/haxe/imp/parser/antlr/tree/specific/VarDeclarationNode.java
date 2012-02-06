@@ -30,6 +30,7 @@ public class VarDeclarationNode extends NodeWithModifier {
     private static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 	/** The name with type. */
 	private String nameWithType = "";
+    private boolean declaredWithoutType = false;
     protected DeclarationType declType  = DeclarationType.VarDeclaration;
     
     public enum DeclarationType
@@ -72,6 +73,11 @@ public class VarDeclarationNode extends NodeWithModifier {
 		return getToken().getText();
 	}
     
+    public boolean isDeclaredWithoutType()
+    {
+        return declaredWithoutType;
+    }
+    
     public void setDeclaratonType(DeclarationType type)
     {
         declType = type;
@@ -100,7 +106,9 @@ public class VarDeclarationNode extends NodeWithModifier {
                 haxeType = primatyType != null
                         ? primatyType
                         : new HaxeType(typeName);
+                break;
             }
+            declaredWithoutType = true;
         }
 	}
 

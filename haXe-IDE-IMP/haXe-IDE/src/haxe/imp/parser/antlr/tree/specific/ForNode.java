@@ -21,14 +21,26 @@ import org.antlr.runtime.Token;
  */
 public class ForNode extends HaxeTree 
 {	
-	public ForNode(final Token t) 
+    public ForNode(final Token t) 
 	{
 		super(t);
 	}
 	
 	public HaxeTree getScope()
 	{
-	    // TODO: check the child index for scope
-	    return null;
+	    return getChild(2);
+	}
+	
+	/**
+	 * Variable which will have the iterator's current value.
+	 */
+	public HaxeTree getLocalVariable()
+	{
+	    return getChild(0);
+	}
+	
+	public HaxeTree getIterator()
+	{
+	    return getChild(1);
 	}
 }

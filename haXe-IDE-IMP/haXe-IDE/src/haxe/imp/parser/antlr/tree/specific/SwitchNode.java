@@ -21,12 +21,6 @@ import org.antlr.runtime.Token;
  */
 public class SwitchNode extends HaxeTree 
 {
-	/**
-	 * Instantiates a new switch node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
 	public SwitchNode(final Token t) 
 	{
 		super(t);

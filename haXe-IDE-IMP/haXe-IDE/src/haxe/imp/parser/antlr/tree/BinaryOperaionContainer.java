@@ -1,6 +1,9 @@
 package haxe.imp.parser.antlr.tree;
 
 import static haxe.tree.utils.HaxeType.getCommonPrimaryType;
+
+import java.util.ArrayList;
+
 import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
 

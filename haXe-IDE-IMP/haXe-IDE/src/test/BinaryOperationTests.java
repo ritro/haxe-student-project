@@ -139,6 +139,12 @@ public class BinaryOperationTests
         assertTrue(tree instanceof BinaryExpressionNode);
     }
     
+    @Test
+    public void testBinOpIter() throws RecognitionException {
+        HaxeTree tree = parseExpression("1...2");
+        assertTrue(tree instanceof BinaryExpressionNode);
+    }
+    
     //
     // Comples Expressions
     //
@@ -174,6 +180,14 @@ public class BinaryOperationTests
     @Test
     public void testBinOpPriority3() throws RecognitionException {
         HaxeTree tree = parseExpression("3 <= 1|2");
+        BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
+        assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
+        assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
+    }
+    
+    @Test
+    public void testBinOpPriority8() throws RecognitionException {
+        HaxeTree tree = parseExpression("3 ... 1 >= 2");
         BinaryExpressionNode binaryNode = (BinaryExpressionNode)tree;
         assertTrue(binaryNode.getLeftOperand() instanceof ConstantNode);
         assertTrue(binaryNode.getRightOperand() instanceof BinaryExpressionNode);
@@ -238,12 +252,32 @@ public class BinaryOperationTests
     HaxeTreeLinker linker = new HaxeTreeLinker();
 
     @Test
-    public void testAdditionOfInts() throws RecognitionException 
+    public void testIntAfterAdditionExpectiong() throws RecognitionException 
     {
         HaxeTree tree = parseFunction("function main() { var x; x=123 + 1; }");
         linker.visit(tree, new Environment());
         BinaryExpressionNode node = getBinExpr(tree);
         
         assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeInt);
+    }
+    
+    @Test
+    public void testFloatAfterAdditionExpectiong() throws RecognitionException 
+    {
+        HaxeTree tree = parseFunction("function main() { var x; x=123.1 + 1; }");
+        linker.visit(tree, new Environment());
+        BinaryExpressionNode node = getBinExpr(tree);
+        
+        assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeFloat);
+    }
+    
+    @Test
+    public void testStringAfterAdditionExpectiong() throws RecognitionException 
+    {
+        HaxeTree tree = parseFunction("function main() { var x; x=123 + \" monkeys\"; }");
+        linker.visit(tree, new Environment());
+        BinaryExpressionNode node = getBinExpr(tree);
+        
+        assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeString);
     }
 }

@@ -171,8 +171,13 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(ForNode node, Object data)
     {
-        // TODO Auto-generated method stub
-        
+        System.out.print(getIndent(data));
+        System.out.println("FOR ");
+        visit(node.getLocalVariable(), (int)data + 1);
+        System.out.print(getIndent(data));
+        System.out.println("IN ");
+        visit(node.getIterator(), (int)data + 1);
+        visit(node.getScope(), (int)data + 1);
     }
 
     @Override

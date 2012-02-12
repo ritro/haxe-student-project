@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Haxe.g 2012-02-06 23:19:16
+// $ANTLR 3.4 Haxe.g 2012-02-13 00:20:45
 
 package haxe.imp.parser.antlr.main;
 
@@ -44,23 +44,23 @@ public class HaxeLexer extends Lexer {
     public static final int CONTINUE=31;
     public static final int DECL_ATTR_LIST=32;
     public static final int DEFAULT=33;
-    public static final int DO=34;
-    public static final int DOT=35;
-    public static final int DOUBLE=36;
-    public static final int DYNAMIC=37;
-    public static final int ELLIPSIS=38;
-    public static final int ELSE=39;
-    public static final int ELSE_TOKEN=40;
-    public static final int ENDIF_TOKEN=41;
-    public static final int ENUM=42;
-    public static final int EQ=43;
-    public static final int EQEQ=44;
-    public static final int ESC_SEQ=45;
-    public static final int EXPONENT=46;
-    public static final int EXTENDS=47;
-    public static final int EXTERN=48;
-    public static final int EscapeSequence=49;
-    public static final int Exponent=50;
+    public static final int DIGIT=34;
+    public static final int DO=35;
+    public static final int DOT=36;
+    public static final int DOUBLE=37;
+    public static final int DYNAMIC=38;
+    public static final int ELLIPSIS=39;
+    public static final int ELSE=40;
+    public static final int ELSE_TOKEN=41;
+    public static final int ENDIF_TOKEN=42;
+    public static final int ENUM=43;
+    public static final int EQ=44;
+    public static final int EQEQ=45;
+    public static final int ESC_SEQ=46;
+    public static final int EXPONENT=47;
+    public static final int EXTENDS=48;
+    public static final int EXTERN=49;
+    public static final int EscapeSequence=50;
     public static final int FALSE=51;
     public static final int FINAL=52;
     public static final int FINALLY=53;
@@ -204,8 +204,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:489:9: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // Haxe.g:489:11: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // Haxe.g:479:9: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // Haxe.g:479:11: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -235,8 +235,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LONGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:494:5: ( IntegerNumber LongSuffix )
-            // Haxe.g:494:9: IntegerNumber LongSuffix
+            // Haxe.g:484:5: ( IntegerNumber LongSuffix )
+            // Haxe.g:484:9: IntegerNumber LongSuffix
             {
             mIntegerNumber(); 
 
@@ -260,8 +260,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = INTLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:498:5: ( IntegerNumber )
-            // Haxe.g:498:9: IntegerNumber
+            // Haxe.g:488:5: ( IntegerNumber )
+            // Haxe.g:488:9: IntegerNumber
             {
             mIntegerNumber(); 
 
@@ -280,7 +280,7 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "IntegerNumber"
     public final void mIntegerNumber() throws RecognitionException {
         try {
-            // Haxe.g:504:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
+            // Haxe.g:494:5: ( '0' | '1' .. '9' ( '0' .. '9' )* | '0' ( '0' .. '7' )+ | HexPrefix ( HexDigit )+ )
             int alt4=4;
             int LA4_0 = input.LA(1);
 
@@ -321,18 +321,18 @@ public class HaxeLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // Haxe.g:504:9: '0'
+                    // Haxe.g:494:9: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:505:9: '1' .. '9' ( '0' .. '9' )*
+                    // Haxe.g:495:9: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
 
-                    // Haxe.g:505:18: ( '0' .. '9' )*
+                    // Haxe.g:495:18: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -369,11 +369,11 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:506:9: '0' ( '0' .. '7' )+
+                    // Haxe.g:496:9: '0' ( '0' .. '7' )+
                     {
                     match('0'); 
 
-                    // Haxe.g:506:13: ( '0' .. '7' )+
+                    // Haxe.g:496:13: ( '0' .. '7' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -415,12 +415,12 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Haxe.g:507:9: HexPrefix ( HexDigit )+
+                    // Haxe.g:497:9: HexPrefix ( HexDigit )+
                     {
                     mHexPrefix(); 
 
 
-                    // Haxe.g:507:19: ( HexDigit )+
+                    // Haxe.g:497:19: ( HexDigit )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -474,7 +474,7 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "HexPrefix"
     public final void mHexPrefix() throws RecognitionException {
         try {
-            // Haxe.g:512:5: ( '0x' | '0X' )
+            // Haxe.g:502:5: ( '0x' | '0X' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -504,7 +504,7 @@ public class HaxeLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // Haxe.g:512:9: '0x'
+                    // Haxe.g:502:9: '0x'
                     {
                     match("0x"); 
 
@@ -513,7 +513,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:512:16: '0X'
+                    // Haxe.g:502:16: '0X'
                     {
                     match("0X"); 
 
@@ -534,7 +534,7 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // Haxe.g:517:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // Haxe.g:507:5: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // Haxe.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -560,7 +560,7 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "LongSuffix"
     public final void mLongSuffix() throws RecognitionException {
         try {
-            // Haxe.g:522:5: ( 'l' | 'L' )
+            // Haxe.g:512:5: ( 'l' | 'L' )
             // Haxe.g:
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -583,128 +583,36 @@ public class HaxeLexer extends Lexer {
     }
     // $ANTLR end "LongSuffix"
 
-    // $ANTLR start "Exponent"
-    public final void mExponent() throws RecognitionException {
-        try {
-            // Haxe.g:527:5: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // Haxe.g:527:9: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
-            {
-            if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
-                input.consume();
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;
-            }
-
-
-            // Haxe.g:527:23: ( '+' | '-' )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
-
-            if ( (LA6_0=='+'||LA6_0=='-') ) {
-                alt6=1;
-            }
-            switch (alt6) {
-                case 1 :
-                    // Haxe.g:
-                    {
-                    if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
-                        input.consume();
-                    }
-                    else {
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        recover(mse);
-                        throw mse;
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-
-            // Haxe.g:527:38: ( '0' .. '9' )+
-            int cnt7=0;
-            loop7:
-            do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
-
-                if ( ((LA7_0 >= '0' && LA7_0 <= '9')) ) {
-                    alt7=1;
-                }
-
-
-                switch (alt7) {
-            	case 1 :
-            	    // Haxe.g:
-            	    {
-            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-            	        input.consume();
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt7 >= 1 ) break loop7;
-                        EarlyExitException eee =
-                            new EarlyExitException(7, input);
-                        throw eee;
-                }
-                cnt7++;
-            } while (true);
-
-
-            }
-
-
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "Exponent"
-
     // $ANTLR start "CHARLITERAL"
     public final void mCHARLITERAL() throws RecognitionException {
         try {
             int _type = CHARLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:530:5: ( '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
-            // Haxe.g:530:9: '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
+            // Haxe.g:515:5: ( '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\'' )
+            // Haxe.g:515:9: '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) ) '\\''
             {
             match('\''); 
 
-            // Haxe.g:531:9: ( EscapeSequence |~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // Haxe.g:516:9: ( EscapeSequence |~ ( '\\'' | '\\\\' | '\\r' | '\\n' ) )
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA8_0=='\\') ) {
-                alt8=1;
+            if ( (LA6_0=='\\') ) {
+                alt6=1;
             }
-            else if ( ((LA8_0 >= '\u0000' && LA8_0 <= '\t')||(LA8_0 >= '\u000B' && LA8_0 <= '\f')||(LA8_0 >= '\u000E' && LA8_0 <= '&')||(LA8_0 >= '(' && LA8_0 <= '[')||(LA8_0 >= ']' && LA8_0 <= '\uFFFF')) ) {
-                alt8=2;
+            else if ( ((LA6_0 >= '\u0000' && LA6_0 <= '\t')||(LA6_0 >= '\u000B' && LA6_0 <= '\f')||(LA6_0 >= '\u000E' && LA6_0 <= '&')||(LA6_0 >= '(' && LA6_0 <= '[')||(LA6_0 >= ']' && LA6_0 <= '\uFFFF')) ) {
+                alt6=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt8) {
+            switch (alt6) {
                 case 1 :
-                    // Haxe.g:531:13: EscapeSequence
+                    // Haxe.g:516:13: EscapeSequence
                     {
                     mEscapeSequence(); 
 
@@ -712,7 +620,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:532:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
+                    // Haxe.g:517:13: ~ ( '\\'' | '\\\\' | '\\r' | '\\n' )
                     {
                     if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
                         input.consume();
@@ -746,52 +654,52 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // Haxe.g:541:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
-            // Haxe.g:541:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            // Haxe.g:526:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ) )
+            // Haxe.g:526:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
             {
             match('\\'); 
 
-            // Haxe.g:541:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
-            int alt9=11;
+            // Haxe.g:526:14: ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' | ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) ( '0' .. '7' ) | ( '0' .. '7' ) )
+            int alt7=11;
             switch ( input.LA(1) ) {
             case 'b':
                 {
-                alt9=1;
+                alt7=1;
                 }
                 break;
             case 't':
                 {
-                alt9=2;
+                alt7=2;
                 }
                 break;
             case 'n':
                 {
-                alt9=3;
+                alt7=3;
                 }
                 break;
             case 'f':
                 {
-                alt9=4;
+                alt7=4;
                 }
                 break;
             case 'r':
                 {
-                alt9=5;
+                alt7=5;
                 }
                 break;
             case '\"':
                 {
-                alt9=6;
+                alt7=6;
                 }
                 break;
             case '\'':
                 {
-                alt9=7;
+                alt7=7;
                 }
                 break;
             case '\\':
                 {
-                alt9=8;
+                alt7=8;
                 }
                 break;
             case '0':
@@ -799,20 +707,20 @@ public class HaxeLexer extends Lexer {
             case '2':
             case '3':
                 {
-                int LA9_9 = input.LA(2);
+                int LA7_9 = input.LA(2);
 
-                if ( ((LA9_9 >= '0' && LA9_9 <= '7')) ) {
-                    int LA9_11 = input.LA(3);
+                if ( ((LA7_9 >= '0' && LA7_9 <= '7')) ) {
+                    int LA7_11 = input.LA(3);
 
-                    if ( ((LA9_11 >= '0' && LA9_11 <= '7')) ) {
-                        alt9=9;
+                    if ( ((LA7_11 >= '0' && LA7_11 <= '7')) ) {
+                        alt7=9;
                     }
                     else {
-                        alt9=10;
+                        alt7=10;
                     }
                 }
                 else {
-                    alt9=11;
+                    alt7=11;
                 }
                 }
                 break;
@@ -821,83 +729,83 @@ public class HaxeLexer extends Lexer {
             case '6':
             case '7':
                 {
-                int LA9_10 = input.LA(2);
+                int LA7_10 = input.LA(2);
 
-                if ( ((LA9_10 >= '0' && LA9_10 <= '7')) ) {
-                    alt9=10;
+                if ( ((LA7_10 >= '0' && LA7_10 <= '7')) ) {
+                    alt7=10;
                 }
                 else {
-                    alt9=11;
+                    alt7=11;
                 }
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt9) {
+            switch (alt7) {
                 case 1 :
-                    // Haxe.g:542:18: 'b'
+                    // Haxe.g:527:18: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:543:18: 't'
+                    // Haxe.g:528:18: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 3 :
-                    // Haxe.g:544:18: 'n'
+                    // Haxe.g:529:18: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 4 :
-                    // Haxe.g:545:18: 'f'
+                    // Haxe.g:530:18: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 5 :
-                    // Haxe.g:546:18: 'r'
+                    // Haxe.g:531:18: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 6 :
-                    // Haxe.g:547:18: '\\\"'
+                    // Haxe.g:532:18: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 7 :
-                    // Haxe.g:548:18: '\\''
+                    // Haxe.g:533:18: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 8 :
-                    // Haxe.g:549:18: '\\\\'
+                    // Haxe.g:534:18: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 9 :
-                    // Haxe.g:551:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // Haxe.g:536:18: ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
                         input.consume();
@@ -932,7 +840,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 10 :
-                    // Haxe.g:553:18: ( '0' .. '7' ) ( '0' .. '7' )
+                    // Haxe.g:538:18: ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
                         input.consume();
@@ -957,7 +865,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 11 :
-                    // Haxe.g:555:18: ( '0' .. '7' )
+                    // Haxe.g:540:18: ( '0' .. '7' )
                     {
                     if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
                         input.consume();
@@ -990,8 +898,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = ABSTRACT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:558:9: ( 'abstract' )
-            // Haxe.g:558:13: 'abstract'
+            // Haxe.g:543:9: ( 'abstract' )
+            // Haxe.g:543:13: 'abstract'
             {
             match("abstract"); 
 
@@ -1013,8 +921,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BOOLEAN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:559:8: ( 'Bool' )
-            // Haxe.g:559:13: 'Bool'
+            // Haxe.g:544:8: ( 'Bool' )
+            // Haxe.g:544:13: 'Bool'
             {
             match("Bool"); 
 
@@ -1036,8 +944,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BREAK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:560:6: ( 'break' )
-            // Haxe.g:560:13: 'break'
+            // Haxe.g:545:6: ( 'break' )
+            // Haxe.g:545:13: 'break'
             {
             match("break"); 
 
@@ -1059,8 +967,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BYTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:561:5: ( 'byte' )
-            // Haxe.g:561:13: 'byte'
+            // Haxe.g:546:5: ( 'byte' )
+            // Haxe.g:546:13: 'byte'
             {
             match("byte"); 
 
@@ -1082,8 +990,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CASE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:562:5: ( 'case' )
-            // Haxe.g:562:13: 'case'
+            // Haxe.g:547:5: ( 'case' )
+            // Haxe.g:547:13: 'case'
             {
             match("case"); 
 
@@ -1105,8 +1013,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CATCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:563:6: ( 'catch' )
-            // Haxe.g:563:13: 'catch'
+            // Haxe.g:548:6: ( 'catch' )
+            // Haxe.g:548:13: 'catch'
             {
             match("catch"); 
 
@@ -1128,8 +1036,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:564:5: ( 'char' )
-            // Haxe.g:564:13: 'char'
+            // Haxe.g:549:5: ( 'char' )
+            // Haxe.g:549:13: 'char'
             {
             match("char"); 
 
@@ -1151,8 +1059,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:565:6: ( 'class' )
-            // Haxe.g:565:13: 'class'
+            // Haxe.g:550:6: ( 'class' )
+            // Haxe.g:550:13: 'class'
             {
             match("class"); 
 
@@ -1174,8 +1082,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CONST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:566:6: ( 'const' )
-            // Haxe.g:566:13: 'const'
+            // Haxe.g:551:6: ( 'const' )
+            // Haxe.g:551:13: 'const'
             {
             match("const"); 
 
@@ -1197,8 +1105,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CONTINUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:567:9: ( 'continue' )
-            // Haxe.g:567:13: 'continue'
+            // Haxe.g:552:9: ( 'continue' )
+            // Haxe.g:552:13: 'continue'
             {
             match("continue"); 
 
@@ -1220,8 +1128,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = DEFAULT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:568:8: ( 'default' )
-            // Haxe.g:568:13: 'default'
+            // Haxe.g:553:8: ( 'default' )
+            // Haxe.g:553:13: 'default'
             {
             match("default"); 
 
@@ -1243,8 +1151,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = DO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:569:3: ( 'do' )
-            // Haxe.g:569:13: 'do'
+            // Haxe.g:554:3: ( 'do' )
+            // Haxe.g:554:13: 'do'
             {
             match("do"); 
 
@@ -1266,8 +1174,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:570:7: ( 'double' )
-            // Haxe.g:570:13: 'double'
+            // Haxe.g:555:7: ( 'double' )
+            // Haxe.g:555:13: 'double'
             {
             match("double"); 
 
@@ -1289,8 +1197,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:571:5: ( 'else' )
-            // Haxe.g:571:13: 'else'
+            // Haxe.g:556:5: ( 'else' )
+            // Haxe.g:556:13: 'else'
             {
             match("else"); 
 
@@ -1312,8 +1220,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = ENUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:572:5: ( 'enum' )
-            // Haxe.g:572:13: 'enum'
+            // Haxe.g:557:5: ( 'enum' )
+            // Haxe.g:557:13: 'enum'
             {
             match("enum"); 
 
@@ -1335,8 +1243,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = EXTENDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:573:8: ( 'extends' )
-            // Haxe.g:573:13: 'extends'
+            // Haxe.g:558:8: ( 'extends' )
+            // Haxe.g:558:13: 'extends'
             {
             match("extends"); 
 
@@ -1358,8 +1266,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = EXTERN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:574:7: ( 'extern' )
-            // Haxe.g:574:13: 'extern'
+            // Haxe.g:559:7: ( 'extern' )
+            // Haxe.g:559:13: 'extern'
             {
             match("extern"); 
 
@@ -1381,8 +1289,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = FINAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:575:6: ( 'final' )
-            // Haxe.g:575:13: 'final'
+            // Haxe.g:560:6: ( 'final' )
+            // Haxe.g:560:13: 'final'
             {
             match("final"); 
 
@@ -1404,8 +1312,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = FINALLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:576:8: ( 'finally' )
-            // Haxe.g:576:13: 'finally'
+            // Haxe.g:561:8: ( 'finally' )
+            // Haxe.g:561:13: 'finally'
             {
             match("finally"); 
 
@@ -1427,8 +1335,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:577:6: ( 'Float' )
-            // Haxe.g:577:13: 'Float'
+            // Haxe.g:562:6: ( 'Float' )
+            // Haxe.g:562:13: 'Float'
             {
             match("Float"); 
 
@@ -1450,8 +1358,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = FOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:578:4: ( 'for' )
-            // Haxe.g:578:13: 'for'
+            // Haxe.g:563:4: ( 'for' )
+            // Haxe.g:563:13: 'for'
             {
             match("for"); 
 
@@ -1473,8 +1381,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GOTO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:579:5: ( 'goto' )
-            // Haxe.g:579:13: 'goto'
+            // Haxe.g:564:5: ( 'goto' )
+            // Haxe.g:564:13: 'goto'
             {
             match("goto"); 
 
@@ -1496,8 +1404,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:580:3: ( 'if' )
-            // Haxe.g:580:13: 'if'
+            // Haxe.g:565:3: ( 'if' )
+            // Haxe.g:565:13: 'if'
             {
             match("if"); 
 
@@ -1519,8 +1427,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = IMPLEMENTS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:581:11: ( 'implements' )
-            // Haxe.g:581:13: 'implements'
+            // Haxe.g:566:11: ( 'implements' )
+            // Haxe.g:566:13: 'implements'
             {
             match("implements"); 
 
@@ -1542,8 +1450,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = IMPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:582:7: ( 'import' )
-            // Haxe.g:582:13: 'import'
+            // Haxe.g:567:7: ( 'import' )
+            // Haxe.g:567:13: 'import'
             {
             match("import"); 
 
@@ -1565,8 +1473,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = INSTANCEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:583:11: ( 'instanceof' )
-            // Haxe.g:583:13: 'instanceof'
+            // Haxe.g:568:11: ( 'instanceof' )
+            // Haxe.g:568:13: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1588,8 +1496,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:584:4: ( 'Int' )
-            // Haxe.g:584:13: 'Int'
+            // Haxe.g:569:4: ( 'Int' )
+            // Haxe.g:569:13: 'Int'
             {
             match("Int"); 
 
@@ -1611,8 +1519,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = INTERFACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:585:10: ( 'interface' )
-            // Haxe.g:585:13: 'interface'
+            // Haxe.g:570:10: ( 'interface' )
+            // Haxe.g:570:13: 'interface'
             {
             match("interface"); 
 
@@ -1634,8 +1542,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LONG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:586:5: ( 'long' )
-            // Haxe.g:586:13: 'long'
+            // Haxe.g:571:5: ( 'long' )
+            // Haxe.g:571:13: 'long'
             {
             match("long"); 
 
@@ -1657,8 +1565,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = NATIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:587:7: ( 'native' )
-            // Haxe.g:587:13: 'native'
+            // Haxe.g:572:7: ( 'native' )
+            // Haxe.g:572:13: 'native'
             {
             match("native"); 
 
@@ -1680,8 +1588,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = NEW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:588:4: ( 'new' )
-            // Haxe.g:588:13: 'new'
+            // Haxe.g:573:4: ( 'new' )
+            // Haxe.g:573:13: 'new'
             {
             match("new"); 
 
@@ -1703,8 +1611,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PACKAGE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:589:8: ( 'package' )
-            // Haxe.g:589:13: 'package'
+            // Haxe.g:574:8: ( 'package' )
+            // Haxe.g:574:13: 'package'
             {
             match("package"); 
 
@@ -1726,8 +1634,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PRIVATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:590:8: ( 'private' )
-            // Haxe.g:590:13: 'private'
+            // Haxe.g:575:8: ( 'private' )
+            // Haxe.g:575:13: 'private'
             {
             match("private"); 
 
@@ -1749,8 +1657,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PROTECTED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:591:10: ( 'protected' )
-            // Haxe.g:591:13: 'protected'
+            // Haxe.g:576:10: ( 'protected' )
+            // Haxe.g:576:13: 'protected'
             {
             match("protected"); 
 
@@ -1772,8 +1680,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PUBLIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:592:7: ( 'public' )
-            // Haxe.g:592:13: 'public'
+            // Haxe.g:577:7: ( 'public' )
+            // Haxe.g:577:13: 'public'
             {
             match("public"); 
 
@@ -1795,8 +1703,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = RETURN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:593:7: ( 'return' )
-            // Haxe.g:593:13: 'return'
+            // Haxe.g:578:7: ( 'return' )
+            // Haxe.g:578:13: 'return'
             {
             match("return"); 
 
@@ -1818,8 +1726,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SHORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:594:6: ( 'short' )
-            // Haxe.g:594:13: 'short'
+            // Haxe.g:579:6: ( 'short' )
+            // Haxe.g:579:13: 'short'
             {
             match("short"); 
 
@@ -1841,8 +1749,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = STATIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:595:7: ( 'static' )
-            // Haxe.g:595:13: 'static'
+            // Haxe.g:580:7: ( 'static' )
+            // Haxe.g:580:13: 'static'
             {
             match("static"); 
 
@@ -1864,8 +1772,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = INLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:596:7: ( 'inline' )
-            // Haxe.g:596:13: 'inline'
+            // Haxe.g:581:7: ( 'inline' )
+            // Haxe.g:581:13: 'inline'
             {
             match("inline"); 
 
@@ -1887,8 +1795,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = DYNAMIC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:597:8: ( 'dynamic' )
-            // Haxe.g:597:13: 'dynamic'
+            // Haxe.g:582:8: ( 'dynamic' )
+            // Haxe.g:582:13: 'dynamic'
             {
             match("dynamic"); 
 
@@ -1910,8 +1818,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = OVERRIDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:598:9: ( 'override' )
-            // Haxe.g:598:13: 'override'
+            // Haxe.g:583:9: ( 'override' )
+            // Haxe.g:583:13: 'override'
             {
             match("override"); 
 
@@ -1933,8 +1841,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = STRICTFP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:599:9: ( 'strictfp' )
-            // Haxe.g:599:13: 'strictfp'
+            // Haxe.g:584:9: ( 'strictfp' )
+            // Haxe.g:584:13: 'strictfp'
             {
             match("strictfp"); 
 
@@ -1956,8 +1864,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SUPER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:600:6: ( 'super' )
-            // Haxe.g:600:13: 'super'
+            // Haxe.g:585:6: ( 'super' )
+            // Haxe.g:585:13: 'super'
             {
             match("super"); 
 
@@ -1979,8 +1887,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SWITCH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:601:7: ( 'switch' )
-            // Haxe.g:601:13: 'switch'
+            // Haxe.g:586:7: ( 'switch' )
+            // Haxe.g:586:13: 'switch'
             {
             match("switch"); 
 
@@ -2002,8 +1910,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = THIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:602:5: ( 'this' )
-            // Haxe.g:602:13: 'this'
+            // Haxe.g:587:5: ( 'this' )
+            // Haxe.g:587:13: 'this'
             {
             match("this"); 
 
@@ -2025,8 +1933,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = THROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:603:6: ( 'throw' )
-            // Haxe.g:603:13: 'throw'
+            // Haxe.g:588:6: ( 'throw' )
+            // Haxe.g:588:13: 'throw'
             {
             match("throw"); 
 
@@ -2048,8 +1956,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = THROWS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:604:7: ( 'throws' )
-            // Haxe.g:604:13: 'throws'
+            // Haxe.g:589:7: ( 'throws' )
+            // Haxe.g:589:13: 'throws'
             {
             match("throws"); 
 
@@ -2071,8 +1979,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = TRANSIENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:605:10: ( 'transient' )
-            // Haxe.g:605:13: 'transient'
+            // Haxe.g:590:10: ( 'transient' )
+            // Haxe.g:590:13: 'transient'
             {
             match("transient"); 
 
@@ -2094,8 +2002,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = TRY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:606:4: ( 'try' )
-            // Haxe.g:606:13: 'try'
+            // Haxe.g:591:4: ( 'try' )
+            // Haxe.g:591:13: 'try'
             {
             match("try"); 
 
@@ -2117,8 +2025,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = TYPEDEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:607:8: ( 'typedef' )
-            // Haxe.g:607:13: 'typedef'
+            // Haxe.g:592:8: ( 'typedef' )
+            // Haxe.g:592:13: 'typedef'
             {
             match("typedef"); 
 
@@ -2140,8 +2048,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = UNTYPED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:608:8: ( 'untyped' )
-            // Haxe.g:608:13: 'untyped'
+            // Haxe.g:593:8: ( 'untyped' )
+            // Haxe.g:593:13: 'untyped'
             {
             match("untyped"); 
 
@@ -2163,8 +2071,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = USING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:609:6: ( 'using' )
-            // Haxe.g:609:13: 'using'
+            // Haxe.g:594:6: ( 'using' )
+            // Haxe.g:594:13: 'using'
             {
             match("using"); 
 
@@ -2186,8 +2094,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = VAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:610:4: ( 'var' )
-            // Haxe.g:610:13: 'var'
+            // Haxe.g:595:4: ( 'var' )
+            // Haxe.g:595:13: 'var'
             {
             match("var"); 
 
@@ -2209,8 +2117,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:611:5: ( 'Void' )
-            // Haxe.g:611:13: 'Void'
+            // Haxe.g:596:5: ( 'Void' )
+            // Haxe.g:596:13: 'Void'
             {
             match("Void"); 
 
@@ -2232,8 +2140,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = VOLATILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:612:9: ( 'volatile' )
-            // Haxe.g:612:13: 'volatile'
+            // Haxe.g:597:9: ( 'volatile' )
+            // Haxe.g:597:13: 'volatile'
             {
             match("volatile"); 
 
@@ -2255,8 +2163,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = WHILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:613:6: ( 'while' )
-            // Haxe.g:613:13: 'while'
+            // Haxe.g:598:6: ( 'while' )
+            // Haxe.g:598:13: 'while'
             {
             match("while"); 
 
@@ -2278,8 +2186,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:614:5: ( 'true' )
-            // Haxe.g:614:13: 'true'
+            // Haxe.g:599:5: ( 'true' )
+            // Haxe.g:599:13: 'true'
             {
             match("true"); 
 
@@ -2301,8 +2209,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:615:6: ( 'false' )
-            // Haxe.g:615:13: 'false'
+            // Haxe.g:600:6: ( 'false' )
+            // Haxe.g:600:13: 'false'
             {
             match("false"); 
 
@@ -2324,8 +2232,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:616:5: ( 'null' )
-            // Haxe.g:616:13: 'null'
+            // Haxe.g:601:5: ( 'null' )
+            // Haxe.g:601:13: 'null'
             {
             match("null"); 
 
@@ -2347,8 +2255,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CAST;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:617:5: ( 'cast' )
-            // Haxe.g:617:13: 'cast'
+            // Haxe.g:602:5: ( 'cast' )
+            // Haxe.g:602:13: 'cast'
             {
             match("cast"); 
 
@@ -2370,8 +2278,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = FUNCTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:618:9: ( 'function' )
-            // Haxe.g:618:13: 'function'
+            // Haxe.g:603:9: ( 'function' )
+            // Haxe.g:603:13: 'function'
             {
             match("function"); 
 
@@ -2393,8 +2301,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = IN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:619:3: ( 'in' )
-            // Haxe.g:619:13: 'in'
+            // Haxe.g:604:3: ( 'in' )
+            // Haxe.g:604:13: 'in'
             {
             match("in"); 
 
@@ -2416,8 +2324,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:621:13: ( '(' )
-            // Haxe.g:621:17: '('
+            // Haxe.g:606:13: ( '(' )
+            // Haxe.g:606:17: '('
             {
             match('('); 
 
@@ -2437,8 +2345,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:622:13: ( ')' )
-            // Haxe.g:622:17: ')'
+            // Haxe.g:607:13: ( ')' )
+            // Haxe.g:607:17: ')'
             {
             match(')'); 
 
@@ -2458,8 +2366,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:623:13: ( '{' )
-            // Haxe.g:623:17: '{'
+            // Haxe.g:608:13: ( '{' )
+            // Haxe.g:608:17: '{'
             {
             match('{'); 
 
@@ -2479,8 +2387,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = RBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:624:13: ( '}' )
-            // Haxe.g:624:17: '}'
+            // Haxe.g:609:13: ( '}' )
+            // Haxe.g:609:17: '}'
             {
             match('}'); 
 
@@ -2500,8 +2408,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:625:13: ( '[' )
-            // Haxe.g:625:17: '['
+            // Haxe.g:610:13: ( '[' )
+            // Haxe.g:610:17: '['
             {
             match('['); 
 
@@ -2521,8 +2429,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:626:13: ( ']' )
-            // Haxe.g:626:17: ']'
+            // Haxe.g:611:13: ( ']' )
+            // Haxe.g:611:17: ']'
             {
             match(']'); 
 
@@ -2542,8 +2450,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SEMI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:627:13: ( ';' )
-            // Haxe.g:627:17: ';'
+            // Haxe.g:612:13: ( ';' )
+            // Haxe.g:612:17: ';'
             {
             match(';'); 
 
@@ -2563,8 +2471,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:628:13: ( ',' )
-            // Haxe.g:628:17: ','
+            // Haxe.g:613:13: ( ',' )
+            // Haxe.g:613:17: ','
             {
             match(','); 
 
@@ -2584,8 +2492,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:629:13: ( '.' )
-            // Haxe.g:629:17: '.'
+            // Haxe.g:614:13: ( '.' )
+            // Haxe.g:614:17: '.'
             {
             match('.'); 
 
@@ -2605,8 +2513,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = ELLIPSIS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:630:13: ( '...' )
-            // Haxe.g:630:17: '...'
+            // Haxe.g:615:13: ( '...' )
+            // Haxe.g:615:17: '...'
             {
             match("..."); 
 
@@ -2628,8 +2536,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:631:13: ( '=' )
-            // Haxe.g:631:17: '='
+            // Haxe.g:616:13: ( '=' )
+            // Haxe.g:616:17: '='
             {
             match('='); 
 
@@ -2649,8 +2557,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BANG;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:632:13: ( '!' )
-            // Haxe.g:632:17: '!'
+            // Haxe.g:617:13: ( '!' )
+            // Haxe.g:617:17: '!'
             {
             match('!'); 
 
@@ -2670,8 +2578,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = TILDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:633:13: ( '~' )
-            // Haxe.g:633:17: '~'
+            // Haxe.g:618:13: ( '~' )
+            // Haxe.g:618:17: '~'
             {
             match('~'); 
 
@@ -2691,8 +2599,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = QUES;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:634:13: ( '?' )
-            // Haxe.g:634:17: '?'
+            // Haxe.g:619:13: ( '?' )
+            // Haxe.g:619:17: '?'
             {
             match('?'); 
 
@@ -2712,8 +2620,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:635:13: ( ':' )
-            // Haxe.g:635:17: ':'
+            // Haxe.g:620:13: ( ':' )
+            // Haxe.g:620:17: ':'
             {
             match(':'); 
 
@@ -2733,8 +2641,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = EQEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:636:13: ( '==' )
-            // Haxe.g:636:17: '=='
+            // Haxe.g:621:13: ( '==' )
+            // Haxe.g:621:17: '=='
             {
             match("=="); 
 
@@ -2756,8 +2664,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = AMPAMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:637:13: ( '&&' )
-            // Haxe.g:637:17: '&&'
+            // Haxe.g:622:13: ( '&&' )
+            // Haxe.g:622:17: '&&'
             {
             match("&&"); 
 
@@ -2779,8 +2687,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BARBAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:638:13: ( '||' )
-            // Haxe.g:638:17: '||'
+            // Haxe.g:623:13: ( '||' )
+            // Haxe.g:623:17: '||'
             {
             match("||"); 
 
@@ -2802,8 +2710,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PLUSPLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:639:13: ( '++' )
-            // Haxe.g:639:17: '++'
+            // Haxe.g:624:13: ( '++' )
+            // Haxe.g:624:17: '++'
             {
             match("++"); 
 
@@ -2825,8 +2733,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SUBSUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:640:13: ( '--' )
-            // Haxe.g:640:17: '--'
+            // Haxe.g:625:13: ( '--' )
+            // Haxe.g:625:17: '--'
             {
             match("--"); 
 
@@ -2848,8 +2756,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:641:13: ( '+' )
-            // Haxe.g:641:17: '+'
+            // Haxe.g:626:13: ( '+' )
+            // Haxe.g:626:17: '+'
             {
             match('+'); 
 
@@ -2869,8 +2777,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:642:13: ( '-' )
-            // Haxe.g:642:17: '-'
+            // Haxe.g:627:13: ( '-' )
+            // Haxe.g:627:17: '-'
             {
             match('-'); 
 
@@ -2890,8 +2798,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:643:13: ( '*' )
-            // Haxe.g:643:17: '*'
+            // Haxe.g:628:13: ( '*' )
+            // Haxe.g:628:17: '*'
             {
             match('*'); 
 
@@ -2911,8 +2819,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:644:13: ( '/' )
-            // Haxe.g:644:17: '/'
+            // Haxe.g:629:13: ( '/' )
+            // Haxe.g:629:17: '/'
             {
             match('/'); 
 
@@ -2932,8 +2840,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = AMP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:645:13: ( '&' )
-            // Haxe.g:645:17: '&'
+            // Haxe.g:630:13: ( '&' )
+            // Haxe.g:630:17: '&'
             {
             match('&'); 
 
@@ -2953,8 +2861,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:646:13: ( '|' )
-            // Haxe.g:646:17: '|'
+            // Haxe.g:631:13: ( '|' )
+            // Haxe.g:631:17: '|'
             {
             match('|'); 
 
@@ -2974,8 +2882,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CARET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:647:13: ( '^' )
-            // Haxe.g:647:17: '^'
+            // Haxe.g:632:13: ( '^' )
+            // Haxe.g:632:17: '^'
             {
             match('^'); 
 
@@ -2995,8 +2903,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PERCENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:648:13: ( '%' )
-            // Haxe.g:648:17: '%'
+            // Haxe.g:633:13: ( '%' )
+            // Haxe.g:633:17: '%'
             {
             match('%'); 
 
@@ -3016,8 +2924,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PLUSEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:649:13: ( '+=' )
-            // Haxe.g:649:17: '+='
+            // Haxe.g:634:13: ( '+=' )
+            // Haxe.g:634:17: '+='
             {
             match("+="); 
 
@@ -3039,8 +2947,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SUBEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:650:13: ( '-=' )
-            // Haxe.g:650:17: '-='
+            // Haxe.g:635:13: ( '-=' )
+            // Haxe.g:635:17: '-='
             {
             match("-="); 
 
@@ -3062,8 +2970,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = STAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:651:13: ( '*=' )
-            // Haxe.g:651:17: '*='
+            // Haxe.g:636:13: ( '*=' )
+            // Haxe.g:636:17: '*='
             {
             match("*="); 
 
@@ -3085,8 +2993,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = SLASHEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:652:13: ( '/=' )
-            // Haxe.g:652:17: '/='
+            // Haxe.g:637:13: ( '/=' )
+            // Haxe.g:637:17: '/='
             {
             match("/="); 
 
@@ -3108,8 +3016,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = AMPEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:653:13: ( '&=' )
-            // Haxe.g:653:17: '&='
+            // Haxe.g:638:13: ( '&=' )
+            // Haxe.g:638:17: '&='
             {
             match("&="); 
 
@@ -3131,8 +3039,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BAREQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:654:13: ( '|=' )
-            // Haxe.g:654:17: '|='
+            // Haxe.g:639:13: ( '|=' )
+            // Haxe.g:639:17: '|='
             {
             match("|="); 
 
@@ -3154,8 +3062,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = CARETEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:655:13: ( '^=' )
-            // Haxe.g:655:17: '^='
+            // Haxe.g:640:13: ( '^=' )
+            // Haxe.g:640:17: '^='
             {
             match("^="); 
 
@@ -3177,8 +3085,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PERCENTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:656:13: ( '%=' )
-            // Haxe.g:656:17: '%='
+            // Haxe.g:641:13: ( '%=' )
+            // Haxe.g:641:17: '%='
             {
             match("%="); 
 
@@ -3200,8 +3108,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BANGEQQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:657:13: ( '!==' )
-            // Haxe.g:657:17: '!=='
+            // Haxe.g:642:13: ( '!==' )
+            // Haxe.g:642:17: '!=='
             {
             match("!=="); 
 
@@ -3223,8 +3131,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = MONKEYS_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:658:13: ( '@' )
-            // Haxe.g:658:17: '@'
+            // Haxe.g:643:13: ( '@' )
+            // Haxe.g:643:17: '@'
             {
             match('@'); 
 
@@ -3244,8 +3152,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = BANGEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:659:13: ( '!=' )
-            // Haxe.g:659:17: '!='
+            // Haxe.g:644:13: ( '!=' )
+            // Haxe.g:644:17: '!='
             {
             match("!="); 
 
@@ -3267,8 +3175,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = MINUS_BIGGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:660:13: ( '->' )
-            // Haxe.g:660:17: '->'
+            // Haxe.g:645:13: ( '->' )
+            // Haxe.g:645:17: '->'
             {
             match("->"); 
 
@@ -3290,8 +3198,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:661:9: ( '>' )
-            // Haxe.g:661:13: '>'
+            // Haxe.g:646:9: ( '>' )
+            // Haxe.g:646:13: '>'
             {
             match('>'); 
 
@@ -3311,8 +3219,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:662:9: ( '>>' )
-            // Haxe.g:662:13: '>>'
+            // Haxe.g:647:9: ( '>>' )
+            // Haxe.g:647:13: '>>'
             {
             match(">>"); 
 
@@ -3334,8 +3242,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LTLT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:663:9: ( '<<' )
-            // Haxe.g:663:13: '<<'
+            // Haxe.g:648:9: ( '<<' )
+            // Haxe.g:648:13: '<<'
             {
             match("<<"); 
 
@@ -3357,8 +3265,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GTGTGT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:664:9: ( '>>>' )
-            // Haxe.g:664:13: '>>>'
+            // Haxe.g:649:9: ( '>>>' )
+            // Haxe.g:649:13: '>>>'
             {
             match(">>>"); 
 
@@ -3380,8 +3288,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LTLTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:665:9: ( '<<=' )
-            // Haxe.g:665:13: '<<='
+            // Haxe.g:650:9: ( '<<=' )
+            // Haxe.g:650:13: '<<='
             {
             match("<<="); 
 
@@ -3403,8 +3311,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GTGTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:666:9: ( '>>=' )
-            // Haxe.g:666:13: '>>='
+            // Haxe.g:651:9: ( '>>=' )
+            // Haxe.g:651:13: '>>='
             {
             match(">>="); 
 
@@ -3426,8 +3334,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GTGTGTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:667:9: ( '>>>=' )
-            // Haxe.g:667:13: '>>>='
+            // Haxe.g:652:9: ( '>>>=' )
+            // Haxe.g:652:13: '>>>='
             {
             match(">>>="); 
 
@@ -3449,8 +3357,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = GTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:668:9: ( '>=' )
-            // Haxe.g:668:13: '>='
+            // Haxe.g:653:9: ( '>=' )
+            // Haxe.g:653:13: '>='
             {
             match(">="); 
 
@@ -3472,8 +3380,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LTEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:669:9: ( '<=' )
-            // Haxe.g:669:13: '<='
+            // Haxe.g:654:9: ( '<=' )
+            // Haxe.g:654:13: '<='
             {
             match("<="); 
 
@@ -3495,8 +3403,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:670:9: ( '<' )
-            // Haxe.g:670:13: '<'
+            // Haxe.g:655:9: ( '<' )
+            // Haxe.g:655:13: '<'
             {
             match('<'); 
 
@@ -3516,8 +3424,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:673:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // Haxe.g:673:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Haxe.g:658:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT | '_' )* )
+            // Haxe.g:658:8: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT | '_' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -3529,18 +3437,18 @@ public class HaxeLexer extends Lexer {
             }
 
 
-            // Haxe.g:673:32: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
-            loop10:
+            // Haxe.g:658:32: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT | '_' )*
+            loop8:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( ((LA10_0 >= '0' && LA10_0 <= '9')||(LA10_0 >= 'A' && LA10_0 <= 'Z')||LA10_0=='_'||(LA10_0 >= 'a' && LA10_0 <= 'z')) ) {
-                    alt10=1;
+                if ( ((LA8_0 >= '0' && LA8_0 <= '9')||(LA8_0 >= 'A' && LA8_0 <= 'Z')||LA8_0=='_'||(LA8_0 >= 'a' && LA8_0 <= 'z')) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt8) {
             	case 1 :
             	    // Haxe.g:
             	    {
@@ -3558,7 +3466,7 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop8;
                 }
             } while (true);
 
@@ -3579,22 +3487,22 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = INTNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:676:11: ( ( '0' .. '9' )+ )
-            // Haxe.g:676:16: ( '0' .. '9' )+
+            // Haxe.g:661:13: ( ( DIGIT )+ )
+            // Haxe.g:661:15: ( DIGIT )+
             {
-            // Haxe.g:676:16: ( '0' .. '9' )+
-            int cnt11=0;
-            loop11:
+            // Haxe.g:661:15: ( DIGIT )+
+            int cnt9=0;
+            loop9:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( ((LA11_0 >= '0' && LA11_0 <= '9')) ) {
-                    alt11=1;
+                if ( ((LA9_0 >= '0' && LA9_0 <= '9')) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt9) {
             	case 1 :
             	    // Haxe.g:
             	    {
@@ -3612,12 +3520,12 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt11 >= 1 ) break loop11;
+            	    if ( cnt9 >= 1 ) break loop9;
                         EarlyExitException eee =
-                            new EarlyExitException(11, input);
+                            new EarlyExitException(9, input);
                         throw eee;
                 }
-                cnt11++;
+                cnt9++;
             } while (true);
 
 
@@ -3632,31 +3540,126 @@ public class HaxeLexer extends Lexer {
     }
     // $ANTLR end "INTNUM"
 
+    // $ANTLR start "DIGIT"
+    public final void mDIGIT() throws RecognitionException {
+        try {
+            // Haxe.g:666:7: ( '0' .. '9' )
+            // Haxe.g:
+            {
+            if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                input.consume();
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;
+            }
+
+
+            }
+
+
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "DIGIT"
+
     // $ANTLR start "FLOATNUM"
     public final void mFLOATNUM() throws RecognitionException {
         try {
             int _type = FLOATNUM;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:680:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT )
-            int alt18=3;
-            alt18 = dfa18.predict(input);
-            switch (alt18) {
-                case 1 :
-                    // Haxe.g:680:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )?
-                    {
-                    // Haxe.g:680:9: ( '0' .. '9' )+
-                    int cnt12=0;
-                    loop12:
-                    do {
-                        int alt12=2;
-                        int LA12_0 = input.LA(1);
+            // Haxe.g:669:13: ( ( DIGIT )+ ( EXPONENT | DOT DIGIT ( DIGIT )* ) )
+            // Haxe.g:669:15: ( DIGIT )+ ( EXPONENT | DOT DIGIT ( DIGIT )* )
+            {
+            // Haxe.g:669:15: ( DIGIT )+
+            int cnt10=0;
+            loop10:
+            do {
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                        if ( ((LA12_0 >= '0' && LA12_0 <= '9')) ) {
-                            alt12=1;
+                if ( ((LA10_0 >= '0' && LA10_0 <= '9')) ) {
+                    alt10=1;
+                }
+
+
+                switch (alt10) {
+            	case 1 :
+            	    // Haxe.g:
+            	    {
+            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+            	        input.consume();
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt10 >= 1 ) break loop10;
+                        EarlyExitException eee =
+                            new EarlyExitException(10, input);
+                        throw eee;
+                }
+                cnt10++;
+            } while (true);
+
+
+            // Haxe.g:669:22: ( EXPONENT | DOT DIGIT ( DIGIT )* )
+            int alt12=2;
+            int LA12_0 = input.LA(1);
+
+            if ( (LA12_0=='E'||LA12_0=='e') ) {
+                alt12=1;
+            }
+            else if ( (LA12_0=='.') ) {
+                alt12=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 12, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt12) {
+                case 1 :
+                    // Haxe.g:669:23: EXPONENT
+                    {
+                    mEXPONENT(); 
+
+
+                    }
+                    break;
+                case 2 :
+                    // Haxe.g:669:34: DOT DIGIT ( DIGIT )*
+                    {
+                    mDOT(); 
+
+
+                    mDIGIT(); 
+
+
+                    // Haxe.g:669:44: ( DIGIT )*
+                    loop11:
+                    do {
+                        int alt11=2;
+                        int LA11_0 = input.LA(1);
+
+                        if ( ((LA11_0 >= '0' && LA11_0 <= '9')) ) {
+                            alt11=1;
                         }
 
 
-                        switch (alt12) {
+                        switch (alt11) {
                     	case 1 :
                     	    // Haxe.g:
                     	    {
@@ -3674,24 +3677,76 @@ public class HaxeLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    if ( cnt12 >= 1 ) break loop12;
-                                EarlyExitException eee =
-                                    new EarlyExitException(12, input);
-                                throw eee;
+                    	    break loop11;
                         }
-                        cnt12++;
                     } while (true);
 
 
-                    match('.'); 
+                    }
+                    break;
 
-                    // Haxe.g:680:25: ( '0' .. '9' )*
+            }
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "FLOATNUM"
+
+    // $ANTLR start "COMMENT"
+    public final void mCOMMENT() throws RecognitionException {
+        try {
+            int _type = COMMENT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Haxe.g:673:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+            int alt16=2;
+            int LA16_0 = input.LA(1);
+
+            if ( (LA16_0=='/') ) {
+                int LA16_1 = input.LA(2);
+
+                if ( (LA16_1=='/') ) {
+                    alt16=1;
+                }
+                else if ( (LA16_1=='*') ) {
+                    alt16=2;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 16, 1, input);
+
+                    throw nvae;
+
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 16, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt16) {
+                case 1 :
+                    // Haxe.g:673:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                    {
+                    match("//"); 
+
+
+
+                    // Haxe.g:673:14: (~ ( '\\n' | '\\r' ) )*
                     loop13:
                     do {
                         int alt13=2;
                         int LA13_0 = input.LA(1);
 
-                        if ( ((LA13_0 >= '0' && LA13_0 <= '9')) ) {
+                        if ( ((LA13_0 >= '\u0000' && LA13_0 <= '\t')||(LA13_0 >= '\u000B' && LA13_0 <= '\f')||(LA13_0 >= '\u000E' && LA13_0 <= '\uFFFF')) ) {
                             alt13=1;
                         }
 
@@ -3700,7 +3755,7 @@ public class HaxeLexer extends Lexer {
                     	case 1 :
                     	    // Haxe.g:
                     	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
                     	        input.consume();
                     	    }
                     	    else {
@@ -3719,237 +3774,16 @@ public class HaxeLexer extends Lexer {
                     } while (true);
 
 
-                    // Haxe.g:680:37: ( EXPONENT )?
+                    // Haxe.g:673:28: ( '\\r' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
-                    if ( (LA14_0=='E'||LA14_0=='e') ) {
+                    if ( (LA14_0=='\r') ) {
                         alt14=1;
                     }
                     switch (alt14) {
                         case 1 :
-                            // Haxe.g:680:37: EXPONENT
-                            {
-                            mEXPONENT(); 
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // Haxe.g:681:9: '.' ( '0' .. '9' )+ ( EXPONENT )?
-                    {
-                    match('.'); 
-
-                    // Haxe.g:681:13: ( '0' .. '9' )+
-                    int cnt15=0;
-                    loop15:
-                    do {
-                        int alt15=2;
-                        int LA15_0 = input.LA(1);
-
-                        if ( ((LA15_0 >= '0' && LA15_0 <= '9')) ) {
-                            alt15=1;
-                        }
-
-
-                        switch (alt15) {
-                    	case 1 :
-                    	    // Haxe.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt15 >= 1 ) break loop15;
-                                EarlyExitException eee =
-                                    new EarlyExitException(15, input);
-                                throw eee;
-                        }
-                        cnt15++;
-                    } while (true);
-
-
-                    // Haxe.g:681:25: ( EXPONENT )?
-                    int alt16=2;
-                    int LA16_0 = input.LA(1);
-
-                    if ( (LA16_0=='E'||LA16_0=='e') ) {
-                        alt16=1;
-                    }
-                    switch (alt16) {
-                        case 1 :
-                            // Haxe.g:681:25: EXPONENT
-                            {
-                            mEXPONENT(); 
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    }
-                    break;
-                case 3 :
-                    // Haxe.g:682:9: ( '0' .. '9' )+ EXPONENT
-                    {
-                    // Haxe.g:682:9: ( '0' .. '9' )+
-                    int cnt17=0;
-                    loop17:
-                    do {
-                        int alt17=2;
-                        int LA17_0 = input.LA(1);
-
-                        if ( ((LA17_0 >= '0' && LA17_0 <= '9')) ) {
-                            alt17=1;
-                        }
-
-
-                        switch (alt17) {
-                    	case 1 :
-                    	    // Haxe.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt17 >= 1 ) break loop17;
-                                EarlyExitException eee =
-                                    new EarlyExitException(17, input);
-                                throw eee;
-                        }
-                        cnt17++;
-                    } while (true);
-
-
-                    mEXPONENT(); 
-
-
-                    }
-                    break;
-
-            }
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "FLOATNUM"
-
-    // $ANTLR start "COMMENT"
-    public final void mCOMMENT() throws RecognitionException {
-        try {
-            int _type = COMMENT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:686:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
-            int alt22=2;
-            int LA22_0 = input.LA(1);
-
-            if ( (LA22_0=='/') ) {
-                int LA22_1 = input.LA(2);
-
-                if ( (LA22_1=='/') ) {
-                    alt22=1;
-                }
-                else if ( (LA22_1=='*') ) {
-                    alt22=2;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 22, 1, input);
-
-                    throw nvae;
-
-                }
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 22, 0, input);
-
-                throw nvae;
-
-            }
-            switch (alt22) {
-                case 1 :
-                    // Haxe.g:686:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
-                    {
-                    match("//"); 
-
-
-
-                    // Haxe.g:686:14: (~ ( '\\n' | '\\r' ) )*
-                    loop19:
-                    do {
-                        int alt19=2;
-                        int LA19_0 = input.LA(1);
-
-                        if ( ((LA19_0 >= '\u0000' && LA19_0 <= '\t')||(LA19_0 >= '\u000B' && LA19_0 <= '\f')||(LA19_0 >= '\u000E' && LA19_0 <= '\uFFFF')) ) {
-                            alt19=1;
-                        }
-
-
-                        switch (alt19) {
-                    	case 1 :
-                    	    // Haxe.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop19;
-                        }
-                    } while (true);
-
-
-                    // Haxe.g:686:28: ( '\\r' )?
-                    int alt20=2;
-                    int LA20_0 = input.LA(1);
-
-                    if ( (LA20_0=='\r') ) {
-                        alt20=1;
-                    }
-                    switch (alt20) {
-                        case 1 :
-                            // Haxe.g:686:28: '\\r'
+                            // Haxe.g:673:28: '\\r'
                             {
                             match('\r'); 
 
@@ -3966,38 +3800,38 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:687:9: '/*' ( options {greedy=false; } : . )* '*/'
+                    // Haxe.g:674:9: '/*' ( options {greedy=false; } : . )* '*/'
                     {
                     match("/*"); 
 
 
 
-                    // Haxe.g:687:14: ( options {greedy=false; } : . )*
-                    loop21:
+                    // Haxe.g:674:14: ( options {greedy=false; } : . )*
+                    loop15:
                     do {
-                        int alt21=2;
-                        int LA21_0 = input.LA(1);
+                        int alt15=2;
+                        int LA15_0 = input.LA(1);
 
-                        if ( (LA21_0=='*') ) {
-                            int LA21_1 = input.LA(2);
+                        if ( (LA15_0=='*') ) {
+                            int LA15_1 = input.LA(2);
 
-                            if ( (LA21_1=='/') ) {
-                                alt21=2;
+                            if ( (LA15_1=='/') ) {
+                                alt15=2;
                             }
-                            else if ( ((LA21_1 >= '\u0000' && LA21_1 <= '.')||(LA21_1 >= '0' && LA21_1 <= '\uFFFF')) ) {
-                                alt21=1;
+                            else if ( ((LA15_1 >= '\u0000' && LA15_1 <= '.')||(LA15_1 >= '0' && LA15_1 <= '\uFFFF')) ) {
+                                alt15=1;
                             }
 
 
                         }
-                        else if ( ((LA21_0 >= '\u0000' && LA21_0 <= ')')||(LA21_0 >= '+' && LA21_0 <= '\uFFFF')) ) {
-                            alt21=1;
+                        else if ( ((LA15_0 >= '\u0000' && LA15_0 <= ')')||(LA15_0 >= '+' && LA15_0 <= '\uFFFF')) ) {
+                            alt15=1;
                         }
 
 
-                        switch (alt21) {
+                        switch (alt15) {
                     	case 1 :
-                    	    // Haxe.g:687:42: .
+                    	    // Haxe.g:674:42: .
                     	    {
                     	    matchAny(); 
 
@@ -4005,7 +3839,7 @@ public class HaxeLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop21;
+                    	    break loop15;
                         }
                     } while (true);
 
@@ -4034,28 +3868,28 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = STRINGLITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:691:5: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
-            // Haxe.g:691:9: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
+            // Haxe.g:678:5: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"' )
+            // Haxe.g:678:9: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )* '\"'
             {
             match('\"'); 
 
-            // Haxe.g:692:9: ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
-            loop23:
+            // Haxe.g:679:9: ( EscapeSequence |~ ( '\\\\' | '\"' | '\\r' | '\\n' ) )*
+            loop17:
             do {
-                int alt23=3;
-                int LA23_0 = input.LA(1);
+                int alt17=3;
+                int LA17_0 = input.LA(1);
 
-                if ( (LA23_0=='\\') ) {
-                    alt23=1;
+                if ( (LA17_0=='\\') ) {
+                    alt17=1;
                 }
-                else if ( ((LA23_0 >= '\u0000' && LA23_0 <= '\t')||(LA23_0 >= '\u000B' && LA23_0 <= '\f')||(LA23_0 >= '\u000E' && LA23_0 <= '!')||(LA23_0 >= '#' && LA23_0 <= '[')||(LA23_0 >= ']' && LA23_0 <= '\uFFFF')) ) {
-                    alt23=2;
+                else if ( ((LA17_0 >= '\u0000' && LA17_0 <= '\t')||(LA17_0 >= '\u000B' && LA17_0 <= '\f')||(LA17_0 >= '\u000E' && LA17_0 <= '!')||(LA17_0 >= '#' && LA17_0 <= '[')||(LA17_0 >= ']' && LA17_0 <= '\uFFFF')) ) {
+                    alt17=2;
                 }
 
 
-                switch (alt23) {
+                switch (alt17) {
             	case 1 :
-            	    // Haxe.g:692:13: EscapeSequence
+            	    // Haxe.g:679:13: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -4063,7 +3897,7 @@ public class HaxeLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Haxe.g:693:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
+            	    // Haxe.g:680:13: ~ ( '\\\\' | '\"' | '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -4079,7 +3913,7 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop17;
                 }
             } while (true);
 
@@ -4102,8 +3936,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PP_IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:705:10: ( '#if' )
-            // Haxe.g:705:15: '#if'
+            // Haxe.g:692:10: ( '#if' )
+            // Haxe.g:692:15: '#if'
             {
             match("#if"); 
 
@@ -4125,8 +3959,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PP_ELSEIF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:708:5: ( '#elseif' )
-            // Haxe.g:708:10: '#elseif'
+            // Haxe.g:695:5: ( '#elseif' )
+            // Haxe.g:695:10: '#elseif'
             {
             match("#elseif"); 
 
@@ -4148,8 +3982,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PP_ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:710:12: ( '#else' )
-            // Haxe.g:710:17: '#else'
+            // Haxe.g:697:12: ( '#else' )
+            // Haxe.g:697:17: '#else'
             {
             match("#else"); 
 
@@ -4171,8 +4005,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PP_END;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:712:11: ( '#end' )
-            // Haxe.g:712:16: '#end'
+            // Haxe.g:699:11: ( '#end' )
+            // Haxe.g:699:16: '#end'
             {
             match("#end"); 
 
@@ -4194,8 +4028,8 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PP_ERROR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:714:9: ( '#error' )
-            // Haxe.g:714:14: '#error'
+            // Haxe.g:701:9: ( '#error' )
+            // Haxe.g:701:14: '#error'
             {
             match("#error"); 
 
@@ -4215,8 +4049,8 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "TS"
     public final void mTS() throws RecognitionException {
         try {
-            // Haxe.g:722:3: ( ( ' ' | '\\t' ) )
-            // Haxe.g:723:5: ( ' ' | '\\t' )
+            // Haxe.g:709:3: ( ( ' ' | '\\t' ) )
+            // Haxe.g:710:5: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -4245,24 +4079,24 @@ public class HaxeLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DIRECTIVE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Haxe.g:726:5: (| PP_CONDITIONAL )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // Haxe.g:713:5: (| PP_CONDITIONAL )
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA24_0=='#') ) {
-                alt24=2;
+            if ( (LA18_0=='#') ) {
+                alt18=2;
             }
             else {
-                alt24=1;
+                alt18=1;
             }
-            switch (alt24) {
+            switch (alt18) {
                 case 1 :
-                    // Haxe.g:727:5: 
+                    // Haxe.g:714:5: 
                     {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:727:7: PP_CONDITIONAL
+                    // Haxe.g:714:7: PP_CONDITIONAL
                     {
                     mPP_CONDITIONAL(); 
 
@@ -4283,15 +4117,15 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "PP_CONDITIONAL"
     public final void mPP_CONDITIONAL() throws RecognitionException {
         try {
-            // Haxe.g:732:15: ( ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN ) )
-            // Haxe.g:733:5: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
+            // Haxe.g:719:15: ( ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN ) )
+            // Haxe.g:720:5: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
             {
-            // Haxe.g:733:5: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
-            int alt25=3;
-            alt25 = dfa25.predict(input);
-            switch (alt25) {
+            // Haxe.g:720:5: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )
+            int alt19=3;
+            alt19 = dfa19.predict(input);
+            switch (alt19) {
                 case 1 :
-                    // Haxe.g:733:6: IF_TOKEN
+                    // Haxe.g:720:6: IF_TOKEN
                     {
                     mIF_TOKEN(); 
 
@@ -4299,7 +4133,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:734:7: ELSE_TOKEN
+                    // Haxe.g:721:7: ELSE_TOKEN
                     {
                     mELSE_TOKEN(); 
 
@@ -4307,7 +4141,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:735:7: ENDIF_TOKEN
+                    // Haxe.g:722:7: ENDIF_TOKEN
                     {
                     mENDIF_TOKEN(); 
 
@@ -4334,28 +4168,28 @@ public class HaxeLexer extends Lexer {
             CommonToken ppe=null;
 
              boolean process = true; 
-            // Haxe.g:739:38: ( ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION ) )
-            // Haxe.g:740:5: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
+            // Haxe.g:726:38: ( ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION ) )
+            // Haxe.g:727:5: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
             {
-            // Haxe.g:740:5: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
-            // Haxe.g:740:6: '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION
+            // Haxe.g:727:5: ( '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION )
+            // Haxe.g:727:6: '#' ( TS )* 'if' ( TS )+ ppe= PP_EXPRESSION
             {
             match('#'); 
 
-            // Haxe.g:740:12: ( TS )*
-            loop26:
+            // Haxe.g:727:12: ( TS )*
+            loop20:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( (LA26_0=='\t'||LA26_0==' ') ) {
-                    alt26=1;
+                if ( (LA20_0=='\t'||LA20_0==' ') ) {
+                    alt20=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt20) {
             	case 1 :
-            	    // Haxe.g:740:12: TS
+            	    // Haxe.g:727:12: TS
             	    {
             	    mTS(); 
 
@@ -4364,7 +4198,7 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop20;
                 }
             } while (true);
 
@@ -4373,21 +4207,21 @@ public class HaxeLexer extends Lexer {
 
 
 
-            // Haxe.g:740:24: ( TS )+
-            int cnt27=0;
-            loop27:
+            // Haxe.g:727:24: ( TS )+
+            int cnt21=0;
+            loop21:
             do {
-                int alt27=2;
-                int LA27_0 = input.LA(1);
+                int alt21=2;
+                int LA21_0 = input.LA(1);
 
-                if ( (LA27_0=='\t'||LA27_0==' ') ) {
-                    alt27=1;
+                if ( (LA21_0=='\t'||LA21_0==' ') ) {
+                    alt21=1;
                 }
 
 
-                switch (alt27) {
+                switch (alt21) {
             	case 1 :
-            	    // Haxe.g:740:24: TS
+            	    // Haxe.g:727:24: TS
             	    {
             	    mTS(); 
 
@@ -4396,22 +4230,22 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt27 >= 1 ) break loop27;
+            	    if ( cnt21 >= 1 ) break loop21;
                         EarlyExitException eee =
-                            new EarlyExitException(27, input);
+                            new EarlyExitException(21, input);
                         throw eee;
                 }
-                cnt27++;
+                cnt21++;
             } while (true);
 
 
-            int ppeStart2602 = getCharIndex();
-            int ppeStartLine2602 = getLine();
-            int ppeStartCharPos2602 = getCharPositionInLine();
+            int ppeStart2526 = getCharIndex();
+            int ppeStartLine2526 = getLine();
+            int ppeStartCharPos2526 = getCharPositionInLine();
             mPP_EXPRESSION(); 
-            ppe = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, ppeStart2602, getCharIndex()-1);
-            ppe.setLine(ppeStartLine2602);
-            ppe.setCharPositionInLine(ppeStartCharPos2602);
+            ppe = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, ppeStart2526, getCharIndex()-1);
+            ppe.setLine(ppeStartLine2526);
+            ppe.setCharPositionInLine(ppeStartCharPos2526);
 
 
             }
@@ -4441,32 +4275,32 @@ public class HaxeLexer extends Lexer {
         try {
             CommonToken e=null;
 
-            // Haxe.g:750:11: ( ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION ) )
-            // Haxe.g:751:5: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
+            // Haxe.g:737:11: ( ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION ) )
+            // Haxe.g:738:5: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
             {
-            // Haxe.g:751:5: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
-            int alt31=2;
-            alt31 = dfa31.predict(input);
-            switch (alt31) {
+            // Haxe.g:738:5: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )
+            int alt25=2;
+            alt25 = dfa25.predict(input);
+            switch (alt25) {
                 case 1 :
-                    // Haxe.g:751:7: '#' ( TS )* e= 'else'
+                    // Haxe.g:738:7: '#' ( TS )* e= 'else'
                     {
                     match('#'); 
 
-                    // Haxe.g:751:13: ( TS )*
-                    loop28:
+                    // Haxe.g:738:13: ( TS )*
+                    loop22:
                     do {
-                        int alt28=2;
-                        int LA28_0 = input.LA(1);
+                        int alt22=2;
+                        int LA22_0 = input.LA(1);
 
-                        if ( (LA28_0=='\t'||LA28_0==' ') ) {
-                            alt28=1;
+                        if ( (LA22_0=='\t'||LA22_0==' ') ) {
+                            alt22=1;
                         }
 
 
-                        switch (alt28) {
+                        switch (alt22) {
                     	case 1 :
-                    	    // Haxe.g:751:13: TS
+                    	    // Haxe.g:738:13: TS
                     	    {
                     	    mTS(); 
 
@@ -4475,41 +4309,41 @@ public class HaxeLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop28;
+                    	    break loop22;
                         }
                     } while (true);
 
 
                     int eStart = getCharIndex();
                     match("else"); 
-                    int eStartLine2633 = getLine();
-                    int eStartCharPos2633 = getCharPositionInLine();
+                    int eStartLine2557 = getLine();
+                    int eStartCharPos2557 = getCharPositionInLine();
                     e = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, eStart, getCharIndex()-1);
-                    e.setLine(eStartLine2633);
-                    e.setCharPositionInLine(eStartCharPos2633);
+                    e.setLine(eStartLine2557);
+                    e.setCharPositionInLine(eStartCharPos2557);
 
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:752:7: '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION
+                    // Haxe.g:739:7: '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION
                     {
                     match('#'); 
 
-                    // Haxe.g:752:13: ( TS )*
-                    loop29:
+                    // Haxe.g:739:13: ( TS )*
+                    loop23:
                     do {
-                        int alt29=2;
-                        int LA29_0 = input.LA(1);
+                        int alt23=2;
+                        int LA23_0 = input.LA(1);
 
-                        if ( (LA29_0=='\t'||LA29_0==' ') ) {
-                            alt29=1;
+                        if ( (LA23_0=='\t'||LA23_0==' ') ) {
+                            alt23=1;
                         }
 
 
-                        switch (alt29) {
+                        switch (alt23) {
                     	case 1 :
-                    	    // Haxe.g:752:13: TS
+                    	    // Haxe.g:739:13: TS
                     	    {
                     	    mTS(); 
 
@@ -4518,7 +4352,7 @@ public class HaxeLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop29;
+                    	    break loop23;
                         }
                     } while (true);
 
@@ -4527,21 +4361,21 @@ public class HaxeLexer extends Lexer {
 
 
 
-                    // Haxe.g:752:30: ( TS )+
-                    int cnt30=0;
-                    loop30:
+                    // Haxe.g:739:30: ( TS )+
+                    int cnt24=0;
+                    loop24:
                     do {
-                        int alt30=2;
-                        int LA30_0 = input.LA(1);
+                        int alt24=2;
+                        int LA24_0 = input.LA(1);
 
-                        if ( (LA30_0=='\t'||LA30_0==' ') ) {
-                            alt30=1;
+                        if ( (LA24_0=='\t'||LA24_0==' ') ) {
+                            alt24=1;
                         }
 
 
-                        switch (alt30) {
+                        switch (alt24) {
                     	case 1 :
-                    	    // Haxe.g:752:30: TS
+                    	    // Haxe.g:739:30: TS
                     	    {
                     	    mTS(); 
 
@@ -4550,12 +4384,12 @@ public class HaxeLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    if ( cnt30 >= 1 ) break loop30;
+                    	    if ( cnt24 >= 1 ) break loop24;
                                 EarlyExitException eee =
-                                    new EarlyExitException(30, input);
+                                    new EarlyExitException(24, input);
                                 throw eee;
                         }
-                        cnt30++;
+                        cnt24++;
                     } while (true);
 
 
@@ -4620,8 +4454,8 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "ENDIF_TOKEN"
     public final void mENDIF_TOKEN() throws RecognitionException {
         try {
-            // Haxe.g:792:12: ( '#' 'end' )
-            // Haxe.g:793:5: '#' 'end'
+            // Haxe.g:779:12: ( '#' 'end' )
+            // Haxe.g:780:5: '#' 'end'
             {
             match('#'); 
 
@@ -4648,8 +4482,8 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "PP_EXPRESSION"
     public final void mPP_EXPRESSION() throws RecognitionException {
         try {
-            // Haxe.g:804:14: ( PP_OR_EXPRESSION )
-            // Haxe.g:805:5: PP_OR_EXPRESSION
+            // Haxe.g:791:14: ( PP_OR_EXPRESSION )
+            // Haxe.g:792:5: PP_OR_EXPRESSION
             {
             mPP_OR_EXPRESSION(); 
 
@@ -4667,26 +4501,26 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "PP_OR_EXPRESSION"
     public final void mPP_OR_EXPRESSION() throws RecognitionException {
         try {
-            // Haxe.g:808:17: ( PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )* )
-            // Haxe.g:809:5: PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
+            // Haxe.g:795:17: ( PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )* )
+            // Haxe.g:796:5: PP_AND_EXPRESSION ( TS )* ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
             {
             mPP_AND_EXPRESSION(); 
 
 
-            // Haxe.g:809:25: ( TS )*
-            loop32:
+            // Haxe.g:796:25: ( TS )*
+            loop26:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt26=2;
+                int LA26_0 = input.LA(1);
 
-                if ( (LA32_0=='\t'||LA32_0==' ') ) {
-                    alt32=1;
+                if ( (LA26_0=='\t'||LA26_0==' ') ) {
+                    alt26=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt26) {
             	case 1 :
-            	    // Haxe.g:809:25: TS
+            	    // Haxe.g:796:25: TS
             	    {
             	    mTS(); 
 
@@ -4695,44 +4529,44 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop32;
+            	    break loop26;
                 }
             } while (true);
 
 
-            // Haxe.g:809:31: ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
-            loop35:
+            // Haxe.g:796:31: ( '||' ( TS )* PP_AND_EXPRESSION ( TS )* )*
+            loop29:
             do {
-                int alt35=2;
-                int LA35_0 = input.LA(1);
+                int alt29=2;
+                int LA29_0 = input.LA(1);
 
-                if ( (LA35_0=='|') ) {
-                    alt35=1;
+                if ( (LA29_0=='|') ) {
+                    alt29=1;
                 }
 
 
-                switch (alt35) {
+                switch (alt29) {
             	case 1 :
-            	    // Haxe.g:809:32: '||' ( TS )* PP_AND_EXPRESSION ( TS )*
+            	    // Haxe.g:796:32: '||' ( TS )* PP_AND_EXPRESSION ( TS )*
             	    {
             	    match("||"); 
 
 
 
-            	    // Haxe.g:809:39: ( TS )*
-            	    loop33:
+            	    // Haxe.g:796:39: ( TS )*
+            	    loop27:
             	    do {
-            	        int alt33=2;
-            	        int LA33_0 = input.LA(1);
+            	        int alt27=2;
+            	        int LA27_0 = input.LA(1);
 
-            	        if ( (LA33_0=='\t'||LA33_0==' ') ) {
-            	            alt33=1;
+            	        if ( (LA27_0=='\t'||LA27_0==' ') ) {
+            	            alt27=1;
             	        }
 
 
-            	        switch (alt33) {
+            	        switch (alt27) {
             	    	case 1 :
-            	    	    // Haxe.g:809:39: TS
+            	    	    // Haxe.g:796:39: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4741,7 +4575,7 @@ public class HaxeLexer extends Lexer {
             	    	    break;
 
             	    	default :
-            	    	    break loop33;
+            	    	    break loop27;
             	        }
             	    } while (true);
 
@@ -4749,20 +4583,20 @@ public class HaxeLexer extends Lexer {
             	    mPP_AND_EXPRESSION(); 
 
 
-            	    // Haxe.g:809:65: ( TS )*
-            	    loop34:
+            	    // Haxe.g:796:65: ( TS )*
+            	    loop28:
             	    do {
-            	        int alt34=2;
-            	        int LA34_0 = input.LA(1);
+            	        int alt28=2;
+            	        int LA28_0 = input.LA(1);
 
-            	        if ( (LA34_0=='\t'||LA34_0==' ') ) {
-            	            alt34=1;
+            	        if ( (LA28_0=='\t'||LA28_0==' ') ) {
+            	            alt28=1;
             	        }
 
 
-            	        switch (alt34) {
+            	        switch (alt28) {
             	    	case 1 :
-            	    	    // Haxe.g:809:65: TS
+            	    	    // Haxe.g:796:65: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4771,7 +4605,7 @@ public class HaxeLexer extends Lexer {
             	    	    break;
 
             	    	default :
-            	    	    break loop34;
+            	    	    break loop28;
             	        }
             	    } while (true);
 
@@ -4780,7 +4614,7 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop35;
+            	    break loop29;
                 }
             } while (true);
 
@@ -4798,26 +4632,26 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "PP_AND_EXPRESSION"
     public final void mPP_AND_EXPRESSION() throws RecognitionException {
         try {
-            // Haxe.g:812:18: ( PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )* )
-            // Haxe.g:813:5: PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
+            // Haxe.g:799:18: ( PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )* )
+            // Haxe.g:800:5: PP_UNARY_EXPRESSION ( TS )* ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
             {
             mPP_UNARY_EXPRESSION(); 
 
 
-            // Haxe.g:813:27: ( TS )*
-            loop36:
+            // Haxe.g:800:27: ( TS )*
+            loop30:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( (LA36_0=='\t'||LA36_0==' ') ) {
-                    alt36=1;
+                if ( (LA30_0=='\t'||LA30_0==' ') ) {
+                    alt30=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt30) {
             	case 1 :
-            	    // Haxe.g:813:27: TS
+            	    // Haxe.g:800:27: TS
             	    {
             	    mTS(); 
 
@@ -4826,44 +4660,44 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop30;
                 }
             } while (true);
 
 
-            // Haxe.g:813:33: ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
-            loop39:
+            // Haxe.g:800:33: ( '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )* )*
+            loop33:
             do {
-                int alt39=2;
-                int LA39_0 = input.LA(1);
+                int alt33=2;
+                int LA33_0 = input.LA(1);
 
-                if ( (LA39_0=='&') ) {
-                    alt39=1;
+                if ( (LA33_0=='&') ) {
+                    alt33=1;
                 }
 
 
-                switch (alt39) {
+                switch (alt33) {
             	case 1 :
-            	    // Haxe.g:813:34: '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )*
+            	    // Haxe.g:800:34: '&&' ( TS )* PP_UNARY_EXPRESSION ( TS )*
             	    {
             	    match("&&"); 
 
 
 
-            	    // Haxe.g:813:41: ( TS )*
-            	    loop37:
+            	    // Haxe.g:800:41: ( TS )*
+            	    loop31:
             	    do {
-            	        int alt37=2;
-            	        int LA37_0 = input.LA(1);
+            	        int alt31=2;
+            	        int LA31_0 = input.LA(1);
 
-            	        if ( (LA37_0=='\t'||LA37_0==' ') ) {
-            	            alt37=1;
+            	        if ( (LA31_0=='\t'||LA31_0==' ') ) {
+            	            alt31=1;
             	        }
 
 
-            	        switch (alt37) {
+            	        switch (alt31) {
             	    	case 1 :
-            	    	    // Haxe.g:813:41: TS
+            	    	    // Haxe.g:800:41: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4872,7 +4706,7 @@ public class HaxeLexer extends Lexer {
             	    	    break;
 
             	    	default :
-            	    	    break loop37;
+            	    	    break loop31;
             	        }
             	    } while (true);
 
@@ -4880,20 +4714,20 @@ public class HaxeLexer extends Lexer {
             	    mPP_UNARY_EXPRESSION(); 
 
 
-            	    // Haxe.g:813:69: ( TS )*
-            	    loop38:
+            	    // Haxe.g:800:69: ( TS )*
+            	    loop32:
             	    do {
-            	        int alt38=2;
-            	        int LA38_0 = input.LA(1);
+            	        int alt32=2;
+            	        int LA32_0 = input.LA(1);
 
-            	        if ( (LA38_0=='\t'||LA38_0==' ') ) {
-            	            alt38=1;
+            	        if ( (LA32_0=='\t'||LA32_0==' ') ) {
+            	            alt32=1;
             	        }
 
 
-            	        switch (alt38) {
+            	        switch (alt32) {
             	    	case 1 :
-            	    	    // Haxe.g:813:69: TS
+            	    	    // Haxe.g:800:69: TS
             	    	    {
             	    	    mTS(); 
 
@@ -4902,7 +4736,7 @@ public class HaxeLexer extends Lexer {
             	    	    break;
 
             	    	default :
-            	    	    break loop38;
+            	    	    break loop32;
             	        }
             	    } while (true);
 
@@ -4911,7 +4745,7 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop39;
+            	    break loop33;
                 }
             } while (true);
 
@@ -4932,57 +4766,57 @@ public class HaxeLexer extends Lexer {
             CommonToken pe=null;
             CommonToken ue=null;
 
-            // Haxe.g:816:20: (pe= PP_PRIMARY_EXPRESSION | '!' ( TS )* ue= PP_UNARY_EXPRESSION )
-            int alt41=2;
-            int LA41_0 = input.LA(1);
+            // Haxe.g:803:20: (pe= PP_PRIMARY_EXPRESSION | '!' ( TS )* ue= PP_UNARY_EXPRESSION )
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( (LA41_0=='('||(LA41_0 >= 'A' && LA41_0 <= 'Z')||LA41_0=='_'||(LA41_0 >= 'a' && LA41_0 <= 'z')) ) {
-                alt41=1;
+            if ( (LA35_0=='('||(LA35_0 >= 'A' && LA35_0 <= 'Z')||LA35_0=='_'||(LA35_0 >= 'a' && LA35_0 <= 'z')) ) {
+                alt35=1;
             }
-            else if ( (LA41_0=='!') ) {
-                alt41=2;
+            else if ( (LA35_0=='!') ) {
+                alt35=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 41, 0, input);
+                    new NoViableAltException("", 35, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt41) {
+            switch (alt35) {
                 case 1 :
-                    // Haxe.g:817:5: pe= PP_PRIMARY_EXPRESSION
+                    // Haxe.g:804:5: pe= PP_PRIMARY_EXPRESSION
                     {
-                    int peStart2798 = getCharIndex();
-                    int peStartLine2798 = getLine();
-                    int peStartCharPos2798 = getCharPositionInLine();
+                    int peStart2722 = getCharIndex();
+                    int peStartLine2722 = getLine();
+                    int peStartCharPos2722 = getCharPositionInLine();
                     mPP_PRIMARY_EXPRESSION(); 
-                    pe = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, peStart2798, getCharIndex()-1);
-                    pe.setLine(peStartLine2798);
-                    pe.setCharPositionInLine(peStartCharPos2798);
+                    pe = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, peStart2722, getCharIndex()-1);
+                    pe.setLine(peStartLine2722);
+                    pe.setCharPositionInLine(peStartCharPos2722);
 
 
                     }
                     break;
                 case 2 :
-                    // Haxe.g:818:7: '!' ( TS )* ue= PP_UNARY_EXPRESSION
+                    // Haxe.g:805:7: '!' ( TS )* ue= PP_UNARY_EXPRESSION
                     {
                     match('!'); 
 
-                    // Haxe.g:818:13: ( TS )*
-                    loop40:
+                    // Haxe.g:805:13: ( TS )*
+                    loop34:
                     do {
-                        int alt40=2;
-                        int LA40_0 = input.LA(1);
+                        int alt34=2;
+                        int LA34_0 = input.LA(1);
 
-                        if ( (LA40_0=='\t'||LA40_0==' ') ) {
-                            alt40=1;
+                        if ( (LA34_0=='\t'||LA34_0==' ') ) {
+                            alt34=1;
                         }
 
 
-                        switch (alt40) {
+                        switch (alt34) {
                     	case 1 :
-                    	    // Haxe.g:818:13: TS
+                    	    // Haxe.g:805:13: TS
                     	    {
                     	    mTS(); 
 
@@ -4991,18 +4825,18 @@ public class HaxeLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop40;
+                    	    break loop34;
                         }
                     } while (true);
 
 
-                    int ueStart2819 = getCharIndex();
-                    int ueStartLine2819 = getLine();
-                    int ueStartCharPos2819 = getCharPositionInLine();
+                    int ueStart2743 = getCharIndex();
+                    int ueStartLine2743 = getLine();
+                    int ueStartCharPos2743 = getCharPositionInLine();
                     mPP_UNARY_EXPRESSION(); 
-                    ue = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, ueStart2819, getCharIndex()-1);
-                    ue.setLine(ueStartLine2819);
-                    ue.setCharPositionInLine(ueStartCharPos2819);
+                    ue = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, ueStart2743, getCharIndex()-1);
+                    ue.setLine(ueStartLine2743);
+                    ue.setCharPositionInLine(ueStartCharPos2743);
 
 
                      returns.push(!returns.pop()); 
@@ -5024,34 +4858,34 @@ public class HaxeLexer extends Lexer {
         try {
             CommonToken IDENTIFIER1=null;
 
-            // Haxe.g:822:22: ( IDENTIFIER | '(' PP_EXPRESSION ')' )
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            // Haxe.g:809:22: ( IDENTIFIER | '(' PP_EXPRESSION ')' )
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( ((LA42_0 >= 'A' && LA42_0 <= 'Z')||LA42_0=='_'||(LA42_0 >= 'a' && LA42_0 <= 'z')) ) {
-                alt42=1;
+            if ( ((LA36_0 >= 'A' && LA36_0 <= 'Z')||LA36_0=='_'||(LA36_0 >= 'a' && LA36_0 <= 'z')) ) {
+                alt36=1;
             }
-            else if ( (LA42_0=='(') ) {
-                alt42=2;
+            else if ( (LA36_0=='(') ) {
+                alt36=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 42, 0, input);
+                    new NoViableAltException("", 36, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt42) {
+            switch (alt36) {
                 case 1 :
-                    // Haxe.g:823:5: IDENTIFIER
+                    // Haxe.g:810:5: IDENTIFIER
                     {
-                    int IDENTIFIER1Start2840 = getCharIndex();
-                    int IDENTIFIER1StartLine2840 = getLine();
-                    int IDENTIFIER1StartCharPos2840 = getCharPositionInLine();
+                    int IDENTIFIER1Start2764 = getCharIndex();
+                    int IDENTIFIER1StartLine2764 = getLine();
+                    int IDENTIFIER1StartCharPos2764 = getCharPositionInLine();
                     mIDENTIFIER(); 
-                    IDENTIFIER1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, IDENTIFIER1Start2840, getCharIndex()-1);
-                    IDENTIFIER1.setLine(IDENTIFIER1StartLine2840);
-                    IDENTIFIER1.setCharPositionInLine(IDENTIFIER1StartCharPos2840);
+                    IDENTIFIER1 = new CommonToken(input, Token.INVALID_TOKEN_TYPE, Token.DEFAULT_CHANNEL, IDENTIFIER1Start2764, getCharIndex()-1);
+                    IDENTIFIER1.setLine(IDENTIFIER1StartLine2764);
+                    IDENTIFIER1.setCharPositionInLine(IDENTIFIER1StartCharPos2764);
 
 
                      
@@ -5062,7 +4896,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:828:7: '(' PP_EXPRESSION ')'
+                    // Haxe.g:815:7: '(' PP_EXPRESSION ')'
                     {
                     match('('); 
 
@@ -5086,8 +4920,8 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "EXPONENT"
     public final void mEXPONENT() throws RecognitionException {
         try {
-            // Haxe.g:836:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // Haxe.g:836:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // Haxe.g:823:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // Haxe.g:823:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -5099,14 +4933,14 @@ public class HaxeLexer extends Lexer {
             }
 
 
-            // Haxe.g:836:22: ( '+' | '-' )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            // Haxe.g:823:22: ( '+' | '-' )?
+            int alt37=2;
+            int LA37_0 = input.LA(1);
 
-            if ( (LA43_0=='+'||LA43_0=='-') ) {
-                alt43=1;
+            if ( (LA37_0=='+'||LA37_0=='-') ) {
+                alt37=1;
             }
-            switch (alt43) {
+            switch (alt37) {
                 case 1 :
                     // Haxe.g:
                     {
@@ -5126,19 +4960,19 @@ public class HaxeLexer extends Lexer {
             }
 
 
-            // Haxe.g:836:33: ( '0' .. '9' )+
-            int cnt44=0;
-            loop44:
+            // Haxe.g:823:33: ( '0' .. '9' )+
+            int cnt38=0;
+            loop38:
             do {
-                int alt44=2;
-                int LA44_0 = input.LA(1);
+                int alt38=2;
+                int LA38_0 = input.LA(1);
 
-                if ( ((LA44_0 >= '0' && LA44_0 <= '9')) ) {
-                    alt44=1;
+                if ( ((LA38_0 >= '0' && LA38_0 <= '9')) ) {
+                    alt38=1;
                 }
 
 
-                switch (alt44) {
+                switch (alt38) {
             	case 1 :
             	    // Haxe.g:
             	    {
@@ -5156,12 +4990,12 @@ public class HaxeLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt44 >= 1 ) break loop44;
+            	    if ( cnt38 >= 1 ) break loop38;
                         EarlyExitException eee =
-                            new EarlyExitException(44, input);
+                            new EarlyExitException(38, input);
                         throw eee;
                 }
-                cnt44++;
+                cnt38++;
             } while (true);
 
 
@@ -5178,7 +5012,7 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // Haxe.g:839:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // Haxe.g:826:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // Haxe.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -5204,11 +5038,11 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // Haxe.g:843:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
-            int alt45=3;
-            int LA45_0 = input.LA(1);
+            // Haxe.g:830:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            int alt39=3;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA45_0=='\\') ) {
+            if ( (LA39_0=='\\') ) {
                 switch ( input.LA(2) ) {
                 case '\"':
                 case '\'':
@@ -5219,12 +5053,12 @@ public class HaxeLexer extends Lexer {
                 case 'r':
                 case 't':
                     {
-                    alt45=1;
+                    alt39=1;
                     }
                     break;
                 case 'u':
                     {
-                    alt45=2;
+                    alt39=2;
                     }
                     break;
                 case '0':
@@ -5236,12 +5070,12 @@ public class HaxeLexer extends Lexer {
                 case '6':
                 case '7':
                     {
-                    alt45=3;
+                    alt39=3;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 45, 1, input);
+                        new NoViableAltException("", 39, 1, input);
 
                     throw nvae;
 
@@ -5250,14 +5084,14 @@ public class HaxeLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 45, 0, input);
+                    new NoViableAltException("", 39, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt45) {
+            switch (alt39) {
                 case 1 :
-                    // Haxe.g:843:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // Haxe.g:830:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
 
@@ -5274,7 +5108,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:844:9: UNICODE_ESC
+                    // Haxe.g:831:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
@@ -5282,7 +5116,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:845:9: OCTAL_ESC
+                    // Haxe.g:832:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -5302,43 +5136,43 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // Haxe.g:850:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
-            int alt46=3;
-            int LA46_0 = input.LA(1);
+            // Haxe.g:837:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            int alt40=3;
+            int LA40_0 = input.LA(1);
 
-            if ( (LA46_0=='\\') ) {
-                int LA46_1 = input.LA(2);
+            if ( (LA40_0=='\\') ) {
+                int LA40_1 = input.LA(2);
 
-                if ( ((LA46_1 >= '0' && LA46_1 <= '3')) ) {
-                    int LA46_2 = input.LA(3);
+                if ( ((LA40_1 >= '0' && LA40_1 <= '3')) ) {
+                    int LA40_2 = input.LA(3);
 
-                    if ( ((LA46_2 >= '0' && LA46_2 <= '7')) ) {
-                        int LA46_4 = input.LA(4);
+                    if ( ((LA40_2 >= '0' && LA40_2 <= '7')) ) {
+                        int LA40_4 = input.LA(4);
 
-                        if ( ((LA46_4 >= '0' && LA46_4 <= '7')) ) {
-                            alt46=1;
+                        if ( ((LA40_4 >= '0' && LA40_4 <= '7')) ) {
+                            alt40=1;
                         }
                         else {
-                            alt46=2;
+                            alt40=2;
                         }
                     }
                     else {
-                        alt46=3;
+                        alt40=3;
                     }
                 }
-                else if ( ((LA46_1 >= '4' && LA46_1 <= '7')) ) {
-                    int LA46_3 = input.LA(3);
+                else if ( ((LA40_1 >= '4' && LA40_1 <= '7')) ) {
+                    int LA40_3 = input.LA(3);
 
-                    if ( ((LA46_3 >= '0' && LA46_3 <= '7')) ) {
-                        alt46=2;
+                    if ( ((LA40_3 >= '0' && LA40_3 <= '7')) ) {
+                        alt40=2;
                     }
                     else {
-                        alt46=3;
+                        alt40=3;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 46, 1, input);
+                        new NoViableAltException("", 40, 1, input);
 
                     throw nvae;
 
@@ -5346,14 +5180,14 @@ public class HaxeLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 46, 0, input);
+                    new NoViableAltException("", 40, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt46) {
+            switch (alt40) {
                 case 1 :
-                    // Haxe.g:850:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // Haxe.g:837:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -5390,7 +5224,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Haxe.g:851:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // Haxe.g:838:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -5417,7 +5251,7 @@ public class HaxeLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Haxe.g:852:9: '\\\\' ( '0' .. '7' )
+                    // Haxe.g:839:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
 
@@ -5446,8 +5280,8 @@ public class HaxeLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // Haxe.g:857:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // Haxe.g:857:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // Haxe.g:844:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // Haxe.g:844:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
 
@@ -5477,9 +5311,9 @@ public class HaxeLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // Haxe.g:1:8: ( WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | EXTERN | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | TYPEDEF | UNTYPED | USING | VAR | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | GT | GTGT | LTLT | GTGTGT | LTLTEQ | GTGTEQ | GTGTGTEQ | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PP_IF | PP_ELSEIF | PP_ELSE | PP_END | PP_ERROR | PREPROCESSOR_DIRECTIVE )
-        int alt47=127;
-        alt47 = dfa47.predict(input);
-        switch (alt47) {
+        int alt41=127;
+        alt41 = dfa41.predict(input);
+        switch (alt41) {
             case 1 :
                 // Haxe.g:1:10: WS
                 {
@@ -6502,81 +6336,84 @@ public class HaxeLexer extends Lexer {
     }
 
 
-    protected DFA18 dfa18 = new DFA18(this);
+    protected DFA19 dfa19 = new DFA19(this);
     protected DFA25 dfa25 = new DFA25(this);
-    protected DFA31 dfa31 = new DFA31(this);
-    protected DFA47 dfa47 = new DFA47(this);
-    static final String DFA18_eotS =
-        "\5\uffff";
-    static final String DFA18_eofS =
-        "\5\uffff";
-    static final String DFA18_minS =
-        "\2\56\3\uffff";
-    static final String DFA18_maxS =
-        "\1\71\1\145\3\uffff";
-    static final String DFA18_acceptS =
-        "\2\uffff\1\2\1\1\1\3";
-    static final String DFA18_specialS =
-        "\5\uffff}>";
-    static final String[] DFA18_transitionS = {
-            "\1\2\1\uffff\12\1",
-            "\1\3\1\uffff\12\1\13\uffff\1\4\37\uffff\1\4",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] DFA18_eot = DFA.unpackEncodedString(DFA18_eotS);
-    static final short[] DFA18_eof = DFA.unpackEncodedString(DFA18_eofS);
-    static final char[] DFA18_min = DFA.unpackEncodedStringToUnsignedChars(DFA18_minS);
-    static final char[] DFA18_max = DFA.unpackEncodedStringToUnsignedChars(DFA18_maxS);
-    static final short[] DFA18_accept = DFA.unpackEncodedString(DFA18_acceptS);
-    static final short[] DFA18_special = DFA.unpackEncodedString(DFA18_specialS);
-    static final short[][] DFA18_transition;
-
-    static {
-        int numStates = DFA18_transitionS.length;
-        DFA18_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA18_transition[i] = DFA.unpackEncodedString(DFA18_transitionS[i]);
-        }
-    }
-
-    class DFA18 extends DFA {
-
-        public DFA18(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 18;
-            this.eot = DFA18_eot;
-            this.eof = DFA18_eof;
-            this.min = DFA18_min;
-            this.max = DFA18_max;
-            this.accept = DFA18_accept;
-            this.special = DFA18_special;
-            this.transition = DFA18_transition;
-        }
-        public String getDescription() {
-            return "679:1: FLOATNUM : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( EXPONENT )? | '.' ( '0' .. '9' )+ ( EXPONENT )? | ( '0' .. '9' )+ EXPONENT );";
-        }
-    }
-    static final String DFA25_eotS =
+    protected DFA41 dfa41 = new DFA41(this);
+    static final String DFA19_eotS =
         "\7\uffff";
-    static final String DFA25_eofS =
+    static final String DFA19_eofS =
         "\7\uffff";
-    static final String DFA25_minS =
+    static final String DFA19_minS =
         "\1\43\1\11\1\154\1\11\3\uffff";
-    static final String DFA25_maxS =
+    static final String DFA19_maxS =
         "\1\43\1\151\1\156\1\151\3\uffff";
-    static final String DFA25_acceptS =
+    static final String DFA19_acceptS =
         "\4\uffff\1\1\1\3\1\2";
-    static final String DFA25_specialS =
+    static final String DFA19_specialS =
         "\7\uffff}>";
-    static final String[] DFA25_transitionS = {
+    static final String[] DFA19_transitionS = {
             "\1\1",
             "\1\3\26\uffff\1\3\104\uffff\1\2\3\uffff\1\4",
             "\1\6\1\uffff\1\5",
             "\1\3\26\uffff\1\3\104\uffff\1\6\3\uffff\1\4",
             "",
+            "",
+            ""
+    };
+
+    static final short[] DFA19_eot = DFA.unpackEncodedString(DFA19_eotS);
+    static final short[] DFA19_eof = DFA.unpackEncodedString(DFA19_eofS);
+    static final char[] DFA19_min = DFA.unpackEncodedStringToUnsignedChars(DFA19_minS);
+    static final char[] DFA19_max = DFA.unpackEncodedStringToUnsignedChars(DFA19_maxS);
+    static final short[] DFA19_accept = DFA.unpackEncodedString(DFA19_acceptS);
+    static final short[] DFA19_special = DFA.unpackEncodedString(DFA19_specialS);
+    static final short[][] DFA19_transition;
+
+    static {
+        int numStates = DFA19_transitionS.length;
+        DFA19_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA19_transition[i] = DFA.unpackEncodedString(DFA19_transitionS[i]);
+        }
+    }
+
+    class DFA19 extends DFA {
+
+        public DFA19(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 19;
+            this.eot = DFA19_eot;
+            this.eof = DFA19_eof;
+            this.min = DFA19_min;
+            this.max = DFA19_max;
+            this.accept = DFA19_accept;
+            this.special = DFA19_special;
+            this.transition = DFA19_transition;
+        }
+        public String getDescription() {
+            return "720:5: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )";
+        }
+    }
+    static final String DFA25_eotS =
+        "\6\uffff\1\10\2\uffff";
+    static final String DFA25_eofS =
+        "\11\uffff";
+    static final String DFA25_minS =
+        "\1\43\2\11\1\154\1\163\1\145\1\151\2\uffff";
+    static final String DFA25_maxS =
+        "\1\43\2\145\1\154\1\163\1\145\1\151\2\uffff";
+    static final String DFA25_acceptS =
+        "\7\uffff\1\2\1\1";
+    static final String DFA25_specialS =
+        "\11\uffff}>";
+    static final String[] DFA25_transitionS = {
+            "\1\1",
+            "\1\2\26\uffff\1\2\104\uffff\1\3",
+            "\1\2\26\uffff\1\2\104\uffff\1\3",
+            "\1\4",
+            "\1\5",
+            "\1\6",
+            "\1\7",
             "",
             ""
     };
@@ -6611,67 +6448,10 @@ public class HaxeLexer extends Lexer {
             this.transition = DFA25_transition;
         }
         public String getDescription() {
-            return "733:5: ( IF_TOKEN | ELSE_TOKEN | ENDIF_TOKEN )";
+            return "738:5: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )";
         }
     }
-    static final String DFA31_eotS =
-        "\6\uffff\1\10\2\uffff";
-    static final String DFA31_eofS =
-        "\11\uffff";
-    static final String DFA31_minS =
-        "\1\43\2\11\1\154\1\163\1\145\1\151\2\uffff";
-    static final String DFA31_maxS =
-        "\1\43\2\145\1\154\1\163\1\145\1\151\2\uffff";
-    static final String DFA31_acceptS =
-        "\7\uffff\1\2\1\1";
-    static final String DFA31_specialS =
-        "\11\uffff}>";
-    static final String[] DFA31_transitionS = {
-            "\1\1",
-            "\1\2\26\uffff\1\2\104\uffff\1\3",
-            "\1\2\26\uffff\1\2\104\uffff\1\3",
-            "\1\4",
-            "\1\5",
-            "\1\6",
-            "\1\7",
-            "",
-            ""
-    };
-
-    static final short[] DFA31_eot = DFA.unpackEncodedString(DFA31_eotS);
-    static final short[] DFA31_eof = DFA.unpackEncodedString(DFA31_eofS);
-    static final char[] DFA31_min = DFA.unpackEncodedStringToUnsignedChars(DFA31_minS);
-    static final char[] DFA31_max = DFA.unpackEncodedStringToUnsignedChars(DFA31_maxS);
-    static final short[] DFA31_accept = DFA.unpackEncodedString(DFA31_acceptS);
-    static final short[] DFA31_special = DFA.unpackEncodedString(DFA31_specialS);
-    static final short[][] DFA31_transition;
-
-    static {
-        int numStates = DFA31_transitionS.length;
-        DFA31_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA31_transition[i] = DFA.unpackEncodedString(DFA31_transitionS[i]);
-        }
-    }
-
-    class DFA31 extends DFA {
-
-        public DFA31(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 31;
-            this.eot = DFA31_eot;
-            this.eof = DFA31_eof;
-            this.min = DFA31_min;
-            this.max = DFA31_max;
-            this.accept = DFA31_accept;
-            this.special = DFA31_special;
-            this.transition = DFA31_transition;
-        }
-        public String getDescription() {
-            return "751:5: ( '#' ( TS )* e= 'else' | '#' ( TS )* 'elseif' ( TS )+ PP_EXPRESSION )";
-        }
-    }
-    static final String DFA47_eotS =
+    static final String DFA41_eotS =
         "\1\67\1\uffff\2\72\1\uffff\26\64\10\uffff\1\157\1\161\1\163\3\uffff"+
         "\1\166\1\171\1\174\1\u0080\1\u0082\1\u0085\1\u0087\1\u0089\1\uffff"+
         "\1\u008c\1\u008f\10\uffff\1\72\1\u0093\1\uffff\1\72\11\64\1\u009f"+
@@ -6695,9 +6475,9 @@ public class HaxeLexer extends Lexer {
         "\1\u01a8\4\uffff\1\u01a9\3\64\2\uffff\1\64\1\u01ae\1\u01af\1\64"+
         "\2\uffff\1\u01b1\4\uffff\2\64\1\u01b4\1\u01b5\2\uffff\1\u01b6\1"+
         "\uffff\1\u01b7\1\u01b8\5\uffff";
-    static final String DFA47_eofS =
+    static final String DFA41_eofS =
         "\u01b9\uffff";
-    static final String DFA47_minS =
+    static final String DFA41_minS =
         "\1\11\1\uffff\2\56\1\uffff\1\142\1\157\1\162\1\141\1\145\1\154\1"+
         "\141\1\154\1\157\1\146\1\156\1\157\2\141\1\145\1\150\1\166\1\150"+
         "\1\156\1\141\1\157\1\150\10\uffff\1\56\2\75\3\uffff\1\46\1\75\1"+
@@ -6731,10 +6511,10 @@ public class HaxeLexer extends Lexer {
         "\1\uffff\1\145\1\uffff\1\156\2\60\1\145\1\11\2\60\4\uffff\1\60\1"+
         "\164\1\157\1\145\2\uffff\1\144\2\60\1\164\2\uffff\1\60\4\uffff\1"+
         "\163\1\146\2\60\2\uffff\1\60\1\uffff\2\60\5\uffff";
-    static final String DFA47_maxS =
+    static final String DFA41_maxS =
         "\1\176\1\uffff\1\170\1\154\1\uffff\1\142\1\157\1\171\1\157\1\171"+
         "\1\170\1\165\1\154\1\157\2\156\1\157\2\165\1\145\1\167\1\166\1\171"+
-        "\1\163\2\157\1\150\10\uffff\1\71\2\75\3\uffff\1\75\1\174\1\75\1"+
+        "\1\163\2\157\1\150\10\uffff\1\56\2\75\3\uffff\1\75\1\174\1\75\1"+
         "\76\4\75\1\uffff\1\76\1\75\2\uffff\1\151\1\uffff\2\146\2\uffff\1"+
         "\154\1\145\1\uffff\1\154\1\163\1\157\1\145\2\164\2\141\1\156\1\146"+
         "\1\172\1\156\1\163\1\165\1\164\1\156\1\162\1\154\1\156\1\157\1\164"+
@@ -6766,7 +6546,7 @@ public class HaxeLexer extends Lexer {
         "\1\40\2\172\4\uffff\1\172\1\164\1\157\1\145\2\uffff\1\144\2\172"+
         "\1\164\2\uffff\1\172\4\uffff\1\163\1\146\2\172\2\uffff\1\172\1\uffff"+
         "\2\172\5\uffff";
-    static final String DFA47_acceptS =
+    static final String DFA41_acceptS =
         "\1\uffff\1\1\2\uffff\1\4\26\uffff\1\103\1\104\1\105\1\106\1\107"+
         "\1\110\1\111\1\112\3\uffff\1\117\1\120\1\121\10\uffff\1\150\2\uffff"+
         "\1\165\1\171\1\uffff\1\177\2\uffff\1\3\1\2\2\uffff\1\167\57\uffff"+
@@ -6786,9 +6566,9 @@ public class HaxeLexer extends Lexer {
         "\1\63\7\uffff\1\17\1\54\1\24\1\27\4\uffff\1\44\1\45\4\uffff\1\66"+
         "\1\67\1\uffff\1\173\1\5\1\16\1\101\4\uffff\1\56\1\55\1\uffff\1\73"+
         "\2\uffff\1\40\1\46\1\64\1\34\1\36";
-    static final String DFA47_specialS =
+    static final String DFA41_specialS =
         "\u01b9\uffff}>";
-    static final String[] DFA47_transitionS = {
+    static final String[] DFA41_transitionS = {
             "\2\1\2\uffff\1\1\22\uffff\1\1\1\45\1\65\1\66\1\uffff\1\60\1"+
             "\51\1\4\1\33\1\34\1\55\1\53\1\42\1\54\1\43\1\56\1\2\11\3\1\50"+
             "\1\41\1\63\1\44\1\62\1\47\1\61\1\64\1\6\3\64\1\14\2\64\1\17"+
@@ -6832,7 +6612,7 @@ public class HaxeLexer extends Lexer {
             "",
             "",
             "",
-            "\1\156\1\uffff\12\76",
+            "\1\156",
             "\1\160",
             "\1\162",
             "",
@@ -7245,34 +7025,34 @@ public class HaxeLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA47_eot = DFA.unpackEncodedString(DFA47_eotS);
-    static final short[] DFA47_eof = DFA.unpackEncodedString(DFA47_eofS);
-    static final char[] DFA47_min = DFA.unpackEncodedStringToUnsignedChars(DFA47_minS);
-    static final char[] DFA47_max = DFA.unpackEncodedStringToUnsignedChars(DFA47_maxS);
-    static final short[] DFA47_accept = DFA.unpackEncodedString(DFA47_acceptS);
-    static final short[] DFA47_special = DFA.unpackEncodedString(DFA47_specialS);
-    static final short[][] DFA47_transition;
+    static final short[] DFA41_eot = DFA.unpackEncodedString(DFA41_eotS);
+    static final short[] DFA41_eof = DFA.unpackEncodedString(DFA41_eofS);
+    static final char[] DFA41_min = DFA.unpackEncodedStringToUnsignedChars(DFA41_minS);
+    static final char[] DFA41_max = DFA.unpackEncodedStringToUnsignedChars(DFA41_maxS);
+    static final short[] DFA41_accept = DFA.unpackEncodedString(DFA41_acceptS);
+    static final short[] DFA41_special = DFA.unpackEncodedString(DFA41_specialS);
+    static final short[][] DFA41_transition;
 
     static {
-        int numStates = DFA47_transitionS.length;
-        DFA47_transition = new short[numStates][];
+        int numStates = DFA41_transitionS.length;
+        DFA41_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA47_transition[i] = DFA.unpackEncodedString(DFA47_transitionS[i]);
+            DFA41_transition[i] = DFA.unpackEncodedString(DFA41_transitionS[i]);
         }
     }
 
-    class DFA47 extends DFA {
+    class DFA41 extends DFA {
 
-        public DFA47(BaseRecognizer recognizer) {
+        public DFA41(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 47;
-            this.eot = DFA47_eot;
-            this.eof = DFA47_eof;
-            this.min = DFA47_min;
-            this.max = DFA47_max;
-            this.accept = DFA47_accept;
-            this.special = DFA47_special;
-            this.transition = DFA47_transition;
+            this.decisionNumber = 41;
+            this.eot = DFA41_eot;
+            this.eof = DFA41_eof;
+            this.min = DFA41_min;
+            this.max = DFA41_max;
+            this.accept = DFA41_accept;
+            this.special = DFA41_special;
+            this.transition = DFA41_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( WS | LONGLITERAL | INTLITERAL | CHARLITERAL | ABSTRACT | BOOLEAN | BREAK | BYTE | CASE | CATCH | CHAR | CLASS | CONST | CONTINUE | DEFAULT | DO | DOUBLE | ELSE | ENUM | EXTENDS | EXTERN | FINAL | FINALLY | FLOAT | FOR | GOTO | IF | IMPLEMENTS | IMPORT | INSTANCEOF | INT | INTERFACE | LONG | NATIVE | NEW | PACKAGE | PRIVATE | PROTECTED | PUBLIC | RETURN | SHORT | STATIC | INLINE | DYNAMIC | OVERRIDE | STRICTFP | SUPER | SWITCH | THIS | THROW | THROWS | TRANSIENT | TRY | TYPEDEF | UNTYPED | USING | VAR | VOID | VOLATILE | WHILE | TRUE | FALSE | NULL | CAST | FUNCTION | IN | LPAREN | RPAREN | LBRACE | RBRACE | LBRACKET | RBRACKET | SEMI | COMMA | DOT | ELLIPSIS | EQ | BANG | TILDE | QUES | COLON | EQEQ | AMPAMP | BARBAR | PLUSPLUS | SUBSUB | PLUS | SUB | STAR | SLASH | AMP | BAR | CARET | PERCENT | PLUSEQ | SUBEQ | STAREQ | SLASHEQ | AMPEQ | BAREQ | CARETEQ | PERCENTEQ | BANGEQQ | MONKEYS_AT | BANGEQ | MINUS_BIGGER | GT | GTGT | LTLT | GTGTGT | LTLTEQ | GTGTEQ | GTGTGTEQ | GTEQ | LTEQ | LT | IDENTIFIER | INTNUM | FLOATNUM | COMMENT | STRINGLITERAL | PP_IF | PP_ELSEIF | PP_ELSE | PP_END | PP_ERROR | PREPROCESSOR_DIRECTIVE );";

@@ -146,9 +146,6 @@ assignOp        : EQ       -> EQ<AssignOperationNode>
                 
 funcLit         : FUNCTION<FunctionNode>^ LPAREN! paramList? RPAREN! typeTag? block
                 ;
-
-arrayLit        : LBRACKET! exprList? RBRACKET!
-                ;
 /*
 ! -------------- Preprocessor----------------------------------
 ! Not actually implemented as a preprocessor though.
@@ -214,7 +211,7 @@ statement
     |    (assignExpr|expr) SEMI!
     |    varDecl
                 | IF<IfNode>^ parExpression statement (ELSE! statement)?
-                | FOR LPAREN exp1=expr IN exp2=expr RPAREN statement -> ^(FOR<ForNode> ^(IN $exp1 $exp2) statement)
+                | FOR LPAREN expr IN iterExpr RPAREN statement -> ^(FOR<ForNode> expr iterExpr statement)
                 | WHILE<WhileNode>^ parExpression statement
                 | DO<DoWhileNode>^ statement WHILE! parExpression SEMI!
                 | TRY<TryNode>^ block catchStmt+
@@ -256,12 +253,7 @@ expr            : UNTYPED^ assignExpr
                 | assignExpr
                 ;
 
-assignExpr      : iterExpr (assignOp^ iterExpr)? 
-                ;
-    
-// TODO: should it be after logicAndExpr ????
-iterExpr        : ternaryExpr (
-                    ELLIPSIS<BinaryExpressionNode>^ ternaryExpr)?
+assignExpr      : ternaryExpr (assignOp^ ternaryExpr)?
                 ;
 
 ternaryExpr     : logicOrExpr (QUES^ expr COLON! ternaryExpr)?
@@ -270,7 +262,10 @@ ternaryExpr     : logicOrExpr (QUES^ expr COLON! ternaryExpr)?
 logicOrExpr     : logicAndExpr (BARBAR<BinaryExpressionNode>^ logicAndExpr)*
                 ;
     
-logicAndExpr    : cmpExpr(AMPAMP<BinaryExpressionNode>^ cmpExpr)*
+logicAndExpr    : iterExpr(AMPAMP<BinaryExpressionNode>^ iterExpr)*
+                ;
+                
+iterExpr        : cmpExpr (ELLIPSIS<BinaryExpressionNode>^ cmpExpr)?
                 ;
     
 cmpExpr         : bitExpr ((
@@ -318,30 +313,25 @@ prefixExpr      : NEW^ type LPAREN! exprList? RPAREN!
                 | CAST^ LPAREN! expr (COMMA! funcType)? RPAREN!
                 | methodCallOrSlice
                 ;
-            
+                
 methodCallOrSlice 
-                : value (
-              (LPAREN exprList? RPAREN pureCallOrSlice?
-            -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?))
-            | (LBRACKET expr RBRACKET pureCallOrSlice? 
-            -> ^(SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr pureCallOrSlice?))
-            | (DOT methodCallOrSlice
-            -> ^(value methodCallOrSlice)))
+                : value LPAREN exprList? RPAREN pureCallOrSlice?
+            -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
+                | value LBRACKET expr RBRACKET pureCallOrSlice? 
+            -> ^(SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr pureCallOrSlice?)
+                | value pureCallOrSlice -> ^(value pureCallOrSlice)
                 | value
                 ;
 
-pureCallOrSlice : LPAREN exprList? RPAREN pureCallOrSlice? 
-                -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] exprList? pureCallOrSlice?)
-                |LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
+pureCallOrSlice : LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
                 SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr pureCallOrSlice?)
-                |DOT! methodCallOrSlice
+                | DOT! methodCallOrSlice
                 ;
 
 value
     //|   RegexLit?
     :   objLit
     | funcLit
-    | arrayLit
     |   elementarySymbol
     |   LPAREN! (expr|statement) RPAREN!
     // TODO: if id is in callAlSlice and else we can't use THIS
@@ -520,11 +510,6 @@ fragment
 LongSuffix
     :   'l' | 'L'
     ;
-    
-fragment 
-Exponent    
-    :   ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ 
-    ; 
 
 CHARLITERAL
     :   '\'' 
@@ -670,17 +655,19 @@ LTEQ    :   '<=';
 LT      :   '<';     
 
 IDENTIFIER
-    :  ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+    :  ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|DIGIT|'_')*
     ;
     
-INTNUM    :    '0'..'9'+
-    ;
+INTNUM      : DIGIT+
+            ;
 
-FLOATNUM
-    :   ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
-    |   '.' ('0'..'9')+ EXPONENT?
-    |   ('0'..'9')+ EXPONENT
-    ;
+fragment
+DIGIT : '0'..'9' ;
+
+            //haxe allow .1 as a float, but for antlr it's hard to
+            //properly forsee that, so we restrict to have a num first
+FLOATNUM    : DIGIT+ (EXPONENT | DOT DIGIT DIGIT*)
+            ;
 
 COMMENT
     :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}

@@ -37,10 +37,4 @@ public class ConstantNode extends HaxeTree {
 		    setHaxeType(constantType);
 		}
 	}
-	
-	public ConstantNode getClone() {
-		ConstantNode constant = new ConstantNode(getToken());
-		constant.setHaxeType(getHaxeType());
-		return constant;
-	}
 }

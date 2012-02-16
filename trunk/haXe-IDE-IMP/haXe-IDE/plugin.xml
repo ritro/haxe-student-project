@@ -8,7 +8,8 @@
             icon="/haXe-IDE/haxeSymbol.PNG"
             extensions="hx"
             description="haxe lang"
-            language="haxe">
+            natureID="imp.nature"
+            language="haXe">
       </language>
    </extension>
    <extension
@@ -17,35 +18,35 @@
          point="org.eclipse.imp.runtime.parser">
       <parser
             class="haxe.imp.parser.HaxeParseController"
-            language="haxe">
+            language="haXe">
       </parser>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
             class="haxe.imp.utilsImplementations.HaxeTokenColorer"
-            language="haxe">
+            language="haXe">
       </tokenColorer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.modelTreeBuilder">
       <treeBuilder
             class="haxe.imp.treeModelBuilder.HaxeTreeModelBuilder"
-            language="haxe">
+            language="haXe">
       </treeBuilder>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.labelProvider">
       <labelProvider
             class="haxe.imp.treeModelBuilder.HaxeLabelProvider"
-            language="haxe">
+            language="haXe">
       </labelProvider>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
             class="haxe.imp.utilsImplementations.HaxeFoldingUpdater"
-            language="haxe">
+            language="haXe">
       </foldingUpdater>
    </extension>
    <extension
@@ -59,7 +60,7 @@
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
             class="haxe.imp.utilsImplementations.HaxeContentProposer"
-            language="haxe">
+            language="haXe">
       </proposer>
    </extension>
    <extension
@@ -68,7 +69,7 @@
          point="org.eclipse.imp.runtime.hoverHelper">
       <hoverHelper
             class="haxe.imp.utilsImplementations.HaxeHoverHelper"
-            language="haxe">
+            language="haXe">
       </hoverHelper>
    </extension>
    <extension
@@ -86,7 +87,7 @@
          point="org.eclipse.imp.runtime.documentationProvider">
       <docProvider
             class="haxe.imp.utilsImplementations.HelperDocumentationProvider"
-            language="haxe">
+            language="haXe">
       </docProvider>
    </extension>
    <extension
@@ -105,7 +106,7 @@
    </extension>
    <extension
          id="imp.nature"
-         name="haxe Nature"
+         name="haxeNature"
          point="org.eclipse.core.resources.natures">
       <builder
             id="haXe_IDE.haxe.imp.builder">
@@ -147,6 +148,21 @@
                id="haxe.imp.actions.enableNatureAction">
          </action>
       </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="haXe"
+            id="haxeplugin.category.wizards">
+      </category>
+      <wizard
+            name="haXe Project"
+            icon="icons/haxe_file.gif"
+            category="haxeplugin.category.wizards"
+            class="haxe.ide.HaxeProjectWizard"
+            hasPages="true"
+            id="haxeplugin.wizards.newproject">
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">

@@ -12,9 +12,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.jdt.core.compiler.InvalidInputException;
 
 public class HaxeProjectCreator
 {
@@ -29,25 +33,33 @@ public class HaxeProjectCreator
      * @param location - custom location or null for default location
      * @return
      */
-    public static IProject createProject(String projectName, URI location) {
+    public static HaxeProject createProject(String projectName, URI location) {
         //due to some bug we can't use Asserts here 0_0        
         if (projectName == null || projectName.trim().isEmpty())
         {
             throw new NullPointerException();
         }
 
-        IProject project = createBaseProject(projectName, location);
+        IProject baseProject = createBaseProject(projectName, location);
+        HaxeProject project = new HaxeProject(baseProject);
         try {
-            addNature(project);
+            addNature(baseProject);
 
             //here the initial structure for project should be
             String[] paths = { "src/" };
-            addToProjectStructure(project, paths);
-            //TODO: generate and add build.hxml file
+            addToProjectStructure(baseProject, paths);
+            //generate and add build.hxml file
+            IFile buildfile = createBuildFile(baseProject, "compile.hxml");
+            project.setBuildFile(buildfile);
             //TODO: find haxe compiler and attach it or inform user about not found
         } catch (CoreException e) {
             e.printStackTrace();
-            project = null;
+            baseProject = null;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            baseProject = null;
         }
 
         return project;
@@ -84,25 +96,33 @@ public class HaxeProjectCreator
         return newProject;
     }
     
-    /*
-    public IHaxeBuildFile createBuildFile(String fileName, String initialContent)
-            throws CoreException 
+    public static IFile createBuildFile(IProject project, String fileName)
+            throws NullPointerException,  InvalidInputException, CoreException
+    {         
+        return createBuildFile(project, fileName, 
+                createDefaultHxmlContent(project.getName(), project.getFullPath().toString(), project.getFullPath().toString()));
+    }    
+    
+    public static IFile createBuildFile(IProject project, String fileName, String initialContent)
+            throws NullPointerException,  InvalidInputException, CoreException
     {    
-        if (!HaxeElementValidator.validateBuildFileName(fileName).isOK()) 
+        if (fileName == null || fileName.trim().isEmpty())
         {
-            throw new CoreException(new Status(
-                            IStatus.ERROR, EclihxCore.PLUGIN_ID,
-                            "Build file name is invalid"));
-        }               
+            throw new NullPointerException("Build file name is invalid");
+        }
+        
+        if (!fileName.endsWith(".hxml"))
+        {
+            throw new InvalidInputException("Build file extention should be '.hxml'");
+        }
     
         InputStream stream = new ByteArrayInputStream((initialContent).getBytes());
-                        
-        IFile buildFile = fProject.getFile(fileName);
-        buildFile.create(stream, true, monitor);
+
+        IFile buildFile = project.getFile(fileName);
+        buildFile.create(stream, true, null);
         
-        HaxeBuildFile haxeBuildFile = new HaxeBuildFile(this, buildFile);                                       
-        return haxeBuildFile;
-    }*/
+        return buildFile;
+    }
     
     private static String getConcatenatedPath(String parentPath, String childPath) 
     {

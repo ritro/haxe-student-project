@@ -15,7 +15,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutableExtension
 {
 
-    private WizardNewProjectCreationPage pageOne;
+    private ProjectCreationPage pageOne;
     private IConfigurationElement _configurationElement;
 
     public HaxeProjectWizard() 
@@ -27,12 +27,7 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
     public void addPages() {
         super.addPages();
 
-        pageOne = new WizardNewProjectCreationPage("New haXe project");
-        pageOne.setTitle("Create a haXe project");
-        pageOne.setDescription(
-                "Create a haXe project in the workspace or in an " +
-                "external location.");
-        pageOne.setInitialProjectName("TestingHaxeCreateProject");
+        pageOne = new ProjectCreationPage();
 
         addPage(pageOne);
     }

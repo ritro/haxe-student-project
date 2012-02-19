@@ -10,7 +10,6 @@
  *******************************************************************************/
 package haxe.imp.utilsImplementations;
 
-import haxe.ide.Activator;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
@@ -32,6 +31,8 @@ import org.eclipse.imp.services.base.HoverHelperBase;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
+
+import workspace.Activator;
 
 /**
  * The Class HaxeHoverHelper.

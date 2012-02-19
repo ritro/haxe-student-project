@@ -144,7 +144,7 @@
          <action
                label="Enable haxe Builder"
                tooltip="Enable the haxe builder for this project"
-               class="haxe.imp.actions.EnableHaxeNature"
+               class="workspace.EnableHaxeNature"
                id="haxe.imp.actions.enableNatureAction">
          </action>
       </objectContribution>
@@ -159,7 +159,7 @@
             name="haXe Project"
             icon="icons/haxe_file.gif"
             category="haxeplugin.category.wizards"
-            class="haxe.ide.HaxeProjectWizard"
+            class="wizards.HaxeProjectWizard"
             hasPages="true"
             id="haxeplugin.wizards.newproject">
       </wizard>

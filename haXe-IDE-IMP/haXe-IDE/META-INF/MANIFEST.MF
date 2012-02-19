@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: HaXe_IDE
 Bundle-SymbolicName: haXe_IDE;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: haxe.ide.Activator
+Bundle-Activator: workspace.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,

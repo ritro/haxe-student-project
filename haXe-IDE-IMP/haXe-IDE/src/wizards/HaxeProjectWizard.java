@@ -1,7 +1,9 @@
-package haxe.ide;
+package wizards;
+
 
 import java.net.URI;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
@@ -9,8 +11,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
+
+import workspace.HaxeProjectCreator;
+import workspace.elements.HaxeProject;
 
 public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutableExtension
 {
@@ -49,11 +53,36 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
         } // else location == null
 
         try
-        {
-            HaxeProjectCreator.createProject(name, location);
+        {            
+            String buildFileName = pageOne.getBuildFileName();
+            String srcFolder = pageOne.getSrcFolder();
+            String outFolder = pageOne.getOutputFolder();
+            HaxeProject project = HaxeProjectCreator.createProject(name, location);
+            
+            // creating build file
+            IFile buildFile = HaxeProjectCreator.createBuildFile(
+                    project, buildFileName, project.getName(),
+                    srcFolder, outFolder,
+                    pageOne.getSelectedTarget(),
+                    pageOne.getMainFileName());
+            project.setBuildFile(buildFile);
+            
+            // here the initial structure for project should be
+            String[] struct = {srcFolder, outFolder};
+            project.createFolders(struct);
+            
+            // create main file and add it to the project
+            project.createFile(pageOne.getMainFileName() + ".hx");
+            
+            //TODO: find haxe compiler and attach it or inform user about not found
         } catch (NullPointerException e)
         {
             //either name is null or empty
+            return false;
+        }
+        catch (CoreException e)
+        {
+            e.printStackTrace();
             return false;
         }
 

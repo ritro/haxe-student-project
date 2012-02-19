@@ -5,7 +5,8 @@ package haxe.imp.preferences;
 
 import org.eclipse.imp.preferences.PreferencesInitializer;
 import org.eclipse.imp.preferences.IPreferencesService;
-import haxe.ide.Activator;
+
+import workspace.Activator;
 
 /**
  * Initializations of default values for preferences.

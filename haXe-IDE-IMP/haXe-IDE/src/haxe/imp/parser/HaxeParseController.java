@@ -10,7 +10,6 @@
  *******************************************************************************/
 package haxe.imp.parser;
 
-import haxe.ide.Activator;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
@@ -38,6 +37,8 @@ import org.eclipse.imp.parser.SimpleAnnotationTypeInfo;
 import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
+
+import workspace.Activator;
 
 /**
  * NOTE: This version of the Parse Controller is for use when the Parse

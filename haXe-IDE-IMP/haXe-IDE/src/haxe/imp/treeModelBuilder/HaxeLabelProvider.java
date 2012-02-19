@@ -143,16 +143,17 @@ public class HaxeLabelProvider implements ILabelProvider {
 			AssignOperationNode stmt = (AssignOperationNode) n;
 			return stmt.getText() + "=";//;+ stmt.getText() ??????????
 		} else*/ if (n instanceof ClassNode) {
-			return "Class " + ((ClassNode) n).getClassName();
+			return ((ClassNode) n).getClassName();
 		} else if (n instanceof FunctionNode) 
 		{
 			FunctionNode hdr = (FunctionNode) n;
 			return hdr.getFullNameWithParameters();
-		} /*else if (n instanceof VarDeclaration) {
-			VarDeclaration varDeclaration = (VarDeclaration) n;
+		} else if (n instanceof VarDeclarationNode) {
+			VarDeclarationNode varDeclaration = (VarDeclarationNode) n;
 			return varDeclaration.getNameWithType();
-		}else*/
-		return "<??no label yet??>";
+		}
+		
+		return "<??unknown??>";
 	}
 
 	/*

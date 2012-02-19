@@ -5,11 +5,11 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            icon="/haXe-IDE/haxeSymbol.PNG"
-            extensions="hx"
             description="haxe lang"
-            natureID="imp.nature"
-            language="haXe">
+            extensions="hx"
+            icon="/haXe-IDE/haxeSymbol.PNG"
+            language="haXe"
+            natureID="haXe_IDE.imp.nature">
       </language>
    </extension>
    <extension
@@ -91,7 +91,7 @@
       </docProvider>
    </extension>
    <extension
-         id="haxe.imp.builder"
+         id="imp.builder"
          name="Haxe builder"
          point="org.eclipse.core.resources.builders">
       <builder>
@@ -109,7 +109,7 @@
          name="haxeNature"
          point="org.eclipse.core.resources.natures">
       <builder
-            id="haXe_IDE.haxe.imp.builder">
+            id="haXe_IDE.imp.builder">
       </builder>
       <runtime>
          <run
@@ -171,6 +171,14 @@
             class="haxe.imp.preferences.HaxePreferencePage"
             id="haxe.imp.preferences.Haxe">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/haxe_folder.png"
+            id="haXe_IDE.natureImage"
+            natureId="haXe_IDE.imp.nature">
+      </image>
    </extension>
 
 </plugin>

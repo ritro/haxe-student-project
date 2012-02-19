@@ -11,9 +11,14 @@
 package workspace;
 
 
+import java.util.HashMap;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.imp.runtime.PluginBase;
 import org.osgi.framework.BundleContext;
 
+import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
 
 /**
@@ -45,6 +50,13 @@ public class Activator extends PluginBase {
 		}
 		return sPlugin;
 	}
+	
+	private HashMap<String, HaxeProject> projects;
+	
+	public HashMap<String, HaxeProject> getProjects()
+	{
+	    return projects;
+	}
 
 	/**
 	 * Instantiates a new activator.
@@ -52,6 +64,8 @@ public class Activator extends PluginBase {
 	public Activator() { 
 		super();
 		sPlugin = this;
+		
+		projects = new HashMap<String, HaxeProject>();
 	}
 
 	/*
@@ -64,6 +78,14 @@ public class Activator extends PluginBase {
 	@Override
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
+		
+		// TODO: dig projects structure here, make IProject to HaxePr maker
+		// and create build files first in the wizard and then make such way
+		for (IProject p : ResourcesPlugin.getWorkspace().getRoot().getProjects())
+		{
+		    HaxeProject pr = new HaxeProject(p);
+		    projects.put(p.getName(), pr);
+		}
 	}
 
 	/*

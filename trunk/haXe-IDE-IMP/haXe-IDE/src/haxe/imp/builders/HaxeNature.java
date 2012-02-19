@@ -7,7 +7,8 @@ import org.eclipse.imp.runtime.IPluginLog;
 
 import org.eclipse.imp.smapifier.builder.SmapiProjectNature;
 
-import haxe.ide.Activator;
+import workspace.Activator;
+
 
 public class HaxeNature extends ProjectNatureBase {
 	public static final String k_natureID = Activator.kPluginID + ".imp.nature";

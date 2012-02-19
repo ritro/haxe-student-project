@@ -1,4 +1,4 @@
-package haxe.imp.actions;
+package workspace;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaProject;

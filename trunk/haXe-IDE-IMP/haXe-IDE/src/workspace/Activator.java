@@ -8,10 +8,13 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.ide;
+package workspace;
+
 
 import org.eclipse.imp.runtime.PluginBase;
 import org.osgi.framework.BundleContext;
+
+import workspace.elements.IHaxeResources;
 
 /**
  * The Class Activator.

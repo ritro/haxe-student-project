@@ -10,8 +10,6 @@
  *******************************************************************************/
 package haxe.imp.treeModelBuilder;
 
-import haxe.ide.Activator;
-import haxe.ide.IHaxeResources;
 import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
@@ -32,6 +30,9 @@ import org.eclipse.imp.utils.MarkerUtils;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
+
+import workspace.Activator;
+import workspace.elements.IHaxeResources;
 
 // TODO: Auto-generated Javadoc
 /**

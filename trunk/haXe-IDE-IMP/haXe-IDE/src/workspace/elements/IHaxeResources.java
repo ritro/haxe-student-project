@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.ide;
+package workspace.elements;
 
 /**
  * The Interface IHaxeResources.

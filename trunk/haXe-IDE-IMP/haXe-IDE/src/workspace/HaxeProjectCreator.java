@@ -2,9 +2,6 @@ package workspace;
 
 import haxe.imp.builders.HaxeNature;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.InputStream;
 import java.net.URI;
 
 import org.eclipse.core.resources.IFile;

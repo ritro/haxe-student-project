@@ -14,6 +14,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import workspace.HaxeProjectCreator;
+import workspace.WorkspaceUtils;
+import workspace.elements.BuildFile;
 import workspace.elements.HaxeProject;
 
 public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutableExtension
@@ -60,12 +62,14 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             HaxeProject project = HaxeProjectCreator.createProject(name, location);
             
             // creating build file
-            IFile buildFile = HaxeProjectCreator.createBuildFile(
-                    project, buildFileName, project.getName(),
-                    srcFolder, outFolder,
-                    pageOne.getSelectedTarget(),
+            BuildFile buildFile = new BuildFile(
+                    buildFileName, 
+                    srcFolder, 
+                    WorkspaceUtils.getConcatenatedPath(outFolder,project.getName()), 
+                    pageOne.getSelectedTarget(), 
                     pageOne.getMainFileName());
-            project.setBuildFile(buildFile);
+            project.addBuildFile(buildFile);
+            project.createFile(buildFile.getPathWithName().toString(), buildFile.getContent(), false);
             
             // here the initial structure for project should be
             String[] struct = {srcFolder, outFolder};

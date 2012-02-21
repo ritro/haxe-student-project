@@ -3,6 +3,8 @@ package workspace.elements;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -18,15 +20,15 @@ import workspace.WorkspaceUtils;
 
 public class HaxeProject
 {    
-    public static String _defaultMainClass = "main";
     public static String _defaultExtention = ".hx";
     
     private IProject baseProject;
-    private IFile buildFile = null;
+    private List<BuildFile> buildFiles = null;
 
     public HaxeProject(IProject project)
     {
         baseProject = project;
+        buildFiles = new ArrayList<BuildFile>();
     }
     
     public String getName()
@@ -34,6 +36,21 @@ public class HaxeProject
         return baseProject.getName();
     }
     
+    public List<BuildFile> getBuildFiles()
+    {
+        return buildFiles;
+    }
+    
+    public void addBuildFile(BuildFile file)
+    {
+        buildFiles.add(file);
+    }
+    
+    public void setBuildFiles(List<BuildFile> files)
+    {
+        buildFiles = files;
+    }
+ 
     public IFile getFile(String name)
     {
         return baseProject.getFile(name);
@@ -42,11 +59,6 @@ public class HaxeProject
     public IPath getFullPath()
     {
         return baseProject.getFullPath();
-    }
-    
-    public IFile getBuildFile()
-    {
-        return buildFile;
     }
     
     public IFile createFile(String fileName) 
@@ -69,6 +81,12 @@ public class HaxeProject
             path = "";
         }
         
+        return createFile(WorkspaceUtils.getConcatenatedPath(path, fileName), fileContents, ifOpen);
+    }
+    
+    public IFile createFile(String pathWithName, String fileContents, boolean ifOpen) 
+            throws CoreException
+    {        
         if (fileContents == null)
         {
             fileContents = "";
@@ -76,7 +94,7 @@ public class HaxeProject
         
         InputStream stream = new ByteArrayInputStream((fileContents).getBytes());
         
-        IFile file = baseProject.getFile(WorkspaceUtils.getConcatenatedPath(path, fileName));
+        IFile file = baseProject.getFile(pathWithName);
         file.create(stream, true, null);
         
         if (ifOpen)
@@ -87,7 +105,7 @@ public class HaxeProject
             page.openEditor(new FileEditorInput(file), desc.getId());
         }
         
-        return file;
+        return file;        
     }
     
     public void createFolders(String[] paths) throws CoreException
@@ -101,10 +119,5 @@ public class HaxeProject
             IFolder etcFolders = baseProject.getFolder(path);
             WorkspaceUtils.createFolder(etcFolders);
         }
-    }
-    
-    public void setBuildFile(IFile file)
-    {
-        buildFile = file;
     }
 }

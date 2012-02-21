@@ -171,9 +171,7 @@ public class ProjectCreationPage extends WizardNewProjectCreationPage
 
         // output folder entry field
         mainFileField = new Text(group, SWT.BORDER);
-        mainFileField.setText(WorkspaceUtils.getConcatenatedPath(
-                BuildFile._defaultSourceFolderName, 
-                HaxeProject._defaultMainClass));
+        mainFileField.setText(BuildFile._defaultMainFileName);
         mainFileField.setFont(parent.getFont());
         mainFileField.setLayoutData(dataFillHorizontal);
         mainFileField.addListener(SWT.Modify, validateOnModify);

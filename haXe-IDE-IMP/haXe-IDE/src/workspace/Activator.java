@@ -10,14 +10,20 @@
  *******************************************************************************/
 package workspace;
 
-
 import java.util.HashMap;
+import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.imp.runtime.PluginBase;
 import org.osgi.framework.BundleContext;
 
+import workspace.elements.BuildFile;
 import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
 
@@ -68,24 +74,12 @@ public class Activator extends PluginBase {
 		projects = new HashMap<String, HaxeProject>();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
-	public void start(final BundleContext context) throws Exception {
+	public void start(final BundleContext context) throws Exception 
+	{
 		super.start(context);
 		
-		// TODO: dig projects structure here, make IProject to HaxePr maker
-		// and create build files first in the wizard and then make such way
-		for (IProject p : ResourcesPlugin.getWorkspace().getRoot().getProjects())
-		{
-		    HaxeProject pr = new HaxeProject(p);
-		    projects.put(p.getName(), pr);
-		}
+		findProjectsInWorkspace();
 	}
 
 	/*
@@ -169,6 +163,40 @@ public class Activator extends PluginBase {
 		return null;
 	}
 
-	// Definitions for image management end
+	private void findProjectsInWorkspace()
+	{
+        for (IProject p : ResourcesPlugin.getWorkspace().getRoot().getProjects())
+        {
+            HaxeProject pr = new HaxeProject(p);
+            projects.put(p.getName(), pr);
+            List<IFile> ff = findBuildFiles(p);
+            for (IFile f : ff)
+            {
+                IPath path = f.getRawLocation().makeAbsolute();
+                BuildFile b = new BuildFile(path.toFile());
+                pr.addBuildFile(b);
+            }
+        }
+	}
+	
+	private List<IFile> findBuildFiles(IProject p)
+	{
+	    ProjectVisitor visitor = new ProjectVisitor();
+	    try
+        {
+	        for (IResource r : p.members())
+            {
+	            visitor.visit(r);
+            }
+	        return visitor.getBuildFileList();
+        }
+        catch (CoreException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	    
+	    return null;
+	}
 
 }

@@ -185,9 +185,8 @@ funcType        : type (MINUS_BIGGER! type)*
 primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID
                 ;
 
-type    :    (anonType^ | IDENTIFIER^ | primitiveType^ ) (typeParam)*
-        |                    //????
-        ;
+type            : (anonType^ | dotIdent^ | primitiveType^ ) (typeParam)*
+                ;
     
 typeParam       : LT! typeList typeParam? GT!
                 ;
@@ -379,13 +378,14 @@ varDecl    : VAR! varDeclPartList (COMMA! varDeclPartList)* SEMI!
 varDeclPartList : IDENTIFIER propDecl? typeTag? varInit? -> ^(IDENTIFIER<VarDeclarationNode> propDecl? typeTag? varInit?)
                 ;
 
-propDecl        : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL"] $a1? $a2?)
+propDecl        : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL"] $a1 $a2)
                 ;
 
 propAccessor    : IDENTIFIER  
                 | NULL
                 | DEFAULT
                 | DYNAMIC
+                | NEVER
                 ;
 
 varInit         : EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT"] expr)
@@ -599,6 +599,7 @@ WHILE:      'while';
 TRUE:       'true';
 FALSE:      'false';
 NULL:       'null';
+NEVER:      'never';
 CAST:       'cast';
 FUNCTION:   'function';
 IN:         'in';

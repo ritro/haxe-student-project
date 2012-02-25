@@ -5,7 +5,6 @@ package haxe.imp.preferences;
 
 import org.eclipse.imp.preferences.PreferencesInitializer;
 import org.eclipse.imp.preferences.IPreferencesService;
-
 import workspace.Activator;
 
 /**

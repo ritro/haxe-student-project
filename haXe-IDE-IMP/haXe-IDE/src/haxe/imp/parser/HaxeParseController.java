@@ -138,7 +138,6 @@ public class HaxeParseController implements IParseController {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Iterator getTokenIterator(final IRegion region) {
         InnerCommonTokenIterator commonTokenIterator = new InnerCommonTokenIterator(
@@ -244,33 +243,55 @@ public class HaxeParseController implements IParseController {
             this.currentAST = (HaxeTree) parserResult.getTree();
             System.out.println("success!");
             HaxeTree.setMessageHandler(handler);
-            handler.clearMessages();
+            if (handler != null)
+            {
+                handler.clearMessages();
+            }
         } catch (RecognitionException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
+        } 
+    }
+    
+    public Object parse(final String input, final IProgressMonitor monitor, boolean onlyLinking)
+    {
+        currentAST = null;
+        if (input.isEmpty())
+        {
+            return currentAST;
         }
+        doParse(input);
+        
+        link();
+        if (!onlyLinking)
+        {
+            showErrors();
+            printAST();
+        }        
+
+        return currentAST;
     }
 
     @Override
     public Object parse(final String input, final IProgressMonitor monitor) {
-        currentAST = null;
-        doParse(input);
-
-        linkAndMarkErrors();
-        
-        return currentAST;
+        return parse(input, monitor, false);
     }
     
-    private void linkAndMarkErrors()
-    {        
+    private void link()
+    {
         HaxeTreeLinker linker = new HaxeTreeLinker();
-        linker.visit(currentAST);
-        
+        linker.visit(currentAST);        
+    }
+    
+    private void showErrors()
+    {
         HaxeTreeErrorProvider eProvider = new HaxeTreeErrorProvider();
-        eProvider.visit(currentAST);
-        
+        eProvider.visit(currentAST);        
+    }
+    
+    private void printAST()
+    {
         HaxeTreePrinter printer = new HaxeTreePrinter();
         printer.visit(currentAST);
     }
-
 }

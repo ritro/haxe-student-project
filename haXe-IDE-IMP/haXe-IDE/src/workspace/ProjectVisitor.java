@@ -1,6 +1,5 @@
 package workspace;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,20 +9,20 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
 
-import workspace.elements.BuildFile;
-
 public class ProjectVisitor implements IResourceVisitor
 {
-    List<IFile> buildFileList;
+    private String extention = "";
+    private List<IFile> buildFileList;
     
     public List<IFile> getBuildFileList()
     {
         return buildFileList;
     }
     
-    public ProjectVisitor()
+    public ProjectVisitor(String extention)
     {
         buildFileList = new ArrayList<IFile>();
+        this.extention = extention;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class ProjectVisitor implements IResourceVisitor
         switch (resource.getType())
         {
             case 1:
-                if (resource.getName().endsWith(".hxml"))
+                if (extention.equals(resource.getFileExtension()))
                 {
                     buildFileList.add((IFile)resource);
                 }

@@ -1,23 +1,23 @@
 package haxe.imp.builders;
 
+import haxe.imp.parser.HaxeParseController;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
-
+import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.builder.BuilderUtils;
 import org.eclipse.imp.builder.MarkerCreatorWithBatching;
-import org.eclipse.imp.builder.BuilderBase;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.language.LanguageRegistry;
 import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.ModelException;
-import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.runtime.PluginBase;
 
 import workspace.Activator;
-
-import haxe.imp.parser.HaxeParseController;
+import workspace.elements.BuildFile;
+import workspace.elements.HaxeProject;
 
 /**
  * A builder may be activated on a file containing haxe code every time it
@@ -74,16 +74,7 @@ public class HaxeBuilder extends BuilderBase {
 	 * @return true iff an arbitrary file is a haxe source file.
 	 */
 	protected boolean isSourceFile(IFile file) {
-		//IPath path = file.getRawLocation();
-		//if (path == null)
-		//	return false;
-
-		return !file.isDerived() && file.getFileExtension().equals("hx");
-		/*String pathString = path.toString();
-		if (pathString.indexOf("/bin/") != -1)
-			return false;
-
-		return LANGUAGE.hasExtension(path.getFileExtension());*/
+		return !file.isDerived() && !file.getFileExtension().equals("hx");
 	}
 
 	/**
@@ -97,9 +88,17 @@ public class HaxeBuilder extends BuilderBase {
 	 * 
 	 */
 	protected boolean isNonRootSourceFile(IFile resource) {
-		return !resource.isDerived() &&
-		resource.getFileExtension().equals("hxml");
-		//return false;
+	    String projName = resource.getProject().getName();
+	    HaxeProject project = Activator.getInstance().getProject(projName);
+	    
+	    for (BuildFile f : project.getBuildFiles())
+	    {
+	        if (f.getMainFile().equals(resource))
+	        {
+	            return !resource.isDerived() && false;
+	        }
+	    }
+		return true;
 	}
 
 	/**
@@ -179,35 +178,36 @@ public class HaxeBuilder extends BuilderBase {
 	 * @param file    input source file
 	 * @param monitor progress monitor
 	 */
-	protected void runParserForCompiler(final IFile file,
-			IProgressMonitor monitor) {
-		try {
-			IParseController parseController = new HaxeParseController();
+	protected void runParserForCompiler(final IFile file, IProgressMonitor monitor) 
+	{
+	    try 
+        {
+            HaxeParseController parseController = new HaxeParseController();
 
-			// TODO:  Pick a version of the marker creator (or just go with this one)
-			//MarkerCreator markerCreator = new MarkerCreator(file,parseController, PROBLEM_MARKER_ID);
-			MarkerCreatorWithBatching markerCreator = new MarkerCreatorWithBatching(file, parseController, this);
+            // TODO:  Pick a version of the marker creator (or just go with this one)
+            //MarkerCreator markerCreator = new MarkerCreator(file,parseController, PROBLEM_MARKER_ID);
+            MarkerCreatorWithBatching markerCreator = new MarkerCreatorWithBatching(file, parseController, this);
 
-			parseController.getAnnotationTypeInfo().addProblemMarkerType(
-					getErrorMarkerID());
+            parseController.getAnnotationTypeInfo().addProblemMarkerType(
+                    getErrorMarkerID());
 
-			ISourceProject sourceProject = ModelFactory.open(file.getProject());
-			parseController.initialize(file.getProjectRelativePath(),
-					sourceProject, markerCreator);
+            ISourceProject sourceProject = ModelFactory.open(file.getProject());
+            parseController.initialize(
+                    file.getProjectRelativePath(),
+                    sourceProject, 
+                    markerCreator);
 
-			String contents = BuilderUtils.getFileContents(file);
-			parseController.parse(contents, monitor);
+            String contents = BuilderUtils.getFileContents(file);
+            parseController.parse(contents, monitor);
 
-			if (markerCreator instanceof MarkerCreatorWithBatching) {
-				((MarkerCreatorWithBatching) markerCreator).flush(monitor);
-			}
-		} catch (ModelException e) {
-			getPlugin()
-					.logException(
-							"Example builder returns without parsing due to a ModelException",
-							e);
-		}
+            if (markerCreator instanceof MarkerCreatorWithBatching) 
+            {
+                ((MarkerCreatorWithBatching) markerCreator).flush(monitor);
+            }            
+        } catch (ModelException e) {
+            getPlugin().logException(
+                            "Example builder returns without parsing due to a ModelException",
+                            e);
+        }
 	}
-	
-	//public ArrayList<Object> projectAST = new ArrayList<Object>();
 }

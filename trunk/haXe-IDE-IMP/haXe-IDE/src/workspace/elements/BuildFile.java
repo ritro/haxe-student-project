@@ -1,21 +1,13 @@
 package workspace.elements;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-
-import workspace.WorkspaceUtils;
 
 public class BuildFile
 {    
@@ -29,9 +21,10 @@ public class BuildFile
         PHP
     };
     
+    public static String _defaultBuildFileExtention = "hxml";
     public static String _defaultSourceFolderName = "src";
     public static String _defaultOutputFolderName = "out";
-    public static String _defaultName = "build.hxml";
+    public static String _defaultName = "build." + _defaultBuildFileExtention;
     public static String _defaultMainFileName = "src\\Main";
     public static String _defaultResultFileName = "out\\Result";
     
@@ -119,7 +112,7 @@ public class BuildFile
      * @return Target, which prefix corresponds to or Null if 
      * prefix is invalid.
      */
-    public Targets getTarget(String prefix)
+    public static Targets getTarget(String prefix)
     {
         switch(prefix)
         {
@@ -163,6 +156,11 @@ public class BuildFile
     public String getOutputFileWithPath()
     {
         return outputFileNameWithPath;
+    }
+    
+    public IFile getMainFile()
+    {
+        return (IFile) new File(mainFileNameWithPath + ".hx");
     }
     
     public String getContent()
@@ -223,30 +221,30 @@ public class BuildFile
     
     private void parseContent(String content)
     {        
-        String[] lalal = content.split("[\\s]+");
+        String[] entry = content.split("[\\s]+");
         
         try
         {
-            for (int i=0; i<lalal.length; i++)
+            for (int i=0; i<entry.length; i++)
             {            
-                if (lalal[i].equals("-cp"))
+                if (entry[i].equals("-cp"))
                 {
                     i++;
-                    srcFolderName = lalal[i];
+                    srcFolderName = entry[i];
                     continue;
                 }
-                Targets foundTarget = getTarget(lalal[i]);
+                Targets foundTarget = getTarget(entry[i]);
                 if (foundTarget != null)
                 {
                     target = foundTarget;
                     i++;
-                    outputFileNameWithPath = lalal[i];
+                    outputFileNameWithPath = entry[i];
                     continue;
                 }
-                if (lalal[i].equals("-main"))
+                if (entry[i].equals("-main"))
                 {
                     i++;
-                    mainFileNameWithPath = lalal[i];
+                    mainFileNameWithPath = entry[i];
                     continue;
                 }
             }

@@ -5,11 +5,11 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            description="haxe lang"
-            extensions="hx"
             icon="/haXe-IDE/haxeSymbol.PNG"
-            language="haXe"
-            natureID="haXe_IDE.imp.nature">
+            extensions="hx"
+            description="haxe lang"
+            natureID="haXe_IDE.imp.nature"
+            language="haXe">
       </language>
    </extension>
    <extension
@@ -165,20 +165,20 @@
       </wizard>
    </extension>
    <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/PackageExplorer/haxeNature.gif"
+            natureId="haXe_IDE.imp.nature"
+            id="haXe_IDE.natureImage">
+      </image>
+   </extension>
+   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             name="Haxe"
             class="haxe.imp.preferences.HaxePreferencePage"
             id="haxe.imp.preferences.Haxe">
       </page>
-   </extension>
-   <extension
-         point="org.eclipse.ui.ide.projectNatureImages">
-      <image
-            icon="icons/haxe_folder.png"
-            id="haXe_IDE.natureImage"
-            natureId="haXe_IDE.imp.nature">
-      </image>
    </extension>
 
 </plugin>

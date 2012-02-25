@@ -3,7 +3,6 @@ package wizards;
 
 import java.net.URI;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
@@ -13,6 +12,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
+import workspace.Activator;
 import workspace.HaxeProjectCreator;
 import workspace.WorkspaceUtils;
 import workspace.elements.BuildFile;
@@ -79,6 +79,9 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             project.createFile(pageOne.getMainFileName() + ".hx");
             
             //TODO: find haxe compiler and attach it or inform user about not found
+            
+            // add new project to Activators' projects list
+            Activator.getInstance().addProject(project);
         } catch (NullPointerException e)
         {
             //either name is null or empty

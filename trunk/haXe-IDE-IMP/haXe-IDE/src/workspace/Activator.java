@@ -19,7 +19,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.imp.runtime.PluginBase;
 import org.osgi.framework.BundleContext;
 
@@ -36,14 +35,12 @@ import workspace.elements.IHaxeResources;
  */
 public class Activator extends PluginBase {
 
-	/** The Constant kPluginID. */
 	public static final String kPluginID = "haXe_IDE";
-
-	/** The Constant kLanguageID. */
 	public static final String kLanguageID = "haxe";
-
-	/** The unique instance of this plugin class. */
-	protected static Activator sPlugin;
+	
+	protected static Activator sPlugin;	
+	
+	private HashMap<String, HaxeProject> projects;
 
 	/**
 	 * Gets the single instance of Activator.
@@ -57,11 +54,34 @@ public class Activator extends PluginBase {
 		return sPlugin;
 	}
 	
-	private HashMap<String, HaxeProject> projects;
+	public HaxeProject getProject(String name)
+	{
+	    return projects.get(name);
+	}
 	
 	public HashMap<String, HaxeProject> getProjects()
 	{
 	    return projects;
+	}
+	
+	/**
+	 * Adds Haxe Project to a list of all projects in current
+	 * workspace.
+	 * @param project - instance of Haxe project.
+	 */
+	public void addProject(HaxeProject project)
+	{
+	    projects.put(project.getName(), project);
+	}
+
+	@Override
+	public String getID() {
+		return kPluginID;
+	}
+
+	@Override
+	public String getLanguageID() {
+		return kLanguageID;
 	}
 
 	/**
@@ -82,62 +102,35 @@ public class Activator extends PluginBase {
 		findProjectsInWorkspace();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.runtime.PluginBase#getID()
-	 */
-	@Override
-	public String getID() {
-		return kPluginID;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.imp.runtime.PluginBase#getLanguageID()
-	 */
-	@Override
-	public String getLanguageID() {
-		return kLanguageID;
-	}
-
 	// Definitions for image management
 
 	/** The Constant ICONS_PATH. */
-	public static final org.eclipse.core.runtime.IPath ICONS_PATH = new org.eclipse.core.runtime.Path(
-			"icons/"); //$NON-NLS-1$("icons/"); //$NON-NLS-1$
+	public static final IPath ICONS_PATH = new org.eclipse.core.runtime.Path(
+			"icons/");
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#initializeImageRegistry(org.eclipse
-	 * .jface.resource.ImageRegistry)
-	 */
 	@Override
 	protected void initializeImageRegistry(
 			final org.eclipse.jface.resource.ImageRegistry reg) {
-		org.osgi.framework.Bundle bundle = this.getBundle();
+		org.osgi.framework.Bundle bundle = getBundle();
 		org.eclipse.core.runtime.IPath path = ICONS_PATH
-				.append("haxe_default_image.gif");//$NON-NLS-1$
+				.append("haxe_default_image.gif");
 		org.eclipse.jface.resource.ImageDescriptor imageDescriptor = createImageDescriptor(
 				bundle, path);
 		reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);
 
-		path = ICONS_PATH.append("haxe_default_outline_item.gif");//$NON-NLS-1$
+		path = ICONS_PATH.append("haxe_default_outline_item.gif");
 		imageDescriptor = createImageDescriptor(bundle, path);
 		reg.put(IHaxeResources.HAXE_DEFAULT_OUTLINE_ITEM, imageDescriptor);
 
-		path = ICONS_PATH.append("haxe_file.gif");//$NON-NLS-1$
+		path = ICONS_PATH.append("haxe_file.gif");
 		imageDescriptor = createImageDescriptor(bundle, path);
 		reg.put(IHaxeResources.HAXE_FILE, imageDescriptor);
 
-		path = ICONS_PATH.append("haxe_file_warning.gif");//$NON-NLS-1$
+		path = ICONS_PATH.append("haxe_file_warning.gif");
 		imageDescriptor = createImageDescriptor(bundle, path);
 		reg.put(IHaxeResources.HAXE_FILE_WARNING, imageDescriptor);
 
-		path = ICONS_PATH.append("haxe_file_error.gif");//$NON-NLS-1$
+		path = ICONS_PATH.append("haxe_file_error.gif");
 		imageDescriptor = createImageDescriptor(bundle, path);
 		reg.put(IHaxeResources.HAXE_FILE_ERROR, imageDescriptor);
 	}
@@ -169,34 +162,20 @@ public class Activator extends PluginBase {
         {
             HaxeProject pr = new HaxeProject(p);
             projects.put(p.getName(), pr);
-            List<IFile> ff = findBuildFiles(p);
-            for (IFile f : ff)
-            {
-                IPath path = f.getRawLocation().makeAbsolute();
-                BuildFile b = new BuildFile(path.toFile());
-                pr.addBuildFile(b);
-            }
         }
 	}
 	
-	private List<IFile> findBuildFiles(IProject p)
+	private void parseProjects()
 	{
-	    ProjectVisitor visitor = new ProjectVisitor();
-	    try
-        {
-	        for (IResource r : p.members())
+	    for (HaxeProject p : projects.values())
+	    {
+	        if (!p.isOpen())
             {
-	            visitor.visit(r);
+                continue;
             }
-	        return visitor.getBuildFileList();
-        }
-        catch (CoreException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-	    
-	    return null;
+	        
+	        
+	    }
 	}
 
 }

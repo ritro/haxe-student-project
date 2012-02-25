@@ -1,21 +1,31 @@
 package workspace.elements;
 
 
+import haxe.imp.parser.HaxeParseController;
+import haxe.imp.parser.antlr.tree.HaxeTree;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.imp.builder.BuilderUtils;
+import org.eclipse.imp.model.ModelFactory;
+import org.eclipse.imp.model.ModelFactory.ModelException;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
+import workspace.ProjectVisitor;
 import workspace.WorkspaceUtils;
 
 public class HaxeProject
@@ -24,16 +34,32 @@ public class HaxeProject
     
     private IProject baseProject;
     private List<BuildFile> buildFiles = null;
+    private HashMap<String, HaxeTree> fileTree = null;
 
     public HaxeProject(IProject project)
     {
         baseProject = project;
         buildFiles = new ArrayList<BuildFile>();
+        fileTree = new HashMap<String, HaxeTree>();
+        
+        findBuildFiles();
+        makeFileList();
+        //makeAST();
     }
     
     public String getName()
     {
         return baseProject.getName();
+    }
+    
+    public void addToFileTree(String filename, HaxeTree ast)
+    {
+        fileTree.put(filename, ast);
+    }
+    
+    public Set<String> getFiles()
+    {
+        return fileTree.keySet();
     }
     
     public List<BuildFile> getBuildFiles()
@@ -59,6 +85,11 @@ public class HaxeProject
     public IPath getFullPath()
     {
         return baseProject.getFullPath();
+    }
+    
+    public boolean isOpen()
+    {
+        return baseProject.isOpen();
     }
     
     public IFile createFile(String fileName) 
@@ -118,6 +149,89 @@ public class HaxeProject
             }
             IFolder etcFolders = baseProject.getFolder(path);
             WorkspaceUtils.createFolder(etcFolders);
+        }
+    }
+    
+    private void findBuildFiles()
+    {
+        if (!isOpen())
+        {
+            return;
+        }
+        
+        ProjectVisitor visitor = new ProjectVisitor(BuildFile._defaultBuildFileExtention);
+        try
+        {
+            for (IResource r : baseProject.members())
+            {
+                visitor.visit(r);
+            }
+            
+            List<IFile> ff = visitor.getBuildFileList();
+            for (IFile f : ff)
+            {
+                IPath path = f.getRawLocation().makeAbsolute();
+                BuildFile b = new BuildFile(path.toFile());
+                addBuildFile(b);
+            }
+        }
+        catch (CoreException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    private void makeFileList()
+    {
+        if (!isOpen())
+        {
+            return;
+        }
+        
+        ProjectVisitor visitor = new ProjectVisitor("hx");
+        try
+        {
+            for (IResource r : baseProject.members())
+            {
+                visitor.visit(r);
+            }
+            
+            List<IFile> ff = visitor.getBuildFileList();
+            for (IFile f : ff)
+            {
+                String name = f.getFullPath().makeRelativeTo(baseProject.getFullPath()).toString();
+                fileTree.put(name, null);
+            }
+        }
+        catch (CoreException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    private void makeAST()
+    {
+        HaxeParseController parseController = new HaxeParseController();
+        for (String filename : getFiles())
+        {
+            try
+            {
+                IFile file = getFile(filename);
+                
+                parseController.initialize(
+                        file.getProjectRelativePath(),
+                        ModelFactory.open(file.getProject()), 
+                        null);
+                
+                String contents = BuilderUtils.getFileContents(file);
+                System.out.println(filename);
+                HaxeTree ast = (HaxeTree)parseController.parse(contents, null, true);
+                addToFileTree(filename, ast);
+            }
+            catch (ModelException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -366,9 +366,6 @@ classMember     : varDeclClass
             //  | pp classBody
                 ;
 
-varDeclList     : varDecl varDeclList
-                ;
-
 varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag? varInit? SEMI -> ^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag? varInit?)
                 ;
                 
@@ -428,28 +425,26 @@ inheritListOpt
     |    
     ;
     
-inherit    :    EXTENDS type     -> ^(EXTENDS type?)
-        |    IMPLEMENTS type -> ^(IMPLEMENTS type?)
-    ;
-    
-typedefDecl       
-    :    TYPEDEF IDENTIFIER EQ funcType
-    ;
-    
-typeExtend      : GT^ funcType COMMA!
+inherit         : EXTENDS^ type
+                | IMPLEMENTS^ type
                 ;
     
-anonType        : LBRACE!
-                    ( 
-                      anonTypeFieldList 
-                    | varDeclList 
-                    | typeExtend ( anonTypeFieldList | varDeclList)? 
-                    )? 
-                  RBRACE!
+typedefDecl     : TYPEDEF^ IDENTIFIER EQ! funcType
+                ;
+    
+typeExtend      : GT^ funcType
+                ;
+    
+anonType        : LBRACE anonTypePart? RBRACE -> ^(TYPE_TAG<HaxeTree>["AnonType"] anonTypePart?)
+                ;
+
+anonTypePart    : anonTypeFieldList
+                | varDecl+
+                | typeExtend COMMA! ( anonTypeFieldList | varDecl+)? 
                 ;
     
 anonTypeFieldList 
-                : anonTypeField (COMMA! anonTypeField)*
+                : anonTypeField (COMMA anonTypeField)* -> anonTypeField+
                 ;
 
 objLit          : LBRACE! objLitElemList RBRACE!

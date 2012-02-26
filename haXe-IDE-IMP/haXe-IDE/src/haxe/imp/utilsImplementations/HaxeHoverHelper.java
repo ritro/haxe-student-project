@@ -192,10 +192,10 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	    {
             return getNodeTypeAndName(node);
         }
-	    else if (node.getText().equals("MODULE"))
-	    {
-	        return "module";
-	    }
+	    //else if (node.getText().equals("MODULE"))
+	    //{
+	    //    return "module";
+	    //}
         else if (node.getParent() instanceof FunctionNode)
         {            
             return getMessageForNodeClass(node.getParent());

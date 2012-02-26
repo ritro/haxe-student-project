@@ -49,6 +49,7 @@ public interface HaxeParsersym {
 	public static final int TRY = HaxeLexer.TRY;
 	public static final int CATCH = HaxeLexer.CATCH;
 	public static final int WHILE = HaxeLexer.WHILE;
+	public static final int TYPEDEF = HaxeLexer.TYPEDEF;
 	//Primary Types
 	public static final int NULL = HaxeLexer.NULL;
 	public static final int INT = HaxeLexer.INT;

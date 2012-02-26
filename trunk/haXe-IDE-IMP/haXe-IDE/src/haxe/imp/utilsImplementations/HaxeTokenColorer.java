@@ -91,6 +91,7 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case TRY:
 		case CATCH:
 		case WHILE:
+		case TYPEDEF:
 			return functionAttribute;
 		case CHARLITERAL:
 		case STRINGLITERAL:

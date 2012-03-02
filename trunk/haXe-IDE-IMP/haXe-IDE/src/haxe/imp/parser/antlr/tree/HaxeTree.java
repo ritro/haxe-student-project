@@ -47,6 +47,11 @@ public class HaxeTree extends CommonTree
 		this.auxiliary = auxiliary;
 	}
 	
+	public boolean isFieldUse()
+	{
+	    return getChildCount() == 1 && getChild(0).getText().equals(".");
+	}
+	
 	public boolean isDuplicate()
 	{
 	    return isDuplicate;
@@ -66,6 +71,12 @@ public class HaxeTree extends CommonTree
     public HaxeType getHaxeType() 
     {
         return haxeType;
+    }
+    
+    public HaxeTree getLastChildFromAll()
+    {
+        ArrayList<HaxeTree> children = getAllChildren();
+        return children.get(children.size()-1);
     }
     
     @Override

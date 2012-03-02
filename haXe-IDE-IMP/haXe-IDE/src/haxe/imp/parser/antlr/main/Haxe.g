@@ -318,13 +318,13 @@ methodCallOrSlice
             -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
                 | value LBRACKET expr RBRACKET pureCallOrSlice? 
             -> ^(SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr pureCallOrSlice?)
-                | value pureCallOrSlice -> ^(value pureCallOrSlice)
+                | value^ pureCallOrSlice
                 | value
                 ;
 
 pureCallOrSlice : LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
                 SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr pureCallOrSlice?)
-                | DOT! methodCallOrSlice
+                | DOT^ methodCallOrSlice
                 ;
 
 value

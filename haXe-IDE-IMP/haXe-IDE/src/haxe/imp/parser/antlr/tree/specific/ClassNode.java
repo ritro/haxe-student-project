@@ -75,6 +75,22 @@ public class ClassNode extends BlockScopeContainer {
 
         setHaxeType(type);    
 	}
+    
+    public HaxeTree getDeclaration(String name)
+    {
+        // 1 - class member, inherit fields
+        // 2 - curr class static fields
+        // 3 - enums declared
+        for (HaxeTree child : getBlockScope().getChildren())
+        {
+            if (child.getText().equals(name))
+            {
+                return child;
+            }
+        }
+        
+        return null;
+    }
 	
 	/**
 	 * class D extends A, implements B, implements C {} 

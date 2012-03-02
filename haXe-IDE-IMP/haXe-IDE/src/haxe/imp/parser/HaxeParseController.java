@@ -39,6 +39,7 @@ import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
 import workspace.Activator;
+import workspace.elements.HaxeProject;
 
 /**
  * NOTE: This version of the Parse Controller is for use when the Parse
@@ -279,7 +280,8 @@ public class HaxeParseController implements IParseController {
     
     private void link()
     {
-        HaxeTreeLinker linker = new HaxeTreeLinker();
+        HaxeProject project = Activator.getInstance().getProject(fProject.getName());
+        HaxeTreeLinker linker = new HaxeTreeLinker(project);
         linker.visit(currentAST);        
     }
     

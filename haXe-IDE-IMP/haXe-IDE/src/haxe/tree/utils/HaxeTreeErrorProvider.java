@@ -110,11 +110,15 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
         
-        visit(leftOperand, data);
         visit(rightOperand, data);
+        HaxeType secondType = rightOperand.getHaxeType(); 
         
-        HaxeType firstType = leftOperand.getHaxeType();
-        HaxeType secondType = rightOperand.getHaxeType();        
+        if (!(leftOperand instanceof VarUsageNode ||
+                leftOperand.getLastChildFromAll().getText().equals("Slice")))
+        {
+            // not valid expression
+        }
+        HaxeType firstType = leftOperand.getHaxeType();       
         if (data != null)
         {
             // we previosly marked error

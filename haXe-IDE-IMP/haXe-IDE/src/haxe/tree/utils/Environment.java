@@ -76,6 +76,11 @@ public class Environment extends HashMap<String, HaxeTree>
     public boolean put(HaxeTree declaration)
     {
         String name = declaration.getText();
+        return putWithCustomName(name, declaration);
+    }
+    
+    public boolean putWithCustomName(String name, HaxeTree declaration)
+    {
         HaxeTree decl = get(name);
         if (decl == null)
         {

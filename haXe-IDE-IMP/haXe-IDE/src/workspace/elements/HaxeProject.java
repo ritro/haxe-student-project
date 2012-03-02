@@ -34,13 +34,13 @@ public class HaxeProject
     
     private IProject baseProject;
     private List<BuildFile> buildFiles = null;
-    private HashMap<String, HaxeTree> fileTree = null;
+    private HashMap<String, HaxeTree> fileList = null;
 
     public HaxeProject(IProject project)
     {
         baseProject = project;
         buildFiles = new ArrayList<BuildFile>();
-        fileTree = new HashMap<String, HaxeTree>();
+        fileList = new HashMap<String, HaxeTree>();
         
         findBuildFiles();
         makeFileList();
@@ -54,12 +54,17 @@ public class HaxeProject
     
     public void addToFileTree(String filename, HaxeTree ast)
     {
-        fileTree.put(filename, ast);
+        fileList.put(filename, ast);
     }
     
     public Set<String> getFiles()
     {
-        return fileTree.keySet();
+        return fileList.keySet();
+    }
+    
+    public HaxeTree getFileAST(String nameWithPackage)
+    {
+        return fileList.get(nameWithPackage);
     }
     
     public List<BuildFile> getBuildFiles()
@@ -90,6 +95,11 @@ public class HaxeProject
     public boolean isOpen()
     {
         return baseProject.isOpen();
+    }
+    
+    public boolean contains(String nameWithPackage)
+    {
+        return fileList.containsKey(nameWithPackage);
     }
     
     public IFile createFile(String fileName) 
@@ -200,7 +210,7 @@ public class HaxeProject
             for (IFile f : ff)
             {
                 String name = f.getFullPath().makeRelativeTo(baseProject.getFullPath()).toString();
-                fileTree.put(name, null);
+                fileList.put(name, null);
             }
         }
         catch (CoreException e)

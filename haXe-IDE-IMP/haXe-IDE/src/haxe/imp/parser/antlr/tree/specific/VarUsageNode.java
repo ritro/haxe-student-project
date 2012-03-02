@@ -38,6 +38,10 @@ public class VarUsageNode extends HaxeTree
 	@Override
 	public HaxeType getHaxeType()
 	{
+	    if (getChildCount() > 0)
+	    {
+	        return getLastChildFromAll().getHaxeType();
+	    }
 	    if (declaration == null)
 	    {
 	        return super.getHaxeType();
@@ -60,12 +64,7 @@ public class VarUsageNode extends HaxeTree
 	@Override
 	public String getText() 
 	{
-		//FIXME
-	    int childCount = getChildCount();
-		if (childCount == 0) 
-			return super.getText();
-		
-		return getChild(childCount-1).getText();
+		return super.getText();
 	}
 	
 	public HaxeTree getDeclarationNode()

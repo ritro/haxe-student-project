@@ -7,6 +7,7 @@ import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -18,11 +19,24 @@ import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import workspace.elements.HaxeProject;
 
 public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
 {
+    private HashMap<String, HaxeTree> imports;
     private enum ScopeTypes {Class, Function};
     private ScopeTypes currentScope = ScopeTypes.Class;
+    private HaxeProject project;
+    
+    public HaxeTreeLinker(HaxeProject proj)
+    {
+        project = proj;
+        imports = new HashMap<String, HaxeTree>();
+    }
+    
+    public HaxeTreeLinker(){}
     
     @Override
     protected void visit(AssignOperationNode node, Object data)
@@ -98,7 +112,84 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visitUnknown(HaxeTree node, Object data)
     {
-        // TODO Auto-generated method stub
+        // import
+        if (node.getText().equals("import"))
+        {
+            String shortName = node.getLastChildFromAll().getText();
+            String longName = node.getAllChildren().toString();
+            // FIX: here i should check if such type(file) really exists
+            HaxeTree ast = project.getFileAST(longName);
+            if (ast != null)
+            {
+                imports.put(shortName, ast);
+            }
+            // if no file found - how to mark error?
+            // 1-check if import pachage just slightly wrong
+            // 2-maybe there is no at all such file - mark error
+        }
+        // method calls
+        else if (node.getText().equals("MethodCall"))
+        {
+            visitMethodCall(node,  data);
+        }
+        // slices
+        else if (node.getText().equals("Slice"))
+        {
+            visitSlice(node,  data);
+        }
+    }
+    
+    protected void visitMemberUse(VarUsageNode node, Object data)
+    {
+        HaxeTree decl = null;
+        if (data instanceof ClassNode)
+        {
+            ClassNode parent = (ClassNode)data;
+            decl = parent.getDeclaration(node.getText());
+        }
+        node.setDeclarationNode(decl);
+
+        if (!node.isFieldUse() && !(
+                decl instanceof ClassNode ||
+                decl instanceof EnumNode)) //+ interface ??
+        {
+            return;
+        }
+        
+        HaxeTree child = node.getChild(0).getChild(0);
+        if (child.getText().equals("MethodCall"))
+        {
+            visitMethodCall(child,  decl);
+        }
+        // slices
+        else if (child.getText().equals("Slice"))
+        {
+            visitSlice(child,  decl);
+        }
+        // dot ident
+        else
+        {
+            visitMemberUse((VarUsageNode)child,  decl);
+        }
+    }
+    
+    protected void visitMethodCall(HaxeTree node, Object datae)
+    {
+        // can we have 0 children?
+        if (node.getChildCount() == 1)
+        {
+            // last child
+        } 
+        else if (node.getChildCount() > 1)
+        {
+            // first - fun name
+            // middle - arguments ??
+            // last - slice or field or methcall
+        }
+    }
+    
+    protected void visitSlice(HaxeTree node, Object data)
+    {
         
     }
 
@@ -143,10 +234,42 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(VarUsageNode node, Object data)
     {
+        // search for declaration
+        // 1 - local vars - last declared
         Environment declarations = (Environment)data;
         HaxeTree declaration = declarations.get(node.getText());
+        // 2 - class member, inherit fields????
+        // 3 - curr class static fields???
+        // 4 - enums declared
+        if (declaration == null)
+        {
+            // importes
+            declaration = imports.get(node.getText());
+        }
         
         node.setDeclarationNode(declaration);
+        
+        // check if it is dotident and CAN have a member
+        if (!node.isFieldUse() && !(
+                declaration instanceof ClassNode ||
+                declaration instanceof EnumNode)) //+ interface ??
+        {
+            return;
+        }
+        HaxeTree child = node.getChild(0).getChild(0);
+        if (child.getText().equals("MethodCall"))
+        {
+            visitMethodCall(child,  declaration);            
+        }
+        else if (node.getText().equals("Slice"))
+        {
+            visitSlice(node,  declaration);
+        }
+        // dot ident
+        else
+        {
+            visitMemberUse((VarUsageNode)child,  declaration);
+        }
     }
 
     @Override
@@ -187,6 +310,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         for (VarDeclarationNode x: node.getParametersAsDeclarations())
         {
             x.setDeclaratonType(DeclarationType.FunctionParameter);
+            x.updateInfo();
             funEnv.put(x);
         }
         
@@ -202,9 +326,12 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(ClassNode node, Object data)
     {
+        Environment env = (Environment)data;
+        env.putWithCustomName("this", node);
+        
         BlockScopeNode blockScope = node.getBlockScope();
         
-        visit(blockScope, data);
+        visit(blockScope, env);
     }
     
     private void endVisit()

@@ -115,14 +115,12 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // import
         if (node.getText().equals("import"))
         {
-            String shortName = node.getLastChildFromAll().getText();
-            String longName = node.getAllChildren().toString();
-            // FIX: here i should check if such type(file) really exists
+            String longName = node.getChild(0).getText();
+            String shortName = longName.substring(longName.lastIndexOf('.') + 1);
+            // here i should retrieve ast of imported file, if it's out project
+            // file, for flash and others libs still null
             HaxeTree ast = project.getFileAST(longName);
-            if (ast != null)
-            {
-                imports.put(shortName, ast);
-            }
+            imports.put(shortName, ast);
             // if no file found - how to mark error?
             // 1-check if import pachage just slightly wrong
             // 2-maybe there is no at all such file - mark error

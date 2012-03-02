@@ -54,6 +54,7 @@ public class HaxeProject
     
     public void addToFileTree(String filename, HaxeTree ast)
     {
+        filename = filename.replace('/', '.');
         fileList.put(filename, ast);
     }
     
@@ -209,8 +210,10 @@ public class HaxeProject
             List<IFile> ff = visitor.getBuildFileList();
             for (IFile f : ff)
             {
-                String name = f.getFullPath().makeRelativeTo(baseProject.getFullPath()).toString();
-                fileList.put(name, null);
+                IPath fullPath = f.getFullPath();
+                IPath relPath = fullPath.makeRelativeTo(baseProject.getFullPath());
+                String name = relPath.removeFileExtension().toString();
+                addToFileTree(name, null);
             }
         }
         catch (CoreException e)

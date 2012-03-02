@@ -51,7 +51,7 @@ public class ClassNode extends BlockScopeContainer {
 	public HaxeTree getInherits() {
 		for (HaxeTree tree : getChildren()) 
 		{
-			if (tree.getType() == HaxeParser.INHERIT_LIST_OPT) 
+			if (tree.getType() == HaxeParser.INHERIT_LIST) 
 			{
 				return tree;
 			}

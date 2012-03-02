@@ -40,7 +40,7 @@ public class EnumNode extends BlockScopeContainer {
 	public HaxeTree getInherits() {
 		for (HaxeTree tree : (ArrayList<HaxeTree>) this
 				.getChildren()) {
-			if (tree.getType() == HaxeParser.INHERIT_LIST_OPT) {
+			if (tree.getType() == HaxeParser.INHERIT_LIST) {
 				return (HaxeTree) tree;
 			}
 		}

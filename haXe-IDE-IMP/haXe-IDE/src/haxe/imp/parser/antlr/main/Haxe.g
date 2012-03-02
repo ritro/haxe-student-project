@@ -14,8 +14,9 @@ tokens {
     BLOCK_SCOPE;
     PARAM_LIST;
     TYPE_TAG;
-    TYPE_PARAM_OPT;
-    INHERIT_LIST_OPT;
+    TYPE_PARAM;
+    TYPE_CONSTRAIN;
+    INHERIT_LIST;
     DECL_ATTR_LIST;
     VAR_INIT;
     IDENT;
@@ -64,21 +65,18 @@ import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
-module          : myPackage? topLevelList -> ^(MODULE<HaxeTree>["MODULE"] myPackage? topLevelList?)
+module          : myPackage? imports* topLevelDecl* -> ^(MODULE<HaxeTree>["MODULE"] myPackage? imports* topLevelDecl*)
                 ;
+
+imports         : IMPORT^ filepath SEMI!
+                | USING^ filepath SEMI!
+                ;
+
+myPackage       : PACKAGE^ filepath SEMI!
+                ;                
     
-topLevelList    : (topLevel)*
+filepath        : a=IDENTIFIER (b=DOT d=IDENTIFIER{$a.setText($a.text+$b.text + $d.text);})* -> $a
                 ;
-
-topLevel        : IMPORT^ dotIdent SEMI!
-                | USING^ dotIdent SEMI!
-                | topLevelDecl
-//              | pp //preprocessor
-                ;
-
-myPackage       : PACKAGE^ dotIdent SEMI!
-                ;
-
 ////////////////////////UNCHECKED BEGIN
 meta    : MONKEYS_AT metaName (LPAREN paramList? RPAREN)?
     ;
@@ -101,17 +99,13 @@ topLevelAccess  : PRIVATE
                 | EXTERN
                 ;
 
-access          : PUBLIC
-                | PRIVATE
-                ;
-
 declAttr        : STATIC
                 | INLINE
                 | DYNAMIC
                 | OVERRIDE
-                | access
+                | PUBLIC
+                | PRIVATE
                 ;
-
 
 declAttrList    : declAttr+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST"] declAttr+)
                 ;
@@ -121,13 +115,12 @@ paramList       : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST"] p
 
 param           : QUES? IDENTIFIER typeTag? varInit? -> ^(VAR<VarDeclarationNode>[$IDENTIFIER] typeTag? varInit? QUES?)
                 ;
-    
-id              : IDENTIFIER<VarUsageNode>
-                | THIS<VarUsageNode>
-                ;
 
-dotIdent        : id DOT a=dotIdent ->  ^(DOT<VarUsageNode> id $a)
-                | id -> id
+identifier      : IDENTIFIER<VarUsageNode>
+                ;
+                
+id              : identifier
+                | THIS<VarUsageNode>
                 ;
 
 assignOp        : EQ       -> EQ<AssignOperationNode>
@@ -182,33 +175,35 @@ typeList        : funcType (COMMA! typeList)?
 funcType        : type (MINUS_BIGGER! type)*
                 ;
     
-primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID
+anonType        : LBRACE anonTypePart? RBRACE -> ^(TYPE_TAG<HaxeTree>["AnonType"] anonTypePart?)
                 ;
 
-type            : (anonType^ | dotIdent^ | primitiveType^ ) (typeParam)*
+anonTypePart    : anonTypeFieldList
+                | varDecl+
+                | typeExtend COMMA! ( anonTypeFieldList | varDecl+)? 
                 ;
     
-typeParam       : LT! typeList typeParam? GT!
+anonTypeFieldList 
+                : anonTypeField (COMMA anonTypeField)* -> anonTypeField+
                 ;
     
-typeParamOpt      
-    :    typeParam -> ^(TYPE_PARAM_OPT<HaxeTree>["TYPE_PARAM_OPT"] typeParam?)
-    |    
-    ;
+primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID | STRING
+                ;
+
+type            : (primitiveType^ | IDENTIFIER^ | filepath^ | anonType^ ) typeParam?
+                ;
+    
+typeParam       : LT typeList typeParam? GT -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList typeParam?)
+                ;
        
 typeConstraint
-    :   IDENTIFIER COLON LPAREN typeList RPAREN -> ^($typeConstraint IDENTIFIER? typeList?)
+    : identifier COLON LPAREN typeList RPAREN -> ^(TYPE_CONSTRAIN<HaxeTree>["TYPE_CONSTRAIN"] identifier typeList?)
     ;
     
 /*-------------------------Statements--------------------------*/
-functionReturn
-    :    declAttrList? FUNCTION NEW LPAREN paramList? RPAREN typeTag? block -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTag? block? )
-    ;    
-
 statement 
     :    block
     |    (assignExpr|expr) SEMI!
-    |    varDecl
                 | IF<IfNode>^ parExpression statement (ELSE! statement)?
                 | FOR LPAREN expr IN iterExpr RPAREN statement -> ^(FOR<ForNode> expr iterExpr statement)
                 | WHILE<WhileNode>^ parExpression statement
@@ -240,9 +235,8 @@ caseStmt        : CASE^ exprList COLON! statement
                 | DEFAULT^ COLON! statement
                 ;
     
-catchStmt       
-: CATCH<HaxeTree>^ LPAREN! param RPAREN! block
-;
+catchStmt       : CATCH<HaxeTree>^ LPAREN! param RPAREN! block
+                ;
 /*----------------------Expressions----------------------------*/
     
 exprList        : expr (COMMA! expr)*
@@ -322,8 +316,8 @@ methodCallOrSlice
                 | value
                 ;
 
-pureCallOrSlice : LBRACKET expr RBRACKET pureCallOrSlice? -> ^(
-                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr pureCallOrSlice?)
+pureCallOrSlice : LBRACKET expr? RBRACKET pureCallOrSlice? -> ^(
+                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr? pureCallOrSlice?)
                 | DOT^ methodCallOrSlice
                 ;
 
@@ -331,10 +325,10 @@ value
     //|   RegexLit?
     :   objLit
     | funcLit
-    |   elementarySymbol
-    |   LPAREN! (expr|statement) RPAREN!
+    | elementarySymbol
+    |   LPAREN! expr RPAREN!
     // TODO: if id is in callAlSlice and else we can't use THIS
-    |   id typeParamOpt 
+    |   id //typeParam? 
     ;
 /*-------------------- Declarations----------------------------*/
 
@@ -344,7 +338,7 @@ topLevelDecl    : classDecl
                 | typedefDecl
                 ;
     
-enumDecl        : topLevelAccess? ENUM IDENTIFIER typeParamOpt enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccess? typeParamOpt? enumBody?)
+enumDecl        : topLevelAccess? ENUM IDENTIFIER typeParam? enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccess? typeParam? enumBody)
                 ;
 
 enumBody        : LBRACE (enumValueDecl)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] enumValueDecl*)
@@ -355,7 +349,8 @@ enumValueDecl   : IDENTIFIER<VarDeclarationNode>^ LPAREN! paramList? RPAREN! SEM
             //  |   pp
                 ;
     
-classDecl       : topLevelAccess? CLASS IDENTIFIER typeParamOpt inheritListOpt classBodyScope -> ^(IDENTIFIER<ClassNode> topLevelAccess? typeParamOpt? inheritListOpt? classBodyScope?)
+classDecl       : topLevelAccess? CLASS IDENTIFIER typeParam? inheritList? classBodyScope 
+                    -> ^(IDENTIFIER<ClassNode> topLevelAccess? typeParam? inheritList? classBodyScope)
                 ;
 
 classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] classMember*)
@@ -365,12 +360,12 @@ classMember     : varDeclClass
                 | funcDecl 
             //  | pp classBody
                 ;
-
-varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag? varInit? SEMI -> ^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag? varInit?)
+//several decl by one var???
+varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag varInit? SEMI -> ^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag varInit?)
                 ;
                 
-varDecl    : VAR! varDeclPartList (COMMA! varDeclPartList)* SEMI!
-           ;
+varDecl         : VAR! varDeclPartList (COMMA! varDeclPartList)* SEMI!
+                ;
 
 varDeclPartList : IDENTIFIER propDecl? typeTag? varInit? -> ^(IDENTIFIER<VarDeclarationNode> propDecl? typeTag? varInit?)
                 ;
@@ -387,26 +382,29 @@ propAccessor    : IDENTIFIER
 
 varInit         : EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT"] expr)
                 ;
-    
-funcDecl:   declAttrList? FUNCTION NEW LPAREN paramList? RPAREN typeTag? block 
-                -> ^(FUNCTION<FunctionNode> NEW declAttrList? paramList? typeTag? block? )
-        |   declAttrList? FUNCTION IDENTIFIER typeParamOpt LPAREN paramList? RPAREN typeTag? block 
-                -> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? paramList? typeTag? block? typeParamOpt?)
-        ;
+
+funcDecl        : declAttrList? FUNCTION NEW funcDeclPart 
+                    -> ^(FUNCTION<FunctionNode> NEW declAttrList? funcDeclPart )
+                | declAttrList? FUNCTION IDENTIFIER typeParam? funcDeclPart 
+                    -> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? funcDeclPart typeParam?)
+                ;
+                
+funcDeclPart    : LPAREN! paramList? RPAREN! typeTag? block
+                ;
     
 funcProtoDecl
     :   declAttrList FUNCTION NEW LPAREN paramList? RPAREN typeTag? SEMI 
             -> ^(FUNCTION NEW? paramList? typeTag? declAttrList?)
-    |   declAttrList FUNCTION IDENTIFIER typeParamOpt LPAREN paramList? RPAREN typeTag? SEMI 
-            -> ^(FUNCTION IDENTIFIER? paramList? typeTag? declAttrList? typeParamOpt?)
+    |   declAttrList FUNCTION IDENTIFIER typeParam? LPAREN paramList? RPAREN typeTag? SEMI 
+            -> ^(FUNCTION IDENTIFIER? paramList? typeTag? declAttrList? typeParam?)
     |   FUNCTION NEW LPAREN paramList? RPAREN typeTag? SEMI 
             -> ^(FUNCTION NEW? paramList? typeTag?)
-    |   FUNCTION IDENTIFIER typeParamOpt LPAREN paramList? RPAREN typeTag? SEMI 
-            -> ^(FUNCTION IDENTIFIER? paramList? typeTag? typeParamOpt?)
+    |   FUNCTION IDENTIFIER typeParam? LPAREN paramList? RPAREN typeTag? SEMI 
+            -> ^(FUNCTION IDENTIFIER? paramList? typeTag? typeParam?)
     ;
     
 interfaceDecl     
-    :   topLevelAccess? INTERFACE type inheritListOpt LBRACE! interfaceBody RBRACE!
+    :   topLevelAccess? INTERFACE type inheritList? LBRACE! interfaceBody RBRACE!
     ;
     
 interfaceBody
@@ -416,14 +414,8 @@ interfaceBody
     |
     ;
 
-inheritList       
-    :    inherit (COMMA! inherit)*
-    ;
-    
-inheritListOpt    
-    :    inheritList -> ^(INHERIT_LIST_OPT<HaxeTree>["INHERIT_LIST_OPT"] inheritList?)
-    |    
-    ;
+inheritList     : inherit (COMMA inherit)* -> ^(INHERIT_LIST<HaxeTree>["INHERIT_LIST"] inherit+)
+                ;
     
 inherit         : EXTENDS^ type
                 | IMPLEMENTS^ type
@@ -433,18 +425,6 @@ typedefDecl     : TYPEDEF^ IDENTIFIER EQ! funcType
                 ;
     
 typeExtend      : GT^ funcType
-                ;
-    
-anonType        : LBRACE anonTypePart? RBRACE -> ^(TYPE_TAG<HaxeTree>["AnonType"] anonTypePart?)
-                ;
-
-anonTypePart    : anonTypeFieldList
-                | varDecl+
-                | typeExtend COMMA! ( anonTypeFieldList | varDecl+)? 
-                ;
-    
-anonTypeFieldList 
-                : anonTypeField (COMMA anonTypeField)* -> anonTypeField+
                 ;
 
 objLit          : LBRACE! objLitElemList RBRACE!
@@ -578,6 +558,7 @@ DYNAMIC:    'dynamic';
 OVERRIDE:   'override';
 STRICTFP:   'strictfp';
 SUPER:      'super';
+STRING:     'String';
 SWITCH:     'switch';
 THIS:       'this';
 THROW:      'throw';

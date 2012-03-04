@@ -201,11 +201,9 @@ typeConstraint
     ;
     
 /*-------------------------Statements--------------------------*/
-statement 
-    :    block
-    |    (assignExpr|expr) SEMI!
+statement       : block
                 | IF<IfNode>^ parExpression statement (ELSE! statement)?
-                | FOR LPAREN expr IN iterExpr RPAREN statement -> ^(FOR<ForNode> expr iterExpr statement)
+                | FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
                 | WHILE<WhileNode>^ parExpression statement
                 | DO<DoWhileNode>^ statement WHILE! parExpression SEMI!
                 | TRY<TryNode>^ block catchStmt+
@@ -213,20 +211,17 @@ statement
                 | RETURN<ReturnNode>^ expr? SEMI!
                 | THROW^ expr SEMI!
                 | (BREAK | CONTINUE) SEMI!
-    |  IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
-    |    SEMI!
+                | expr SEMI!
+    | IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
     ;
    
-parExpression 
-    :   LPAREN! expr RPAREN!
-    ;
-
-block           : LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] blockStmt*) 
-                | SEMI!
+parExpression   : LPAREN! expr RPAREN!
                 ;
 
-blockStmt
-    :    varDecl
+block           : LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] blockStmt*)
+                ;
+
+blockStmt       : varDecl
     |    classDecl
     |    statement
     ;
@@ -326,9 +321,9 @@ value
     :   objLit
     | funcLit
     | elementarySymbol
-    |   LPAREN! expr RPAREN!
+    //|   LPAREN! expr RPAREN!
     // TODO: if id is in callAlSlice and else we can't use THIS
-    |   id //typeParam? 
+    |   id typeParam? 
     ;
 /*-------------------- Declarations----------------------------*/
 
@@ -389,7 +384,7 @@ funcDecl        : declAttrList? FUNCTION NEW funcDeclPart
                     -> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? funcDeclPart typeParam?)
                 ;
                 
-funcDeclPart    : LPAREN! paramList? RPAREN! typeTag? block
+funcDeclPart    : LPAREN! paramList? RPAREN! typeTag? (block | SEMI!)
                 ;
     
 funcProtoDecl

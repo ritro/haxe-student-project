@@ -33,6 +33,22 @@ public class ExpressionTests
         assertTrue(tree.getText().equals("Slice"));
     }
     
+    @Test
+    public void testVeryComplexExpression() throws RecognitionException {
+        HaxeTree tree = parseExpression("loader.loadBytes" +
+            "(" +
+                "Type.createInstance" +
+                "(" +
+                    "Type.resolveClass(mainClass),[])," +
+                    "new flash.system.LoaderContext" +
+                    "(" +
+                        "new flash.system.ApplicationDomain()" +
+                    ")" +
+                ")" +
+            ")");
+        assertTrue(true);
+    }
+    
     // dot expressions
     @Test
     public void testDotExpression() throws RecognitionException {
@@ -44,6 +60,7 @@ public class ExpressionTests
     @Test
     public void testArrayExpression() throws RecognitionException {
         //HaxeTree tree = parseExpression("x = [1,2];");
+        //HaxeTree tree = parseExpression("lo.t(Type.cr(Type.res(mainClass),[]), new f.s.Lo(new fl.sy.App()));");
     }
     
 }

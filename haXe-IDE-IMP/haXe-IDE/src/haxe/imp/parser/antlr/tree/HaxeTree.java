@@ -136,10 +136,10 @@ public class HaxeTree extends CommonTree
 	 */
 	protected void calculateMostRightPosition()
 	{
-	    if (auxiliary == true && getChildCount() > 0)
+	    if (isFieldUse())
         {
             mostRightPosition = 
-                    getChild(getChildCount() - 1).getMostRightPosition();
+                    getAllChildren().get(getChildCount() - 1).getMostRightPosition();
             return;
         }
 
@@ -162,22 +162,21 @@ public class HaxeTree extends CommonTree
 	 */
 	protected void calculateMostLeftPosition()
 	{
-		if (isAuxiliary()) 
+	    if (getText().equals("MethodCall") || getText().equals("Slice"))
+	    {
+	        mostLeftPosition = getChild(0).getMostLeftPosition();
+	    }
+	    else 
+	    {
+	        mostLeftPosition = getToken().getStartIndex();
+	    }
+		for (HaxeTree commonTree : getChildren()) 
 		{
-			mostLeftPosition =
-					getChild(0).getMostLeftPosition();
-		} 
-		else
-		{
-			mostLeftPosition = getToken().getStartIndex();
-			for (HaxeTree commonTree : getChildren()) 
+			int possibleMLP = 
+					commonTree.getMostLeftPosition();
+			if (mostLeftPosition > possibleMLP) 
 			{
-				int possibleMLP = 
-						commonTree.getMostLeftPosition();
-				if (mostLeftPosition > possibleMLP) 
-				{
-					mostLeftPosition = possibleMLP;
-				}
+				mostLeftPosition = possibleMLP;
 			}
 		}
 	}

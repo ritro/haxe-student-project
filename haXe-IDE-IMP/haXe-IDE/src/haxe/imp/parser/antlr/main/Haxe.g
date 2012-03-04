@@ -314,12 +314,6 @@ pureCallOrSlice : LBRACKET expr? RBRACKET pureCallOrSlice? -> ^(
                 SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr? pureCallOrSlice?)
                 | DOT^ methodCallOrSlice
                 ;
-                
-dotIdentifier   : value dotPart? -> ^(value dotPart?)
-                ;
-                
-dotPart         : DOT^ dotIdentifier
-                ;
 
 value
     //|   RegexLit?

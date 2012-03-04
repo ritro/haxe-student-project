@@ -190,7 +190,7 @@ anonTypeFieldList
 primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID | STRING
                 ;
 
-type            : (primitiveType^ | IDENTIFIER^ | filepath^ | anonType^ ) typeParam?
+type            : (primitiveType^ | filepath^ | anonType^ ) typeParam?
                 ;
     
 typeParam       : LT typeList typeParam? GT -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList typeParam?)
@@ -307,13 +307,18 @@ methodCallOrSlice
             -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
                 | value LBRACKET expr RBRACKET pureCallOrSlice? 
             -> ^(SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr pureCallOrSlice?)
-                | value^ pureCallOrSlice
-                | value
+                | value pureCallOrSlice? -> ^(value pureCallOrSlice?)
                 ;
 
 pureCallOrSlice : LBRACKET expr? RBRACKET pureCallOrSlice? -> ^(
                 SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr? pureCallOrSlice?)
                 | DOT^ methodCallOrSlice
+                ;
+                
+dotIdentifier   : value dotPart? -> ^(value dotPart?)
+                ;
+                
+dotPart         : DOT^ dotIdentifier
                 ;
 
 value

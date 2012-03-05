@@ -1,8 +1,0 @@
-if(life==0){	
-	var i = 5;
-	trace("tmp");
-}else if(life==1){
-	trace("var");
-}else if(life==2){
-	trace("foo");
-}

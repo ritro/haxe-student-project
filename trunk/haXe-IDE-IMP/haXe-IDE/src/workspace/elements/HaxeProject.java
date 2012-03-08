@@ -52,10 +52,10 @@ public class HaxeProject
         return baseProject.getName();
     }
     
-    public void addToFileTree(String filename, HaxeTree ast)
+    public void addToFileTree(String filePath, HaxeTree ast)
     {
-        filename = filename.replace('/', '.');
-        fileList.put(filename, ast);
+        filePath = WorkspaceUtils.converPathToPackage(filePath);
+        fileList.put(filePath, ast);
     }
     
     public Set<String> getFiles()

@@ -83,19 +83,15 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     protected void visit(VarUsageNode node, Object data)
     {
         System.out.print(getIndent(data));
-        if (node.isAuxiliary())
-            System.out.println("VarUseDOT");
-        else
+        HaxeTree decl = node.getDeclarationNode();
+        if (decl == null)
         {
-            HaxeTree decl = node.getDeclarationNode();
-            if (decl == null)
-            {
-                decl = node;
-            }
-            System.out.println("VarUsage " +
-                    "\"" + node.getText() + "\"" +
-                    " {" + decl.getHaxeType().getShortTypeName() + '}');
+            decl = node;
         }
+        System.out.println("VarUsage " +
+                "\"" + node.getText() + "\"" +
+                " {" + decl.getHaxeType().getShortTypeName() + '}' + 
+                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
         visitAllChildren(node, (int)data + 1);
     }
 

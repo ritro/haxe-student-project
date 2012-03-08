@@ -10,19 +10,29 @@
  *******************************************************************************/
 package workspace;
 
-import java.util.HashMap;
-import java.util.List;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
-import org.eclipse.core.resources.IFile;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+
+import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.imp.runtime.PluginBase;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
-import workspace.elements.BuildFile;
 import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
 
@@ -37,10 +47,12 @@ public class Activator extends PluginBase {
 
 	public static final String kPluginID = "haXe_IDE";
 	public static final String kLanguageID = "haxe";
+	public static final String libsPath = "lib/haXeLib.jar";
 	
 	protected static Activator sPlugin;	
 	
 	private HashMap<String, HaxeProject> projects;
+	private HashMap<String, HaxeTree> libraries;
 
 	/**
 	 * Gets the single instance of Activator.
@@ -92,6 +104,7 @@ public class Activator extends PluginBase {
 		sPlugin = this;
 		
 		projects = new HashMap<String, HaxeProject>();
+		libraries = new HashMap<String, HaxeTree>();
 	}
 
 	@Override
@@ -100,6 +113,7 @@ public class Activator extends PluginBase {
 		super.start(context);
 		
 		findProjectsInWorkspace();
+		//parseLibs();
 	}
 
 	// Definitions for image management
@@ -165,17 +179,41 @@ public class Activator extends PluginBase {
         }
 	}
 	
-	private void parseProjects()
+	private void parseLibs() throws URISyntaxException, IOException
 	{
-	    for (HaxeProject p : projects.values())
+	    Bundle bundle = Platform.getBundle(Activator.kPluginID);
+	    URL url = FileLocator.find(bundle, new Path(libsPath), null);
+	    try 
 	    {
-	        if (!p.isOpen())
-            {
-                continue;
-            }
+	        url = FileLocator.resolve(url);	    
+	        File test = new File(url.getFile());
 	        
-	        
+	        JarFile jarFile = new JarFile(test);
+        
+    	    Enumeration<JarEntry> entries = jarFile.entries();  
+    	    while (entries.hasMoreElements()) {
+    	        JarEntry entry = entries.nextElement();
+    	        String filePath = entry.getName();
+    	        if (!filePath.endsWith(".hx"))
+    	        {
+    	            continue;
+    	        }
+    
+    	        InputStream in = jarFile.getInputStream(entry);
+    	        
+    	        HaxeTree ast = WorkspaceUtils.parseFileContents(in);
+    	        
+    	        libraries.put(
+    	                WorkspaceUtils.converPathToPackage(filePath), 
+    	                ast);
+    	        in.close();
+    	    } 
+    	    jarFile.close();
 	    }
+        catch (IOException | RecognitionException e)
+        {
+            System.out.printf("Exception while parsing libs: {0}", e.toString());
+            System.out.println();
+        }
 	}
-
 }

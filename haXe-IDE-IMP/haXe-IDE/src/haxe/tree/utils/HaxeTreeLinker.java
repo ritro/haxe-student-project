@@ -120,6 +120,11 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             // here i should retrieve ast of imported file, if it's out project
             // file, for flash and others libs still null
             HaxeTree ast = project.getFileAST(longName);
+            if (ast == null)
+            {
+                // TODO: search in haxe libs
+            }
+            // TODO: if shortName already exists - error, not to import such
             imports.put(shortName, ast);
             // if no file found - how to mark error?
             // 1-check if import pachage just slightly wrong

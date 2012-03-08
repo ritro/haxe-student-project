@@ -39,6 +39,7 @@ import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
 import workspace.Activator;
+import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
 
 /**
@@ -232,16 +233,14 @@ public class HaxeParseController implements IParseController {
      */
     private void doParse(final String contents) {
         HaxeLexer lexer = new HaxeLexer(new ANTLRStringStream(contents));
-        this.tokenStream = new CommonTokenStream(lexer);
-        this.tokenStream.getTokens();
+        tokenStream = new CommonTokenStream(lexer);
+        //this.tokenStream.getTokens();
         System.out.print("Parsing file...");
-        HaxeParser parser = new HaxeParser(this.tokenStream);
-        parser.setTreeAdaptor(new HaxeTreeAdaptor());
-        this.currentAST = new HaxeTree();
+        currentAST = new HaxeTree();
 
-        try {
-            HaxeParser.module_return parserResult = parser.module();
-            this.currentAST = (HaxeTree) parserResult.getTree();
+        try 
+        {
+            currentAST = WorkspaceUtils.parseFileContents(tokenStream);
             System.out.println("success!");
             HaxeTree.setMessageHandler(handler);
             if (handler != null)

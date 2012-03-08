@@ -4,6 +4,7 @@ import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseExpression;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.tree.utils.HaxeTreePrinter;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -13,6 +14,8 @@ public class ExpressionTests
     ///
     /// Parcer
     ///
+    
+    HaxeTreePrinter printer = new HaxeTreePrinter();
     
     // Call and slices
     @Test
@@ -39,13 +42,14 @@ public class ExpressionTests
             "(" +
                 "Type.createInstance" +
                 "(" +
-                    "Type.resolveClass(mainClass),[])," +
+                    "Type.resolveClass" + "(mainClass,[5,5])" + "," +
                     "new flash.system.LoaderContext" +
                     "(" +
                         "new flash.system.ApplicationDomain()" +
                     ")" +
                 ")" +
             ")");
+        printer.visit(tree);
         assertTrue(true);
     }
     

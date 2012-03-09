@@ -1,6 +1,7 @@
 package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
@@ -10,7 +11,9 @@ import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
@@ -80,6 +83,37 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
+    protected void visit(MethodCallNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        HaxeTree decl = node.getDeclarationNode();
+        if (decl == null)
+        {
+            decl = node;
+        }
+        System.out.println("MethodCall " +
+                "\"" + node.getText() + "\"" +
+                " {" + decl.getHaxeType().getShortTypeName() + '}' + 
+                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
+    protected void visit(SliceNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        HaxeTree decl = node.getDeclarationNode();
+        if (decl == null)
+        {
+            decl = node;
+        }
+        System.out.println("Slice " +
+                " {" + decl.getHaxeType().getShortTypeName() + '}' + 
+                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        visitAllChildren(node, (int)data + 1);
+    }
+
+    @Override
     protected void visit(VarUsageNode node, Object data)
     {
         System.out.print(getIndent(data));
@@ -102,6 +136,14 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
         System.out.println("AssignOperation " + 
                 "{name=" + node.getText() + '}');     
         visitAllChildren(node, (int)data + 1);   
+    }
+
+    @Override
+    protected void visit(ArrayNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("Array ");
+        visitAllChildren(node, (int)data + 1);
     }
 
     @Override

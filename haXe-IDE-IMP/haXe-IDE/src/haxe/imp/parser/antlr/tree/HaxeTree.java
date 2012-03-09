@@ -49,7 +49,7 @@ public class HaxeTree extends CommonTree
 	
 	public boolean isFieldUse()
 	{
-	    return getChildCount() == 1 && getChild(0).getText().equals(".");
+	    return getChildCount() > 0 && getChild(getChildCount() - 1).getText().equals(".");
 	}
 	
 	public boolean isDuplicate()

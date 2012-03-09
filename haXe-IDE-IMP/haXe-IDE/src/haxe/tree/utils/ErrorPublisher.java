@@ -3,6 +3,7 @@ package haxe.tree.utils;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
@@ -67,7 +68,18 @@ public class ErrorPublisher
         node.commitError("Cannot " + binaryOp + " " + 
                 node.getLeftOperand().getHaxeType() + " and " + 
                 node.getRightOperand().getHaxeType());
-    }    
+    }     
+    
+    /**
+     * Error when we using defined, but not initialized variable.
+     */
+    public static void commitUninitializedUsingError(MethodCallNode node)
+    {
+        node.commitError(
+                "Local variable " 
+                + node.getText() 
+                + " used without being initialized");
+    }  
     
     /**
      * Error when we using defined, but not initialized variable.

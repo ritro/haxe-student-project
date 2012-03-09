@@ -10,6 +10,7 @@ tokens {
     PROPERTY_DECL;
     MODULE;
     SUFFIX_EXPR;
+    CALL_OR_SLICE;
     PREFIX_EXPR;
     BLOCK_SCOPE;
     PARAM_LIST;
@@ -56,12 +57,15 @@ import haxe.imp.parser.antlr.tree.specific.DoWhileNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.SwitchNode;
 import haxe.imp.parser.antlr.tree.specific.TryNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 }
 
@@ -304,21 +308,27 @@ prefixExpr      : NEW^ type LPAREN! exprList? RPAREN!
                 
 methodCallOrSlice 
                 : value LPAREN exprList? RPAREN pureCallOrSlice?
-            -> ^(SUFFIX_EXPR<HaxeTree>["MethodCall", $LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
+            -> ^(CALL_OR_SLICE<MethodCallNode>[$LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
                 | value LBRACKET expr RBRACKET pureCallOrSlice? 
-            -> ^(SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] value expr pureCallOrSlice?)
-                | value pureCallOrSlice? -> ^(value pureCallOrSlice?)
+            -> ^(CALL_OR_SLICE<SliceNode>[$LBRACKET, $RBRACKET, false] value expr pureCallOrSlice?)
+                | value^ pureCallOrSlice 
+                | value
                 ;
 
 pureCallOrSlice : LBRACKET expr? RBRACKET pureCallOrSlice? -> ^(
-                SUFFIX_EXPR<HaxeTree>["Slice", $LBRACKET, $RBRACKET] expr? pureCallOrSlice?)
+                CALL_OR_SLICE<SliceNode>[$LBRACKET, $RBRACKET, true] expr? pureCallOrSlice?)
                 | DOT^ methodCallOrSlice
                 ;
 
+arrayObj        : LBRACKET exprList? RBRACKET
+            -> ^(SUFFIX_EXPR<ArrayNode>[$LBRACKET, $RBRACKET] exprList?)
+                ;
+                
 value
     //|   RegexLit?
     :   objLit
     | funcLit
+    | arrayObj
     | elementarySymbol
     //|   LPAREN! expr RPAREN!
     // TODO: if id is in callAlSlice and else we can't use THIS

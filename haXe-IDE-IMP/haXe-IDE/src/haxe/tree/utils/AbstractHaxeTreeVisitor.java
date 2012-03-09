@@ -2,6 +2,7 @@ package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
@@ -11,7 +12,9 @@ import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
@@ -50,6 +53,10 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((ClassNode)t, data);
        }
+       else if (t instanceof ArrayNode)
+       {
+           visit((ArrayNode)t, data);
+       }
        else if (t instanceof ConstantNode)
        {
            visit((ConstantNode)t, data);
@@ -82,6 +89,14 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((VarDeclarationNode)t, data);
        }
+       else if (t instanceof MethodCallNode)
+       {
+           visit((MethodCallNode)t, data);
+       }
+       else if (t instanceof SliceNode)
+       {
+           visit((SliceNode)t, data);
+       }
        else if (t instanceof VarUsageNode)
        {
            visit((VarUsageNode)t, data);
@@ -109,8 +124,11 @@ public abstract class AbstractHaxeTreeVisitor
    protected abstract void visit(final ClassNode node, Object data);
    protected abstract void visit(final FunctionNode node, Object data);
    protected abstract void visit(final VarDeclarationNode node, Object data);
+   protected abstract void visit(final MethodCallNode node, Object data);
+   protected abstract void visit(final SliceNode node, Object data);
    protected abstract void visit(final VarUsageNode node, Object data);
    protected abstract void visit(final AssignOperationNode node, Object data);
+   protected abstract void visit(final ArrayNode node, Object data);
    protected abstract void visit(final ConstantNode node, Object data);
    protected abstract void visit(final ReturnNode node, Object data);
    protected abstract void visit(final BinaryExpressionNode node, Object data);

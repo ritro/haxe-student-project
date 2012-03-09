@@ -3,6 +3,8 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseExpression;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
+import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.tree.utils.HaxeTreePrinter;
 
@@ -42,7 +44,7 @@ public class ExpressionTests
             "(" +
                 "Type.createInstance" +
                 "(" +
-                    "Type.resolveClass" + "(mainClass,[5,5])" + "," +
+                    "Type.resolveClass" + "(mainClass,[])" + "," +
                     "new flash.system.LoaderContext" +
                     "(" +
                         "new flash.system.ApplicationDomain()" +
@@ -50,7 +52,7 @@ public class ExpressionTests
                 ")" +
             ")");
         printer.visit(tree);
-        assertTrue(true);
+        assertTrue(tree.getAllChildren().size() == 7);
     }
     
     // dot expressions
@@ -60,11 +62,18 @@ public class ExpressionTests
         assertTrue(tree instanceof VarUsageNode);
     }
     
-    //
+    // Arrays
+    @Test
+    public void testEmptyArrayExpression() throws RecognitionException {
+        HaxeTree tree = parseExpression("[]");
+        assertTrue(tree instanceof ArrayNode);
+    }
+    
     @Test
     public void testArrayExpression() throws RecognitionException {
-        //HaxeTree tree = parseExpression("x = [1,2];");
-        //HaxeTree tree = parseExpression("lo.t(Type.cr(Type.res(mainClass),[]), new f.s.Lo(new fl.sy.App()));");
+        HaxeTree tree = parseExpression("[1,2]");
+        assertTrue(tree.getChildCount() == 2);
+        assertTrue(tree.getChild(0) instanceof ConstantNode);
     }
     
 }

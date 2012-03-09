@@ -38,10 +38,6 @@ public class VarUsageNode extends HaxeTree
 	@Override
 	public HaxeType getHaxeType()
 	{
-	    if (getChildCount() > 0)
-	    {
-	        return getLastChildFromAll().getHaxeType();
-	    }
 	    if (declaration == null)
 	    {
 	        return super.getHaxeType();
@@ -57,7 +53,14 @@ public class VarUsageNode extends HaxeTree
 		super(token);
 	}
 	
-	/**
+
+    public VarUsageNode(int callOrSlice) 
+    {
+        super(callOrSlice);
+    }
+    
+
+    /**
 	 * 
 	 * @return if getText != null then getText, else lastchild.getText
 	 */

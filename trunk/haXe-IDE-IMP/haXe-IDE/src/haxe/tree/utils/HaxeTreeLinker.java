@@ -2,6 +2,7 @@ package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer.BoolOperations;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
@@ -12,7 +13,9 @@ import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
@@ -73,9 +76,19 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
+    protected void visit(ArrayNode node, Object data)
+    {
+        if (node.getChildCount() == 0)
+        {
+            return;
+        }
+        // TODO: find links for child objects
+    }
+
+    @Override
     protected void visit(ConstantNode node, Object data)
     {
-        // TODO Auto-generated method stub        
+        // TODO: nothing to write here?  
     }
 
     @Override
@@ -130,16 +143,6 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             // 1-check if import pachage just slightly wrong
             // 2-maybe there is no at all such file - mark error
         }
-        // method calls
-        else if (node.getText().equals("MethodCall"))
-        {
-            visitMethodCall(node,  data);
-        }
-        // slices
-        else if (node.getText().equals("Slice"))
-        {
-            visitSlice(node,  data);
-        }
     }
     
     protected void visitMemberUse(VarUsageNode node, Object data)
@@ -160,40 +163,17 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         
         HaxeTree child = node.getChild(0).getChild(0);
-        if (child.getText().equals("MethodCall"))
+        // slices and methcalls
+        if (child instanceof MethodCallNode ||
+                child instanceof SliceNode)
         {
-            visitMethodCall(child,  decl);
-        }
-        // slices
-        else if (child.getText().equals("Slice"))
-        {
-            visitSlice(child,  decl);
+            visit(child, decl);
         }
         // dot ident
-        else
+        else 
         {
             visitMemberUse((VarUsageNode)child,  decl);
         }
-    }
-    
-    protected void visitMethodCall(HaxeTree node, Object datae)
-    {
-        // can we have 0 children?
-        if (node.getChildCount() == 1)
-        {
-            // last child
-        } 
-        else if (node.getChildCount() > 1)
-        {
-            // first - fun name
-            // middle - arguments ??
-            // last - slice or field or methcall
-        }
-    }
-    
-    protected void visitSlice(HaxeTree node, Object data)
-    {
-        
     }
 
     @Override
@@ -235,6 +215,48 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
+    protected void visit(MethodCallNode node, Object data)
+    {
+        HaxeTree declaration = null;
+        if (data instanceof Environment)
+        {
+            Environment declarations = (Environment)data;
+            declaration = declarations.get(node.getText());
+        }
+        else if (data instanceof ClassNode)
+        {
+            declaration = ((HaxeTree) data).getDeclarationNode(node.getChild(0));
+        }
+        
+        node.setDeclarationNode(declaration);
+        
+        // TODO: fixing needed for - transfer env or parent class!
+        /*for (HaxeTree child : node.getParameters())
+        {
+            visit(child, data);
+        }
+        
+        if (node.isFieldUse())
+        {
+            visit(node.getChild(node.getChildCount() -1), data);
+        }*/
+    }
+
+    @Override
+    protected void visit(SliceNode node, Object data)
+    {
+        for (HaxeTree child : node.getParameters())
+        {
+            visit(child, data);
+        }
+        
+        if (node.isFieldUse())
+        {
+            visit(node.getChild(node.getChildCount() -1), data);
+        }
+    }
+
+    @Override
     protected void visit(VarUsageNode node, Object data)
     {
         // search for declaration
@@ -260,13 +282,13 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             return;
         }
         HaxeTree child = node.getChild(0).getChild(0);
-        if (child.getText().equals("MethodCall"))
+        // slices and methcalls
+        // TODO: here we should send not the Declaration
+        // but the HaxeTree found by type name
+        if (child instanceof MethodCallNode ||
+                child instanceof SliceNode)
         {
-            visitMethodCall(child,  declaration);            
-        }
-        else if (node.getText().equals("Slice"))
-        {
-            visitSlice(node,  declaration);
+            visit(child, declaration);
         }
         // dot ident
         else

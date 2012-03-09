@@ -1,16 +1,20 @@
 package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
@@ -86,6 +90,46 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
+    protected void visit(MethodCallNode node, Object data)
+    {
+        if (!node.ifUndefinedType())
+        {
+            if (node.isFieldUse())
+            {
+                visit(node.getChild(node.getChildCount() - 1), data);
+            }
+            for (HaxeTree child : node.getParameters())
+            {
+                visit(child, data);
+            }
+            return;
+        }
+        
+        data = node;
+        ErrorPublisher.commitUninitializedUsingError(node);
+    }
+
+    @Override
+    protected void visit(SliceNode node, Object data)
+    {
+        if (!node.ifUndefinedType())
+        {
+            if (node.isFieldUse())
+            {
+                visit(node.getChild(node.getChildCount() - 1), data);
+            }
+            for (HaxeTree child : node.getParameters())
+            {
+                visit(child, data);
+            }
+            return;
+        }
+        
+        data = node;
+        ErrorPublisher.commitUninitializedUsingError(node);        
+    }
+
+    @Override
     protected void visit(VarUsageNode node, Object data)
     {
         if (node.getDeclarationNode() == null)
@@ -94,14 +138,16 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             data = node;
             return;
         }
-
+        
+        if (!node.ifUndefinedType())
+        {
+            visit(node.getChild(0), data);
+            return;
+        }
         // FIXME - what about usage in Declarations?
         // look on parent isn't good looking
-        if (node.ifUndefinedType())
-        {
-            data = node;
-            ErrorPublisher.commitUninitializedUsingError(node);
-        }
+        data = node;
+        ErrorPublisher.commitUninitializedUsingError(node);
     }
 
     @Override
@@ -133,6 +179,17 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             // operation type
             node.commitError("Illegal assignment");
         }
+    }
+
+    @Override
+    protected void visit(ArrayNode node, Object data)
+    {
+        if (node.getChildCount() == 0)
+        {
+            return;
+        }
+        // TODO Auto-generated method stub
+        
     }
 
     @Override

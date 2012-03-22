@@ -105,8 +105,8 @@ public class BlockScopeNode extends HaxeTree {
 
     public BlockScopeNode(int blockScope, final Token lBracket, final Token rBracket) 
     {
-        super(blockScope);
+        super(blockScope, "BlockScope");
         leftBracketPosition = ((CommonToken) lBracket).getStartIndex();
-        rightBracketPosition = ((CommonToken) rBracket).getStartIndex();
+        rightBracketPosition = ((CommonToken) rBracket).getStopIndex();
     }
 }

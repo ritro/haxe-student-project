@@ -49,4 +49,10 @@ public class ParametersContainerNode extends VarUsageNode
        
        return parameters;
     }
+    
+    @Override
+    protected void calculateMostRightPosition()
+    {
+        mostRightPosition = rightParen.getStopIndex();
+    }
 }

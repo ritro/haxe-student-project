@@ -20,7 +20,7 @@ import org.antlr.runtime.Token;
  * 
  * @author Anatoly Kondratyev
  */
-public class WhileNode extends BlockScopeContainer 
+public class WhileNode extends HaxeTree 
 {
 	public WhileNode(final Token token) 
 	{

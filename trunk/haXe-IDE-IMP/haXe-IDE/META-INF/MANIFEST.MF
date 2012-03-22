@@ -15,10 +15,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench.texteditor,
  org.eclipse.imp.smapifier,
  org.eclipse.jdt.core,
- org.eclipse.ui.ide;bundle-version="3.7.0"
+ org.eclipse.ui.ide;bundle-version="3.7.0",
+ org.eclipse.pde.runtime;bundle-version="3.4.201"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
  JavaSE-1.6
 Eclipse-LazyStart: true
 Bundle-ClassPath: lib/antlr-3.4-complete.jar,
  .
+Import-Package: org.eclipse.jdt.ui

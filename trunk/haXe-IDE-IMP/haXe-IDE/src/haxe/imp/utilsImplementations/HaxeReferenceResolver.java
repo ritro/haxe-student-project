@@ -11,7 +11,22 @@
 package haxe.imp.utilsImplementations;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.ArrayNode;
+import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
+import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
+import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+import haxe.imp.parser.antlr.tree.specific.ForNode;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
@@ -56,23 +71,34 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 		// TODO Replace the following with an implementation suitable for your
 		// language and reference types
 
-		if (node instanceof VarUsageNode && controller.getCurrentAst() != null) {
-			HaxeTree result;
-			try {
-				result = ((HaxeTree) node).getDeclarationNode((HaxeTree) node);
-			} catch (Exception e) {
-				return null;
-			}
-			return result;
-		}else if (node instanceof HaxeTree&& ((HaxeTree)node).parent instanceof VarUsageNode && controller.getCurrentAst() != null) {
-			HaxeTree result;
-			try {
-				result = ((HaxeTree)((HaxeTree)node).parent).getDeclarationNode((HaxeTree)((HaxeTree)node).parent);
-			} catch (Exception e) {
-				return null;
-			}
-			return result;
-		}
+	    if (node instanceof MethodCallNode)
+        {
+	        return visit((MethodCallNode)node);
+        }
+	    else if (node instanceof SliceNode)
+	    {
+	        return visit((SliceNode)node);
+	    }
+	    else if (node instanceof VarUsageNode)
+	    {
+	        return visit((VarUsageNode)node);
+	    }
+	    
 		return null;
 	}
+	
+   private Object visit(final MethodCallNode node)
+   {
+       return node.getDeclarationNode();
+   }
+   
+   private Object visit(final SliceNode node)
+   {
+       return node.getDeclarationNode();
+   }
+   
+   private Object visit(final VarUsageNode node)
+   {
+       return node.getDeclarationNode();
+   }
 }

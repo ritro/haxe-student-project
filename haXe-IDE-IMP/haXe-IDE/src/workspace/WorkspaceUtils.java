@@ -16,6 +16,10 @@ import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.ui.IEditorDescriptor;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.FileEditorInput;
 
 public class WorkspaceUtils
 {
@@ -75,5 +79,29 @@ public class WorkspaceUtils
     {
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         return parseFileContents(tokenStream);
+    }
+    
+    public static HaxeTree getNodeUnderCursor(
+            final int offset,final int length, final HaxeTree currentAST)
+    {
+        if (currentAST == null)
+        {
+            return null;
+        }
+        HaxeTree result = null;
+        for (HaxeTree child : currentAST.getChildren())
+        {
+            result = getNodeUnderCursor(offset, length, child);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+        if (currentAST.getMostLeftPosition() <= offset &&
+                currentAST.getMostRightPosition() >= offset + length)
+        {
+            return currentAST;
+        }
+        return null;
     }
 }

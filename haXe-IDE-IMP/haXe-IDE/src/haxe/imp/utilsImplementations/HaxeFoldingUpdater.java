@@ -15,11 +15,14 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
 
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
+import org.eclipse.imp.runtime.RuntimePlugin;
 import org.eclipse.imp.services.base.FolderBase;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
@@ -34,62 +37,23 @@ import org.eclipse.jface.text.source.Annotation;
  * @author Anatoly Kondratyev
  */
 public class HaxeFoldingUpdater extends FolderBase {
-
-	/*
-	 * A visitor for ASTs. Its purpose is to create ProjectionAnnotations for
-	 * regions of text corresponding to various types of AST node or to text
-	 * ranges computed from AST nodes. Projection annotations appear in the
-	 * editor as the widgets that control folding.
-	 */
-	/**
-	 * The Class HaxeFoldingVisitor.
-	 * 
-	 * @author Anatoly Kondratyev
-	 */
-	public class HaxeFoldingVisitor extends AbstractVisitor {
-
-		@Override
-		public void unimplementedVisitor(final String s) {
-		}
-
-		/* 
-		 * START_HERE
-		 * 
-		 * Include visit(..) functions for various types of AST nodes that are
-		 * associated with folding. These functions should call one of the two
-		 * versions of makeAnnotation(..) that are defined in FolderBase. The
-		 * usual case is to call the version of makeAnnotation that creates a
-		 * folding annotation corresponding to the extent of a particular AST
-		 * node.
-		 * The other possibility is to create an annotation with an extent that
-		 * is explicitly provided. An example is shown below ... 
-		 */
-
-		/**
-		 * Creates folding for nodes.
-		 * @param node - the node to create folding.
-		 * @return true, if successful
-		 */
-		public boolean visit(final HaxeTree node) 
-		{
-		    int start = node.getMostLeftPosition();
-            int len = node.getMostRightPosition() - start;
-            assert(len > 0);
-            HaxeFoldingUpdater.this.makeAnnotation(start, len + 1);
-			return true;
-		}
-	};
-	
-	private HaxeFoldingVisitor visitor = null;
 	
     public static final int MODULE_TYPE = HaxeParser.MODULE;
 
 	@Override
 	protected void sendVisitorToAST(
 			final HashMap<Annotation, Position> newAnnotations,
-			final List<Annotation> annotations, final Object ast) {
-		visitor = new HaxeFoldingVisitor();
+			final List<Annotation> annotations, final Object ast) 
+	{
 		accept((HaxeTree) ast);
+	}
+	
+	public void makeAnnotation(BlockScopeContainer node)
+	{
+	    int start = node.getMostLeftPosition();
+        int len = node.getMostRightPosition() - start + 1;
+        assert (len > 0);
+        makeAnnotation(start, len);
 	}
 
     /**
@@ -103,14 +67,10 @@ public class HaxeFoldingUpdater extends FolderBase {
         {
             if (node instanceof BlockScopeContainer) 
             {
+                makeAnnotation((BlockScopeContainer)node);
                 BlockScopeNode blockscope 
                     = ((BlockScopeContainer)node).getBlockScope();
-                if (blockscope != null) accept(blockscope);
-            }
-            else if (node instanceof BlockScopeNode)
-            {
-                visitor.visit((BlockScopeNode)node);
-                for (HaxeTree child : node.getChildren()) 
+                for (HaxeTree child : blockscope.getChildren()) 
                 {
                     accept(child);
                 }
@@ -131,7 +91,7 @@ public class HaxeFoldingUpdater extends FolderBase {
                 // Maybe fix somewhere else needed?
                 else if (tokenType == HaxeLexer.COMMENT) 
                 {
-                    visitor.visit(node);
+                    //visitor.visit(node);
                 }
             }
         } 

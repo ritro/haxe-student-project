@@ -19,14 +19,14 @@ public class MethodCallNode extends ParametersContainerNode
     }
     
     @Override
-    protected void calculateMostRightPosition()
-    {
-        mostRightPosition = rightParen.getStopIndex();
-    }
-    
-    @Override
     public HaxeTree getDeclarationNode()
     {
         return super.getDeclarationNode(getChild(0));
+    }
+    
+    @Override    
+    public void setDeclarationNode(HaxeTree declaration)
+    {
+        ((VarUsageNode)getChild(0)).setDeclarationNode(declaration); 
     }
 }

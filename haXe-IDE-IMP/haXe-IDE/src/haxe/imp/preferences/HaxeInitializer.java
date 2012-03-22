@@ -23,7 +23,7 @@ public class HaxeInitializer extends PreferencesInitializer {
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_SPACESFORTABS, false);
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_USEDEFAULTINCLUDEPATH, true);
 		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_INCLUDEPATHTOUSE, ".;..; ${workspaceLoc;${projectLoc:projectName}");
-		service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_SOURCEFILEEXTENSIONS, "hx");
+		//service.setStringPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_SOURCEFILEEXTENSIONS, "hx");
 		service.setBooleanPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_GENERATELOG, true);
 		service.setIntPreference(IPreferencesService.DEFAULT_LEVEL, HaxeConstants.P_MAXLOGENTRIES, 100);
 	}

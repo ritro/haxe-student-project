@@ -162,14 +162,7 @@ public class HaxeTree extends CommonTree
 	 */
 	protected void calculateMostLeftPosition()
 	{
-	    if (getText().equals("MethodCall") || getText().equals("Slice"))
-	    {
-	        mostLeftPosition = getChild(0).getMostLeftPosition();
-	    }
-	    else 
-	    {
-	        mostLeftPosition = getToken().getStartIndex();
-	    }
+	    mostLeftPosition = getToken().getStartIndex();
 		for (HaxeTree commonTree : getChildren()) 
 		{
 			int possibleMLP = 

@@ -1,5 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.tree.HaxeTree;
+
 import org.antlr.runtime.Token;
 
 public class SliceNode extends ParametersContainerNode
@@ -25,5 +27,45 @@ public class SliceNode extends ParametersContainerNode
         }
         
         return "";
+    }
+    
+    @Override
+    protected void calculateMostLeftPosition()
+    {
+        if (haveNoName)
+        {
+            mostLeftPosition =  leftParen.getStartIndex();
+        }
+        else
+        {
+            mostLeftPosition = getChild(0).getMostLeftPosition();
+        }
+    }
+    
+    @Override
+    public HaxeTree getDeclarationNode()
+    {
+        if (haveNoName)
+        {
+            // TODO: not quete right
+            return null;
+        }
+        return ((VarUsageNode)getChild(0)).getDeclarationNode();
+    }
+    
+    @Override
+    public void setDeclarationNode(HaxeTree declaration)
+    {
+        if (haveNoName)
+        {
+            // TODO: not quete right
+            return;
+        }
+        ((VarUsageNode)getChild(0)).setDeclarationNode(declaration);
+    }
+    
+    public boolean isHaveName()
+    {
+        return !haveNoName;
     }
 }

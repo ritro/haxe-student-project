@@ -2,6 +2,7 @@ package haxe.imp.parser.antlr.tree;
 
 import org.antlr.runtime.Token;
 
+import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 
 /**
@@ -12,6 +13,7 @@ import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 public class BlockScopeContainer extends HaxeTree
 {
     private BlockScopeNode blockScope = null;
+    private static final int DECL_ATTR_LIST = HaxeParser.DECL_ATTR_LIST;
     
     public BlockScopeContainer(Token t) 
     {
@@ -38,5 +40,37 @@ public class BlockScopeContainer extends HaxeTree
         }
         
         return blockScope;
+    }
+    
+    @Override
+    protected void calculateMostLeftPosition()
+    {
+        mostLeftPosition = getToken().getStartIndex();
+        for (HaxeTree child : getChildren())
+        {
+            if (token.getType() == DECL_ATTR_LIST) 
+            {
+                for (HaxeTree attr : child.getChildren())
+                {
+                    int possibleMLP = 
+                            attr.getMostLeftPosition();
+                    if (mostLeftPosition > possibleMLP) 
+                    {
+                        mostLeftPosition = possibleMLP;
+                    }
+                }
+            } 
+        }
+    }
+    
+    @Override
+    protected void calculateMostRightPosition()
+    {
+        if (blockScope == null)
+        {
+            super.calculateMostRightPosition();
+            return;
+        }
+        mostRightPosition = blockScope.getRBracketPosition();
     }
 }

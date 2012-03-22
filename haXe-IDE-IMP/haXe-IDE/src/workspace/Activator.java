@@ -12,6 +12,7 @@ package workspace;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,13 +24,32 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.antlr.runtime.RecognitionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.imp.runtime.PluginBase;
+import org.eclipse.jdt.ui.IContextMenuConstants;
+import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.text.TextSelection;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IEditorActionDelegate;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWindowListener;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
@@ -43,7 +63,7 @@ import workspace.elements.IHaxeResources;
  * 
  * @author Anatoly Kondratyev
  */
-public class Activator extends PluginBase {
+public class Activator extends PluginBase{
 
 	public static final String kPluginID = "haXe_IDE";
 	public static final String kLanguageID = "haxe";
@@ -53,7 +73,7 @@ public class Activator extends PluginBase {
 	
 	private HashMap<String, HaxeProject> projects;
 	private HashMap<String, HaxeTree> libraries;
-
+	private HaxeProject currentProject = null;
 	/**
 	 * Gets the single instance of Activator.
 	 * 
@@ -65,6 +85,26 @@ public class Activator extends PluginBase {
 		}
 		return sPlugin;
 	}
+	
+	public void setCurrentHaxeProject(String project)
+	{
+	    currentProject = getProject(project);
+	}
+	
+	public HaxeProject getCurrentHaxeProject()
+	{
+	    return currentProject;
+	}
+	
+	public void setCurrentProject(IFile file)
+	{
+	    currentProject = projects.get(file.getProject().getName()); 
+	}
+	
+	public void setCurrentProject(HaxeProject proj)
+    {
+        currentProject = proj; 
+    }
 	
 	public HaxeProject getProject(String name)
 	{
@@ -115,7 +155,7 @@ public class Activator extends PluginBase {
 		findProjectsInWorkspace();
 		//parseLibs();
 	}
-
+	
 	// Definitions for image management
 
 	/** The Constant ICONS_PATH. */

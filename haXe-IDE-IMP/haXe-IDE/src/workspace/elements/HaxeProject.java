@@ -3,14 +3,17 @@ package workspace.elements;
 
 import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.HaxeTreeLinker;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -44,7 +47,7 @@ public class HaxeProject
         
         findBuildFiles();
         makeFileList();
-        //makeAST();
+        //linkAll();
     }
     
     public String getName()
@@ -213,7 +216,8 @@ public class HaxeProject
                 IPath fullPath = f.getFullPath();
                 IPath relPath = fullPath.makeRelativeTo(baseProject.getFullPath());
                 String name = relPath.removeFileExtension().toString();
-                addToFileTree(name, null);
+                HaxeTree ast = makeAST(f);
+                addToFileTree(name, ast);
             }
         }
         catch (CoreException e)
@@ -222,29 +226,32 @@ public class HaxeProject
         }
     }
     
-    private void makeAST()
+    private HaxeTree makeAST(IFile file)
     {
-        HaxeParseController parseController = new HaxeParseController();
-        for (String filename : getFiles())
+        try
         {
-            try
+            System.out.println("Parsing file begin: " + file.getLocation().toOSString());
+            HaxeTree ast = WorkspaceUtils.parseFileContents(file.getContents());
+            return ast;
+        }
+        catch (RecognitionException | IOException | CoreException e)
+        {                
+            System.out.println("Parsefile failed: " + file.getLocation().toOSString());
+        }
+        return null;
+    }
+    
+    private void linkAll()
+    {
+        HaxeTreeLinker linker = new HaxeTreeLinker(this);
+        for (String file : getFiles())
+        {
+            HaxeTree ast = getFileAST(file);
+            if (ast == null)
             {
-                IFile file = getFile(filename);
-                
-                parseController.initialize(
-                        file.getProjectRelativePath(),
-                        ModelFactory.open(file.getProject()), 
-                        null);
-                
-                String contents = BuilderUtils.getFileContents(file);
-                System.out.println(filename);
-                HaxeTree ast = (HaxeTree)parseController.parse(contents, null, true);
-                addToFileTree(filename, ast);
+                continue;
             }
-            catch (ModelException e)
-            {
-                e.printStackTrace();
-            }
+            linker.visit(ast);
         }
     }
 }

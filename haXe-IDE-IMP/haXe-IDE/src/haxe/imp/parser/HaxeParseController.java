@@ -274,6 +274,7 @@ public class HaxeParseController implements IParseController {
 
     @Override
     public Object parse(final String input, final IProgressMonitor monitor) {
+        Activator.getInstance().setCurrentHaxeProject(fProject.getName());
         return parse(input, monitor, false);
     }
     

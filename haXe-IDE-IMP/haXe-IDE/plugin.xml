@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            icon="/haXe-IDE/haxeSymbol.PNG"
+            icon="haxeSymbol.PNG"
             extensions="hx"
             description="haxe lang"
             natureID="haXe_IDE.imp.nature"
@@ -53,7 +53,7 @@
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
             class="haxe.imp.utilsImplementations.HaxeReferenceResolver"
-            language="haxe">
+            language="haXe">
       </referenceResolver>
    </extension>
    <extension
@@ -130,24 +130,6 @@
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="haxe.imp.preferences.HaxeInitializer">
-      </initializer>
-   </extension>
-   <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            objectClass="org.eclipse.core.resources.IProject"
-            adaptable="true"
-            nameFilter="*"
-            id="haxe.imp.projectContextMenu">
-         <action
-               label="Enable haxe Builder"
-               tooltip="Enable the haxe builder for this project"
-               class="workspace.EnableHaxeNature"
-               id="haxe.imp.actions.enableNatureAction">
-         </action>
-      </objectContribution>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
@@ -173,12 +155,58 @@
       </image>
    </extension>
    <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Call Hierarchy"
+            icon="haxeSymbol.PNG"
+            restorable="true"
+            class="workspace.CallHierarchyView"
+            id="haXe-IDE.haXeCallHierarchyView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            targetID="haXe-IDE.textEditor.EditorContext"
+            id="haXe-IDE.textEditorMenu">
+         <action
+               label="Open Call Hierarchy (haXe)"
+               class="workspace.contextMenu.CallHierarchyAction"
+               menubarPath="additions"
+               id="haXe-IDE.callHierarchyAction">
+         </action>
+      </viewerContribution>
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            adaptable="true"
+            nameFilter="*"
+            id="haxe.imp.projectContextMenu">
+         <action
+               label="Enable haxe Builder"
+               tooltip="Enable the haxe builder for this project"
+               class="workspace.EnableHaxeNature"
+               id="haxe.imp.actions.enableNatureAction">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             name="Haxe"
             class="haxe.imp.preferences.HaxePreferencePage"
             id="haxe.imp.preferences.Haxe">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="workspace.editor.HaxeFilesEditor"
+            default="true"
+            extensions="hx"
+            icon="icons/haxe_file.gif"
+            id="haXe-IDE.textEditor"
+            name="haXe editor">
+      </editor>
    </extension>
 
 </plugin>

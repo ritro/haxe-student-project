@@ -35,11 +35,22 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     
     public HaxeTreeLinker(HaxeProject proj)
     {
+        this();
         project = proj;
+    }
+    
+    public HaxeTreeLinker()
+    {
         imports = new HashMap<String, HaxeTree>();
     }
     
-    public HaxeTreeLinker(){}
+    @Override
+    public void visit(final HaxeTree t)
+    {
+        imports = new HashMap<String, HaxeTree>(); 
+        currentScope = ScopeTypes.Class;
+        super.visit(t);
+    }
     
     @Override
     protected void visit(AssignOperationNode node, Object data)
@@ -132,6 +143,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             String shortName = longName.substring(longName.lastIndexOf('.') + 1);
             // here i should retrieve ast of imported file, if it's out project
             // file, for flash and others libs still null
+            if (project == null)
+            {
+                return;
+            }
             HaxeTree ast = project.getFileAST(longName);
             if (ast == null)
             {

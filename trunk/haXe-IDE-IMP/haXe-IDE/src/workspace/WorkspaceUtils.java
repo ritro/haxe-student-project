@@ -4,6 +4,8 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,6 +102,12 @@ public class WorkspaceUtils
         if (currentAST.getMostLeftPosition() <= offset &&
                 currentAST.getMostRightPosition() >= offset + length)
         {
+            HaxeTree parent = currentAST.getParent();
+            if (parent != null 
+                    && ( parent instanceof MethodCallNode || parent instanceof SliceNode))
+            {
+                return parent;
+            }
             return currentAST;
         }
         return null;

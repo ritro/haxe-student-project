@@ -47,8 +47,12 @@ public class SliceNode extends ParametersContainerNode
     {
         if (haveNoName)
         {
-            // TODO: not quete right
-            return null;
+            HaxeTree parent = getParent();
+            if (!(parent instanceof MethodCallNode))
+            {
+                return null;
+            }
+            return ((MethodCallNode)parent).getDeclarationNode();
         }
         return ((VarUsageNode)getChild(0)).getDeclarationNode();
     }

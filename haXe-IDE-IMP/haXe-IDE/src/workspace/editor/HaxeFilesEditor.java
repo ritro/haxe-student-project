@@ -3,19 +3,14 @@ package workspace.editor;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.tree.utils.CallHierarchyBuilder;
+import haxe.tree.utils.HaxeTreePrinter;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Timer;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.texteditor.AbstractTextEditor;
 
 import workspace.Activator;
 import workspace.WorkspaceUtils;
@@ -32,10 +27,10 @@ public class HaxeFilesEditor extends UniversalEditor
     protected void handleCursorPositionChanged() 
     {
         super.handleCursorPositionChanged();
-        doDirtyJob();
+        makeCallHierarchyAnalisys();
     }
     
-    private void doDirtyJob()
+    private void makeCallHierarchyAnalisys()
     {
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         if (project == null)
@@ -62,8 +57,13 @@ public class HaxeFilesEditor extends UniversalEditor
         linker.visit(ast);*/
         
         CallHierarchyBuilder callFinder = new CallHierarchyBuilder();
-        callFinder.visit(((VarUsageNode)node).getDeclarationNode());
+        callFinder.visit(node);
         HashMap<String, List<HaxeTree>> result = callFinder.getResult();
+        for (List<HaxeTree> value : result.values())
+        {
+            HaxeTreePrinter printer = new HaxeTreePrinter();
+            printer.printArray(value);
+        }
     }
     
     private HaxeTree getNodeToLookAt(HaxeProject project)

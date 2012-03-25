@@ -21,6 +21,7 @@ import java.util.List;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.Tree;
 import org.eclipse.imp.parser.IMessageHandler;
 
 public class HaxeTree extends CommonTree 
@@ -255,8 +256,14 @@ public class HaxeTree extends CommonTree
 	            0, 0, 1, 1);
 	}
 	
-	public HaxeTree getParent(){
-		return (HaxeTree)super.getParent();
+	public HaxeTree getParent()
+	{
+	    Tree parent = super.getParent();
+	    if (parent == null)
+	    {
+	        return null;
+	    }
+		return (HaxeTree) parent;
 	}
 
 	/**

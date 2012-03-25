@@ -1,5 +1,8 @@
 package haxe.tree.utils;
 
+import java.util.Arrays;
+import java.util.List;
+
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
@@ -45,6 +48,19 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
         }
         
         return sb.toString();
+    }
+    
+    public void printArray(List<HaxeTree> array)
+    {
+        if (array == null || array.isEmpty())
+        {
+            return;
+        }
+        HaxeTree[] list = array.toArray(new HaxeTree[0]);
+        for (HaxeTree child : list)
+        {
+            visit(child);
+        }
     }
 
     @Override

@@ -114,6 +114,10 @@ public abstract class AbstractHaxeTreeVisitor
    
    public void visitAllChildren(final HaxeTree t, Object data)
    {
+       if (t == null)
+       {
+           return;
+       }
        for (HaxeTree child : t.getChildren()) 
        {
            visit(child, data);

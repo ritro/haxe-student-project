@@ -110,6 +110,10 @@ declAttr        : STATIC
                 | PUBLIC
                 | PRIVATE
                 ;
+                
+topLevelAccessAttr
+                : topLevelAccess -> ^(DECL_ATTR_LIST<HaxeTree>["Top_Level_Access"] topLevelAccess)
+                ;
 
 declAttrList    : declAttr+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST"] declAttr+)
                 ;
@@ -197,7 +201,12 @@ primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID | STRING
 type            : (primitiveType^ | filepath^ | anonType^ ) typeParam?
                 ;
     
-typeParam       : LT typeList typeParam? GT -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList typeParam?)
+typeParam       : LT typeList typeParamPart -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList typeParamPart)
+                | LT typeList GT -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList )
+                ;
+                
+typeParamPart   : LT typeList GTGT -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList)
+                | LT typeList typeParam? GTGTGT -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList typeParam?)
                 ;
        
 typeConstraint
@@ -205,8 +214,12 @@ typeConstraint
     ;
     
 /*-------------------------Statements--------------------------*/
-statement       : block
-                | IF<IfNode>^ parExpression statement (ELSE! statement)?
+statement       : statementLast
+                | expr SEMI!
+                ;
+    
+statementLast   : block
+                | IF<IfNode>^ parExpression statementOrLast (ELSE! statementOrLast)?
                 | FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
                 | WHILE<WhileNode>^ parExpression statement
                 | DO<DoWhileNode>^ statement WHILE! parExpression SEMI!
@@ -215,9 +228,12 @@ statement       : block
                 | RETURN<ReturnNode>^ expr? SEMI!
                 | THROW^ expr SEMI!
                 | (BREAK | CONTINUE) SEMI!
-                | expr SEMI!
     | IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
     ;
+    
+statementOrLast : statementLast
+                | expr
+                ;
    
 parExpression   : LPAREN! expr RPAREN!
                 ;
@@ -330,7 +346,8 @@ value
     | funcLit
     | arrayObj
     | elementarySymbol
-    //|   LPAREN! expr RPAREN!
+    |   LPAREN expr RPAREN '?' expr COLON expr -> ^(LPAREN<IfNode> expr+)
+    |   LPAREN! expr RPAREN!
     // TODO: if id is in callAlSlice and else we can't use THIS
     |   id typeParam? 
     ;
@@ -342,7 +359,7 @@ topLevelDecl    : classDecl
                 | typedefDecl
                 ;
     
-enumDecl        : topLevelAccess? ENUM IDENTIFIER typeParam? enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccess? typeParam? enumBody)
+enumDecl        : topLevelAccessAttr? ENUM IDENTIFIER typeParam? enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccessAttr? typeParam? enumBody)
                 ;
 
 enumBody        : LBRACE (enumValueDecl)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] enumValueDecl*)
@@ -353,8 +370,8 @@ enumValueDecl   : IDENTIFIER<VarDeclarationNode>^ LPAREN! paramList? RPAREN! SEM
             //  |   pp
                 ;
     
-classDecl       : topLevelAccess? CLASS IDENTIFIER typeParam? inheritList? classBodyScope 
-                    -> ^(IDENTIFIER<ClassNode> topLevelAccess? typeParam? inheritList? classBodyScope)
+classDecl       : topLevelAccessAttr? CLASS IDENTIFIER typeParam? inheritList? classBodyScope 
+                    -> ^(IDENTIFIER<ClassNode> topLevelAccessAttr? typeParam? inheritList? classBodyScope)
                 ;
 
 classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] classMember*)
@@ -408,7 +425,7 @@ funcProtoDecl
     ;
     
 interfaceDecl     
-    :   topLevelAccess? INTERFACE type inheritList? LBRACE! interfaceBody RBRACE!
+    :   topLevelAccessAttr? INTERFACE type inheritList? LBRACE! interfaceBody RBRACE!
     ;
     
 interfaceBody
@@ -592,8 +609,8 @@ LBRACKET    :   '[';
 RBRACKET    :   ']';
 SEMI        :   ';';
 COMMA       :   ',';
-DOT         :   '.';
 ELLIPSIS    :   '...';
+DOT         :   '.';
 EQ          :   '=';
 BANG        :   '!';
 TILDE       :   '~';

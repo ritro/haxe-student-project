@@ -5,6 +5,8 @@ import static test.TestHelper.parseExpression;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.tree.utils.HaxeTreePrinter;
 
@@ -23,19 +25,19 @@ public class ExpressionTests
     @Test
     public void testCallExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("getArray()[3].getSomeClass().intField");
-        assertTrue(tree.getText().equals("MethodCall"));
+        assertTrue(tree instanceof MethodCallNode);
     }
     
     @Test
     public void testCallExpression2() throws RecognitionException {
         HaxeTree tree = parseExpression("getArray().getSomeClass()");
-        assertTrue(tree.getChild(1).getChild(0).getText().equals("MethodCall"));
+        assertTrue(tree.getChild(1).getChild(0) instanceof MethodCallNode);
     }
     
     @Test
     public void testSliceExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("array[1]");
-        assertTrue(tree.getText().equals("Slice"));
+        assertTrue(tree instanceof SliceNode);
     }
     
     @Test
@@ -76,4 +78,30 @@ public class ExpressionTests
         assertTrue(tree.getChild(0) instanceof ConstantNode);
     }
     
+    // Type expressions and arrays classes    
+    @Test
+    public void testArrayClassExpression() throws RecognitionException {
+        HaxeTree tree = parseExpression("new Array()");
+        assertTrue(tree.getText().equals("new"));
+        assertTrue(tree.getChild(0).getText().equals("Array"));
+    }
+    
+    @Test
+    public void testArrayClassWithTypeExpression() throws RecognitionException {
+        HaxeTree tree = parseExpression("new Array<T>()");
+        assertTrue(tree.getChild(0).getChild(0).getText().equals("TYPE_PARAM"));
+    }
+    
+    @Test
+    public void testArrayClassWithParams() throws RecognitionException {
+        HaxeTree tree = parseExpression("new Array<T>(new Class())");
+        assertTrue(tree.getChild(1).getChild(0).getText().equals("Class"));
+    }
+    
+    @Test
+    public void testComplexType() throws RecognitionException {
+        HaxeTree tree = parseExpression("new Hash<Array<T>>()");
+        printer.visit(tree);
+        assertTrue(tree.getChild(0).getChild(0).getChild(1).getChild(0).getText().equals("T"));
+    }
 }

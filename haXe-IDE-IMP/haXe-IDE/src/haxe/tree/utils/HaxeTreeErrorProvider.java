@@ -24,6 +24,10 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
 {
     public void visitAllChildren(final HaxeTree t, Object data)
     {
+        if (t == null)
+        {
+            return;
+        }
         for (HaxeTree child : t.getChildren()) 
         {
             // if there was errors in binOp, assignments and all

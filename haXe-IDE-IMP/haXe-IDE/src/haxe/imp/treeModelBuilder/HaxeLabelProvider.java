@@ -17,10 +17,12 @@ import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import org.antlr.runtime.Token;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -34,166 +36,149 @@ import org.eclipse.swt.graphics.Image;
 import workspace.Activator;
 import workspace.elements.IHaxeResources;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class HaxeLabelProvider.
+ * This class allows to get images for such workspace elements as
+ * files (in normal, error and others conditions), different view items
+ * and labels for them.
  * 
  * @author Anatoly Kondratyev
+ * @author Savenko Maria
  */
-public class HaxeLabelProvider implements ILabelProvider {
+public class HaxeLabelProvider implements ILabelProvider 
+{
 
-	/** The listeners. */
 	private final Set<ILabelProviderListener> fListeners = new HashSet<ILabelProviderListener>();
 
-	/** The s image registry. */
-	private static ImageRegistry sImageRegistry = Activator.getInstance()
-			.getImageRegistry();
+	private static ImageRegistry sImageRegistry = 
+	        Activator.getInstance().getImageRegistry();
 
-	/** The DEFAUL t_ image. */
-	private static Image DEFAULT_IMAGE = sImageRegistry
-			.get(IHaxeResources.HAXE_DEFAULT_IMAGE);
 
-	/** The FIL e_ image. */
-	private static Image FILE_IMAGE = sImageRegistry
-			.get(IHaxeResources.HAXE_FILE);
+    // ---------- IBaseLabelProvider implementations ----------------
 
-	/** The FIL e_ wit h_ warnin g_ image. */
-	private static Image FILE_WITH_WARNING_IMAGE = sImageRegistry
-			.get(IHaxeResources.HAXE_FILE_WARNING);
+    public void addListener(final ILabelProviderListener listener) 
+    {
+        this.fListeners.add(listener);
+    }
 
-	/** The FIL e_ wit h_ erro r_ image. */
-	private static Image FILE_WITH_ERROR_IMAGE = sImageRegistry
-			.get(IHaxeResources.HAXE_FILE_ERROR);
+    public void dispose() {}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
-	 */
-	public Image getImage(final Object element) {
-		if (element instanceof IFile) {
-			// TODO: rewrite to provide more appropriate images
+    public boolean isLabelProperty(final Object element, final String property) 
+    {
+        return false;
+    }
+
+    public void removeListener(final ILabelProviderListener listener) 
+    {
+        this.fListeners.remove(listener);
+    }
+    // ------------------------end------------------------------------
+    
+	public Image getImage(final Object element) 
+	{
+		if (element instanceof IFile) 
+		{
 			IFile file = (IFile) element;
 			int sev = MarkerUtils.getMaxProblemMarkerSeverity(file,
 					IResource.DEPTH_ONE);
 
-			switch (sev) {
+			switch (sev) 
+			{
 			case IMarker.SEVERITY_ERROR:
-				return FILE_WITH_ERROR_IMAGE;
+				return sImageRegistry.get(IHaxeResources.HAXE_FILE_ERROR);
 			case IMarker.SEVERITY_WARNING:
-				return FILE_WITH_WARNING_IMAGE;
+				return sImageRegistry.get(IHaxeResources.HAXE_FILE_WARNING);
 			default:
-				return FILE_IMAGE;
+				return sImageRegistry.get(IHaxeResources.HAXE_FILE);
 			}
 		}
-		HaxeTree n = (element instanceof ModelTreeNode) ? (HaxeTree) ((ModelTreeNode) element)
-				.getASTNode()
+		HaxeTree n = (element instanceof ModelTreeNode) 
+		        ? (HaxeTree) ((ModelTreeNode) element).getASTNode()
 				: (HaxeTree) element;
-		return getImageFor(n);
+		return getImageForHaxeTreeNode(n);
 	}
 
-	/**
-	 * Gets the image for.
-	 * 
-	 * @param n
-	 *            the n
-	 * @return the image for
-	 */
-	public static Image getImageFor(final HaxeTree n) {
-		return DEFAULT_IMAGE;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-	 */
 	public String getText(final Object element) {
 		HaxeTree n = (element instanceof ModelTreeNode) ? (HaxeTree) ((ModelTreeNode) element)
 				.getASTNode()
 				: (HaxeTree) element;
 
-		return getLabelFor(n);
+		return getLabelForHaxeTreeNode(n);
 	}
 
 	/**
-	 * Generating label for outline tree in correspond to passed node.
-	 * 
-	 * @param n
-	 *            passed node
-	 * @return the label for node in outline tree
+	 * Gets the image for HaxeTree element in correspond to it's
+	 * type.
+	 * @param n - some haxeTree node to get image for
+	 * @return image for passed node
 	 */
-	public static String getLabelFor(final HaxeTree n) {
+	private static Image getImageForHaxeTreeNode(final HaxeTree n) 
+	{
+	    if (n instanceof FunctionNode)
+	    {
+	        sImageRegistry.get(IHaxeResources.FUNCTION_SMALL_PICTO);
+	    }
+	    
+		return sImageRegistry.get(IHaxeResources.HAXE_DEFAULT_OUTLINE_ITEM);
+	}
+
+	/**
+	 * Generating label for tree structure in correspond to passed node.
+	 * ( outline, call hierarchy and the rest)
+	 * 
+	 * @param n - passed node
+	 * @return the label for node in tree
+	 */
+	private static String getLabelForHaxeTreeNode(final HaxeTree n) 
+	{
 		// START_HERE
-		if (n.token.getType() == HaxeLexer.MODULE) {
+	    if (n == null)
+	    {
+	        return "<??unknown??>";
+	    }
+	    Token token = n.token;
+	    if (token != null && token.getType() == HaxeLexer.MODULE) 
+	    {
 			return "Module";
-		} else if (n.token.getType() == HaxeLexer.ENUM) {
+		} 
+	    else if (token != null && token.getType() == HaxeLexer.ENUM) 
+	    {
 			String enumReturn = "Enum ";
-			if (n.getChildCount() > 0) {
-				if (!(n.getChild(0) instanceof VarDeclarationNode)) {
-					enumReturn += n.getChild(0).getText();
-				}
+			if (n.getChildCount() > 0 && !(n.getChild(0) instanceof VarDeclarationNode))
+			{
+				enumReturn += n.getChild(0).getText();
 			}
 			return enumReturn;
-		} else if (n instanceof BlockScopeNode) {
+		} 
+	    else if (n instanceof BlockScopeNode) 
+	    {
 			return "Block";
-		} else if (n instanceof EnumNode) {
+		} 
+	    else if (n instanceof EnumNode) 
+	    {
 			return "Enum "+ n.getText();
-		} else /*if (n instanceof AssignOperationNode) {
+		} 
+	    else /*if (n instanceof AssignOperationNode) {
 			AssignOperationNode stmt = (AssignOperationNode) n;
 			return stmt.getText() + "=";//;+ stmt.getText() ??????????
 		} else*/ if (n instanceof ClassNode) {
 			return ((ClassNode) n).getClassName();
-		} else if (n instanceof FunctionNode) 
+		} 
+		else if (n instanceof FunctionNode) 
 		{
 			FunctionNode hdr = (FunctionNode) n;
 			return hdr.getFullNameWithParameters();
-		} else if (n instanceof VarDeclarationNode) {
+		} 
+		else if (n instanceof VarDeclarationNode) 
+		{
 			VarDeclarationNode varDeclaration = (VarDeclarationNode) n;
 			return varDeclaration.getNameWithType();
 		}
+		else if (n instanceof VarUsageNode)
+		{
+		    VarUsageNode node = (VarUsageNode)n;
+		    return node.getText() + ": " + node.getHaxeType().getShortTypeName();
+		}
 		
 		return "<??unknown??>";
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.
-	 * jface.viewers.ILabelProviderListener)
-	 */
-	public void addListener(final ILabelProviderListener listener) {
-		this.fListeners.add(listener);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-	 */
-	public void dispose() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang
-	 * .Object, java.lang.String)
-	 */
-	public boolean isLabelProperty(final Object element, final String property) {
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse
-	 * .jface.viewers.ILabelProviderListener)
-	 */
-	public void removeListener(final ILabelProviderListener listener) {
-		this.fListeners.remove(listener);
 	}
 }

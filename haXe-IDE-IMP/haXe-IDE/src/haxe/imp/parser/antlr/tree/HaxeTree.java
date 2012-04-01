@@ -26,7 +26,7 @@ import org.eclipse.imp.parser.IMessageHandler;
 
 public class HaxeTree extends CommonTree 
 {
-	private static IMessageHandler messageHandler;
+	private static IMessageHandler messageHandler = null;
 	private boolean auxiliary = false;
 	private boolean isDuplicate = false;
 	protected HaxeType haxeType = PrimaryHaxeType.haxeUndefined;
@@ -249,6 +249,10 @@ public class HaxeTree extends CommonTree
 	 * (red circles at the left).
 	 */	
 	public void commitError(final String message) {
+	    if (messageHandler == null)
+	    {
+	        return;
+	    }
 	    messageHandler.handleSimpleMessage(
 	            message, 
 	            getMostLeftPosition(), 

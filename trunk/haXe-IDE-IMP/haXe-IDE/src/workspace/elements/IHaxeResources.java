@@ -17,13 +17,7 @@ package workspace.elements;
  */
 public interface IHaxeResources {
 
-	// Definitions for label provider
-
-	/** The Constant HAXE_DEFAULT_IMAGE. */
-	public static final String HAXE_DEFAULT_IMAGE = "haxe_default_image";
-
-	/** The Constant HAXE_DEFAULT_OUTLINE_ITEM. */
-	public static final String HAXE_DEFAULT_OUTLINE_ITEM = "haxe_default_outline_item";
+	// ------------------ workspace objects images-------------
 
 	/** The Constant HAXE_FILE. */
 	public static final String HAXE_FILE = "haxe_file";
@@ -33,7 +27,15 @@ public interface IHaxeResources {
 
 	/** The Constant HAXE_FILE_ERROR. */
 	public static final String HAXE_FILE_ERROR = "haxe_file_error";
-
-	// Definitions for label provider end
-
+	
+	
+	// ----------------- Haxe Objects images -------------------
+	
+	/** The Constant HAXE_DEFAULT_OUTLINE_ITEM. */
+	public static final String HAXE_DEFAULT_OUTLINE_ITEM = "haxe_default_outline_item";
+	
+	/** The Constant HAXE_DEFAULT_IMAGE. */
+	public static final String HAXE_DEFAULT_IMAGE = "haxe_default_image";
+	
+	public static final String FUNCTION_SMALL_PICTO = "ViewObjects/bullet_green";
 }

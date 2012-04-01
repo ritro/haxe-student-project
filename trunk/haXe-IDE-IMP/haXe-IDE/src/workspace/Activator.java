@@ -9,6 +9,8 @@
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
 package workspace;
+import workspace.Activator;
+import workspace.views.CallHierarchyView;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
@@ -20,6 +22,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -52,6 +55,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
@@ -68,9 +73,12 @@ public class Activator extends PluginBase{
 	public static final String kPluginID = "haXe_IDE";
 	public static final String kLanguageID = "haxe";
 	public static final String libsPath = "lib/haXeLib.jar";
+	public static final Logger logger = LoggerFactory.getLogger("FILE");
 	
 	protected static Activator sPlugin;	
 	
+	public HashMap<String, List<HaxeTree>> callH = null;
+	public HaxeTree currNode = null;
 	private HashMap<String, HaxeProject> projects;
 	private HashMap<String, HaxeTree> libraries;
 	private HaxeProject currentProject = null;

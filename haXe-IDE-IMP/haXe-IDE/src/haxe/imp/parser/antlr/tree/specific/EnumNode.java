@@ -7,6 +7,7 @@ import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.runtime.Token;
 
@@ -37,10 +38,12 @@ public class EnumNode extends BlockScopeContainer {
 		super(t);
 	}
 
-	public HaxeTree getInherits() {
-		for (HaxeTree tree : (ArrayList<HaxeTree>) this
-				.getChildren()) {
-			if (tree.getType() == HaxeParser.INHERIT_LIST) {
+	public HaxeTree getInherits() 
+	{
+		for (HaxeTree tree : (ArrayList<HaxeTree>)getChildren()) 
+		{
+			if (tree.getType() == HaxeParser.EXTENDS) 
+			{
 				return (HaxeTree) tree;
 			}
 		}

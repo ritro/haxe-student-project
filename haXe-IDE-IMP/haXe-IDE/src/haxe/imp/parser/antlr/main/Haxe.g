@@ -17,7 +17,7 @@ tokens {
     TYPE_TAG;
     TYPE_PARAM;
     TYPE_CONSTRAIN;
-    INHERIT_LIST;
+    IMPLEMENT_LIST;
     DECL_ATTR_LIST;
     VAR_INIT;
     IDENT;
@@ -33,6 +33,19 @@ import java.util.HashMap;
 }
 
 @lexer::members {
+    List tokens = new ArrayList();
+    // buffer fot emitting
+    public void emit(Token token) {
+            state.token = token;
+            tokens.add(token);
+    }
+    public Token nextToken() {
+            super.nextToken();
+            if ( tokens.size()==0 ) {
+                return Token.EOF_TOKEN;
+            }
+            return (Token)tokens.remove(0);
+    }
     // Preprocessor Data Structures - see lexer section below and PreProcessor.cs
     protected HashMap<String,String> macroDefines = new HashMap<String,String>();    
     protected Stack<Boolean> processing = new Stack<Boolean>();
@@ -58,6 +71,7 @@ import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.SwitchNode;
 import haxe.imp.parser.antlr.tree.specific.TryNode;
@@ -129,6 +143,7 @@ identifier      : IDENTIFIER<VarUsageNode>
                 
 id              : identifier
                 | THIS<VarUsageNode>
+                | SUPER<VarUsageNode>
                 ;
 
 assignOp        : EQ       -> EQ<AssignOperationNode>
@@ -317,11 +332,11 @@ unarExpr        : (
                 | prefixExpr (PLUSPLUS<UnarExpressionNode>^|SUBSUB<UnarExpressionNode>^)?
                 ;  
     
-prefixExpr      : NEW^ type LPAREN! exprList? RPAREN!
+prefixExpr      : NEW<NewNode>^ type LPAREN! exprList? RPAREN!
                 | CAST^ LPAREN! expr (COMMA! funcType)? RPAREN!
                 | methodCallOrSlice
                 ;
-                
+
 methodCallOrSlice 
                 : value LPAREN exprList? RPAREN pureCallOrSlice?
             -> ^(CALL_OR_SLICE<MethodCallNode>[$LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
@@ -370,8 +385,8 @@ enumValueDecl   : IDENTIFIER<VarDeclarationNode>^ LPAREN! paramList? RPAREN! SEM
             //  |   pp
                 ;
     
-classDecl       : topLevelAccessAttr? CLASS IDENTIFIER typeParam? inheritList? classBodyScope 
-                    -> ^(IDENTIFIER<ClassNode> topLevelAccessAttr? typeParam? inheritList? classBodyScope)
+classDecl       : topLevelAccessAttr? CLASS IDENTIFIER typeParam?  extending? implementList?  classBodyScope 
+                    -> ^(IDENTIFIER<ClassNode> topLevelAccessAttr? typeParam?  extending? implementList? classBodyScope)
                 ;
 
 classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] classMember*)
@@ -425,7 +440,7 @@ funcProtoDecl
     ;
     
 interfaceDecl     
-    :   topLevelAccessAttr? INTERFACE type inheritList? LBRACE! interfaceBody RBRACE!
+    :   topLevelAccessAttr? INTERFACE type extending? implementList? LBRACE! interfaceBody RBRACE!
     ;
     
 interfaceBody
@@ -434,12 +449,14 @@ interfaceBody
 //  |   pp interfaceBody
     |
     ;
-
-inheritList     : inherit (COMMA inherit)* -> ^(INHERIT_LIST<HaxeTree>["INHERIT_LIST"] inherit+)
+                
+implementList   : implementing (COMMA implementing)* -> ^(IMPLEMENT_LIST<HaxeTree>["ImplementList"] implementing+)
                 ;
     
-inherit         : EXTENDS^ type
-                | IMPLEMENTS^ type
+implementing    : IMPLEMENTS! type
+                ;
+                
+extending       : EXTENDS<HaxeTree>^ type
                 ;
     
 typedefDecl     : TYPEDEF^ IDENTIFIER EQ! funcType
@@ -476,37 +493,6 @@ WS      : ( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;}
         ;
     
 /*-------------------------LEXER SECTION-------------------------*/
-LONGLITERAL
-    :   IntegerNumber LongSuffix
-    ;
-    
-INTLITERAL
-    :   IntegerNumber 
-    ;
-    
-fragment
-IntegerNumber
-    :   '0' 
-    |   '1'..'9' ('0'..'9')*    
-    |   '0' ('0'..'7')+         
-    |   HexPrefix HexDigit+        
-    ;
-
-fragment
-HexPrefix
-    :   '0x' | '0X'
-    ;
-        
-fragment
-HexDigit
-    :   ('0'..'9'|'a'..'f'|'A'..'F')
-    ;
-
-fragment
-LongSuffix
-    :   'l' | 'L'
-    ;
-
 CHARLITERAL
     :   '\'' 
         (   EscapeSequence 
@@ -650,22 +636,56 @@ GTGTEQ  :   '>>=';
 GTGTGTEQ:   '>>>=';
 GTEQ    :   '>=';
 LTEQ    :   '<=';
-LT      :   '<';     
+LT      :   '<';    
+ 
+LONGLITERAL
+    :   IntegerNumber LongSuffix
+    ;
+    
+INTLITERAL
+    :   IntegerNumber 
+    |   HexPrefix HexDigit+ 
+    ;
+    
+fragment
+IntegerNumber
+    :   DIGIT+      
+    ;
 
+fragment
+HexPrefix
+    :   '0x' | '0X'
+    ;
+        
+fragment
+HexDigit
+    :   ('0'..'9'|'a'..'f'|'A'..'F')
+    ;
+
+fragment
+LongSuffix
+    :   'l' | 'L'
+    ;
+    
 IDENTIFIER
     :  ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|DIGIT|'_')*
     ;
-    
-INTNUM      : DIGIT+
-            ;
 
 fragment
 DIGIT : '0'..'9' ;
 
             //haxe allow .1 as a float, but for antlr it's hard to
             //properly forsee that, so we restrict to have a num first
-FLOATNUM    : DIGIT+ (EXPONENT | DOT DIGIT DIGIT*)
-            ;
+FLOATNUM  : IntegerNumber EXPONENT
+          | d=IntegerNumber r=ELLIPSIS
+              {
+              $d.setType(INTLITERAL);
+              emit($d);
+              $r.setType(ELLIPSIS);
+              emit($r);
+              }
+          | d=IntegerNumber DOT IntegerNumber
+          ;
 
 COMMENT
     :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}

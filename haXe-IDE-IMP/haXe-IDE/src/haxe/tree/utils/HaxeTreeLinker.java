@@ -14,6 +14,7 @@ import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
@@ -23,6 +24,7 @@ import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import workspace.elements.HaxeProject;
 
@@ -70,7 +72,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             assignmentType = node.defineResultType(operationType);
             if (assignmentType == null)
             {
-                node.commitInvalidAssignmentError();
+                //node.commitInvalidAssignmentError();
                 return;
             }
         }
@@ -158,6 +160,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             // 1-check if import pachage just slightly wrong
             // 2-maybe there is no at all such file - mark error
         }
+        //else if (node.getText().equals("using"))
+        {
+            // TODO
+        }
     }
     
     protected void visitMemberUse(VarUsageNode node, Object data)
@@ -194,6 +200,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(BlockScopeNode node, Object data)
     {
+        if (node == null)
+        {
+            return;
+        }
         Environment declarations = (Environment)data;
         ArrayList<FunctionNode> functions = new ArrayList<FunctionNode>();
         
@@ -227,6 +237,12 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             visitAllChildren(node, declarations);            
         }
         
+    }
+
+    @Override
+    protected void visit(NewNode node, Object data)
+    {
+        visitAllChildren(node, data);
     }
 
     @Override
@@ -315,7 +331,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(ErrorNode node, Object data)
     {
-        node.commitUnexpectedError();
+        // do nothing here
     }
 
     @Override
@@ -366,8 +382,14 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(ClassNode node, Object data)
     {
+        node.analizeInherits();
         Environment env = (Environment)data;
         env.putWithCustomName("this", node);
+        HaxeTree inherits = node.getParentToExtend();
+        if (inherits != null)
+        {
+            env.putWithCustomName("super", inherits);
+        }
         
         BlockScopeNode blockScope = node.getBlockScope();
         

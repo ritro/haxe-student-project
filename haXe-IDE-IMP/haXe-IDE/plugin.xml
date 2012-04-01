@@ -157,11 +157,12 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="Call Hierarchy"
+            allowMultiple="false"
+            class="workspace.views.CallHierarchyView"
             icon="haxeSymbol.PNG"
-            restorable="true"
-            class="workspace.CallHierarchyView"
-            id="haXe-IDE.haXeCallHierarchyView">
+            id="haXe-IDE.haXeCallHierarchyView"
+            name="Call Hierarchy"
+            restorable="true">
       </view>
    </extension>
    <extension
@@ -200,7 +201,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="workspace.editor.HaxeFilesEditor"
+            class="workspace.editor.HxFilesEditor"
             default="true"
             extensions="hx"
             icon="icons/haxe_file.gif"

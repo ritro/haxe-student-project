@@ -22,5 +22,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
  JavaSE-1.6
 Eclipse-LazyStart: true
 Bundle-ClassPath: lib/antlr-3.4-complete.jar,
- .
+ .,
+ lib/slf4j-api-1.6.4.jar,
+ lib/logback-classic-1.0.1.jar,
+ lib/logback-core-1.0.1.jar,
+ lib/
 Import-Package: org.eclipse.jdt.ui

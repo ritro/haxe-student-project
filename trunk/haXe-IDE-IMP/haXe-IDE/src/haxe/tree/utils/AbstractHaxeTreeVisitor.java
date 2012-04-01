@@ -13,6 +13,7 @@ import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
@@ -89,6 +90,10 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((VarDeclarationNode)t, data);
        }
+       else if (t instanceof NewNode)
+       {
+           visit((NewNode)t, data);
+       }
        else if (t instanceof MethodCallNode)
        {
            visit((MethodCallNode)t, data);
@@ -128,6 +133,7 @@ public abstract class AbstractHaxeTreeVisitor
    protected abstract void visit(final ClassNode node, Object data);
    protected abstract void visit(final FunctionNode node, Object data);
    protected abstract void visit(final VarDeclarationNode node, Object data);
+   protected abstract void visit(final NewNode node, Object data);
    protected abstract void visit(final MethodCallNode node, Object data);
    protected abstract void visit(final SliceNode node, Object data);
    protected abstract void visit(final VarUsageNode node, Object data);

@@ -14,7 +14,7 @@ public class VarDeclarationTests
 {
     // Parser tests (for local variable declarations)
     @Test
-    public void testDeclarationSimple() throws RecognitionException 
+    public void parseDeclarationSimple() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x : Int;");
         
@@ -22,7 +22,7 @@ public class VarDeclarationTests
     }
     
     @Test
-    public void testDeclarationList() throws RecognitionException 
+    public void parseDeclarationList() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x,c,z : Int;");
         
@@ -33,7 +33,7 @@ public class VarDeclarationTests
     }
     
     @Test
-    public void testDeclarationList2() throws RecognitionException 
+    public void parseDeclarationList2() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x,c: Int, z : Int;");
         
@@ -45,7 +45,7 @@ public class VarDeclarationTests
     
     
     @Test
-    public void testDeclarationListFields() throws RecognitionException 
+    public void parseDeclarationListFields() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x,c : Int = 5;");
         VarDeclarationNode firstDecl = (VarDeclarationNode)tree.getChild(0);
@@ -61,10 +61,36 @@ public class VarDeclarationTests
     }
     
     @Test
-    public void testDeclarationWithProperties() throws RecognitionException 
+    public void parseDeclarationWithProperties() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x(getter,setter) : Int;");
         
+        assertTrue(tree instanceof VarDeclarationNode);
+    }
+    
+    @Test
+    public void parseDecWithComplexTypeWithExtention() throws RecognitionException 
+    {
+        HaxeTree tree = parseStatement("var jsons:Array<{path:String, json:Dynamic, finished:Bool}>;");
+        // TODO
+        assertTrue(tree instanceof VarDeclarationNode);
+    }
+    
+    @Test
+    public void parseInitOfDeclWithDotExprAndParams() throws RecognitionException 
+    {
+        HaxeTree tree = parseStatement("var count:Int = Std.int(sum);");
+        // TODO
+        assertTrue(tree instanceof VarDeclarationNode);
+    }
+    
+    // global declarations
+    
+    @Test
+    public void parseDeclarationWithManyAttributes() throws RecognitionException
+    {
+        HaxeTree tree = parseStatement("public static inline var NaN = Math.NaN;");
+        // TODO
         assertTrue(tree instanceof VarDeclarationNode);
     }
 }

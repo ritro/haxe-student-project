@@ -13,6 +13,7 @@ import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
@@ -91,6 +92,13 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         {
             ErrorPublisher.commitCastError(node, initType);
         }
+    }
+
+    @Override
+    protected void visit(NewNode node, Object data)
+    {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
@@ -251,8 +259,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(ErrorNode node, Object data)
     {
-        // TODO Auto-generated method stub
-        
+        node.commitUnexpectedError();
     }
 
     @Override

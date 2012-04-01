@@ -17,6 +17,7 @@ import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.runtime.Token;
 
@@ -29,6 +30,8 @@ public class ClassNode extends BlockScopeContainer {
 
 	/** The class name. */
 	private String className = "";
+	private List<HaxeTree> implementations = null;
+	private HaxeTree extention = null;
 
 	/**
 	 * Gets the class name.
@@ -48,15 +51,29 @@ public class ClassNode extends BlockScopeContainer {
 		super(t);
 	}
 	
-	public HaxeTree getInherits() {
-		for (HaxeTree tree : getChildren()) 
-		{
-			if (tree.getType() == HaxeParser.INHERIT_LIST) 
-			{
-				return tree;
-			}
-		}
-		return null;
+	public List<HaxeTree> getInterfacesToImplement() 
+	{
+		return implementations;
+	}
+	
+	public HaxeTree getParentToExtend()
+	{
+	    return extention;
+	}
+	
+	public void analizeInherits()
+	{
+	    for (HaxeTree child : getChildren())
+	    {
+	        if (child.getType() == HaxeParser.EXTENDS)
+	        {
+	            extention = child;
+	        }
+	        if (child.getType() == HaxeParser.IMPLEMENT_LIST)
+	        {
+	            implementations = child.getAllChildren();
+	        }
+	    }
 	}
 	
 	private void initializeHaxeType()
@@ -64,14 +81,19 @@ public class ClassNode extends BlockScopeContainer {
 		//FIXME That's just name, not full name (missing packege declaration)
 	    HaxeType type = new HaxeType(getClassName()); 
 		
-		if (getInherits() != null)
+	    analizeInherits();
+	    ArrayList<HaxeType> list = new ArrayList<HaxeType>();
+		if (implementations != null)
 		{
-	        ArrayList<HaxeType> list = new ArrayList<HaxeType>();
-	        for (HaxeTree i : getInherits().getChildren())
-	            list.add(new HaxeType(i.getChild(0).getText()));
+	        for (HaxeTree i : implementations)
+	            list.add(new HaxeType(i.getText()));
 
-	        type.setClassHierarchy(list);
 		}
+		if (extention != null)
+		{
+		    list.add(new HaxeType(extention.getText()));
+		}
+	    type.setClassHierarchy(list);
 
         setHaxeType(type);    
 	}

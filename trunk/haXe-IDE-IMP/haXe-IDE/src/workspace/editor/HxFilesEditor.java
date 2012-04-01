@@ -16,9 +16,9 @@ import workspace.Activator;
 import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
 
-public class HaxeFilesEditor extends UniversalEditor
+public class HxFilesEditor extends UniversalEditor
 {    
-    public HaxeFilesEditor()
+    public HxFilesEditor()
     {
         super();
     }
@@ -49,7 +49,7 @@ public class HaxeFilesEditor extends UniversalEditor
         }
         catch (RecognitionException | IOException | CoreException e)
         {
-            // TODO Auto-generated catch block
+            // Auto-generated catch block
             e.printStackTrace();
             return;
         }
@@ -64,6 +64,8 @@ public class HaxeFilesEditor extends UniversalEditor
             HaxeTreePrinter printer = new HaxeTreePrinter();
             printer.printArray(value);
         }
+        Activator.getInstance().callH = result;
+        Activator.getInstance().currNode = node;     
     }
     
     private HaxeTree getNodeToLookAt(HaxeProject project)

@@ -15,6 +15,7 @@ import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
@@ -96,6 +97,14 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
         System.out.println("Declaration " +
                 "\"" + node.getText() + "\"" +
                 " {" + node.getHaxeType().getShortTypeName() + '}');
+    }
+
+    @Override
+    protected void visit(NewNode node, Object data)
+    {
+        System.out.print(getIndent(data));
+        System.out.println("NEW ");
+        visitAllChildren(node, (int)data + 1);
     }
 
     @Override

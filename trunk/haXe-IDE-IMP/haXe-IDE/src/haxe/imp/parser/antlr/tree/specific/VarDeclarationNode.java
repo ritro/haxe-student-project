@@ -65,11 +65,11 @@ public class VarDeclarationNode extends NodeWithModifier {
 	 * @return the name with type
 	 */
 	public String getNameWithType() {
-		if (this.nameWithType.equals("")) {
-			this.nameWithType = getText() + " : "
+		if (nameWithType.equals("")) {
+			nameWithType = getText() + ": "
 					+ getHaxeType().getShortTypeName();
 		}
-		return this.nameWithType;
+		return nameWithType;
 	}
 
 	public VarDeclarationNode(final int ttype, final Token token)

@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.imp.builder.BuilderUtils;
 import org.eclipse.imp.model.ModelFactory;
 import org.eclipse.imp.model.ModelFactory.ModelException;
+import org.eclipse.imp.parser.IMessageHandler;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -47,7 +48,7 @@ public class HaxeProject
         
         findBuildFiles();
         makeFileList();
-        //linkAll();
+        linkAll();
     }
     
     public String getName()

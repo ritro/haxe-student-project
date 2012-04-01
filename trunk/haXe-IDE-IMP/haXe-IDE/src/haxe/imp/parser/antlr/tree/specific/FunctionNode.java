@@ -49,12 +49,11 @@ public class FunctionNode extends NodeWithScopeAndModifier
 		for (VarDeclarationNode commonTree : paramList) 
 		{
 			parameters += comma
-			        + commonTree.getText() + " : "
-					+ commonTree.getHaxeType().getShortTypeName();
+			        + commonTree.getHaxeType().getShortTypeName();
 			comma = ", ";
 		}
 		fullNameWithParameters = getText() + " ("
-				+ parameters + ") : "
+				+ parameters + "): "
 				+ getHaxeType().getShortTypeName();
 	}
 

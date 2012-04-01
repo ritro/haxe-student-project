@@ -70,12 +70,17 @@ public class HaxeFoldingUpdater extends FolderBase {
                 makeAnnotation((BlockScopeContainer)node);
                 BlockScopeNode blockscope 
                     = ((BlockScopeContainer)node).getBlockScope();
+                if (blockscope == null)
+                {
+                    return;
+                }
                 for (HaxeTree child : blockscope.getChildren()) 
                 {
                     accept(child);
                 }
             }
-            else if (node.token != null) 
+            // TODO add folding to imports
+            else if (node.getToken() != null) 
             {
                 int tokenType = node.getToken().getType();
                 //The root of all tree - users don't know about it

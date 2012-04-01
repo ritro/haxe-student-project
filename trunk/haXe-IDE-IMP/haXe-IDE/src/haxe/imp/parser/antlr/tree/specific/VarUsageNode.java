@@ -32,6 +32,10 @@ public class VarUsageNode extends HaxeTree
     @Override
 	public boolean setHaxeType(final HaxeType varType) 
 	{
+        if (declaration == null)
+        {
+            return false;
+        }
 	    return declaration.setHaxeType(varType);
 	}
 	

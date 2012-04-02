@@ -234,7 +234,7 @@ statement       : statementLast
                 ;
     
 statementLast   : block
-                | IF<IfNode>^ parExpression statementOrLast (ELSE! statementOrLast)?
+                | IF<IfNode>^ parExpression (statementOrLast ELSE!)? statement
                 | FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
                 | WHILE<WhileNode>^ parExpression statement
                 | DO<DoWhileNode>^ statement WHILE! parExpression SEMI!
@@ -243,7 +243,7 @@ statementLast   : block
                 | RETURN<ReturnNode>^ expr? SEMI!
                 | THROW^ expr SEMI!
                 | (BREAK | CONTINUE) SEMI!
-    | IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
+    //| IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
     ;
     
 statementOrLast : statementLast

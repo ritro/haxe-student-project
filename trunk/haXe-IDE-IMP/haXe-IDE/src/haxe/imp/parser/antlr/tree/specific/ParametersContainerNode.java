@@ -15,9 +15,10 @@ public class ParametersContainerNode extends VarUsageNode
     private List<HaxeTree> parameters = null;
 
     public ParametersContainerNode(
-            final int callOrSlice, final Token lParen, final Token rParen) 
+            final int callOrSlice, final String name, 
+            final Token lParen, final Token rParen) 
     {
-        super(callOrSlice);
+        super(new CommonToken(callOrSlice, name));
         leftParen = (CommonToken) lParen;
         rightParen = (CommonToken) rParen;
     }

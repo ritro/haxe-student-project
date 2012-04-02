@@ -14,7 +14,7 @@ public class SliceNode extends ParametersContainerNode
             final Token rBracket,
             final boolean isNoName) 
     {
-        super(callOrSlice, lBracket, rBracket);
+        super(callOrSlice, "Slice", lBracket, rBracket);
         haveNoName = isNoName;
     }
 

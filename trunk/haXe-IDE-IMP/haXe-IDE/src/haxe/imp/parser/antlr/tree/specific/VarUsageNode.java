@@ -53,15 +53,10 @@ public class VarUsageNode extends HaxeTree
 	 * Instantiates a new variable usage. 
 	 * @param token - token.
 	 */
-	public VarUsageNode(final Token token) {
+	public VarUsageNode(final Token token) 
+	{
 		super(token);
 	}
-	
-
-    public VarUsageNode(int callOrSlice) 
-    {
-        super(callOrSlice);
-    }
     
 
     /**

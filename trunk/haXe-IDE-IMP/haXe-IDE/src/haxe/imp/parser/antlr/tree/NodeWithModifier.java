@@ -1,9 +1,21 @@
 package haxe.imp.parser.antlr.tree;
 
+import org.antlr.runtime.Token;
+
 public class NodeWithModifier extends HaxeTree implements INodeWithModifier
 {
-    protected Modifiers modifier = Modifiers.PRIVATE;
+    protected Modifiers modifier = Modifiers.PRIVATE;    
     
+    protected NodeWithModifier()
+    {
+        super();
+    }
+    
+    public NodeWithModifier(final Token token) 
+    {
+        super(token);
+    }
+
     public Modifiers getModifier()
     {
         return modifier;

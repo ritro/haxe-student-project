@@ -11,7 +11,7 @@ public class ArrayNode extends ConstantNode
     public ArrayNode(
             final int ttype, final Token lbToken, final Token rbToken) 
     {
-        super(lbToken);
+        super(new CommonToken(ttype, "Array"));
         leftBracket = (CommonToken) lbToken;
         rightBracket = (CommonToken) rbToken;
     }

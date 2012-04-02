@@ -79,7 +79,7 @@ public class VarDeclarationNode extends NodeWithModifier {
 
 	public VarDeclarationNode(final Token token) 
 	{
-	    this.token = token;
+	    super(token);
     }
 
 	/**
@@ -149,12 +149,15 @@ public class VarDeclarationNode extends NodeWithModifier {
                 haxeType = primatyType != null
                         ? primatyType
                         : new HaxeType(typeName);
+                // also do that here
+                mostRightPosition = tree.getChild(0).getMostRightPosition();
                 break;
             } else if (type == PROPERTY_DECL
                     && tree.getChildCount() != 0)
             {
                 getAccessor = getAccessor(tree.getChild(0).getText());
                 setAccessor = getAccessor(tree.getChild(1).getText());
+                mostRightPosition = tree.getChild(1).getMostRightPosition();
             }
             declaredWithoutType = true;
         }
@@ -180,5 +183,27 @@ public class VarDeclarationNode extends NodeWithModifier {
         }
 	    
 	    return PropertyAccessors.FUNCTION;
+	}
+	
+	@Override
+	protected void calculateMostLeftPosition()
+	{
+	    mostLeftPosition = ((CommonToken)token).getStartIndex();
+	}
+	
+	@Override
+	protected void calculateMostRightPosition()
+	{
+	    HaxeTree init = getInitializationNode();
+	    if (init != null)
+	    {
+	        mostRightPosition = init.getMostRightPosition();
+	        return;
+	    } 
+	    tryExtractType();
+	    if (mostRightPosition == -1)
+	    {
+	        mostRightPosition = ((CommonToken)token).getStopIndex();
+	    }
 	}
 }

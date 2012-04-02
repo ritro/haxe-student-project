@@ -9,7 +9,7 @@ public class MethodCallNode extends ParametersContainerNode
     public MethodCallNode(
             final int callOrSlice, final Token lParen, final Token rParen) 
     {
-        super(callOrSlice, lParen, rParen);
+        super(callOrSlice, "MethodCall", lParen, rParen);
     }
     
     @Override

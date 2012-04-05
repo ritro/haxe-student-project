@@ -11,6 +11,8 @@
 package haxe.imp.parser.antlr.tree;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
@@ -72,6 +74,30 @@ public class HaxeTree extends CommonTree
     public HaxeType getHaxeType() 
     {
         return haxeType;
+    }
+    
+    /**
+     * Returns the type of the last object taken by
+     * field uses, method calls and so on.
+     * e.g.: obj.field1.method() will return the type of "method" call
+     * @return type of the last accessed object or simple haxeType
+     * for other types of Nodes
+     */
+    public HaxeType getLastType()
+    {
+        if (isFieldUse())
+        {
+            return getChild(0).getChild(0).getLastType();
+        } 
+        else if (this instanceof MethodCallNode)
+        {
+            return ((MethodCallNode)this).getLastType();
+        }
+        else if (this instanceof SliceNode)
+        {
+            return ((SliceNode)this).getLastType();
+        }
+        return getHaxeType();
     }
     
     public HaxeTree getLastChildFromAll()

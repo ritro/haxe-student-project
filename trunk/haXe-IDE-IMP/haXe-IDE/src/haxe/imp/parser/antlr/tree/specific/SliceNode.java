@@ -1,6 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -66,6 +67,21 @@ public class SliceNode extends ParametersContainerNode
             return;
         }
         ((VarUsageNode)getChild(0)).setDeclarationNode(declaration);
+    }
+    
+    @Override
+    public HaxeType getLastType()
+    {
+        if (isFieldUse())
+        {
+            return getChild(getChildCount() - 1).getLastType();
+        }
+        HaxeTree decl = getDeclarationNode();
+        if (decl != null)
+        {
+            return decl.getLastType();
+        }
+        return getHaxeType();
     }
     
     public boolean isHaveName()

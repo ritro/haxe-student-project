@@ -67,7 +67,7 @@ public class ClassNode extends BlockScopeContainer {
 	    {
 	        if (child.getType() == HaxeParser.EXTENDS)
 	        {
-	            extention = child;
+	            extention = child.getChild(0);
 	        }
 	        if (child.getType() == HaxeParser.IMPLEMENT_LIST)
 	        {

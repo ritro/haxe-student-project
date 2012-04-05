@@ -5,6 +5,7 @@ import static test.TestHelper.parseStatement;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
+import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -60,10 +61,19 @@ public class IfNodeTests
     
     @Test
     public void parseSimpleIfWithAssignNewClassExprWithParams() throws RecognitionException {
-        HaxeTree tree = parseStatement("if(style.up!=null) s9gUp = new S9G(style.up, style.rect);");
+        HaxeTree tree = parseStatement("if(style.up!=null) s9gUp = S9G(style.up, style.rect);");
         assertTrue(tree instanceof IfNode);
         HaxeTree ifBlock = ((IfNode)tree).getIfBlock();
         assertTrue(ifBlock instanceof AssignOperationNode);
         assertTrue(((AssignOperationNode)ifBlock).getRightOperand().getChildCount() == 3);
+    }
+    
+    @Test
+    public void parseDeepEmbendedIfsWithElse() throws RecognitionException {
+        HaxeTree tree = parseStatement(
+                "if(rolled&&pressed) changeDown() else if(!rolled&&!pressed) changeUp() else changeOver();");
+        assertTrue(tree instanceof IfNode);
+        HaxeTree ifBlock = ((IfNode)tree).getElseBlock();
+        assertTrue(((IfNode)ifBlock).getElseBlock() instanceof MethodCallNode);
     }
 }

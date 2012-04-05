@@ -12,28 +12,7 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 public class AssignOperationTests
-{
-    private AssignOperationNode getAssignment(HaxeTree tree)
-    {
-        for (HaxeTree i : tree.getChildren())
-        {
-            if (i instanceof AssignOperationNode)
-            {
-                return (AssignOperationNode)i;
-            }
-            else if (i.getChildCount() > 0)
-            {
-                AssignOperationNode result = getAssignment(i);
-                if (result != null)
-                {
-                    return result;
-                }
-            }
-        }
-        
-        return null;
-    }
-    
+{    
     ///
     /// Type Interference test.
     ///
@@ -44,7 +23,7 @@ public class AssignOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x:Int; x=123.1;}");
         linker.visit(tree, new Environment());
-        AssignOperationNode node = getAssignment(tree);
+        AssignOperationNode node = TestHelper.getAssignment(tree);
         
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
@@ -56,11 +35,16 @@ public class AssignOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x:Int; x=123;}");
         linker.visit(tree, new Environment());
-        AssignOperationNode node = getAssignment(tree);
+        AssignOperationNode node = TestHelper.getAssignment(tree);
 
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
         assertTrue(HaxeType.isAvailableAssignement(secondType, firstType));
     }
-
+    
+    @Test
+    public void test() throws RecognitionException 
+    {
+        HaxeTree tree = TestHelper.parseExpression("");
+    }
 }

@@ -138,6 +138,7 @@ public class VarDeclarationNode extends NodeWithModifier {
 	
 	private void tryExtractType()
 	{
+        declaredWithoutType = true;
 	    for (HaxeTree tree : getChildren()) 
 	    {
 	        int type = tree.getToken().getType();
@@ -151,7 +152,7 @@ public class VarDeclarationNode extends NodeWithModifier {
                         : new HaxeType(typeName);
                 // also do that here
                 mostRightPosition = tree.getChild(0).getMostRightPosition();
-                break;
+                declaredWithoutType = false;
             } else if (type == PROPERTY_DECL
                     && tree.getChildCount() != 0)
             {
@@ -159,7 +160,6 @@ public class VarDeclarationNode extends NodeWithModifier {
                 setAccessor = getAccessor(tree.getChild(1).getText());
                 mostRightPosition = tree.getChild(1).getMostRightPosition();
             }
-            declaredWithoutType = true;
         }
 	}
 	

@@ -22,6 +22,8 @@ import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
+import workspace.Activator;
+
 /**
  * NOTE: This version of the ISourcePositionLocator is for use when the Source
  * Position Locator and corresponding Parse Controller are generated separately
@@ -55,62 +57,48 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		this.fParseController = parseController;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.ISourcePositionLocator#findNode(java.lang.Object,
-	 * int)
-	 */
 	@Override
 	public Object findNode(final Object astRoot, final int offset) {
 		return ((HaxeTree) astRoot).getNodeByPosition(offset);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.ISourcePositionLocator#findNode(java.lang.Object,
-	 * int, int)
-	 */
 	@Override
-	public Object findNode(final Object astRoot, final int startOffset,
+	public Object findNode(
+	        final Object astRoot, final int startOffset,
 			final int endOffset) {
 		// TODO use endOffset
 		return ((HaxeTree) astRoot).getNodeByPosition(startOffset);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.ISourcePositionLocator#getEndOffset(java.lang.
-	 * Object)
-	 */
 	@Override
 	public int getEndOffset(final Object entity) {
-		if (entity instanceof CommonToken) {
-			return ((CommonToken) entity).getStartIndex()
-					+ ((CommonToken) entity).getText().length() - 1;
-		} else if (entity instanceof HaxeTree) {
-			CommonToken commonToken = (CommonToken) ((HaxeTree) entity)
-					.getToken();
-			return commonToken.getStartIndex() + commonToken.getText().length()
-					- 1;
-		} else {
-			throw new RuntimeException();
-		}
+	    try
+	    {
+    		if (entity instanceof CommonToken) {
+    			return ((CommonToken) entity).getStartIndex()
+    					+ ((CommonToken) entity).getText().length() - 1;
+    		} else if (entity instanceof HaxeTree) {
+    			CommonToken commonToken = (CommonToken) ((HaxeTree) entity)
+    					.getToken();
+    			return commonToken.getStartIndex() + commonToken.getText().length()
+    					- 1;
+    		} else {
+    			throw new RuntimeException();
+    		}
+	    }
+	    catch (NullPointerException e)
+	    {
+	        String message = 
+	                "HaxeSourcePositionLocator.getEndOffset nullPointerException: " + e.getMessage();
+	        System.out.println(message);
+	        Activator.logger.error(message);
+	        return -1;
+	    }
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.ISourcePositionLocator#getLength(java.lang.Object)
-	 */
 	@Override
-	public int getLength(final Object entity) {
+	public int getLength(final Object entity) 
+	{
 		if (entity instanceof CommonToken) {
 			return ((CommonToken) entity).getText().length();
 		} else if (entity instanceof HaxeTree) {
@@ -122,12 +110,6 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.imp.parser.ISourcePositionLocator#getPath(java.lang.Object)
-	 */
 	@Override
 	public IPath getPath(final Object node) {
 		if (node instanceof IAst) {

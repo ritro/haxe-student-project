@@ -409,13 +409,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         int maxIndex = node.parent.getChildCount();
         if (node.parent instanceof BlockScopeNode)
         {
-            //Last in all Blockscopes always '}'
-            // TODO: now is not??
-            node.setIfLastInScope(thisIndex == maxIndex - 2);           
-        }
-        else
-        {
-            node.setIfLastInScope(thisIndex == maxIndex - 1);
+            node.setIfLastInScope(thisIndex == maxIndex - 1);           
         }
         
         HaxeTree ifBlock = node.getIfBlock();

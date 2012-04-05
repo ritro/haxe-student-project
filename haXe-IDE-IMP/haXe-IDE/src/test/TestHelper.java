@@ -13,6 +13,8 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
+import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRInputStream;
@@ -127,37 +129,91 @@ public final class TestHelper {
 	
 	public static void assertTreeSize(int size, HaxeTree tree) {
 		assertEquals(size, tree.getChildCount());
-	}	
-	/**
-	 * Prints the tree.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public static void printTree(final HaxeTree t) {
-		System.out.println();
-		System.out.println("                    Tree: " + t.toString());
-		printTree(t, 0);
-
 	}
-
+	
 	/**
-	 * Prints the tree.
-	 * 
-	 * @param t       tree
-	 * @param indent  indentation
+	 * Finds function with specified name inside the AST which have 
+	 * MODULE type - that means it is a result of parsing the text
+	 * with usual for haXe files structure.
+	 * @param name of the function
+	 * @param moduleAst to search in
+	 * @return found FunctionNode or null
 	 */
-	private static void printTree(final HaxeTree t, final int indent) {
-		if (t != null) {
-			StringBuffer sb = new StringBuffer(indent);
-			for (int i = 0; i < indent; i++) {
-				sb = sb.append("   ");
-			}
-			for (int i = 0; i < t.getChildCount(); i++) {
-				System.out.println(sb.toString() + t.getChild(i).toString()
-						+ t.getChild(i).getText());
-				printTree(t.getChild(i), indent + 1);
-			}
-		}
+	public static FunctionNode getFunctionByName(String name, HaxeTree moduleAst)
+	{
+	    for (HaxeTree i : moduleAst.getChildren())
+        {
+            if (i instanceof FunctionNode && i.getText().equals(name))
+            {
+                return (FunctionNode)i;
+            }
+            else if (i.getChildCount() > 0)
+            {
+                FunctionNode result = getFunctionByName(name, i);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+        }
+        
+        return null;
 	}
+	
+    /**
+     * Will return the first occurence (and the most top) of an 
+     * binary expr in the Tree and
+     * it's children, so be sure to give this function the AST with
+     * binary expr you need going first.
+     * @param tree to search in
+     * @return binary expr node or null
+     */
+    public static BinaryExpressionNode getBinaryExpression(HaxeTree tree)
+    {
+        for (HaxeTree i : tree.getChildren())
+        {
+            if (i instanceof BinaryExpressionNode)
+            {
+                return (BinaryExpressionNode)i;
+            }
+            else if (i.getChildCount() > 0)
+            {
+                BinaryExpressionNode result = getBinaryExpression(i);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+        }
+        
+        return null;
+    }    
+
+    /**
+     * Will return the first occurence of an assignment in the Tree and
+     * it's children, so be sure to give this function the AST with
+     * assignment you need going first.
+     * @param tree to search in
+     * @return assignment node or null
+     */
+    public static AssignOperationNode getAssignment(HaxeTree tree)
+    {
+        for (HaxeTree i : tree.getChildren())
+        {
+            if (i instanceof AssignOperationNode)
+            {
+                return (AssignOperationNode)i;
+            }
+            else if (i.getChildCount() > 0)
+            {
+                AssignOperationNode result = getAssignment(i);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+        }
+        
+        return null;
+    }
 }

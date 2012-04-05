@@ -1,5 +1,0 @@
-static function new (tmp:Int):void 
-{
-	var i:Int = tmp;
-	trace("Hello World!"+i);
-}

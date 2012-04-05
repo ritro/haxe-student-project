@@ -1,0 +1,15 @@
+abstract class ClassTest extends AClass, implements AInterface, implements BInterface
+{
+		public function new()
+		{
+		}
+		
+		public function new(strVar:String)
+		{
+		  super(strVar);
+		}
+		
+		public function new(strVar:String, intVar:Int)
+		{
+		}
+}

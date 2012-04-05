@@ -227,28 +227,7 @@ public class BinaryOperationTests
     
     //
     // Type interference tests
-    //
-    private BinaryExpressionNode getBinExpr(HaxeTree tree)
-    {
-        for (HaxeTree i : tree.getChildren())
-        {
-            if (i instanceof BinaryExpressionNode)
-            {
-                return (BinaryExpressionNode)i;
-            }
-            else if (i.getChildCount() > 0)
-            {
-                BinaryExpressionNode result = getBinExpr(i);
-                if (result != null)
-                {
-                    return result;
-                }
-            }
-        }
-        
-        return null;
-    }
-    
+    //    
     HaxeTreeLinker linker = new HaxeTreeLinker();
 
     @Test
@@ -256,7 +235,7 @@ public class BinaryOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x; x=123 + 1; }");
         linker.visit(tree, new Environment());
-        BinaryExpressionNode node = getBinExpr(tree);
+        BinaryExpressionNode node = TestHelper.getBinaryExpression(tree);
         
         assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeInt);
     }
@@ -266,7 +245,7 @@ public class BinaryOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x; x=123.1 + 1; }");
         linker.visit(tree, new Environment());
-        BinaryExpressionNode node = getBinExpr(tree);
+        BinaryExpressionNode node = TestHelper.getBinaryExpression(tree);
         
         assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeFloat);
     }
@@ -276,7 +255,7 @@ public class BinaryOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x; x=123 + \" monkeys\"; }");
         linker.visit(tree, new Environment());
-        BinaryExpressionNode node = getBinExpr(tree);
+        BinaryExpressionNode node = TestHelper.getBinaryExpression(tree);
         
         assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeString);
     }

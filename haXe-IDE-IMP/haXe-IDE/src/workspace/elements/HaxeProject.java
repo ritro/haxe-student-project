@@ -38,17 +38,17 @@ public class HaxeProject
     
     private IProject baseProject;
     private List<BuildFile> buildFiles = null;
-    private HashMap<String, HaxeTree> fileList = null;
+    private HashMap<String, List<HaxeFile>> fileList = null;
 
     public HaxeProject(IProject project)
     {
         baseProject = project;
         buildFiles = new ArrayList<BuildFile>();
-        fileList = new HashMap<String, HaxeTree>();
+        fileList = new HashMap<String, List<HaxeFile>>();
         
         findBuildFiles();
         makeFileList();
-        linkAll();
+        //linkAll();
     }
     
     public String getName()
@@ -56,20 +56,59 @@ public class HaxeProject
         return baseProject.getName();
     }
     
-    public void addToFileTree(String filePath, HaxeTree ast)
+    public void addToFileTree(HaxeFile file)
     {
-        filePath = WorkspaceUtils.converPathToPackage(filePath);
-        fileList.put(filePath, ast);
+        String name = file.getName();
+        List<HaxeFile> list = fileList.get(name);
+        if (list == null)
+        {
+            list = new ArrayList<HaxeFile>();
+        }
+        list.add(file);
+        fileList.put(name, list);
     }
     
-    public Set<String> getFiles()
+    public HashMap<String, List<HaxeFile>> getFiles()
     {
-        return fileList.keySet();
+        return fileList;
     }
     
-    public HaxeTree getFileAST(String nameWithPackage)
+    public HaxeTree getFileAST(String name, String nameWithPackage)
     {
-        return fileList.get(nameWithPackage);
+        List<HaxeFile> list = fileList.get(name);
+        if (list == null)
+        {
+            // TODO should check?
+            return null;
+        }
+        for (HaxeFile file : list)
+        {
+            if (file.getPackage().equals(nameWithPackage))
+            {
+                return file.getAst();
+            }
+        }
+        
+        return null;
+    }
+    
+    public HaxeTree getFileAST(IFile file)
+    {
+        List<HaxeFile> list = fileList.get(file.getName());
+        if (list == null)
+        {
+            // TODO should check?
+            return null;
+        }
+        for (HaxeFile hfile : list)
+        {
+            if (hfile.getPath().equals(file.getFullPath()))
+            {
+                return hfile.getAst();
+            }
+        }
+        
+        return null;
     }
     
     public List<BuildFile> getBuildFiles()
@@ -214,11 +253,10 @@ public class HaxeProject
             List<IFile> ff = visitor.getBuildFileList();
             for (IFile f : ff)
             {
-                IPath fullPath = f.getFullPath();
-                IPath relPath = fullPath.makeRelativeTo(baseProject.getFullPath());
-                String name = relPath.removeFileExtension().toString();
-                HaxeTree ast = makeAST(f);
-                addToFileTree(name, ast);
+                HaxeTree ast = makeAST(f);                
+                HaxeFile file = new HaxeFile(f, ast);
+                
+                addToFileTree(file);
             }
         }
         catch (CoreException e)
@@ -245,14 +283,17 @@ public class HaxeProject
     private void linkAll()
     {
         HaxeTreeLinker linker = new HaxeTreeLinker(this);
-        for (String file : getFiles())
+        for (List<HaxeFile> fileLists : fileList.values())
         {
-            HaxeTree ast = getFileAST(file);
-            if (ast == null)
+            for (HaxeFile file : fileLists)
             {
-                continue;
+                HaxeTree ast = file.getAst();
+                if (ast == null)
+                {
+                    continue;
+                }
+                linker.visit(ast);                
             }
-            linker.visit(ast);
         }
     }
 }

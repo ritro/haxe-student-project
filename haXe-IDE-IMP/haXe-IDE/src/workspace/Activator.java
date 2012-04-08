@@ -79,6 +79,7 @@ public class Activator extends PluginBase{
 	
 	public HashMap<String, List<HaxeTree>> callH = null;
 	public HaxeTree currNode = null;
+	public IFile activeFile = null;
 	private HashMap<String, HaxeProject> projects;
 	private HashMap<String, HaxeTree> libraries;
 	private HaxeProject currentProject = null;
@@ -106,6 +107,7 @@ public class Activator extends PluginBase{
 	
 	public void setCurrentProject(IFile file)
 	{
+	    activeFile = file;
 	    currentProject = projects.get(file.getProject().getName()); 
 	}
 	

@@ -207,7 +207,20 @@
             icon="icons/haxe_file.gif"
             id="haXe-IDE.textEditor"
             name="haXe editor">
+         <contentTypeBinding
+               contentTypeId="haXe-IDE.haxeFileContentType">
+         </contentTypeBinding>
       </editor>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            describer="workspace.editor.HaxeFileDescriber"
+            file-extensions="hx"
+            id="haXe-IDE.haxeFileContentType"
+            name="haXe file"
+            priority="high">
+      </content-type>
    </extension>
 
 </plugin>

@@ -10,6 +10,11 @@ import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PushbackInputStream;
+import java.nio.charset.Charset;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.ANTLRStringStream;
@@ -25,6 +30,28 @@ import org.eclipse.ui.part.FileEditorInput;
 
 public class WorkspaceUtils
 {
+    private static final int BOM_MAX_LENGTH = 3;
+    private static final Map<Charset, int[]> BOM_CHARSET;
+    static {
+        Map<Charset, int[]> aMap = new HashMap<Charset, int[]>();
+        aMap.put(Charset.forName("UTF-16BE"), new int[] {0xFE, 0xFF});
+        aMap.put(Charset.forName("UTF-16LE"), new int[] {0xFF, 0xFE});
+        aMap.put(Charset.forName("UTF-8"),    new int[] {0xEF, 0xBB, 0xBF});
+        BOM_CHARSET = Collections.unmodifiableMap(aMap);
+    }
+
+    // Additional BOMs - add as needed
+    //          {0x00, 0x00, 0xFE, 0xFF},
+    //          {0xFF, 0xFE, 0x00, 0x00},
+    //          {0x2B, 0x2F, 0x76, 0x38},
+    //          {0x2B, 0x2F, 0x76, 0x39},
+    //          {0x2B, 0x2F, 0x76, 0x2B},
+    //          {0x2B, 0x2F, 0x76, 0x2F},
+    //          {0xDD, 0x73, 0x66, 0x73},
+    //          {0x0E, 0xFE, 0xFF},
+    //          {0xFB, 0xEE, 0x28},
+
+    
     public static void createFolder(final IFolder folder) throws CoreException 
     {
         IContainer parent = folder.getParent();
@@ -56,7 +83,15 @@ public class WorkspaceUtils
     public static HaxeTree parseFileContents(final InputStream contentStream) 
             throws RecognitionException, IOException
     {
-        HaxeLexer lexer = new HaxeLexer(new ANTLRInputStream(contentStream));
+        PushbackInputStream stream = new PushbackInputStream(contentStream, BOM_MAX_LENGTH);
+        Charset encoding = getEncoding(stream);
+        if (encoding != null)
+        {
+            HaxeLexer lexer = 
+                    new HaxeLexer(new ANTLRInputStream(contentStream, encoding.toString())); 
+            return parseFileContents(lexer);           
+        }
+        HaxeLexer lexer = new HaxeLexer(new ANTLRInputStream(stream)); 
         return parseFileContents(lexer);
     }
     
@@ -81,6 +116,62 @@ public class WorkspaceUtils
     {
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         return parseFileContents(tokenStream);
+    }
+    
+    /**
+     * Now it returns encoding name only if it one of the follows:
+     * UTF-8, UTF-16BE, UTF-16LE. In the last case it leave BOM
+     * bytes read - so the next read operation on that stream should
+     * begin from next byte.
+     * @return Encording name
+     * @throws IOException
+     */
+    public static Charset getEncoding(PushbackInputStream stream) throws IOException
+    {
+        final int buffer[] = new int[BOM_MAX_LENGTH];
+        Charset encoding = null;
+        for(int i = 0; i < BOM_MAX_LENGTH; i++) 
+        {
+            int r = stream.read();
+            if(r == -1)
+              break;
+            else
+              buffer[i] = r;
+        }
+        
+        // Detect if BOM is present
+        int bomLength = 0;
+        for(Charset charset : BOM_CHARSET.keySet()) 
+        {
+          final int[] bom = BOM_CHARSET.get(charset);
+          if(compareArrays(bom, buffer)) 
+          {
+            bomLength = bom.length;
+            encoding = charset;
+          }
+        }
+
+        // Push back bytes read that were not part of BOM
+        for (int index = buffer.length - 1; index >= bomLength; index--) {
+          if (buffer[index] != -1)
+            stream.unread(buffer[index]);
+        }
+        
+        return encoding;
+    }
+    
+    /**
+     * Simply compaires two arrays byte by byte.
+     * @return true if equal.
+     */
+    private static boolean compareArrays(int[] bom, int[] bytes) 
+    {
+        for (int index = 0; index < bom.length; index++) 
+        {
+            if (bom[index] != bytes[index])
+              return false;
+          }
+          return true;
     }
     
     public static HaxeTree getNodeUnderCursor(

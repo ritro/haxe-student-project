@@ -45,4 +45,14 @@ public class MethodCallNode extends ParametersContainerNode
         }
         return getHaxeType();
     }
+    
+    @Override
+    public HaxeType getHaxeType()
+    {
+        if (getDeclarationNode() == null)
+        {
+            return super.getHaxeType();
+        }
+        return getDeclarationNode().getHaxeType();
+    }
 }

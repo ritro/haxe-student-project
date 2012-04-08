@@ -21,10 +21,13 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IEditorDescriptor;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
@@ -172,6 +175,15 @@ public class WorkspaceUtils
               return false;
           }
           return true;
+    }
+    
+    public static IEditorPart openFileInEditor(final IFile file) throws PartInitException
+    {
+        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+        IEditorDescriptor desc = PlatformUI.getWorkbench().
+                getEditorRegistry().getDefaultEditor(file.getName());
+        IEditorPart editor = page.openEditor(new FileEditorInput(file), desc.getId());
+        return editor;
     }
     
     public static HaxeTree getNodeUnderCursor(

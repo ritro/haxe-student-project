@@ -96,7 +96,8 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
         System.out.print(getIndent(data));
         System.out.println("Declaration " +
                 "\"" + node.getText() + "\"" +
-                " {" + node.getHaxeType().getShortTypeName() + '}');
+                " {" + node.getHaxeType().getShortTypeName() + '}' + 
+                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
     }
 
     @Override

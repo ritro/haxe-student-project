@@ -119,6 +119,11 @@ public class VarDeclarationNode extends NodeWithModifier {
 	
 	public void updateInfo()
 	{
+	    HaxeTree init = getInitializationNode();
+        if (init != null)
+        {
+            mostRightPosition = init.getMostRightPosition();
+        }
 	    tryExtractType();
 	    updateModifier();
 	}
@@ -194,16 +199,27 @@ public class VarDeclarationNode extends NodeWithModifier {
 	@Override
 	protected void calculateMostRightPosition()
 	{
-	    HaxeTree init = getInitializationNode();
-	    if (init != null)
-	    {
-	        mostRightPosition = init.getMostRightPosition();
-	        return;
-	    } 
 	    tryExtractType();
 	    if (mostRightPosition == -1)
 	    {
 	        mostRightPosition = ((CommonToken)token).getStopIndex();
 	    }
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+	    if (!(obj instanceof VarDeclarationNode))
+	    {
+	        return false;
+	    }
+	    VarDeclarationNode node = (VarDeclarationNode)obj;
+	    if (getText().equals(node.getText()) &&
+	            token.equals(node.getToken()))
+	    {
+	        return true;
+	    }
+	    
+	    return false;
 	}
 }

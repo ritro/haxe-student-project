@@ -1,18 +1,20 @@
 package workspace.views;
 
+import haxe.imp.parser.antlr.tree.HaxeTree;
+
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.treeModelBuilder.HaxeLabelProvider;
-
+import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.ui.IContextMenuConstants;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -24,10 +26,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
-
-import antlr.CommonToken;
+import workspace.Activator;
+import workspace.WorkspaceUtils;
+import workspace.editor.HxFilesEditor;
+import workspace.elements.HaxeFile;
+import workspace.elements.HaxeProject;
 
 public class CallHierarchyView extends ViewPart implements ISelectionChangedListener
 {
@@ -88,11 +95,11 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
         // Create menu, toolbars, filters, sorters.
         //createMenus();
         //createToolbar();
-        //hookListeners();
+        hookListeners();
 
         invisibleRoot = new CallHierarchyElement(null, "");
         treeViewer.setInput(invisibleRoot);
-        treeViewer.setAutoExpandLevel(2);
+        treeViewer.setAutoExpandLevel(3);
     }
 
     @Override
@@ -110,7 +117,7 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
         CallHierarchyElement visibleRoot = new CallHierarchyElement(root, "");
         invisibleRoot.add(visibleRoot);
         text.setText(treeViewer.toString());        
-        
+    
         for (String pack : list.keySet())
         {
             for (HaxeTree node : list.get(pack))
@@ -119,6 +126,22 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
             }
         }
         treeViewer.refresh(invisibleRoot);
+    }
+    
+    private void hookListeners()
+    {
+        treeViewer.addDoubleClickListener(new IDoubleClickListener() 
+        {            
+            /*
+            * Double click listener which jumps to the method in the source code.
+            * @param event
+            */
+            @Override
+           public void doubleClick(DoubleClickEvent event) 
+           {
+              jumpToSelection(event.getSelection());
+           }
+        });
     }
     
     /**
@@ -151,39 +174,62 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
 
         manager.add(new GroupMarker(IContextMenuConstants.GROUP_ADDITIONS));
     }
-
-    /** 
-     * Double click listener which jumps to the method in the source code.
-     * @param event
-     */
-    public void doubleClick(DoubleClickEvent event) 
+    
+    private void jumpToLocation(final String pack, final HaxeTree node)
     {
-       jumpToSelection(event.getSelection());
+        // TODO we can change current project but view will be the same, so fix that later
+        HaxeProject proj = Activator.getInstance().getCurrentHaxeProject();
+        HaxeFile file = proj.getFile(pack);
+        if (file == null)
+        {
+            return;
+        }
+        HaxeTree ast = file.getAst();
+        IFile realFile = file.getRealFile();
+        try
+        {
+            IEditorPart editor = WorkspaceUtils.openFileInEditor(realFile);
+            if (!(editor instanceof HxFilesEditor))
+            {
+                return;
+            }
+            HxFilesEditor hxEditor = (HxFilesEditor)editor;
+            hxEditor.selectAndReveal(node.getMostLeftPosition(), node.getLength());
+        }
+        catch (PartInitException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
-    public void jumpToSelection(ISelection selection) {
+    public void jumpToSelection(ISelection selection) 
+    {
         if (selection == null || !(selection instanceof IStructuredSelection))
         {
             return;
         }
-        /*try {
+        try 
+        {
             Object structuredSelection = ((IStructuredSelection) selection).getFirstElement();
 
-            if (structuredSelection instanceof MethodWrapper) {
-                MethodWrapper methodWrapper = (MethodWrapper) structuredSelection;
-                CallLocation firstCall = methodWrapper.getMethodCall().getFirstCallLocation();
+            CallHierarchyElement methodWrapper = (CallHierarchyElement) structuredSelection;
+            HaxeTree node = methodWrapper.getNode();
+            String pack = methodWrapper.getPack();
 
-                if (firstCall != null) {
-                    jumpToLocation(firstCall);
-                } else {
-                    jumpToMethod(methodWrapper.getMethod());
-                }
-            } else if (structuredSelection instanceof CallLocation) {
-                jumpToLocation((CallLocation) structuredSelection);
-            }
-        } catch (Exception e) {
-            CallersPlugin.logError("Error handling double click", e);
-        }*/
+            if (node != null) 
+            {
+                jumpToLocation(pack, node);
+            } 
+            //else {
+            //    jumpToMethod(methodWrapper.getMethod());
+            //}
+        } 
+        catch (Exception e) 
+        {
+            Activator.logger.error(
+                    "CallHierarchyView.jumpToSelection exception: ", e.getMessage());
+        }
     }
 
     @Override

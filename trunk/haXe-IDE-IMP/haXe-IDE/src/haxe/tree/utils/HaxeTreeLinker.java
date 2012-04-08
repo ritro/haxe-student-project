@@ -149,7 +149,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             {
                 return;
             }
-            HaxeTree ast = project.getFileAST(longName);
+            HaxeTree ast = project.getFileAST(shortName, longName);
             if (ast == null)
             {
                 // TODO: search in haxe libs

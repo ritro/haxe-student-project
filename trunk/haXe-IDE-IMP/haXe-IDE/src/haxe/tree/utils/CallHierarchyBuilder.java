@@ -23,7 +23,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+
 import workspace.Activator;
+import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
 
 /**
@@ -39,7 +42,7 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     // filepackage - list of found nodes in this' file ast
     private HashMap<String, List<HaxeTree>> foundResult = null;
     private HaxeProject project = null;
-    private String currFilePack = null;
+    private HaxeFile currFile = null;
     
     public void visit(final HaxeTree searchFor)
     {
@@ -47,12 +50,29 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
         foundResult = new HashMap<String, List<HaxeTree>>();
         project = Activator.getInstance().getCurrentHaxeProject();
         
+        HashMap<String, List<HaxeFile>> fullList = project.getFiles();
+        
+        HaxeTree declaration = null;
         if (searchObject instanceof VarUsageNode)
         {
-            VarDeclarationNode node = 
-                    (VarDeclarationNode)((VarUsageNode) searchObject).getDeclarationNode();
-            addToResults(node);
-            searchObject = node;
+            declaration = ((VarUsageNode) searchObject).getDeclarationNode();
+            if (declaration instanceof VarDeclarationNode)
+            {
+                IFile activeFile = Activator.getInstance().activeFile;
+                for (List<HaxeFile> list : fullList.values())
+                {
+                    for (HaxeFile file : list)
+                    {
+                        if (file.getPath().equals(activeFile.getFullPath()));
+                        {
+                            currFile = file;
+                            break;
+                        }
+                    }
+                }
+                addToResults(declaration);
+                searchObject = (VarDeclarationNode)declaration;
+            }
         }
         else if (searchObject instanceof VarDeclarationNode)
         {
@@ -72,10 +92,13 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
             return;
         }
         
-        for (String filePack : project.getFiles())
+        for (List<HaxeFile> list : fullList.values())
         {
-            currFilePack = filePack;
-            visit(project.getFileAST(currFilePack), null);
+            for (HaxeFile file : list)
+            {
+                currFile = file;
+                visit(file.getAst(), null);
+            }
         }
     }
     
@@ -90,7 +113,7 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
         searchObject = searchFor;
         foundResult = new HashMap<String, List<HaxeTree>>();
         
-        currFilePack = "some file";
+        currFile = new HaxeFile("some file", ast);
         visit(ast, null);
     }
     
@@ -106,13 +129,13 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     
     private void addToResults(final HaxeTree foundNode)
     {
-        List<HaxeTree> previous = foundResult.get(currFilePack);
+        List<HaxeTree> previous = foundResult.get(currFile.getPackage());
         if (previous == null)
         {
             previous = new ArrayList<HaxeTree>();
         }
         previous.add(foundNode);
-        foundResult.put(currFilePack, previous);
+        foundResult.put(currFile.getPackage(), previous);
     }
 
     @Override
@@ -197,8 +220,12 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     {
         String searchName = searchObject.getText();
         String nodeName = node.getText();
-        if (searchObject instanceof VarDeclarationNode &&
-                nodeName.equals(searchName) &&
+        if (!(searchObject instanceof VarDeclarationNode) 
+                || node.getDeclarationNode() == null)
+        {
+            return;
+        }
+        if (nodeName.equals(searchName) &&
                 node.getDeclarationNode().equals(searchObject))
         {
             addToResults(node);

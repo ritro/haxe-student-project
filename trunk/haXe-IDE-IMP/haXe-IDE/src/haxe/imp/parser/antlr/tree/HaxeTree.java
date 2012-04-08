@@ -76,6 +76,16 @@ public class HaxeTree extends CommonTree
         return haxeType;
     }
     
+    public String getPackage()
+    {
+        if (getChildCount()>0 && getChild(0).getText().equals("package"))
+        {
+            return getChild(0).getChild(0).getText();
+        }
+        
+        return "";
+    }
+    
     /**
      * Returns the type of the last object taken by
      * field uses, method calls and so on.

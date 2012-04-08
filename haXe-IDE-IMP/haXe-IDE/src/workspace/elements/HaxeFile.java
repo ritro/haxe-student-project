@@ -7,15 +7,13 @@ import org.eclipse.core.runtime.IPath;
 
 public class HaxeFile
 {
-    private IPath path = null;
+    private IFile rfile = null;
     private HaxeTree ast = null;
     private String fpackage = null;
-    private String name = null;
     
     public HaxeFile(final IFile file, final HaxeTree astForFile)
     {
-        path = file.getFullPath();
-        name = file.getName();
+        rfile = file;
         ast = astForFile;
         fpackage = ast.getPackage();
     }
@@ -43,11 +41,19 @@ public class HaxeFile
     
     public IPath getPath()
     {
-        return path;
+        return rfile.getFullPath();
     }
     
+    public IFile getRealFile()
+    {
+        return rfile;
+    }
+    
+    /**
+     * @return short file name with extention
+     */
     public String getName()
     {
-        return name;
+        return rfile.getName();
     }
 }

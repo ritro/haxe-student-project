@@ -26,6 +26,7 @@ import org.eclipse.imp.model.ModelFactory.ModelException;
 import org.eclipse.imp.parser.IMessageHandler;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
@@ -48,7 +49,7 @@ public class HaxeProject
         
         findBuildFiles();
         makeFileList();
-        //linkAll();
+        linkAll();
     }
     
     public String getName()
@@ -73,39 +74,93 @@ public class HaxeProject
         return fileList;
     }
     
-    public HaxeTree getFileAST(String name, String nameWithPackage)
+    public HaxeFile getFile(IPath fullpath)
     {
-        List<HaxeFile> list = fileList.get(name);
-        if (list == null)
+        if (fileList == null)
         {
-            // TODO should check?
             return null;
         }
-        for (HaxeFile file : list)
+        for (List<HaxeFile> list : fileList.values())
         {
-            if (file.getPackage().equals(nameWithPackage))
+            for (HaxeFile file : list)
             {
-                return file.getAst();
+                if (file.getPath().equals(fullpath))
+                {
+                    return file;
+                }
             }
         }
         
         return null;
     }
     
+    public HaxeFile getFile(String name, String nameWithPackage)
+    {
+        if (fileList == null)
+        {
+            return null;
+        }
+        List<HaxeFile> list = fileList.get(name);
+        if (list == null)
+        {
+            return null;
+        }
+        for (HaxeFile file : list)
+        {
+            if (file.getPackage().equals(nameWithPackage))
+            {
+                return file;
+            }
+        }
+        
+        return null;
+    }
+    
+    public HaxeFile getFile(String nameWithPackage)
+    {
+        if (fileList == null)
+        {
+            return null;
+        }
+        for (List<HaxeFile> list : fileList.values())
+        {
+            for (HaxeFile file : list)
+            {
+                if (file.getPackage().equals(nameWithPackage))
+                {
+                    return file;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    public HaxeTree getFileAST(String name, String nameWithPackage)
+    {        
+        HaxeFile file = getFile(name, nameWithPackage);
+        if (file != null)
+        {
+            return file.getAst();
+        }
+        return null;
+    }
+    
     public HaxeTree getFileAST(IFile file)
     {
+        if (fileList == null)
+        {
+            return null;
+        }
         List<HaxeFile> list = fileList.get(file.getName());
         if (list == null)
         {
-            // TODO should check?
             return null;
         }
-        for (HaxeFile hfile : list)
+        HaxeFile foundFile = getFile(file.getFullPath());
+        if (foundFile != null)
         {
-            if (hfile.getPath().equals(file.getFullPath()))
-            {
-                return hfile.getAst();
-            }
+            return foundFile.getAst();
         }
         
         return null;
@@ -126,7 +181,7 @@ public class HaxeProject
         buildFiles = files;
     }
  
-    public IFile getFile(String name)
+    public IFile getRealFile(String name)
     {
         return baseProject.getFile(name);
     }
@@ -184,10 +239,7 @@ public class HaxeProject
         
         if (ifOpen)
         {
-            IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-            IEditorDescriptor desc = PlatformUI.getWorkbench().
-                    getEditorRegistry().getDefaultEditor(file.getName());
-            page.openEditor(new FileEditorInput(file), desc.getId());
+            WorkspaceUtils.openFileInEditor(file);
         }
         
         return file;        

@@ -59,19 +59,9 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
             if (declaration instanceof VarDeclarationNode)
             {
                 IFile activeFile = Activator.getInstance().activeFile;
-                for (List<HaxeFile> list : fullList.values())
-                {
-                    for (HaxeFile file : list)
-                    {
-                        if (file.getPath().equals(activeFile.getFullPath()));
-                        {
-                            currFile = file;
-                            break;
-                        }
-                    }
-                }
+                currFile = project.getFile(activeFile.getFullPath());
                 addToResults(declaration);
-                searchObject = (VarDeclarationNode)declaration;
+                searchObject = declaration;
             }
         }
         else if (searchObject instanceof VarDeclarationNode)

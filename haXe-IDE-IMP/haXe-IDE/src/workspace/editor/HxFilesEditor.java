@@ -125,7 +125,9 @@ public class HxFilesEditor extends UniversalEditor
     
     private HaxeTree getNodeToLookAt(HaxeProject project)
     {
-        HaxeTree ast = (HaxeTree) getParseController().getCurrentAst();
+        HaxeTree ast = project.getFileAST(Activator.getInstance().activeFile);
+        // TODO should do smth with changing text
+                //(HaxeTree) getParseController().getCurrentAst();
         if (ast == null)
         {
             return null;

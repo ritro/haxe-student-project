@@ -240,6 +240,11 @@ public class HaxeTree extends CommonTree
         
         return mostRightPosition;
     }
+    
+    public final int getLength()
+    {
+        return getMostLeftPosition() - getMostRightPosition();
+    }
 
 	/**
 	 * Instantiates a new extended common tree.

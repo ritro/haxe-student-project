@@ -13,14 +13,12 @@ import org.eclipse.ui.PlatformUI;
 import workspace.Activator;
 import workspace.views.CallHierarchyView;
 
-public class CallHierarchyAction implements IEditorActionDelegate
+public class CallHierarchyAction extends MenuAction
 {
-    private IEditorPart part = null;
-
     @Override
     public void setActiveEditor(IAction action, IEditorPart targetEditor)
     {
-        part = targetEditor;
+        super.setActiveEditor(action, targetEditor);
         updateCurrentProject();
     }
     

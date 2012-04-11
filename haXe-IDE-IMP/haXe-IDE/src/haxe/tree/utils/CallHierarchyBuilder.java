@@ -26,6 +26,7 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 
 import workspace.Activator;
+import workspace.HashMapForLists;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
 
@@ -40,14 +41,14 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     // a VarDeclaration\VarUsage\Function\Class
     private HaxeTree searchObject = null;
     // filepackage - list of found nodes in this' file ast
-    private HashMap<String, List<HaxeTree>> foundResult = null;
+    private HashMapForLists<HaxeTree> foundResult = null;
     private HaxeProject project = null;
     private HaxeFile currFile = null;
     
     public void visit(final HaxeTree searchFor)
     {
         searchObject = searchFor;
-        foundResult = new HashMap<String, List<HaxeTree>>();
+        foundResult = new HashMapForLists<HaxeTree>();
         project = Activator.getInstance().getCurrentHaxeProject();
         
         HashMap<String, List<HaxeFile>> fullList = project.getFiles();
@@ -101,31 +102,25 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     public void testVisit(final HaxeTree searchFor, final HaxeTree ast)
     {
         searchObject = searchFor;
-        foundResult = new HashMap<String, List<HaxeTree>>();
+        foundResult = new HashMapForLists<HaxeTree>();
         
         currFile = new HaxeFile("some file", ast);
         visit(ast, null);
     }
     
     /**
-     * Returns the lists of found nodes.
-     * @return List of pairs - package for class where usages/calls
-     * was found and the list of these nodes.
+     * List of usages\calls for object with the package
+     * for file where they we found.
+     * @return List of pairs of usages\calls or empty list of pairs.
      */
-    public HashMap<String, List<HaxeTree>> getResult()
+    public HashMapForLists<HaxeTree> getResult()
     {
         return foundResult;
     }
     
     private void addToResults(final HaxeTree foundNode)
     {
-        List<HaxeTree> previous = foundResult.get(currFile.getPackage());
-        if (previous == null)
-        {
-            previous = new ArrayList<HaxeTree>();
-        }
-        previous.add(foundNode);
-        foundResult.put(currFile.getPackage(), previous);
+        foundResult.put(currFile.getPackage(), foundNode);
     }
 
     @Override

@@ -176,6 +176,12 @@
                menubarPath="additions"
                id="haXe-IDE.callHierarchyAction">
          </action>
+         <action
+               class="workspace.contextMenu.RenameAction"
+               id="haXe-IDE.renameRefactoringAction"
+               label="Rename"
+               menubarPath="refactoring">
+         </action>
       </viewerContribution>
       <objectContribution
             objectClass="org.eclipse.core.resources.IProject"

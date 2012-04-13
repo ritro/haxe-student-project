@@ -4,8 +4,19 @@ import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
+import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
+import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
+import haxe.imp.parser.antlr.tree.specific.ErrorNode;
+import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import haxe.imp.parser.antlr.tree.specific.NewNode;
+import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +35,7 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.imp.preferences.PreferenceValueParserprs.IsNullable;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -186,7 +198,119 @@ public class WorkspaceUtils
         return editor;
     }
     
-    public static HaxeTree getNodeUnderCursor(
+    public static boolean isNodeValidForUsageAnalysis(final HaxeTree node)
+    {
+    	if (isNodeValidForCallAnalysis(node)
+    			|| node instanceof ClassNode
+    			|| node instanceof EnumNode
+    			|| node instanceof VarDeclarationNode)
+    	{
+    		return true;
+    	}
+    	
+    	return false;
+    }
+    
+    public static HaxeTree getValidNodeForUsageAnalysis(final HaxeTree supposedNode)
+    {
+    	if (supposedNode == null || supposedNode instanceof ErrorNode)
+    	{
+    		return null;
+    	}
+    	if (isNodeValidForUsageAnalysis(supposedNode))
+    	{
+    		return supposedNode;
+    	}
+    	if (supposedNode instanceof VarUsageNode)
+    	{
+    		HaxeTree node = ((VarUsageNode)supposedNode).getDeclarationNode();
+    		return getValidNodeForUsageAnalysis(node);
+    	}
+    	// TODO getValidNodeForUsageAnalysis - what to do with DotIdents?
+    	if (supposedNode instanceof AssignOperationNode)
+    	{
+    		HaxeTree node = ((AssignOperationNode)supposedNode).getLeftOperand();
+    		return getValidNodeForUsageAnalysis(node);
+    	}
+    	if (supposedNode instanceof SliceNode)
+    	{
+    		HaxeTree node = ((SliceNode)supposedNode).getDeclarationNode();
+    		return getValidNodeForUsageAnalysis(node);
+    	}
+    	if (supposedNode instanceof MethodCallNode)
+    	{
+    		HaxeTree node = ((MethodCallNode)supposedNode).getDeclarationNode();
+    		return getValidNodeForUsageAnalysis(node);
+    	}
+    	if (supposedNode instanceof NewNode)
+    	{
+    		HaxeTree node = ((NewNode)supposedNode).getObjectWhichIsCreated();
+    		return getValidNodeForUsageAnalysis(node);
+    	}
+    	if (supposedNode instanceof UnarExpressionNode)
+    	{
+    		HaxeTree node = ((UnarExpressionNode)supposedNode).getExpression();
+    		return getValidNodeForUsageAnalysis(node);
+    	}
+    	if (supposedNode instanceof ReturnNode)
+    	{
+    		HaxeTree node = ((ReturnNode)supposedNode).getExpression();
+    		if (node == null)
+    		{
+    			return getValidNodeForUsageAnalysis(node);
+    		}
+    		// if not it will return the parent by default algorithm
+    	}
+    	return getValidNodeForUsageAnalysis(supposedNode.getParent());
+    }
+    
+    /**
+     * Checks if node is valid for making a call hierarchy.
+     */
+    public static boolean isNodeValidForCallAnalysis(final HaxeTree node)
+    {
+    	if (node instanceof FunctionNode)
+    	{
+    		return true;
+    	}
+    	
+    	return false;
+    }
+    
+    /**
+     * Gets the most upper node valid for making a call hierarchy. If 
+     * supposed node isn't the one it will check the parent of the 
+     * supposed node.
+     * @param supposedNode node we are now on (the cursor is in that node
+     * or selection was in that node)
+     * @return valid node for making call hierarchy
+     */
+    public static HaxeTree getValidNodeForCallAnalysis(final HaxeTree supposedNode)
+    {
+    	if (supposedNode == null || supposedNode instanceof ErrorNode)
+    	{
+    		return null;
+    	}
+    	if (isNodeValidForCallAnalysis(supposedNode))
+    	{
+    		return supposedNode;
+    	}
+    	if (supposedNode instanceof NewNode)
+    	{
+    		// TODO by our logic here we should return function - not the
+    		// class or type
+    		HaxeTree node = ((NewNode)supposedNode).getObjectWhichIsCreated();
+    		return getValidNodeForCallAnalysis(node);
+    	}
+    	if (supposedNode instanceof MethodCallNode)
+    	{
+    		HaxeTree node = ((MethodCallNode)supposedNode).getDeclarationNode();
+    		return getValidNodeForCallAnalysis(node);
+    	}
+    	return getValidNodeForCallAnalysis(supposedNode.getParent());
+    }
+    
+    public static HaxeTree getNodeByOffset(
             final int offset,final int length, final HaxeTree currentAST)
     {
         if (currentAST == null)
@@ -196,7 +320,7 @@ public class WorkspaceUtils
         HaxeTree result = null;
         for (HaxeTree child : currentAST.getChildren())
         {
-            result = getNodeUnderCursor(offset, length, child);
+            result = getNodeByOffset(offset, length, child);
             if (result != null)
             {
                 return result;

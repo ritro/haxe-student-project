@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.jface.text.TextSelection;
+import org.eclipse.jface.viewers.ISelection;
 
 import workspace.Activator;
 import workspace.HashMapForLists;
@@ -17,13 +18,32 @@ import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
 
 public class HxFilesEditor extends UniversalEditor
-{    
+{ 
+	private HaxeTree currentNode = null;
+	private CallHierarchyBuilder usagesBuilder = null;
+	
+	public HxFilesEditor()
+	{
+		super();
+		usagesBuilder = new CallHierarchyBuilder();
+		handleCursorPositionChanged();
+	}
+    
+    @Override
+    public void dispose()
+    {
+    	super.dispose();
+    }
+	
     @Override
     protected void handleCursorPositionChanged() 
     {
         super.handleCursorPositionChanged();
-        makeCallHierarchyAnalisys();
+        
+        updateCurrentNode();
+        analyzeCurrentNodeUsages();
     }
+    
 /*
     @Override
     public IDocumentProvider getDocumentProvider() 
@@ -63,60 +83,42 @@ public class HxFilesEditor extends UniversalEditor
         return super.getDocumentProvider();
     }*/
     
-    private void makeCallHierarchyAnalisys()
+    private void analyzeCurrentNodeUsages()
+    {
+        if (currentNode == null)
+        {
+            //Activator.logger.info("HxFilesEditor.makeCallHierarchyAnalisys failed - node not found.");
+            return;
+        }
+        // TODO remove later:
+        if (!(currentNode instanceof VarUsageNode))
+        {
+            return;
+        }
+        
+        usagesBuilder.visit(currentNode);
+        HashMapForLists<HaxeTree> result = usagesBuilder.getResult();
+        Activator.getInstance().callH = result;
+        Activator.getInstance().currNode = currentNode;
+    }
+    
+    private void updateCurrentNode()
     {
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         if (project == null)
         {
-            return;
+        	currentNode = null;
+        	return;
         }
-        HaxeTree node = getNodeToLookAt(project);
-        if (node == null)
-        {
-            Activator.logger.info("HxFilesEditor.makeCallHierarchyAnalisys failed - node not found.");
-            return;
-        }
-        // TODO remove later:
-        if (!(node instanceof VarUsageNode))
-        {
-            return;
-        }
-        /*        
-        try
-        {
-            ast = WorkspaceUtils.parseFileContents(file.getContents());
-        }
-        catch (RecognitionException | IOException | CoreException e)
-        {
-            // Auto-generated catch block
-            e.printStackTrace();
-            return;
-        }
-        HaxeTreeLinker linker = new HaxeTreeLinker();
-        linker.visit(ast);*/
-        
-        CallHierarchyBuilder callFinder = new CallHierarchyBuilder();
-        callFinder.visit(node);
-        HashMapForLists<HaxeTree> result = callFinder.getResult();
-        for (List<HaxeTree> value : result.values())
-        {
-            HaxeTreePrinter printer = new HaxeTreePrinter();
-            printer.printArray(value);
-        }
-        Activator.getInstance().callH = result;
-        Activator.getInstance().currNode = node;     
-    }
-    
-    private HaxeTree getNodeToLookAt(HaxeProject project)
-    {
         HaxeTree ast = project.getFileAST(Activator.getInstance().activeFile);
-        // TODO should do smth with changing text
-                //(HaxeTree) getParseController().getCurrentAst();
         if (ast == null)
         {
-            return null;
+        	currentNode = null;
+            return;
         }
         TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
-        return WorkspaceUtils.getNodeUnderCursor(selection.getOffset(), selection.getLength(), ast);
+        int offset = selection.getOffset();
+        int length = selection.getLength();
+        currentNode = WorkspaceUtils.getNodeByOffset(offset, length, ast);
     }
 }

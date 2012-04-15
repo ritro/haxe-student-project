@@ -1,8 +1,9 @@
 package workspace.refactoring;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.tree.utils.CallHierarchyBuilder;
+import haxe.tree.utils.ReferencesListBuilder;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -26,24 +27,19 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
 { 
     // TODO something usually is added at the beginning e.g. - RuntimePlugin.IMP_RUNTIME for imp
     private static final String ID                      = "haxeVarRenamePreprocessor";
-    private static final String NAME                    = "Haxe Rename Preprocessor";
+    private static final String NAME                    = "Haxe Variable Rename Preprocessor";
     private static final String CHANGE_NAME             = "Variable Usage rename";
     
-    private CallHierarchyBuilder usageBuilder   = null;
-    private VarUsageNode targetNode             = null;
-    private CompositeChange compositeChange     = null;
-    private HaxeProject currentProject          = null;
+    private VarDeclarationNode targetNode       = null;
 
     public HaxeVariableRenameProcessor(
-            final VarUsageNode node, 
+            final VarDeclarationNode node, 
             final String newTargetName, 
             final HaxeProject project)
     {
-        super();
+        super(newTargetName, project);
         
         targetNode = node;
-        newName = newTargetName;
-        currentProject = project;
     }
 
     @Override
@@ -72,7 +68,7 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
                     throws CoreException, OperationCanceledException
     {
         pm.beginTask("Checking final conditions...", 1);
-        
+        // as long as nothing is here - it is a stub
         pm.done();
         return new RefactoringStatus();
     }
@@ -83,7 +79,10 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
     {
         try 
         {   //RefactoringCoreMessages.RenameTypeProcessor_creating_changes
-            monitor.beginTask("Creating changes...", 1);
+            if (monitor != null)
+            {
+                monitor.beginTask("Creating changes...", 1);
+            }
             
             compositeChange = new CompositeChange(CHANGE_NAME);
         
@@ -94,7 +93,10 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         }
         finally 
         {
-            monitor.done();
+            if (monitor != null)
+            {
+                monitor.done();
+            }
         }
     }
 
@@ -130,7 +132,8 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
      */
     private void searchTargets()
     {
-        usageBuilder = new CallHierarchyBuilder();
+        targets = new HashMapForLists<Pair>();
+        usageBuilder = new ReferencesListBuilder();
         usageBuilder.visit(targetNode);
         
         HashMapForLists<HaxeTree> usages = usageBuilder.getResult();
@@ -139,9 +142,20 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         {
             for (HaxeTree node : usages.get(pack))
             {
-                Pair pair = new Pair(
+                Pair pair = null;
+                if (node instanceof VarUsageNode)
+                {
+                    pair = new Pair(
                         node.getMostLeftPosition(), 
-                        node.getMostRightPosition() - node.getMostLeftPosition());
+                        node.getMostRightPosition() - node.getMostLeftPosition() + 1);
+                }
+                else //VarDeclaration 
+                {
+                    pair = new Pair(
+                            node.getToken().getStartIndex(),
+                            node.getToken().getStopIndex() - node.getToken().getStartIndex() + 1
+                            );
+                }
                 targets.put(pack, pair);
             }
         }

@@ -1,9 +1,11 @@
 package workspace.contextMenu;
 
+import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.ReferencesListBuilder;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -11,9 +13,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import workspace.Activator;
+import workspace.HashMapForLists;
+import workspace.WorkspaceUtils;
+import workspace.editor.HxFilesEditor;
 import workspace.views.CallHierarchyView;
 
-public class CallHierarchyAction extends MenuAction
+public class CallHierarchyAction extends HxEditorMenuAction
 {
     @Override
     public void setActiveEditor(IAction action, IEditorPart targetEditor)
@@ -37,6 +42,14 @@ public class CallHierarchyAction extends MenuAction
         IFile file = ((IFileEditorInput)input).getFile();
         Activator.getInstance().setCurrentProject(file);
     }
+    
+    private HashMapForLists<HaxeTree> makeCallAnalysis(final HaxeTree node)
+    {
+        ReferencesListBuilder builder = new ReferencesListBuilder();
+        builder.visit(node);
+        
+        return builder.getResult();
+    }
 
     @Override
     public void run(IAction action)
@@ -46,7 +59,16 @@ public class CallHierarchyAction extends MenuAction
             CallHierarchyView view = 
                     (CallHierarchyView) PlatformUI.getWorkbench().getActiveWorkbenchWindow()
                     .getActivePage().showView(CallHierarchyView.VIEW_ID);
-            view.init(Activator.getInstance().currNode, Activator.getInstance().callH);
+            
+            HaxeTree node = getCurrentNode();
+            if (!WorkspaceUtils.isNodeValidForCallAnalysis(node))
+            {
+                node = WorkspaceUtils.getValidNodeForCallAnalysis(node);
+            }
+            if (node != null)
+            {
+                view.init(node, makeCallAnalysis(node));
+            }
         }
         catch (PartInitException e)
         {

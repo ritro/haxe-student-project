@@ -8,9 +8,21 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 
 public class NewNode extends HaxeTree
 {
+    private HaxeTree declaration = null;
+    
     public NewNode(final Token t)
     {
         super(t);
+    }
+    
+    public HaxeTree getDeclarationNode()
+    {
+        return declaration;
+    }
+    
+    public void setDeclarationNode(final HaxeTree value)
+    {
+        declaration = value;
     }
     
     public HaxeTree getObjectWhichIsCreated()

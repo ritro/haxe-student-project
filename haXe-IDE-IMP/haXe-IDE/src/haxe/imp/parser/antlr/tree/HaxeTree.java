@@ -183,8 +183,8 @@ public class HaxeTree extends CommonTree
         CommonToken token = getToken();
         assert (token != null);
 
-        mostRightPosition = token.getStartIndex() 
-                + token.getText().length() - 1;
+        mostRightPosition = 
+                token.getStartIndex() + token.getText().length();
 
         for (HaxeTree commonTree : getChildren())
         {

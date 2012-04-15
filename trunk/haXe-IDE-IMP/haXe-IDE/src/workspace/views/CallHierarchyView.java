@@ -2,11 +2,6 @@ package workspace.views;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.ui.IContextMenuConstants;
 import org.eclipse.jface.action.GroupMarker;
@@ -31,6 +26,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
 import workspace.Activator;
+import workspace.HashMapForLists;
 import workspace.WorkspaceUtils;
 import workspace.editor.HxFilesEditor;
 import workspace.elements.HaxeFile;
@@ -45,7 +41,7 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
     private TreeViewer treeViewer;
     private ListViewer listViewer;
     private CallHierarchyLabelProvider labelProvider;
-    private CallHierarchyElement invisibleRoot = null;
+    private NodeCallHierarchyElement invisibleRoot = null;
     private Text text;
 
     public CallHierarchyView() 
@@ -97,7 +93,7 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
         //createToolbar();
         hookListeners();
 
-        invisibleRoot = new CallHierarchyElement(null, "");
+        invisibleRoot = new NodeCallHierarchyElement(null, "");
         treeViewer.setInput(invisibleRoot);
         treeViewer.setAutoExpandLevel(3);
     }
@@ -111,18 +107,29 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
     //--------------------- end of ViewPart implementations -----------------------
     
     
-    public void init(HaxeTree root, HashMap<String, List<HaxeTree>> list)
+    public void init(final HaxeTree root, HashMapForLists<HaxeTree> list)
     {
         invisibleRoot.clearAllChildren();
-        CallHierarchyElement visibleRoot = new CallHierarchyElement(root, "");
+        
+        NodeCallHierarchyElement visibleRoot = new NodeCallHierarchyElement(root, "");
+        FolderCallHierarchyElement callsTo = new FolderCallHierarchyElement("Calls To");
+        FolderCallHierarchyElement callsFrom = new FolderCallHierarchyElement("Calls From");
+        
         invisibleRoot.add(visibleRoot);
-        text.setText(treeViewer.toString());        
+        text.setText(treeViewer.toString());
+        
+        visibleRoot.add(callsTo);
+        visibleRoot.add(callsFrom);
     
+        if (list == null)
+        {
+            list = new HashMapForLists<HaxeTree>();
+        }
         for (String pack : list.keySet())
         {
             for (HaxeTree node : list.get(pack))
             {
-                visibleRoot.add(new CallHierarchyElement(node, pack));
+                callsTo.add(new NodeCallHierarchyElement(node, pack));
             }
         }
         treeViewer.refresh(invisibleRoot);
@@ -132,7 +139,7 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
     {
         treeViewer.addDoubleClickListener(new IDoubleClickListener() 
         {            
-            /*
+            /**
             * Double click listener which jumps to the method in the source code.
             * @param event
             */
@@ -212,10 +219,15 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
         try 
         {
             Object structuredSelection = ((IStructuredSelection) selection).getFirstElement();
+            
+            if (!((ICallHierarchyElement)structuredSelection).isClickable())
+            {
+                return;
+            }
 
-            CallHierarchyElement methodWrapper = (CallHierarchyElement) structuredSelection;
+            NodeCallHierarchyElement methodWrapper = (NodeCallHierarchyElement) structuredSelection;
             HaxeTree node = methodWrapper.getNode();
-            String pack = methodWrapper.getPack();
+            String pack = methodWrapper.getPackage();
 
             if (node != null) 
             {

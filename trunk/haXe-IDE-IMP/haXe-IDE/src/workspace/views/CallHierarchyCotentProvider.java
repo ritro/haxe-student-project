@@ -8,7 +8,7 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
 {
     private static Object[] EMPTY_ARRAY = new Object[0];
     private TreeViewer viewer;
-    private CallHierarchyElement model = null;
+    private ICallHierarchyElement model = null;
     
     public void dispose() {}
 
@@ -16,9 +16,9 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
     {
         this.viewer = (TreeViewer)viewer;
-        if (newInput instanceof CallHierarchyElement)
+        if (newInput instanceof ICallHierarchyElement)
         {
-            model = (CallHierarchyElement) newInput;
+            model = (ICallHierarchyElement) newInput;
         }
     }
 
@@ -31,8 +31,8 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     @Override
     public Object[] getChildren(Object parentElement)
     {
-        if(parentElement instanceof CallHierarchyElement) {
-            CallHierarchyElement box = (CallHierarchyElement)parentElement;
+        if(parentElement instanceof ICallHierarchyElement) {
+            ICallHierarchyElement box = (ICallHierarchyElement)parentElement;
             return box.getChildren();
         }
         return EMPTY_ARRAY;
@@ -41,9 +41,9 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     @Override
     public Object getParent(Object element)
     {
-        if(element instanceof CallHierarchyElement) 
+        if(element instanceof ICallHierarchyElement) 
         {
-            return ((CallHierarchyElement)element).getParent();
+            return ((ICallHierarchyElement)element).getParent();
         }
         return null;
     }

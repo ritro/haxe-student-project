@@ -24,7 +24,6 @@ import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import workspace.elements.HaxeProject;
 
@@ -242,7 +241,35 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(NewNode node, Object data)
     {
-        visitAllChildren(node, data);
+        // visit the params if there are any
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child.getChildIndex() == 0)
+            {
+                continue;
+            }
+            visit(child, data);
+        }
+        
+        HaxeTree object = node.getObjectWhichIsCreated();
+        String name = object.getText();
+        HaxeTree declaration = null;
+        for (String pack : imports.keySet())
+        {
+            // imports like a.b.c
+            if (pack.endsWith("." + name))
+            {
+                HaxeTree ast = imports.get(pack);
+            }
+            // imports like a.b.*
+            // usings
+        }
+        // same package (without import)
+        if (declaration == null)
+        {
+            
+        }
+        node.setDeclarationNode(declaration);
     }
 
     @Override

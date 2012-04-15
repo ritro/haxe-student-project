@@ -3,35 +3,17 @@ package workspace.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import haxe.imp.parser.antlr.main.HaxeParser.filepath_return;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.treeModelBuilder.HaxeLabelProvider;
-
-public class CallHierarchyElement extends Object
+public abstract class CallHierarchyElement extends Object implements ICallHierarchyElement
 {
-    private HaxeTree node = null;
-    private String filePackage = null;
-    private CallHierarchyElement parent = null;
-    private List<CallHierarchyElement> children = null;
+    protected ICallHierarchyElement parent           = null;
+    protected List<ICallHierarchyElement> children   = null;
     
-    public CallHierarchyElement(final HaxeTree realNode,final String pack)
+    public CallHierarchyElement()
     {
-        node = realNode;
-        filePackage = pack;
-        children = new ArrayList<CallHierarchyElement>();
+        children = new ArrayList<ICallHierarchyElement>();
     }
     
-    public String getPack()
-    { 
-        return filePackage;
-    }
-    
-    public HaxeTree getNode()
-    {
-        return node;
-    }
-    
-    public void add(CallHierarchyElement child)
+    public void add(final ICallHierarchyElement child)
     {
         children.add(child);
         child.setParent(this);
@@ -42,7 +24,7 @@ public class CallHierarchyElement extends Object
         return children.toArray();
     }
     
-    public void setParent(CallHierarchyElement parent)
+    public void setParent(final ICallHierarchyElement parent)
     {
         this.parent = parent;
     }
@@ -54,6 +36,6 @@ public class CallHierarchyElement extends Object
     
     public void clearAllChildren()
     {
-        children = new ArrayList<CallHierarchyElement>();
+        children = new ArrayList<ICallHierarchyElement>();
     }
 }

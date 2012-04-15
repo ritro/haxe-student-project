@@ -10,25 +10,29 @@ public class CallHierarchyLabelProvider extends HaxeLabelProvider
     @Override
     public Image getImage(final Object object)
     {
-        if (!(object instanceof CallHierarchyElement))
+        if (!(object instanceof NodeCallHierarchyElement))
         {
             return null;
         }
         return 
-                super.getImage(((CallHierarchyElement)object).getNode());
+                super.getImage(((NodeCallHierarchyElement)object).getNode());
     }
     
     @Override
     public String getText(final Object object)
     {
-        if (!(object instanceof CallHierarchyElement))
+        if (!(object instanceof ICallHierarchyElement))
         {
             return null;
         }
-        return 
-                super.getText(((CallHierarchyElement)object).getNode()) + 
-                " - " + 
-                ((CallHierarchyElement)object).getPack();
+        if (object instanceof NodeCallHierarchyElement)
+        {
+            NodeCallHierarchyElement element = (NodeCallHierarchyElement)object;
+            return  super.getText(element.getNode()) + 
+                    " - " + 
+                    element.getPackage();
+        }
+        return ((ICallHierarchyElement)object).toString();
     }
 
     @Override

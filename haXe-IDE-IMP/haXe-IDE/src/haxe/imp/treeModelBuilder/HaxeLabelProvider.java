@@ -179,6 +179,6 @@ public class HaxeLabelProvider implements ILabelProvider
 		    return node.getText() + ": " + node.getHaxeType().getShortTypeName();
 		}
 		
-		return "<??unknown??>";
+		return "<??unknown??>" + n.getText();
 	}
 }

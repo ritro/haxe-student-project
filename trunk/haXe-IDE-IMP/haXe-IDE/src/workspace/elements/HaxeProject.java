@@ -1,7 +1,5 @@
 package workspace.elements;
 
-
-import haxe.imp.parser.HaxeParseController;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.tree.utils.HaxeTreeLinker;
 
@@ -9,9 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IFile;
@@ -20,16 +16,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.imp.builder.BuilderUtils;
-import org.eclipse.imp.model.ModelFactory;
-import org.eclipse.imp.model.ModelFactory.ModelException;
-import org.eclipse.imp.parser.IMessageHandler;
-import org.eclipse.ui.IEditorDescriptor;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
 
+import workspace.HashMapForLists;
 import workspace.ProjectVisitor;
 import workspace.WorkspaceUtils;
 
@@ -39,13 +27,13 @@ public class HaxeProject
     
     private IProject baseProject;
     private List<BuildFile> buildFiles = null;
-    private HashMap<String, List<HaxeFile>> fileList = null;
+    private HashMapForLists<HaxeFile> fileList = null;
 
     public HaxeProject(IProject project)
     {
         baseProject = project;
         buildFiles = new ArrayList<BuildFile>();
-        fileList = new HashMap<String, List<HaxeFile>>();
+        fileList = new HashMapForLists<HaxeFile>();
         
         findBuildFiles();
         makeFileList();
@@ -60,16 +48,10 @@ public class HaxeProject
     public void addToFileTree(HaxeFile file)
     {
         String name = file.getName();
-        List<HaxeFile> list = fileList.get(name);
-        if (list == null)
-        {
-            list = new ArrayList<HaxeFile>();
-        }
-        list.add(file);
-        fileList.put(name, list);
+        fileList.put(name, file);
     }
     
-    public HashMap<String, List<HaxeFile>> getFiles()
+    public HashMapForLists<HaxeFile> getFiles()
     {
         return fileList;
     }
@@ -116,7 +98,7 @@ public class HaxeProject
         return null;
     }
     
-    public HaxeFile getFile(String nameWithPackage)
+    public HaxeFile getFile(final String nameWithPackage)
     {
         if (fileList == null)
         {

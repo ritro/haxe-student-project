@@ -2,31 +2,48 @@ package workspace.editor;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.tree.utils.CallHierarchyBuilder;
-import haxe.tree.utils.HaxeTreePrinter;
+import haxe.imp.utilsImplementations.HaxeTokenColorer;
+import haxe.tree.utils.ReferencesListBuilder;
 
-import java.util.HashMap;
-import java.util.List;
-
+import org.antlr.runtime.CommonToken;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.imp.editor.UniversalEditor;
+import org.eclipse.jface.text.Region;
+import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.TextPresentation;
 import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.widgets.Display;
 
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.WorkspaceUtils;
+import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
 
 public class HxFilesEditor extends UniversalEditor
 { 
-	private HaxeTree currentNode = null;
-	private CallHierarchyBuilder usagesBuilder = null;
+	private HaxeTree                   currentNode     = null;
+	private ReferencesListBuilder      usagesBuilder   = null;
+	private HashMapForLists<HaxeTree>  usagesList      = null;
 	
 	public HxFilesEditor()
 	{
 		super();
-		usagesBuilder = new CallHierarchyBuilder();
+		usagesBuilder = new ReferencesListBuilder();
 		handleCursorPositionChanged();
+	}
+	
+	public HashMapForLists<HaxeTree> getUsagesList()
+	{
+	    return usagesList;
+	}
+	
+	public HaxeTree getCurrentNode()
+	{
+	    return currentNode;
 	}
     
     @Override
@@ -42,6 +59,12 @@ public class HxFilesEditor extends UniversalEditor
         
         updateCurrentNode();
         analyzeCurrentNodeUsages();
+        
+        if (WorkspaceUtils.isNodeValidForUsageAnalysis(currentNode)
+                || currentNode instanceof VarUsageNode)
+        {
+            //highlightCurrentNodeUsagesInText();
+        }
     }
     
 /*
@@ -87,19 +110,59 @@ public class HxFilesEditor extends UniversalEditor
     {
         if (currentNode == null)
         {
-            //Activator.logger.info("HxFilesEditor.makeCallHierarchyAnalisys failed - node not found.");
-            return;
-        }
-        // TODO remove later:
-        if (!(currentNode instanceof VarUsageNode))
-        {
             return;
         }
         
-        usagesBuilder.visit(currentNode);
-        HashMapForLists<HaxeTree> result = usagesBuilder.getResult();
-        Activator.getInstance().callH = result;
-        Activator.getInstance().currNode = currentNode;
+        TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
+        int offset = selection.getOffset();
+        HaxeTree nodeForUsagesList = currentNode;
+        
+        if (!WorkspaceUtils.isNodeValidForUsageAnalysis(currentNode))
+        {
+            nodeForUsagesList = WorkspaceUtils.getValidNodeForUsageAnalysis(currentNode, offset);
+        }        
+        
+        if (nodeForUsagesList != null)
+        {
+            System.out.println("Node for usages: " + nodeForUsagesList.getText());
+            usagesBuilder.visit(nodeForUsagesList);
+            usagesList = usagesBuilder.getResult();
+        }
+    }
+    
+    private void highlightCurrentNodeUsagesInText()
+    {        
+        ISourceViewer view = getSourceViewer();
+        IFile activeFile = Activator.getInstance().activeFile;
+        HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
+        HaxeFile currFile = project.getFile(activeFile.getFullPath());
+        String currPack = currFile.getPackage();
+        
+        TextPresentation presentation = new TextPresentation();
+        
+        for (HaxeTree node : usagesList.get(currPack))
+        {
+            int offset = node.getMostLeftPosition();
+            int end = node.getMostRightPosition();
+
+            Display display = Display.getDefault();
+            StyleRange styleRange = new StyleRange(            
+                    offset, end - offset + 1,
+                    display.getSystemColor(SWT.COLOR_WHITE),
+                    display.getSystemColor(SWT.COLOR_BLUE),
+                    SWT.NORMAL);
+
+            // Negative (possibly 0) length style ranges will cause an 
+            // IllegalArgumentException in changeTextPresentation(..)
+            if (styleRange.length > 0 ) 
+            {
+                presentation.addStyleRange(styleRange);
+            }
+        }
+        if (!presentation.isEmpty() && view.isEditable())
+        {
+            view.changeTextPresentation(presentation, true);
+        }
     }
     
     private void updateCurrentNode()
@@ -111,12 +174,12 @@ public class HxFilesEditor extends UniversalEditor
         	return;
         }
         HaxeTree ast = project.getFileAST(Activator.getInstance().activeFile);
-        if (ast == null)
+        TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
+        if (ast == null || selection == null)
         {
         	currentNode = null;
             return;
         }
-        TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
         int offset = selection.getOffset();
         int length = selection.getLength();
         currentNode = WorkspaceUtils.getNodeByOffset(offset, length, ast);

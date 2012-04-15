@@ -6,6 +6,7 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
+import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -213,7 +214,20 @@ public class WorkspaceUtils
     
     public static HaxeTree getValidNodeForUsageAnalysis(final HaxeTree supposedNode)
     {
-    	if (supposedNode == null || supposedNode instanceof ErrorNode)
+        return getValidNodeForUsageAnalysis(supposedNode, -1);
+    }
+    
+    /**
+     * Gets the node for which you can calculate usages from the node
+     * the was under cursor for example.
+     * @param offset - in most cases it is unneccassary but then you
+     * want to take node from that side of equation (e.g.) there the cursor
+     * is - then you should set offset
+     */
+    public static HaxeTree getValidNodeForUsageAnalysis(final HaxeTree supposedNode, final int offset)
+    {
+    	if (supposedNode == null || supposedNode instanceof ErrorNode 
+    	        || supposedNode instanceof ConstantNode)
     	{
     		return null;
     	}
@@ -224,44 +238,54 @@ public class WorkspaceUtils
     	if (supposedNode instanceof VarUsageNode)
     	{
     		HaxeTree node = ((VarUsageNode)supposedNode).getDeclarationNode();
-    		return getValidNodeForUsageAnalysis(node);
+    		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	// TODO getValidNodeForUsageAnalysis - what to do with DotIdents?
     	if (supposedNode instanceof AssignOperationNode)
     	{
-    		HaxeTree node = ((AssignOperationNode)supposedNode).getLeftOperand();
-    		return getValidNodeForUsageAnalysis(node);
+    	    AssignOperationNode assign = (AssignOperationNode)supposedNode;
+    	    HaxeTree node = null;
+    	    if (offset == -1 || 
+    	            assign.getToken().getStartIndex() + assign.getToken().getText().length() > offset)
+    	    {
+    	        node = assign.getLeftOperand();
+    	    }
+    	    else
+    	    {
+    	        node = assign.getRightOperand();
+    	    }
+    		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	if (supposedNode instanceof SliceNode)
     	{
     		HaxeTree node = ((SliceNode)supposedNode).getDeclarationNode();
-    		return getValidNodeForUsageAnalysis(node);
+    		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	if (supposedNode instanceof MethodCallNode)
     	{
     		HaxeTree node = ((MethodCallNode)supposedNode).getDeclarationNode();
-    		return getValidNodeForUsageAnalysis(node);
+    		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	if (supposedNode instanceof NewNode)
     	{
     		HaxeTree node = ((NewNode)supposedNode).getObjectWhichIsCreated();
-    		return getValidNodeForUsageAnalysis(node);
+    		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	if (supposedNode instanceof UnarExpressionNode)
     	{
     		HaxeTree node = ((UnarExpressionNode)supposedNode).getExpression();
-    		return getValidNodeForUsageAnalysis(node);
+    		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	if (supposedNode instanceof ReturnNode)
     	{
     		HaxeTree node = ((ReturnNode)supposedNode).getExpression();
     		if (node == null)
     		{
-    			return getValidNodeForUsageAnalysis(node);
+    			return getValidNodeForUsageAnalysis(node, offset);
     		}
     		// if not it will return the parent by default algorithm
     	}
-    	return getValidNodeForUsageAnalysis(supposedNode.getParent());
+    	return getValidNodeForUsageAnalysis(supposedNode.getParent(), offset);
     }
     
     /**

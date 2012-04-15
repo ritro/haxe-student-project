@@ -9,12 +9,9 @@
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
 package workspace;
-import workspace.Activator;
-import workspace.views.CallHierarchyView;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
-import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,37 +19,18 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.imp.runtime.PluginBase;
-import org.eclipse.jdt.ui.IContextMenuConstants;
-import org.eclipse.jface.action.GroupMarker;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuListener;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorActionDelegate;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWindowListener;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
@@ -62,11 +40,12 @@ import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
 
 /**
- * The Class Activator.
+ * Plug-in Activator. Actually this is the plugin and after the 
+ * creation you can take take a static instance of itself from
+ * here.
  * 
- * Activator of the plugin
- * 
- * @author Anatoly Kondratyev
+ * @author Anatoly Kondratyev,
+ *         Maria Savenko
  */
 public class Activator extends PluginBase{
 
@@ -76,9 +55,10 @@ public class Activator extends PluginBase{
 	public static final Logger logger = LoggerFactory.getLogger("FILE");
 	
 	protected static Activator sPlugin;	
+	//public static boolean DEBUG =
+	//        sPlugin.isDebugging() && "true".equalsIgnoreCase(
+	//                   Platform.getDebugOption("org.eclipse.faq.examples/debug/option2"));
 	
-	public HashMap<String, List<HaxeTree>> callH = null;
-	public HaxeTree currNode = null;
 	public IFile activeFile = null;
 	private HashMap<String, HaxeProject> projects;
 	private HashMap<String, HaxeTree> libraries;
@@ -152,7 +132,7 @@ public class Activator extends PluginBase{
 	public Activator() { 
 		super();
 		sPlugin = this;
-		
+
 		projects = new HashMap<String, HaxeProject>();
 		libraries = new HashMap<String, HaxeTree>();
 	}

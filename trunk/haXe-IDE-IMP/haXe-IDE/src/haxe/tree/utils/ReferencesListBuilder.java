@@ -7,6 +7,7 @@ import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -36,52 +37,33 @@ import workspace.elements.HaxeProject;
  * belongs.
  * @author Savenko Maria
  */
-public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
+public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
 {
-    // a VarDeclaration\VarUsage\Function\Class
+    // a VarDeclaration\Function\Class\Enum
     private HaxeTree searchObject = null;
     // filepackage - list of found nodes in this' file ast
     private HashMapForLists<HaxeTree> foundResult = null;
     private HaxeProject project = null;
     private HaxeFile currFile = null;
     
+    /**
+     * Starts the analysis of references to sertain object in the project.
+     * The object to searche references to should be one of the following:
+     * Function, Class, Enum, Variable Declaration (later the list of 
+     * types can be extended)
+     * 
+     * Use Utils to get the object that this class can analyze.
+     */
     public void visit(final HaxeTree searchFor)
     {
-        searchObject = searchFor;
         foundResult = new HashMapForLists<HaxeTree>();
         project = Activator.getInstance().getCurrentHaxeProject();
         
-        HashMap<String, List<HaxeFile>> fullList = project.getFiles();
+        HashMapForLists<HaxeFile> fullList = project.getFiles();
         
-        HaxeTree declaration = null;
-        if (searchObject instanceof VarUsageNode)
-        {
-            declaration = ((VarUsageNode) searchObject).getDeclarationNode();
-            if (declaration instanceof VarDeclarationNode)
-            {
-                IFile activeFile = Activator.getInstance().activeFile;
-                currFile = project.getFile(activeFile.getFullPath());
-                addToResults(declaration);
-                searchObject = declaration;
-            }
-        }
-        else if (searchObject instanceof VarDeclarationNode)
-        {
-            addToResults(searchFor);
-        }
-        else if (searchObject instanceof MethodCallNode)
-        {
-            searchObject = ((MethodCallNode)searchObject).getDeclarationNode();
-        }
-        else if (searchObject instanceof SliceNode)
-        {
-            searchObject = ((SliceNode)searchObject).getDeclarationNode();
-        }
-        
-        if (searchObject == null)
-        {
-            return;
-        }
+        IFile activeFile = Activator.getInstance().activeFile;
+        currFile = project.getFile(activeFile.getFullPath());
+        analyseSearchedObject(searchFor);
         
         for (List<HaxeFile> list : fullList.values())
         {
@@ -116,6 +98,75 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     public HashMapForLists<HaxeTree> getResult()
     {
         return foundResult;
+    }
+    
+    /**
+     * This function will analyse the class of the searched object
+     * and will extract the real object we should search for.
+     * After running that function the previously null 'searchObject'
+     * will have the value if the object for searching was valid.
+     * @param searchFor
+     */
+    private void analyseSearchedObject(final HaxeTree searchFor)
+    {
+        if (searchFor instanceof VarDeclarationNode)
+        {
+            addToResults(searchFor);
+            searchObject = searchFor;
+        }
+        else if (searchFor instanceof ClassNode)
+        {
+            searchObject = searchFor;
+            /*
+            // TODO actually we can only have one constructor in the class but we 
+            // can have regular Function named 'new' as well and thus I don't know 
+            // how to destinguish them so for now I will just make a list and search
+            // usages for the first from that list
+            List<HaxeTree> constructors = new ArrayList<HaxeTree>();
+            ClassNode classN = (ClassNode)searchFor;
+            while (constructors.isEmpty())
+            {
+                BlockScopeNode block = classN.getBlockScope();
+                for (HaxeTree subNode : block.getChildren())
+                {
+                    if (subNode instanceof FunctionNode &&
+                            subNode.getText().equals("new"))
+                    {
+                        constructors.add(subNode);
+                    }
+                }
+                HaxeTree parent = classN.getParentToExtend();
+                if (parent == null)
+                {
+                    break;
+                }
+                // if the list is empry we will search for superclasses constructors
+                classN = (ClassNode)parent;
+            }
+            // this is just for now as was explained earlier
+            if (!constructors.isEmpty())
+            {
+                searchObject = constructors.get(0);
+            }*/
+        }
+        else if (searchFor instanceof EnumNode)
+        {
+            // not implemented yet
+        }
+        else if (searchFor instanceof FunctionNode)
+        {
+            if (searchFor.getText().equals("new"))
+            {
+                // TODO actually we can only have one constructor in the class but we 
+                // can have regular Function named 'new' as well and thus I don't know 
+                // how to destinguish them
+                searchObject = searchFor.getParent().getParent();
+            }
+            else
+            {
+                searchObject = searchFor;
+            }
+        }
     }
     
     private void addToResults(final HaxeTree foundNode)
@@ -159,6 +210,13 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final VarDeclarationNode node, Object data)
     {
+        HaxeType nodeType = node.getHaxeType();
+        if ((searchObject instanceof ClassNode
+                || searchObject instanceof EnumNode)
+                    && searchObject.getHaxeType().getShortTypeName().equals(nodeType.getShortTypeName()))
+        {
+            addToResults(node);
+        }
         HaxeTree init = node.getInitializationNode();
         if (init == null)
         {
@@ -170,13 +228,32 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(NewNode node, Object data)
     {
-        visitAllChildren(node, data);
+        HaxeTree declaration = node.getDeclarationNode();
+        if (declaration != null
+                && searchObject instanceof ClassNode
+                // TODO check parameter types and so
+                && declaration.getText().equals(searchObject.getText()))
+        {
+            addToResults(node);
+        }
+        
+        // now visit the params if there are any
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child.getChildIndex() == 0)
+            {
+                continue;
+            }
+            visit(child, data);
+        }
     }
 
     @Override
     protected void visit(final MethodCallNode node, Object data)
     {
-        if (searchObject instanceof FunctionNode
+        HaxeTree parent = node.getParent();
+        if ((searchObject instanceof FunctionNode 
+                || parent instanceof NewNode) // for constructors
                 && node.getText().equals(searchObject.getText())
                 && node.getDeclarationNode().equals(searchObject))
         {
@@ -205,13 +282,15 @@ public class CallHierarchyBuilder extends AbstractHaxeTreeVisitor
     {
         String searchName = searchObject.getText();
         String nodeName = node.getText();
-        if (!(searchObject instanceof VarDeclarationNode) 
-                || node.getDeclarationNode() == null)
+        if (node.getDeclarationNode() == null)
         {
             return;
         }
-        if (nodeName.equals(searchName) &&
-                node.getDeclarationNode().equals(searchObject))
+        if (nodeName.equals(searchName) 
+                && node.getDeclarationNode().equals(searchObject)
+                && (searchObject instanceof VarDeclarationNode 
+                        || searchObject instanceof ClassNode // for static classes
+                        || searchObject instanceof EnumNode))
         {
             addToResults(node);
         }

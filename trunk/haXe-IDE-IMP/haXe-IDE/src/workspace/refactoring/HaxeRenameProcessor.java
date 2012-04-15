@@ -1,5 +1,7 @@
 package workspace.refactoring;
 
+import haxe.tree.utils.ReferencesListBuilder;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +11,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.imp.utils.Pair;
 import org.eclipse.ltk.core.refactoring.Change;
+import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
@@ -16,6 +19,7 @@ import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
 import workspace.HashMapForLists;
+import workspace.elements.HaxeProject;
 
 public abstract class HaxeRenameProcessor extends RenameProcessor
 {
@@ -28,8 +32,20 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
                 }
             };
             
+    protected ReferencesListBuilder usageBuilder  = null;
+    protected CompositeChange compositeChange     = null;
+    protected HaxeProject currentProject          = null;    
     protected HashMapForLists<Pair> targets       = null;
     protected String newName                      = null;
+    
+    public HaxeRenameProcessor(
+            final String newTargetName, 
+            final HaxeProject project)
+    {
+        newName = newTargetName;
+        currentProject = project;
+    }
+            
     
     @Override
     public Object[] getElements()

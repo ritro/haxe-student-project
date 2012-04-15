@@ -15,7 +15,7 @@ public class HaxeFile
     {
         rfile = file;
         ast = astForFile;
-        fpackage = ast.getPackage();
+        fpackage = ast != null ? ast.getPackage() : "";
     }
     
     /**

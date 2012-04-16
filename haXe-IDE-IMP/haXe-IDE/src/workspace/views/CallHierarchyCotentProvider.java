@@ -13,7 +13,8 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     public void dispose() {}
 
     @Override
-    public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
+    public void inputChanged(
+            final Viewer viewer, final Object oldInput, final Object newInput)
     {
         this.viewer = (TreeViewer)viewer;
         if (newInput instanceof ICallHierarchyElement)
@@ -23,13 +24,13 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     }
 
     @Override
-    public Object[] getElements(Object inputElement)
+    public Object[] getElements(final Object inputElement)
     {
         return getChildren(inputElement);
     }
 
     @Override
-    public Object[] getChildren(Object parentElement)
+    public Object[] getChildren(final Object parentElement)
     {
         if(parentElement instanceof ICallHierarchyElement) {
             ICallHierarchyElement box = (ICallHierarchyElement)parentElement;
@@ -39,7 +40,7 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     }
 
     @Override
-    public Object getParent(Object element)
+    public Object getParent(final Object element)
     {
         if(element instanceof ICallHierarchyElement) 
         {
@@ -49,7 +50,7 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     }
 
     @Override
-    public boolean hasChildren(Object element)
+    public boolean hasChildren(final Object element)
     {
         return getChildren(element).length > 0;
     }

@@ -1,12 +1,12 @@
 package workspace.views;
 
-public class FolderCallHierarchyElement extends CallHierarchyElement
+public class CallHierarchyFolderElement extends CallHierarchyElement
 {
     private String name = "";
     
-    public FolderCallHierarchyElement(final String name) 
+    public CallHierarchyFolderElement(final String name) 
     {
-        super();
+        super(null);
         
         if (name != null)
         {

@@ -1,3 +1,7 @@
+package test.resources
+
+import flash.lib;
+
 abstract class ClassTest extends AClass, implements AInterface, implements BInterface
 {
 		public function new()
@@ -7,6 +11,11 @@ abstract class ClassTest extends AClass, implements AInterface, implements BInte
 		public function new(strVar:String)
 		{
 		  super(strVar);
+		}
+		
+		public function new(intVar:Int)
+		{
+		  this("Hello", intVar); //is it right?
 		}
 		
 		public function new(strVar:String, intVar:Int)

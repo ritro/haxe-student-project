@@ -21,6 +21,7 @@ import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
 import workspace.HashMapForLists;
+import workspace.NodeLink;
 import workspace.elements.HaxeProject;
 
 public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
@@ -136,12 +137,13 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         usageBuilder = new ReferencesListBuilder();
         usageBuilder.visit(targetNode);
         
-        HashMapForLists<HaxeTree> usages = usageBuilder.getResult();
+        HashMapForLists<NodeLink> usages = usageBuilder.getResult();
         
         for (String pack : usages.keySet())
         {
-            for (HaxeTree node : usages.get(pack))
+            for (NodeLink info : usages.get(pack))
             {
+                HaxeTree node = info.getNode();
                 Pair pair = null;
                 if (node instanceof VarUsageNode)
                 {

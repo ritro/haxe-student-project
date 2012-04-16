@@ -160,7 +160,7 @@
             allowMultiple="false"
             class="workspace.views.CallHierarchyView"
             icon="haxeSymbol.PNG"
-            id="haXe-IDE.haXeCallHierarchyView"
+            id="haXe_IDE.view.callHierarchy"
             name="Call Hierarchy"
             restorable="true">
       </view>
@@ -169,16 +169,16 @@
          point="org.eclipse.ui.popupMenus">
       <viewerContribution
             targetID="haXe-IDE.textEditor.EditorContext"
-            id="haXe-IDE.textEditorMenu">
+            id="haXe_IDE.popupMenu.textEditor">
          <action
                label="Open Call Hierarchy (haXe)"
                class="workspace.contextMenu.CallHierarchyAction"
                menubarPath="additions"
-               id="haXe-IDE.callHierarchyAction">
+               id="haXe_IDE.actions.callHierarchy">
          </action>
          <action
                class="workspace.contextMenu.RenameAction"
-               id="haXe-IDE.renameRefactoringAction"
+               id="haXe_IDE.actions.renameRefactoring"
                label="Rename"
                menubarPath="refactoring">
          </action>

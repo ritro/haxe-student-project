@@ -20,14 +20,13 @@ import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 
 import workspace.Activator;
 import workspace.HashMapForLists;
+import workspace.NodeLink;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
 
@@ -42,7 +41,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     // a VarDeclaration\Function\Class\Enum
     private HaxeTree searchObject = null;
     // filepackage - list of found nodes in this' file ast
-    private HashMapForLists<HaxeTree> foundResult = null;
+    private HashMapForLists<NodeLink> foundResult = null;
     private HaxeProject project = null;
     private HaxeFile currFile = null;
     
@@ -56,12 +55,12 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
      */
     public void visit(final HaxeTree searchFor)
     {
-        foundResult = new HashMapForLists<HaxeTree>();
+        foundResult = new HashMapForLists<NodeLink>();
         project = Activator.getInstance().getCurrentHaxeProject();
         
         HashMapForLists<HaxeFile> fullList = project.getFiles();
         
-        IFile activeFile = Activator.getInstance().activeFile;
+        IFile activeFile = Activator.getInstance().getCurrentFile();
         currFile = project.getFile(activeFile.getFullPath());
         analyseSearchedObject(searchFor);
         
@@ -84,7 +83,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     public void testVisit(final HaxeTree searchFor, final HaxeTree ast)
     {
         searchObject = searchFor;
-        foundResult = new HashMapForLists<HaxeTree>();
+        foundResult = new HashMapForLists<NodeLink>();
         
         currFile = new HaxeFile("some file", ast);
         visit(ast, null);
@@ -95,7 +94,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
      * for file where they we found.
      * @return List of pairs of usages\calls or empty list of pairs.
      */
-    public HashMapForLists<HaxeTree> getResult()
+    public HashMapForLists<NodeLink> getResult()
     {
         return foundResult;
     }
@@ -171,7 +170,8 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     
     private void addToResults(final HaxeTree foundNode)
     {
-        foundResult.put(currFile.getPackage(), foundNode);
+        NodeLink info = new NodeLink(currFile.getRealFile(), foundNode);
+        foundResult.put(currFile.getPackage(), info);
     }
 
     @Override
@@ -204,7 +204,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         {
             return;
         }
-        visitAllChildren(block, data);   
+        visitAllChildren(block, data);
     }
 
     @Override
@@ -226,7 +226,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(NewNode node, Object data)
+    protected void visit(final NewNode node, Object data)
     {
         HaxeTree declaration = node.getDeclarationNode();
         if (declaration != null
@@ -252,10 +252,13 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     protected void visit(final MethodCallNode node, Object data)
     {
         HaxeTree parent = node.getParent();
+        HaxeTree decl = node.getDeclarationNode();
+        String name = node.getText();
         if ((searchObject instanceof FunctionNode 
                 || parent instanceof NewNode) // for constructors
-                && node.getText().equals(searchObject.getText())
-                && node.getDeclarationNode().equals(searchObject))
+                && name.equals(searchObject.getText())
+                && decl != null
+                && decl.equals(searchObject))
         {
             addToResults(node);
         }

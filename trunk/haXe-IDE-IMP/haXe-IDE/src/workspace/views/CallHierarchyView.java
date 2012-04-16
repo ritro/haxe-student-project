@@ -11,30 +11,18 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ListViewer;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.ViewPart;
 
 import workspace.Activator;
 import workspace.HashMapForLists;
+import workspace.NodeLink;
 import workspace.WorkspaceUtils;
 import workspace.editor.HxFilesEditor;
-import workspace.elements.HaxeFile;
-import workspace.elements.HaxeProject;
 
 public class CallHierarchyView extends HierarchyView
 {
-    public static final String VIEW_ID 				= Activator.kPluginID + ".view.callHierarchy";
+    public static final String ID    				= Activator.kPluginID + ".view.callHierarchy";
     public static final String GROUP_MAIN 			= "MENU_MAIN";
     public static final String GROUP_SEARCH_SCOPE 	= "MENU_SEARCH_SCOPE";
     
@@ -43,27 +31,26 @@ public class CallHierarchyView extends HierarchyView
     public CallHierarchyView() 
     {
         super();
+        
+        invisibleRoot = new CallHierarchyFolderElement("");
+        labelProvider = new CallHierarchyLabelProvider();
     }
-
-    /// View Part implementations
     
     @Override
-    public void createPartControl(Composite parent)
+    protected void initContentProvider()
     {
-    	super.createPartControl(parent);
-    	
         treeViewer.setContentProvider(new CallHierarchyCotentProvider());
-        labelProvider = new CallHierarchyLabelProvider();
         treeViewer.setLabelProvider(labelProvider);
-    }    
+    }
     
-    public void init(final HaxeTree root, HashMapForLists<HaxeTree> list)
+    public void init(final String pack, final HaxeTree root, HashMapForLists<NodeLink> list)
     {
         invisibleRoot.clearAllChildren();
+        IFile file = Activator.getInstance().getCurrentFile();
         
-        NodeCallHierarchyElement visibleRoot = new NodeCallHierarchyElement(root, "");
-        FolderCallHierarchyElement callsTo = new FolderCallHierarchyElement("Calls To");
-        FolderCallHierarchyElement callsFrom = new FolderCallHierarchyElement("Calls From");
+        CallHierarchyNodeElement visibleRoot = new CallHierarchyNodeElement(file, root, pack);
+        CallHierarchyFolderElement callsTo = new CallHierarchyFolderElement("Calls To");
+        CallHierarchyFolderElement callsFrom = new CallHierarchyFolderElement("Calls From");
         
         invisibleRoot.add(visibleRoot);
         text.setText(treeViewer.toString());
@@ -73,13 +60,13 @@ public class CallHierarchyView extends HierarchyView
     
         if (list == null)
         {
-            list = new HashMapForLists<HaxeTree>();
+            list = new HashMapForLists<NodeLink>();
         }
-        for (String pack : list.keySet())
+        for (String cpack : list.keySet())
         {
-            for (HaxeTree node : list.get(pack))
+            for (NodeLink info : list.get(cpack))
             {
-                callsTo.add(new NodeCallHierarchyElement(node, pack));
+                callsTo.add(new CallHierarchyNodeElement(info.getFile(), info.getNode(), cpack));
             }
         }
         treeViewer.refresh(invisibleRoot);
@@ -100,10 +87,7 @@ public class CallHierarchyView extends HierarchyView
            }
         });
     }
-    
-    /**
-     *
-     */
+
     private MenuManager createPopupMenu() {
         MenuManager menuMgr = new MenuManager("#PopupMenu"); //$NON-NLS-1$
         menuMgr.setRemoveAllWhenShown(true);
@@ -132,20 +116,15 @@ public class CallHierarchyView extends HierarchyView
         manager.add(new GroupMarker(IContextMenuConstants.GROUP_ADDITIONS));
     }
     
-    private void jumpToLocation(final String pack, final HaxeTree node)
+    private void jumpToLocation(final IFile file, final HaxeTree node)
     {
-        // TODO we can change current project but view will be the same, so fix that later
-        HaxeProject proj = Activator.getInstance().getCurrentHaxeProject();
-        HaxeFile file = proj.getFile(pack);
         if (file == null)
         {
             return;
         }
-        HaxeTree ast = file.getAst();
-        IFile realFile = file.getRealFile();
         try
         {
-            IEditorPart editor = WorkspaceUtils.openFileInEditor(realFile);
+            IEditorPart editor = WorkspaceUtils.openFileInEditor(file);
             if (!(editor instanceof HxFilesEditor))
             {
                 return;
@@ -153,10 +132,10 @@ public class CallHierarchyView extends HierarchyView
             HxFilesEditor hxEditor = (HxFilesEditor)editor;
             hxEditor.selectAndReveal(node.getMostLeftPosition(), node.getLength());
         }
-        catch (PartInitException e)
+        catch (Exception e)
         {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            String message = "CallHierarchyView.jumpToLocation: " + e.getLocalizedMessage();
+            Activator.logger.error(message);
         }
     }
     
@@ -175,13 +154,12 @@ public class CallHierarchyView extends HierarchyView
                 return;
             }
 
-            NodeCallHierarchyElement methodWrapper = (NodeCallHierarchyElement) structuredSelection;
+            CallHierarchyNodeElement methodWrapper = (CallHierarchyNodeElement) structuredSelection;
             HaxeTree node = methodWrapper.getNode();
-            String pack = methodWrapper.getPackage();
 
             if (node != null) 
             {
-                jumpToLocation(pack, node);
+                jumpToLocation(methodWrapper.getFile(), node);
             } 
             //else {
             //    jumpToMethod(methodWrapper.getMethod());
@@ -193,21 +171,5 @@ public class CallHierarchyView extends HierarchyView
                     "CallHierarchyView.jumpToSelection exception: ", e.getMessage());
         }
     }
-
-    /**
-     * Opens a Java editor for an element (IJavaElement, IFile, IStorage...).
-     * Currently the copied functionality is unable to open class files since this
-     * would require interfacing with internal API.
-     * 
-     * @return the IEditorPart or null if wrong element type or opening failed
-     
-    public static IEditorPart openInEditor(Object inputElement, boolean activate) 
-            throws JavaModelException, PartInitException {
-        if (inputElement instanceof IJavaElement) {
-            return JavaUI.openInEditor((IJavaElement)inputElement);
-        } else {
-            return null;
-        }
-    }*/
 
 }

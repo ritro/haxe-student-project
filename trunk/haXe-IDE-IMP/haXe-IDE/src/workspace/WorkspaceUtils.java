@@ -293,12 +293,12 @@ public class WorkspaceUtils
      */
     public static boolean isNodeValidForCallAnalysis(final HaxeTree node)
     {
-    	if (node instanceof FunctionNode)
-    	{
-    		return true;
-    	}
+        if (node == null || !(node instanceof FunctionNode))
+        {
+            return false;
+        }
     	
-    	return false;
+    	return true;
     }
     
     /**

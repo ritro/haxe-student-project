@@ -6,6 +6,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 
 import workspace.HashMapForLists;
+import workspace.NodeLink;
 import workspace.editor.HxFilesEditor;
 
 public abstract class HxEditorMenuAction extends MenuAction
@@ -26,7 +27,7 @@ public abstract class HxEditorMenuAction extends MenuAction
         return ((HxFilesEditor)part).getCurrentNode();
     }
 
-    protected HashMapForLists<HaxeTree> getUsagesList()
+    protected HashMapForLists<NodeLink> getUsagesList()
     {
         if (part == null)
         {

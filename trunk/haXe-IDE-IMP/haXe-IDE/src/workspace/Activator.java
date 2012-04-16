@@ -59,7 +59,7 @@ public class Activator extends PluginBase{
 	//        sPlugin.isDebugging() && "true".equalsIgnoreCase(
 	//                   Platform.getDebugOption("org.eclipse.faq.examples/debug/option2"));
 	
-	public IFile activeFile = null;
+	private IFile activeFile = null;
 	private HashMap<String, HaxeProject> projects;
 	private HashMap<String, HaxeTree> libraries;
 	private HaxeProject currentProject = null;
@@ -83,6 +83,11 @@ public class Activator extends PluginBase{
 	public HaxeProject getCurrentHaxeProject()
 	{
 	    return currentProject;
+	}
+	
+	public IFile getCurrentFile()
+	{
+	    return activeFile;
 	}
 	
 	public void setCurrentProject(IFile file)

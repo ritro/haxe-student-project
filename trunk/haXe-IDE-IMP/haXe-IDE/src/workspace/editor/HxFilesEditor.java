@@ -15,10 +15,17 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchPartReference;
+import org.eclipse.ui.PlatformUI;
 
 import workspace.Activator;
 import workspace.HashMapForLists;
+import workspace.NodeLink;
 import workspace.WorkspaceUtils;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
@@ -27,7 +34,8 @@ public class HxFilesEditor extends UniversalEditor
 { 
 	private HaxeTree                   currentNode     = null;
 	private ReferencesListBuilder      usagesBuilder   = null;
-	private HashMapForLists<HaxeTree>  usagesList      = null;
+	private HashMapForLists<NodeLink>  usagesList      = null;
+	private IPartListener2             partListener    = null;
 	
 	public HxFilesEditor()
 	{
@@ -36,7 +44,7 @@ public class HxFilesEditor extends UniversalEditor
 		handleCursorPositionChanged();
 	}
 	
-	public HashMapForLists<HaxeTree> getUsagesList()
+	public HashMapForLists<NodeLink> getUsagesList()
 	{
 	    return usagesList;
 	}
@@ -45,10 +53,28 @@ public class HxFilesEditor extends UniversalEditor
 	{
 	    return currentNode;
 	}
+	
+	public void createPartControl(Composite parent)
+	{
+	    super.createPartControl(parent);
+	    
+        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+
+        //adding a listener
+        //partListener = new ActivePageController();
+	    //page.addPartListener(partListener);
+	}
     
     @Override
     public void dispose()
     {
+        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+        //page.removePartListener(partListener);
+        
+    	currentNode = null;
+    	usagesBuilder = null;
+    	usagesList = null;
+    	
     	super.dispose();
     }
 	
@@ -133,15 +159,16 @@ public class HxFilesEditor extends UniversalEditor
     private void highlightCurrentNodeUsagesInText()
     {        
         ISourceViewer view = getSourceViewer();
-        IFile activeFile = Activator.getInstance().activeFile;
+        IFile activeFile = Activator.getInstance().getCurrentFile();
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         HaxeFile currFile = project.getFile(activeFile.getFullPath());
         String currPack = currFile.getPackage();
         
         TextPresentation presentation = new TextPresentation();
         
-        for (HaxeTree node : usagesList.get(currPack))
+        for (NodeLink info : usagesList.get(currPack))
         {
+            HaxeTree node = info.getNode();
             int offset = node.getMostLeftPosition();
             int end = node.getMostRightPosition();
 
@@ -173,7 +200,7 @@ public class HxFilesEditor extends UniversalEditor
         	currentNode = null;
         	return;
         }
-        HaxeTree ast = project.getFileAST(Activator.getInstance().activeFile);
+        HaxeTree ast = project.getFileAST(Activator.getInstance().getCurrentFile());
         TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
         if (ast == null || selection == null)
         {

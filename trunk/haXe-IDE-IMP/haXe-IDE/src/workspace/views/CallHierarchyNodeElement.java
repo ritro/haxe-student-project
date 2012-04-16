@@ -1,15 +1,17 @@
 package workspace.views;
 
+import org.eclipse.core.resources.IFile;
+
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
-public class NodeCallHierarchyElement extends CallHierarchyElement
+public class CallHierarchyNodeElement extends CallHierarchyElement
 {
     private HaxeTree node       = null;
     private String filePackage  = "";
     
-    public NodeCallHierarchyElement(final HaxeTree realNode, final String pack)
+    public CallHierarchyNodeElement(final IFile file, final HaxeTree realNode, final String pack)
     {
-        super();
+        super(file);
         
         node = realNode;
         if (pack != null)

@@ -14,11 +14,11 @@ public class CallHierarchyLabelProvider extends HaxeLabelProvider
         {
             return null;
         }
-        if (object instanceof FolderCallHierarchyElement)
+        if (object instanceof CallHierarchyFolderElement)
         {
         	return null; 
         }
-        return super.getImage(((NodeCallHierarchyElement)object).getNode());
+        return super.getImage(((CallHierarchyNodeElement)object).getNode());
     }
     
     @Override
@@ -28,9 +28,9 @@ public class CallHierarchyLabelProvider extends HaxeLabelProvider
         {
             return null;
         }
-        if (object instanceof NodeCallHierarchyElement)
+        if (object instanceof CallHierarchyNodeElement)
         {
-            NodeCallHierarchyElement element = (NodeCallHierarchyElement)object;
+            CallHierarchyNodeElement element = (CallHierarchyNodeElement)object;
             return  super.getText(element.getNode()) + 
                     " - " + 
                     element.getPackage();

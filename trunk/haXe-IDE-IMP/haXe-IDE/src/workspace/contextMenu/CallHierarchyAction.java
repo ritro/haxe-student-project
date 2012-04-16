@@ -14,12 +14,16 @@ import org.eclipse.ui.PlatformUI;
 
 import workspace.Activator;
 import workspace.HashMapForLists;
+import workspace.NodeLink;
 import workspace.WorkspaceUtils;
 import workspace.editor.HxFilesEditor;
+import workspace.elements.HaxeProject;
 import workspace.views.CallHierarchyView;
 
 public class CallHierarchyAction extends HxEditorMenuAction
 {
+    CallHierarchyView view = null;
+    
     @Override
     public void setActiveEditor(IAction action, IEditorPart targetEditor)
     {
@@ -43,7 +47,7 @@ public class CallHierarchyAction extends HxEditorMenuAction
         Activator.getInstance().setCurrentProject(file);
     }
     
-    private HashMapForLists<HaxeTree> makeCallAnalysis(final HaxeTree node)
+    private HashMapForLists<NodeLink> makeCallsList(final HaxeTree node)
     {
         ReferencesListBuilder builder = new ReferencesListBuilder();
         builder.visit(node);
@@ -56,23 +60,25 @@ public class CallHierarchyAction extends HxEditorMenuAction
     {
         try
         {
-            CallHierarchyView view = 
-                    (CallHierarchyView) PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-                    .getActivePage().showView(CallHierarchyView.VIEW_ID);
+            view = (CallHierarchyView) PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+                    .getActivePage().showView(CallHierarchyView.ID);
             
             HaxeTree node = getCurrentNode();
+            String fileName = Activator.getInstance().getCurrentFile().getName();
+            HaxeProject proj = Activator.getInstance().getCurrentHaxeProject();
+            
             if (!WorkspaceUtils.isNodeValidForCallAnalysis(node))
             {
                 node = WorkspaceUtils.getValidNodeForCallAnalysis(node);
             }
             if (node != null)
             {
-                view.init(node, makeCallAnalysis(node));
+                view.init("", node, makeCallsList(node));
             }
         }
         catch (PartInitException e)
         {
-            System.out.println("Couldn't open the view, id: " + CallHierarchyView.VIEW_ID);
+            System.out.println("Couldn't open the view, id: " + CallHierarchyView.ID);
             Activator.logger.error("CallHierarchyAction.run: {}", e.getMessage());
         }
         catch (ClassCastException  e)

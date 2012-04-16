@@ -20,6 +20,8 @@ public abstract class HierarchyView extends ViewPart implements ISelectionChange
 
 	protected abstract void hookListeners();
 	
+	protected abstract void initContentProvider();
+	
 	@Override
 	public void createPartControl(Composite parent) 
 	{
@@ -43,7 +45,7 @@ public abstract class HierarchyView extends ViewPart implements ISelectionChange
         // Create the tree viewer as a child of the composite parent
         treeViewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL
                 | SWT.V_SCROLL);
-        
+        initContentProvider();
         treeViewer.setUseHashlookup(true);
         
         // layout the tree viewer below the text field
@@ -58,8 +60,7 @@ public abstract class HierarchyView extends ViewPart implements ISelectionChange
         //createMenus();
         //createToolbar();
         hookListeners();
-
-        invisibleRoot = new NodeCallHierarchyElement(null, "");
+        
         treeViewer.setInput(invisibleRoot);
         treeViewer.setAutoExpandLevel(autoExpandLevel);
 	}

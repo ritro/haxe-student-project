@@ -51,12 +51,18 @@ public class HaxeProject
         fileList.put(name, file);
     }
     
+    /**
+     * The Key is the name of the file with extention
+     * but without path.
+     * Value is files which have that name.
+     * @return
+     */
     public HashMapForLists<HaxeFile> getFiles()
     {
         return fileList;
     }
     
-    public HaxeFile getFile(IPath fullpath)
+    public HaxeFile getFile(final IPath fullpath)
     {
         if (fileList == null)
         {
@@ -76,7 +82,7 @@ public class HaxeProject
         return null;
     }
     
-    public HaxeFile getFile(String name, String nameWithPackage)
+    public HaxeFile getFile(final String name, final String nameWithPackage)
     {
         if (fileList == null)
         {
@@ -118,7 +124,7 @@ public class HaxeProject
         return null;
     }
     
-    public HaxeTree getFileAST(String name, String nameWithPackage)
+    public HaxeTree getFileAST(final String name, final String nameWithPackage)
     {        
         HaxeFile file = getFile(name, nameWithPackage);
         if (file != null)
@@ -128,7 +134,7 @@ public class HaxeProject
         return null;
     }
     
-    public HaxeTree getFileAST(IFile file)
+    public HaxeTree getFileAST(final IFile file)
     {
         if (fileList == null)
         {
@@ -153,17 +159,17 @@ public class HaxeProject
         return buildFiles;
     }
     
-    public void addBuildFile(BuildFile file)
+    public void addBuildFile(final BuildFile file)
     {
         buildFiles.add(file);
     }
     
-    public void setBuildFiles(List<BuildFile> files)
+    public void setBuildFiles(final List<BuildFile> files)
     {
         buildFiles = files;
     }
  
-    public IFile getRealFile(String name)
+    public IFile getRealFile(final String name)
     {
         return baseProject.getFile(name);
     }
@@ -178,24 +184,26 @@ public class HaxeProject
         return baseProject.isOpen();
     }
     
-    public boolean contains(String nameWithPackage)
+    public boolean contains(final String nameWithPackage)
     {
         return fileList.containsKey(nameWithPackage);
     }
     
-    public IFile createFile(String fileName) 
+    public IFile createFile(final String fileName) 
             throws CoreException
     {
         return createFile(null, fileName, null, true);
     }
     
-    public IFile createFile(String path, String fileName, String fileContents) 
+    public IFile createFile(
+            final String path, final String fileName, final String fileContents) 
             throws CoreException
     {
         return createFile(path, fileName, fileContents, true);
     }
     
-    public IFile createFile(String path, String fileName, String fileContents, boolean ifOpen) 
+    public IFile createFile(
+            String path, final String fileName, final String fileContents, final boolean ifOpen) 
             throws CoreException
     {
         if (path == null)
@@ -206,7 +214,7 @@ public class HaxeProject
         return createFile(WorkspaceUtils.getConcatenatedPath(path, fileName), fileContents, ifOpen);
     }
     
-    public IFile createFile(String pathWithName, String fileContents, boolean ifOpen) 
+    public IFile createFile(final String pathWithName, String fileContents, final boolean ifOpen) 
             throws CoreException
     {        
         if (fileContents == null)
@@ -227,7 +235,7 @@ public class HaxeProject
         return file;        
     }
     
-    public void createFolders(String[] paths) throws CoreException
+    public void createFolders(final String[] paths) throws CoreException
     {
         for (String path : paths) 
         {
@@ -299,7 +307,7 @@ public class HaxeProject
         }
     }
     
-    private HaxeTree makeAST(IFile file)
+    private HaxeTree makeAST(final IFile file)
     {
         try
         {

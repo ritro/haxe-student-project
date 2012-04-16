@@ -24,12 +24,14 @@ import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import workspace.elements.HaxeProject;
 
 public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
 {
     private HashMap<String, HaxeTree> imports;
+    private List<String> usings;
     private enum ScopeTypes {Class, Function};
     private ScopeTypes currentScope = ScopeTypes.Class;
     private HaxeProject project;
@@ -43,12 +45,14 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     public HaxeTreeLinker()
     {
         imports = new HashMap<String, HaxeTree>();
+        usings = new ArrayList<String>();
     }
     
     @Override
     public void visit(final HaxeTree t)
     {
         imports = new HashMap<String, HaxeTree>(); 
+        usings = new ArrayList<String>();
         currentScope = ScopeTypes.Class;
         super.visit(t);
     }
@@ -94,20 +98,20 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         {
             return;
         }
-        // TODO: find links for child objects
+        visitAllChildren(node, data);
     }
 
     @Override
     protected void visit(ConstantNode node, Object data)
     {
-        // TODO: nothing to write here?  
+        // nothing to write here?  
     }
 
     @Override
     protected void visit(ReturnNode node, Object data)
     {
         Environment declarations = (Environment)data;
-        // due to Antlr grammar the places there Return wasnt
+        // due to Antlr grammar the places there Return wasn't
         // expected already marked as Error nodes - so there
         // is no variant that function will be null
         node.setFunction(declarations.getLastFunction());
@@ -138,31 +142,42 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     protected void visitUnknown(HaxeTree node, Object data)
     {
         // import
+    	// Note: Importing multiple types with wildcards is NOT supported 
+    	// in haXe import flash.display.*;
         if (node.getText().equals("import"))
         {
-            String longName = node.getChild(0).getText();
-            String shortName = longName.substring(longName.lastIndexOf('.') + 1);
-            // here i should retrieve ast of imported file, if it's out project
-            // file, for flash and others libs still null
-            if (project == null)
-            {
-                return;
-            }
-            HaxeTree ast = project.getFileAST(shortName, longName);
-            if (ast == null)
-            {
-                // TODO: search in haxe libs
-            }
-            // TODO: if shortName already exists - error, not to import such
-            imports.put(shortName, ast);
-            // if no file found - how to mark error?
-            // 1-check if import pachage just slightly wrong
-            // 2-maybe there is no at all such file - mark error
+            addImport(node.getChild(0), false);
         }
-        //else if (node.getText().equals("using"))
+        else if (node.getText().equals("using"))
         {
-            // TODO
+            addImport(node.getChild(0), true);
         }
+    }
+    
+    protected void addImport(final HaxeTree node, final boolean addToUsings)
+    {
+        String longName = node.getText();
+    	String shortName = longName.substring(longName.lastIndexOf('.') + 1);
+        // here i should retrieve ast of imported file, if it's out project
+        // file, for flash and others libs still null
+        if (project == null)
+        {
+            return;
+        }
+        HaxeTree ast = project.getFileAST(shortName, longName);
+        if (ast == null)
+        {
+            // TODO: search in haxe libs
+        }
+        // TODO: if shortName already exists - error, not to import such
+        imports.put(shortName, ast);
+        if (addToUsings)
+        {
+        	usings.add(shortName);
+        }
+        // if no file found - how to mark error?
+        // 1-check if import package just slightly wrong
+        // 2-maybe there is no at all such file - mark error
     }
     
     protected void visitMemberUse(VarUsageNode node, Object data)
@@ -259,16 +274,22 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             // imports like a.b.c
             if (pack.endsWith("." + name))
             {
-                HaxeTree ast = imports.get(pack);
+            	HaxeTree pDeclaration = imports.get(pack);
+            	if (!(pDeclaration instanceof ClassNode))
+            	{
+            		// TODO and what to do?
+            		return;
+            	}
+            	//if (object.getChildCount() != pDeclaration.getc)
+            	{
+            		
+            	}
+            	declaration = pDeclaration;
+            	break;
             }
-            // imports like a.b.*
-            // usings
         }
-        // same package (without import)
-        if (declaration == null)
-        {
-            
-        }
+        // same package (without import) is not possible by 
+        // same reasons as not possible to import using Wildcards
         node.setDeclarationNode(declaration);
     }
 
@@ -326,7 +347,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // 4 - enums declared
         if (declaration == null)
         {
-            // importes
+            // imports
             declaration = imports.get(node.getText());
         }
         

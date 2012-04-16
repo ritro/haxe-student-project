@@ -16,6 +16,7 @@ import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
@@ -41,7 +42,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ClassNode node, Object data)
+    protected void visit(final ClassNode node, Object data)
     {
         BlockScopeNode blockScope = node.getBlockScope();
         
@@ -49,7 +50,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(FunctionNode node, Object data)
+    protected void visit(final FunctionNode node, Object data)
     {
         if (node.isConstructor() && node.isDuplicate())
         {
@@ -69,7 +70,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(VarDeclarationNode node, Object data)
+    protected void visit(final VarDeclarationNode node, Object data)
     {
         if (node.isDuplicate())
         {
@@ -95,14 +96,14 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(NewNode node, Object data)
+    protected void visit(final NewNode node, Object data)
     {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    protected void visit(MethodCallNode node, Object data)
+    protected void visit(final MethodCallNode node, Object data)
     {
         if (!node.ifUndefinedType())
         {
@@ -122,7 +123,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(SliceNode node, Object data)
+    protected void visit(final SliceNode node, Object data)
     {
         if (!node.ifUndefinedType())
         {
@@ -142,7 +143,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(VarUsageNode node, Object data)
+    protected void visit(final VarUsageNode node, Object data)
     {
         if (node.getDeclarationNode() == null)
         {
@@ -163,7 +164,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(AssignOperationNode node, Object data)
+    protected void visit(final AssignOperationNode node, Object data)
     {
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
@@ -194,7 +195,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ArrayNode node, Object data)
+    protected void visit(final ArrayNode node, Object data)
     {
         if (node.getChildCount() == 0)
         {
@@ -205,13 +206,13 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ConstantNode node, Object data)
+    protected void visit(final ConstantNode node, Object data)
     {
         //seems it needs no errors
     }
 
     @Override
-    protected void visit(ReturnNode node, Object data)
+    protected void visit(final ReturnNode node, Object data)
     {
         HaxeType type = node.getHaxeType();
         FunctionNode function = node.getFunction();
@@ -225,7 +226,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(BinaryExpressionNode node, Object data)
+    protected void visit(final BinaryExpressionNode node, Object data)
     {
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
@@ -249,28 +250,46 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             node.commitError("Illegal use of binary operation to operands with such types.");
         }
     }
+    
+    protected void visit(final UnarExpressionNode node, Object data)
+    {
+        if (node.getHaxeType() != PrimaryHaxeType.haxeUndefined)
+        {
+            return;
+        }
+        HaxeTree expr = node.getExpression();
+        if (expr.ifUndefinedType())
+        {
+            visit(node, data);
+        }
+        else
+        {
+            data = node;
+            node.commitError("Illegal use of operation for that type");
+        }
+    }
 
     @Override
-    protected void visit(BlockScopeNode node, Object data)
+    protected void visit(final BlockScopeNode node, Object data)
     {
         visitAllChildren(node, data);
     }
 
     @Override
-    protected void visit(ErrorNode node, Object data)
+    protected void visit(final ErrorNode node, Object data)
     {
         node.commitUnexpectedError();
     }
 
     @Override
-    protected void visitUnknown(HaxeTree node, Object data)
+    protected void visitUnknown(final HaxeTree node, Object data)
     {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    protected void visit(IfNode node, Object data)
+    protected void visit(final IfNode node, Object data)
     {
         HaxeTree ifBlock = node.getIfBlock();
         HaxeTree elseBlock = node.getElseBlock();  
@@ -289,14 +308,14 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ForNode node, Object data)
+    protected void visit(final ForNode node, Object data)
     {
         //TODO: iterator check ?
         visitUnknown(node.getScope(), data);
     }
 
     @Override
-    protected void visit(WhileNode node, Object data)
+    protected void visit(final WhileNode node, Object data)
     {
         HaxeTree condition = node.getCondition();
         visit(condition, data);
@@ -312,7 +331,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visitHighLevel(HaxeTree node, Object data)
+    protected void visitHighLevel(final HaxeTree node, Object data)
     {
         visitAllChildren(node, data);
     }

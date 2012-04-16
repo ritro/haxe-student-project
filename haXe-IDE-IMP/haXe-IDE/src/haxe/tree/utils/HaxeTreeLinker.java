@@ -17,6 +17,7 @@ import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
@@ -114,10 +115,26 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // due to Antlr grammar the places there Return wasn't
         // expected already marked as Error nodes - so there
         // is no variant that function will be null
-        node.setFunction(declarations.getLastFunction());
+        FunctionNode function = declarations.getLastFunction();
+        node.setFunction(function);
         
         HaxeTree expression = node.getExpression();
+        if (expression == null)
+        {
+            return;
+        }
         visit(expression, declarations);
+        HaxeType exprType = expression.getHaxeType();
+        
+        // if here is Undefined - then some return node already
+        // tryed to set it's type and failed due to unknown type
+        // of expression - we should leave it as it is
+        if (function == null
+                || function.getHaxeType() != PrimaryHaxeType.haxeVoid)
+        {
+            return;
+        }
+        function.setHaxeType(node.getHaxeType());
     }
 
     @Override
@@ -136,6 +153,11 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         {
             node.setHaxeType(definedType);
         }
+    }
+    
+    protected void visit(final UnarExpressionNode node, Object data)
+    {
+        visit(node.getExpression(), data);
     }
 
     @Override
@@ -377,7 +399,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ErrorNode node, Object data)
+    protected void visit(final ErrorNode node, Object data)
     {
         // do nothing here
     }
@@ -428,7 +450,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ClassNode node, Object data)
+    protected void visit(final ClassNode node, Object data)
     {
         node.analizeInherits();
         Environment env = (Environment)data;
@@ -450,7 +472,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(IfNode node, Object data)
+    protected void visit(final IfNode node, Object data)
     {
         Environment declarations = (Environment)data;
         int thisIndex = node.getChildIndex();

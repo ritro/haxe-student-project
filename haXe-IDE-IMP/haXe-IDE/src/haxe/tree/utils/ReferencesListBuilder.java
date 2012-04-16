@@ -16,6 +16,7 @@ import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
@@ -325,6 +326,11 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
 
     @Override
     protected void visit(final BinaryExpressionNode node, Object data)
+    {
+        visitAllChildren(node, data);
+    }
+    
+    protected void visit(final UnarExpressionNode node, Object data)
     {
         visitAllChildren(node, data);
     }

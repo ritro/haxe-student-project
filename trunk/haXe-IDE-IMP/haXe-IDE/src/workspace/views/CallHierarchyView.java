@@ -32,17 +32,13 @@ import workspace.editor.HxFilesEditor;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
 
-public class CallHierarchyView extends ViewPart implements ISelectionChangedListener
+public class CallHierarchyView extends HierarchyView
 {
-    public static final String VIEW_ID = "haXe-IDE.haXeCallHierarchyView";
-    public static final String GROUP_MAIN = "MENU_MAIN";
-    public static final String GROUP_SEARCH_SCOPE = "MENU_SEARCH_SCOPE";
+    public static final String VIEW_ID 				= Activator.kPluginID + ".view.callHierarchy";
+    public static final String GROUP_MAIN 			= "MENU_MAIN";
+    public static final String GROUP_SEARCH_SCOPE 	= "MENU_SEARCH_SCOPE";
     
-    private TreeViewer treeViewer;
-    private ListViewer listViewer;
     private CallHierarchyLabelProvider labelProvider;
-    private NodeCallHierarchyElement invisibleRoot = null;
-    private Text text;
 
     public CallHierarchyView() 
     {
@@ -54,58 +50,12 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
     @Override
     public void createPartControl(Composite parent)
     {
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 1;
-        layout.verticalSpacing = 2;
-        layout.marginWidth = 0;
-        layout.marginHeight = 2;
-        parent.setLayout(layout);
-
-        /* Create a "label" to display information in. I'm
-         * using a text field instead of a lable so you can
-         * copy-paste out of it. */
-        text = new Text(parent, SWT.READ_ONLY | SWT.SINGLE | SWT.BORDER);
-        // layout the text field above the treeviewer
-        GridData layoutData = new GridData();
-        layoutData.grabExcessHorizontalSpace = true;
-        layoutData.horizontalAlignment = GridData.FILL;
-        text.setLayoutData(layoutData);
-        
-        // Create the tree viewer as a child of the composite parent
-        treeViewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL
-                | SWT.V_SCROLL);
+    	super.createPartControl(parent);
+    	
         treeViewer.setContentProvider(new CallHierarchyCotentProvider());
         labelProvider = new CallHierarchyLabelProvider();
         treeViewer.setLabelProvider(labelProvider);
-        
-        treeViewer.setUseHashlookup(true);
-        
-        // layout the tree viewer below the text field
-        layoutData = new GridData();
-        layoutData.grabExcessHorizontalSpace = true;
-        layoutData.grabExcessVerticalSpace = true;
-        layoutData.horizontalAlignment = GridData.FILL;
-        layoutData.verticalAlignment = GridData.FILL;
-        treeViewer.getControl().setLayoutData(layoutData);
-        
-        // Create menu, toolbars, filters, sorters.
-        //createMenus();
-        //createToolbar();
-        hookListeners();
-
-        invisibleRoot = new NodeCallHierarchyElement(null, "");
-        treeViewer.setInput(invisibleRoot);
-        treeViewer.setAutoExpandLevel(3);
-    }
-
-    @Override
-    public void setFocus()
-    {
-        treeViewer.getControl().setFocus();
-    }
-
-    //--------------------- end of ViewPart implementations -----------------------
-    
+    }    
     
     public void init(final HaxeTree root, HashMapForLists<HaxeTree> list)
     {
@@ -135,7 +85,7 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
         treeViewer.refresh(invisibleRoot);
     }
     
-    private void hookListeners()
+    protected void hookListeners()
     {
         treeViewer.addDoubleClickListener(new IDoubleClickListener() 
         {            
@@ -241,24 +191,6 @@ public class CallHierarchyView extends ViewPart implements ISelectionChangedList
         {
             Activator.logger.error(
                     "CallHierarchyView.jumpToSelection exception: ", e.getMessage());
-        }
-    }
-
-    @Override
-    public void selectionChanged(SelectionChangedEvent event)
-    {
-        if (event.getSelection() instanceof IStructuredSelection) 
-        {
-            IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-            Object selectedElement = selection.getFirstElement();
-/*
-            if (selectedElement instanceof MethodWrapper) 
-            {
-                MethodWrapper methodWrapper = (MethodWrapper) selectedElement;
-                updateDetailsView(methodWrapper);
-            } else {
-                updateDetailsView(null);
-            }*/
         }
     }
 

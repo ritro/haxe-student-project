@@ -13,4 +13,6 @@ public interface ICallHierarchyElement
     public void add(final ICallHierarchyElement child);
     
     public boolean isClickable();
+    
+    public void clearAllChildren();
 }

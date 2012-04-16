@@ -14,6 +14,8 @@ import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.List;
 
@@ -221,10 +223,11 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	        return null;
 	    }
 	    
-	    return 
-	            node.getHaxeType().getFullTypeName() + 
-	            " " + 
-	            node.getText();
+	    HaxeType type = node.getHaxeType();
+	    String typeName = PrimaryHaxeType.ifPrimaryType(type.getShortTypeName()) 
+	            ? type.getShortTypeName()
+                : type.getFullTypeName();
+	    return  typeName +  " " + node.getText();
 	}
 
 	/**

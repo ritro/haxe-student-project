@@ -16,6 +16,7 @@ import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
@@ -106,11 +107,10 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((VarUsageNode)t, data);
        }
-       else if (t.getType() == HaxeParser.RBRACE)
+       else if (t instanceof UnarExpressionNode)
        {
-           //right braces were added separately as IMP
-           //wasn't counting them as meaningful chars
-       } 
+           visit((UnarExpressionNode)t, data);
+       }
        else
        {
            visitUnknown(t, data);
@@ -142,6 +142,7 @@ public abstract class AbstractHaxeTreeVisitor
    protected abstract void visit(final ConstantNode node, Object data);
    protected abstract void visit(final ReturnNode node, Object data);
    protected abstract void visit(final BinaryExpressionNode node, Object data);
+   protected abstract void visit(final UnarExpressionNode node, Object data);
    protected abstract void visit(final BlockScopeNode node, Object data);
    protected abstract void visit(final ErrorNode node, Object data);
    protected abstract void visit(final IfNode node, Object data);

@@ -18,6 +18,7 @@ import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
+import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
@@ -98,6 +99,11 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
                 "\"" + node.getText() + "\"" +
                 " {" + node.getHaxeType().getShortTypeName() + '}' + 
                 '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        HaxeTree init = node.getInitializationNode();
+        if ( init != null)
+        {
+            visit(init, (int)data + 1);
+        }
     }
 
     @Override
@@ -199,6 +205,15 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
                 "(" + node.getText() + ")" +
                 "{" + node.getHaxeType().getShortTypeName() + '}');
         visitAllChildren(node, (int)data + 1);
+    }
+    
+    protected void visit(final UnarExpressionNode node, Object data)
+    {
+        System.out.print(getIndent(data)); 
+        System.out.println(
+                node.getText() + 
+                "{" + node.getHaxeType().getShortTypeName() + '}');     
+        visitAllChildren(node, (int)data + 1);   
     }
 
     @Override

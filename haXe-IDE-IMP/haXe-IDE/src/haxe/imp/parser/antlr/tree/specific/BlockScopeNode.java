@@ -87,14 +87,20 @@ public class BlockScopeNode extends HaxeTree {
 	@Override
 	public HaxeType getHaxeType()
 	{
+	    if (haxeType != PrimaryHaxeType.haxeUndefined)
+	    {
+	        return super.getHaxeType();
+	    }
 	    int childCount = getChildCount();
 	    if (childCount == 0)
 	    {
-	        return PrimaryHaxeType.haxeVoid;
+	        setHaxeType(PrimaryHaxeType.haxeVoid);
 	    }
 	    
 	    HaxeTree lastChild = getChild(childCount - 1);
-		return lastChild.getHaxeType();
+	    setHaxeType(lastChild.getHaxeType());
+	    
+        return super.getHaxeType();
 	}
 	
 	@Override

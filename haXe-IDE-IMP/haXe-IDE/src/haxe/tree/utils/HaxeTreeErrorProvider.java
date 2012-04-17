@@ -1,5 +1,6 @@
 package haxe.tree.utils;
 
+import workspace.Activator;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
@@ -7,7 +8,6 @@ import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
-import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
@@ -24,6 +24,21 @@ import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
 public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
 {
+    @Override
+    public void visit(final HaxeTree t)
+    {
+        try
+        {
+            super.visit(t);
+        }
+        catch (Exception e)
+        {
+            String message = "HaxeTreeErrorProvider.visit: " + e.getMessage();
+            e.printStackTrace();
+            Activator.logger.error(message);
+        }
+    }
+    
     public void visitAllChildren(final HaxeTree t, Object data)
     {
         if (t == null)
@@ -197,12 +212,41 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final ArrayNode node, Object data)
     {
-        if (node.getChildCount() == 0)
+        if (!node.ifUndefinedType())
         {
+            // empty array or all memeber's types can be assigned
+            // to some common type
             return;
         }
-        // TODO Auto-generated method stub
         
+        visitAllChildren(node, data);
+        if (data != null)
+        {
+            // some member's type was undefined
+            return;
+        }
+        // here we have...member's types are not from the same
+        // hierarchy!
+        HaxeType type = PrimaryHaxeType.haxeUnknown;
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child.getChildIndex() == 0)
+            {
+                type = child.getHaxeType();
+                continue;
+            }
+            HaxeType ctype = child.getHaxeType();
+            if (HaxeType.isAvailableAssignement(type, ctype))
+            {
+                continue;
+            }
+            else if (HaxeType.isAvailableAssignement(ctype, type))
+            {
+                type = ctype;
+                continue;
+            }
+            ErrorPublisher.commitCastError(child, type);
+        }
     }
 
     @Override
@@ -228,26 +272,31 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final BinaryExpressionNode node, Object data)
     {
+        if (!node.ifUndefinedType())
+        {
+            return;
+        }
+        
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
         
-        visit(leftOperand, data);
-        visit(rightOperand, data);
-        
-        //HaxeType firstType = leftOperand.getHaxeType();
-        //HaxeType secondType = rightOperand.getHaxeType();
-        if (data != null)
+        if (!leftOperand.ifUndefinedType()
+                && !rightOperand.ifUndefinedType())
         {
-            //we already committed error in the lowest bin expr in tree
+            data = node;
+            ErrorPublisher.commitCastError(
+                    rightOperand,
+                    leftOperand.getHaxeType());
             return;
         }
-        else //if (!HaxeType.isAvailableAssignement(firstType, secondType) 
-             //   && !HaxeType.isAvailableAssignement(secondType, firstType))
-            if (node.getHaxeType() == PrimaryHaxeType.haxeUndefined)
+        
+        if (leftOperand.ifUndefinedType())
         {
-            //undefined means - we couldn't extract the type while linking
-            data = node;
-            node.commitError("Illegal use of binary operation to operands with such types.");
+            visit(leftOperand, data);            
+        }        
+        if (rightOperand.ifUndefinedType())
+        {
+            visit(rightOperand, data);
         }
     }
     
@@ -291,43 +340,49 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final IfNode node, Object data)
     {
+        if (node.getHaxeType() != PrimaryHaxeType.haxeUndefined)
+        {
+            return;
+        }
+        
         HaxeTree ifBlock = node.getIfBlock();
-        HaxeTree elseBlock = node.getElseBlock();  
+        HaxeTree elseBlock = node.getElseBlock();
+        
+        if (!ifBlock.ifUndefinedType()
+                && !elseBlock.ifUndefinedType()
+                && node.isLastInScope())
+        {
+            data = node;
+            node.commitError("The blocks returns different value types.");
+            return;
+        }
         visit(ifBlock, data);
         visit(elseBlock, data);
-        
-        if (node.getHaxeType() == PrimaryHaxeType.haxeUndefined)
-        {
-            //HaxeType type = ifBlock.getHaxeType();
-            //if (!elseBlock.getHaxeType().equals(type))
-            //{
-                // TODO: maybe equals not the right part - available assignment?
-                node.commitError("The blocks returns different value types.");           
-            //}          
-        }
     }
 
     @Override
     protected void visit(final ForNode node, Object data)
     {
-        //TODO: iterator check ?
-        visitUnknown(node.getScope(), data);
+        visitAllChildren(node, data);
     }
 
     @Override
     protected void visit(final WhileNode node, Object data)
     {
         HaxeTree condition = node.getCondition();
-        visit(condition, data);
-        // if data==null then there was no error while defining cond type
-        // and condition Should have type
-        if (data == null 
-                && condition.getHaxeType() != PrimaryHaxeType.haxeBool)
-        {
-            //TODO: commit error
-        }
         
-        visitUnknown(node.getScope(), data);
+        visit(node.getScope(), data);
+        
+        if (condition.ifUndefinedType())
+        {
+            visit(condition, data);
+            return;
+        }
+
+        if (condition.getHaxeType() != PrimaryHaxeType.haxeBool)
+        {
+            ErrorPublisher.commitCastError(condition, PrimaryHaxeType.haxeBool);
+        }
     }
 
     @Override
@@ -335,5 +390,4 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     {
         visitAllChildren(node, data);
     }
-
 }

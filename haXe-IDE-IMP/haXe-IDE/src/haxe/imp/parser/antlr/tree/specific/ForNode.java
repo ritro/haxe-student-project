@@ -16,6 +16,7 @@ import org.antlr.runtime.Token;
 
 /**
  * The Class ForNode.
+ * Tree: FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
  * 
  * @author Anatoly Kondratyev
  */
@@ -33,6 +34,7 @@ public class ForNode extends HaxeTree
 	
 	/**
 	 * Variable which will have the iterator's current value.
+	 * This will be the Usage in any case (not the Declaration)
 	 */
 	public HaxeTree getLocalVariable()
 	{

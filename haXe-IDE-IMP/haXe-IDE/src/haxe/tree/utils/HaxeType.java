@@ -64,7 +64,10 @@ public class HaxeType {
     }
 
 	/**
-	 * Checks if is available assignement.
+	 * Checks if it is available to assign var with the second type
+	 * to the var with first type. The first type should be the same
+	 * or wider than the first type. E.g. for (Float, Int) it will 
+	 * return true, but for (Int, Float) it will return false.
 	 * 
 	 * @return true, if is available assignement
 	 */
@@ -78,7 +81,13 @@ public class HaxeType {
 	}
 
 	/**
-	 * Checks if is extended class.
+	 * Checks if first type is extended second type.
+	 * The type hierarchy of the second type or one of the
+	 * typs from his hierarchy should contain the first type.
+	 * 
+	 * E.g. for Float (1st argument) and Int (2nd argument)
+	 * it will return true, but for same types but in another
+	 * order it will return false.
 	 * 
 	 * @return true, if is extended class
 	 */

@@ -62,7 +62,15 @@ public class IfNode extends HaxeTree
 	    ifLastInTheScope = value;
 	}
     
-    public boolean getIfLastInScope()
+    /**
+     * If an if block is not supposed to return any value 
+     * (like in the middle of a Block) then both expr-1 
+     * and expr-2 can have different types and the if 
+     * block type will be Void.
+     * @return true if this node is last in the parent
+     * block.
+     */
+    public boolean isLastInScope()
     {
         return ifLastInTheScope;
     }

@@ -10,15 +10,16 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.Token;
 
 /**
  * The Class WhileNode.
+ * Tree : WHILE[WhileNode]^ parExpression statement
  * 
  * @author Anatoly Kondratyev
+ *         Maria Savenko
  */
 public class WhileNode extends HaxeTree 
 {

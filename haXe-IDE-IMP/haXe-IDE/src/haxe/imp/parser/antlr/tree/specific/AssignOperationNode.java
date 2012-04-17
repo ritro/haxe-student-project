@@ -11,6 +11,9 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
+import haxe.imp.parser.antlr.tree.BinaryOperaionContainer.BoolOperations;
+import haxe.tree.utils.HaxeType;
+
 import org.antlr.runtime.Token;
 
 /**
@@ -32,6 +35,19 @@ public class AssignOperationNode extends BinaryOperaionContainer
         // types after this operation 
         // - PLUS, NUMERABLE, DIVIDE, BITWISE, Null
         setOperationType(type);
+    }
+    
+    /**
+     * Will return result type if all operands of valid types
+     * for that operation or NULL (!) if they are not.
+     */
+    public HaxeType defineResultType()
+    {
+        BoolOperations operationType = getOperationType();
+        HaxeType leftType = getLeftOperand().getHaxeType();
+        HaxeType rightType = getRightOperand().getHaxeType();
+        
+        return super.defineResultType(operationType, leftType, rightType);
     }
 	
     public AssignOperationNode(final Token t) {

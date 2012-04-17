@@ -100,11 +100,11 @@ public class BinaryOperaionContainer extends HaxeTree
         return null;
     }
     
-    public HaxeType defineResultType(BoolOperations operationType)
-    {
-        HaxeType leftType = getLeftOperand().getHaxeType();
-        HaxeType rightType = getRightOperand().getHaxeType();
-        
+    public static HaxeType defineResultType(
+            final BoolOperations operationType,
+            final HaxeType leftType,
+            final HaxeType rightType)
+    {        
         switch (operationType) 
         {
             //If both expressions are Int then return Int, else if both 

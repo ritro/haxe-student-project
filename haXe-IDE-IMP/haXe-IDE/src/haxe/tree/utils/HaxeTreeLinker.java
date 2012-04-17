@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import workspace.Activator;
 import workspace.elements.HaxeProject;
 
 public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
@@ -45,17 +46,30 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     
     public HaxeTreeLinker()
     {
-        imports = new HashMap<String, HaxeTree>();
-        usings = new ArrayList<String>();
+        initialize();
     }
     
     @Override
     public void visit(final HaxeTree t)
     {
+        initialize();
+        try
+        {
+            super.visit(t);
+        }
+        catch (Exception e)
+        {
+            String message = "HaxeTreeLinker.visit: " + e.getMessage();
+            e.printStackTrace();
+            Activator.logger.error(message);
+        }
+    }
+    
+    private void initialize()
+    {
         imports = new HashMap<String, HaxeTree>(); 
         usings = new ArrayList<String>();
         currentScope = ScopeTypes.Class;
-        super.visit(t);
     }
     
     @Override
@@ -73,7 +87,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // null = means we have simple assignment
         if (operationType != null)
         {
-            assignmentType = node.defineResultType(operationType);
+            assignmentType = node.defineResultType();
             if (assignmentType == null)
             {
                 //node.commitInvalidAssignmentError();
@@ -138,7 +152,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(BinaryExpressionNode node, Object data)
+    protected void visit(final BinaryExpressionNode node, Object data)
     {
         Environment declarations = (Environment)data;
         HaxeTree leftNode = node.getLeftOperand();
@@ -147,8 +161,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         visit(leftNode, declarations);
         visit(rightNode, declarations);
         
-        BoolOperations operationType = node.getOperationType();
-        HaxeType definedType = node.defineResultType(operationType);
+        HaxeType definedType = node.defineResultType();
         if (definedType != null)
         {
             node.setHaxeType(definedType);
@@ -163,14 +176,15 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visitUnknown(HaxeTree node, Object data)
     {
+        String name = node.getText();
         // import
     	// Note: Importing multiple types with wildcards is NOT supported 
     	// in haXe import flash.display.*;
-        if (node.getText().equals("import"))
+        if (name.equals("import"))
         {
             addImport(node.getChild(0), false);
         }
-        else if (node.getText().equals("using"))
+        else if (name.equals("using"))
         {
             addImport(node.getChild(0), true);
         }
@@ -477,6 +491,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         Environment declarations = (Environment)data;
         int thisIndex = node.getChildIndex();
         int maxIndex = node.parent.getChildCount();
+        
         if (node.parent instanceof BlockScopeNode)
         {
             node.setIfLastInScope(thisIndex == maxIndex - 1);           
@@ -487,12 +502,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         
         visit(ifBlock, declarations);
         
-        if (!node.getIfLastInScope())
+        if (!node.isLastInScope())
         {
-            // If an if block is not supposed to return any value 
-            // (like in the middle of a Block)
-            // then both expr-1 and expr-2 can have different types 
-            // and the if block type will be Void.
             node.setHaxeType(PrimaryHaxeType.haxeVoid);
             return;
         }
@@ -518,21 +529,21 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ForNode node, Object data)
+    protected void visit(final ForNode node, final Object data)
     {
-        // TODO Auto-generated method stub
-        visitUnknown(node, data);
+        visitAllChildren(node, data);
+        node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
-    protected void visit(WhileNode node, Object data)
+    protected void visit(final WhileNode node, final Object data)
     {
-        // TODO Auto-generated method stub
-        visitUnknown(node, data);
+        visitAllChildren(node, data);
+        node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
-    protected void visitHighLevel(HaxeTree node, Object data)
+    protected void visitHighLevel(final HaxeTree node, Object data)
     {
         if (data == null)
         {

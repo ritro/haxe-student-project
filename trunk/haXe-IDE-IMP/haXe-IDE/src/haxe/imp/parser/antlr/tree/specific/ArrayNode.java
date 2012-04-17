@@ -1,8 +1,17 @@
 package haxe.imp.parser.antlr.tree.specific;
 
+import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.PrimaryHaxeType;
+
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
+/**
+ * This class represents arryas in that form: [el1, el2, ..]
+ * 
+ * @author Savenko Maria
+ */
 public class ArrayNode extends ConstantNode
 {   
     private CommonToken leftBracket = null;
@@ -14,6 +23,16 @@ public class ArrayNode extends ConstantNode
         super(new CommonToken(ttype, "Array"));
         leftBracket = (CommonToken) lbToken;
         rightBracket = (CommonToken) rbToken;
+    }
+    
+    @Override
+    public HaxeType getHaxeType()
+    {
+        if (haxeType == PrimaryHaxeType.haxeUndefined)
+        {
+            tryDefineType();
+        }
+        return super.getHaxeType();
     }
     
     @Override
@@ -32,5 +51,35 @@ public class ArrayNode extends ConstantNode
     protected void calculateMostLeftPosition()
     {
         mostLeftPosition = leftBracket.getStartIndex();
+    }
+    
+    private void tryDefineType()
+    {
+        // for empty arrays
+        HaxeType type = PrimaryHaxeType.haxeUnknown;
+        for (HaxeTree child : getChildren())
+        {
+            if (child.getChildIndex() == 0)
+            {
+                type = child.getHaxeType();
+                continue;
+            }
+            if (child.ifUndefinedType())
+            {
+                // it will leave type of the array as Undefined
+                return;
+            }
+            HaxeType ctype = child.getHaxeType();
+            if (HaxeType.isAvailableAssignement(type, ctype))
+            {
+                continue;
+            }
+            else if (HaxeType.isAvailableAssignement(ctype, type))
+            {
+                type = ctype;
+                continue;
+            }
+        }
+        setHaxeType(type);
     }
 }

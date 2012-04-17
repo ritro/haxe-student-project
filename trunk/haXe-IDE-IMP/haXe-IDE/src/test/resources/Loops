@@ -73,4 +73,26 @@ class Loops
             --intVar;
         } while (intVar != -intConst);
     }
+    
+    // should fail - sintax
+    function Test10()
+    {
+        for (var y:Int in 0...5)
+        {
+        }
+    }
+    
+    function Test11()
+    {
+        for (y:Int in 0...5)
+        {
+        }
+    }
+    
+    function Test12()
+    {
+        for (Int y in 0...5)
+        {
+        }
+    }
 }

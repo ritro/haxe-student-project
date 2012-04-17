@@ -32,23 +32,17 @@ public class UnarExpressionNode extends HaxeTree
         return null;
     }
     
-    @Override
-    public HaxeType getHaxeType()
+    private void tryDefineType()
     {
-        if (haxeType != PrimaryHaxeType.haxeUndefined)
-        {
-            super.getHaxeType();
-        }
         HaxeTree expr = getExpression();
         if (getExpression() == null || token == null)
         {
-            // will return Undefined
-            return super.getHaxeType();
+            return;
         }
         HaxeType exprType = expr.getHaxeType();
         if (exprType == PrimaryHaxeType.haxeUndefined)
         {
-            return exprType;
+            return;
         }
         UnarOperations opType = getOperationTypeByToken(token.getText());
         switch(opType)
@@ -72,8 +66,19 @@ public class UnarExpressionNode extends HaxeTree
                 {
                     setHaxeType(exprType);
                 }
-            default: return super.getHaxeType();
+                break;
+            default: break;
         }
+    }
+    
+    @Override
+    public HaxeType getHaxeType()
+    {
+        if (haxeType != PrimaryHaxeType.haxeUndefined)
+        {
+            super.getHaxeType();
+        }
+        tryDefineType();
         return super.getHaxeType();
     }
     

@@ -1,6 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.GenericHaxeType;
 import haxe.tree.utils.HaxeType;
 import haxe.tree.utils.PrimaryHaxeType;
 
@@ -17,6 +18,8 @@ public class ArrayNode extends ConstantNode
     private CommonToken leftBracket = null;
     private CommonToken rightBracket = null;
     
+    private HaxeType memebersType = PrimaryHaxeType.haxeUndefined;
+    
     public ArrayNode(
             final int ttype, final Token lbToken, final Token rbToken) 
     {
@@ -30,9 +33,20 @@ public class ArrayNode extends ConstantNode
     {
         if (haxeType == PrimaryHaxeType.haxeUndefined)
         {
-            tryDefineType();
+            GenericHaxeType type = new GenericHaxeType();
+            type.addParameterType(getMembersType());
+            haxeType = type;
         }
         return super.getHaxeType();
+    }
+    
+    public HaxeType getMembersType()
+    {
+        if (memebersType == PrimaryHaxeType.haxeUndefined)
+        {
+            tryDefineType();
+        }
+        return memebersType;
     }
     
     @Override

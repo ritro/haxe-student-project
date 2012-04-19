@@ -1,5 +1,7 @@
 package haxe.tree.utils;
 
+import java.util.List;
+
 import workspace.Activator;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ArrayNode;
@@ -39,7 +41,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         }
     }
     
-    public void visitAllChildren(final HaxeTree t, Object data)
+    public void visitAllChildrenSeparatly(final HaxeTree t, Object data)
     {
         if (t == null)
         {
@@ -120,41 +122,56 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final MethodCallNode node, Object data)
     {
-        if (!node.ifUndefinedType())
+        if (node.isFieldUse())
         {
-            if (node.isFieldUse())
-            {
-                visit(node.getChild(node.getChildCount() - 1), data);
-            }
-            for (HaxeTree child : node.getParameters())
-            {
-                visit(child, data);
-            }
-            return;
+            visit(node.getChild(node.getChildCount() - 1), data);
+        }
+
+        List<HaxeTree> params = node.getParameters();
+        for (HaxeTree child : params)
+        {
+            visit(child, data);
         }
         
-        data = node;
-        ErrorPublisher.commitUninitializedUsingError(node);
+        HaxeTree declaration = node.getDeclarationNode();
+        if (declaration == null)
+        {
+            data = node;
+            ErrorPublisher.commitUninitializedUsingError(node);
+        }
     }
 
     @Override
     protected void visit(final SliceNode node, Object data)
     {
-        if (!node.ifUndefinedType())
+        if (node.isFieldUse())
         {
-            if (node.isFieldUse())
-            {
-                visit(node.getChild(node.getChildCount() - 1), data);
-            }
-            for (HaxeTree child : node.getParameters())
-            {
-                visit(child, data);
-            }
-            return;
+            visit(node.getChild(node.getChildCount() - 1), data);
         }
         
-        data = node;
-        ErrorPublisher.commitUninitializedUsingError(node);        
+        for (HaxeTree child : node.getParameters())
+        {
+            visit(child, data);
+            HaxeType ctype = child.getHaxeType(true);
+            if (!ctype.equals(PrimaryHaxeType.haxeInt))
+            {
+                ErrorPublisher.commitCastError(child, PrimaryHaxeType.haxeInt);
+            }
+        }
+        
+        HaxeTree declaration = node.getDeclarationNode();
+        if (declaration == null)
+        {
+            data = node;
+            node.commitError("Undeclared Slice");
+            return;
+        }
+        /*
+        HaxeType type = declaration.getHaxeType();
+        if (node.getParameters().size() != )
+        {
+            
+        }*/
     }
 
     @Override
@@ -181,31 +198,19 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final AssignOperationNode node, Object data)
     {
-        HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
         
-        visit(rightOperand, data);
-        HaxeType secondType = rightOperand.getLastType(); 
-        
-        if (!(leftOperand instanceof VarUsageNode ||
-                leftOperand.getLastChildFromAll().getText().equals("Slice")))
+        if (node.ifUndefinedType())
         {
-            // not valid expression
+            visit(rightOperand, data);
         }
-        HaxeType firstType = leftOperand.getLastType();       
-        if (data != null)
+        else if (!HaxeType.isAvailableAssignement(
+                node.getHaxeType(),
+                rightOperand.getHaxeType(true)))
         {
-            // we previosly marked error
+            data = node;
+            ErrorPublisher.commitInvalidAssignError(node);
             return;
-        }
-        else if (node.getHaxeType() == PrimaryHaxeType.haxeUndefined ||
-                !HaxeType.isAvailableAssignement(firstType, secondType))
-        {
-            // TODO: here as in the bin op to provide more info
-            // we somewhat should calculate - what operand (left or 
-            // right or both) should be of what type according to the
-            // operation type
-            node.commitError("Illegal assignment");
         }
     }
 
@@ -230,12 +235,12 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeType type = PrimaryHaxeType.haxeUnknown;
         for (HaxeTree child : node.getChildren())
         {
+            HaxeType ctype = child.getHaxeType(true);
             if (child.getChildIndex() == 0)
             {
-                type = child.getHaxeType();
+                type = ctype;
                 continue;
             }
-            HaxeType ctype = child.getHaxeType();
             if (HaxeType.isAvailableAssignement(type, ctype))
             {
                 continue;
@@ -272,7 +277,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final BinaryExpressionNode node, Object data)
     {
-        if (!node.ifUndefinedType())
+        if (!node.ifUndefinedType(true))
         {
             return;
         }
@@ -280,8 +285,8 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
         
-        if (!leftOperand.ifUndefinedType()
-                && !rightOperand.ifUndefinedType())
+        if (!leftOperand.ifUndefinedType(true)
+                && !rightOperand.ifUndefinedType(true))
         {
             data = node;
             ErrorPublisher.commitCastError(
@@ -290,11 +295,11 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
         
-        if (leftOperand.ifUndefinedType())
+        if (leftOperand.ifUndefinedType(true))
         {
             visit(leftOperand, data);            
         }        
-        if (rightOperand.ifUndefinedType())
+        if (rightOperand.ifUndefinedType(true))
         {
             visit(rightOperand, data);
         }
@@ -307,7 +312,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
         HaxeTree expr = node.getExpression();
-        if (expr.ifUndefinedType())
+        if (expr.ifUndefinedType(true))
         {
             visit(node, data);
         }
@@ -321,7 +326,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final BlockScopeNode node, Object data)
     {
-        visitAllChildren(node, data);
+        visitAllChildrenSeparatly(node, data);
     }
 
     @Override
@@ -363,7 +368,8 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final ForNode node, Object data)
     {
-        visitAllChildren(node, data);
+        visitAllChildrenSeparatly(node, data);
+        node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
@@ -372,6 +378,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeTree condition = node.getCondition();
         
         visit(node.getScope(), data);
+        node.setHaxeType(node.getScope().getHaxeType());
         
         if (condition.ifUndefinedType())
         {

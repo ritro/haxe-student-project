@@ -72,8 +72,34 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         currentScope = ScopeTypes.Class;
     }
     
+    /**
+     * @param data - current environment or parent class
+     * @return
+     */
+    private HaxeTree getDeclaration(Object data, String text)
+    {
+        HaxeTree decl = null;
+        if (data instanceof Environment)
+        {
+            Environment env = (Environment)data;
+            decl = env.get(text);
+        }
+        else if (data instanceof ClassNode)
+        {
+            ClassNode clas = (ClassNode) data;
+            decl = clas.getDeclaration(text);
+        }
+        
+        if (decl != null)
+        {
+            return decl;
+        }
+        
+        return null;
+    }
+    
     @Override
-    protected void visit(AssignOperationNode node, Object data)
+    protected void visit(final AssignOperationNode node, Object data)
     {
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
@@ -81,33 +107,16 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         visit(leftOperand, data);
         visit(rightOperand, data);
         
-        HaxeType assignmentType;
-        BoolOperations operationType = node.getOperationType();
-        
-        // null = means we have simple assignment
-        if (operationType != null)
+        if (!leftOperand.ifUndefinedType())
         {
-            assignmentType = node.defineResultType();
-            if (assignmentType == null)
-            {
-                //node.commitInvalidAssignmentError();
-                return;
-            }
-        }
-        else
-        {
-            assignmentType = rightOperand.getHaxeType();            
+            leftOperand.setHaxeType(rightOperand.getHaxeType());
         }
         
-        node.setHaxeType(assignmentType);
-        if (leftOperand.ifUndefinedType())
-        {
-            leftOperand.setHaxeType(assignmentType);
-        }
+        node.setHaxeType(leftOperand.getHaxeType(true));
     }
 
     @Override
-    protected void visit(ArrayNode node, Object data)
+    protected void visit(final ArrayNode node, final Object data)
     {
         if (node.getChildCount() == 0)
         {
@@ -144,7 +153,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // tryed to set it's type and failed due to unknown type
         // of expression - we should leave it as it is
         if (function == null
-                || function.getHaxeType() != PrimaryHaxeType.haxeVoid)
+                || function.getHaxeType() != PrimaryHaxeType.haxeVoid
+                || function.getHaxeType() != PrimaryHaxeType.haxeUndefined)
         {
             return;
         }
@@ -330,9 +340,21 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(MethodCallNode node, Object data)
+    protected void visit(final MethodCallNode node, Object data)
     {
+        if (node.isFieldUse())
+        {
+            visit(node.getChild(node.getChildCount() - 1), data);
+        }
+        
         HaxeTree declaration = null;
+        List<HaxeTree> params = node.getParameters();
+        
+        for (HaxeTree param : params)
+        {
+            visit(param, data);
+        }
+        
         if (data instanceof Environment)
         {
             Environment declarations = (Environment)data;
@@ -343,22 +365,34 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             declaration = ((HaxeTree) data).getDeclarationNode(node.getChild(0));
         }
         
-        node.setDeclarationNode(declaration);
-        
-        // TODO: fixing needed for - transfer env or parent class!
-        /*for (HaxeTree child : node.getParameters())
+        if ( declaration == null || !(declaration instanceof FunctionNode))
         {
-            visit(child, data);
+            return;
         }
         
-        if (node.isFieldUse())
+        List<VarDeclarationNode> declParams = 
+                ((FunctionNode)declaration).getParametersAsDeclarations();
+        
+        // TODO: whtat about optional params?
+        if (declParams.size() != params.size())
         {
-            visit(node.getChild(node.getChildCount() -1), data);
-        }*/
+            return;
+        }
+        
+        for (int i = 0; i < params.size(); i++)
+        {
+            HaxeType ctype = params.get(i).getHaxeType(true);
+            HaxeType dType = declParams.get(i).getHaxeType(true);
+            if (!ctype.equals(dType))
+            {
+                return;
+            }
+        }
+        node.setDeclarationNode(declaration);
     }
 
     @Override
-    protected void visit(SliceNode node, Object data)
+    protected void visit(final SliceNode node, final Object data)
     {
         for (HaxeTree child : node.getParameters())
         {

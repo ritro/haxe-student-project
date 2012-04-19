@@ -12,6 +12,7 @@ package haxe.tree.utils;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class HaxeType.
@@ -74,6 +75,16 @@ public class HaxeType {
 	public static boolean isAvailableAssignement(
 	        final HaxeType type1, final HaxeType type2) 
 	{
+	    // should it be here ?
+	    if (type1 instanceof GenericHaxeType)
+	    {
+	        if (type1 instanceof GenericHaxeType)
+	        {
+	            return ((GenericHaxeType)type1).equals(type2);
+	        }
+	        return false;
+	    }
+	    // ---------------------
 		if (type1.equals(type2) || isExtendedClass(type1, type2)) {
 			return true;
 		}

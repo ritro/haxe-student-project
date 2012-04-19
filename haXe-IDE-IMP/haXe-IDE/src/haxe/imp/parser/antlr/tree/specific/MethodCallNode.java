@@ -32,16 +32,21 @@ public class MethodCallNode extends ParametersContainerNode
     }
     
     @Override
-    public HaxeType getLastType()
+    public HaxeType getHaxeType(boolean takeLastPossible)
     {
+        if (!takeLastPossible)
+        {  
+            return getHaxeType();
+        }
+        
         if (isFieldUse())
         {
-            return getChild(getChildCount() - 1).getLastType();
+            return getChild(getChildCount() - 1).getHaxeType(true);
         }
         HaxeTree decl = getDeclarationNode();
         if (decl != null)
         {
-            return decl.getLastType();
+            return decl.getHaxeType(true);
         }
         return getHaxeType();
     }

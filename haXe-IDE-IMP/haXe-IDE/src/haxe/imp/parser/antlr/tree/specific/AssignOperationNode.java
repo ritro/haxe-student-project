@@ -11,20 +11,18 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
-import haxe.imp.parser.antlr.tree.BinaryOperaionContainer.BoolOperations;
 import haxe.tree.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 
 /**
- * The Class AssignOperationNode.
- * Type of the Assignment is type of assigned
- * expression.
+ * Example of assignment: x += 5.
+ * 
  * @author kondratyev
+ *         Maria Savenko
  */
 public class AssignOperationNode extends BinaryOperaionContainer 
 {
-
     @Override
     protected void defineOperationType()
     {
@@ -50,33 +48,13 @@ public class AssignOperationNode extends BinaryOperaionContainer
         return super.defineResultType(operationType, leftType, rightType);
     }
 	
-    public AssignOperationNode(final Token t) {
+    public AssignOperationNode(final Token t) 
+    {
         super(t);
     }
 
-	public AssignOperationNode(final int ttype, final Token token) {
+	public AssignOperationNode(final int ttype, final Token token) 
+	{
 		super(token);
 	}
-
-    /**
-     * The right part's type is not appropriate.
-     */
-    public void commitIncorrectTypeError()
-    {
-    	getRightOperand().commitError(
-    			getRightOperand().getText() 
-                + " should be "
-                + getHaxeType().getShortTypeName());
-    }
-
-    /**
-     * Then assignment is not in the right form.
-     * TODO not really this class message - 
-     * 		error nodes should have this
-     * This is haxe official error message.
-     */
-    public void commitInvalidAssignmentError()
-    {
-        commitError("Invalid assign.");
-    }
 }

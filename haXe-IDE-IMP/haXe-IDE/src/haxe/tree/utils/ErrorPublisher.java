@@ -1,6 +1,7 @@
 package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
@@ -13,28 +14,28 @@ import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
  */
 public class ErrorPublisher
 {   
-    private static void commitDuplicateFieldError(HaxeTree node)
+    private static void commitDuplicateFieldError(final HaxeTree node)
     {
         node.commitError(
                 "Duplicate class field declaration : " + node.getText());
     }
     
-    public static void commitDuplicateFieldError(FunctionNode node)
+    public static void commitDuplicateFieldError(final FunctionNode node)
     {
         commitDuplicateFieldError((HaxeTree)node);
     }
     
-    public static void commitDuplicateConstructorError(FunctionNode node)
+    public static void commitDuplicateConstructorError(final FunctionNode node)
     {
         node.commitError("Duplicate constructor");
     }
     
-    public static void commitDuplicateFieldError(VarDeclarationNode node)
+    public static void commitDuplicateFieldError(final VarDeclarationNode node)
     {
         commitDuplicateFieldError((HaxeTree)node);
     }
 
-    public static void commitClassUndefinedTypeError(VarDeclarationNode node)
+    public static void commitClassUndefinedTypeError(final VarDeclarationNode node)
     {
         node.commitError(
                 "Type requared for member variable : " + node.getText());
@@ -45,7 +46,7 @@ public class ErrorPublisher
      * The node-argument will be underlined with red.
      * @param node - to commit error about.
      */
-    public static void commitCastError(HaxeTree node, HaxeType type)
+    public static void commitCastError(final HaxeTree node, final HaxeType type)
     {
         commitCastError(node, node.getHaxeType(), type);
     }
@@ -57,12 +58,13 @@ public class ErrorPublisher
      * @param node - node to commit error about.
      * @param typeIs - node's type to mention in message
      */
-    public static void commitCastError(HaxeTree node, HaxeType typeIs, HaxeType typeShouldBe)
+    public static void commitCastError(
+            final HaxeTree node, final HaxeType typeIs, final HaxeType typeShouldBe)
     {
         node.commitError(typeIs.toString() + " should be " + typeShouldBe.toString());
     }
 
-    public static void commitInvalidBinaryOpError(BinaryExpressionNode node)
+    public static void commitInvalidBinaryOpError(final BinaryExpressionNode node)
     {
         String binaryOp = node.getOperationType().toString();
         node.commitError("Cannot " + binaryOp + " " + 
@@ -73,7 +75,7 @@ public class ErrorPublisher
     /**
      * Error when we using defined, but not initialized variable.
      */
-    public static void commitUninitializedUsingError(MethodCallNode node)
+    public static void commitUninitializedUsingError(final MethodCallNode node)
     {
         node.commitError(
                 "Local variable " 
@@ -84,7 +86,7 @@ public class ErrorPublisher
     /**
      * Error when we using defined, but not initialized variable.
      */
-    public static void commitUninitializedUsingError(VarUsageNode node)
+    public static void commitUninitializedUsingError(final VarUsageNode node)
     {
         node.commitError(
                 "Local variable " 
@@ -95,8 +97,13 @@ public class ErrorPublisher
     /**
      * Error then user variable wan't declared before.
      */
-    public static void commitUndeclaredError(VarUsageNode node)
+    public static void commitUndeclaredError(final VarUsageNode node)
     {
         node.commitError(node.getText() + " is not declared.");
+    }
+    
+    public static void commitInvalidAssignError(final AssignOperationNode node)
+    {
+        node.commitError("Invalid assign.");
     }
 }

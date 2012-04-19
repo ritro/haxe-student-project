@@ -1,0 +1,98 @@
+class IntIter {
+    var min : Int;
+    var max : Int;
+
+    public function new( min : Int, max : Int ) {
+        this.min = min;
+        this.max = max;
+    }
+
+    public function hasNext() {
+        return( min < max );
+    }
+
+    public function next() {
+        return min++;
+    }
+}
+
+class Loops
+{
+    var intVar:Int;
+    var strVar:String;
+    
+    var intConst:Int = 3;
+    
+    function Test1()
+    {
+        for (i in 1...intConst)
+        {
+            intVar++; 
+        }
+    }
+    
+    function Test2()
+    {
+        for (i in intConst...intConst)
+        {
+            intVar = i;
+        }
+    }
+    
+    function Test3()
+    {
+        var iter = new IntIter(0,10);
+        for( i in iter ) 
+        {
+            // ...
+        }
+    }
+    
+    function Test4()
+    {
+        var a : Array<String> = ["hello","world","I","love","haXe","!"];
+        for( i in a ) {
+            strVa += i + " ";
+        }
+    }
+    
+    function Test5()
+    {
+        intVar = 0;
+        while(intVar != 5)
+        {
+            intVar++;
+        }
+    }
+    
+    function Test6()
+    {
+        intVar = 0;
+        do
+        {
+            --intVar;
+        } while (intVar != -intConst);
+    }
+    
+    // should fail - sintax
+    function Test10()
+    {
+        for (var y:Int in 0...5)
+        {
+        }
+    }
+    
+    function Test11()
+    {
+        for (y:Int in 0...5)
+        {
+        }
+    }
+    
+    function Test12()
+    {
+        for (Int y in 0...5)
+        {
+        }
+    }
+}

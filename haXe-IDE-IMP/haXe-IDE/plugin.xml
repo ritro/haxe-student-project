@@ -157,12 +157,12 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            allowMultiple="false"
-            class="workspace.views.CallHierarchyView"
-            icon="haxeSymbol.PNG"
-            id="haXe_IDE.view.callHierarchy"
             name="Call Hierarchy"
-            restorable="true">
+            allowMultiple="false"
+            icon="haxeSymbol.PNG"
+            restorable="true"
+            class="workspace.views.CallHierarchyView"
+            id="haXe_IDE.view.callHierarchy">
       </view>
    </extension>
    <extension
@@ -177,10 +177,10 @@
                id="haXe_IDE.actions.callHierarchy">
          </action>
          <action
-               class="workspace.contextMenu.RenameAction"
-               id="haXe_IDE.actions.renameRefactoring"
                label="Rename"
-               menubarPath="refactoring">
+               class="workspace.contextMenu.RenameAction"
+               menubarPath="refactoring"
+               id="haXe_IDE.actions.renameRefactoring">
          </action>
       </viewerContribution>
       <objectContribution
@@ -197,22 +197,14 @@
       </objectContribution>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="Haxe"
-            class="haxe.imp.preferences.HaxePreferencePage"
-            id="haxe.imp.preferences.Haxe">
-      </page>
-   </extension>
-   <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="workspace.editor.HxFilesEditor"
+            name="haXe editor"
             default="true"
-            extensions="hx"
             icon="icons/haxe_file.gif"
-            id="haXe-IDE.textEditor"
-            name="haXe editor">
+            extensions="hx"
+            class="workspace.editor.HxFilesEditor"
+            id="haXe-IDE.textEditor">
          <contentTypeBinding
                contentTypeId="haXe-IDE.haxeFileContentType">
          </contentTypeBinding>
@@ -221,12 +213,20 @@
    <extension
          point="org.eclipse.core.contenttype.contentTypes">
       <content-type
-            describer="workspace.editor.HaxeFileDescriber"
             file-extensions="hx"
-            id="haXe-IDE.haxeFileContentType"
             name="haXe file"
-            priority="high">
+            priority="high"
+            describer="workspace.editor.HaxeFileDescriber"
+            id="haXe-IDE.haxeFileContentType">
       </content-type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Haxe"
+            class="haxe.imp.preferences.HaxePreferencePage"
+            id="haxe.imp.preferences.Haxe">
+      </page>
    </extension>
 
 </plugin>

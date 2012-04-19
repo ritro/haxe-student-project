@@ -1,0 +1,69 @@
+Для некоторых элементов (класс, функция) мне нужно иметь координаты открывающей и закрывающей скобочек.
+Координату открывающей скобочки я передать могу, а закрывающей - нет. Как сделать по хорошему сейчас, я не знаю, поэтому я делаю криво.
+В грамматику я указываю, что в построенном AST узле есть соответсвующая закрывающая скобочка. Парсер генериться. Я открываю его, нахожу
+то место, где идет добавление узла, соответсвующее закрывающей скобочки, и вместо добавления узла я кладу координаты скобочки в нужный мне класс.
+
+Это пример для функции public final TinyHaxeTry1Parser.classDecl_return classDecl() throws RecognitionException,
+первая и последняя строчки - оригинальные, большой if - моя добавка (много сравнений для подстраховки)
+
+							stream_classBodyScope.reset();
+							if (root_1 instanceof ClassNode) {
+								int childCount = ((ClassNode) root_1)
+										.getChildCount();
+								if (childCount > 0) {
+									if (((ClassNode) root_1)
+											.getChild(childCount - 1) instanceof BlockScopeNode) {
+										BlockScopeNode blockScopeNode = (BlockScopeNode) ((ClassNode) root_1)
+												.getChild(childCount - 1);
+										blockScopeNode
+												.setrBracketPosition(((CommonToken) RBRACE354)
+														.getStartIndex());
+									}
+								}
+							}
+							// adaptor.addChild(root_1, new
+							// ExtendedCommonTree(RBRACE, RBRACE374, true));
+
+							adaptor.addChild(root_0, root_1); 
+							
+То же самое будет для Block-скопов функций:
+В методе public final TinyHaxeTry1Parser.block_return block()
+			throws RecognitionException
+	
+	Token RBRACE354 = null;		
+			Object RBRACE354_tree = null;
+        RewriteRuleTokenStream stream_RBRACE = new RewriteRuleTokenStream(adaptor, "token RBRACE");
+			
+			RBRACE354 = (Token) this.match(this.input, RBRACE,
+                    FOLLOW_RBRACE_in_classDecl3309);
+            if (this.state.failed) {
+                return retval;
+            }
+            if (this.state.backtracking == 0) {
+                stream_RBRACE.add(RBRACE354);
+            }
+
+							stream_blockStmt.reset();
+
+							if (stream_RBRACE.nextNode() instanceof ExtendedCommonTree) {
+								ExtendedCommonTree rBracket = (ExtendedCommonTree) stream_RBRACE
+										.nextNode();
+								if (rBracket.getText().equals("}")) {
+									((BlockScopeNode) root_1)
+											.setrBracketPosition(((CommonToken) rBracket
+													.getToken())
+													.getStartIndex());
+								}
+							}
+							// adaptor.addChild(root_1,
+							// stream_RBRACE.nextNode());
+
+							adaptor.addChild(root_0, root_1);
+							
+							
+							
+							
+							
+    /** The Constant FOLLOW_RBRACE_in_classDecl3309. */
+    public static final BitSet FOLLOW_RBRACE_in_classDecl3309 = new BitSet(
+            new long[] { 0x0000000000000002L });

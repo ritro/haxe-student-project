@@ -12,6 +12,7 @@ import haxe.imp.parser.antlr.tree.specific.EnumNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
@@ -153,8 +154,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // tryed to set it's type and failed due to unknown type
         // of expression - we should leave it as it is
         if (function == null
-                || function.getHaxeType() != PrimaryHaxeType.haxeVoid
-                || function.getHaxeType() != PrimaryHaxeType.haxeUndefined)
+                || !function.getHaxeType().equals(HaxeTypeUtils.getVoid())
+                || function.getHaxeType() != null)
         {
             return;
         }
@@ -471,7 +472,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         visit(initialization, declarations);
         HaxeType type = node.getHaxeType();
-        if (type == PrimaryHaxeType.haxeUndefined)
+        if (type == null)
         {
             node.setHaxeType(initialization.getHaxeType());
         }
@@ -538,7 +539,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         
         if (!node.isLastInScope())
         {
-            node.setHaxeType(PrimaryHaxeType.haxeVoid);
+            node.setHaxeType(HaxeTypeUtils.getVoid());
             return;
         }
         

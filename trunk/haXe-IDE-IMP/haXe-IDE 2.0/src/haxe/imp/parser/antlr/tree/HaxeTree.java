@@ -11,11 +11,10 @@
 package haxe.imp.parser.antlr.tree;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class HaxeTree extends CommonTree
 	private static IMessageHandler messageHandler = null;
 	private boolean auxiliary = false;
 	private boolean isDuplicate = false;
-	protected HaxeType haxeType = PrimaryHaxeType.haxeUndefined;
+	protected HaxeType haxeType = null;
 
 	/**
 	 * Contains most left position of tree/subtree
@@ -471,7 +470,7 @@ public class HaxeTree extends CommonTree
 	
     public boolean ifUndefinedType(boolean checkLastType)
     {
-        return getHaxeType() == PrimaryHaxeType.haxeUndefined;
+        return getHaxeType() == null;
     }
 	
 	/**

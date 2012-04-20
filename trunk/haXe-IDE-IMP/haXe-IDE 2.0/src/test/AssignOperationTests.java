@@ -4,9 +4,10 @@ import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseFunction;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.tree.utils.Environment;
 import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class AssignOperationTests
         
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
-        assertTrue(!HaxeType.isAvailableAssignement(firstType, secondType));
+        assertTrue(!HaxeTypeUtils.isAvailableAssignement(firstType, secondType));
     }
     
     @Test
@@ -39,7 +40,7 @@ public class AssignOperationTests
 
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
-        assertTrue(HaxeType.isAvailableAssignement(secondType, firstType));
+        assertTrue(HaxeTypeUtils.isAvailableAssignement(secondType, firstType));
     }
     
     @Test

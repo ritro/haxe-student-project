@@ -14,8 +14,6 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.Modifiers;
 import haxe.imp.parser.antlr.tree.NodeWithModifier;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;

@@ -1,11 +1,9 @@
 package haxe.imp.parser.antlr.tree;
 
-import static haxe.tree.utils.HaxeType.getCommonPrimaryType;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import java.util.ArrayList;
-
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
 
 import org.antlr.runtime.Token;
 
@@ -105,51 +103,62 @@ public class BinaryOperaionContainer extends HaxeTree
             final HaxeType leftType,
             final HaxeType rightType)
     {        
+        HaxeType intType = HaxeTypeUtils.getInt();
         switch (operationType) 
         {
             //If both expressions are Int then return Int, else if both 
             //expressions are either Int or Float then return Float, else return String.
             case PLUS: 
-                if (PrimaryHaxeType.ifPrimaryType(leftType.getShortTypeName()) && 
-                        PrimaryHaxeType.ifPrimaryType(rightType.getShortTypeName())) 
+                if (leftType.equals(intType) && rightType.equals(intType)) 
                 {
-                    return getCommonPrimaryType(leftType, rightType);
+                    return intType;
                 }
+                HaxeType floatType = HaxeTypeUtils.getFloat(); 
+                if ((leftType.equals(intType) || rightType.equals(intType)) &&
+                        (leftType.equals(floatType) || rightType.equals(floatType)))
+                {
+                    return floatType;
+                }
+                return HaxeTypeUtils.getString();
             //Divide two numbers, return Float.
             case DIVIDE:
-                if (PrimaryHaxeType.areBothNumbers(leftType, rightType)) 
+                if (HaxeTypeUtils.areBothNumbers(leftType, rightType)) 
                 {
-                    return PrimaryHaxeType.haxeFloat;
+                    return HaxeTypeUtils.getFloat();
                 }
+                break;
             // Return Int if both are Int and return Float 
             // if they are either both Float or mixed.
             case NUMERABLE:
-                if (PrimaryHaxeType.areBothNumbers(leftType, rightType)) 
+                if (HaxeTypeUtils.areBothNumbers(leftType, rightType)) 
                 {
-                    return getCommonPrimaryType(leftType, rightType);
+                    return HaxeTypeUtils.getCommonPrimaryType(leftType, rightType);
                 }
+                break;
             // bitwise operations between two Int expressions. Returns Int.
             case BITWISE:
-                if (leftType.equals(PrimaryHaxeType.haxeInt) 
-                        && rightType.equals(PrimaryHaxeType.haxeInt))
+                if (leftType.equals(intType) && rightType.equals(intType))
                 {
-                    return PrimaryHaxeType.haxeInt;
+                    return intType;
                 }
+                break;
             //perform normal or physical comparisons between two 
             //expressions sharing a common type. Returns Bool.
             //TODO we can compare two strings ???????
             case COMPARISON:
-                if (HaxeType.ifCommonType(leftType, rightType))
+                if (HaxeTypeUtils.isComparable(leftType, rightType))
                 {
-                    return PrimaryHaxeType.haxeBool;
+                    return HaxeTypeUtils.getBool();
                 }
+                break;
             //Both e1 and e2 must be Bool
             case BOOLEAN:
-                if (leftType.equals(PrimaryHaxeType.haxeBool) 
-                        && rightType.equals(PrimaryHaxeType.haxeBool))
+                HaxeType bool = HaxeTypeUtils.getBool();
+                if (leftType.equals(bool) && rightType.equals(bool))
                 {
                     return leftType;
                 }
+                break;
         }
         
         return null;

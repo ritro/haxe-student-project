@@ -1,9 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.GenericHaxeType;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -18,7 +16,7 @@ public class ArrayNode extends ConstantNode
     private CommonToken leftBracket = null;
     private CommonToken rightBracket = null;
     
-    private HaxeType memebersType = PrimaryHaxeType.haxeUndefined;
+    private HaxeType memebersType = null;
     
     public ArrayNode(
             final int ttype, final Token lbToken, final Token rbToken) 
@@ -31,7 +29,7 @@ public class ArrayNode extends ConstantNode
     @Override
     public HaxeType getHaxeType()
     {
-        if (haxeType == PrimaryHaxeType.haxeUndefined)
+        if (haxeType == null)
         {
             GenericHaxeType type = new GenericHaxeType();
             type.addParameterType(getMembersType());
@@ -42,7 +40,7 @@ public class ArrayNode extends ConstantNode
     
     public HaxeType getMembersType()
     {
-        if (memebersType == PrimaryHaxeType.haxeUndefined)
+        if (memebersType == null)
         {
             tryDefineType();
         }
@@ -84,11 +82,11 @@ public class ArrayNode extends ConstantNode
                 return;
             }
             HaxeType ctype = child.getHaxeType();
-            if (HaxeType.isAvailableAssignement(type, ctype))
+            if (HaxeTypeUtils.isAvailableAssignement(type, ctype))
             {
                 continue;
             }
-            else if (HaxeType.isAvailableAssignement(ctype, type))
+            else if (HaxeTypeUtils.isAvailableAssignement(ctype, type))
             {
                 type = ctype;
                 continue;

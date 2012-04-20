@@ -1,9 +1,10 @@
 package workspace.views;
 
+import imp.treeModelBuilder.HaxeLabelProvider;
+
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-import haxe.imp.treeModelBuilder.HaxeLabelProvider;
 
 public class CallHierarchyLabelProvider extends HaxeLabelProvider
 {

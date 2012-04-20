@@ -11,13 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
-import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.antlr.runtime.Token;
 
@@ -25,13 +19,13 @@ import org.antlr.runtime.Token;
  * The Class ClassNode.
  * 
  * @author Anatoly Kondratyev
+ *         Maria Savenko
  */
-public class ClassNode extends BlockScopeContainer {
-
+public class ClassNode extends HaxeType 
+{
 	/** The class name. */
 	private String className = "";
-	private List<HaxeTree> implementations = null;
-	private HaxeTree extention = null;
+	private HaxeType extention = null;
 
 	/**
 	 * Gets the class name.
@@ -47,13 +41,9 @@ public class ClassNode extends BlockScopeContainer {
 		return className;
 	}
 
-	public ClassNode(final Token t) {
-		super(t);
-	}
-	
-	public List<HaxeTree> getInterfacesToImplement() 
+	public ClassNode(final Token t) 
 	{
-		return implementations;
+		super(t);
 	}
 	
 	public HaxeTree getParentToExtend()
@@ -61,44 +51,40 @@ public class ClassNode extends BlockScopeContainer {
 	    return extention;
 	}
 	
+	/**
+	 * class D extends A, implements B, implements C {} 
+	 * Каждый экземпляр D будет иметь тип D, но также имеет типы A , B и C.
+	 * 
+	 * @return Class Name type with implemented types record for each class/interface  
+	 * it extended/implemented
+	 */
 	public void analizeInherits()
 	{
 	    for (HaxeTree child : getChildren())
 	    {
 	        if (child.getType() == HaxeParser.EXTENDS)
 	        {
-	            extention = child.getChild(0);
+	            HaxeTree found = child.getChild(0);
+	            if (found instanceof HaxeType)
+	            {
+	                extention = (HaxeType)found;
+	                addToTypeHierarchy(extention);
+	            }
 	        }
 	        if (child.getType() == HaxeParser.IMPLEMENT_LIST)
 	        {
-	            implementations = child.getAllChildren();
+	            for (HaxeTree type : child.getChildren())
+	            {
+	                if (type instanceof HaxeType)
+	                {
+	                    addToTypeHierarchy((HaxeType)type);
+	                }
+	            }
 	        }
 	    }
 	}
 	
-	private void initializeHaxeType()
-	{
-		//FIXME That's just name, not full name (missing packege declaration)
-	    HaxeType type = new HaxeType(getClassName()); 
-		
-	    analizeInherits();
-	    ArrayList<HaxeType> list = new ArrayList<HaxeType>();
-		if (implementations != null)
-		{
-	        for (HaxeTree i : implementations)
-	            list.add(new HaxeType(i.getText()));
-
-		}
-		if (extention != null)
-		{
-		    list.add(new HaxeType(extention.getText()));
-		}
-	    type.setClassHierarchy(list);
-
-        setHaxeType(type);    
-	}
-    
-    public HaxeTree getDeclaration(String name)
+    public HaxeTree getDeclaration(final String name)
     {
         // 1 - class member, inherit fields
         // 2 - curr class static fields
@@ -113,22 +99,10 @@ public class ClassNode extends BlockScopeContainer {
         
         return null;
     }
-	
-	/**
-	 * class D extends A, implements B, implements C {} 
-	 * Каждый экземпляр D будет иметь тип D, но также имеет типы A , B и C.
-	 * 
-	 * @return Class Name type with implemented types record for each class/interface  
-	 * it extended/implemented
-	 */
+    
 	@Override
 	public HaxeType getHaxeType()
 	{
-	    if (super.getHaxeType() == PrimaryHaxeType.haxeUndefined)
-	    {
-	        initializeHaxeType();
-	    }
-
-		return super.getHaxeType();
+	    return this;
 	}
 }

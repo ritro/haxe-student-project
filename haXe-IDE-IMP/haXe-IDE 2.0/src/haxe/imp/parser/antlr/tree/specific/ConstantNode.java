@@ -1,8 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.Token;
 
@@ -27,10 +26,10 @@ public class ConstantNode extends HaxeTree {
 	        final int ttype, final Token token, final String varType) 
 	{
 	    this(token);
-		HaxeType constantType = PrimaryHaxeType.tryGetConstantType(varType);
+		HaxeType constantType = HaxeTypeUtils.getTypeByName(varType);
 		if (constantType == null)
 		{
-			setHaxeType(PrimaryHaxeType.haxeUndefined);
+			setHaxeType(null);
 		}
 		else
 		{

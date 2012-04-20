@@ -6,6 +6,45 @@ import java.util.List;
 
 public class HaxeTypeUtils
 {
+    public static HaxeType getInt()
+    {
+        return getTypeByName("Int");
+    }
+
+    public static HaxeType getFloat()
+    {
+        return getTypeByName("Float");
+    }
+    
+    public static HaxeType getString()
+    {
+        return getTypeByName("String");
+    }
+
+    public static HaxeType getArray()
+    {
+        return getTypeByName("Array");
+    }
+
+    public static HaxeType getBool()
+    {
+        return getTypeByName("Bool");
+    }
+
+    public static HaxeType getVoid()
+    {
+        return getTypeByName("Void");
+    }
+    
+    public static HaxeType getUnknown()
+    {
+        return getTypeByName("Unknown");
+    }
+    
+    public static HaxeType getTypeByName(final String shorName)
+    {
+        return null;
+    }
 
     /**
      * Checks if it is available to assign var with the second type
@@ -106,10 +145,25 @@ public class HaxeTypeUtils
         
         return typeFromHierarhy;
     }
+
+    //perform normal or physical comparisons between two 
+    //expressions sharing a common type. Returns Bool.
+    public static boolean isComparable(
+            final HaxeType type,final HaxeType type2)
+    {
+        // TODO what with this?
+        return false;
+    }
     
     public static boolean areBothNumbers(
             final HaxeType type,final HaxeType type2) 
     {
-        return type.isNumericType() && type2.isNumericType();
+        HaxeType floatType = getFloat();
+        
+        // Int have Float in its type hierarchy so if we check
+        // just for float it will mean that type can have int
+        // as a parent, not just float
+        return isAvailableAssignement(floatType, type) &&
+                isAvailableAssignement(floatType, type2);
     }
 }

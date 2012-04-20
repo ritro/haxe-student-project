@@ -14,8 +14,7 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.Modifiers;
 import haxe.imp.parser.antlr.tree.NodeWithScopeAndModifier;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import java.util.ArrayList;
 
@@ -158,6 +157,9 @@ public class FunctionNode extends NodeWithScopeAndModifier
             return;
         }
 	    
-	    setHaxeType(PrimaryHaxeType.haxeVoid);
+	    // TODO thats not quite rifht - as we can not specify
+	    // return type in the notation - so Void should be set
+	    // in the very end after type checking
+	    setHaxeType(HaxeTypeUtils.getVoid());
 	}
 }

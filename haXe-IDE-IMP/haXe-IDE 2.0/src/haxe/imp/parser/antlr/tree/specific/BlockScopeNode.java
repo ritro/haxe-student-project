@@ -11,9 +11,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
-
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -21,10 +18,7 @@ import org.antlr.runtime.Token;
 /**
  * Blocks can execute several expressions.
  * @author kondratyev
- */
-/**
- * @author Savenko Maria
- *
+ *          Savenko Maria
  */
 public class BlockScopeNode extends HaxeTree {
 
@@ -87,7 +81,7 @@ public class BlockScopeNode extends HaxeTree {
 	@Override
 	public HaxeType getHaxeType()
 	{
-	    if (haxeType != PrimaryHaxeType.haxeUndefined)
+	    if (haxeType != null)
 	    {
 	        return super.getHaxeType();
 	    }

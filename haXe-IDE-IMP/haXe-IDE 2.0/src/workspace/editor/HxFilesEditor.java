@@ -1,8 +1,8 @@
 package workspace.editor;
 
+import imp.utilsImplementations.HaxeTokenColorer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.utilsImplementations.HaxeTokenColorer;
 import haxe.tree.utils.ReferencesListBuilder;
 
 import org.antlr.runtime.CommonToken;

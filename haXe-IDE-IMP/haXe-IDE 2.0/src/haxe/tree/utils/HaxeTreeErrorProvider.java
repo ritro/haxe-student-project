@@ -13,6 +13,7 @@ import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.imp.parser.antlr.tree.specific.ErrorNode;
 import haxe.imp.parser.antlr.tree.specific.ForNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.imp.parser.antlr.tree.specific.IfNode;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.NewNode;
@@ -106,7 +107,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         }
         HaxeType type = node.getHaxeType();
         HaxeType initType = initialization.getHaxeType();
-        if (!HaxeType.isAvailableAssignement(type, initType))
+        if (!HaxeTypeUtils.isAvailableAssignement(type, initType))
         {
             ErrorPublisher.commitCastError(node, initType);
         }
@@ -153,9 +154,9 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         {
             visit(child, data);
             HaxeType ctype = child.getHaxeType(true);
-            if (!ctype.equals(PrimaryHaxeType.haxeInt))
+            if (!ctype.equals(HaxeTypeUtils.getInt()))
             {
-                ErrorPublisher.commitCastError(child, PrimaryHaxeType.haxeInt);
+                ErrorPublisher.commitCastError(child, HaxeTypeUtils.getInt());
             }
         }
         
@@ -204,7 +205,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         {
             visit(rightOperand, data);
         }
-        else if (!HaxeType.isAvailableAssignement(
+        else if (!HaxeTypeUtils.isAvailableAssignement(
                 node.getHaxeType(),
                 rightOperand.getHaxeType(true)))
         {
@@ -232,7 +233,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         }
         // here we have...member's types are not from the same
         // hierarchy!
-        HaxeType type = PrimaryHaxeType.haxeUnknown;
+        HaxeType type = HaxeTypeUtils.getUnknown();
         for (HaxeTree child : node.getChildren())
         {
             HaxeType ctype = child.getHaxeType(true);
@@ -241,11 +242,11 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
                 type = ctype;
                 continue;
             }
-            if (HaxeType.isAvailableAssignement(type, ctype))
+            if (HaxeTypeUtils.isAvailableAssignement(type, ctype))
             {
                 continue;
             }
-            else if (HaxeType.isAvailableAssignement(ctype, type))
+            else if (HaxeTypeUtils.isAvailableAssignement(ctype, type))
             {
                 type = ctype;
                 continue;
@@ -267,8 +268,8 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         FunctionNode function = node.getFunction();
         
         HaxeType funType = function == null 
-                ? PrimaryHaxeType.haxeVoid : function.getHaxeType();
-        if (!HaxeType.isAvailableAssignement(funType, type))
+                ? HaxeTypeUtils.getVoid() : function.getHaxeType();
+        if (!HaxeTypeUtils.isAvailableAssignement(funType, type))
         {
             ErrorPublisher.commitCastError(node, funType);
         }
@@ -307,7 +308,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     
     protected void visit(final UnarExpressionNode node, Object data)
     {
-        if (node.getHaxeType() != PrimaryHaxeType.haxeUndefined)
+        if (node.getHaxeType() != null)
         {
             return;
         }
@@ -345,7 +346,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final IfNode node, Object data)
     {
-        if (node.getHaxeType() != PrimaryHaxeType.haxeUndefined)
+        if (node.getHaxeType() != null)
         {
             return;
         }
@@ -386,9 +387,10 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
 
-        if (condition.getHaxeType() != PrimaryHaxeType.haxeBool)
+        HaxeType bool = HaxeTypeUtils.getBool();
+        if (!condition.getHaxeType().equals(bool))
         {
-            ErrorPublisher.commitCastError(condition, PrimaryHaxeType.haxeBool);
+            ErrorPublisher.commitCastError(condition, bool);
         }
     }
 

@@ -4,8 +4,9 @@ import static org.junit.Assert.assertTrue;
 import static test.TestHelper.parseStatement;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.tree.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -53,9 +54,10 @@ public class VarDeclarationTests
         firstDecl.updateInfo();
         secondDecl.updateInfo();
         
+        HaxeType intType = HaxeTypeUtils.getInt();
         assertTrue(!firstDecl.getHaxeType().equals(secondDecl.getHaxeType()));
-        assertTrue(secondDecl.getHaxeType().equals(PrimaryHaxeType.haxeInt));
-        assertTrue(!firstDecl.getHaxeType().equals(PrimaryHaxeType.haxeInt));
+        assertTrue(secondDecl.getHaxeType().equals(intType));
+        assertTrue(!firstDecl.getHaxeType().equals(intType));
         
         assertTrue(secondDecl.getChild(secondDecl.getChildCount()-1).getChild(0) instanceof ConstantNode);
     }

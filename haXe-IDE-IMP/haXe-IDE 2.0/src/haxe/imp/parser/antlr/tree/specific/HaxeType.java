@@ -54,11 +54,6 @@ public abstract class HaxeType extends BlockScopeContainer
     {
         typeHierarchy.clear();
     }
-
-    public boolean isNumericType()
-    {
-        return false;
-    }
     
     public String getShortTypeName() 
     {
@@ -73,7 +68,7 @@ public abstract class HaxeType extends BlockScopeContainer
     @Override
     public boolean equals(final Object obj)
     {
-        if (!(obj instanceof HaxeType))
+        if ( obj == null || !(obj instanceof HaxeType))
         {
             return false;
         }

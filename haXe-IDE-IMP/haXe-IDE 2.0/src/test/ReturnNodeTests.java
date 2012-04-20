@@ -4,10 +4,11 @@ import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseModule;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
+import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.tree.utils.Environment;
 import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.HaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -51,7 +52,7 @@ public class ReturnNodeTests
         FunctionNode function = returnNode.getFunction();    
         HaxeType funType = function.getHaxeType();
         
-        assertTrue(!HaxeType.isAvailableAssignement(funType, type));
+        assertTrue(!HaxeTypeUtils.isAvailableAssignement(funType, type));
     }
     
     @Test
@@ -65,7 +66,7 @@ public class ReturnNodeTests
         FunctionNode function = returnNode.getFunction();
         HaxeType funType = function.getHaxeType();
         
-        assertTrue(HaxeType.isAvailableAssignement(funType, type));
+        assertTrue(HaxeTypeUtils.isAvailableAssignement(funType, type));
     }
 
 }

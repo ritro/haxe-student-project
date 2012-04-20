@@ -1,39 +1,14 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.main.HaxeParser;
-import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.antlr.runtime.Token;
 
-public class EnumNode extends BlockScopeContainer {
-
-	/** The class name. */
-	private String enumName = "";
-
-	/**
-	 * Gets the class name.
-	 * 
-	 * @return the class name
-	 */
-	public String getEnumName() {
-		if (this.enumName.equals("")) {
-			this.enumName = this.getText();
-		}
-		return this.enumName;
-	}
-	
-	/**
-	 * Instantiates a new class node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
+public class EnumNode extends HaxeType 
+{	
 	public EnumNode(final Token t) {
 		super(t);
 	}
@@ -58,9 +33,9 @@ public class EnumNode extends BlockScopeContainer {
 	 * it extended/implemented
 	 */
 	@Override
-	public HaxeType getHaxeType(){
-		//TODO????
-		return PrimaryHaxeType.haxeEnum;
+	public HaxeType getHaxeType()
+	{
+		return this;
 	}
 
 	/**

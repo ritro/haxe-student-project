@@ -7,7 +7,7 @@ import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.tree.utils.Environment;
 import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -237,7 +237,7 @@ public class BinaryOperationTests
         linker.visit(tree, new Environment());
         BinaryExpressionNode node = TestHelper.getBinaryExpression(tree);
         
-        assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeInt);
+        assertTrue(node.getHaxeType() == HaxeTypeUtils.getInt());
     }
     
     @Test
@@ -247,7 +247,7 @@ public class BinaryOperationTests
         linker.visit(tree, new Environment());
         BinaryExpressionNode node = TestHelper.getBinaryExpression(tree);
         
-        assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeFloat);
+        assertTrue(node.getHaxeType() == HaxeTypeUtils.getFloat());
     }
     
     @Test
@@ -257,6 +257,6 @@ public class BinaryOperationTests
         linker.visit(tree, new Environment());
         BinaryExpressionNode node = TestHelper.getBinaryExpression(tree);
         
-        assertTrue(node.getHaxeType() == PrimaryHaxeType.haxeString);
+        assertTrue(node.getHaxeType() == HaxeTypeUtils.getString());
     }
 }

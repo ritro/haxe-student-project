@@ -84,6 +84,7 @@ public class ClassNode extends HaxeType
 	    }
 	}
 	
+	@Override
     public HaxeTree getDeclaration(final String name)
     {
         // 1 - class member, inherit fields

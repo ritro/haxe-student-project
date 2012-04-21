@@ -1,8 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.HaxeType;
-import haxe.tree.utils.PrimaryHaxeType;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.Token;
 
@@ -40,7 +39,7 @@ public class UnarExpressionNode extends HaxeTree
             return;
         }
         HaxeType exprType = expr.getHaxeType();
-        if (exprType == PrimaryHaxeType.haxeUndefined)
+        if (exprType == null)
         {
             return;
         }
@@ -48,21 +47,21 @@ public class UnarExpressionNode extends HaxeTree
         switch(opType)
         {
             case NUMERABLE:
-                if (exprType == PrimaryHaxeType.haxeInt
-                            || exprType == PrimaryHaxeType.haxeFloat)
+                if (exprType == HaxeTypeUtils.getInt()
+                            || exprType == HaxeTypeUtils.getFloat())
                 {
                     setHaxeType(exprType);
                 }
                 break;
             case NOT: 
-                if (exprType == PrimaryHaxeType.haxeBool)
+                if (exprType == HaxeTypeUtils.getBool())
                 {
                     setHaxeType(exprType);
                 }
                 break;
             case TILDE:
                 // TODO should think about INT 32 restriction (for Neko)
-                if (exprType == PrimaryHaxeType.haxeInt)
+                if (exprType == HaxeTypeUtils.getInt())
                 {
                     setHaxeType(exprType);
                 }
@@ -74,7 +73,7 @@ public class UnarExpressionNode extends HaxeTree
     @Override
     public HaxeType getHaxeType()
     {
-        if (haxeType != PrimaryHaxeType.haxeUndefined)
+        if (haxeType != null)
         {
             super.getHaxeType();
         }

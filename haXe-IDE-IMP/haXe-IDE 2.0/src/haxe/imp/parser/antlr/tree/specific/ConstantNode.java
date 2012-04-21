@@ -26,7 +26,7 @@ public class ConstantNode extends HaxeTree {
 	        final int ttype, final Token token, final String varType) 
 	{
 	    this(token);
-		HaxeType constantType = HaxeTypeUtils.getTypeByName(varType);
+		HaxeType constantType = HaxeTypeUtils.getLibTypeByName(varType);
 		if (constantType == null)
 		{
 			setHaxeType(null);

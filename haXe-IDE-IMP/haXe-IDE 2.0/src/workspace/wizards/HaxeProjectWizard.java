@@ -1,4 +1,4 @@
-package wizards;
+package workspace.wizards;
 
 
 import java.net.URI;

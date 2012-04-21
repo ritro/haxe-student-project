@@ -8,40 +8,40 @@ public class HaxeTypeUtils
 {
     public static HaxeType getInt()
     {
-        return getTypeByName("Int");
+        return getLibTypeByName("Int");
     }
 
     public static HaxeType getFloat()
     {
-        return getTypeByName("Float");
+        return getLibTypeByName("Float");
     }
     
     public static HaxeType getString()
     {
-        return getTypeByName("String");
+        return getLibTypeByName("String");
     }
 
     public static HaxeType getArray()
     {
-        return getTypeByName("Array");
+        return getLibTypeByName("Array");
     }
 
     public static HaxeType getBool()
     {
-        return getTypeByName("Bool");
+        return getLibTypeByName("Bool");
     }
 
     public static HaxeType getVoid()
     {
-        return getTypeByName("Void");
+        return getLibTypeByName("Void");
     }
     
     public static HaxeType getUnknown()
     {
-        return getTypeByName("Unknown");
+        return getLibTypeByName("Unknown");
     }
     
-    public static HaxeType getTypeByName(final String shorName)
+    public static HaxeType getLibTypeByName(final String shorName)
     {
         return null;
     }

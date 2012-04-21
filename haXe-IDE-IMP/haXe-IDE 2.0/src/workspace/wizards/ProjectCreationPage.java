@@ -1,4 +1,4 @@
-package wizards;
+package workspace.wizards;
 
 
 import org.eclipse.swt.SWT;

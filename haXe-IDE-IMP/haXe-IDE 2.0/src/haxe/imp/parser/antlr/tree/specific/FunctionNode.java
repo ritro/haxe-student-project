@@ -150,7 +150,8 @@ public class FunctionNode extends NodeWithScopeAndModifier
             }
             try 
             {
-                HaxeType type = new HaxeType(tree.getChild(0).getText());
+                String typeName = tree.getChild(0).getText();
+                HaxeType type = new HaxeType();
                 setHaxeType(type);
             } 
             catch (NullPointerException nullPointerException)  { }

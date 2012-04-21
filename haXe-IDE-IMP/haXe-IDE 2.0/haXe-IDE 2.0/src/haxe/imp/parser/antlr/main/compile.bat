@@ -1,1 +1,0 @@
-java -jar ..\..\..\..\..\..\lib\antlr-3.4-complete.jar Haxe.g  -o .

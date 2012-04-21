@@ -1,1 +1,0 @@
-jar -cf HaxeLib.jar *.hx

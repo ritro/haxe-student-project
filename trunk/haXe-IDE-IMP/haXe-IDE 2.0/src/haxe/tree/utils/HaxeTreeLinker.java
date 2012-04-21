@@ -85,15 +85,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             Environment env = (Environment)data;
             decl = env.get(text);
         }
-        else if (data instanceof ClassNode)
+        else if (data instanceof HaxeType)
         {
-            ClassNode clas = (ClassNode) data;
+            HaxeType clas = (HaxeType) data;
             decl = clas.getDeclaration(text);
-        }
-        
-        if (decl != null)
-        {
-            return decl;
         }
         
         return null;

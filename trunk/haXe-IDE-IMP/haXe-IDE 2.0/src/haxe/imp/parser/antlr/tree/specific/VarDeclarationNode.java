@@ -14,6 +14,7 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.Modifiers;
 import haxe.imp.parser.antlr.tree.NodeWithModifier;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -149,7 +150,7 @@ public class VarDeclarationNode extends NodeWithModifier {
                     && tree.getChildCount() != 0) 
             {
                 String typeName = tree.getChild(0).getText();
-                HaxeType primatyType = PrimaryHaxeType.tryGetPrimaryType(typeName);
+                HaxeType primatyType = HaxeTypeUtils.getLibTypeByName(typeName);
                 haxeType = primatyType != null
                         ? primatyType
                         : new HaxeType(typeName);

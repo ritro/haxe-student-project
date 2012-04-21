@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.Token;
 
@@ -61,7 +62,7 @@ public class ReturnNode extends HaxeTree
 	    HaxeTree expression = getExpression(); 
 	    if (expression == null)
         {
-	        setHaxeType(PrimaryHaxeType.haxeVoid);
+	        setHaxeType(HaxeTypeUtils.getVoid());
         }
 	    else
 	    {

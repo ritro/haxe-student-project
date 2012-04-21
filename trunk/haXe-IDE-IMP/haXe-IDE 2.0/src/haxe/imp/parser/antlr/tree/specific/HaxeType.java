@@ -7,6 +7,7 @@ import java.util.List;
 import org.antlr.runtime.Token;
 
 import haxe.imp.parser.antlr.tree.BlockScopeContainer;
+import haxe.imp.parser.antlr.tree.HaxeTree;
 
 public abstract class HaxeType extends BlockScopeContainer
 {    
@@ -64,6 +65,8 @@ public abstract class HaxeType extends BlockScopeContainer
     {
         return fullName;
     }
+    
+    public abstract HaxeTree getDeclaration(final String name);
     
     @Override
     public boolean equals(final Object obj)

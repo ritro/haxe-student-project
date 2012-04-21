@@ -1,8 +1,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.BinaryOperaionContainer;
-import haxe.imp.parser.antlr.tree.BinaryOperaionContainer.BoolOperations;
-import haxe.tree.utils.HaxeType;
 
 import org.antlr.runtime.Token;
 

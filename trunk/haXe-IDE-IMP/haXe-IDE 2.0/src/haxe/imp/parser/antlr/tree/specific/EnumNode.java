@@ -4,6 +4,7 @@ import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.runtime.Token;
 
@@ -43,17 +44,31 @@ public class EnumNode extends HaxeType
 	 * 
 	 * @return the all declared vars
 	 */
-	public ArrayList<HaxeTree> getAllMembers() {
-		ArrayList<HaxeTree> list = new ArrayList<HaxeTree>();
+	public List<HaxeTree> getAllMembers() {
+		List<HaxeTree> list = new ArrayList<HaxeTree>();
 
 		BlockScopeNode blockScope = getBlockScope();
-		if (blockScope != null) 
+		if (blockScope == null) 
 		{
-			for (HaxeTree x: blockScope.getChildren())
-				if (x instanceof VarDeclarationNode)
-					list.add(x);
+		    return list;
 		}
+		for (HaxeTree x: blockScope.getChildren())
+			if (x instanceof VarDeclarationNode)
+				list.add(x);
 		return list;
 	}
+
+    @Override
+    public HaxeTree getDeclaration(final String name)
+    {
+        for (HaxeTree child : getAllMembers())
+        {
+            if (child.getText().equals(name))
+            {
+                return child;
+            }
+        }
+        return null;
+    }
 
 }

@@ -31,7 +31,7 @@ public class ArrayNode extends ConstantNode
     {
         if (haxeType == null)
         {
-            GenericHaxeType type = new GenericHaxeType();
+            HaxeType arrayType = HaxeTypeUtils.getArray();
             type.addParameterType(getMembersType());
             haxeType = type;
         }
@@ -68,7 +68,7 @@ public class ArrayNode extends ConstantNode
     private void tryDefineType()
     {
         // for empty arrays
-        HaxeType type = PrimaryHaxeType.haxeUnknown;
+        HaxeType type = HaxeTypeUtils.getUnknown();
         for (HaxeTree child : getChildren())
         {
             if (child.getChildIndex() == 0)

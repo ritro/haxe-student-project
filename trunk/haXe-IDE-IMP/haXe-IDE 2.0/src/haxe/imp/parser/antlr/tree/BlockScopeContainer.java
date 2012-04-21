@@ -1,8 +1,9 @@
 package haxe.imp.parser.antlr.tree;
 
+import imp.parser.antlr.main.HaxeParser;
+
 import org.antlr.runtime.Token;
 
-import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 
 /**

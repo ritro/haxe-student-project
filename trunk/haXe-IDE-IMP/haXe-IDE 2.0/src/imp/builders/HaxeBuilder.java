@@ -1,6 +1,6 @@
-package haxe.imp.builders;
+package imp.builders;
 
-import haxe.imp.parser.HaxeParseController;
+import imp.parser.HaxeParseController;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;

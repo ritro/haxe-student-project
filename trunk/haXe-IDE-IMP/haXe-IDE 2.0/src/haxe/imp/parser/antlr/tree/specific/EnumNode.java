@@ -1,7 +1,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
-import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.main.HaxeParser;
 
 import java.util.ArrayList;
 import java.util.List;

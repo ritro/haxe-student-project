@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.treeModelBuilder;
 
-import haxe.imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;

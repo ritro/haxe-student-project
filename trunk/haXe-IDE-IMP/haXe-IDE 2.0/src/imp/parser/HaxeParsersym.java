@@ -8,9 +8,9 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser;
+package imp.parser;
 
-import haxe.imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.main.HaxeLexer;
 
 // TODO: Auto-generated Javadoc
 /**

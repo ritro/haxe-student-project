@@ -1,6 +1,6 @@
 package haxe.imp.parser.antlr.tree;
 
-import haxe.imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.main.HaxeParser;
 
 public interface INodeWithModifier
 {

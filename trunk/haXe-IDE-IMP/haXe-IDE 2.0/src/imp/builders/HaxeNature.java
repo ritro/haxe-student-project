@@ -1,4 +1,4 @@
-package haxe.imp.builders;
+package imp.builders;
 
 import org.eclipse.core.resources.IProject;
 

@@ -47,6 +47,7 @@ public class HaxeProject
     
     public void addToFileTree(HaxeFile file)
     {
+        // TODO make as in libs?
         String name = file.getName();
         fileList.put(name, file);
     }

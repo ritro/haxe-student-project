@@ -32,8 +32,12 @@ public class ArrayNode extends ConstantNode
         if (haxeType == null)
         {
             HaxeType arrayType = HaxeTypeUtils.getArray();
-            type.addParameterType(getMembersType());
-            haxeType = type;
+            if (arrayType == null || !(arrayType instanceof ClassNode))
+            {
+                return null;
+            }
+            ((ClassNode)arrayType).addToParamTypes(getMembersType());
+            haxeType = arrayType;
         }
         return super.getHaxeType();
     }

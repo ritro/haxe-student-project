@@ -89,6 +89,25 @@ public class WorkspaceUtils
         return (new File(parentPath, childPath)).getPath();
     }
     
+    /**
+     * Paths with files without '.hx' extention will return null.
+     */
+    public static String getHaxeFileNameFromPath(final String path)
+    {
+        if (!path.endsWith(".hx"))
+        {
+            return null;
+        }
+        String pathWithoutExtention = path.substring(0, path.length() - 3);
+        int lastDotIndex = pathWithoutExtention.lastIndexOf('.');
+        if (lastDotIndex == -1)
+        {
+            lastDotIndex = 0;
+        }
+        String filename = pathWithoutExtention.substring(lastDotIndex);
+        return filename;
+    }
+    
     public static String converPathToPackage(final String path)
     {
         int end = Math.max(path.length(), path.lastIndexOf('.'));

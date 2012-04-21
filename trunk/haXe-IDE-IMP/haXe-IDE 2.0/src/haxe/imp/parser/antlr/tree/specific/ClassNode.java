@@ -10,6 +10,9 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree.specific;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
@@ -26,12 +29,8 @@ public class ClassNode extends HaxeType
 	/** The class name. */
 	private String className = "";
 	private HaxeType extention = null;
+	private List<HaxeType> paramTypes = null;
 
-	/**
-	 * Gets the class name.
-	 * 
-	 * @return the class name
-	 */
 	public String getClassName() 
 	{
 		if (className.equals("")) 
@@ -44,6 +43,17 @@ public class ClassNode extends HaxeType
 	public ClassNode(final Token t) 
 	{
 		super(t);
+		paramTypes = new ArrayList<HaxeType>();
+	}
+	
+	public void addToParamTypes(final HaxeType type)
+	{
+	    paramTypes.add(type);
+	}
+	
+	public List<HaxeType> getParameterTypes()
+	{
+	    return paramTypes;
 	}
 	
 	public HaxeTree getParentToExtend()
@@ -106,4 +116,10 @@ public class ClassNode extends HaxeType
 	{
 	    return this;
 	}
+    
+    @Override
+    public String toString()
+    {
+        return "class [" + getText() + "]";
+    }
 }

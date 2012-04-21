@@ -76,29 +76,26 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ClassNode node, Object data)
+    protected void visit(final ClassNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("class "+ node.getText());
+        System.out.println(node.toString());
         visitAllChildren(node, data);
     }
 
     @Override
-    protected void visit(FunctionNode node, Object data)
+    protected void visit(final FunctionNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("function "+ node.getText());
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
 
     @Override
-    protected void visit(VarDeclarationNode node, Object data)
+    protected void visit(final VarDeclarationNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("Declaration " +
-                "\"" + node.getText() + "\"" +
-                " {" + node.getHaxeType().getShortTypeName() + '}' + 
-                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        System.out.println(node.toString());
         HaxeTree init = node.getInitializationNode();
         if ( init != null)
         {
@@ -107,7 +104,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(NewNode node, Object data)
+    protected void visit(final NewNode node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println("NEW ");
@@ -115,63 +112,39 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(MethodCallNode node, Object data)
+    protected void visit(final MethodCallNode node, Object data)
     {
         System.out.print(getIndent(data));
-        HaxeTree decl = node.getDeclarationNode();
-        if (decl == null)
-        {
-            decl = node;
-        }
-        System.out.println("MethodCall " +
-                "\"" + node.getText() + "\"" +
-                " {" + decl.getHaxeType().getShortTypeName() + '}' + 
-                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
 
     @Override
-    protected void visit(SliceNode node, Object data)
+    protected void visit(final SliceNode node, Object data)
     {
         System.out.print(getIndent(data));
-        HaxeTree decl = node.getDeclarationNode();
-        if (decl == null)
-        {
-            decl = node;
-        }
-        System.out.println("Slice " +
-                " {" + decl.getHaxeType().getShortTypeName() + '}' + 
-                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
 
     @Override
-    protected void visit(VarUsageNode node, Object data)
+    protected void visit(final VarUsageNode node, Object data)
     {
         System.out.print(getIndent(data));
-        HaxeTree decl = node.getDeclarationNode();
-        if (decl == null)
-        {
-            decl = node;
-        }
-        System.out.println("VarUsage " +
-                "\"" + node.getText() + "\"" +
-                " {" + decl.getHaxeType().getShortTypeName() + '}' + 
-                '<' + node.getMostLeftPosition() + ", " + node.getMostRightPosition() + '>');
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
 
     @Override
-    protected void visit(AssignOperationNode node, Object data)
+    protected void visit(final AssignOperationNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("AssignOperation " + 
-                "{name=" + node.getText() + '}');     
+        System.out.println(node.toString());     
         visitAllChildren(node, (int)data + 1);   
     }
 
     @Override
-    protected void visit(ArrayNode node, Object data)
+    protected void visit(final ArrayNode node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println("Array ");
@@ -179,40 +152,33 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ConstantNode node, Object data)
+    protected void visit(final ConstantNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("Constant " + 
-                "(name=" + node.getText() + ")" +
-                "{" + node.getHaxeType().getShortTypeName() + '}');
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
 
     @Override
-    protected void visit(ReturnNode node, Object data)
+    protected void visit(final ReturnNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("Return " + 
-                "{" + node.getHaxeType().getShortTypeName() + '}');
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
 
     @Override
-    protected void visit(BinaryExpressionNode node, Object data)
+    protected void visit(final BinaryExpressionNode node, Object data)
     {
         System.out.print(getIndent(data));
-        System.out.println("BinaryExpression " + 
-                "(" + node.getText() + ")" +
-                "{" + node.getHaxeType().getShortTypeName() + '}');
+        System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
     
     protected void visit(final UnarExpressionNode node, Object data)
     {
         System.out.print(getIndent(data)); 
-        System.out.println(
-                node.getText() + 
-                "{" + node.getHaxeType().getShortTypeName() + '}');     
+        System.out.println(node.toString());     
         visitAllChildren(node, (int)data + 1);   
     }
 

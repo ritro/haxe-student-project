@@ -13,7 +13,6 @@ package haxe.imp.parser.antlr.tree.specific;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.Modifiers;
 import haxe.imp.parser.antlr.tree.NodeWithScopeAndModifier;
-import haxe.tree.utils.HaxeTypeUtils;
 import imp.parser.antlr.main.HaxeParser;
 
 import java.util.ArrayList;
@@ -131,36 +130,14 @@ public class FunctionNode extends NodeWithScopeAndModifier
 		return getChild(0).getText();
 	}
 	
-	public void updateInfo()
+	@Override
+	public String toString()
 	{
-	    updateHaxeType();
-	    updateModifier();
+	    return "function [" + getText() + "]";
 	}
 	
-	/**
-	 * Tries to extract type from TYPE TAG of function.
-	 */
-	private void updateHaxeType()
+	public void updateInfo()
 	{
-	    for (HaxeTree tree : getChildren()) 
-	    {
-            if (tree.getToken().getType() != TYPE_TAG_TYPE) 
-            {
-                continue;
-            }
-            try 
-            {
-                String typeName = tree.getChild(0).getText();
-                HaxeType type = new HaxeType();
-                setHaxeType(type);
-            } 
-            catch (NullPointerException nullPointerException)  { }
-            return;
-        }
-	    
-	    // TODO thats not quite rifht - as we can not specify
-	    // return type in the notation - so Void should be set
-	    // in the very end after type checking
-	    setHaxeType(HaxeTypeUtils.getVoid());
+	    updateModifier();
 	}
 }

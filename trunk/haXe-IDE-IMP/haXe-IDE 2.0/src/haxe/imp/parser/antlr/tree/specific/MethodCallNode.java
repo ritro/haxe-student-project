@@ -59,4 +59,14 @@ public class MethodCallNode extends ParametersContainerNode
         }
         return getDeclarationNode().getHaxeType();
     }
+    
+    public String toString()
+    {
+        return String.format(
+                "method call [%s] : %s <%s, %s>", 
+                getText(),
+                haxeType == null ? "null" : haxeType.toString(),
+                getMostLeftPosition(),
+                getMostRightPosition());
+    }
 }

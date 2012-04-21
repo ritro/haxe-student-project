@@ -51,7 +51,7 @@ public class Activator extends PluginBase{
 
 	public static final String kPluginID = "haXe_IDE";
 	public static final String kLanguageID = "haxe";
-	public static final String libsPath = "lib/haXeLib.jar";
+	public static final String libsPath = "lib/LightHaxeLib.jar";//"lib/haXeLib.jar";
 	public static final Logger logger = LoggerFactory.getLogger("FILE");
 	
 	protected static Activator sPlugin;	
@@ -59,16 +59,18 @@ public class Activator extends PluginBase{
 	//        sPlugin.isDebugging() && "true".equalsIgnoreCase(
 	//                   Platform.getDebugOption("org.eclipse.faq.examples/debug/option2"));
 	
-	private IFile activeFile = null;
-	private HashMap<String, HaxeProject> projects;
-	private HashMap<String, HaxeTree> libraries;
-	private HaxeProject currentProject = null;
+	private IFile                          activeFile      = null;
+	private HashMap<String, HaxeProject>   projects        = null;
+	private HashMap<String, HaxeTree>      libraries       = null;
+	private HaxeProject                    currentProject  = null;
+	
 	/**
 	 * Gets the single instance of Activator.
 	 * 
 	 * @return single instance of Activator
 	 */
-	public static Activator getInstance() {
+	public static Activator getInstance() 
+	{
 		if (sPlugin == null) {
 			sPlugin = new Activator();
 		}
@@ -111,6 +113,11 @@ public class Activator extends PluginBase{
 	    return projects;
 	}
 	
+	public HashMap<String, HaxeTree> getHaxeLib()
+	{
+	    return libraries;
+	}
+	
 	/**
 	 * Adds Haxe Project to a list of all projects in current
 	 * workspace.
@@ -147,8 +154,8 @@ public class Activator extends PluginBase{
 	{
 		super.start(context);
 		
+		parseLibs();
 		findProjectsInWorkspace();
-		//parseLibs();
 	}
 	
 	// Definitions for image management
@@ -237,11 +244,29 @@ public class Activator extends PluginBase{
     	        InputStream in = jarFile.getInputStream(entry);
     	        
     	        HaxeTree ast = WorkspaceUtils.parseFileContents(in);
-    	        
-    	        libraries.put(
-    	                WorkspaceUtils.converPathToPackage(filePath), 
-    	                ast);
     	        in.close();
+    	        
+    	        if (ast == null)
+    	        {
+    	            logger.info("Activator.parseLibs Could not parse lib file: ", filePath);
+    	            continue;
+    	        }
+    	        
+    	        String filename = WorkspaceUtils.getHaxeFileNameFromPath(filePath);
+    	        if (filename == null)
+    	        {
+                    logger.info("Activator.parseLibs Something is not right with filename");
+    	            continue;
+    	        }
+        	    // 1. Try get package from file itself
+        	    // for file File.hx it will look like a.b
+    	        String pack = ast.getPackage();
+        	    // 2. add to package a file name a.b.File
+    	        pack = pack == null || pack.isEmpty()
+    	                ? filename
+    	                : pack + "." + filename; 
+        	    // 3. add to libs    	        
+    	        libraries.put(pack, ast);
     	    } 
     	    jarFile.close();
 	    }

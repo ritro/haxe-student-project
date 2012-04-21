@@ -1,7 +1,6 @@
 package haxe.tree.utils;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.BinaryOperaionContainer.BoolOperations;
 import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
 import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
@@ -23,10 +22,13 @@ import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode.DeclarationType;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.main.HaxeParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.antlr.runtime.CommonToken;
 
 import workspace.Activator;
 import workspace.elements.HaxeProject;
@@ -38,6 +40,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     private enum ScopeTypes {Class, Function};
     private ScopeTypes currentScope = ScopeTypes.Class;
     private HaxeProject project;
+    private HashMap<String, HaxeType> currentFileTypes = null;
     
     public HaxeTreeLinker(HaxeProject proj)
     {
@@ -71,6 +74,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         imports = new HashMap<String, HaxeTree>(); 
         usings = new ArrayList<String>();
         currentScope = ScopeTypes.Class;
+        currentFileTypes = new HashMap<String, HaxeType>();
     }
     
     /**
@@ -90,6 +94,82 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             HaxeType clas = (HaxeType) data;
             decl = clas.getDeclaration(text);
         }
+        
+        return null;
+    }
+    
+    /**
+     * When a type name is found, the following lookup is performed, in this order:
+     * 1. current class type parameters
+     * 2. standard types (with the help of HaxeTypeUtils)
+     * 3. types declared in the current file
+     * 4. types declared in imported files (if the searched package is empty)
+     * 5. the corresponding file is loaded and the type is searched inside it
+     */
+    private HaxeType getType(final String shortTypeName, final Object local)
+    {
+        // we can have here only environment because all TYPES we use
+        // should be imported in this file
+        // but the defend from fools should be everywhere ... ?
+        if (!(local instanceof Environment))
+        {
+            return null;
+        }
+        Environment env = (Environment)local;
+        HaxeType thisType = (HaxeType)env.get("this");
+        // only classes can have type params
+        if (!(thisType instanceof ClassNode))
+        {
+            return null;
+        }
+        ClassNode cclass = (ClassNode)thisType;
+        // 1. search in current class type params
+        for (HaxeType type : cclass.getParameterTypes())
+        {
+            if (type.getText().equals(shortTypeName))
+            {
+                return type;
+            }
+        }
+        // 2. search in Standart Types
+        HaxeType result = 
+                HaxeTypeUtils.getStandartTypeByName(shortTypeName);
+        if (result != null)
+        {
+            return result;
+        }
+        // 3.types in the current file
+        result = currentFileTypes.get(shortTypeName);
+        if (result != null)
+        {
+            return result;
+        }
+        // 4. types declared in imported files
+        // TODO: What means - "if the searched package is empty"?
+        HaxeTree node = imports.get(shortTypeName);
+        if (node != null)
+        {
+            for (HaxeTree child : node.getChildren())
+            {
+                if (child instanceof HaxeType && 
+                        child.getText().equals(shortTypeName))
+                {
+                    return (HaxeType)child;
+                }
+            }
+        }
+        for (HaxeTree modul: imports.values())
+        {
+            for (HaxeTree child : modul.getChildren())
+            {
+                if (child instanceof HaxeType && 
+                        child.getText().equals(shortTypeName))
+                {
+                    return (HaxeType)child;
+                }
+            } 
+        }
+        // 5. the corresponding file is loaded and the type is searched inside it
         
         return null;
     }
@@ -182,6 +262,17 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visitUnknown(HaxeTree node, Object data)
     {
+        CommonToken token = node.getToken();
+        if (token != null && token.getType() == HaxeParser.TYPE_TAG) 
+        {
+            HaxeTree child = node.getChild(0);
+            if (child != null)
+            {
+                String typeName = child.getText();
+                HaxeType type = getType(typeName, data);
+            }
+        } 
+        
         String name = node.getText();
         // import
     	// Note: Importing multiple types with wildcards is NOT supported 
@@ -457,7 +548,22 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         
         Environment declarations = (Environment)data;
-        declarations.put(node);        
+        declarations.put(node);   
+        
+        for (HaxeTree tree : node.getChildren()) 
+        {
+            if (tree == null || tree.getToken() == null)
+            {
+                continue;
+            }
+            if (tree.getToken().getType() == HaxeParser.TYPE_TAG
+                    && tree.getChildCount() != 0) 
+            {
+                String typeName = tree.getChild(0).getText();
+                HaxeType type = getType(typeName, declarations);
+                node.setHaxeType(type);
+            }
+        }
 
         node.updateInfo();
         HaxeTree initialization = node.getInitializationNode();
@@ -477,6 +583,19 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     protected void visit(final FunctionNode node, Object data)
     {
         Environment funEnv = new Environment((Environment)data);
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child.getToken().getType() == HaxeParser.TYPE_TAG) 
+            {
+                HaxeTree cchild = node.getChild(0);
+                if (cchild != null)
+                {
+                    String typeName = cchild.getText();
+                    HaxeType type = getType(typeName, data);
+                    node.setHaxeType(type);
+                }
+            }
+        }
         for (VarDeclarationNode x: node.getParametersAsDeclarations())
         {
             x.setDeclaratonType(DeclarationType.FunctionParameter);
@@ -575,10 +694,17 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visitHighLevel(final HaxeTree node, Object data)
     {
-        if (data == null)
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child instanceof HaxeType)
+            {
+                currentFileTypes.put(child.getText(), (HaxeType)child);
+            }
+        }
+        for (HaxeTree child : node.getChildren())
         {
             data = new Environment();
+            visit(child, data);            
         }
-        visitAllChildren(node, data);
     }
 }

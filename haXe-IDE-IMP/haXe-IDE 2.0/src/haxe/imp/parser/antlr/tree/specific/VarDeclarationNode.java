@@ -12,9 +12,7 @@ package haxe.imp.parser.antlr.tree.specific;
 
 import imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.Modifiers;
 import haxe.imp.parser.antlr.tree.NodeWithModifier;
-import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -149,12 +147,6 @@ public class VarDeclarationNode extends NodeWithModifier {
             if (type == TYPE_TAG_TYPE
                     && tree.getChildCount() != 0) 
             {
-                String typeName = tree.getChild(0).getText();
-                HaxeType primatyType = HaxeTypeUtils.getLibTypeByName(typeName);
-                haxeType = primatyType != null
-                        ? primatyType
-                        : new HaxeType(typeName);
-                // also do that here
                 mostRightPosition = tree.getChild(0).getMostRightPosition();
                 declaredWithoutType = false;
             } else if (type == PROPERTY_DECL
@@ -220,5 +212,16 @@ public class VarDeclarationNode extends NodeWithModifier {
 	    }
 	    
 	    return false;
+	}
+	
+	@Override
+	public String toString()
+	{
+	    return String.format(
+    	            "declaration %s : %s <%s,%s>", 
+    	            getText(),
+    	            haxeType == null ? "null" : haxeType.getShortTypeName(),
+    	            getMostLeftPosition(),
+    	            getMostRightPosition());
 	}
 }

@@ -56,4 +56,10 @@ public class AssignOperationNode extends BinaryOperaionContainer
 	{
 		super(token);
 	}
+	
+	@Override
+	public String toString()
+	{
+	    return "Assign [" + getText() + "]";
+	}
 }

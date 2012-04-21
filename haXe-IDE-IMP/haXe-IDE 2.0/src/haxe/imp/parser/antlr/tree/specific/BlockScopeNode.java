@@ -11,6 +11,7 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
+import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
@@ -88,7 +89,7 @@ public class BlockScopeNode extends HaxeTree {
 	    int childCount = getChildCount();
 	    if (childCount == 0)
 	    {
-	        setHaxeType(PrimaryHaxeType.haxeVoid);
+	        setHaxeType(HaxeTypeUtils.getVoid());
 	    }
 	    
 	    HaxeTree lastChild = getChild(childCount - 1);

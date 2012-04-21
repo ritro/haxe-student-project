@@ -92,4 +92,13 @@ public class SliceNode extends ParametersContainerNode
     {
         return !haveNoName;
     }
+    
+    public String toString()
+    {
+        return String.format(
+                "slice : %s <%s, %s>", 
+                haxeType == null ? "null" : haxeType.toString(),
+                getMostLeftPosition(),
+                getMostRightPosition());
+    }
 }

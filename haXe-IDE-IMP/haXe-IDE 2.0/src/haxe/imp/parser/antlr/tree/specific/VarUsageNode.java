@@ -77,4 +77,14 @@ public class VarUsageNode extends HaxeTree
 	{
 	    this.declaration = declaration; 
 	}
+	
+	public String toString()
+	{
+	    return String.format(
+	            "usage [%s] : %s <%s, %s>",
+	            getText(),
+	            haxeType == null ? "null" : haxeType.toString(),
+	            getMostLeftPosition(),
+	            getMostRightPosition());
+	}
 }

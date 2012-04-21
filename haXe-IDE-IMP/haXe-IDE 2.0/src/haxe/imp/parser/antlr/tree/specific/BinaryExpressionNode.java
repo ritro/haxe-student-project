@@ -37,5 +37,15 @@ public class BinaryExpressionNode extends BinaryOperaionContainer
     {
         super(token);
     }
+    
+    public String toString()
+    {
+        return String.format(
+                "binary expr [%s] : %s <%s, %s>", 
+                getText(),
+                haxeType == null ? "null" : haxeType.toString(),
+                getMostLeftPosition(),
+                getMostRightPosition());
+    }
 
 }

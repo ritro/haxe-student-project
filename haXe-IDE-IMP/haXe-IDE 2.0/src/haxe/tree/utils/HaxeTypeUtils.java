@@ -1,48 +1,91 @@
 package haxe.tree.utils;
 
+import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.HaxeType;
 
+import java.util.HashMap;
 import java.util.List;
+
+import workspace.Activator;
 
 public class HaxeTypeUtils
 {
+    public static final String primaryTypesFileName = "StdTypes";
+    
     public static HaxeType getInt()
     {
-        return getLibTypeByName("Int");
+        return getStandartTypeByName("Int");
     }
 
     public static HaxeType getFloat()
     {
-        return getLibTypeByName("Float");
+        return getStandartTypeByName("Float");
     }
     
     public static HaxeType getString()
     {
-        return getLibTypeByName("String");
+        return getStandartTypeByName("String");
     }
 
     public static HaxeType getArray()
     {
-        return getLibTypeByName("Array");
+        return getStandartTypeByName("Array");
     }
 
     public static HaxeType getBool()
     {
-        return getLibTypeByName("Bool");
+        return getStandartTypeByName("Bool");
     }
 
     public static HaxeType getVoid()
     {
-        return getLibTypeByName("Void");
+        return getStandartTypeByName("Void");
     }
     
     public static HaxeType getUnknown()
     {
-        return getLibTypeByName("Unknown");
+        return getStandartTypeByName("Unknown");
     }
     
-    public static HaxeType getLibTypeByName(final String shorName)
+    /**
+     * When the type name is found this is the second place there
+     * we should search the definition for that type. Standart types
+     * are Haxe Lib types defined without package. E.g. Int, Bool and
+     * Array are standart types.
+     * @param shorName
+     * @return
+     */
+    public static HaxeType getStandartTypeByName(final String shorName)
     {
+        HaxeTree stdTypes = 
+                Activator.getInstance().getHaxeLib().get(primaryTypesFileName);
+        if (stdTypes == null)
+        {
+            return null;
+        }
+        for (HaxeTree child : stdTypes.getChildren())
+        {
+            if (child instanceof HaxeType && child.getText().equals(shorName))
+            {
+                return (HaxeType)child;
+            }
+        }
+        return null;
+    }
+    
+    public static HaxeType getLibType(final String pack, final String shortName)
+    {
+        HashMap<String, HaxeTree> lib = Activator.getInstance().getHaxeLib();
+        
+        HaxeTree ast = lib.get(pack);
+        for (HaxeTree child : ast.getChildren())
+        {
+            if (child instanceof HaxeType && child.getText().equals(shortName))
+            {
+                return (HaxeType)child;
+            }
+        }
+        
         return null;
     }
 

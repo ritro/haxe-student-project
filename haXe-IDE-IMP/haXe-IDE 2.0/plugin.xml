@@ -17,49 +17,49 @@
          name="haxe Parser"
          point="org.eclipse.imp.runtime.parser">
       <parser
-            class="haxe.imp.parser.HaxeParseController"
+            class="imp.parser.HaxeParseController"
             language="haXe">
       </parser>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
-            class="haxe.imp.utilsImplementations.HaxeTokenColorer"
+            class="imp.utilsImplementations.HaxeTokenColorer"
             language="haXe">
       </tokenColorer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.modelTreeBuilder">
       <treeBuilder
-            class="haxe.imp.treeModelBuilder.HaxeTreeModelBuilder"
+            class="imp.treeModelBuilder.HaxeTreeModelBuilder"
             language="haXe">
       </treeBuilder>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.labelProvider">
       <labelProvider
-            class="haxe.imp.treeModelBuilder.HaxeLabelProvider"
+            class="imp.treeModelBuilder.HaxeLabelProvider"
             language="haXe">
       </labelProvider>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
-            class="haxe.imp.utilsImplementations.HaxeFoldingUpdater"
+            class="imp.utilsImplementations.HaxeFoldingUpdater"
             language="haXe">
       </foldingUpdater>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="haxe.imp.utilsImplementations.HaxeReferenceResolver"
+            class="imp.utilsImplementations.HaxeReferenceResolver"
             language="haXe">
       </referenceResolver>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="haxe.imp.utilsImplementations.HaxeContentProposer"
+            class="imp.utilsImplementations.HaxeContentProposer"
             language="haXe">
       </proposer>
    </extension>
@@ -68,7 +68,7 @@
          name="haxe Hover Helper"
          point="org.eclipse.imp.runtime.hoverHelper">
       <hoverHelper
-            class="haxe.imp.utilsImplementations.HaxeHoverHelper"
+            class="imp.utilsImplementations.HaxeHoverHelper"
             language="haXe">
       </hoverHelper>
    </extension>
@@ -77,7 +77,7 @@
          name="haxe Reference Resolver"
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="haxe.imp.utilsImplementations.HaxeHoverHelper"
+            class="imp.utilsImplementations.HaxeHoverHelper"
             language="haXe">
       </referenceResolver>
    </extension>
@@ -86,7 +86,7 @@
          name="haxe Documentation Provider"
          point="org.eclipse.imp.runtime.documentationProvider">
       <docProvider
-            class="haxe.imp.utilsImplementations.HelperDocumentationProvider"
+            class="imp.utilsImplementations.HelperDocumentationProvider"
             language="haXe">
       </docProvider>
    </extension>
@@ -96,7 +96,7 @@
          point="org.eclipse.core.resources.builders">
       <builder>
          <run
-               class="haxe.imp.builders.HaxeBuilder">
+               class="imp.builders.HaxeBuilder">
             <parameter
                   name="foo"
                   value="bar">
@@ -113,7 +113,7 @@
       </builder>
       <runtime>
          <run
-               class="haxe.imp.builders.HaxeNature">
+               class="imp.builders.HaxeNature">
          </run>
       </runtime>
    </extension>
@@ -141,7 +141,7 @@
             name="haXe Project"
             icon="icons/haxe_file.gif"
             category="haxeplugin.category.wizards"
-            class="wizards.HaxeProjectWizard"
+            class="workspace.wizards.HaxeProjectWizard"
             hasPages="true"
             id="haxeplugin.wizards.newproject">
       </wizard>
@@ -224,7 +224,7 @@
          point="org.eclipse.ui.preferencePages">
       <page
             name="Haxe"
-            class="haxe.imp.preferences.HaxePreferencePage"
+            class="imp.preferences.HaxePreferencePage"
             id="haxe.imp.preferences.Haxe">
       </page>
    </extension>

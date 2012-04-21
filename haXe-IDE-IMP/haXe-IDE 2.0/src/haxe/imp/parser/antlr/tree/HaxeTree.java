@@ -10,11 +10,11 @@
  *******************************************************************************/
 package haxe.imp.parser.antlr.tree;
 
-import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
 import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.main.HaxeParser;
 
 import java.util.ArrayList;
 import java.util.List;

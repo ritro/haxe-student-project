@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.utilsImplementations;
 
-import haxe.imp.parser.HaxeParsersym;
+import imp.parser.HaxeParsersym;
 
 import org.antlr.runtime.CommonToken;
 import org.eclipse.imp.parser.IParseController;

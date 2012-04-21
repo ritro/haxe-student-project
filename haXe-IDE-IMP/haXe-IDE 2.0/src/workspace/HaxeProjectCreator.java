@@ -1,6 +1,6 @@
 package workspace;
 
-import haxe.imp.builders.HaxeNature;
+import imp.builders.HaxeNature;
 
 import java.net.URI;
 

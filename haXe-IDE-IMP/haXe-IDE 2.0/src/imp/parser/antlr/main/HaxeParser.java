@@ -1,6 +1,6 @@
 // $ANTLR 3.4 Haxe.g 2012-04-02 19:52:19
 
-package haxe.imp.parser.antlr.main;
+package imp.parser.antlr.main;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;

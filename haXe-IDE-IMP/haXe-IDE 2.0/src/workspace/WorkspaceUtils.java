@@ -1,7 +1,5 @@
 package workspace;
 
-import haxe.imp.parser.antlr.main.HaxeLexer;
-import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
@@ -18,6 +16,8 @@ import haxe.imp.parser.antlr.tree.specific.SliceNode;
 import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.main.HaxeParser;
 
 import java.io.File;
 import java.io.IOException;

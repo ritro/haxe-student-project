@@ -1,5 +1,7 @@
 package workspace;
 
+import imp.builders.HaxeNature;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.action.IAction;
@@ -8,7 +10,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-import haxe.imp.builders.HaxeNature;
 
 public class EnableHaxeNature implements IWorkbenchWindowActionDelegate {
 	private IProject fProject;

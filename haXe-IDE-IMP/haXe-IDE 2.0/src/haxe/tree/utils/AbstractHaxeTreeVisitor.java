@@ -1,6 +1,6 @@
 package haxe.tree.utils;
 
-import haxe.imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ArrayNode;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;

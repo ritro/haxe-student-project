@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser;
+package imp.parser;
 
 import java.util.Collections;
 import java.util.HashMap;

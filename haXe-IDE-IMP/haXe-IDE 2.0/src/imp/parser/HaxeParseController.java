@@ -8,15 +8,15 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package haxe.imp.parser;
+package imp.parser;
 
-import haxe.imp.parser.antlr.main.HaxeLexer;
-import haxe.imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
 import haxe.tree.utils.HaxeTreeErrorProvider;
 import haxe.tree.utils.HaxeTreeLinker;
 import haxe.tree.utils.HaxeTreePrinter;
+import imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.main.HaxeParser;
 
 import java.util.ArrayList;
 import java.util.Iterator;

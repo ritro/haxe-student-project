@@ -10,13 +10,13 @@
  *******************************************************************************/
 package imp.utilsImplementations;
 
-import haxe.imp.parser.HaxeParseController;
-import haxe.imp.parser.antlr.main.HaxeLexer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.tree.utils.Environment;
+import imp.parser.HaxeParseController;
+import imp.parser.antlr.main.HaxeLexer;
 
 import java.util.ArrayList;
 import java.util.Set;

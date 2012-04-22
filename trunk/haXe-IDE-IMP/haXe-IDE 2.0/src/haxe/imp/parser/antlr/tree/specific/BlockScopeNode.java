@@ -91,9 +91,11 @@ public class BlockScopeNode extends HaxeTree {
 	    {
 	        setHaxeType(HaxeTypeUtils.getVoid());
 	    }
-	    
-	    HaxeTree lastChild = getChild(childCount - 1);
-	    setHaxeType(lastChild.getHaxeType());
+	    else
+	    {
+	        HaxeTree lastChild = getChild(childCount - 1);
+	        setHaxeType(lastChild.getHaxeType());
+	    }
 	    
         return super.getHaxeType();
 	}

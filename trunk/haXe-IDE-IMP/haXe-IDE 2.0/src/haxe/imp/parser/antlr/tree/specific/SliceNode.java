@@ -97,7 +97,7 @@ public class SliceNode extends ParametersContainerNode
     {
         return String.format(
                 "slice : %s <%s, %s>", 
-                haxeType == null ? "null" : haxeType.toString(),
+                getHaxeType() == null ? "null" : getHaxeType().toString(),
                 getMostLeftPosition(),
                 getMostRightPosition());
     }

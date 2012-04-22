@@ -3,10 +3,11 @@ package haxe.tree.utils;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.HaxeType;
 
-import java.util.HashMap;
 import java.util.List;
 
 import workspace.Activator;
+import workspace.elements.HaxeFile;
+import workspace.elements.HaxeLibProject;
 
 public class HaxeTypeUtils
 {
@@ -52,20 +53,39 @@ public class HaxeTypeUtils
      * we should search the definition for that type. Standart types
      * are Haxe Lib types defined without package. E.g. Int, Bool and
      * Array are standart types.
-     * @param shorName
+     * @param shortName
      * @return
      */
-    public static HaxeType getStandartTypeByName(final String shorName)
+    public static HaxeType getStandartTypeByName(final String shortName)
     {
-        HaxeTree stdTypes = 
-                Activator.getInstance().getHaxeLib().get(primaryTypesFileName);
+        HaxeLibProject lib = Activator.getInstance().getHaxeLib();
+        return getStandartTypeByName(shortName, lib);
+    }
+    
+    public static HaxeType getStandartTypeByName(
+            final String shortName, final HaxeLibProject lib)
+    {
+        if (lib == null)
+        {
+            return null;
+        }
+        HaxeFile file = lib.getFile(shortName);
+        HaxeTree stdTypes = null;
+        if (file != null)
+        {
+            stdTypes = file.getAst();
+        }
+        if (stdTypes == null)
+        {
+           stdTypes = lib.getFile(primaryTypesFileName).getAst();
+        }
         if (stdTypes == null)
         {
             return null;
         }
         for (HaxeTree child : stdTypes.getChildren())
         {
-            if (child instanceof HaxeType && child.getText().equals(shorName))
+            if (child instanceof HaxeType && child.getText().equals(shortName))
             {
                 return (HaxeType)child;
             }
@@ -75,9 +95,22 @@ public class HaxeTypeUtils
     
     public static HaxeType getLibType(final String pack, final String shortName)
     {
-        HashMap<String, HaxeTree> lib = Activator.getInstance().getHaxeLib();
+        HaxeLibProject lib = Activator.getInstance().getHaxeLib();
         
-        HaxeTree ast = lib.get(pack);
+        if (lib == null)
+        {
+            return null;
+        }
+        HaxeFile file = lib.getFile(pack);
+        if (file == null)
+        {
+            return null;
+        }
+        HaxeTree ast = file.getAst();
+        if (ast == null)
+        {
+            return null;
+        }
         for (HaxeTree child : ast.getChildren())
         {
             if (child instanceof HaxeType && child.getText().equals(shortName))
@@ -100,6 +133,14 @@ public class HaxeTypeUtils
     public static boolean isAvailableAssignement(
             final HaxeType type1, final HaxeType type2) 
     {
+        if (type1 == null && type2 == null)
+        {
+            return true;
+        }
+        if (type1 == null || type2 == null)
+        {
+            return false;
+        }
         if (type1.equals(type2) || isExtendedClass(type1, type2)) 
         {
             return true;
@@ -194,6 +235,15 @@ public class HaxeTypeUtils
     public static boolean isComparable(
             final HaxeType type,final HaxeType type2)
     {
+        if (type == null || type2 == null)
+        {
+            return false;
+        }
+        if (areBothNumbers(type, type2) || 
+                type.equals(getString()) && type2.equals(getString()))
+        {
+            return true;
+        }
         // TODO what with this?
         return false;
     }

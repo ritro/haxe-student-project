@@ -1,7 +1,6 @@
 package workspace.elements;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.tree.utils.HaxeTreeLinker;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -17,27 +16,23 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 
-import workspace.HashMapForLists;
 import workspace.ProjectVisitor;
 import workspace.WorkspaceUtils;
 
-public class HaxeProject
+public class HaxeProject extends AbstractHaxeProject
 {    
     public static String _defaultExtention = ".hx";
     
     private IProject baseProject;
     private List<BuildFile> buildFiles = null;
-    private HashMapForLists<HaxeFile> fileList = null;
 
-    public HaxeProject(IProject project)
+    public HaxeProject(final IProject project)
     {
-        baseProject = project;
-        buildFiles = new ArrayList<BuildFile>();
-        fileList = new HashMapForLists<HaxeFile>();
+        super();
         
-        findBuildFiles();
-        makeFileList();
-        linkAll();
+        buildFiles = new ArrayList<BuildFile>();
+        baseProject = project;
+        analyzeProjectStructure();
     }
     
     public String getName()
@@ -45,111 +40,45 @@ public class HaxeProject
         return baseProject.getName();
     }
     
-    public void addToFileTree(HaxeFile file)
+    public void addFile(final HaxeFile file)
     {
-        // TODO make as in libs?
+        String pack = file.getPackage();
         String name = file.getName();
-        fileList.put(name, file);
+        
+        String key = 
+                pack == null || pack.isEmpty() ? name : pack + "." + name;
+        addFile(key, file);
     }
     
-    /**
-     * The Key is the name of the file with extention
-     * but without path.
-     * Value is files which have that name.
-     * @return
-     */
-    public HashMapForLists<HaxeFile> getFiles()
-    {
-        return fileList;
-    }
-    
-    public HaxeFile getFile(final IPath fullpath)
+    public HaxeFile getFile(final IFile file)
     {
         if (fileList == null)
         {
             return null;
         }
-        for (List<HaxeFile> list : fileList.values())
+        for (String name : fileList.keySet())
         {
-            for (HaxeFile file : list)
+            String fName = file.getName().substring(
+                    0, 
+                    file.getName().length() - file.getFileExtension().length());
+            if (name.endsWith(fName))
             {
-                if (file.getPath().equals(fullpath))
+                HaxeFile hfile = fileList.get(name);
+                if (hfile != null && hfile.getPath().equals(file.getFullPath()))
                 {
-                    return file;
+                    return hfile;
                 }
             }
-        }
-        
-        return null;
-    }
-    
-    public HaxeFile getFile(final String name, final String nameWithPackage)
-    {
-        if (fileList == null)
-        {
-            return null;
-        }
-        List<HaxeFile> list = fileList.get(name);
-        if (list == null)
-        {
-            return null;
-        }
-        for (HaxeFile file : list)
-        {
-            if (file.getPackage().equals(nameWithPackage))
-            {
-                return file;
-            }
-        }
-        
-        return null;
-    }
-    
-    public HaxeFile getFile(final String nameWithPackage)
-    {
-        if (fileList == null)
-        {
-            return null;
-        }
-        for (List<HaxeFile> list : fileList.values())
-        {
-            for (HaxeFile file : list)
-            {
-                if (file.getPackage().equals(nameWithPackage))
-                {
-                    return file;
-                }
-            }
-        }
-        
-        return null;
-    }
-    
-    public HaxeTree getFileAST(final String name, final String nameWithPackage)
-    {        
-        HaxeFile file = getFile(name, nameWithPackage);
-        if (file != null)
-        {
-            return file.getAst();
         }
         return null;
     }
     
     public HaxeTree getFileAST(final IFile file)
     {
-        if (fileList == null)
+        HaxeFile hfile = getFile(file);
+        if (hfile != null)
         {
-            return null;
-        }
-        List<HaxeFile> list = fileList.get(file.getName());
-        if (list == null)
-        {
-            return null;
-        }
-        HaxeFile foundFile = getFile(file.getFullPath());
-        if (foundFile != null)
-        {
-            return foundFile.getAst();
+            return hfile.getAst();
         }
         
         return null;
@@ -183,11 +112,6 @@ public class HaxeProject
     public boolean isOpen()
     {
         return baseProject.isOpen();
-    }
-    
-    public boolean contains(final String nameWithPackage)
-    {
-        return fileList.containsKey(nameWithPackage);
     }
     
     public IFile createFile(final String fileName) 
@@ -249,6 +173,46 @@ public class HaxeProject
         }
     }
     
+    protected void analyzeProjectStructure()
+    {
+        findBuildFiles();
+        fillFileList();
+        linkAll();
+    }
+
+    @Override
+    protected void fillFileList()
+    {
+        if (!isOpen())
+        {
+            return;
+        }
+        
+        ProjectVisitor visitor = new ProjectVisitor("hx");
+        try
+        {
+            for (IResource r : baseProject.members())
+            {
+                visitor.visit(r);
+            }
+            
+            List<IFile> ff = visitor.getBuildFileList();
+            for (IFile f : ff)
+            {
+                System.out.println("Parsing file begin: " + f.getLocation().toOSString());
+                HaxeTree ast = WorkspaceUtils.parseFileContents(f.getContents());                
+                HaxeFile file = new HaxeFile(f, ast);
+                
+                addFile(file);
+            }
+        }
+        catch (RecognitionException | IOException | CoreException e)
+        {
+            System.out.println("Parsefile failed");
+            e.printStackTrace();
+        }
+    }
+    
     private void findBuildFiles()
     {
         if (!isOpen())
@@ -278,65 +242,4 @@ public class HaxeProject
         }
     }
     
-    private void makeFileList()
-    {
-        if (!isOpen())
-        {
-            return;
-        }
-        
-        ProjectVisitor visitor = new ProjectVisitor("hx");
-        try
-        {
-            for (IResource r : baseProject.members())
-            {
-                visitor.visit(r);
-            }
-            
-            List<IFile> ff = visitor.getBuildFileList();
-            for (IFile f : ff)
-            {
-                HaxeTree ast = makeAST(f);                
-                HaxeFile file = new HaxeFile(f, ast);
-                
-                addToFileTree(file);
-            }
-        }
-        catch (CoreException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    private HaxeTree makeAST(final IFile file)
-    {
-        try
-        {
-            System.out.println("Parsing file begin: " + file.getLocation().toOSString());
-            HaxeTree ast = WorkspaceUtils.parseFileContents(file.getContents());
-            return ast;
-        }
-        catch (RecognitionException | IOException | CoreException e)
-        {                
-            System.out.println("Parsefile failed: " + file.getLocation().toOSString());
-        }
-        return null;
-    }
-    
-    private void linkAll()
-    {
-        HaxeTreeLinker linker = new HaxeTreeLinker(this);
-        for (List<HaxeFile> fileLists : fileList.values())
-        {
-            for (HaxeFile file : fileLists)
-            {
-                HaxeTree ast = file.getAst();
-                if (ast == null)
-                {
-                    continue;
-                }
-                linker.visit(ast);                
-            }
-        }
-    }
 }

@@ -26,7 +26,7 @@ tokens {
 }
 
 @lexer::header{
-package haxe.imp.parser.antlr.main;
+package imp.parser.antlr.main;
 
 import java.util.HashMap;
 //import java.util.Stack; // imported by ANTLR
@@ -56,7 +56,7 @@ import java.util.HashMap;
 
 
 @header{
-package haxe.imp.parser.antlr.main;
+package imp.parser.antlr.main;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
@@ -101,7 +101,6 @@ meta    : MONKEYS_AT metaName (LPAREN paramList? RPAREN)?
 
 metaName
     : IDENTIFIER
-    | primitiveType
 //    | keyword ?
     | COLON metaName
     ;
@@ -209,11 +208,8 @@ anonTypePart    : anonTypeFieldList
 anonTypeFieldList 
                 : anonTypeField (COMMA anonTypeField)* -> anonTypeField+
                 ;
-    
-primitiveType   : INT | FLOAT | DYNAMIC | BOOLEAN | VOID | STRING
-                ;
 
-type            : (primitiveType^ | filepath^ | anonType^ ) typeParam?
+type            : ( filepath^ | anonType^ ) typeParam?
                 ;
     
 typeParam       : LT typeList typeParamPart -> ^(TYPE_PARAM<HaxeTree>["TYPE_PARAM"] typeList typeParamPart)
@@ -479,14 +475,14 @@ objLitElem      : IDENTIFIER COLON! expr
     
 // TODO: REGEXPR
 elementarySymbol
-    : LONGLITERAL   -> LONGLITERAL<ConstantNode>[$LONGLITERAL, "INT"]
+    : LONGLITERAL   -> LONGLITERAL<ConstantNode>[$LONGLITERAL, "Int"]
     | NULL          -> NULL<ConstantNode>[$NULL,"Unknown<0>"]
-    | INTLITERAL    -> INTLITERAL<ConstantNode>[$INTLITERAL, "INT"]
-    | STRINGLITERAL -> STRINGLITERAL<ConstantNode>[$STRINGLITERAL,"STRING"]
-    | CHARLITERAL   -> CHARLITERAL<ConstantNode>[$CHARLITERAL, "STRING"]
-    | FLOATNUM      -> FLOATNUM<ConstantNode>[$FLOATNUM, "FLOAT"]
-    | TRUE          -> TRUE<ConstantNode>[$TRUE,"BOOL"]
-    | FALSE         -> FALSE<ConstantNode>[$FALSE,"BOOL"]
+    | INTLITERAL    -> INTLITERAL<ConstantNode>[$INTLITERAL, "Int"]
+    | STRINGLITERAL -> STRINGLITERAL<ConstantNode>[$STRINGLITERAL,"String"]
+    | CHARLITERAL   -> CHARLITERAL<ConstantNode>[$CHARLITERAL, "String"]
+    | FLOATNUM      -> FLOATNUM<ConstantNode>[$FLOATNUM, "Float"]
+    //| TRUE          -> TRUE<ConstantNode>[$TRUE,"Bool"]
+    //| FALSE         -> FALSE<ConstantNode>[$FALSE,"Bool"]
     ;
 
 WS      : ( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;}
@@ -523,7 +519,6 @@ EscapeSequence
 ;     
 
 ABSTRACT:   'abstract';
-BOOLEAN:    'Bool';
 BREAK:      'break';
 BYTE:       'byte';
 CASE:       'case';
@@ -541,14 +536,12 @@ EXTENDS:    'extends';
 EXTERN:     'extern';
 FINAL:      'final';
 FINALLY:    'finally';
-FLOAT:      'Float';
 FOR:        'for';
 GOTO:       'goto';
 IF:         'if';
 IMPLEMENTS: 'implements';
 IMPORT:     'import';
 INSTANCEOF: 'instanceof';
-INT:        'Int';
 INTERFACE:  'interface';
 LONG:       'long';
 NATIVE:     'native';
@@ -565,7 +558,6 @@ DYNAMIC:    'dynamic';
 OVERRIDE:   'override';
 STRICTFP:   'strictfp';
 SUPER:      'super';
-STRING:     'String';
 SWITCH:     'switch';
 THIS:       'this';
 THROW:      'throw';
@@ -576,7 +568,6 @@ TYPEDEF:    'typedef';
 UNTYPED:    'untyped';
 USING:      'using';
 VAR:        'var';
-VOID:       'Void';
 VOLATILE:   'volatile';
 WHILE:      'while';
 TRUE:       'true';

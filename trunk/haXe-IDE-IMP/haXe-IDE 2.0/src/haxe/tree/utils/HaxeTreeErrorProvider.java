@@ -315,7 +315,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeTree expr = node.getExpression();
         if (expr.ifUndefinedType(true))
         {
-            visit(node, data);
+            visit(expr, data);
         }
         else
         {

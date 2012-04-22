@@ -31,7 +31,9 @@ import java.util.List;
 import org.antlr.runtime.CommonToken;
 
 import workspace.Activator;
-import workspace.elements.HaxeProject;
+import workspace.elements.AbstractHaxeProject;
+import workspace.elements.HaxeFile;
+import workspace.elements.HaxeLibProject;
 
 public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
 {
@@ -39,13 +41,18 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     private List<String> usings;
     private enum ScopeTypes {Class, Function};
     private ScopeTypes currentScope = ScopeTypes.Class;
-    private HaxeProject project;
+    private AbstractHaxeProject project;
     private HashMap<String, HaxeType> currentFileTypes = null;
+    private boolean isLibProject = false;
     
-    public HaxeTreeLinker(HaxeProject proj)
+    public HaxeTreeLinker(AbstractHaxeProject abstractHaxeProject)
     {
         this();
-        project = proj;
+        project = abstractHaxeProject;
+        if (project instanceof HaxeLibProject)
+        {
+            isLibProject = true;
+        }
     }
     
     public HaxeTreeLinker()
@@ -54,7 +61,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
     
     @Override
-    public void visit(final HaxeTree t)
+    public void visit(HaxeTree t)
     {
         initialize();
         try
@@ -81,7 +88,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
      * @param data - current environment or parent class
      * @return
      */
-    private HaxeTree getDeclaration(Object data, String text)
+    private HaxeTree getDeclaration(final Object data, final String text)
     {
         HaxeTree decl = null;
         if (data instanceof Environment)
@@ -95,7 +102,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             decl = clas.getDeclaration(text);
         }
         
-        return null;
+        return decl;
     }
     
     /**
@@ -118,25 +125,37 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         Environment env = (Environment)local;
         HaxeType thisType = (HaxeType)env.get("this");
         // only classes can have type params
-        if (!(thisType instanceof ClassNode))
+        if (thisType instanceof ClassNode)
         {
-            return null;
-        }
-        ClassNode cclass = (ClassNode)thisType;
-        // 1. search in current class type params
-        for (HaxeType type : cclass.getParameterTypes())
-        {
-            if (type.getText().equals(shortTypeName))
+            ClassNode cclass = (ClassNode)thisType;
+            // 1. search in current class type params
+            for (HaxeType type : cclass.getParameterTypes())
             {
-                return type;
+                if (type.getText().equals(shortTypeName))
+                {
+                    return type;
+                }
             }
         }
-        // 2. search in Standart Types
-        HaxeType result = 
-                HaxeTypeUtils.getStandartTypeByName(shortTypeName);
-        if (result != null)
+        HaxeType result = null;
+        if (!isLibProject)
         {
-            return result;
+            // 2. search in Standart Types
+            result = HaxeTypeUtils.getStandartTypeByName(shortTypeName);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+        else
+        {
+            result = HaxeTypeUtils.getStandartTypeByName(
+                    shortTypeName, 
+                    (HaxeLibProject)project);
+            if (result != null)
+            {
+                return result;
+            }
         }
         // 3.types in the current file
         result = currentFileTypes.get(shortTypeName);
@@ -160,6 +179,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         for (HaxeTree modul: imports.values())
         {
+            if (modul == null)
+            {
+                continue;
+            }
             for (HaxeTree child : modul.getChildren())
             {
                 if (child instanceof HaxeType && 
@@ -175,7 +198,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
     
     @Override
-    protected void visit(final AssignOperationNode node, Object data)
+    protected void visit(AssignOperationNode node, Object data)
     {
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
@@ -192,7 +215,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ArrayNode node, final Object data)
+    protected void visit(ArrayNode node, final Object data)
     {
         if (node.getChildCount() == 0)
         {
@@ -223,13 +246,12 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             return;
         }
         visit(expression, declarations);
-        HaxeType exprType = expression.getHaxeType();
+        //HaxeType exprType = expression.getHaxeType();
         
         // if here is Undefined - then some return node already
         // tryed to set it's type and failed due to unknown type
         // of expression - we should leave it as it is
         if (function == null
-                || !function.getHaxeType().equals(HaxeTypeUtils.getVoid())
                 || function.getHaxeType() != null)
         {
             return;
@@ -238,7 +260,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final BinaryExpressionNode node, Object data)
+    protected void visit(BinaryExpressionNode node, Object data)
     {
         Environment declarations = (Environment)data;
         HaxeTree leftNode = node.getLeftOperand();
@@ -254,7 +276,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
     }
     
-    protected void visit(final UnarExpressionNode node, Object data)
+    protected void visit(UnarExpressionNode node, Object data)
     {
         visit(node.getExpression(), data);
     }
@@ -262,6 +284,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     @Override
     protected void visitUnknown(HaxeTree node, Object data)
     {
+        /*
         CommonToken token = node.getToken();
         if (token != null && token.getType() == HaxeParser.TYPE_TAG) 
         {
@@ -271,7 +294,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
                 String typeName = child.getText();
                 HaxeType type = getType(typeName, data);
             }
-        } 
+        }*/ 
         
         String name = node.getText();
         // import
@@ -287,30 +310,31 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
     }
     
-    protected void addImport(final HaxeTree node, final boolean addToUsings)
+    protected void addImport(HaxeTree node, final boolean addToUsings)
     {
         String longName = node.getText();
     	String shortName = longName.substring(longName.lastIndexOf('.') + 1);
-        // here i should retrieve ast of imported file, if it's out project
-        // file, for flash and others libs still null
+
         if (project == null)
         {
             return;
         }
-        HaxeTree ast = project.getFileAST(shortName, longName);
-        if (ast == null)
+        HaxeFile file = project.getFile(longName);
+        HaxeTree ast = null;
+        if (file == null && Activator.getInstance().getHaxeLib() != null)
         {
-            // TODO: search in haxe libs
+            file = Activator.getInstance().getHaxeLib().getFile(longName);
         }
-        // TODO: if shortName already exists - error, not to import such
+        if (file != null)
+        {
+            ast = file.getAst();
+        }
+
         imports.put(shortName, ast);
         if (addToUsings)
         {
         	usings.add(shortName);
         }
-        // if no file found - how to mark error?
-        // 1-check if import package just slightly wrong
-        // 2-maybe there is no at all such file - mark error
     }
     
     protected void visitMemberUse(VarUsageNode node, Object data)
@@ -427,7 +451,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final MethodCallNode node, Object data)
+    protected void visit(MethodCallNode node, Object data)
     {
         if (node.isFieldUse())
         {
@@ -470,7 +494,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         {
             HaxeType ctype = params.get(i).getHaxeType(true);
             HaxeType dType = declParams.get(i).getHaxeType(true);
-            if (!ctype.equals(dType))
+            if (ctype != null && !ctype.equals(dType))
             {
                 return;
             }
@@ -479,7 +503,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final SliceNode node, final Object data)
+    protected void visit(SliceNode node, final Object data)
     {
         for (HaxeTree child : node.getParameters())
         {
@@ -497,8 +521,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     {
         // search for declaration
         // 1 - local vars - last declared
-        Environment declarations = (Environment)data;
-        HaxeTree declaration = declarations.get(node.getText());
+        String name = node.getText();
+        HaxeTree declaration = getDeclaration(data, name);
         // 2 - class member, inherit fields????
         // 3 - curr class static fields???
         // 4 - enums declared
@@ -534,13 +558,13 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ErrorNode node, Object data)
+    protected void visit(ErrorNode node, Object data)
     {
         // do nothing here
     }
 
     @Override
-    protected void visit(final VarDeclarationNode node, Object data)
+    protected void visit(VarDeclarationNode node, Object data)
     {
         if (currentScope == ScopeTypes.Class)
         {
@@ -580,7 +604,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final FunctionNode node, Object data)
+    protected void visit(FunctionNode node, Object data)
     {
         Environment funEnv = new Environment((Environment)data);
         for (HaxeTree child : node.getChildren())
@@ -600,6 +624,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         {
             x.setDeclaratonType(DeclarationType.FunctionParameter);
             x.updateInfo();
+            visit(x, data);
             funEnv.put(x);
         }
         
@@ -613,9 +638,36 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ClassNode node, Object data)
+    protected void visit(ClassNode node, Object data)
     {
-        node.analizeInherits();
+        // class D extends A, implements B, implements C
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child.getType() == HaxeParser.EXTENDS)
+            {
+                HaxeTree found = child.getChild(0);
+                if (found == null)
+                {
+                    continue;
+                }
+                HaxeType type = getType(found.getText(), data);
+                node.setParentToExtend(type);
+                node.addToTypeHierarchy(type);
+            }
+            if (child.getType() == HaxeParser.IMPLEMENT_LIST)
+            {
+                for (HaxeTree impl : child.getChildren())
+                {
+                    if (impl == null)
+                    {
+                        continue;
+                    }
+                    HaxeType type = getType(impl.getText(), data);
+                    node.setParentToExtend(type);
+                    node.addToTypeHierarchy(type);
+                }
+            }
+        }
         Environment env = (Environment)data;
         env.putWithCustomName("this", node);
         HaxeTree inherits = node.getParentToExtend();
@@ -635,7 +687,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final IfNode node, Object data)
+    protected void visit(IfNode node, Object data)
     {
         Environment declarations = (Environment)data;
         int thisIndex = node.getChildIndex();
@@ -668,7 +720,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         visit(elseBlock, declarations);
         
         HaxeType type = ifBlock.getHaxeType();
-        if (elseBlock.getHaxeType().equals(type))
+        HaxeType elseType = elseBlock.getHaxeType();
+        if (elseType != null && elseType.equals(type))
         {
             // If there is an else, then expr-1 and expr-2 must be of the same type and 
             // this will be the type of the if expression
@@ -678,21 +731,21 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ForNode node, final Object data)
+    protected void visit(ForNode node, final Object data)
     {
         visitAllChildren(node, data);
         node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
-    protected void visit(final WhileNode node, final Object data)
+    protected void visit(WhileNode node, final Object data)
     {
         visitAllChildren(node, data);
         node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
-    protected void visitHighLevel(final HaxeTree node, Object data)
+    protected void visitHighLevel(HaxeTree node, Object data)
     {
         for (HaxeTree child : node.getChildren())
         {

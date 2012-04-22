@@ -220,7 +220,7 @@ public class VarDeclarationNode extends NodeWithModifier {
 	    return String.format(
     	            "declaration %s : %s <%s,%s>", 
     	            getText(),
-    	            haxeType == null ? "null" : haxeType.getShortTypeName(),
+    	            getHaxeType() == null ? "null" : getHaxeType().getShortTypeName(),
     	            getMostLeftPosition(),
     	            getMostRightPosition());
 	}

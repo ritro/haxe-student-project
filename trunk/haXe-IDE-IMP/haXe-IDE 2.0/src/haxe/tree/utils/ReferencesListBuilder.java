@@ -22,7 +22,7 @@ import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.imp.parser.antlr.tree.specific.WhileNode;
 
-import java.util.List;
+import java.util.HashMap;
 
 import org.eclipse.core.resources.IFile;
 
@@ -60,19 +60,16 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         foundResult = new HashMapForLists<NodeLink>();
         project = Activator.getInstance().getCurrentHaxeProject();
         
-        HashMapForLists<HaxeFile> fullList = project.getFiles();
+        HashMap<String, HaxeFile> fullList = project.getFiles();
         
         IFile activeFile = Activator.getInstance().getCurrentFile();
-        currFile = project.getFile(activeFile.getFullPath());
+        currFile = project.getFile(activeFile);
         analyseSearchedObject(searchFor);
         
-        for (List<HaxeFile> list : fullList.values())
+        for (HaxeFile file : fullList.values())
         {
-            for (HaxeFile file : list)
-            {
-                currFile = file;
-                visit(file.getAst(), null);
-            }
+            currFile = file;
+            visit(file.getAst(), null);
         }
     }
     

@@ -12,30 +12,20 @@ package workspace;
 
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
-import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.imp.runtime.PluginBase;
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
 
@@ -61,7 +51,7 @@ public class Activator extends PluginBase{
 	
 	private IFile                          activeFile      = null;
 	private HashMap<String, HaxeProject>   projects        = null;
-	private HashMap<String, HaxeTree>      libraries       = null;
+	private HaxeLibProject                 libraries       = null;
 	private HaxeProject                    currentProject  = null;
 	
 	/**
@@ -113,7 +103,7 @@ public class Activator extends PluginBase{
 	    return projects;
 	}
 	
-	public HashMap<String, HaxeTree> getHaxeLib()
+	public HaxeLibProject getHaxeLib()
 	{
 	    return libraries;
 	}
@@ -146,7 +136,6 @@ public class Activator extends PluginBase{
 		sPlugin = this;
 
 		projects = new HashMap<String, HaxeProject>();
-		libraries = new HashMap<String, HaxeTree>();
 	}
 
 	@Override
@@ -222,58 +211,8 @@ public class Activator extends PluginBase{
 	}
 	
 	private void parseLibs() throws URISyntaxException, IOException
-	{
-	    Bundle bundle = Platform.getBundle(Activator.kPluginID);
-	    URL url = FileLocator.find(bundle, new Path(libsPath), null);
-	    try 
-	    {
-	        url = FileLocator.resolve(url);	    
-	        File test = new File(url.getFile());
-	        
-	        JarFile jarFile = new JarFile(test);
-        
-    	    Enumeration<JarEntry> entries = jarFile.entries();  
-    	    while (entries.hasMoreElements()) {
-    	        JarEntry entry = entries.nextElement();
-    	        String filePath = entry.getName();
-    	        if (!filePath.endsWith(".hx"))
-    	        {
-    	            continue;
-    	        }
-    
-    	        InputStream in = jarFile.getInputStream(entry);
-    	        
-    	        HaxeTree ast = WorkspaceUtils.parseFileContents(in);
-    	        in.close();
-    	        
-    	        if (ast == null)
-    	        {
-    	            logger.info("Activator.parseLibs Could not parse lib file: ", filePath);
-    	            continue;
-    	        }
-    	        
-    	        String filename = WorkspaceUtils.getHaxeFileNameFromPath(filePath);
-    	        if (filename == null)
-    	        {
-                    logger.info("Activator.parseLibs Something is not right with filename");
-    	            continue;
-    	        }
-        	    // 1. Try get package from file itself
-        	    // for file File.hx it will look like a.b
-    	        String pack = ast.getPackage();
-        	    // 2. add to package a file name a.b.File
-    	        pack = pack == null || pack.isEmpty()
-    	                ? filename
-    	                : pack + "." + filename; 
-        	    // 3. add to libs    	        
-    	        libraries.put(pack, ast);
-    	    } 
-    	    jarFile.close();
-	    }
-        catch (IOException | RecognitionException e)
-        {
-            System.out.printf("Exception while parsing libs: {0}", e.toString());
-            System.out.println();
-        }
+	{        
+	    libraries = new HaxeLibProject(libsPath);
+	    libraries.linkLib();
 	}
 }

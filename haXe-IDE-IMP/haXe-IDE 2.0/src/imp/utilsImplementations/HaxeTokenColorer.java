@@ -67,7 +67,6 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case CLASS:
 		case PACKAGE:
 		case STATIC:
-		case VOID:
 		case NEW:
 		case IMPORT:
 		case IMPLEMENTS:
@@ -96,9 +95,6 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 		case CHARLITERAL:
 		case STRINGLITERAL:
 			return stringAttribute;
-		case INT:
-		case FLOAT:
-		case BOOLEAN:
 		case NULL:
 		case FLOATNUM:
 			return numberAttribute;

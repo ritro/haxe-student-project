@@ -161,7 +161,7 @@ public class HxFilesEditor extends UniversalEditor
         ISourceViewer view = getSourceViewer();
         IFile activeFile = Activator.getInstance().getCurrentFile();
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
-        HaxeFile currFile = project.getFile(activeFile.getFullPath());
+        HaxeFile currFile = project.getFile(activeFile);
         String currPack = currFile.getPackage();
         
         TextPresentation presentation = new TextPresentation();

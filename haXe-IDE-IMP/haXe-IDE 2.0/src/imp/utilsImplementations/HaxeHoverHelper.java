@@ -223,9 +223,13 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	    }
 	    
 	    HaxeType type = node.getHaxeType();
-	    String typeName = type.isHaxeLibType() 
+	    String typeName = "null";
+	    if (type != null)
+	    {
+	        typeName = type.isHaxeLibType() 
 	            ? type.getShortTypeName()
                 : type.getFullTypeName();
+	    }
 	    return  typeName +  " " + node.getText();
 	}
 

@@ -94,9 +94,9 @@ public class UnarExpressionNode extends HaxeTree
     public String toString()
     {
         return String.format(
-                "unar expr [{0}] : {1} <{2}, {3}>", 
+                "unar expr [%s] : %s <%s, %s>", 
                 getText(),
-                haxeType == null ? "null" : haxeType.toString(),
+                getHaxeType() == null ? "null" : getHaxeType().toString(),
                 getMostLeftPosition(),
                 getMostRightPosition());
     }

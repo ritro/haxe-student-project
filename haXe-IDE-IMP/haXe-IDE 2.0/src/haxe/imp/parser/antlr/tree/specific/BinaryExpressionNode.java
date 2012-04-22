@@ -43,7 +43,7 @@ public class BinaryExpressionNode extends BinaryOperaionContainer
         return String.format(
                 "binary expr [%s] : %s <%s, %s>", 
                 getText(),
-                haxeType == null ? "null" : haxeType.toString(),
+                getHaxeType() == null ? "null" : getHaxeType().toString(),
                 getMostLeftPosition(),
                 getMostRightPosition());
     }

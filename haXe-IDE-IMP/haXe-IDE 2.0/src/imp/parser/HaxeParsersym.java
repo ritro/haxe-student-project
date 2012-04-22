@@ -25,7 +25,6 @@ public interface HaxeParsersym {
 	public static final int CLASS = HaxeLexer.CLASS;
 	public static final int PACKAGE = HaxeLexer.PACKAGE;
 	public static final int STATIC = HaxeLexer.STATIC;
-	public static final int VOID = HaxeLexer.VOID;
 	public static final int NEW = HaxeLexer.NEW;
 	public static final int IMPORT = HaxeLexer.IMPORT;
 	public static final int IMPLEMENTS = HaxeLexer.IMPLEMENTS;
@@ -52,10 +51,7 @@ public interface HaxeParsersym {
 	public static final int TYPEDEF = HaxeLexer.TYPEDEF;
 	//Primary Types
 	public static final int NULL = HaxeLexer.NULL;
-	public static final int INT = HaxeLexer.INT;
-	public static final int FLOAT = HaxeLexer.FLOAT;
 	public static final int FLOATNUM = HaxeLexer.FLOATNUM;
-	public static final int BOOLEAN = HaxeLexer.BOOLEAN;
 	//Preprocessor
 	//public static final int PREPROCESSOR_DIRECTIVE = TinyHaxeTry1Lexer.PREPROCESSOR_DIRECTIVE;
 	//String Literal

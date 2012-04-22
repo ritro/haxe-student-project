@@ -89,7 +89,7 @@ public class ReturnNode extends HaxeTree
 	
 	public String toString()
 	{
-	    String type = haxeType == null ? "null" : haxeType.toString();
+	    String type = getHaxeType() == null ? "null" : getHaxeType().toString();
 	    return 
 	            "return : " + 
 	            type;

@@ -1,7 +1,6 @@
 package haxe.imp.parser.antlr.tree.specific;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.runtime.Token;
@@ -10,16 +9,7 @@ import haxe.imp.parser.antlr.tree.BlockScopeContainer;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
 public abstract class HaxeType extends BlockScopeContainer
-{    
-    private static List<String> numericTypes = new ArrayList<String>()
-            {
-                private static final long serialVersionUID = 1L;
-                {
-                    this.addAll(Arrays.asList(
-                            new String[] {"Int", "Float"}));
-                }
-            };
-            
+{                
     protected boolean isHaxeLibType         = false;
     protected String fullName               = null;
     protected List<HaxeType> typeHierarchy  = null;
@@ -48,6 +38,10 @@ public abstract class HaxeType extends BlockScopeContainer
     
     public void addToTypeHierarchy(final HaxeType type) 
     {
+        if (type == null)
+        {
+            return;
+        }
         typeHierarchy.add(type);
     }
     
@@ -63,6 +57,10 @@ public abstract class HaxeType extends BlockScopeContainer
 
     public String getFullTypeName() 
     {
+        if (fullName == null)
+        {
+            fullName = getShortTypeName();
+        }
         return fullName;
     }
     

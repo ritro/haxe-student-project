@@ -3,8 +3,6 @@ package haxe.imp.parser.antlr.tree;
 import haxe.imp.parser.antlr.tree.specific.HaxeType;
 import haxe.tree.utils.HaxeTypeUtils;
 
-import java.util.ArrayList;
-
 import org.antlr.runtime.Token;
 
 public class BinaryOperaionContainer extends HaxeTree
@@ -102,7 +100,11 @@ public class BinaryOperaionContainer extends HaxeTree
             final BoolOperations operationType,
             final HaxeType leftType,
             final HaxeType rightType)
-    {        
+    {
+        if (operationType == null || leftType == null || rightType == null)
+        {
+            return null;
+        }
         HaxeType intType = HaxeTypeUtils.getInt();
         switch (operationType) 
         {

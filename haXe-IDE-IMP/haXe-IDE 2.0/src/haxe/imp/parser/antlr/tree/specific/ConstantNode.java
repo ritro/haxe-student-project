@@ -42,6 +42,6 @@ public class ConstantNode extends HaxeTree {
 	    return String.format(
 	            "constant [%s]: %s", 
 	            getText(),
-	            haxeType == null ? "null" : haxeType.toString());
+	            getHaxeType() == null ? "null" : getHaxeType().toString());
 	}
 }

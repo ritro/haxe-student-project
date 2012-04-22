@@ -13,7 +13,6 @@ package haxe.imp.parser.antlr.tree.specific;
 import java.util.ArrayList;
 import java.util.List;
 
-import imp.parser.antlr.main.HaxeParser;
 import haxe.imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.Token;
@@ -56,42 +55,14 @@ public class ClassNode extends HaxeType
 	    return paramTypes;
 	}
 	
-	public HaxeTree getParentToExtend()
+	public HaxeType getParentToExtend()
 	{
 	    return extention;
 	}
 	
-	/**
-	 * class D extends A, implements B, implements C {} 
-	 * Каждый экземпляр D будет иметь тип D, но также имеет типы A , B и C.
-	 * 
-	 * @return Class Name type with implemented types record for each class/interface  
-	 * it extended/implemented
-	 */
-	public void analizeInherits()
+	public void setParentToExtend(final HaxeType extend)
 	{
-	    for (HaxeTree child : getChildren())
-	    {
-	        if (child.getType() == HaxeParser.EXTENDS)
-	        {
-	            HaxeTree found = child.getChild(0);
-	            if (found instanceof HaxeType)
-	            {
-	                extention = (HaxeType)found;
-	                addToTypeHierarchy(extention);
-	            }
-	        }
-	        if (child.getType() == HaxeParser.IMPLEMENT_LIST)
-	        {
-	            for (HaxeTree type : child.getChildren())
-	            {
-	                if (type instanceof HaxeType)
-	                {
-	                    addToTypeHierarchy((HaxeType)type);
-	                }
-	            }
-	        }
-	    }
+	    extention = extend;
 	}
 	
 	@Override

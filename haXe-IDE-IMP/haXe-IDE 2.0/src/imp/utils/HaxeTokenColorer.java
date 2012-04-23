@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package imp.utilsImplementations;
+package imp.utils;
 
 import imp.parser.HaxeParsersym;
 

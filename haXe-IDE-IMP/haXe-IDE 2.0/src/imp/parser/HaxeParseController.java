@@ -12,6 +12,7 @@ package imp.parser;
 
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
+import imp.utils.HaxeSourcePositionLocator;
 
 import java.util.ArrayList;
 import java.util.Iterator;

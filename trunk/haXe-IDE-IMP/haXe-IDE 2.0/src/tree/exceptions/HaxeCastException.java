@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package imp.parser.antlr.tree.exceptions;
+package tree.exceptions;
 
 import tree.HaxeTree;
 

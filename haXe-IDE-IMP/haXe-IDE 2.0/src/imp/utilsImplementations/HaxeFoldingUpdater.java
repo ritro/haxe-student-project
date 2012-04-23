@@ -10,12 +10,12 @@
  *******************************************************************************/
 package imp.utilsImplementations;
 
-import haxe.imp.parser.antlr.tree.BlockScopeContainer;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.tree.BlockScopeContainer;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.BlockScopeNode;
+import imp.parser.antlr.tree.specific.ClassNode;
 
 import java.util.HashMap;
 import java.util.List;

@@ -3,15 +3,16 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseExpression;
 
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.ArrayNode;
+import imp.parser.antlr.tree.specific.ConstantNode;
+import imp.parser.antlr.tree.specific.MethodCallNode;
+import imp.parser.antlr.tree.specific.NewNode;
+import imp.parser.antlr.tree.specific.SliceNode;
+import imp.parser.antlr.tree.specific.VarUsageNode;
+
 import java.util.List;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.ArrayNode;
-import haxe.imp.parser.antlr.tree.specific.ConstantNode;
-import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
-import haxe.imp.parser.antlr.tree.specific.NewNode;
-import haxe.imp.parser.antlr.tree.specific.SliceNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.tree.utils.HaxeTreePrinter;
 
 import org.antlr.runtime.RecognitionException;

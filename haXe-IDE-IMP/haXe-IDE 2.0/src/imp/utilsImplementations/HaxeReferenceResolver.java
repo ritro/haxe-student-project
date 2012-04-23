@@ -10,23 +10,23 @@
  *******************************************************************************/
 package imp.utilsImplementations;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.ArrayNode;
-import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
-import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.ConstantNode;
-import haxe.imp.parser.antlr.tree.specific.ErrorNode;
-import haxe.imp.parser.antlr.tree.specific.ForNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.IfNode;
-import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
-import haxe.imp.parser.antlr.tree.specific.ReturnNode;
-import haxe.imp.parser.antlr.tree.specific.SliceNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.WhileNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.ArrayNode;
+import imp.parser.antlr.tree.specific.AssignOperationNode;
+import imp.parser.antlr.tree.specific.BinaryExpressionNode;
+import imp.parser.antlr.tree.specific.BlockScopeNode;
+import imp.parser.antlr.tree.specific.ClassNode;
+import imp.parser.antlr.tree.specific.ConstantNode;
+import imp.parser.antlr.tree.specific.ErrorNode;
+import imp.parser.antlr.tree.specific.ForNode;
+import imp.parser.antlr.tree.specific.FunctionNode;
+import imp.parser.antlr.tree.specific.IfNode;
+import imp.parser.antlr.tree.specific.MethodCallNode;
+import imp.parser.antlr.tree.specific.ReturnNode;
+import imp.parser.antlr.tree.specific.SliceNode;
+import imp.parser.antlr.tree.specific.VarDeclarationNode;
+import imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.tree.specific.WhileNode;
 
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;

@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.parser;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.HaxeTree;
 import lpg.runtime.IAst;
 
 import org.antlr.runtime.CommonToken;

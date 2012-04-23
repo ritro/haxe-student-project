@@ -10,11 +10,11 @@
  *******************************************************************************/
 package imp.utilsImplementations;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.HaxeType;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.FunctionNode;
+import imp.parser.antlr.tree.specific.HaxeType;
+import imp.parser.antlr.tree.specific.VarDeclarationNode;
+import imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.List;
 

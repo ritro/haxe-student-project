@@ -10,14 +10,14 @@
  *******************************************************************************/
 package imp.treeModelBuilder;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.EnumNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
 import imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.BlockScopeNode;
+import imp.parser.antlr.tree.specific.ClassNode;
+import imp.parser.antlr.tree.specific.EnumNode;
+import imp.parser.antlr.tree.specific.FunctionNode;
+import imp.parser.antlr.tree.specific.VarDeclarationNode;
+import imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.HashSet;
 import java.util.Set;

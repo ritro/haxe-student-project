@@ -4,6 +4,11 @@ import static junit.framework.Assert.assertEquals;
 
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.HaxeTreeAdaptor;
+import imp.parser.antlr.tree.specific.AssignOperationNode;
+import imp.parser.antlr.tree.specific.BinaryExpressionNode;
+import imp.parser.antlr.tree.specific.FunctionNode;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -11,11 +16,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import junit.framework.Assert;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.HaxeTreeAdaptor;
-import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
-import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRInputStream;

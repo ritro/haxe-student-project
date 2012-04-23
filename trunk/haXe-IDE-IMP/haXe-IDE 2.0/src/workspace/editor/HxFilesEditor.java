@@ -1,6 +1,6 @@
 package workspace.editor;
 
-import imp.utilsImplementations.HaxeTokenColorer;
+import imp.utils.HaxeTokenColorer;
 
 import org.antlr.runtime.CommonToken;
 import org.eclipse.core.resources.IFile;

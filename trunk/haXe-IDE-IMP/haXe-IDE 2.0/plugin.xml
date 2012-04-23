@@ -24,7 +24,7 @@
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
-            class="imp.utilsImplementations.HaxeTokenColorer"
+            class="imp.utils.HaxeTokenColorer"
             language="haXe">
       </tokenColorer>
    </extension>
@@ -45,21 +45,21 @@
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
-            class="imp.utilsImplementations.HaxeFoldingUpdater"
+            class="imp.utils.HaxeFoldingUpdater"
             language="haXe">
       </foldingUpdater>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="imp.utilsImplementations.HaxeReferenceResolver"
+            class="imp.utils.HaxeReferenceResolver"
             language="haXe">
       </referenceResolver>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="imp.utilsImplementations.HaxeContentProposer"
+            class="imp.utils.HaxeContentProposer"
             language="haXe">
       </proposer>
    </extension>
@@ -68,7 +68,7 @@
          name="haxe Hover Helper"
          point="org.eclipse.imp.runtime.hoverHelper">
       <hoverHelper
-            class="imp.utilsImplementations.HaxeHoverHelper"
+            class="imp.utils.HaxeHoverHelper"
             language="haXe">
       </hoverHelper>
    </extension>
@@ -77,7 +77,7 @@
          name="haxe Reference Resolver"
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="imp.utilsImplementations.HaxeHoverHelper"
+            class="imp.utils.HaxeHoverHelper"
             language="haXe">
       </referenceResolver>
    </extension>
@@ -86,7 +86,7 @@
          name="haxe Documentation Provider"
          point="org.eclipse.imp.runtime.documentationProvider">
       <docProvider
-            class="imp.utilsImplementations.HelperDocumentationProvider"
+            class="imp.utils.HelperDocumentationProvider"
             language="haXe">
       </docProvider>
    </extension>

@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package imp.parser;
+package imp.utils;
 
 import lpg.runtime.IAst;
 

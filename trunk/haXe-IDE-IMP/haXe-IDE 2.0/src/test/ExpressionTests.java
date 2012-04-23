@@ -4,19 +4,20 @@ import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseExpression;
 
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.ArrayNode;
-import imp.parser.antlr.tree.specific.ConstantNode;
-import imp.parser.antlr.tree.specific.MethodCallNode;
-import imp.parser.antlr.tree.specific.NewNode;
-import imp.parser.antlr.tree.specific.SliceNode;
-import imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.List;
 
-import haxe.tree.utils.HaxeTreePrinter;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.ArrayNode;
+import tree.specific.ConstantNode;
+import tree.specific.MethodCallNode;
+import tree.specific.NewNode;
+import tree.specific.SliceNode;
+import tree.specific.VarUsageNode;
+import tree.utils.HaxeTreePrinter;
 
 public class ExpressionTests
 {

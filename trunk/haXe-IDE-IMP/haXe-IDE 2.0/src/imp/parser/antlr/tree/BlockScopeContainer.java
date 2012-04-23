@@ -1,9 +1,10 @@
 package imp.parser.antlr.tree;
 
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.specific.BlockScopeNode;
 
 import org.antlr.runtime.Token;
+
+import tree.specific.BlockScopeNode;
 
 
 /**

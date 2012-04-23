@@ -11,25 +11,26 @@
 package imp.utilsImplementations;
 
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.ArrayNode;
-import imp.parser.antlr.tree.specific.AssignOperationNode;
-import imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import imp.parser.antlr.tree.specific.BlockScopeNode;
-import imp.parser.antlr.tree.specific.ClassNode;
-import imp.parser.antlr.tree.specific.ConstantNode;
-import imp.parser.antlr.tree.specific.ErrorNode;
-import imp.parser.antlr.tree.specific.ForNode;
-import imp.parser.antlr.tree.specific.FunctionNode;
-import imp.parser.antlr.tree.specific.IfNode;
-import imp.parser.antlr.tree.specific.MethodCallNode;
-import imp.parser.antlr.tree.specific.ReturnNode;
-import imp.parser.antlr.tree.specific.SliceNode;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
-import imp.parser.antlr.tree.specific.VarUsageNode;
-import imp.parser.antlr.tree.specific.WhileNode;
 
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
+
+import tree.specific.ArrayNode;
+import tree.specific.AssignOperationNode;
+import tree.specific.BinaryExpressionNode;
+import tree.specific.BlockScopeNode;
+import tree.specific.ClassNode;
+import tree.specific.ConstantNode;
+import tree.specific.ErrorNode;
+import tree.specific.ForNode;
+import tree.specific.FunctionNode;
+import tree.specific.IfNode;
+import tree.specific.MethodCallNode;
+import tree.specific.ReturnNode;
+import tree.specific.SliceNode;
+import tree.specific.VarDeclarationNode;
+import tree.specific.VarUsageNode;
+import tree.specific.WhileNode;
 
 /**
  * Class for resolving referances to other languages

@@ -10,12 +10,13 @@
  *******************************************************************************/
 package imp.parser.antlr.tree;
 
-import imp.parser.antlr.tree.specific.ErrorNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.CommonTreeAdaptor;
+
+import tree.specific.ErrorNode;
 
 /**
  * The Class ExtendedTreeAdaptor.

@@ -3,13 +3,14 @@ package test;
 import static org.junit.Assert.assertTrue;
 import static test.TestHelper.parseStatement;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.ConstantNode;
-import imp.parser.antlr.tree.specific.HaxeType;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.ConstantNode;
+import tree.specific.HaxeType;
+import tree.specific.VarDeclarationNode;
+import tree.utils.HaxeTypeUtils;
 
 public class VarDeclarationTests
 {

@@ -14,8 +14,6 @@ import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
 import imp.parser.antlr.tree.BlockScopeContainer;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.BlockScopeNode;
-import imp.parser.antlr.tree.specific.ClassNode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +24,9 @@ import org.eclipse.imp.runtime.RuntimePlugin;
 import org.eclipse.imp.services.base.FolderBase;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
+
+import tree.specific.BlockScopeNode;
+import tree.specific.ClassNode;
 
 /**
  * This file provides a skeletal implementation of the language-dependent

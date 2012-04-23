@@ -10,9 +10,6 @@
  *******************************************************************************/
 package imp.parser;
 
-import haxe.tree.utils.HaxeTreeErrorProvider;
-import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.HaxeTreePrinter;
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
 import imp.parser.antlr.tree.HaxeTree;
@@ -38,6 +35,9 @@ import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
+import tree.utils.HaxeTreeErrorProvider;
+import tree.utils.HaxeTreeLinker;
+import tree.utils.HaxeTreePrinter;
 import workspace.Activator;
 import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;

@@ -1,9 +1,10 @@
 package workspace.elements;
 
-import haxe.tree.utils.HaxeTreeLinker;
 import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.HashMap;
+
+import tree.utils.HaxeTreeLinker;
 
 public abstract class AbstractHaxeProject
 {

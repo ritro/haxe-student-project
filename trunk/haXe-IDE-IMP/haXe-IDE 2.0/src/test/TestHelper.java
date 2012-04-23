@@ -6,9 +6,6 @@ import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
 import imp.parser.antlr.tree.HaxeTree;
 import imp.parser.antlr.tree.HaxeTreeAdaptor;
-import imp.parser.antlr.tree.specific.AssignOperationNode;
-import imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import imp.parser.antlr.tree.specific.FunctionNode;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -21,6 +18,10 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
+
+import tree.specific.AssignOperationNode;
+import tree.specific.BinaryExpressionNode;
+import tree.specific.FunctionNode;
 
 public final class TestHelper {
 	public final static String pathToTests = "./src/test/resources/";

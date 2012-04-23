@@ -1,9 +1,6 @@
 package workspace.refactoring;
 
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
-import imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.tree.utils.ReferencesListBuilder;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -20,6 +17,9 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
+import tree.specific.VarDeclarationNode;
+import tree.specific.VarUsageNode;
+import tree.utils.ReferencesListBuilder;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.elements.HaxeProject;

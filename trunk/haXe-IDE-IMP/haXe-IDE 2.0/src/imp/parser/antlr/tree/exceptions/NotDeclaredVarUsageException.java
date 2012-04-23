@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.parser.antlr.tree.exceptions;
 
-import imp.parser.antlr.tree.specific.VarUsageNode;
+import tree.specific.VarUsageNode;
 
 /**
  * The Class NotDeclaredVarUsageException.

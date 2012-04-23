@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package imp.treeModelBuilder;
+package imp.utils.outline;
 
 import imp.parser.antlr.main.HaxeLexer;
 

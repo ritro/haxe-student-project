@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package imp.parser.antlr.tree.exceptions;
+package tree.exceptions;
 
 /**
  * This exception is thrown when already declared var occurs in

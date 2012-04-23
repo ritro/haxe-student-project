@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.utils.outline;
 
-import imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.HaxeLexer;
 
 import java.util.HashSet;
 import java.util.Set;

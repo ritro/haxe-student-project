@@ -1,7 +1,30 @@
-// $ANTLR 3.4 Haxe.g 2012-04-23 01:55:34
+// $ANTLR 3.4 Haxe.g 2012-04-23 20:22:35
 
-package imp.parser.antlr.main;
+package imp.parser.antlr;
 
+import tree.HaxeTree;
+import tree.specific.AssignOperationNode;
+import tree.specific.BinaryExpressionNode;
+import tree.specific.BlockScopeNode;
+import tree.specific.type.ClassNode;
+import tree.specific.UnarExpressionNode;
+import tree.specific.type.EnumNode;
+import tree.specific.ErrorNode;
+import tree.specific.DoWhileNode;
+import tree.specific.ForNode;
+import tree.specific.FunctionNode;
+import tree.specific.IfNode;
+import tree.specific.MethodCallNode;
+import tree.specific.NewNode;
+import tree.specific.SliceNode;
+import tree.specific.SwitchNode;
+import tree.specific.TryNode;
+import tree.specific.ReturnNode;
+import tree.specific.VarDeclarationNode;
+import tree.specific.VarUsageNode;
+import tree.specific.ConstantNode;
+import tree.specific.ArrayNode;
+import tree.specific.WhileNode;
 
 
 import org.antlr.runtime.*;
@@ -12,30 +35,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 import org.antlr.runtime.tree.*;
-
-import tree.HaxeTree;
-import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
-import tree.specific.DoWhileNode;
-import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
-import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
-import tree.specific.NewNode;
-import tree.specific.ReturnNode;
-import tree.specific.SliceNode;
-import tree.specific.SwitchNode;
-import tree.specific.TryNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
 
 
 @SuppressWarnings({"all", "warnings", "unchecked"})

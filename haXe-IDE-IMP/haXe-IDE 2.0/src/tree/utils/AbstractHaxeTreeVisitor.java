@@ -19,7 +19,7 @@ import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import tree.specific.type.ClassNode;
-import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.HaxeParser;
 
 public abstract class AbstractHaxeTreeVisitor
 {

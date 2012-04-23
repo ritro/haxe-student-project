@@ -10,7 +10,7 @@
  *******************************************************************************/
 package tree;
 
-import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.HaxeParser;
 
 import java.util.ArrayList;
 import java.util.List;

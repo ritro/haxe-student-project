@@ -10,8 +10,8 @@
  *******************************************************************************/
 package imp.utils;
 
-import imp.parser.antlr.main.HaxeLexer;
-import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.HaxeLexer;
+import imp.parser.antlr.HaxeParser;
 
 import java.util.HashMap;
 import java.util.List;

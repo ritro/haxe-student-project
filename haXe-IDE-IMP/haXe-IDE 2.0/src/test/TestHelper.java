@@ -2,8 +2,8 @@ package test;
 
 import static junit.framework.Assert.assertEquals;
 
-import imp.parser.antlr.main.HaxeLexer;
-import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.HaxeLexer;
+import imp.parser.antlr.HaxeParser;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

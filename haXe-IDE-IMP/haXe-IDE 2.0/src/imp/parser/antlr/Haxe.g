@@ -26,7 +26,7 @@ tokens {
 }
 
 @lexer::header{
-package imp.parser.antlr.main;
+package imp.parser.antlr;
 
 import java.util.HashMap;
 //import java.util.Stack; // imported by ANTLR
@@ -56,31 +56,31 @@ import java.util.HashMap;
 
 
 @header{
-package imp.parser.antlr.main;
+package imp.parser.antlr;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
-import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import haxe.imp.parser.antlr.tree.specific.BlockScopeNode;
-import haxe.imp.parser.antlr.tree.specific.ClassNode;
-import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
-import haxe.imp.parser.antlr.tree.specific.EnumNode;
-import haxe.imp.parser.antlr.tree.specific.ErrorNode;
-import haxe.imp.parser.antlr.tree.specific.DoWhileNode;
-import haxe.imp.parser.antlr.tree.specific.ForNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.IfNode;
-import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
-import haxe.imp.parser.antlr.tree.specific.NewNode;
-import haxe.imp.parser.antlr.tree.specific.SliceNode;
-import haxe.imp.parser.antlr.tree.specific.SwitchNode;
-import haxe.imp.parser.antlr.tree.specific.TryNode;
-import haxe.imp.parser.antlr.tree.specific.ReturnNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
-import haxe.imp.parser.antlr.tree.specific.ConstantNode;
-import haxe.imp.parser.antlr.tree.specific.ArrayNode;
-import haxe.imp.parser.antlr.tree.specific.WhileNode;
+import tree.HaxeTree;
+import tree.specific.AssignOperationNode;
+import tree.specific.BinaryExpressionNode;
+import tree.specific.BlockScopeNode;
+import tree.specific.type.ClassNode;
+import tree.specific.UnarExpressionNode;
+import tree.specific.type.EnumNode;
+import tree.specific.ErrorNode;
+import tree.specific.DoWhileNode;
+import tree.specific.ForNode;
+import tree.specific.FunctionNode;
+import tree.specific.IfNode;
+import tree.specific.MethodCallNode;
+import tree.specific.NewNode;
+import tree.specific.SliceNode;
+import tree.specific.SwitchNode;
+import tree.specific.TryNode;
+import tree.specific.ReturnNode;
+import tree.specific.VarDeclarationNode;
+import tree.specific.VarUsageNode;
+import tree.specific.ConstantNode;
+import tree.specific.ArrayNode;
+import tree.specific.WhileNode;
 }
 
 module          : myPackage? imports* topLevelDecl* -> ^(MODULE<HaxeTree>["MODULE"] myPackage? imports* topLevelDecl*)

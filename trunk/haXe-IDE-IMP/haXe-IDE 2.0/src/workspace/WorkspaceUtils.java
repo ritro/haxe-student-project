@@ -1,7 +1,7 @@
 package workspace;
 
-import imp.parser.antlr.main.HaxeLexer;
-import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.HaxeLexer;
+import imp.parser.antlr.HaxeParser;
 
 import java.io.File;
 import java.io.IOException;

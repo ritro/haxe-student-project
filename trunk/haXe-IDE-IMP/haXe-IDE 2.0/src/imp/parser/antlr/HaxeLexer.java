@@ -1,6 +1,6 @@
-// $ANTLR 3.4 Haxe.g 2012-04-23 01:55:35
+// $ANTLR 3.4 Haxe.g 2012-04-23 20:22:36
 
-package imp.parser.antlr.main;
+package imp.parser.antlr;
 
 import java.util.HashMap;
 //import java.util.Stack; // imported by ANTLR

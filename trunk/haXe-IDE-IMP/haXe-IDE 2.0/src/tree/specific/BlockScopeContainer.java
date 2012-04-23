@@ -1,6 +1,6 @@
 package tree.specific;
 
-import imp.parser.antlr.main.HaxeParser;
+import imp.parser.antlr.HaxeParser;
 
 import org.antlr.runtime.Token;
 

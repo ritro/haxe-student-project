@@ -11,7 +11,7 @@
 package imp.utils;
 
 import imp.parser.HaxeParseController;
-import imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.HaxeLexer;
 
 import java.util.ArrayList;
 import java.util.Set;

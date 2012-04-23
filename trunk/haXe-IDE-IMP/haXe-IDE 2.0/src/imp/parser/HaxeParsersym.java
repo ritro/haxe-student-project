@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.parser;
 
-import imp.parser.antlr.main.HaxeLexer;
+import imp.parser.antlr.HaxeLexer;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -10,11 +10,11 @@
  *******************************************************************************/
 package imp.utilsImplementations;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
 
+import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;

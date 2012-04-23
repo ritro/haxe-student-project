@@ -2,8 +2,6 @@ package workspace;
 
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.HaxeTreeAdaptor;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +28,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
+import tree.HaxeTree;
+import tree.HaxeTreeAdaptor;
 import tree.specific.AssignOperationNode;
 import tree.specific.ClassNode;
 import tree.specific.ConstantNode;

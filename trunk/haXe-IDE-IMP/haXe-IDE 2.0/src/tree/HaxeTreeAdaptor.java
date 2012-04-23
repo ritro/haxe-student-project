@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package imp.parser.antlr.tree;
+package tree;
 
 
 import org.antlr.runtime.RecognitionException;

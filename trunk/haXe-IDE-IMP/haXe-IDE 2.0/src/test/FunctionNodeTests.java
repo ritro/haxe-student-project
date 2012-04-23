@@ -3,7 +3,6 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseFunction;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.ArrayList;
 
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
+import tree.HaxeTree;
 import tree.specific.FunctionNode;
 import tree.specific.VarDeclarationNode;
 

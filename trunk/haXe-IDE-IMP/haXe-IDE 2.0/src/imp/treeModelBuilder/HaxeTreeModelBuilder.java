@@ -11,11 +11,11 @@
 package imp.treeModelBuilder;
 
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
+import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
 import tree.specific.ClassNode;
 import tree.specific.EnumNode;

@@ -1,6 +1,5 @@
 package workspace.editor;
 
-import imp.parser.antlr.tree.HaxeTree;
 import imp.utilsImplementations.HaxeTokenColorer;
 
 import org.antlr.runtime.CommonToken;
@@ -21,6 +20,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PlatformUI;
 
+import tree.HaxeTree;
 import tree.specific.VarUsageNode;
 import tree.utils.ReferencesListBuilder;
 import workspace.Activator;

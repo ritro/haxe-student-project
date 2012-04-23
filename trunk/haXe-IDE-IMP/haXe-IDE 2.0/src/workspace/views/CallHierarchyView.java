@@ -1,6 +1,5 @@
 package workspace.views;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.ui.IContextMenuConstants;
@@ -14,6 +13,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 
+import tree.HaxeTree;
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;

@@ -10,9 +10,10 @@
  *******************************************************************************/
 package tree.specific;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.Token;
+
+import tree.HaxeTree;
 
 /**
  * The Class IfNode.

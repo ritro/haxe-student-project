@@ -4,8 +4,6 @@ import static junit.framework.Assert.assertEquals;
 
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.HaxeTreeAdaptor;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -19,6 +17,8 @@ import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
+import tree.HaxeTree;
+import tree.HaxeTreeAdaptor;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;
 import tree.specific.FunctionNode;

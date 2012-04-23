@@ -2,7 +2,6 @@
 
 package imp.parser.antlr.main;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 
 import org.antlr.runtime.*;
@@ -14,6 +13,7 @@ import java.util.HashMap;
 
 import org.antlr.runtime.tree.*;
 
+import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;

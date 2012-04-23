@@ -1,4 +1,4 @@
-package imp.parser.antlr.tree;
+package tree;
 
 import imp.parser.antlr.main.HaxeParser;
 

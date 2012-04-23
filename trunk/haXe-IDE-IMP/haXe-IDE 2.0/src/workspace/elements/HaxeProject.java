@@ -1,6 +1,5 @@
 package workspace.elements;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -16,6 +15,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 
+import tree.HaxeTree;
 import workspace.ProjectVisitor;
 import workspace.WorkspaceUtils;
 

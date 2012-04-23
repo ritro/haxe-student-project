@@ -10,7 +10,6 @@
  *******************************************************************************/
 package imp.parser;
 
-import imp.parser.antlr.tree.HaxeTree;
 import lpg.runtime.IAst;
 
 import org.antlr.runtime.CommonToken;
@@ -22,6 +21,7 @@ import org.eclipse.imp.model.ISourceProject;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
+import tree.HaxeTree;
 import workspace.Activator;
 
 /**

@@ -1,10 +1,10 @@
 package tree.utils;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.Arrays;
 import java.util.List;
 
+import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;

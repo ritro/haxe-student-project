@@ -1,12 +1,13 @@
 package tree.specific;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
+
+import tree.HaxeTree;
 
 public class ParametersContainerNode extends VarUsageNode
 {

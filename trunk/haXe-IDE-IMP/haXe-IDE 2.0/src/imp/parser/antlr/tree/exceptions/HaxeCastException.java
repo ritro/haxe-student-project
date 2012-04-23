@@ -10,7 +10,7 @@
  *******************************************************************************/
 package imp.parser.antlr.tree.exceptions;
 
-import imp.parser.antlr.tree.HaxeTree;
+import tree.HaxeTree;
 
 /**
  * The Class HaxeCastException.

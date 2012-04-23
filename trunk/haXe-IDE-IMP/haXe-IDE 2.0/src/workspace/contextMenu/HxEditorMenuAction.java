@@ -1,10 +1,10 @@
 package workspace.contextMenu;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 
+import tree.HaxeTree;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.editor.HxFilesEditor;

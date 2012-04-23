@@ -10,7 +10,6 @@
  *******************************************************************************/
 package tree.specific;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
@@ -18,6 +17,8 @@ import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.CommonErrorNode;
 
 import org.antlr.runtime.CommonToken;
+
+import tree.HaxeTree;
 
 /**
  * The Class ExtendedErrorNode.

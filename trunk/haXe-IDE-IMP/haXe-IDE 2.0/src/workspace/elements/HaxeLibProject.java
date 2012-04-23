@@ -1,6 +1,5 @@
 package workspace.elements;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +16,7 @@ import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
 
+import tree.HaxeTree;
 import workspace.Activator;
 import workspace.WorkspaceUtils;
 

@@ -2,11 +2,11 @@ package test;
 
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseFunction;
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
+import tree.HaxeTree;
 import tree.specific.AssignOperationNode;
 import tree.specific.HaxeType;
 import tree.utils.Environment;

@@ -1,8 +1,8 @@
 package workspace.refactoring;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.VarDeclarationNode;
+import imp.parser.antlr.tree.specific.VarUsageNode;
 import haxe.tree.utils.ReferencesListBuilder;
 
 import org.eclipse.core.resources.IFile;

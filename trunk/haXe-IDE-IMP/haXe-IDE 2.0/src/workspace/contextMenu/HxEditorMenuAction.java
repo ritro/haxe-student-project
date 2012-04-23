@@ -1,6 +1,6 @@
 package workspace.contextMenu;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;

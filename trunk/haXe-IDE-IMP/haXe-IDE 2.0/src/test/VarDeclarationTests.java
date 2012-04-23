@@ -2,10 +2,10 @@ package test;
 
 import static org.junit.Assert.assertTrue;
 import static test.TestHelper.parseStatement;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.ConstantNode;
-import haxe.imp.parser.antlr.tree.specific.HaxeType;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.ConstantNode;
+import imp.parser.antlr.tree.specific.HaxeType;
+import imp.parser.antlr.tree.specific.VarDeclarationNode;
 import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;

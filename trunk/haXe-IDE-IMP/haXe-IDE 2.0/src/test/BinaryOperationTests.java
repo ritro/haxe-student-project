@@ -2,9 +2,9 @@ package test;
 
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.*;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import haxe.imp.parser.antlr.tree.specific.ConstantNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.BinaryExpressionNode;
+import imp.parser.antlr.tree.specific.ConstantNode;
 import haxe.tree.utils.Environment;
 import haxe.tree.utils.HaxeTreeLinker;
 import haxe.tree.utils.HaxeTypeUtils;

@@ -2,10 +2,10 @@ package test;
 
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseModule;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.HaxeType;
-import haxe.imp.parser.antlr.tree.specific.ReturnNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.FunctionNode;
+import imp.parser.antlr.tree.specific.HaxeType;
+import imp.parser.antlr.tree.specific.ReturnNode;
 import haxe.tree.utils.Environment;
 import haxe.tree.utils.HaxeTreeLinker;
 import haxe.tree.utils.HaxeTypeUtils;

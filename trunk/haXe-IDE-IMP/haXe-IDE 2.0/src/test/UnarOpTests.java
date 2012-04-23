@@ -2,8 +2,8 @@ package test;
 
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseExpression;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.UnarExpressionNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.UnarExpressionNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;

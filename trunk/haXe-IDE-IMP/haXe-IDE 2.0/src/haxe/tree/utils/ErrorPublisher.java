@@ -1,13 +1,13 @@
 package haxe.tree.utils;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
-import haxe.imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import haxe.imp.parser.antlr.tree.specific.FunctionNode;
-import haxe.imp.parser.antlr.tree.specific.HaxeType;
-import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
-import haxe.imp.parser.antlr.tree.specific.VarDeclarationNode;
-import haxe.imp.parser.antlr.tree.specific.VarUsageNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.AssignOperationNode;
+import imp.parser.antlr.tree.specific.BinaryExpressionNode;
+import imp.parser.antlr.tree.specific.FunctionNode;
+import imp.parser.antlr.tree.specific.HaxeType;
+import imp.parser.antlr.tree.specific.MethodCallNode;
+import imp.parser.antlr.tree.specific.VarDeclarationNode;
+import imp.parser.antlr.tree.specific.VarUsageNode;
 
 /**
  * Contains only official haXe error messages.

@@ -1,6 +1,6 @@
 package workspace.elements;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;

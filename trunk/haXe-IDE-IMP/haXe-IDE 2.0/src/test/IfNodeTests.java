@@ -2,10 +2,10 @@ package test;
 
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseStatement;
-import haxe.imp.parser.antlr.tree.HaxeTree;
-import haxe.imp.parser.antlr.tree.specific.AssignOperationNode;
-import haxe.imp.parser.antlr.tree.specific.IfNode;
-import haxe.imp.parser.antlr.tree.specific.MethodCallNode;
+import imp.parser.antlr.tree.HaxeTree;
+import imp.parser.antlr.tree.specific.AssignOperationNode;
+import imp.parser.antlr.tree.specific.IfNode;
+import imp.parser.antlr.tree.specific.MethodCallNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;

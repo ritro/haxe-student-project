@@ -1,8 +1,9 @@
 package workspace;
 
+import imp.parser.antlr.tree.HaxeTree;
+
 import org.eclipse.core.resources.IFile;
 
-import haxe.imp.parser.antlr.tree.HaxeTree;
 
 public class NodeLink
 {

@@ -31,14 +31,14 @@
    <extension
          point="org.eclipse.imp.runtime.modelTreeBuilder">
       <treeBuilder
-            class="imp.treeModelBuilder.HaxeTreeModelBuilder"
+            class="imp.utils.outline.HaxeTreeModelBuilder"
             language="haXe">
       </treeBuilder>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.labelProvider">
       <labelProvider
-            class="imp.treeModelBuilder.HaxeLabelProvider"
+            class="imp.utils.outline.HaxeLabelProvider"
             language="haXe">
       </labelProvider>
    </extension>

@@ -1,6 +1,6 @@
 package workspace.views;
 
-import imp.treeModelBuilder.HaxeLabelProvider;
+import imp.utils.outline.HaxeLabelProvider;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;

@@ -4,10 +4,10 @@ import tree.HaxeTree;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;
 import tree.specific.FunctionNode;
-import tree.specific.HaxeType;
 import tree.specific.MethodCallNode;
 import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
+import tree.specific.type.HaxeType;
 
 /**
  * Contains only official haXe error messages.

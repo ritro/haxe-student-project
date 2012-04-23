@@ -1,4 +1,4 @@
-package tree.specific;
+package tree.specific.type;
 
 
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.antlr.runtime.Token;
 
-import tree.BlockScopeContainer;
 import tree.HaxeTree;
+import tree.specific.BlockScopeContainer;
 
 
 public abstract class HaxeType extends BlockScopeContainer

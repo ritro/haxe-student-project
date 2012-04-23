@@ -3,7 +3,7 @@ package tree.specific;
 
 import org.antlr.runtime.Token;
 
-import tree.BinaryOperaionContainer;
+import tree.specific.type.HaxeType;
 
 public class BinaryExpressionNode extends BinaryOperaionContainer
 {    

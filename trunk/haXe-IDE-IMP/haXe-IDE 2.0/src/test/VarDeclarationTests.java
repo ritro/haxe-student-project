@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import tree.HaxeTree;
 import tree.specific.ConstantNode;
-import tree.specific.HaxeType;
 import tree.specific.VarDeclarationNode;
+import tree.specific.type.HaxeType;
 import tree.utils.HaxeTypeUtils;
 
 public class VarDeclarationTests

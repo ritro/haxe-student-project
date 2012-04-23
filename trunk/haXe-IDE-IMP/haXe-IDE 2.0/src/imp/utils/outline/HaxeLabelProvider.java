@@ -28,11 +28,11 @@ import org.eclipse.swt.graphics.Image;
 
 import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
-import tree.specific.ClassNode;
-import tree.specific.EnumNode;
 import tree.specific.FunctionNode;
 import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
+import tree.specific.type.ClassNode;
+import tree.specific.type.EnumNode;
 import workspace.Activator;
 import workspace.elements.IHaxeResources;
 

@@ -21,10 +21,10 @@ import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 import org.eclipse.imp.parser.IMessageHandler;
 
-import tree.specific.HaxeType;
 import tree.specific.MethodCallNode;
 import tree.specific.SliceNode;
 import tree.specific.VarUsageNode;
+import tree.specific.type.HaxeType;
 
 public class HaxeTree extends CommonTree 
 {

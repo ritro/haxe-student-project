@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import tree.HaxeTree;
 import tree.specific.FunctionNode;
-import tree.specific.HaxeType;
 import tree.specific.ReturnNode;
+import tree.specific.type.HaxeType;
 import tree.utils.Environment;
 import tree.utils.HaxeTreeLinker;
 import tree.utils.HaxeTypeUtils;

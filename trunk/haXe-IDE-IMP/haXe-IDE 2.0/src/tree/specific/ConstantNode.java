@@ -4,6 +4,7 @@ package tree.specific;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
+import tree.specific.type.HaxeType;
 import tree.utils.HaxeTypeUtils;
 
 /**

@@ -30,9 +30,9 @@ import org.eclipse.jface.text.source.ISourceViewer;
 
 import tree.HaxeTree;
 import tree.specific.FunctionNode;
-import tree.specific.HaxeType;
 import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
+import tree.specific.type.HaxeType;
 import workspace.Activator;
 
 /**

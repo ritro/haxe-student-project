@@ -1,4 +1,4 @@
-package tree.specific;
+package tree.specific.type;
 
 import imp.parser.antlr.main.HaxeParser;
 import imp.parser.antlr.main.HaxeParser;
@@ -9,6 +9,8 @@ import java.util.List;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
+import tree.specific.BlockScopeNode;
+import tree.specific.VarDeclarationNode;
 
 public class EnumNode extends HaxeType 
 {	

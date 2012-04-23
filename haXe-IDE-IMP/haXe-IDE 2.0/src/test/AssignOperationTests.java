@@ -3,14 +3,15 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseFunction;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.AssignOperationNode;
-import imp.parser.antlr.tree.specific.HaxeType;
-import haxe.tree.utils.Environment;
-import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.AssignOperationNode;
+import tree.specific.HaxeType;
+import tree.utils.Environment;
+import tree.utils.HaxeTreeLinker;
+import tree.utils.HaxeTypeUtils;
 
 public class AssignOperationTests
 {    

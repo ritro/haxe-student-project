@@ -11,10 +11,6 @@
 package imp.parser.antlr.tree;
 
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.specific.HaxeType;
-import imp.parser.antlr.tree.specific.MethodCallNode;
-import imp.parser.antlr.tree.specific.SliceNode;
-import imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +20,11 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 import org.eclipse.imp.parser.IMessageHandler;
+
+import tree.specific.HaxeType;
+import tree.specific.MethodCallNode;
+import tree.specific.SliceNode;
+import tree.specific.VarUsageNode;
 
 public class HaxeTree extends CommonTree 
 {

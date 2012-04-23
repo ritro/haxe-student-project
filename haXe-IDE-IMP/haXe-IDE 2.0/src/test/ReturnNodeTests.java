@@ -3,15 +3,16 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseModule;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.FunctionNode;
-import imp.parser.antlr.tree.specific.HaxeType;
-import imp.parser.antlr.tree.specific.ReturnNode;
-import haxe.tree.utils.Environment;
-import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.FunctionNode;
+import tree.specific.HaxeType;
+import tree.specific.ReturnNode;
+import tree.utils.Environment;
+import tree.utils.HaxeTreeLinker;
+import tree.utils.HaxeTypeUtils;
 
 public class ReturnNodeTests
 {

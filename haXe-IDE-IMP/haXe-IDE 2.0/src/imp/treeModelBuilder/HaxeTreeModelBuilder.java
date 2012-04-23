@@ -12,14 +12,15 @@ package imp.treeModelBuilder;
 
 import imp.parser.antlr.main.HaxeParser;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.BlockScopeNode;
-import imp.parser.antlr.tree.specific.ClassNode;
-import imp.parser.antlr.tree.specific.EnumNode;
-import imp.parser.antlr.tree.specific.FunctionNode;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
 
 import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
+
+import tree.specific.BlockScopeNode;
+import tree.specific.ClassNode;
+import tree.specific.EnumNode;
+import tree.specific.FunctionNode;
+import tree.specific.VarDeclarationNode;
 
 /**
  * The Class HaxeTreeModelBuilder.

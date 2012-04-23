@@ -1,6 +1,5 @@
 package workspace.refactoring;
 
-import haxe.tree.utils.ReferencesListBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +17,7 @@ import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
 import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
+import tree.utils.ReferencesListBuilder;
 import workspace.HashMapForLists;
 import workspace.elements.HaxeProject;
 

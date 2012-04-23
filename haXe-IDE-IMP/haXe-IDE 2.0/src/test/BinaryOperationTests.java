@@ -3,14 +3,15 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.*;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.BinaryExpressionNode;
-import imp.parser.antlr.tree.specific.ConstantNode;
-import haxe.tree.utils.Environment;
-import haxe.tree.utils.HaxeTreeLinker;
-import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.BinaryExpressionNode;
+import tree.specific.ConstantNode;
+import tree.utils.Environment;
+import tree.utils.HaxeTreeLinker;
+import tree.utils.HaxeTypeUtils;
 
 public class BinaryOperationTests
 {

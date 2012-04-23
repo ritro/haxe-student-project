@@ -3,12 +3,13 @@ package test;
 import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseStatement;
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.AssignOperationNode;
-import imp.parser.antlr.tree.specific.IfNode;
-import imp.parser.antlr.tree.specific.MethodCallNode;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.AssignOperationNode;
+import tree.specific.IfNode;
+import tree.specific.MethodCallNode;
 
 public class IfNodeTests
 {

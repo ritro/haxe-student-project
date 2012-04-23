@@ -1,9 +1,10 @@
 package imp.parser.antlr.tree;
 
-import imp.parser.antlr.tree.specific.HaxeType;
-import haxe.tree.utils.HaxeTypeUtils;
 
 import org.antlr.runtime.Token;
+
+import tree.specific.HaxeType;
+import tree.utils.HaxeTypeUtils;
 
 public class BinaryOperaionContainer extends HaxeTree
 {

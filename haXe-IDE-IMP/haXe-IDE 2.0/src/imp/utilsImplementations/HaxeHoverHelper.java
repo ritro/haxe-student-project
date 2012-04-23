@@ -11,10 +11,6 @@
 package imp.utilsImplementations;
 
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.FunctionNode;
-import imp.parser.antlr.tree.specific.HaxeType;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
-import imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.util.List;
 
@@ -33,6 +29,10 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 
+import tree.specific.FunctionNode;
+import tree.specific.HaxeType;
+import tree.specific.VarDeclarationNode;
+import tree.specific.VarUsageNode;
 import workspace.Activator;
 
 /**

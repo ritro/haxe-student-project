@@ -4,20 +4,6 @@ import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
 import imp.parser.antlr.tree.HaxeTree;
 import imp.parser.antlr.tree.HaxeTreeAdaptor;
-import imp.parser.antlr.tree.specific.AssignOperationNode;
-import imp.parser.antlr.tree.specific.ClassNode;
-import imp.parser.antlr.tree.specific.ConstantNode;
-import imp.parser.antlr.tree.specific.EnumNode;
-import imp.parser.antlr.tree.specific.ErrorNode;
-import imp.parser.antlr.tree.specific.FunctionNode;
-import imp.parser.antlr.tree.specific.IfNode;
-import imp.parser.antlr.tree.specific.MethodCallNode;
-import imp.parser.antlr.tree.specific.NewNode;
-import imp.parser.antlr.tree.specific.ReturnNode;
-import imp.parser.antlr.tree.specific.SliceNode;
-import imp.parser.antlr.tree.specific.UnarExpressionNode;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
-import imp.parser.antlr.tree.specific.VarUsageNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,6 +29,21 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
+
+import tree.specific.AssignOperationNode;
+import tree.specific.ClassNode;
+import tree.specific.ConstantNode;
+import tree.specific.EnumNode;
+import tree.specific.ErrorNode;
+import tree.specific.FunctionNode;
+import tree.specific.IfNode;
+import tree.specific.MethodCallNode;
+import tree.specific.NewNode;
+import tree.specific.ReturnNode;
+import tree.specific.SliceNode;
+import tree.specific.UnarExpressionNode;
+import tree.specific.VarDeclarationNode;
+import tree.specific.VarUsageNode;
 
 public class WorkspaceUtils
 {

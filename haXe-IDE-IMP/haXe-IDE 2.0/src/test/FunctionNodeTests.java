@@ -4,14 +4,15 @@ import static junit.framework.Assert.assertTrue;
 import static test.TestHelper.parseFunction;
 
 import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.specific.FunctionNode;
-import imp.parser.antlr.tree.specific.VarDeclarationNode;
 
 import java.util.ArrayList;
 
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
+
+import tree.specific.FunctionNode;
+import tree.specific.VarDeclarationNode;
 
 public class FunctionNodeTests
 {

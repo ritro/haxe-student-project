@@ -1,6 +1,5 @@
 package workspace.contextMenu;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
@@ -11,6 +10,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
+import tree.HaxeTree;
 import tree.utils.ReferencesListBuilder;
 import workspace.Activator;
 import workspace.HashMapForLists;

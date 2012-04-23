@@ -1,6 +1,5 @@
 package workspace.contextMenu;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -12,6 +11,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 
+import tree.HaxeTree;
 import tree.specific.VarDeclarationNode;
 import workspace.Activator;
 import workspace.WorkspaceUtils;

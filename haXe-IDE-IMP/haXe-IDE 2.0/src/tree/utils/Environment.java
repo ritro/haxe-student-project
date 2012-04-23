@@ -1,10 +1,10 @@
 package tree.utils;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import tree.HaxeTree;
 import tree.specific.FunctionNode;
 import tree.specific.VarDeclarationNode;
 import tree.specific.VarDeclarationNode.DeclarationType;

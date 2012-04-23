@@ -11,7 +11,6 @@
 package imp.treeModelBuilder;
 
 import imp.parser.antlr.main.HaxeLexer;
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +26,7 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
 import tree.specific.ClassNode;
 import tree.specific.EnumNode;

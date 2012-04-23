@@ -12,8 +12,6 @@ package imp.utilsImplementations;
 
 import imp.parser.antlr.main.HaxeLexer;
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.BlockScopeContainer;
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +23,8 @@ import org.eclipse.imp.services.base.FolderBase;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 
+import tree.BlockScopeContainer;
+import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
 import tree.specific.ClassNode;
 

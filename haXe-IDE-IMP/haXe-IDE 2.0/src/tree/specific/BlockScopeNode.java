@@ -10,11 +10,11 @@
  *******************************************************************************/
 package tree.specific;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
+import tree.HaxeTree;
 import tree.utils.HaxeTypeUtils;
 
 /**

@@ -10,9 +10,10 @@
  *******************************************************************************/
 package tree.specific;
 
-import imp.parser.antlr.tree.BinaryOperaionContainer;
 
 import org.antlr.runtime.Token;
+
+import tree.BinaryOperaionContainer;
 
 /**
  * Example of assignment: x += 5.

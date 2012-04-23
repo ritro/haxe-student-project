@@ -1,5 +1,6 @@
 package tree.utils;
 
+import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;
@@ -19,7 +20,6 @@ import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.HaxeTree;
 
 public abstract class AbstractHaxeTreeVisitor
 {

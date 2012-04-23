@@ -11,14 +11,15 @@
 package tree.specific;
 
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.HaxeTree;
-import imp.parser.antlr.tree.Modifiers;
-import imp.parser.antlr.tree.NodeWithScopeAndModifier;
 
 import java.util.ArrayList;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
+
+import tree.HaxeTree;
+import tree.Modifiers;
+import tree.NodeWithScopeAndModifier;
 
 /**
  * The Class FunctionNode.

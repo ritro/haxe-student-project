@@ -1,11 +1,11 @@
 package tree.utils;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.HashMap;
 
 import org.eclipse.core.resources.IFile;
 
+import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;

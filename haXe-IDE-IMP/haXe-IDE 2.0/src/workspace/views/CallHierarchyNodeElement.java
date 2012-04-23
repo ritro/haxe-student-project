@@ -1,8 +1,9 @@
 package workspace.views;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.core.resources.IFile;
+
+import tree.HaxeTree;
 
 
 public class CallHierarchyNodeElement extends CallHierarchyElement

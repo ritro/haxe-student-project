@@ -1,9 +1,10 @@
 package workspace.elements;
 
-import imp.parser.antlr.tree.HaxeTree;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+
+import tree.HaxeTree;
 
 public class HaxeFile
 {

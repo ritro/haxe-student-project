@@ -1,7 +1,6 @@
 package tree.utils;
 
 import imp.parser.antlr.main.HaxeParser;
-import imp.parser.antlr.tree.HaxeTree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +8,7 @@ import java.util.List;
 
 import org.antlr.runtime.CommonToken;
 
+import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;

@@ -27,9 +27,9 @@ import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 import tree.HaxeTree;
-import tree.specific.ClassNode;
 import tree.specific.FunctionNode;
 import tree.specific.VarDeclarationNode;
+import tree.specific.type.ClassNode;
 import tree.utils.Environment;
 
 /**

@@ -1,6 +1,10 @@
-package tree;
+package tree.specific;
 
 import org.antlr.runtime.Token;
+
+import tree.HaxeTree;
+import tree.INodeWithModifier;
+import tree.Modifiers;
 
 public class NodeWithScopeAndModifier 
     extends BlockScopeContainer 

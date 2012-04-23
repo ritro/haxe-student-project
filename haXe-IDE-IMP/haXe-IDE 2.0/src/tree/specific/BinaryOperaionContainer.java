@@ -1,9 +1,10 @@
-package tree;
+package tree.specific;
 
 
 import org.antlr.runtime.Token;
 
-import tree.specific.HaxeType;
+import tree.HaxeTree;
+import tree.specific.type.HaxeType;
 import tree.utils.HaxeTypeUtils;
 
 public class BinaryOperaionContainer extends HaxeTree

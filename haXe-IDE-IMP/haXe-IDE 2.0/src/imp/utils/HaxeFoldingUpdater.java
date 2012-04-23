@@ -23,10 +23,10 @@ import org.eclipse.imp.services.base.FolderBase;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 
-import tree.BlockScopeContainer;
 import tree.HaxeTree;
+import tree.specific.BlockScopeContainer;
 import tree.specific.BlockScopeNode;
-import tree.specific.ClassNode;
+import tree.specific.type.ClassNode;
 
 /**
  * This file provides a skeletal implementation of the language-dependent

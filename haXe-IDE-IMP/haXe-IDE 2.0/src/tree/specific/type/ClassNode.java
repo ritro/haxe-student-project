@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.specific.type;
 
 
 import java.util.ArrayList;

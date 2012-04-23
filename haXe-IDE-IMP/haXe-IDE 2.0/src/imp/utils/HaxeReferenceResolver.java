@@ -19,7 +19,6 @@ import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;
 import tree.specific.BlockScopeNode;
-import tree.specific.ClassNode;
 import tree.specific.ConstantNode;
 import tree.specific.ErrorNode;
 import tree.specific.ForNode;
@@ -31,6 +30,7 @@ import tree.specific.SliceNode;
 import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
+import tree.specific.type.ClassNode;
 
 /**
  * Class for resolving referances to other languages

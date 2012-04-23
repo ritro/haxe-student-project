@@ -17,10 +17,10 @@ import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
 import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
-import tree.specific.ClassNode;
-import tree.specific.EnumNode;
 import tree.specific.FunctionNode;
 import tree.specific.VarDeclarationNode;
+import tree.specific.type.ClassNode;
+import tree.specific.type.EnumNode;
 
 /**
  * The Class HaxeTreeModelBuilder.

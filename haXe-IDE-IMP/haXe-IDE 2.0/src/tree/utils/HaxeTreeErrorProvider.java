@@ -8,12 +8,10 @@ import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;
 import tree.specific.BlockScopeNode;
-import tree.specific.ClassNode;
 import tree.specific.ConstantNode;
 import tree.specific.ErrorNode;
 import tree.specific.ForNode;
 import tree.specific.FunctionNode;
-import tree.specific.HaxeType;
 import tree.specific.IfNode;
 import tree.specific.MethodCallNode;
 import tree.specific.NewNode;
@@ -24,6 +22,8 @@ import tree.specific.VarDeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import tree.specific.VarDeclarationNode.DeclarationType;
+import tree.specific.type.ClassNode;
+import tree.specific.type.HaxeType;
 import workspace.Activator;
 
 public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor

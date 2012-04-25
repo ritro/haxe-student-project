@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import tree.HaxeTree;
 import tree.specific.FunctionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 
 public class FunctionNodeTests
 {
@@ -22,7 +22,7 @@ public class FunctionNodeTests
     {
         HaxeTree tree = parseFunction("function main(x:Int, y:Float) {}");
         
-        ArrayList<VarDeclarationNode> firstType = ((FunctionNode)tree).getParametersAsDeclarations();
+        ArrayList<DeclarationNode> firstType = ((FunctionNode)tree).getParametersAsDeclarations();
         assertTrue(firstType.size() == 2);
     }
 }

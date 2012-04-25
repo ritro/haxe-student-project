@@ -30,7 +30,7 @@ import org.eclipse.jface.text.source.ISourceViewer;
 
 import tree.HaxeTree;
 import tree.specific.FunctionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.type.HaxeType;
 import workspace.Activator;
@@ -189,7 +189,7 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 		/** TODO add help cover for class nodes */
 	    if (node instanceof VarUsageNode ||
 	            node instanceof FunctionNode ||
-	            node instanceof VarDeclarationNode) 
+	            node instanceof DeclarationNode) 
 	    {
             return getNodeTypeAndName(node);
         }

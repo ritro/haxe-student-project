@@ -9,7 +9,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 
 public class EnumNode extends HaxeType 
 {	
@@ -56,7 +56,7 @@ public class EnumNode extends HaxeType
 		    return list;
 		}
 		for (HaxeTree x: blockScope.getChildren())
-			if (x instanceof VarDeclarationNode)
+			if (x instanceof DeclarationNode)
 				list.add(x);
 		return list;
 	}

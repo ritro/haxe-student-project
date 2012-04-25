@@ -18,10 +18,10 @@ import tree.specific.NewNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
 import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
-import tree.specific.VarDeclarationNode.DeclarationType;
+import tree.specific.DeclarationNode.DeclarationType;
 import tree.specific.type.ClassNode;
 import tree.specific.type.HaxeType;
 import workspace.Activator;
@@ -89,7 +89,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final VarDeclarationNode node, Object data)
+    protected void visit(final DeclarationNode node, Object data)
     {
         if (node.isDuplicate())
         {

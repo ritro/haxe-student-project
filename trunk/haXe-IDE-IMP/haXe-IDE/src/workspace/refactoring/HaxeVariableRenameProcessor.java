@@ -17,7 +17,7 @@ import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
 import tree.HaxeTree;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.utils.ReferencesListBuilder;
 import workspace.HashMapForLists;
@@ -31,10 +31,10 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
     private static final String NAME                    = "Haxe Variable Rename Preprocessor";
     private static final String CHANGE_NAME             = "Variable Usage rename";
     
-    private VarDeclarationNode targetNode       = null;
+    private DeclarationNode targetNode       = null;
 
     public HaxeVariableRenameProcessor(
-            final VarDeclarationNode node, 
+            final DeclarationNode node, 
             final String newTargetName, 
             final HaxeProject project)
     {

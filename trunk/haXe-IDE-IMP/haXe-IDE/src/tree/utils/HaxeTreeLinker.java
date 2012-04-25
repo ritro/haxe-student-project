@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.antlr.runtime.CommonToken;
-
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
 import tree.specific.AssignOperationNode;
@@ -23,10 +21,10 @@ import tree.specific.NewNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
 import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
-import tree.specific.VarDeclarationNode.DeclarationType;
+import tree.specific.DeclarationNode.DeclarationType;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import tree.specific.type.HaxeType;
@@ -481,7 +479,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             return;
         }
         
-        List<VarDeclarationNode> declParams = 
+        List<DeclarationNode> declParams = 
                 ((FunctionNode)declaration).getParametersAsDeclarations();
         
         // TODO: whtat about optional params?
@@ -564,7 +562,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(VarDeclarationNode node, Object data)
+    protected void visit(DeclarationNode node, Object data)
     {
         if (currentScope == ScopeTypes.Class)
         {
@@ -620,7 +618,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
                 }
             }
         }
-        for (VarDeclarationNode x: node.getParametersAsDeclarations())
+        for (DeclarationNode x: node.getParametersAsDeclarations())
         {
             x.setDeclaratonType(DeclarationType.FunctionParameter);
             x.updateInfo();

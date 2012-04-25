@@ -17,12 +17,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 
-/**
- * The Class VarDeclaration.
- * 
- * @author Anatoly Kondratyev
- */
-public class VarDeclarationNode extends NodeWithModifier {
+public class DeclarationNode extends NodeWithModifier {
 
     private enum PropertyAccessors
     {
@@ -69,12 +64,12 @@ public class VarDeclarationNode extends NodeWithModifier {
 		return nameWithType;
 	}
 
-	public VarDeclarationNode(final int ttype, final Token token)
+	public DeclarationNode(final int ttype, final Token token)
 	{
 	    this(token);
 	}
 
-	public VarDeclarationNode(final Token token) 
+	public DeclarationNode(final Token token) 
 	{
 	    super(token);
     }
@@ -200,11 +195,11 @@ public class VarDeclarationNode extends NodeWithModifier {
 	@Override
 	public boolean equals(Object obj)
 	{
-	    if (!(obj instanceof VarDeclarationNode))
+	    if (!(obj instanceof DeclarationNode))
 	    {
 	        return false;
 	    }
-	    VarDeclarationNode node = (VarDeclarationNode)obj;
+	    DeclarationNode node = (DeclarationNode)obj;
 	    if (getText().equals(node.getText()) &&
 	            token.equals(node.getToken()))
 	    {

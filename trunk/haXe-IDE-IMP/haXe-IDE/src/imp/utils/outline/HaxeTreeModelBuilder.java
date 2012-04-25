@@ -18,7 +18,7 @@ import org.eclipse.imp.services.base.TreeModelBuilderBase;
 import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
 import tree.specific.FunctionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 
@@ -53,9 +53,9 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
             {
                 accept((ClassNode)node);
             } 
-            else if (node instanceof VarDeclarationNode)
+            else if (node instanceof DeclarationNode)
             {
-                accept((VarDeclarationNode)node);
+                accept((DeclarationNode)node);
             } 
             else if (node instanceof EnumNode)
             {
@@ -109,7 +109,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
         visitor.endVisit(node);
     }
     
-    private void accept(VarDeclarationNode node)
+    private void accept(DeclarationNode node)
     {
         visitor.visit(node);
         visitor.endVisit(node);

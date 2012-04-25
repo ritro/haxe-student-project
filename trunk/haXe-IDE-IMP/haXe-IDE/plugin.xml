@@ -228,5 +228,13 @@
             id="haxe.imp.preferences.Haxe">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Haxe"
+            class="haxe.imp.preferences.HaxePreferencePage"
+            id="imp.preferences.Haxe">
+      </page>
+   </extension>
 
 </plugin>

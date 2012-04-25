@@ -12,7 +12,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 
 import tree.HaxeTree;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import workspace.Activator;
 import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
@@ -49,10 +49,10 @@ public class RenameAction extends HxEditorMenuAction
         String newName = "SomeNewName";
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         
-        if (node instanceof VarDeclarationNode)
+        if (node instanceof DeclarationNode)
         {
             return new HaxeVariableRenameProcessor(
-                    (VarDeclarationNode)node,
+                    (DeclarationNode)node,
                     newName, 
                     project);
         }

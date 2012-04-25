@@ -20,7 +20,7 @@ import tree.specific.NewNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
 import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import tree.specific.type.ClassNode;
@@ -107,7 +107,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
      */
     private void analyseSearchedObject(final HaxeTree searchFor)
     {
-        if (searchFor instanceof VarDeclarationNode)
+        if (searchFor instanceof DeclarationNode)
         {
             addToResults(searchFor);
             searchObject = searchFor;
@@ -207,7 +207,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final VarDeclarationNode node, Object data)
+    protected void visit(final DeclarationNode node, Object data)
     {
         HaxeType nodeType = node.getHaxeType();
         if ((searchObject instanceof ClassNode
@@ -290,7 +290,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         }
         if (nodeName.equals(searchName) 
                 && node.getDeclarationNode().equals(searchObject)
-                && (searchObject instanceof VarDeclarationNode 
+                && (searchObject instanceof DeclarationNode 
                         || searchObject instanceof ClassNode // for static classes
                         || searchObject instanceof EnumNode))
         {

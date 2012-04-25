@@ -5,7 +5,7 @@ import tree.specific.AssignOperationNode;
 import tree.specific.BinaryExpressionNode;
 import tree.specific.FunctionNode;
 import tree.specific.MethodCallNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.type.HaxeType;
 
@@ -31,12 +31,12 @@ public class ErrorPublisher
         node.commitError("Duplicate constructor");
     }
     
-    public static void commitDuplicateFieldError(final VarDeclarationNode node)
+    public static void commitDuplicateFieldError(final DeclarationNode node)
     {
         commitDuplicateFieldError((HaxeTree)node);
     }
 
-    public static void commitClassUndefinedTypeError(final VarDeclarationNode node)
+    public static void commitClassUndefinedTypeError(final DeclarationNode node)
     {
         node.commitError(
                 "Type requared for member variable : " + node.getText());

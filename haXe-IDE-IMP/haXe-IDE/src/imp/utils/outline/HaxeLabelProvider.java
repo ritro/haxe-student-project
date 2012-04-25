@@ -29,7 +29,7 @@ import org.eclipse.swt.graphics.Image;
 import tree.HaxeTree;
 import tree.specific.BlockScopeNode;
 import tree.specific.FunctionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
@@ -143,7 +143,7 @@ public class HaxeLabelProvider implements ILabelProvider
 	    else if (token != null && token.getType() == HaxeLexer.ENUM) 
 	    {
 			String enumReturn = "Enum ";
-			if (n.getChildCount() > 0 && !(n.getChild(0) instanceof VarDeclarationNode))
+			if (n.getChildCount() > 0 && !(n.getChild(0) instanceof DeclarationNode))
 			{
 				enumReturn += n.getChild(0).getText();
 			}
@@ -168,9 +168,9 @@ public class HaxeLabelProvider implements ILabelProvider
 			FunctionNode hdr = (FunctionNode) n;
 			return hdr.getFullNameWithParameters();
 		} 
-		else if (n instanceof VarDeclarationNode) 
+		else if (n instanceof DeclarationNode) 
 		{
-			VarDeclarationNode varDeclaration = (VarDeclarationNode) n;
+			DeclarationNode varDeclaration = (DeclarationNode) n;
 			return varDeclaration.getNameWithType();
 		}
 		else if (n instanceof VarUsageNode)

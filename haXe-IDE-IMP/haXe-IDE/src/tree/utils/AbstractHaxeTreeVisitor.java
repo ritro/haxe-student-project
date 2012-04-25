@@ -15,11 +15,10 @@ import tree.specific.NewNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
 import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import tree.specific.type.ClassNode;
-import imp.parser.antlr.HaxeParser;
 
 public abstract class AbstractHaxeTreeVisitor
 {
@@ -87,9 +86,9 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((ReturnNode)t, data);
        }       
-       else if (t instanceof VarDeclarationNode)
+       else if (t instanceof DeclarationNode)
        {
-           visit((VarDeclarationNode)t, data);
+           visit((DeclarationNode)t, data);
        }
        else if (t instanceof NewNode)
        {
@@ -132,7 +131,7 @@ public abstract class AbstractHaxeTreeVisitor
    protected abstract void visitHighLevel(final HaxeTree node, Object data);
    protected abstract void visit(final ClassNode node, Object data);
    protected abstract void visit(final FunctionNode node, Object data);
-   protected abstract void visit(final VarDeclarationNode node, Object data);
+   protected abstract void visit(final DeclarationNode node, Object data);
    protected abstract void visit(final NewNode node, Object data);
    protected abstract void visit(final MethodCallNode node, Object data);
    protected abstract void visit(final SliceNode node, Object data);

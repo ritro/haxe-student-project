@@ -11,7 +11,6 @@
 package imp.parser;
 
 import imp.parser.antlr.HaxeLexer;
-import imp.parser.antlr.HaxeParser;
 import imp.utils.HaxeSourcePositionLocator;
 
 import java.util.ArrayList;
@@ -35,7 +34,6 @@ import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
 import tree.HaxeTree;
-import tree.HaxeTreeAdaptor;
 import tree.utils.HaxeTreeErrorProvider;
 import tree.utils.HaxeTreeLinker;
 import tree.utils.HaxeTreePrinter;

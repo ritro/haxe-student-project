@@ -28,7 +28,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 import tree.HaxeTree;
 import tree.specific.FunctionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.type.ClassNode;
 import tree.utils.Environment;
 
@@ -123,7 +123,7 @@ public class HaxeContentProposer implements IContentProposer {
 		for (HaxeTree commonTree : parent.getAllChildren()) 
 		{
 			if (commonTree.getText().startsWith(prefix)
-			        && (commonTree instanceof VarDeclarationNode
+			        && (commonTree instanceof DeclarationNode
 			        || commonTree instanceof ClassNode
 			        || commonTree instanceof FunctionNode)) 
 			{
@@ -150,7 +150,7 @@ public class HaxeContentProposer implements IContentProposer {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
 		for (HaxeTree commonTree : availableVars.values()) {
-			VarDeclarationNode usage = (VarDeclarationNode) commonTree;
+			DeclarationNode usage = (DeclarationNode) commonTree;
 			result.add(new ComparableSourceProposal(
 			        usage.getHaxeType().toString(),
 					usage.getText(), prefix, offset));

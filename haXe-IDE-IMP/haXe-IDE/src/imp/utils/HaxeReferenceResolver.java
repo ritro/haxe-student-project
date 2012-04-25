@@ -27,7 +27,7 @@ import tree.specific.IfNode;
 import tree.specific.MethodCallNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import tree.specific.type.ClassNode;

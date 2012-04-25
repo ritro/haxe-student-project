@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 import tree.HaxeTree;
 import tree.specific.FunctionNode;
-import tree.specific.VarDeclarationNode;
-import tree.specific.VarDeclarationNode.DeclarationType;
+import tree.specific.DeclarationNode;
+import tree.specific.DeclarationNode.DeclarationType;
 
 /**
  * List of declarations valid in the current scope
@@ -88,12 +88,12 @@ public class Environment extends HashMap<String, HaxeTree>
             super.put(name, declaration);
             return true;
         }
-        if (decl instanceof VarDeclarationNode)
+        if (decl instanceof DeclarationNode)
         {
             DeclarationType foundType = 
-                    ((VarDeclarationNode)decl).getDeclaratonType();
+                    ((DeclarationNode)decl).getDeclaratonType();
             DeclarationType addType = 
-                    ((VarDeclarationNode)declaration).getDeclaratonType();
+                    ((DeclarationNode)declaration).getDeclaratonType();
             if (foundType != addType ||
                     addType != DeclarationType.ClassVarDeclaration)
             {

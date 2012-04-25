@@ -29,7 +29,6 @@ import tree.specific.type.HaxeType;
 public class HaxeTree extends CommonTree 
 {
 	private static IMessageHandler messageHandler = null;
-	private boolean auxiliary = false;
 	private boolean isDuplicate = false;
 	protected HaxeType haxeType = null;
 
@@ -40,15 +39,6 @@ public class HaxeTree extends CommonTree
 	protected int mostRightPosition = -1;
 
 	public static final int SUFFIX_EXPR_TYPE = HaxeParser.SUFFIX_EXPR;
-	
-		
-	public boolean isAuxiliary() { 
-		return auxiliary;
-	}
-
-	public void setAuxiliary(final boolean auxiliary) {
-		this.auxiliary = auxiliary;
-	}
 	
 	public boolean isFieldUse()
 	{

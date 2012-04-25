@@ -40,11 +40,11 @@ public class FunctionNode extends NodeWithScopeAndModifier
 	 */
 	private void generateNameWithParameters()
 	{
-	    ArrayList<VarDeclarationNode> paramList = 
+	    ArrayList<DeclarationNode> paramList = 
 	            getParametersAsDeclarations();
 		String parameters = "";
 		String comma = "";
-		for (VarDeclarationNode commonTree : paramList) 
+		for (DeclarationNode commonTree : paramList) 
 		{
 			parameters += comma
 			        + commonTree.getHaxeType().getShortTypeName();
@@ -92,8 +92,8 @@ public class FunctionNode extends NodeWithScopeAndModifier
 	 * FIXME
 	 * @return the parameters as var usage
 	 */ 
-	public ArrayList<VarDeclarationNode> getParametersAsDeclarations() {
-		ArrayList<VarDeclarationNode> list = new ArrayList<VarDeclarationNode>();
+	public ArrayList<DeclarationNode> getParametersAsDeclarations() {
+		ArrayList<DeclarationNode> list = new ArrayList<DeclarationNode>();
 		HaxeTree parameters = getParamListNode();
 		if (parameters == null)
 		{
@@ -101,7 +101,7 @@ public class FunctionNode extends NodeWithScopeAndModifier
 		}
 		for (HaxeTree varDecl : parameters.getChildren()) 
 		{
-			list.add((VarDeclarationNode) varDecl);
+			list.add((DeclarationNode) varDecl);
 		}
 		return list;
 	}

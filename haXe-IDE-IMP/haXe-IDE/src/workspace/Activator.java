@@ -10,7 +10,6 @@
  *******************************************************************************/
 package workspace;
 
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -24,7 +23,6 @@ import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import tree.HaxeTree;
 import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;

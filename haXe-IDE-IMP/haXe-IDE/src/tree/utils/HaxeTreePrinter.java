@@ -1,7 +1,5 @@
 package tree.utils;
 
-
-import java.util.Arrays;
 import java.util.List;
 
 import tree.HaxeTree;
@@ -19,7 +17,7 @@ import tree.specific.NewNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
 import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.WhileNode;
 import tree.specific.type.ClassNode;
@@ -94,7 +92,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final VarDeclarationNode node, Object data)
+    protected void visit(final DeclarationNode node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());

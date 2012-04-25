@@ -20,7 +20,6 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.imp.preferences.PreferenceValueParserprs.IsNullable;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -34,13 +33,12 @@ import tree.specific.AssignOperationNode;
 import tree.specific.ConstantNode;
 import tree.specific.ErrorNode;
 import tree.specific.FunctionNode;
-import tree.specific.IfNode;
 import tree.specific.MethodCallNode;
 import tree.specific.NewNode;
 import tree.specific.ReturnNode;
 import tree.specific.SliceNode;
 import tree.specific.UnarExpressionNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
@@ -224,7 +222,7 @@ public class WorkspaceUtils
     	if (isNodeValidForCallAnalysis(node)
     			|| node instanceof ClassNode
     			|| node instanceof EnumNode
-    			|| node instanceof VarDeclarationNode)
+    			|| node instanceof DeclarationNode)
     	{
     		return true;
     	}

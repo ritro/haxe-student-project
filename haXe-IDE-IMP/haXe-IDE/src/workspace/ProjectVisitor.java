@@ -9,6 +9,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
 
+@SuppressWarnings("restriction")
 public class ProjectVisitor implements IResourceVisitor
 {
     private String extention = "";

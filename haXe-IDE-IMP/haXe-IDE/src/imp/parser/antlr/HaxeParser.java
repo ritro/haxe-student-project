@@ -20,7 +20,7 @@ import tree.specific.SliceNode;
 import tree.specific.SwitchNode;
 import tree.specific.TryNode;
 import tree.specific.ReturnNode;
-import tree.specific.VarDeclarationNode;
+import tree.specific.DeclarationNode;
 import tree.specific.VarUsageNode;
 import tree.specific.ConstantNode;
 import tree.specific.ArrayNode;
@@ -1784,7 +1784,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new VarDeclarationNode(VAR, IDENTIFIER31)
+                new DeclarationNode(VAR, IDENTIFIER31)
                 , root_1);
 
                 // Haxe.g:137:96: ( typeTag )?
@@ -10545,7 +10545,7 @@ public TreeAdaptor getTreeAdaptor() {
                     IDENTIFIER286=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl4795); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER286_tree = 
-                    new VarDeclarationNode(IDENTIFIER286) 
+                    new DeclarationNode(IDENTIFIER286) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(IDENTIFIER286_tree, root_0);
                     }
@@ -10591,7 +10591,7 @@ public TreeAdaptor getTreeAdaptor() {
                     IDENTIFIER291=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl4833); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER291_tree = 
-                    new VarDeclarationNode(IDENTIFIER291) 
+                    new DeclarationNode(IDENTIFIER291) 
                     ;
                     adaptor.addChild(root_0, IDENTIFIER291_tree);
                     }
@@ -11250,7 +11250,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new VarDeclarationNode(stream_IDENTIFIER.nextToken())
+                new DeclarationNode(stream_IDENTIFIER.nextToken())
                 , root_1);
 
                 // Haxe.g:396:116: ( declAttrList )?
@@ -11552,7 +11552,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new VarDeclarationNode(stream_IDENTIFIER.nextToken())
+                new DeclarationNode(stream_IDENTIFIER.nextToken())
                 , root_1);
 
                 // Haxe.g:402:94: ( propDecl )?

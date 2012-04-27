@@ -1,9 +1,6 @@
 package tree.utils;
 
-
 import java.util.HashMap;
-
-import org.eclipse.core.resources.IFile;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
@@ -62,8 +59,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         
         HashMap<String, HaxeFile> fullList = project.getFiles();
         
-        IFile activeFile = Activator.getInstance().getCurrentFile();
-        currFile = project.getFile(activeFile);
+        currFile = Activator.getInstance().getCurrentFile();
         analyseSearchedObject(searchFor);
         
         for (HaxeFile file : fullList.values())
@@ -169,6 +165,10 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     
     private void addToResults(final HaxeTree foundNode)
     {
+        if (currFile == null)
+        {
+            return;
+        }
         NodeLink info = new NodeLink(currFile.getRealFile(), foundNode);
         foundResult.put(currFile.getPackage(), info);
     }

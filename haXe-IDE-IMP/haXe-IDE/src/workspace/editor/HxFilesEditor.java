@@ -1,12 +1,7 @@
 package workspace.editor;
 
-import imp.utils.HaxeTokenColorer;
-
-import org.antlr.runtime.CommonToken;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.imp.editor.UniversalEditor;
-import org.eclipse.jface.text.Region;
-import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextPresentation;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.source.ISourceViewer;
@@ -14,10 +9,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartReference;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
@@ -32,6 +30,7 @@ import workspace.elements.HaxeProject;
 
 public class HxFilesEditor extends UniversalEditor
 { 
+    private HaxeFile                   currentFile     = null;
 	private HaxeTree                   currentNode     = null;
 	private ReferencesListBuilder      usagesBuilder   = null;
 	private HashMapForLists<NodeLink>  usagesList      = null;
@@ -54,22 +53,25 @@ public class HxFilesEditor extends UniversalEditor
 	    return currentNode;
 	}
 	
+	public HaxeFile getCurrentFile()
+	{
+	    return currentFile;
+	}
+	
 	public void createPartControl(Composite parent)
 	{
 	    super.createPartControl(parent);
-	    
-        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 
-        //adding a listener
-        //partListener = new ActivePageController();
-	    //page.addPartListener(partListener);
+        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        partListener = new ActiveEditorManager();
+        window.getPartService().addPartListener(partListener);
 	}
     
     @Override
     public void dispose()
     {
-        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-        //page.removePartListener(partListener);
+        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        window.getPartService().removePartListener(partListener);
         
     	currentNode = null;
     	usagesBuilder = null;
@@ -90,6 +92,18 @@ public class HxFilesEditor extends UniversalEditor
                 || currentNode instanceof VarUsageNode)
         {
             //highlightCurrentNodeUsagesInText();
+        }
+    }
+    
+    @Override
+    public void init(IEditorSite site, IEditorInput input) throws PartInitException
+    {
+        super.init(site, input);
+        
+        if (input != null && input instanceof IFileEditorInput)
+        {
+            IFileEditorInput i = (IFileEditorInput)input;
+            Activator.getInstance().setCurrentProject(i.getFile());
         }
     }
     
@@ -159,7 +173,8 @@ public class HxFilesEditor extends UniversalEditor
     private void highlightCurrentNodeUsagesInText()
     {        
         ISourceViewer view = getSourceViewer();
-        IFile activeFile = Activator.getInstance().getCurrentFile();
+        HaxeFile hFile = currentFile;
+        IFile activeFile = hFile.getRealFile();
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         HaxeFile currFile = project.getFile(activeFile);
         String currPack = currFile.getPackage();
@@ -200,7 +215,9 @@ public class HxFilesEditor extends UniversalEditor
         	currentNode = null;
         	return;
         }
-        HaxeTree ast = project.getFileAST(Activator.getInstance().getCurrentFile());
+        //HaxeTree ast = (HaxeTree)getParseController().getCurrentAst();
+        HaxeFile curFile = Activator.getInstance().getCurrentFile();
+        HaxeTree ast = project.getFileAST(curFile.getRealFile());
         TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
         if (ast == null || selection == null)
         {

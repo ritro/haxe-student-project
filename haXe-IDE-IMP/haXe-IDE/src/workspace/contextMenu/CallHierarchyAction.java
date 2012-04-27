@@ -1,11 +1,7 @@
 package workspace.contextMenu;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
@@ -21,29 +17,6 @@ import workspace.views.CallHierarchyView;
 public class CallHierarchyAction extends HxEditorMenuAction
 {
     CallHierarchyView view = null;
-    
-    @Override
-    public void setActiveEditor(IAction action, IEditorPart targetEditor)
-    {
-        super.setActiveEditor(action, targetEditor);
-        updateCurrentProject();
-    }
-    
-    private void updateCurrentProject()
-    {
-        if (part == null)
-        {
-            // we get here as soon as tEditor loads withou preopened file
-            return;
-        }
-        IEditorInput input = part.getEditorInput();
-        if (!(input instanceof IFileEditorInput))
-        {
-            return;
-        }
-        IFile file = ((IFileEditorInput)input).getFile();
-        Activator.getInstance().setCurrentProject(file);
-    }
     
     private HashMapForLists<NodeLink> makeCallsList(final HaxeTree node)
     {

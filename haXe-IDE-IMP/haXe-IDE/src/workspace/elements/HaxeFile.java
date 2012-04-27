@@ -16,7 +16,12 @@ public class HaxeFile
     {
         rfile = file;
         ast = astForFile;
+        
+        String nameWithExt = file.getName();
+        String name = nameWithExt.substring(0, nameWithExt.length() - 3);
+        
         fpackage = ast != null ? ast.getPackage() : "";
+        fpackage = fpackage == null || fpackage.isEmpty() ? name : fpackage + "." + name;
     }
     
     /**

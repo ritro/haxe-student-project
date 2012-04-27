@@ -23,12 +23,16 @@ public class ActiveEditorManager implements IPartListener2
         IWorkbenchPart wpart = partRef.getPart(false);
         IWorkbenchPage page = wpart.getSite().getPage();
         IEditorPart part = page.getActiveEditor();
-        IEditorInput input = part.getEditorInput();
-        if (!(input instanceof IFileEditorInput))
+        IFile file = null;
+        if (part != null)
         {
-            return;
+            IEditorInput input = part.getEditorInput();
+            if (!(input instanceof IFileEditorInput))
+            {
+                return;
+            }
+            file = ((IFileEditorInput)input).getFile();
         }
-        IFile file = ((IFileEditorInput)input).getFile();
         Activator.getInstance().setCurrentProject(file);
     }
 

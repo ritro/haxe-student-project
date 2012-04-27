@@ -23,6 +23,7 @@ import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import workspace.elements.HaxeFile;
 import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
 import workspace.elements.IHaxeResources;
@@ -47,7 +48,7 @@ public class Activator extends PluginBase{
 	//        sPlugin.isDebugging() && "true".equalsIgnoreCase(
 	//                   Platform.getDebugOption("org.eclipse.faq.examples/debug/option2"));
 	
-	private IFile                          activeFile      = null;
+	private HaxeFile                       activeFile      = null;
 	private HashMap<String, HaxeProject>   projects        = null;
 	private HaxeLibProject                 libraries       = null;
 	private HaxeProject                    currentProject  = null;
@@ -75,15 +76,20 @@ public class Activator extends PluginBase{
 	    return currentProject;
 	}
 	
-	public IFile getCurrentFile()
+	public HaxeFile getCurrentFile()
 	{
 	    return activeFile;
 	}
 	
-	public void setCurrentProject(IFile file)
+	public void setCurrentProject(final IFile file)
 	{
-	    activeFile = file;
-	    currentProject = projects.get(file.getProject().getName()); 
+	    currentProject = null;
+	    activeFile = null;
+	    if (file != null)
+	    {
+	        currentProject = projects.get(file.getProject().getName());	    
+	        activeFile = currentProject.getFile(file);
+	    }
 	}
 	
 	public void setCurrentProject(HaxeProject proj)

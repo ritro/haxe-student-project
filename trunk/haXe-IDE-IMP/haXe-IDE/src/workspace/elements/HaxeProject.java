@@ -43,11 +43,8 @@ public class HaxeProject extends AbstractHaxeProject
     public void addFile(final HaxeFile file)
     {
         String pack = file.getPackage();
-        String name = file.getName();
-        
-        String key = 
-                pack == null || pack.isEmpty() ? name : pack + "." + name;
-        addFile(key, file);
+
+        addFile(pack, file);
     }
     
     public HaxeFile getFile(final IFile file)
@@ -56,11 +53,11 @@ public class HaxeProject extends AbstractHaxeProject
         {
             return null;
         }
+        String fName = file.getName().substring(
+                0, 
+                file.getName().length() - file.getFileExtension().length() - 1);
         for (String name : fileList.keySet())
         {
-            String fName = file.getName().substring(
-                    0, 
-                    file.getName().length() - file.getFileExtension().length());
             if (name.endsWith(fName))
             {
                 HaxeFile hfile = fileList.get(name);

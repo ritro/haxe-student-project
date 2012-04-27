@@ -1,15 +1,13 @@
 package workspace.contextMenu;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ltk.core.refactoring.Change;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
 
 import tree.HaxeTree;
 import tree.specific.DeclarationNode;
@@ -20,33 +18,31 @@ import workspace.refactoring.HaxeRenameProcessor;
 import workspace.refactoring.HaxeVariableRenameProcessor;
 
 public class RenameAction extends HxEditorMenuAction
-{
-    @Override
-    public void setActiveEditor(IAction action, IEditorPart targetEditor)
+{    
+    private String showNewNameDialog()
     {
-        super.setActiveEditor(action, targetEditor);
-        updateCurrentProject();
-    }
-    
-    private void updateCurrentProject()
-    {
-        if (part == null)
-        {
-            // we get here as soon as tEditor loads withou preopened file
-            return;
-        }
-        IEditorInput input = part.getEditorInput();
-        if (!(input instanceof IFileEditorInput))
-        {
-            return;
-        }
-        IFile file = ((IFileEditorInput)input).getFile();
-        Activator.getInstance().setCurrentProject(file);
+        JFrame frame = new JFrame();
+        Object[] possibilities = null;
+        return (String)JOptionPane.showInputDialog(
+                            frame,
+                            "Enter new name:\n",
+                            "Customized Dialog",
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            possibilities,
+                            "newName");
+
+        
     }
     
     private HaxeRenameProcessor getAppropriateProcessor(final HaxeTree node)
     {
-        String newName = "SomeNewName";
+        String newName = showNewNameDialog();
+        //If a string was returned, say so.
+        if (newName == null || newName.length() == 0) 
+        {
+            return null;
+        }
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         
         if (node instanceof DeclarationNode)

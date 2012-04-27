@@ -13,6 +13,7 @@ import org.eclipse.ltk.core.refactoring.TextFileChange;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
 import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
+import org.eclipse.text.edits.InsertEdit;
 import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
@@ -149,14 +150,13 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
                 {
                     pair = new Pair(
                         node.getMostLeftPosition(), 
-                        node.getMostRightPosition() - node.getMostLeftPosition() + 1);
+                        node.getMostRightPosition() - node.getMostLeftPosition());
                 }
                 else //VarDeclaration 
                 {
                     pair = new Pair(
                             node.getToken().getStartIndex(),
-                            node.getToken().getStopIndex() - node.getToken().getStartIndex() + 1
-                            );
+                            node.getToken().getStopIndex() - node.getToken().getStartIndex());
                 }
                 targets.put(pack, pair);
             }
@@ -179,11 +179,15 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
             for (Pair pair : targets.get(pack))
             {
                 // edit object for the text replacement in the file, this is the only child
-                ReplaceEdit edit = new ReplaceEdit( 
+                ReplaceEdit rEdit = new ReplaceEdit( 
                         (int) pair.first,
                         (int) pair.second,
+                        "");
+                InsertEdit iEdit = new InsertEdit( 
+                        (int) pair.first,
                         newName);
-                fileChangeRootEdit.addChild( edit );                 
+                fileChangeRootEdit.addChild(rEdit);
+                fileChangeRootEdit.addChild(iEdit);
             }
         }
     }

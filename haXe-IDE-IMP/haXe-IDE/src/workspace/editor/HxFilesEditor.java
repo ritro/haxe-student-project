@@ -215,9 +215,12 @@ public class HxFilesEditor extends UniversalEditor
         	currentNode = null;
         	return;
         }
-        //HaxeTree ast = (HaxeTree)getParseController().getCurrentAst();
-        HaxeFile curFile = Activator.getInstance().getCurrentFile();
-        HaxeTree ast = project.getFileAST(curFile.getRealFile());
+        currentFile = Activator.getInstance().getCurrentFile();
+        if (currentFile == null)
+        {
+            return;
+        }
+        HaxeTree ast = currentFile.getAst();
         TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
         if (ast == null || selection == null)
         {

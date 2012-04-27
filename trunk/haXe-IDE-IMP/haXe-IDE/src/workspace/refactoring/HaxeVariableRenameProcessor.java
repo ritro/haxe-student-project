@@ -146,17 +146,11 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
             {
                 HaxeTree node = info.getNode();
                 Pair pair = null;
-                if (node instanceof VarUsageNode)
-                {
-                    pair = new Pair(
-                        node.getMostLeftPosition(), 
-                        node.getMostRightPosition() - node.getMostLeftPosition());
-                }
-                else //VarDeclaration 
+                if (node instanceof VarUsageNode || node instanceof DeclarationNode)
                 {
                     pair = new Pair(
                             node.getToken().getStartIndex(),
-                            node.getToken().getStopIndex() - node.getToken().getStartIndex());
+                            node.getToken().getStopIndex() - node.getToken().getStartIndex() + 1);
                 }
                 targets.put(pack, pair);
             }

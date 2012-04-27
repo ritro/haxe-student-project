@@ -210,9 +210,9 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     protected void visit(final DeclarationNode node, Object data)
     {
         HaxeType nodeType = node.getHaxeType();
-        if ((searchObject instanceof ClassNode
-                || searchObject instanceof EnumNode)
-                    && searchObject.getHaxeType().getShortTypeName().equals(nodeType.getShortTypeName()))
+        if ((searchObject instanceof ClassNode || searchObject instanceof EnumNode)
+                && nodeType != null
+                && searchObject.getHaxeType().getShortTypeName().equals(nodeType.getShortTypeName()))
         {
             addToResults(node);
         }

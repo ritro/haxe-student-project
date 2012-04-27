@@ -26,7 +26,7 @@ public class RenameAction extends HxEditorMenuAction
         return (String)JOptionPane.showInputDialog(
                             frame,
                             "Enter new name:\n",
-                            "Customized Dialog",
+                            "New name",
                             JOptionPane.PLAIN_MESSAGE,
                             null,
                             possibilities,
@@ -76,7 +76,7 @@ public class RenameAction extends HxEditorMenuAction
         catch (ClassCastException  e)
         {
             System.out.println(e.getMessage());
-            Activator.logger.error("CallHierarchyAction.run: {}", e.getMessage());
+            Activator.logger.error("RenameAction.run: {}", e.getMessage());
         }
         catch (CoreException e)
         {

@@ -16,11 +16,6 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 
-/**
- * The Class VarUsage.
- * 
- * @author kondratyev
- */
 public class VarUsageNode extends HaxeTree 
 {
     private HaxeTree declaration = null;
@@ -82,11 +77,6 @@ public class VarUsageNode extends HaxeTree
 	
 	public String toString()
 	{
-	    return String.format(
-	            "usage [%s] : %s <%s, %s>",
-	            getText(),
-	            getHaxeType() == null ? "null" : getHaxeType().toString(),
-	            getMostLeftPosition(),
-	            getMostRightPosition());
+	    return toString("usage");
 	}
 }

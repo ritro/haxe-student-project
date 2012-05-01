@@ -40,6 +40,11 @@ public class HaxeFile
         return ast;
     }
     
+    public void setAst(final HaxeTree value)
+    {
+        ast = value;
+    }
+    
     public String getPackage()
     {
         return fpackage;

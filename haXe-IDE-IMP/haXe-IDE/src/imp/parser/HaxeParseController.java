@@ -107,30 +107,30 @@ public class HaxeParseController implements IParseController {
 
     @Override
     public Object getCurrentAst() {
-        return this.currentAST;
+        return currentAST;
     }
 
     @Override
     public Language getLanguage() {
-        return this.fLanguage;
+        return fLanguage;
     }
 
     @Override
     public IPath getPath() {
-        return this.fFilePath;
+        return fFilePath;
     }
 
     @Override
     public ISourceProject getProject() {
-        return this.fProject;
+        return fProject;
     }
 
     @Override
     public ISourcePositionLocator getSourcePositionLocator() {
-        if (this.fSourcePositionLocator == null) {
-            this.fSourcePositionLocator = new HaxeSourcePositionLocator(this);
+        if (fSourcePositionLocator == null) {
+            fSourcePositionLocator = new HaxeSourcePositionLocator(this);
         }
-        return this.fSourcePositionLocator;
+        return fSourcePositionLocator;
     }
 
     @Override
@@ -142,7 +142,7 @@ public class HaxeParseController implements IParseController {
     @Override
     public Iterator getTokenIterator(final IRegion region) {
         InnerCommonTokenIterator commonTokenIterator = new InnerCommonTokenIterator(
-                this.tokenStream, region);
+                tokenStream, region);
         return commonTokenIterator;
     }
 
@@ -251,9 +251,11 @@ public class HaxeParseController implements IParseController {
             throw new RuntimeException(e);
         } 
     }
-    
-    public Object parse(final String input, final IProgressMonitor monitor, boolean onlyLinking)
+
+    @Override
+    public Object parse(final String input, final IProgressMonitor monitor) 
     {
+        Activator.getInstance().setCurrentHaxeProject(fProject.getName());
         currentAST = null;
         if (input.isEmpty())
         {
@@ -262,19 +264,11 @@ public class HaxeParseController implements IParseController {
         doParse(input);
         
         link();
-        if (!onlyLinking)
-        {
-            showErrors();
-            printAST();
-        }        
+        updateProjectInfo();
+        showErrors();
+        printAST();
 
         return currentAST;
-    }
-
-    @Override
-    public Object parse(final String input, final IProgressMonitor monitor) {
-        Activator.getInstance().setCurrentHaxeProject(fProject.getName());
-        return parse(input, monitor, false);
     }
     
     private void link()
@@ -282,6 +276,11 @@ public class HaxeParseController implements IParseController {
         HaxeProject project = Activator.getInstance().getProject(fProject.getName());
         HaxeTreeLinker linker = new HaxeTreeLinker(project);
         linker.visit(currentAST);        
+    }
+    
+    private void updateProjectInfo()
+    {
+        Activator.getInstance().getCurrentFile().setAst(currentAST);
     }
     
     private void showErrors()

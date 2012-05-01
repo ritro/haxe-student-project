@@ -52,6 +52,17 @@ public class ParametersContainerNode extends VarUsageNode
        return parameters;
     }
     
+    public int getIdentifierOffset()
+    {
+        return getChild(0).getIdentifierOffset();
+    }
+    
+    public int getIdentifierLength()
+    {
+        HaxeTree child =  getChild(0);
+        return child.getIdentifierLength();
+    }
+    
     @Override
     protected void calculateMostRightPosition()
     {

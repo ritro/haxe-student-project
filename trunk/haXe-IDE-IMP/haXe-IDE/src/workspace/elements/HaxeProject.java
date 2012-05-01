@@ -29,7 +29,7 @@ public class HaxeProject extends AbstractHaxeProject
     public HaxeProject(final IProject project)
     {
         super();
-        
+
         buildFiles = new ArrayList<BuildFile>();
         baseProject = project;
         analyzeProjectStructure();

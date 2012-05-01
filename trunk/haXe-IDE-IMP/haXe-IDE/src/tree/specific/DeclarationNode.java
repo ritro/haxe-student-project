@@ -212,11 +212,6 @@ public class DeclarationNode extends NodeWithModifier {
 	@Override
 	public String toString()
 	{
-	    return String.format(
-    	            "declaration %s : %s <%s,%s>", 
-    	            getText(),
-    	            getHaxeType() == null ? "null" : getHaxeType().getShortTypeName(),
-    	            getMostLeftPosition(),
-    	            getMostRightPosition());
+	    return toString("declaration");
 	}
 }

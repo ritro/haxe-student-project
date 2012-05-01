@@ -175,8 +175,11 @@ public class HaxeLabelProvider implements ILabelProvider
 		}
 		else if (n instanceof VarUsageNode)
 		{
-		    VarUsageNode node = (VarUsageNode)n;
-		    return node.getText() + ": " + node.getHaxeType().getShortTypeName();
+		    // method calls and slices here too
+		    String type = n.getHaxeType() != null 
+		            ? n.getHaxeType().getShortTypeName()
+                    : "null";
+		    return n.getText() + ": " + type;
 		}
 		
 		return "<??unknown??>" + n.getText();

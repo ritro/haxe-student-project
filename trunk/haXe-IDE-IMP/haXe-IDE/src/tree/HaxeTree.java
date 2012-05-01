@@ -206,10 +206,52 @@ public class HaxeTree extends CommonTree
 			}
 		}
 	}
+	
+	protected String typeToString()
+	{
+	    HaxeType type = getHaxeType();
+	    return type == null ? "null" : type.getShortTypeName();
+	}
+    
+    /**
+     * Returns the info about node in that form:
+     * '<'node name'>' [name in text] : 
+     * type '<'left position, right position'>'
+     */
+    public String toString(final String className)
+    {
+        return String.format(
+                    "%s [%s] : %s <%s,%s>", 
+                    className,
+                    getText(),
+                    typeToString(),
+                    getMostLeftPosition(),
+                    getMostRightPosition());
+    }
+    
+    /**
+     * Use this instead of MostLeftPosition for
+     * actions like renaming or call hierarchy.
+     */
+    public int getIdentifierOffset()
+    {
+        return getMostLeftPosition();
+    }
+    
+    /**
+     * Use this instead of MostRightPosition - MostLeftPosition 
+     * for actions like renaming or call hierarchy.
+     */
+    public int getIdentifierLength()
+    {
+        return getMostRightPosition() - getMostLeftPosition();
+    }
 
 	/**
 	 * Gets the most left position. If it is undefined
-	 * then if tries to calculate it first.
+	 * then if tries to calculate it first. For multiword
+	 * structures like 'public function N()' it will return
+	 * the offset of the first letter of the word 'public'.
 	 * @return the most left position
 	 */
 	public int getMostLeftPosition() 
@@ -224,7 +266,10 @@ public class HaxeTree extends CommonTree
 
 	/**
 	 * Gets most right position. If it is undefined
-	 * then if tries to calculate it first.
+	 * then if tries to calculate it first. Fro multiword
+	 * structures like 'public function N():Int' it will
+	 * return the offset after the last letter int the word
+	 * 'Int'.
 	 * @return the most right position
 	 */
     public final int getMostRightPosition()

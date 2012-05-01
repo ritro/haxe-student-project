@@ -1,6 +1,5 @@
 package tree.specific;
 
-
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
@@ -64,11 +63,6 @@ public class MethodCallNode extends ParametersContainerNode
     
     public String toString()
     {
-        return String.format(
-                "method call [%s] : %s <%s, %s>", 
-                getText(),
-                getHaxeType() == null ? "null" : getHaxeType().toString(),
-                getMostLeftPosition(),
-                getMostRightPosition());
+        return toString("method call");
     }
 }

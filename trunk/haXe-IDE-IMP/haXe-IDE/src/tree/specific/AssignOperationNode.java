@@ -61,6 +61,6 @@ public class AssignOperationNode extends BinaryOperaionContainer
 	@Override
 	public String toString()
 	{
-	    return "Assign [" + getText() + "]";
+	    return toString("Assign");
 	}
 }

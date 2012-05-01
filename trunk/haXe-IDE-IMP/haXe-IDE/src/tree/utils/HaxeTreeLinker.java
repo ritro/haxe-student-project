@@ -204,7 +204,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         visit(leftOperand, data);
         visit(rightOperand, data);
         
-        if (!leftOperand.ifUndefinedType())
+        if (leftOperand.ifUndefinedType())
         {
             leftOperand.setHaxeType(rightOperand.getHaxeType());
         }
@@ -618,19 +618,18 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
                 }
             }
         }
+        currentScope = ScopeTypes.Function;
         for (DeclarationNode x: node.getParametersAsDeclarations())
         {
             x.setDeclaratonType(DeclarationType.FunctionParameter);
             x.updateInfo();
-            visit(x, data);
-            funEnv.put(x);
+            visit(x, funEnv);
         }
         
         node.updateInfo();        
         
         BlockScopeNode blockScope = node.getBlockScope();
 
-        currentScope = ScopeTypes.Function;
         visit(blockScope, funEnv);
         endVisit();
     }

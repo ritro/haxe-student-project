@@ -52,7 +52,7 @@ public class FunctionNode extends NodeWithScopeAndModifier
 		}
 		fullNameWithParameters = getText() + " ("
 				+ parameters + "): "
-				+ getHaxeType().getShortTypeName();
+				+ typeToString();
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class FunctionNode extends NodeWithScopeAndModifier
 	@Override
 	public String toString()
 	{
-	    return "function [" + getText() + "]";
+	    return toString("function");
 	}
 	
 	public void updateInfo()

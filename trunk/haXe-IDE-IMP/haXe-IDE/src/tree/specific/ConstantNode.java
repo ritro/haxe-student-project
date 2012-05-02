@@ -20,8 +20,9 @@ import tree.utils.HaxeTypeUtils;
  */
 public class ConstantNode extends HaxeTree {
 
-	public ConstantNode(final Token token) {
-		this.token = token;
+	public ConstantNode(final Token token) 
+	{
+		super(token);
 	}
 
 	public ConstantNode(

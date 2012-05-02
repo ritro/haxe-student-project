@@ -13,12 +13,9 @@ package tree;
 import imp.parser.antlr.HaxeParser;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
-import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.Tree;
 import org.eclipse.imp.parser.IMessageHandler;
 
 import tree.specific.MethodCallNode;
@@ -26,7 +23,7 @@ import tree.specific.SliceNode;
 import tree.specific.VarUsageNode;
 import tree.specific.type.HaxeType;
 
-public class HaxeTree extends CommonTree 
+public class HaxeTree extends CommonTreeReplacer 
 {
 	private static IMessageHandler messageHandler = null;
 	private boolean isDuplicate = false;
@@ -111,17 +108,6 @@ public class HaxeTree extends CommonTree
         ArrayList<HaxeTree> children = getAllChildren();
         return children.get(children.size()-1);
     }
-    
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<HaxeTree> getChildren() 
-    {
-        List<HaxeTree> res = (List<HaxeTree>)super.getChildren();
-        
-        if (res == null) return new ArrayList<HaxeTree>();
-        
-        return res;
-    }
 
     /**
      * Gets the all children of current node and
@@ -142,18 +128,6 @@ public class HaxeTree extends CommonTree
             childs.addAll(child.getAllChildren());
         }
         return childs;
-    }
-
-    @Override
-    public HaxeTree getChild(final int i) 
-    {
-        return (HaxeTree) super.getChild(i);
-    }
-
-    @Override
-    public CommonToken getToken() 
-    {
-        return (CommonToken) super.getToken();
     }
 
 	public static void setMessageHandler(final IMessageHandler messageHandler) {
@@ -244,7 +218,7 @@ public class HaxeTree extends CommonTree
      */
     public int getIdentifierLength()
     {
-        return getMostRightPosition() - getMostLeftPosition();
+        return getMostRightPosition() - getMostLeftPosition() + 1;
     }
 
 	/**
@@ -287,17 +261,7 @@ public class HaxeTree extends CommonTree
         return getMostLeftPosition() - getMostRightPosition();
     }
 
-	/**
-	 * Instantiates a new extended common tree.
-	 */
-	public HaxeTree() 
-	{
-	}
-
-	public HaxeTree(final CommonTree node) 
-	{
-		super(node);
-	}
+	public HaxeTree(){}
 
 	public HaxeTree(final Token t) 
 	{
@@ -312,18 +276,6 @@ public class HaxeTree extends CommonTree
     public HaxeTree(final int ttype, final String type) 
     {
         this(new CommonToken(ttype, type));
-    }
-
-    public HaxeTree(int ttype, Token token) 
-    {
-        this(token);
-    }
-    
-
-    public HaxeTree(int suffixExpr, String string, Token lPAREN242,
-            Token rPAREN244) 
-    {
-        this(suffixExpr, string);
     }
 
     /**
@@ -341,58 +293,6 @@ public class HaxeTree extends CommonTree
 	            getMostRightPosition(),
 	            0, 0, 1, 1);
 	}
-	
-	public HaxeTree getParent()
-	{
-	    Tree parent = super.getParent();
-	    if (parent == null)
-	    {
-	        return null;
-	    }
-		return (HaxeTree) parent;
-	}
-
-	/**
-	 * Метод нужен для подсчета отступа и длины узла для тех узлов, которые
-	 * <code>auxilary==true</code>. Для обычных узлов я просто смотрю
-	 * соответсвующий токен, для дополнительных - смотрю первого и последнего
-	 * сына. Считается, что дополнительные узлы не могут быть листьями.
-	 * 
-	 * Use getMostLeft/Right instead
-	 * 
-	 * @return the region for node
-	 *//*
-	@Deprecated
-	public Pair getRegionForNode() {
-		int begin;
-		int end;
-		if (this.auxiliary) {
-			try {
-				begin = this.getChild(0).getRegionForNode().getBegin();
-			} catch (NullPointerException e) {
-				begin = this.getToken().getStartIndex();
-			}
-			try {
-				end = this.getChild(this.getChildCount() - 1)
-						.getRegionForNode().getEnd();
-			} catch (NullPointerException e) {
-				end = this.getToken().getStartIndex()
-						+ this.getToken().getText().length();
-			}
-		} else {
-			try {
-				begin = this.getToken().getStartIndex();
-				end = this.getToken().getStartIndex()
-						+ this.getToken().getText().length();
-			} catch (NullPointerException nullPointerException) {
-				//
-				System.out.println("Problems on calculating region for node");
-				begin = 0;
-				end = 0;
-			}
-		}
-		return new Pair(begin, end);
-	}*/
 
 	/**
 	 * Get most-inner node of AST tree by it's offset. 

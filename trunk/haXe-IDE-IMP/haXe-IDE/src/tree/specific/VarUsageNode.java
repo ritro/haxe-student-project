@@ -78,5 +78,15 @@ public class VarUsageNode extends HaxeTree
 	public String toString()
 	{
 	    return toString("usage");
-	}
+	}    
+	
+	public int getIdentifierOffset()
+    {
+        return getTokenStartIndex();
+    }
+
+    public int getIdentifierLength()
+    {
+        return getTokenStopIndex() - getTokenStartIndex();
+    }
 }

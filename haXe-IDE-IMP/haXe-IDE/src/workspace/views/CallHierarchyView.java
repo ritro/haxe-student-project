@@ -130,7 +130,7 @@ public class CallHierarchyView extends HierarchyView
                 return;
             }
             HxFilesEditor hxEditor = (HxFilesEditor)editor;
-            hxEditor.selectAndReveal(node.getMostLeftPosition(), node.getLength());
+            hxEditor.selectAndReveal(node.getIdentifierOffset(), node.getIdentifierLength());
         }
         catch (Exception e)
         {

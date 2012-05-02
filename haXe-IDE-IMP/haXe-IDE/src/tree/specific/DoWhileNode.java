@@ -20,17 +20,10 @@ import tree.HaxeTree;
  * 
  * @author Anatoly Kondratyev
  */
-public class DoWhileNode extends HaxeTree {
-
-	public DoWhileNode() {
-		super();
-	}
-
-	public DoWhileNode(final HaxeTree node) {
-		super(node);
-	}
-
-	public DoWhileNode(final Token t) {
+public class DoWhileNode extends HaxeTree 
+{
+	public DoWhileNode(final Token t) 
+	{
 		super(t);
 	}
 }

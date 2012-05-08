@@ -11,7 +11,7 @@ import tree.specific.Function;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 
-public class HaxeElementImageProvider
+public class ImageProvider
 {    /*
     public static ImageDescriptor getImageDescriptorFromShared(String desctiption)
     {

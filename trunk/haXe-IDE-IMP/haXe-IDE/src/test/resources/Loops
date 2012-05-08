@@ -1,4 +1,4 @@
-class IntIter {
+class IntIter {	
     var min : Int;
     var max : Int;
 

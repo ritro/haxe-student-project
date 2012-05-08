@@ -25,7 +25,7 @@ import org.eclipse.jface.text.source.Annotation;
 
 import tree.HaxeTree;
 import tree.specific.BlockScopeContainer;
-import tree.specific.BlockScopeNode;
+import tree.specific.BlockScope;
 import tree.specific.type.ClassNode;
 
 /**
@@ -69,7 +69,7 @@ public class HaxeFoldingUpdater extends FolderBase {
             if (node instanceof BlockScopeContainer) 
             {
                 makeAnnotation((BlockScopeContainer)node);
-                BlockScopeNode blockscope 
+                BlockScope blockscope 
                     = ((BlockScopeContainer)node).getBlockScope();
                 if (blockscope == null)
                 {

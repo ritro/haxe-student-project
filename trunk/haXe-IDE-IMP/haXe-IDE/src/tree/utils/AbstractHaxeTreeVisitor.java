@@ -2,22 +2,22 @@ package tree.utils;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
-import tree.specific.ReturnNode;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
+import tree.specific.UnarExpression;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.While;
 import tree.specific.type.ClassNode;
 
 public abstract class AbstractHaxeTreeVisitor
@@ -38,17 +38,17 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visitHighLevel(t, data);
        }
-       else if (t instanceof AssignOperationNode)
+       else if (t instanceof Assignment)
        {
-           visit((AssignOperationNode)t, data);
+           visit((Assignment)t, data);
        }
-       else if (t instanceof BinaryExpressionNode)
+       else if (t instanceof BinaryExpression)
        {
-           visit((BinaryExpressionNode)t, data);
+           visit((BinaryExpression)t, data);
        }
-       else if (t instanceof BlockScopeNode)
+       else if (t instanceof BlockScope)
        {
-           visit((BlockScopeNode)t, data);
+           visit((BlockScope)t, data);
        }
        else if (t instanceof ClassNode)
        {
@@ -58,57 +58,57 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((ArrayNode)t, data);
        }
-       else if (t instanceof ConstantNode)
+       else if (t instanceof Constant)
        {
-           visit((ConstantNode)t, data);
+           visit((Constant)t, data);
        }
        else if (t instanceof ErrorNode)
        {
            visit((ErrorNode)t, data);
        }
-       else if (t instanceof FunctionNode)
+       else if (t instanceof Function)
        {
-           visit((FunctionNode)t, data);
+           visit((Function)t, data);
        }
        else if (t instanceof IfNode)
        {
            visit((IfNode)t, data);
        }
-       else if (t instanceof ForNode)
+       else if (t instanceof For)
        {
-           visit((ForNode)t, data);
+           visit((For)t, data);
        }
-       else if (t instanceof WhileNode)
+       else if (t instanceof While)
        {
-           visit((WhileNode)t, data);
+           visit((While)t, data);
        }
-       else if (t instanceof ReturnNode)
+       else if (t instanceof Return)
        {
-           visit((ReturnNode)t, data);
+           visit((Return)t, data);
        }       
-       else if (t instanceof DeclarationNode)
+       else if (t instanceof Declaration)
        {
-           visit((DeclarationNode)t, data);
+           visit((Declaration)t, data);
        }
        else if (t instanceof NewNode)
        {
            visit((NewNode)t, data);
        }
-       else if (t instanceof MethodCallNode)
+       else if (t instanceof MethodCall)
        {
-           visit((MethodCallNode)t, data);
+           visit((MethodCall)t, data);
        }
        else if (t instanceof SliceNode)
        {
            visit((SliceNode)t, data);
        }
-       else if (t instanceof VarUsageNode)
+       else if (t instanceof Usage)
        {
-           visit((VarUsageNode)t, data);
+           visit((Usage)t, data);
        }
-       else if (t instanceof UnarExpressionNode)
+       else if (t instanceof UnarExpression)
        {
-           visit((UnarExpressionNode)t, data);
+           visit((UnarExpression)t, data);
        }
        else
        {
@@ -130,23 +130,23 @@ public abstract class AbstractHaxeTreeVisitor
    
    protected abstract void visitHighLevel(final HaxeTree node, Object data);
    protected abstract void visit(final ClassNode node, Object data);
-   protected abstract void visit(final FunctionNode node, Object data);
-   protected abstract void visit(final DeclarationNode node, Object data);
+   protected abstract void visit(final Function node, Object data);
+   protected abstract void visit(final Declaration node, Object data);
    protected abstract void visit(final NewNode node, Object data);
-   protected abstract void visit(final MethodCallNode node, Object data);
+   protected abstract void visit(final MethodCall node, Object data);
    protected abstract void visit(final SliceNode node, Object data);
-   protected abstract void visit(final VarUsageNode node, Object data);
-   protected abstract void visit(final AssignOperationNode node, Object data);
+   protected abstract void visit(final Usage node, Object data);
+   protected abstract void visit(final Assignment node, Object data);
    protected abstract void visit(final ArrayNode node, Object data);
-   protected abstract void visit(final ConstantNode node, Object data);
-   protected abstract void visit(final ReturnNode node, Object data);
-   protected abstract void visit(final BinaryExpressionNode node, Object data);
-   protected abstract void visit(final UnarExpressionNode node, Object data);
-   protected abstract void visit(final BlockScopeNode node, Object data);
+   protected abstract void visit(final Constant node, Object data);
+   protected abstract void visit(final Return node, Object data);
+   protected abstract void visit(final BinaryExpression node, Object data);
+   protected abstract void visit(final UnarExpression node, Object data);
+   protected abstract void visit(final BlockScope node, Object data);
    protected abstract void visit(final ErrorNode node, Object data);
    protected abstract void visit(final IfNode node, Object data);
-   protected abstract void visit(final ForNode node, Object data);
-   protected abstract void visit(final WhileNode node, Object data);
+   protected abstract void visit(final For node, Object data);
+   protected abstract void visit(final While node, Object data);
    
    protected abstract void visitUnknown(final HaxeTree node, Object data);
 }

@@ -1,13 +1,12 @@
 package workspace.views;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 
 public class CallHierarchyCotentProvider implements ITreeContentProvider
 {
     private static Object[] EMPTY_ARRAY = new Object[0];
-    private TreeViewer viewer;
+    private Viewer viewer;
     private ICallHierarchyElement model = null;
     
     public void dispose() {}
@@ -16,7 +15,7 @@ public class CallHierarchyCotentProvider implements ITreeContentProvider
     public void inputChanged(
             final Viewer viewer, final Object oldInput, final Object newInput)
     {
-        this.viewer = (TreeViewer)viewer;
+        this.viewer = viewer;
         if (newInput instanceof ICallHierarchyElement)
         {
             model = (ICallHierarchyElement) newInput;

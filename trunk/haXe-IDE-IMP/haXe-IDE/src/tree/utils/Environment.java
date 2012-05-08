@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import tree.HaxeTree;
-import tree.specific.FunctionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.DeclarationNode.DeclarationType;
+import tree.specific.Function;
+import tree.specific.Declaration;
+import tree.specific.Declaration.DeclarationType;
 
 /**
  * List of declarations valid in the current scope
@@ -88,12 +88,12 @@ public class Environment extends HashMap<String, HaxeTree>
             super.put(name, declaration);
             return true;
         }
-        if (decl instanceof DeclarationNode)
+        if (decl instanceof Declaration)
         {
             DeclarationType foundType = 
-                    ((DeclarationNode)decl).getDeclaratonType();
+                    ((Declaration)decl).getDeclaratonType();
             DeclarationType addType = 
-                    ((DeclarationNode)declaration).getDeclaratonType();
+                    ((Declaration)declaration).getDeclaratonType();
             if (foundType != addType ||
                     addType != DeclarationType.ClassVarDeclaration)
             {
@@ -109,7 +109,7 @@ public class Environment extends HashMap<String, HaxeTree>
         return false;
     }
     
-    public FunctionNode getLastFunction()
+    public Function getLastFunction()
     {
         HaxeTree[] values = new HaxeTree[values().size()];
         values().toArray(values);
@@ -117,9 +117,9 @@ public class Environment extends HashMap<String, HaxeTree>
         for (int i = size - 1; i >= 0; i--)
         {
             HaxeTree node = values[i];
-            if (node instanceof FunctionNode)
+            if (node instanceof Function)
             {
-                return (FunctionNode)node;
+                return (Function)node;
             }
         }
         

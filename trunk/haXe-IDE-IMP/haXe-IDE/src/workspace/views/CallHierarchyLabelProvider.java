@@ -5,7 +5,6 @@ import imp.utils.outline.HaxeLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-
 public class CallHierarchyLabelProvider extends HaxeLabelProvider
 {
     @Override

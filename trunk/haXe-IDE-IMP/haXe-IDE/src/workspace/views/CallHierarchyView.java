@@ -1,5 +1,7 @@
 package workspace.views;
 
+import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.ui.IContextMenuConstants;
@@ -10,15 +12,24 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 
 import tree.HaxeTree;
+import tree.specific.Function;
+import tree.utils.HaxeTreeUtils;
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.WorkspaceUtils;
 import workspace.editor.HxFilesEditor;
+import workspace.elements.HaxeFile;
 
 public class CallHierarchyView extends HierarchyView
 {
@@ -27,6 +38,7 @@ public class CallHierarchyView extends HierarchyView
     public static final String GROUP_SEARCH_SCOPE 	= "MENU_SEARCH_SCOPE";
     
     private CallHierarchyLabelProvider labelProvider;
+    private TableViewer table;
 
     public CallHierarchyView() 
     {
@@ -37,54 +49,103 @@ public class CallHierarchyView extends HierarchyView
     }
     
     @Override
+    protected void createLayout(Composite parent)
+    {
+        super.createLayout(parent);
+        
+        table = new TableViewer(
+                parent, SWT.MULTI | SWT.H_SCROLL| SWT.V_SCROLL);
+        GridData layoutData = new GridData();
+        layoutData.grabExcessHorizontalSpace = true;
+        layoutData.grabExcessVerticalSpace = true;
+        layoutData.horizontalAlignment = GridData.FILL;
+        layoutData.verticalAlignment = GridData.FILL;
+        table.getControl().setLayoutData(layoutData);
+        
+        table.setContentProvider(new CallHierarchyCotentProvider());
+        treeViewer.setLabelProvider(labelProvider);
+    }
+    
+    @Override
     protected void initContentProvider()
     {
         treeViewer.setContentProvider(new CallHierarchyCotentProvider());
         treeViewer.setLabelProvider(labelProvider);
     }
     
-    public void init(final String pack, final HaxeTree root, HashMapForLists<NodeLink> list)
+    public void init(final HaxeTree root, final HashMapForLists<NodeLink> list)
     {
         invisibleRoot.clearAllChildren();
-        IFile file = Activator.getInstance().getCurrentFile().getRealFile();
+        HaxeFile hFile = Activator.getInstance().getCurrentFile();
         
-        CallHierarchyNodeElement visibleRoot = new CallHierarchyNodeElement(file, root, pack);
+        CallHierarchyNodeElement visibleRoot = 
+                new CallHierarchyNodeElement(hFile.getRealFile(), root, hFile.getPackage());
         CallHierarchyFolderElement callsTo = new CallHierarchyFolderElement("Calls To");
         CallHierarchyFolderElement callsFrom = new CallHierarchyFolderElement("Calls From");
         
         invisibleRoot.add(visibleRoot);
         text.setText(treeViewer.toString());
         
-        visibleRoot.add(callsTo);
-        visibleRoot.add(callsFrom);
-    
-        if (list == null)
+        //visibleRoot.add(callsTo);
+        //visibleRoot.add(callsFrom);
+
+        for (String pack : list.keySet())
         {
-            list = new HashMapForLists<NodeLink>();
-        }
-        for (String cpack : list.keySet())
-        {
-            for (NodeLink info : list.get(cpack))
+            HashMap<String, CallHierarchyNodeElement> funList = new HashMap<String, CallHierarchyNodeElement>();
+            for (NodeLink info : list.get(pack))
             {
-                callsTo.add(new CallHierarchyNodeElement(info.getFile(), info.getNode(), cpack));
+                CallHierarchyElement element = 
+                        new CallHierarchyNodeElement(info.getFile(), info.getNode(), pack);
+                Function function = HaxeTreeUtils.getParentFunction(info.getNode());
+                if (function != null)
+                {
+                String key = pack+function.getText();
+                CallHierarchyNodeElement funEl = funList.get(key);
+                if (funEl == null)
+                {
+                    funEl = new CallHierarchyNodeElement(info.getFile(), function, pack);
+                }
+                funEl.addLink(element);
+                funList.put(key, funEl);
+                }
+                else
+                {
+                    visibleRoot.add(element);
+                }
             }
+            ICallHierarchyElement[] ar = funList.values().toArray(new ICallHierarchyElement[0]);
+            visibleRoot.add(ar);
         }
         treeViewer.refresh(invisibleRoot);
     }
     
+    class DoubleClickListener implements IDoubleClickListener
+    {
+        /**
+        * Double click listener which jumps to the method in the source code.
+        * @param event
+        */
+        @Override
+        public void doubleClick(DoubleClickEvent event)
+        {
+            jumpToSelection(event.getSelection());
+        }
+        
+    }
+    
     protected void hookListeners()
     {
-        treeViewer.addDoubleClickListener(new IDoubleClickListener() 
-        {            
-            /**
-            * Double click listener which jumps to the method in the source code.
-            * @param event
-            */
+        DoubleClickListener listener = new DoubleClickListener();
+        treeViewer.addDoubleClickListener(listener);
+        table.addDoubleClickListener(listener);
+        
+        treeViewer.addSelectionChangedListener(new ISelectionChangedListener() 
+        {    
             @Override
-           public void doubleClick(DoubleClickEvent event) 
-           {
-              jumpToSelection(event.getSelection());
-           }
+            public void selectionChanged(SelectionChangedEvent event)
+            {
+                updateTable(event.getSelection());
+            }
         });
     }
 
@@ -116,30 +177,41 @@ public class CallHierarchyView extends HierarchyView
         manager.add(new GroupMarker(IContextMenuConstants.GROUP_ADDITIONS));
     }
     
-    private void jumpToLocation(final IFile file, final HaxeTree node)
+    private void updateTable(final ISelection selection)
     {
-        if (file == null)
+        table.setInput(null);
+        if (selection == null || !(selection instanceof IStructuredSelection))
         {
             return;
         }
-        try
+        try 
         {
-            IEditorPart editor = WorkspaceUtils.openFileInEditor(file);
-            if (!(editor instanceof HxFilesEditor))
+            Object structuredSelection = ((IStructuredSelection) selection).getFirstElement();
+            
+            if (!((ICallHierarchyElement)structuredSelection).isClickable())
             {
                 return;
             }
-            HxFilesEditor hxEditor = (HxFilesEditor)editor;
-            hxEditor.selectAndReveal(node.getIdentifierOffset(), node.getIdentifierLength());
-        }
-        catch (Exception e)
+
+            CallHierarchyNodeElement methodWrapper = (CallHierarchyNodeElement) structuredSelection;
+            List<CallHierarchyElement> links = methodWrapper.getLinks();
+
+            if (links != null) 
+            {
+                for (CallHierarchyElement child : links)
+                {
+                    table.add(child);
+                }
+            }
+        } 
+        catch (Exception e) 
         {
-            String message = "CallHierarchyView.jumpToLocation: " + e.getLocalizedMessage();
-            Activator.logger.error(message);
+            Activator.logger.error(
+                    "CallHierarchyView.updateTable exception: ", e.getMessage());
         }
     }
     
-    public void jumpToSelection(ISelection selection) 
+    public void jumpToSelection(final ISelection selection) 
     {
         if (selection == null || !(selection instanceof IStructuredSelection))
         {
@@ -159,7 +231,7 @@ public class CallHierarchyView extends HierarchyView
 
             if (node != null) 
             {
-                jumpToLocation(methodWrapper.getFile(), node);
+                WorkspaceUtils.jumpToLocation(methodWrapper.getFile(), node);
             } 
             //else {
             //    jumpToMethod(methodWrapper.getMethod());

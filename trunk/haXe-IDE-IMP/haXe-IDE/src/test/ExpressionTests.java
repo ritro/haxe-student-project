@@ -12,11 +12,11 @@ import org.junit.Test;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.ConstantNode;
-import tree.specific.MethodCallNode;
+import tree.specific.Constant;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
 import tree.specific.SliceNode;
-import tree.specific.VarUsageNode;
+import tree.specific.Usage;
 import tree.utils.HaxeTreePrinter;
 
 public class ExpressionTests
@@ -31,13 +31,13 @@ public class ExpressionTests
     @Test
     public void parseCallExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("getArray()[3].getSomeClass().intField");
-        assertTrue(tree instanceof MethodCallNode);
+        assertTrue(tree instanceof MethodCall);
     }
     
     @Test
     public void parseCallExpression2() throws RecognitionException {
         HaxeTree tree = parseExpression("getArray().getSomeClass()");
-        assertTrue(tree.getChild(1).getChild(0) instanceof MethodCallNode);
+        assertTrue(tree.getChild(1).getChild(0) instanceof MethodCall);
     }
     
     @Test
@@ -66,7 +66,7 @@ public class ExpressionTests
     @Test
     public void parseDotExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("some.this.some2");
-        assertTrue(tree instanceof VarUsageNode);
+        assertTrue(tree instanceof Usage);
     }
     
     // Arrays
@@ -80,7 +80,7 @@ public class ExpressionTests
     public void parseArrayExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("[1,2]");
         assertTrue(tree.getChildCount() == 2);
-        assertTrue(tree.getChild(0) instanceof ConstantNode);
+        assertTrue(tree.getChild(0) instanceof Constant);
     }
     
     // Type expressions and arrays classes    

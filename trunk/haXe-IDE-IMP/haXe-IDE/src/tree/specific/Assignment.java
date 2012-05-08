@@ -21,7 +21,7 @@ import tree.specific.type.HaxeType;
  * @author kondratyev
  *         Maria Savenko
  */
-public class AssignOperationNode extends BinaryOperaionContainer 
+public class Assignment extends BinaryOperaionContainer 
 {
     @Override
     protected void defineOperationType()
@@ -48,12 +48,12 @@ public class AssignOperationNode extends BinaryOperaionContainer
         return super.defineResultType(operationType, leftType, rightType);
     }
 	
-    public AssignOperationNode(final Token t) 
+    public Assignment(final Token t) 
     {
         super(t);
     }
 
-	public AssignOperationNode(final int ttype, final Token token) 
+	public Assignment(final int ttype, final Token token) 
 	{
 		super(token);
 	}

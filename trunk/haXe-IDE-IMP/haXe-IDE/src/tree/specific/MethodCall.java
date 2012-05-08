@@ -5,9 +5,9 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 
-public class MethodCallNode extends ParametersContainerNode
+public class MethodCall extends ParametersContainer
 {
-    public MethodCallNode(
+    public MethodCall(
             final int callOrSlice, final Token lParen, final Token rParen) 
     {
         super(callOrSlice, "MethodCall", lParen, rParen);
@@ -28,7 +28,7 @@ public class MethodCallNode extends ParametersContainerNode
     @Override    
     public void setDeclarationNode(HaxeTree declaration)
     {
-        ((VarUsageNode)getChild(0)).setDeclarationNode(declaration); 
+        ((Usage)getChild(0)).setDeclarationNode(declaration); 
     }
     
     @Override

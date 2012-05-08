@@ -27,8 +27,8 @@ import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 import tree.HaxeTree;
-import tree.specific.FunctionNode;
-import tree.specific.DeclarationNode;
+import tree.specific.Function;
+import tree.specific.Declaration;
 import tree.specific.type.ClassNode;
 import tree.utils.Environment;
 
@@ -123,9 +123,9 @@ public class HaxeContentProposer implements IContentProposer {
 		for (HaxeTree commonTree : parent.getAllChildren()) 
 		{
 			if (commonTree.getText().startsWith(prefix)
-			        && (commonTree instanceof DeclarationNode
+			        && (commonTree instanceof Declaration
 			        || commonTree instanceof ClassNode
-			        || commonTree instanceof FunctionNode)) 
+			        || commonTree instanceof Function)) 
 			{
 				result.put(commonTree);
 			}
@@ -150,7 +150,7 @@ public class HaxeContentProposer implements IContentProposer {
 
 		Set<ComparableSourceProposal> result = new TreeSet<ComparableSourceProposal>();
 		for (HaxeTree commonTree : availableVars.values()) {
-			DeclarationNode usage = (DeclarationNode) commonTree;
+			Declaration usage = (Declaration) commonTree;
 			result.add(new ComparableSourceProposal(
 			        usage.getHaxeType().toString(),
 					usage.getText(), prefix, offset));

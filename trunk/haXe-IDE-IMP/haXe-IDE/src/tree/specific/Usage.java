@@ -16,7 +16,7 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 
-public class VarUsageNode extends HaxeTree 
+public class Usage extends HaxeTree 
 {
     private HaxeTree declaration = null;
     
@@ -49,7 +49,7 @@ public class VarUsageNode extends HaxeTree
 	 * Instantiates a new variable usage. 
 	 * @param token - token.
 	 */
-	public VarUsageNode(final Token token) 
+	public Usage(final Token token) 
 	{
 		super(token);
 	}

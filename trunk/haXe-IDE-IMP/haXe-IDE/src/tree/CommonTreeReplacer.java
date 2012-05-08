@@ -8,7 +8,7 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
-public class CommonTreeReplacer extends CommonTree 
+public abstract class CommonTreeReplacer extends CommonTree 
 {
     public CommonTreeReplacer() {}
     
@@ -67,5 +67,4 @@ public class CommonTreeReplacer extends CommonTree
         
         return res;
     }
-
 }

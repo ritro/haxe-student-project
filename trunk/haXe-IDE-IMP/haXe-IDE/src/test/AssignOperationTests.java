@@ -7,7 +7,7 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.AssignOperationNode;
+import tree.specific.Assignment;
 import tree.specific.type.HaxeType;
 import tree.utils.Environment;
 import tree.utils.HaxeTreeLinker;
@@ -25,7 +25,7 @@ public class AssignOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x:Int; x=123.1;}");
         linker.visit(tree, new Environment());
-        AssignOperationNode node = TestHelper.getAssignment(tree);
+        Assignment node = TestHelper.getAssignment(tree);
         
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
@@ -37,7 +37,7 @@ public class AssignOperationTests
     {
         HaxeTree tree = parseFunction("function main() { var x:Int; x=123;}");
         linker.visit(tree, new Environment());
-        AssignOperationNode node = TestHelper.getAssignment(tree);
+        Assignment node = TestHelper.getAssignment(tree);
 
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 

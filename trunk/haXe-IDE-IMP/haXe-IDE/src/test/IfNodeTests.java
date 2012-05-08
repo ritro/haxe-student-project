@@ -7,9 +7,9 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.AssignOperationNode;
+import tree.specific.Assignment;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 
 public class IfNodeTests
 {
@@ -57,7 +57,7 @@ public class IfNodeTests
     public void parseSimpleIfWithAssignNewClassExpr() throws RecognitionException {
         HaxeTree tree = parseStatement("if (_instance == null) _instance = new DataManager();");
         assertTrue(tree instanceof IfNode);
-        assertTrue(((IfNode)tree).getIfBlock() instanceof AssignOperationNode);
+        assertTrue(((IfNode)tree).getIfBlock() instanceof Assignment);
     }
     
     @Test
@@ -65,8 +65,8 @@ public class IfNodeTests
         HaxeTree tree = parseStatement("if(style.up!=null) s9gUp = S9G(style.up, style.rect);");
         assertTrue(tree instanceof IfNode);
         HaxeTree ifBlock = ((IfNode)tree).getIfBlock();
-        assertTrue(ifBlock instanceof AssignOperationNode);
-        assertTrue(((AssignOperationNode)ifBlock).getRightOperand().getChildCount() == 3);
+        assertTrue(ifBlock instanceof Assignment);
+        assertTrue(((Assignment)ifBlock).getRightOperand().getChildCount() == 3);
     }
     
     @Test
@@ -75,6 +75,6 @@ public class IfNodeTests
                 "if(rolled&&pressed) changeDown() else if(!rolled&&!pressed) changeUp() else changeOver();");
         assertTrue(tree instanceof IfNode);
         HaxeTree ifBlock = ((IfNode)tree).getElseBlock();
-        assertTrue(((IfNode)ifBlock).getElseBlock() instanceof MethodCallNode);
+        assertTrue(((IfNode)ifBlock).getElseBlock() instanceof MethodCall);
     }
 }

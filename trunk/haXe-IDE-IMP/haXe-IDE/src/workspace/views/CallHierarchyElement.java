@@ -22,6 +22,15 @@ public abstract class CallHierarchyElement extends Object implements ICallHierar
         children.add(child);
         child.setParent(this);
     }
+    
+    public void add(final ICallHierarchyElement[] children)
+    {
+        for (ICallHierarchyElement child : children)
+        {
+            this.children.add(child);
+            child.setParent(this);
+        }
+    }
 
     public Object[] getChildren()
     {

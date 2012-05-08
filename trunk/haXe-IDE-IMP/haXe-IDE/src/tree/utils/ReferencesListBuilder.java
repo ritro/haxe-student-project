@@ -4,22 +4,22 @@ import java.util.HashMap;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
-import tree.specific.ReturnNode;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
+import tree.specific.UnarExpression;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.While;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import tree.specific.type.HaxeType;
@@ -103,7 +103,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
      */
     private void analyseSearchedObject(final HaxeTree searchFor)
     {
-        if (searchFor instanceof DeclarationNode)
+        if (searchFor instanceof Declaration)
         {
             addToResults(searchFor);
             searchObject = searchFor;
@@ -147,7 +147,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         {
             // not implemented yet
         }
-        else if (searchFor instanceof FunctionNode)
+        else if (searchFor instanceof Function)
         {
             if (searchFor.getText().equals("new"))
             {
@@ -182,7 +182,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final ClassNode node, Object data)
     {
-        BlockScopeNode block = node.getBlockScope();        
+        BlockScope block = node.getBlockScope();        
         if (block == null)
         {
             return;
@@ -191,14 +191,14 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final FunctionNode node, Object data)
+    protected void visit(final Function node, Object data)
     {
         for (HaxeTree param : node.getParametersAsDeclarations())
         {
             visit(param, data);
         }
         
-        BlockScopeNode block = node.getBlockScope();      
+        BlockScope block = node.getBlockScope();      
         if (block == null)
         {
             return;
@@ -207,7 +207,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final DeclarationNode node, Object data)
+    protected void visit(final Declaration node, Object data)
     {
         HaxeType nodeType = node.getHaxeType();
         if ((searchObject instanceof ClassNode || searchObject instanceof EnumNode)
@@ -248,12 +248,12 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final MethodCallNode node, Object data)
+    protected void visit(final MethodCall node, Object data)
     {
         HaxeTree parent = node.getParent();
         HaxeTree decl = node.getDeclarationNode();
         String name = node.getText();
-        if ((searchObject instanceof FunctionNode 
+        if ((searchObject instanceof Function 
                 || parent instanceof NewNode) // for constructors
                 && name.equals(searchObject.getText())
                 && decl != null
@@ -280,7 +280,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final VarUsageNode node, Object data)
+    protected void visit(final Usage node, Object data)
     {
         String searchName = searchObject.getText();
         String nodeName = node.getText();
@@ -290,7 +290,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         }
         if (nodeName.equals(searchName) 
                 && node.getDeclarationNode().equals(searchObject)
-                && (searchObject instanceof DeclarationNode 
+                && (searchObject instanceof Declaration 
                         || searchObject instanceof ClassNode // for static classes
                         || searchObject instanceof EnumNode))
         {
@@ -299,7 +299,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final AssignOperationNode node, Object data)
+    protected void visit(final Assignment node, Object data)
     {
         visitAllChildren(node, data);
     }
@@ -311,30 +311,30 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ConstantNode node, Object data)
+    protected void visit(final Constant node, Object data)
     {
         // skip
     }
 
     @Override
-    protected void visit(final ReturnNode node, Object data)
+    protected void visit(final Return node, Object data)
     {
         visitAllChildren(node, data);
     }
 
     @Override
-    protected void visit(final BinaryExpressionNode node, Object data)
+    protected void visit(final BinaryExpression node, Object data)
     {
         visitAllChildren(node, data);
     }
     
-    protected void visit(final UnarExpressionNode node, Object data)
+    protected void visit(final UnarExpression node, Object data)
     {
         visitAllChildren(node, data);
     }
 
     @Override
-    protected void visit(final BlockScopeNode node, Object data)
+    protected void visit(final BlockScope node, Object data)
     {
         visitAllChildren(node, data);
     }
@@ -352,13 +352,13 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ForNode node, Object data)
+    protected void visit(final For node, Object data)
     {
         visitAllChildren(node, data);
     }
 
     @Override
-    protected void visit(final WhileNode node, Object data)
+    protected void visit(final While node, Object data)
     {
         visitAllChildren(node, data);
     }

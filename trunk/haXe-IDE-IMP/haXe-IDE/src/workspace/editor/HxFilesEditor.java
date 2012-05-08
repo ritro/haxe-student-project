@@ -13,13 +13,12 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener2;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
-import tree.specific.VarUsageNode;
+import tree.specific.Usage;
 import tree.utils.ReferencesListBuilder;
 import workspace.Activator;
 import workspace.HashMapForLists;
@@ -72,10 +71,10 @@ public class HxFilesEditor extends UniversalEditor
     {
         IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
         window.getPartService().removePartListener(partListener);
-        
-    	currentNode = null;
+
+        currentNode = null;
+        usagesList = null;
     	usagesBuilder = null;
-    	usagesList = null;
     	
     	super.dispose();
     }
@@ -89,7 +88,7 @@ public class HxFilesEditor extends UniversalEditor
         analyzeCurrentNodeUsages();
         
         if (WorkspaceUtils.isNodeValidForUsageAnalysis(currentNode)
-                || currentNode instanceof VarUsageNode)
+                || currentNode instanceof Usage)
         {
             //highlightCurrentNodeUsagesInText();
         }
@@ -148,6 +147,7 @@ public class HxFilesEditor extends UniversalEditor
     
     private void analyzeCurrentNodeUsages()
     {
+        usagesList = null;
         if (currentNode == null)
         {
             return;
@@ -209,10 +209,10 @@ public class HxFilesEditor extends UniversalEditor
     
     private void updateCurrentNode()
     {
+        currentNode = null;
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         if (project == null)
         {
-        	currentNode = null;
         	return;
         }
         currentFile = Activator.getInstance().getCurrentFile();
@@ -224,7 +224,6 @@ public class HxFilesEditor extends UniversalEditor
         TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
         if (ast == null || selection == null)
         {
-        	currentNode = null;
             return;
         }
         int offset = selection.getOffset();

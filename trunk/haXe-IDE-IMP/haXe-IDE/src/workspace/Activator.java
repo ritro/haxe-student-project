@@ -17,8 +17,8 @@ import java.util.HashMap;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.imp.runtime.PluginBase;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
-import workspace.elements.IHaxeResources;
 
 /**
  * Plug-in Activator. Actually this is the plugin and after the 
@@ -147,62 +146,17 @@ public class Activator extends PluginBase{
 	{
 		super.start(context);
 		
-		parseLibs();
+		connectLibs();
 		findProjectsInWorkspace();
 	}
-	
-	// Definitions for image management
-
-	/** The Constant ICONS_PATH. */
-	public static final IPath ICONS_PATH = new org.eclipse.core.runtime.Path(
-			"icons/");
 
 	@Override
-	protected void initializeImageRegistry(
-			final org.eclipse.jface.resource.ImageRegistry reg) {
-		org.osgi.framework.Bundle bundle = getBundle();
-		org.eclipse.core.runtime.IPath path = ICONS_PATH
-				.append("haxe_default_image.gif");
-		org.eclipse.jface.resource.ImageDescriptor imageDescriptor = createImageDescriptor(
-				bundle, path);
-		reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);
-
-		path = ICONS_PATH.append("haxe_default_outline_item.gif");
-		imageDescriptor = createImageDescriptor(bundle, path);
-		reg.put(IHaxeResources.HAXE_DEFAULT_OUTLINE_ITEM, imageDescriptor);
-
-		path = ICONS_PATH.append("haxe_file.gif");
-		imageDescriptor = createImageDescriptor(bundle, path);
-		reg.put(IHaxeResources.HAXE_FILE, imageDescriptor);
-
-		path = ICONS_PATH.append("haxe_file_warning.gif");
-		imageDescriptor = createImageDescriptor(bundle, path);
-		reg.put(IHaxeResources.HAXE_FILE_WARNING, imageDescriptor);
-
-		path = ICONS_PATH.append("haxe_file_error.gif");
-		imageDescriptor = createImageDescriptor(bundle, path);
-		reg.put(IHaxeResources.HAXE_FILE_ERROR, imageDescriptor);
-	}
-
-	/**
-	 * Creates the image descriptor.
-	 * 
-	 * @param bundle
-	 *            the bundle
-	 * @param path
-	 *            the path
-	 * @return the org.eclipse.jface.resource. image descriptor
-	 */
-	public static org.eclipse.jface.resource.ImageDescriptor createImageDescriptor(
-			final org.osgi.framework.Bundle bundle,
-			final org.eclipse.core.runtime.IPath path) {
-		java.net.URL url = org.eclipse.core.runtime.FileLocator.find(bundle,
-				path, null);
-		if (url != null) {
-			return org.eclipse.jface.resource.ImageDescriptor
-					.createFromURL(url);
-		}
-		return null;
+	protected void initializeImageRegistry(ImageRegistry reg) 
+	{
+		//org.osgi.framework.Bundle bundle = getBundle();
+        //IPath path = SharedImages.ICONS_PATH.append("haxe_default_outline_item.gif");
+        //ImageDescriptor imageDescriptor = SharedImages.createImageDescriptor(bundle, path);
+        //reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);
 	}
 
 	private void findProjectsInWorkspace()
@@ -214,7 +168,7 @@ public class Activator extends PluginBase{
         }
 	}
 	
-	private void parseLibs() throws URISyntaxException, IOException
+	private void connectLibs() throws URISyntaxException, IOException
 	{        
 	    libraries = new HaxeLibProject(libsPath);
 	    libraries.linkLib();

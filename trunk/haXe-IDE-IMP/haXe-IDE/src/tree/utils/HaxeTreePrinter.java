@@ -4,22 +4,22 @@ import java.util.List;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
-import tree.specific.ReturnNode;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
+import tree.specific.UnarExpression;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.While;
 import tree.specific.type.ClassNode;
 
 
@@ -84,7 +84,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final FunctionNode node, Object data)
+    protected void visit(final Function node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -92,7 +92,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final DeclarationNode node, Object data)
+    protected void visit(final Declaration node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -112,7 +112,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final MethodCallNode node, Object data)
+    protected void visit(final MethodCall node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -128,7 +128,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final VarUsageNode node, Object data)
+    protected void visit(final Usage node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -136,7 +136,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final AssignOperationNode node, Object data)
+    protected void visit(final Assignment node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());     
@@ -152,7 +152,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ConstantNode node, Object data)
+    protected void visit(final Constant node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -160,7 +160,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ReturnNode node, Object data)
+    protected void visit(final Return node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -168,14 +168,14 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final BinaryExpressionNode node, Object data)
+    protected void visit(final BinaryExpression node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
     
-    protected void visit(final UnarExpressionNode node, Object data)
+    protected void visit(final UnarExpression node, Object data)
     {
         System.out.print(getIndent(data)); 
         System.out.println(node.toString());     
@@ -183,7 +183,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(BlockScopeNode node, Object data)
+    protected void visit(BlockScope node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println("BlockScope");
@@ -221,7 +221,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ForNode node, Object data)
+    protected void visit(For node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println("FOR ");
@@ -233,7 +233,7 @@ public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(WhileNode node, Object data)
+    protected void visit(While node, Object data)
     {
         // TODO Auto-generated method stub
         

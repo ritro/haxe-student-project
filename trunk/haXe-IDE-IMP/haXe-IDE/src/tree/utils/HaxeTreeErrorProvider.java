@@ -5,23 +5,23 @@ import java.util.List;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
-import tree.specific.ReturnNode;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
-import tree.specific.DeclarationNode.DeclarationType;
+import tree.specific.UnarExpression;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.While;
+import tree.specific.Declaration.DeclarationType;
 import tree.specific.type.ClassNode;
 import tree.specific.type.HaxeType;
 import workspace.Activator;
@@ -63,13 +63,13 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final ClassNode node, Object data)
     {
-        BlockScopeNode blockScope = node.getBlockScope();
+        BlockScope blockScope = node.getBlockScope();
         
         visit(blockScope, data);
     }
 
     @Override
-    protected void visit(final FunctionNode node, Object data)
+    protected void visit(final Function node, Object data)
     {
         if (node.isConstructor() && node.isDuplicate())
         {
@@ -83,13 +83,13 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         // even in class without
         // extending - shows no errors
         
-        BlockScopeNode blockScope = node.getBlockScope();
+        BlockScope blockScope = node.getBlockScope();
         
         visit(blockScope, data);
     }
 
     @Override
-    protected void visit(final DeclarationNode node, Object data)
+    protected void visit(final Declaration node, Object data)
     {
         if (node.isDuplicate())
         {
@@ -122,7 +122,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final MethodCallNode node, Object data)
+    protected void visit(final MethodCall node, Object data)
     {
         if (node.isFieldUse())
         {
@@ -177,7 +177,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final VarUsageNode node, Object data)
+    protected void visit(final Usage node, Object data)
     {
         if (node.getDeclarationNode() == null)
         {
@@ -186,7 +186,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
         
-        if (!node.ifUndefinedType())
+        if (!node.isUndefinedType())
         {
             visit(node.getChild(0), data);
             return;
@@ -198,11 +198,11 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final AssignOperationNode node, Object data)
+    protected void visit(final Assignment node, Object data)
     {
         HaxeTree rightOperand = node.getRightOperand();
         
-        if (node.ifUndefinedType())
+        if (node.isUndefinedType())
         {
             visit(rightOperand, data);
         }
@@ -219,7 +219,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(final ArrayNode node, Object data)
     {
-        if (!node.ifUndefinedType())
+        if (!node.isUndefinedType())
         {
             // empty array or all memeber's types can be assigned
             // to some common type
@@ -257,16 +257,16 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ConstantNode node, Object data)
+    protected void visit(final Constant node, Object data)
     {
         //seems it needs no errors
     }
 
     @Override
-    protected void visit(final ReturnNode node, Object data)
+    protected void visit(final Return node, Object data)
     {
         HaxeType type = node.getHaxeType();
-        FunctionNode function = node.getFunction();
+        Function function = node.getFunction();
         
         HaxeType funType = function == null 
                 ? HaxeTypeUtils.getVoid() : function.getHaxeType();
@@ -277,9 +277,9 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final BinaryExpressionNode node, Object data)
+    protected void visit(final BinaryExpression node, Object data)
     {
-        if (!node.ifUndefinedType(true))
+        if (!node.isUndefinedType(true))
         {
             return;
         }
@@ -287,8 +287,8 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
         
-        if (!leftOperand.ifUndefinedType(true)
-                && !rightOperand.ifUndefinedType(true))
+        if (!leftOperand.isUndefinedType(true)
+                && !rightOperand.isUndefinedType(true))
         {
             data = node;
             ErrorPublisher.commitCastError(
@@ -297,24 +297,24 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
         
-        if (leftOperand.ifUndefinedType(true))
+        if (leftOperand.isUndefinedType(true))
         {
             visit(leftOperand, data);            
         }        
-        if (rightOperand.ifUndefinedType(true))
+        if (rightOperand.isUndefinedType(true))
         {
             visit(rightOperand, data);
         }
     }
     
-    protected void visit(final UnarExpressionNode node, Object data)
+    protected void visit(final UnarExpression node, Object data)
     {
         if (node.getHaxeType() != null)
         {
             return;
         }
         HaxeTree expr = node.getExpression();
-        if (expr.ifUndefinedType(true))
+        if (expr.isUndefinedType(true))
         {
             visit(expr, data);
         }
@@ -326,7 +326,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final BlockScopeNode node, Object data)
+    protected void visit(final BlockScope node, Object data)
     {
         visitAllChildrenSeparatly(node, data);
     }
@@ -355,8 +355,8 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         HaxeTree ifBlock = node.getIfBlock();
         HaxeTree elseBlock = node.getElseBlock();
         
-        if (!ifBlock.ifUndefinedType()
-                && !elseBlock.ifUndefinedType()
+        if (!ifBlock.isUndefinedType()
+                && !elseBlock.isUndefinedType()
                 && node.isLastInScope())
         {
             data = node;
@@ -368,21 +368,21 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ForNode node, Object data)
+    protected void visit(final For node, Object data)
     {
         visitAllChildrenSeparatly(node, data);
         node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
-    protected void visit(final WhileNode node, Object data)
+    protected void visit(final While node, Object data)
     {
         HaxeTree condition = node.getCondition();
         
         visit(node.getScope(), data);
         node.setHaxeType(node.getScope().getHaxeType());
         
-        if (condition.ifUndefinedType())
+        if (condition.isUndefinedType())
         {
             visit(condition, data);
             return;

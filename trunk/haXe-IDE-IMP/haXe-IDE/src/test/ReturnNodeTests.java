@@ -7,8 +7,8 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.FunctionNode;
-import tree.specific.ReturnNode;
+import tree.specific.Function;
+import tree.specific.Return;
 import tree.specific.type.HaxeType;
 import tree.utils.Environment;
 import tree.utils.HaxeTreeLinker;
@@ -16,17 +16,17 @@ import tree.utils.HaxeTypeUtils;
 
 public class ReturnNodeTests
 {
-    private ReturnNode getReturnNode(HaxeTree tree)
+    private Return getReturnNode(HaxeTree tree)
     {
         for (HaxeTree i : tree.getChildren())
         {
-            if (i instanceof ReturnNode)
+            if (i instanceof Return)
             {
-                return (ReturnNode)i;
+                return (Return)i;
             }
             else if (i.getChildCount() > 0)
             {
-                ReturnNode result = getReturnNode(i);
+                Return result = getReturnNode(i);
                 if (result != null)
                 {
                     return result;
@@ -48,9 +48,9 @@ public class ReturnNodeTests
         HaxeTree tree = parseModule("class A { function main():Int { return 123.1;}}");
         linker.visit(tree, new Environment());
         
-        ReturnNode returnNode = getReturnNode(tree);
+        Return returnNode = getReturnNode(tree);
         HaxeType type = returnNode.getHaxeType();
-        FunctionNode function = returnNode.getFunction();    
+        Function function = returnNode.getFunction();    
         HaxeType funType = function.getHaxeType();
         
         assertTrue(!HaxeTypeUtils.isAvailableAssignement(funType, type));
@@ -62,9 +62,9 @@ public class ReturnNodeTests
         HaxeTree tree = parseModule("class A { function main():Float { return 123;}}");
         linker.visit(tree, new Environment());
         
-        ReturnNode returnNode = getReturnNode(tree);
+        Return returnNode = getReturnNode(tree);
         HaxeType type = returnNode.getHaxeType();
-        FunctionNode function = returnNode.getFunction();
+        Function function = returnNode.getFunction();
         HaxeType funType = function.getHaxeType();
         
         assertTrue(HaxeTypeUtils.isAvailableAssignement(funType, type));

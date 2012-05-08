@@ -22,9 +22,9 @@ import tree.utils.HaxeTypeUtils;
  * 
  * @author kondratyev
  */
-public class ReturnNode extends HaxeTree 
+public class Return extends HaxeTree 
 {
-    private FunctionNode function = null;
+    private Function function = null;
 
 	/**
 	 * Instantiates a new var usage.
@@ -32,7 +32,7 @@ public class ReturnNode extends HaxeTree
 	 * @param t
 	 *            the t
 	 */
-	public ReturnNode(final Token t) {
+	public Return(final Token t) {
 		super(t);
 	}
 	
@@ -48,12 +48,12 @@ public class ReturnNode extends HaxeTree
 		return getExpression().getText();
 	}
 	
-	public void setFunction(FunctionNode function)
+	public void setFunction(Function function)
 	{
 	    this.function = function;
 	}
     
-    public FunctionNode getFunction()
+    public Function getFunction()
     {
         return function;
     }

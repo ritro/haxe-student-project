@@ -11,8 +11,8 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.FunctionNode;
-import tree.specific.DeclarationNode;
+import tree.specific.Function;
+import tree.specific.Declaration;
 
 public class FunctionNodeTests
 {
@@ -22,7 +22,7 @@ public class FunctionNodeTests
     {
         HaxeTree tree = parseFunction("function main(x:Int, y:Float) {}");
         
-        ArrayList<DeclarationNode> firstType = ((FunctionNode)tree).getParametersAsDeclarations();
+        ArrayList<Declaration> firstType = ((Function)tree).getParametersAsDeclarations();
         assertTrue(firstType.size() == 2);
     }
 }

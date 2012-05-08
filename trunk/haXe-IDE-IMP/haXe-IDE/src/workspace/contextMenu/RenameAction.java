@@ -10,7 +10,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ltk.core.refactoring.Change;
 
 import tree.HaxeTree;
-import tree.specific.DeclarationNode;
+import tree.specific.Declaration;
 import workspace.Activator;
 import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
@@ -45,10 +45,10 @@ public class RenameAction extends HxEditorMenuAction
         }
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         
-        if (node instanceof DeclarationNode)
+        if (node instanceof Declaration)
         {
             return new HaxeVariableRenameProcessor(
-                    (DeclarationNode)node,
+                    (Declaration)node,
                     newName, 
                     project);
         }

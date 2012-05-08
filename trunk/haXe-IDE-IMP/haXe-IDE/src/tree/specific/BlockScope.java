@@ -23,7 +23,7 @@ import tree.utils.HaxeTypeUtils;
  * @author kondratyev
  *          Savenko Maria
  */
-public class BlockScopeNode extends HaxeTree {
+public class BlockScope extends HaxeTree {
 
 	private int leftBracketPosition = -1;
 	private int rightBracketPosition = -1;
@@ -108,7 +108,7 @@ public class BlockScopeNode extends HaxeTree {
 	    return parent.getText();
 	}
 
-    public BlockScopeNode(int blockScope, final Token lBracket, final Token rBracket) 
+    public BlockScope(int blockScope, final Token lBracket, final Token rBracket) 
     {
         super(blockScope, "BlockScope");
         leftBracketPosition = ((CommonToken) lBracket).getStartIndex();

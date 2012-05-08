@@ -2,55 +2,33 @@ package workspace.contextMenu;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
-import tree.utils.ReferencesListBuilder;
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.WorkspaceUtils;
-import workspace.elements.HaxeProject;
 import workspace.views.CallHierarchyView;
 
 public class CallHierarchyAction extends HxEditorMenuAction
 {
     CallHierarchyView view = null;
-    
-    private HashMapForLists<NodeLink> makeCallsList(final HaxeTree node)
-    {
-        ReferencesListBuilder builder = new ReferencesListBuilder();
-        builder.visit(node);
-        
-        return builder.getResult();
-    }
 
     @Override
     public void run(IAction action)
     {
         try
         {
-            view = (CallHierarchyView) PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-                    .getActivePage().showView(CallHierarchyView.ID);
+            view = (CallHierarchyView) WorkspaceUtils.showViewPart(CallHierarchyView.ID);
             
             HaxeTree node = getCurrentNode();
-            String fileName = Activator.getInstance().getCurrentFile().getName();
-            HaxeProject proj = Activator.getInstance().getCurrentHaxeProject();
+            HashMapForLists<NodeLink> list = getUsagesList();
             
-            if (!WorkspaceUtils.isNodeValidForCallAnalysis(node))
+            // list not null means that current node also not null
+            if (list != null)
             {
-                node = WorkspaceUtils.getValidNodeForCallAnalysis(node);
+                view.init(node, list);
             }
-            if (node != null)
-            {
-                view.init("", node, makeCallsList(node));
-            }
-        }
-        catch (PartInitException e)
-        {
-            System.out.println("Couldn't open the view, id: " + CallHierarchyView.ID);
-            Activator.logger.error("CallHierarchyAction.run: {}", e.getMessage());
         }
         catch (ClassCastException  e)
         {

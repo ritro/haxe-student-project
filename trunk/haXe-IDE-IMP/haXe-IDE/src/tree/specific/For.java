@@ -16,14 +16,34 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 
 /**
- * The Class DoWhileNode.
+ * The Class ForNode.
+ * Tree: FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
  * 
  * @author Anatoly Kondratyev
  */
-public class DoWhileNode extends HaxeTree 
-{
-	public DoWhileNode(final Token t) 
+public class For extends HaxeTree 
+{	
+    public For(final Token t) 
 	{
 		super(t);
+	}
+	
+	public HaxeTree getScope()
+	{
+	    return getChild(2);
+	}
+	
+	/**
+	 * Variable which will have the iterator's current value.
+	 * This will be the Usage in any case (not the Declaration)
+	 */
+	public HaxeTree getLocalVariable()
+	{
+	    return getChild(0);
+	}
+	
+	public HaxeTree getIterator()
+	{
+	    return getChild(1);
 	}
 }

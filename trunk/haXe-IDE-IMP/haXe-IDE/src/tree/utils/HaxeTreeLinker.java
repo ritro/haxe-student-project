@@ -8,23 +8,23 @@ import java.util.List;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
-import tree.specific.ReturnNode;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
-import tree.specific.DeclarationNode.DeclarationType;
+import tree.specific.UnarExpression;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.While;
+import tree.specific.Declaration.DeclarationType;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import tree.specific.type.HaxeType;
@@ -196,7 +196,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
     
     @Override
-    protected void visit(AssignOperationNode node, Object data)
+    protected void visit(Assignment node, Object data)
     {
         HaxeTree leftOperand = node.getLeftOperand();
         HaxeTree rightOperand = node.getRightOperand();
@@ -204,7 +204,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         visit(leftOperand, data);
         visit(rightOperand, data);
         
-        if (leftOperand.ifUndefinedType())
+        if (leftOperand.isUndefinedType())
         {
             leftOperand.setHaxeType(rightOperand.getHaxeType());
         }
@@ -223,19 +223,19 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ConstantNode node, Object data)
+    protected void visit(Constant node, Object data)
     {
         // nothing to write here?  
     }
 
     @Override
-    protected void visit(ReturnNode node, Object data)
+    protected void visit(Return node, Object data)
     {
         Environment declarations = (Environment)data;
         // due to Antlr grammar the places there Return wasn't
         // expected already marked as Error nodes - so there
         // is no variant that function will be null
-        FunctionNode function = declarations.getLastFunction();
+        Function function = declarations.getLastFunction();
         node.setFunction(function);
         
         HaxeTree expression = node.getExpression();
@@ -258,7 +258,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(BinaryExpressionNode node, Object data)
+    protected void visit(BinaryExpression node, Object data)
     {
         Environment declarations = (Environment)data;
         HaxeTree leftNode = node.getLeftOperand();
@@ -274,7 +274,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
     }
     
-    protected void visit(UnarExpressionNode node, Object data)
+    protected void visit(UnarExpression node, Object data)
     {
         visit(node.getExpression(), data);
     }
@@ -335,7 +335,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
     }
     
-    protected void visitMemberUse(VarUsageNode node, Object data)
+    protected void visitMemberUse(Usage node, Object data)
     {
         HaxeTree decl = null;
         if (data instanceof ClassNode)
@@ -354,7 +354,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         
         HaxeTree child = node.getChild(0).getChild(0);
         // slices and methcalls
-        if (child instanceof MethodCallNode ||
+        if (child instanceof MethodCall ||
                 child instanceof SliceNode)
         {
             visit(child, decl);
@@ -362,19 +362,19 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // dot ident
         else 
         {
-            visitMemberUse((VarUsageNode)child,  decl);
+            visitMemberUse((Usage)child,  decl);
         }
     }
 
     @Override
-    protected void visit(BlockScopeNode node, Object data)
+    protected void visit(BlockScope node, Object data)
     {
         if (node == null)
         {
             return;
         }
         Environment declarations = (Environment)data;
-        ArrayList<FunctionNode> functions = new ArrayList<FunctionNode>();
+        ArrayList<Function> functions = new ArrayList<Function>();
         
         if (currentScope == ScopeTypes.Class)
         {            
@@ -383,9 +383,9 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             
             for (HaxeTree tree : node.getChildren()) 
             {
-                if (tree instanceof FunctionNode)
+                if (tree instanceof Function)
                 {
-                    FunctionNode function = (FunctionNode)tree;
+                    Function function = (Function)tree;
                     functions.add(function);
                     declarations.put(function);
                 }
@@ -395,7 +395,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
                 }
             }
             
-            for (FunctionNode function : functions)
+            for (Function function : functions)
             {
                 visit(function, declarations);
             }
@@ -449,7 +449,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(MethodCallNode node, Object data)
+    protected void visit(MethodCall node, Object data)
     {
         if (node.isFieldUse())
         {
@@ -474,13 +474,13 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             declaration = ((HaxeTree) data).getDeclarationNode(node.getChild(0));
         }
         
-        if ( declaration == null || !(declaration instanceof FunctionNode))
+        if ( declaration == null || !(declaration instanceof Function))
         {
             return;
         }
         
-        List<DeclarationNode> declParams = 
-                ((FunctionNode)declaration).getParametersAsDeclarations();
+        List<Declaration> declParams = 
+                ((Function)declaration).getParametersAsDeclarations();
         
         // TODO: whtat about optional params?
         if (declParams.size() != params.size())
@@ -515,7 +515,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(VarUsageNode node, Object data)
+    protected void visit(Usage node, Object data)
     {
         // search for declaration
         // 1 - local vars - last declared
@@ -543,7 +543,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // slices and methcalls
         // TODO: here we should send not the Declaration
         // but the HaxeTree found by type name
-        if (child instanceof MethodCallNode ||
+        if (child instanceof MethodCall ||
                 child instanceof SliceNode)
         {
             visit(child, declaration);
@@ -551,7 +551,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // dot ident
         else
         {
-            visitMemberUse((VarUsageNode)child,  declaration);
+            visitMemberUse((Usage)child,  declaration);
         }
     }
 
@@ -562,7 +562,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(DeclarationNode node, Object data)
+    protected void visit(Declaration node, Object data)
     {
         if (currentScope == ScopeTypes.Class)
         {
@@ -602,7 +602,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(FunctionNode node, Object data)
+    protected void visit(Function node, Object data)
     {
         Environment funEnv = new Environment((Environment)data);
         for (HaxeTree child : node.getChildren())
@@ -619,7 +619,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             }
         }
         currentScope = ScopeTypes.Function;
-        for (DeclarationNode x: node.getParametersAsDeclarations())
+        for (Declaration x: node.getParametersAsDeclarations())
         {
             x.setDeclaratonType(DeclarationType.FunctionParameter);
             x.updateInfo();
@@ -628,7 +628,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         
         node.updateInfo();        
         
-        BlockScopeNode blockScope = node.getBlockScope();
+        BlockScope blockScope = node.getBlockScope();
 
         visit(blockScope, funEnv);
         endVisit();
@@ -673,7 +673,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             env.putWithCustomName("super", inherits);
         }
         
-        BlockScopeNode blockScope = node.getBlockScope();
+        BlockScope blockScope = node.getBlockScope();
         
         visit(blockScope, env);
     }
@@ -690,7 +690,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         int thisIndex = node.getChildIndex();
         int maxIndex = node.parent.getChildCount();
         
-        if (node.parent instanceof BlockScopeNode)
+        if (node.parent instanceof BlockScope)
         {
             node.setIfLastInScope(thisIndex == maxIndex - 1);           
         }
@@ -728,14 +728,14 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ForNode node, final Object data)
+    protected void visit(For node, final Object data)
     {
         visitAllChildren(node, data);
         node.setHaxeType(node.getScope().getHaxeType());
     }
 
     @Override
-    protected void visit(WhileNode node, final Object data)
+    protected void visit(While node, final Object data)
     {
         visitAllChildren(node, data);
         node.setHaxeType(node.getScope().getHaxeType());

@@ -18,9 +18,9 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.eclipse.imp.parser.IMessageHandler;
 
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.SliceNode;
-import tree.specific.VarUsageNode;
+import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 
 public class HaxeTree extends CommonTreeReplacer 
@@ -82,9 +82,9 @@ public class HaxeTree extends CommonTreeReplacer
         {
             return getChild(0).getChild(0).getHaxeType(true);
         } 
-        else if (this instanceof MethodCallNode)
+        else if (this instanceof MethodCall)
         {
-            return ((MethodCallNode)this).getHaxeType(true);
+            return ((MethodCall)this).getHaxeType(true);
         }
         else if (this instanceof SliceNode)
         {
@@ -101,12 +101,6 @@ public class HaxeTree extends CommonTreeReplacer
         }
         
         return "";
-    }
-    
-    public HaxeTree getLastChildFromAll()
-    {
-        ArrayList<HaxeTree> children = getAllChildren();
-        return children.get(children.size()-1);
     }
 
     /**
@@ -314,76 +308,6 @@ public class HaxeTree extends CommonTreeReplacer
 	}
 
 	/**
-	 * Gets the node by position.
-	 * 
-	 * Use <code>getNodeByPosition(int offset)</code> instead
-	 * 
-	 * @param line
-	 *            the line
-	 * @param posInLine
-	 *            the pos in line
-	 * @return the node by position
-	 *//*
-	@Deprecated
-	public HaxeTree getNodeByPosition(final int line, final int posInLine) {
-		List<HaxeTree> nodes = new ArrayList<HaxeTree>(this.getChildren());
-
-		if (this.getLine() != line) {
-			Collections.sort(nodes, new ComparatorByLines());
-			for (int i = 0; i <= nodes.size() - 2; i++) {
-				if (nodes.get(i).getLine() <= line
-						&& line < nodes.get(i + 1).getLine()) {
-					return nodes.get(i).getNodeByPosition(line, posInLine);
-				}
-			}
-			if (nodes.get(nodes.size() - 1).getLine() <= line) {
-				if (nodes.get(nodes.size() - 1).getChildren() != null) {
-					return nodes.get(nodes.size() - 1).getNodeByPosition(line, posInLine);
-				} else {
-					return this;
-				}
-			}
-			return null;
-		} else {
-			for (int i = nodes.size() - 1; i >= 0; i--) {
-				if (nodes.get(i).getLine() != line) {
-					nodes.remove(i);
-				}
-			}
-			Collections.sort(nodes, new ComparatorByPosInLine());
-			HaxeTree pretender = null;
-			for (int i = 0; i <= nodes.size() - 2; i++) {
-				if (nodes.get(i).getCharPositionInLine() <= posInLine
-						&& posInLine < nodes.get(i + 1).getCharPositionInLine()) {
-					pretender = nodes.get(i);
-					break;
-				}
-			}
-			if (nodes.get(nodes.size() - 1).getCharPositionInLine() <= posInLine) {
-				pretender = nodes.get(nodes.size() - 1);
-			}
-			if (pretender == null) {
-				return nodes.get(0).getNodeByPosition(line, posInLine);
-			}
-
-			if (pretender.getCharPositionInLine()
-					+ pretender.getTokenStopIndex() - pretender.getTokenStartIndex() - 1
-					+ pretender.getText().length()
-						> posInLine
-					&& pretender.getCharPositionInLine() <= posInLine
-					&& pretender.auxiliary == false) {
-				return pretender;
-			} else {
-				if (pretender.getChildren() != null) {
-					return pretender.getNodeByPosition(line, posInLine);
-				} else {
-					return this;
-				}
-			}
-		}
-	}*/
-
-	/**
 	 * Gets the declaration node. 
 	 * @param usageNode
 	 *            the usage node
@@ -391,20 +315,20 @@ public class HaxeTree extends CommonTreeReplacer
 	 */
 	public HaxeTree getDeclarationNode(final HaxeTree usageNode) 
 	{
-		if (usageNode instanceof VarUsageNode)
+		if (usageNode instanceof Usage)
 		{
-		    return ((VarUsageNode)usageNode).getDeclarationNode();
+		    return ((Usage)usageNode).getDeclarationNode();
 		}		
 
 		return new HaxeTree(0);
 	}
 	
-	public boolean ifUndefinedType()
+	public boolean isUndefinedType()
 	{
-	    return ifUndefinedType(false);
+	    return isUndefinedType(false);
 	}
 	
-    public boolean ifUndefinedType(boolean checkLastType)
+    public boolean isUndefinedType(boolean checkLastType)
     {
         return getHaxeType() == null;
     }

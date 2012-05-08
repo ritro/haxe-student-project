@@ -14,7 +14,7 @@ import tree.HaxeTree;
  */
 public class BlockScopeContainer extends HaxeTree
 {
-    private BlockScopeNode blockScope = null;
+    private BlockScope blockScope = null;
     private static final int DECL_ATTR_LIST = HaxeParser.DECL_ATTR_LIST;
     
     public BlockScopeContainer(Token t) 
@@ -26,7 +26,7 @@ public class BlockScopeContainer extends HaxeTree
      * Gets block scope from current tree. 
      * @return Found block scope or null.
      */
-    public BlockScopeNode getBlockScope()
+    public BlockScope getBlockScope()
     {
         if (blockScope != null)
         {
@@ -35,9 +35,9 @@ public class BlockScopeContainer extends HaxeTree
         
         for (HaxeTree tree : getChildren()) 
         {
-            if (tree instanceof BlockScopeNode) 
+            if (tree instanceof BlockScope) 
             {
-                blockScope = (BlockScopeNode) tree;
+                blockScope = (BlockScope) tree;
             }
         }
         

@@ -16,28 +16,14 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 
 /**
- * The Class WhileNode.
- * Tree : WHILE[WhileNode]^ parExpression statement
+ * The Class DoWhileNode.
  * 
  * @author Anatoly Kondratyev
- *         Maria Savenko
  */
-public class WhileNode extends HaxeTree 
+public class DoWhile extends HaxeTree 
 {
-	public WhileNode(final Token token) 
+	public DoWhile(final Token t) 
 	{
-		super(token);
+		super(t);
 	}
-    
-    public HaxeTree getScope()
-    {
-        // the existence of block should be checked during
-        // syntax parsing
-        return getChild(1);
-    }
-    
-    public HaxeTree getCondition()
-    {
-        return getChild(0);
-    }
 }

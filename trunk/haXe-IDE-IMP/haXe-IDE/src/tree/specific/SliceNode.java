@@ -6,7 +6,7 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 
-public class SliceNode extends ParametersContainerNode
+public class SliceNode extends ParametersContainer
 {
     private boolean haveNoName = false;
     
@@ -50,13 +50,13 @@ public class SliceNode extends ParametersContainerNode
         if (haveNoName)
         {
             HaxeTree parent = getParent();
-            if (!(parent instanceof MethodCallNode))
+            if (!(parent instanceof MethodCall))
             {
                 return null;
             }
-            return ((MethodCallNode)parent).getDeclarationNode();
+            return ((MethodCall)parent).getDeclarationNode();
         }
-        return ((VarUsageNode)getChild(0)).getDeclarationNode();
+        return ((Usage)getChild(0)).getDeclarationNode();
     }
     
     @Override
@@ -67,7 +67,7 @@ public class SliceNode extends ParametersContainerNode
             // TODO: not quete right
             return;
         }
-        ((VarUsageNode)getChild(0)).setDeclarationNode(declaration);
+        ((Usage)getChild(0)).setDeclarationNode(declaration);
     }
     
     @Override

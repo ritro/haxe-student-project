@@ -1,11 +1,11 @@
 package workspace.views;
 
-import imp.utils.outline.HaxeLabelProvider;
+import imp.utils.outline.OutlineLabelProvider;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-public class CallHierarchyLabelProvider extends HaxeLabelProvider
+public class CallHierarchyLabelProvider extends OutlineLabelProvider
 {
     @Override
     public Image getImage(final Object object)

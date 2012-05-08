@@ -27,7 +27,7 @@ import tree.specific.type.EnumNode;
  * 
  * @author Anatoly Kondratyev
  */
-public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
+public class OutlineBuilder extends TreeModelBuilderBase {
 
     private HaxeModelVisitor visitor = null;
     
@@ -130,23 +130,23 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 
 		public boolean visit(final Object n) {
 			//pushSubItem(n);//???why not this
-			HaxeTreeModelBuilder.this.pushSubItem(n);
+			OutlineBuilder.this.pushSubItem(n);
 			return true;
 		}
 
 		public boolean visit(final HaxeTree node,
 				final boolean doCreateSubItem) {
 			if (doCreateSubItem) {
-				HaxeTreeModelBuilder.this.createSubItem(node);
+				OutlineBuilder.this.createSubItem(node);
 			} else {
-				HaxeTreeModelBuilder.this.pushSubItem(node);
+				OutlineBuilder.this.pushSubItem(node);
 			}
 			return true;
 		}
 
 		public void endVisit(final Object n) {
 			//popSubItem();//???why not this
-			HaxeTreeModelBuilder.this.popSubItem();
+			OutlineBuilder.this.popSubItem();
 		}
 	}
 }

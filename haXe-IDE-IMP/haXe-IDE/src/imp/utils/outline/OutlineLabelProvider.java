@@ -12,30 +12,16 @@ package imp.utils.outline;
 
 import imp.parser.antlr.HaxeLexer;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.antlr.runtime.Token;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.imp.editor.ModelTreeNode;
-import org.eclipse.imp.services.ILabelProvider;
-import org.eclipse.imp.utils.MarkerUtils;
-import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.swt.graphics.Image;
 
 import tree.HaxeTree;
 import tree.specific.BlockScope;
-import tree.specific.Function;
 import tree.specific.Declaration;
+import tree.specific.Function;
 import tree.specific.Usage;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
-import workspace.Activator;
-import workspace.HaxeElementImageProvider;
-import workspace.elements.IHaxeResources;
 
 /**
  * This class allows to get images for such workspace elements as
@@ -45,59 +31,8 @@ import workspace.elements.IHaxeResources;
  * @author Anatoly Kondratyev
  * @author Savenko Maria
  */
-public class HaxeLabelProvider implements ILabelProvider 
+public class OutlineLabelProvider extends AbstractLabelProvider
 {
-
-	private final Set<ILabelProviderListener> fListeners = new HashSet<ILabelProviderListener>();
-
-	private static ImageRegistry sImageRegistry = 
-	        Activator.getInstance().getImageRegistry();
-
-
-    // ---------- IBaseLabelProvider implementations ----------------
-
-    public void addListener(final ILabelProviderListener listener) 
-    {
-        this.fListeners.add(listener);
-    }
-
-    public void dispose() {}
-
-    public boolean isLabelProperty(final Object element, final String property) 
-    {
-        return false;
-    }
-
-    public void removeListener(final ILabelProviderListener listener) 
-    {
-        this.fListeners.remove(listener);
-    }
-    // ------------------------end------------------------------------
-    
-	public Image getImage(final Object element) 
-	{
-		if (element instanceof IFile) 
-		{
-			IFile file = (IFile) element;
-			int sev = MarkerUtils.getMaxProblemMarkerSeverity(file,
-					IResource.DEPTH_ONE);
-
-			switch (sev) 
-			{
-			case IMarker.SEVERITY_ERROR:
-				return sImageRegistry.get(IHaxeResources.HAXE_FILE_ERROR);
-			case IMarker.SEVERITY_WARNING:
-				return sImageRegistry.get(IHaxeResources.HAXE_FILE_WARNING);
-			default:
-				return sImageRegistry.get(IHaxeResources.HAXE_FILE);
-			}
-		}
-		HaxeTree n = (element instanceof ModelTreeNode) 
-		        ? (HaxeTree) ((ModelTreeNode) element).getASTNode()
-				: (HaxeTree) element;
-		return HaxeElementImageProvider.getImageForTreeNode(n);
-	}
-
 	public String getText(final Object element) {
 		HaxeTree n = (element instanceof ModelTreeNode) ? (HaxeTree) ((ModelTreeNode) element)
 				.getASTNode()

@@ -1,12 +1,12 @@
 package tree.utils;
 
 import tree.HaxeTree;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.FunctionNode;
-import tree.specific.MethodCallNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.Function;
+import tree.specific.MethodCall;
+import tree.specific.Declaration;
+import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 
 /**
@@ -21,22 +21,22 @@ public class ErrorPublisher
                 "Duplicate class field declaration : " + node.getText());
     }
     
-    public static void commitDuplicateFieldError(final FunctionNode node)
+    public static void commitDuplicateFieldError(final Function node)
     {
         commitDuplicateFieldError((HaxeTree)node);
     }
     
-    public static void commitDuplicateConstructorError(final FunctionNode node)
+    public static void commitDuplicateConstructorError(final Function node)
     {
         node.commitError("Duplicate constructor");
     }
     
-    public static void commitDuplicateFieldError(final DeclarationNode node)
+    public static void commitDuplicateFieldError(final Declaration node)
     {
         commitDuplicateFieldError((HaxeTree)node);
     }
 
-    public static void commitClassUndefinedTypeError(final DeclarationNode node)
+    public static void commitClassUndefinedTypeError(final Declaration node)
     {
         node.commitError(
                 "Type requared for member variable : " + node.getText());
@@ -65,7 +65,7 @@ public class ErrorPublisher
         node.commitError(typeIs.toString() + " should be " + typeShouldBe.toString());
     }
 
-    public static void commitInvalidBinaryOpError(final BinaryExpressionNode node)
+    public static void commitInvalidBinaryOpError(final BinaryExpression node)
     {
         String binaryOp = node.getOperationType().toString();
         node.commitError("Cannot " + binaryOp + " " + 
@@ -76,7 +76,7 @@ public class ErrorPublisher
     /**
      * Error when we using defined, but not initialized variable.
      */
-    public static void commitUninitializedUsingError(final MethodCallNode node)
+    public static void commitUninitializedUsingError(final MethodCall node)
     {
         node.commitError(
                 "Local variable " 
@@ -87,7 +87,7 @@ public class ErrorPublisher
     /**
      * Error when we using defined, but not initialized variable.
      */
-    public static void commitUninitializedUsingError(final VarUsageNode node)
+    public static void commitUninitializedUsingError(final Usage node)
     {
         node.commitError(
                 "Local variable " 
@@ -98,12 +98,12 @@ public class ErrorPublisher
     /**
      * Error then user variable wan't declared before.
      */
-    public static void commitUndeclaredError(final VarUsageNode node)
+    public static void commitUndeclaredError(final Usage node)
     {
         node.commitError(node.getText() + " is not declared.");
     }
     
-    public static void commitInvalidAssignError(final AssignOperationNode node)
+    public static void commitInvalidAssignError(final Assignment node)
     {
         node.commitError("Invalid assign.");
     }

@@ -18,14 +18,14 @@ import tree.utils.HaxeTypeUtils;
  * EReg - regular expression : ~/[a-z]+/i
  * @author Savenko Maria
  */
-public class ConstantNode extends HaxeTree {
+public class Constant extends HaxeTree {
 
-	public ConstantNode(final Token token) 
+	public Constant(final Token token) 
 	{
 		super(token);
 	}
 
-	public ConstantNode(
+	public Constant(
 	        final int ttype, final Token token, final String varType) 
 	{
 	    this(token);

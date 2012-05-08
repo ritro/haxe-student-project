@@ -29,9 +29,9 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 
 import tree.HaxeTree;
-import tree.specific.FunctionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
+import tree.specific.Function;
+import tree.specific.Declaration;
+import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 import workspace.Activator;
 
@@ -187,9 +187,9 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	private String getMessageForNodeClass(HaxeTree node)
 	{
 		/** TODO add help cover for class nodes */
-	    if (node instanceof VarUsageNode ||
-	            node instanceof FunctionNode ||
-	            node instanceof DeclarationNode) 
+	    if (node instanceof Usage ||
+	            node instanceof Function ||
+	            node instanceof Declaration) 
 	    {
             return getNodeTypeAndName(node);
         }
@@ -197,7 +197,7 @@ public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
 	    //{
 	    //    return "module";
 	    //}
-        else if (node.getParent() instanceof FunctionNode)
+        else if (node.getParent() instanceof Function)
         {            
             return getMessageForNodeClass(node.getParent());
         }

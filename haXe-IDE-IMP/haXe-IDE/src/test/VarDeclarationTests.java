@@ -7,8 +7,8 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.ConstantNode;
-import tree.specific.DeclarationNode;
+import tree.specific.Constant;
+import tree.specific.Declaration;
 import tree.specific.type.HaxeType;
 import tree.utils.HaxeTypeUtils;
 
@@ -20,7 +20,7 @@ public class VarDeclarationTests
     {
         HaxeTree tree = parseStatement("var x : Int;");
         
-        assertTrue(tree instanceof DeclarationNode);
+        assertTrue(tree instanceof Declaration);
     }
     
     @Test
@@ -29,9 +29,9 @@ public class VarDeclarationTests
         HaxeTree tree = parseStatement("var x,c,z : Int;");
         
         assertTrue(tree.getChildCount() == 3);
-        assertTrue(tree.getChild(0) instanceof DeclarationNode);
-        assertTrue(tree.getChild(1) instanceof DeclarationNode);
-        assertTrue(tree.getChild(2) instanceof DeclarationNode);
+        assertTrue(tree.getChild(0) instanceof Declaration);
+        assertTrue(tree.getChild(1) instanceof Declaration);
+        assertTrue(tree.getChild(2) instanceof Declaration);
     }
     
     @Test
@@ -40,9 +40,9 @@ public class VarDeclarationTests
         HaxeTree tree = parseStatement("var x,c: Int, z : Int;");
         
         assertTrue(tree.getChildCount() == 3);
-        assertTrue(tree.getChild(0) instanceof DeclarationNode);
-        assertTrue(tree.getChild(1) instanceof DeclarationNode);
-        assertTrue(tree.getChild(2) instanceof DeclarationNode);
+        assertTrue(tree.getChild(0) instanceof Declaration);
+        assertTrue(tree.getChild(1) instanceof Declaration);
+        assertTrue(tree.getChild(2) instanceof Declaration);
     }
     
     
@@ -50,8 +50,8 @@ public class VarDeclarationTests
     public void parseDeclarationListFields() throws RecognitionException 
     {
         HaxeTree tree = parseStatement("var x,c : Int = 5;");
-        DeclarationNode firstDecl = (DeclarationNode)tree.getChild(0);
-        DeclarationNode secondDecl = (DeclarationNode)tree.getChild(1);
+        Declaration firstDecl = (Declaration)tree.getChild(0);
+        Declaration secondDecl = (Declaration)tree.getChild(1);
         firstDecl.updateInfo();
         secondDecl.updateInfo();
         
@@ -60,7 +60,7 @@ public class VarDeclarationTests
         assertTrue(secondDecl.getHaxeType().equals(intType));
         assertTrue(!firstDecl.getHaxeType().equals(intType));
         
-        assertTrue(secondDecl.getChild(secondDecl.getChildCount()-1).getChild(0) instanceof ConstantNode);
+        assertTrue(secondDecl.getChild(secondDecl.getChildCount()-1).getChild(0) instanceof Constant);
     }
     
     @Test
@@ -68,7 +68,7 @@ public class VarDeclarationTests
     {
         HaxeTree tree = parseStatement("var x(getter,setter) : Int;");
         
-        assertTrue(tree instanceof DeclarationNode);
+        assertTrue(tree instanceof Declaration);
     }
     
     @Test
@@ -76,7 +76,7 @@ public class VarDeclarationTests
     {
         HaxeTree tree = parseStatement("var jsons:Array<{path:String, json:Dynamic, finished:Bool}>;");
         // TODO
-        assertTrue(tree instanceof DeclarationNode);
+        assertTrue(tree instanceof Declaration);
     }
     
     @Test
@@ -84,7 +84,7 @@ public class VarDeclarationTests
     {
         HaxeTree tree = parseStatement("var count:Int = Std.int(sum);");
         // TODO
-        assertTrue(tree instanceof DeclarationNode);
+        assertTrue(tree instanceof Declaration);
     }
     
     // global declarations
@@ -94,7 +94,7 @@ public class VarDeclarationTests
     {
         HaxeTree tree = parseStatement("public static inline var NaN = Math.NaN;");
         // TODO
-        assertTrue(tree instanceof DeclarationNode);
+        assertTrue(tree instanceof Declaration);
     }
 }
 

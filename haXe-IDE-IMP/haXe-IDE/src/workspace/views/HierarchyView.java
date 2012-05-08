@@ -22,8 +22,7 @@ public abstract class HierarchyView extends ViewPart implements ISelectionChange
 	
 	protected abstract void initContentProvider();
 	
-	@Override
-	public void createPartControl(Composite parent) 
+	protected void createLayout(Composite parent)
 	{
 		GridLayout layout = new GridLayout();
         layout.numColumns = 1;
@@ -56,13 +55,19 @@ public abstract class HierarchyView extends ViewPart implements ISelectionChange
         layoutData.verticalAlignment = GridData.FILL;
         treeViewer.getControl().setLayoutData(layoutData);
         
+        treeViewer.setInput(invisibleRoot);
+        treeViewer.setAutoExpandLevel(autoExpandLevel);
+	}
+	
+	@Override
+	public void createPartControl(Composite parent) 
+	{
+	    createLayout(parent);
         // Create menu, toolbars, filters, sorters.
         //createMenus();
         //createToolbar();
         hookListeners();
         
-        treeViewer.setInput(invisibleRoot);
-        treeViewer.setAutoExpandLevel(autoExpandLevel);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 
-public class DeclarationNode extends NodeWithModifier {
+public class Declaration extends NodeWithModifier {
 
     private enum PropertyAccessors
     {
@@ -64,12 +64,12 @@ public class DeclarationNode extends NodeWithModifier {
 		return nameWithType;
 	}
 
-	public DeclarationNode(final int ttype, final Token token)
+	public Declaration(final int ttype, final Token token)
 	{
 	    this(token);
 	}
 
-	public DeclarationNode(final Token token) 
+	public Declaration(final Token token) 
 	{
 	    super(token);
     }
@@ -195,11 +195,11 @@ public class DeclarationNode extends NodeWithModifier {
 	@Override
 	public boolean equals(Object obj)
 	{
-	    if (!(obj instanceof DeclarationNode))
+	    if (!(obj instanceof Declaration))
 	    {
 	        return false;
 	    }
-	    DeclarationNode node = (DeclarationNode)obj;
+	    Declaration node = (Declaration)obj;
 	    if (getText().equals(node.getText()) &&
 	            token.equals(node.getToken()))
 	    {

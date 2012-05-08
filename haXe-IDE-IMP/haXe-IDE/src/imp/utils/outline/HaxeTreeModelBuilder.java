@@ -16,9 +16,9 @@ import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
 import tree.HaxeTree;
-import tree.specific.BlockScopeNode;
-import tree.specific.FunctionNode;
-import tree.specific.DeclarationNode;
+import tree.specific.BlockScope;
+import tree.specific.Function;
+import tree.specific.Declaration;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 
@@ -45,17 +45,17 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
 	private void accept(HaxeTree node)
     {
         try {
-            if (node instanceof FunctionNode) 
+            if (node instanceof Function) 
             {
-                accept((FunctionNode)node);
+                accept((Function)node);
             } 
             else if (node instanceof ClassNode) 
             {
                 accept((ClassNode)node);
             } 
-            else if (node instanceof DeclarationNode)
+            else if (node instanceof Declaration)
             {
-                accept((DeclarationNode)node);
+                accept((Declaration)node);
             } 
             else if (node instanceof EnumNode)
             {
@@ -75,7 +75,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
         }
     }
     
-    private void accept(FunctionNode node)
+    private void accept(Function node)
     {
         visitor.visit(node);
         visitor.endVisit(node);
@@ -84,7 +84,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
     private void accept(ClassNode node)
     {
         visitor.visit(node);
-        BlockScopeNode blockScope = node.getBlockScope();
+        BlockScope blockScope = node.getBlockScope();
         if (blockScope != null) 
         {
             for (HaxeTree child : blockScope.getChildren()) 
@@ -98,7 +98,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
     private void accept(EnumNode node)
     {
         visitor.visit(node);
-        BlockScopeNode blockScope = node.getBlockScope();
+        BlockScope blockScope = node.getBlockScope();
         if (blockScope != null)
         {
             for (HaxeTree child : blockScope.getChildren()) 
@@ -109,7 +109,7 @@ public class HaxeTreeModelBuilder extends TreeModelBuilderBase {
         visitor.endVisit(node);
     }
     
-    private void accept(DeclarationNode node)
+    private void accept(Declaration node)
     {
         visitor.visit(node);
         visitor.endVisit(node);

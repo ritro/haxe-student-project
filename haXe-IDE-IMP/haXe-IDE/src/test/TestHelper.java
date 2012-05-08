@@ -19,9 +19,9 @@ import org.antlr.runtime.RecognitionException;
 
 import tree.HaxeTree;
 import tree.HaxeTreeAdaptor;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.FunctionNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.Function;
 
 public final class TestHelper {
 	public final static String pathToTests = "./src/test/resources/";
@@ -141,17 +141,17 @@ public final class TestHelper {
 	 * @param moduleAst to search in
 	 * @return found FunctionNode or null
 	 */
-	public static FunctionNode getFunctionByName(String name, HaxeTree moduleAst)
+	public static Function getFunctionByName(String name, HaxeTree moduleAst)
 	{
 	    for (HaxeTree i : moduleAst.getChildren())
         {
-            if (i instanceof FunctionNode && i.getText().equals(name))
+            if (i instanceof Function && i.getText().equals(name))
             {
-                return (FunctionNode)i;
+                return (Function)i;
             }
             else if (i.getChildCount() > 0)
             {
-                FunctionNode result = getFunctionByName(name, i);
+                Function result = getFunctionByName(name, i);
                 if (result != null)
                 {
                     return result;
@@ -170,17 +170,17 @@ public final class TestHelper {
      * @param tree to search in
      * @return binary expr node or null
      */
-    public static BinaryExpressionNode getBinaryExpression(HaxeTree tree)
+    public static BinaryExpression getBinaryExpression(HaxeTree tree)
     {
         for (HaxeTree i : tree.getChildren())
         {
-            if (i instanceof BinaryExpressionNode)
+            if (i instanceof BinaryExpression)
             {
-                return (BinaryExpressionNode)i;
+                return (BinaryExpression)i;
             }
             else if (i.getChildCount() > 0)
             {
-                BinaryExpressionNode result = getBinaryExpression(i);
+                BinaryExpression result = getBinaryExpression(i);
                 if (result != null)
                 {
                     return result;
@@ -198,17 +198,17 @@ public final class TestHelper {
      * @param tree to search in
      * @return assignment node or null
      */
-    public static AssignOperationNode getAssignment(HaxeTree tree)
+    public static Assignment getAssignment(HaxeTree tree)
     {
         for (HaxeTree i : tree.getChildren())
         {
-            if (i instanceof AssignOperationNode)
+            if (i instanceof Assignment)
             {
-                return (AssignOperationNode)i;
+                return (Assignment)i;
             }
             else if (i.getChildCount() > 0)
             {
-                AssignOperationNode result = getAssignment(i);
+                Assignment result = getAssignment(i);
                 if (result != null)
                 {
                     return result;

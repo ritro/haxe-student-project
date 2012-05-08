@@ -16,34 +16,28 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 
 /**
- * The Class ForNode.
- * Tree: FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
+ * The Class WhileNode.
+ * Tree : WHILE[WhileNode]^ parExpression statement
  * 
  * @author Anatoly Kondratyev
+ *         Maria Savenko
  */
-public class ForNode extends HaxeTree 
-{	
-    public ForNode(final Token t) 
+public class While extends HaxeTree 
+{
+	public While(final Token token) 
 	{
-		super(t);
+		super(token);
 	}
-	
-	public HaxeTree getScope()
-	{
-	    return getChild(2);
-	}
-	
-	/**
-	 * Variable which will have the iterator's current value.
-	 * This will be the Usage in any case (not the Declaration)
-	 */
-	public HaxeTree getLocalVariable()
-	{
-	    return getChild(0);
-	}
-	
-	public HaxeTree getIterator()
-	{
-	    return getChild(1);
-	}
+    
+    public HaxeTree getScope()
+    {
+        // the existence of block should be checked during
+        // syntax parsing
+        return getChild(1);
+    }
+    
+    public HaxeTree getCondition()
+    {
+        return getChild(0);
+    }
 }

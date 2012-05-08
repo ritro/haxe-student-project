@@ -27,13 +27,14 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
 import tree.HaxeTree;
-import tree.specific.BlockScopeNode;
-import tree.specific.FunctionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
+import tree.specific.BlockScope;
+import tree.specific.Function;
+import tree.specific.Declaration;
+import tree.specific.Usage;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import workspace.Activator;
+import workspace.HaxeElementImageProvider;
 import workspace.elements.IHaxeResources;
 
 /**
@@ -94,7 +95,7 @@ public class HaxeLabelProvider implements ILabelProvider
 		HaxeTree n = (element instanceof ModelTreeNode) 
 		        ? (HaxeTree) ((ModelTreeNode) element).getASTNode()
 				: (HaxeTree) element;
-		return getImageForHaxeTreeNode(n);
+		return HaxeElementImageProvider.getImageForTreeNode(n);
 	}
 
 	public String getText(final Object element) {
@@ -103,22 +104,6 @@ public class HaxeLabelProvider implements ILabelProvider
 				: (HaxeTree) element;
 
 		return getLabelForHaxeTreeNode(n);
-	}
-
-	/**
-	 * Gets the image for HaxeTree element in correspond to it's
-	 * type.
-	 * @param n - some haxeTree node to get image for
-	 * @return image for passed node
-	 */
-	private static Image getImageForHaxeTreeNode(final HaxeTree n) 
-	{
-	    if (n instanceof FunctionNode)
-	    {
-	        sImageRegistry.get(IHaxeResources.FUNCTION_SMALL_PICTO);
-	    }
-	    
-		return sImageRegistry.get(IHaxeResources.HAXE_DEFAULT_OUTLINE_ITEM);
 	}
 
 	/**
@@ -143,13 +128,13 @@ public class HaxeLabelProvider implements ILabelProvider
 	    else if (token != null && token.getType() == HaxeLexer.ENUM) 
 	    {
 			String enumReturn = "Enum ";
-			if (n.getChildCount() > 0 && !(n.getChild(0) instanceof DeclarationNode))
+			if (n.getChildCount() > 0 && !(n.getChild(0) instanceof Declaration))
 			{
 				enumReturn += n.getChild(0).getText();
 			}
 			return enumReturn;
 		} 
-	    else if (n instanceof BlockScopeNode) 
+	    else if (n instanceof BlockScope) 
 	    {
 			return "Block";
 		} 
@@ -163,17 +148,17 @@ public class HaxeLabelProvider implements ILabelProvider
 		} else*/ if (n instanceof ClassNode) {
 			return ((ClassNode) n).getClassName();
 		} 
-		else if (n instanceof FunctionNode) 
+		else if (n instanceof Function) 
 		{
-			FunctionNode hdr = (FunctionNode) n;
+			Function hdr = (Function) n;
 			return hdr.getFullNameWithParameters();
 		} 
-		else if (n instanceof DeclarationNode) 
+		else if (n instanceof Declaration) 
 		{
-			DeclarationNode varDeclaration = (DeclarationNode) n;
+			Declaration varDeclaration = (Declaration) n;
 			return varDeclaration.getNameWithType();
 		}
-		else if (n instanceof VarUsageNode)
+		else if (n instanceof Usage)
 		{
 		    // method calls and slices here too
 		    String type = n.getHaxeType() != null 

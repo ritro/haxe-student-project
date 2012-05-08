@@ -3,28 +3,28 @@
 package imp.parser.antlr;
 
 import tree.HaxeTree;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
 import tree.specific.type.ClassNode;
-import tree.specific.UnarExpressionNode;
+import tree.specific.UnarExpression;
 import tree.specific.type.EnumNode;
 import tree.specific.ErrorNode;
-import tree.specific.DoWhileNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.DoWhile;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
 import tree.specific.SliceNode;
 import tree.specific.SwitchNode;
 import tree.specific.TryNode;
-import tree.specific.ReturnNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.ConstantNode;
+import tree.specific.Return;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.Constant;
 import tree.specific.ArrayNode;
-import tree.specific.WhileNode;
+import tree.specific.While;
 
 
 import org.antlr.runtime.*;
@@ -1784,7 +1784,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new DeclarationNode(VAR, IDENTIFIER31)
+                new Declaration(VAR, IDENTIFIER31)
                 , root_1);
 
                 // Haxe.g:137:96: ( typeTag )?
@@ -1879,7 +1879,7 @@ public TreeAdaptor getTreeAdaptor() {
             IDENTIFIER34=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_identifier932); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER34_tree = 
-            new VarUsageNode(IDENTIFIER34) 
+            new Usage(IDENTIFIER34) 
             ;
             adaptor.addChild(root_0, IDENTIFIER34_tree);
             }
@@ -1991,7 +1991,7 @@ public TreeAdaptor getTreeAdaptor() {
                     THIS36=(Token)match(input,THIS,FOLLOW_THIS_in_id1009); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     THIS36_tree = 
-                    new VarUsageNode(THIS36) 
+                    new Usage(THIS36) 
                     ;
                     adaptor.addChild(root_0, THIS36_tree);
                     }
@@ -2007,7 +2007,7 @@ public TreeAdaptor getTreeAdaptor() {
                     SUPER37=(Token)match(input,SUPER,FOLLOW_SUPER_in_id1032); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     SUPER37_tree = 
-                    new VarUsageNode(SUPER37) 
+                    new Usage(SUPER37) 
                     ;
                     adaptor.addChild(root_0, SUPER37_tree);
                     }
@@ -2195,7 +2195,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 148:28: -> EQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_EQ.nextToken())
+                        new Assignment(stream_EQ.nextToken())
                         );
 
                     }
@@ -2229,7 +2229,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 149:28: -> PLUSEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_PLUSEQ.nextToken())
+                        new Assignment(stream_PLUSEQ.nextToken())
                         );
 
                     }
@@ -2263,7 +2263,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 150:28: -> SUBEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_SUBEQ.nextToken())
+                        new Assignment(stream_SUBEQ.nextToken())
                         );
 
                     }
@@ -2297,7 +2297,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 151:28: -> STAREQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_STAREQ.nextToken())
+                        new Assignment(stream_STAREQ.nextToken())
                         );
 
                     }
@@ -2331,7 +2331,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 152:28: -> SLASHEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_SLASHEQ.nextToken())
+                        new Assignment(stream_SLASHEQ.nextToken())
                         );
 
                     }
@@ -2365,7 +2365,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 153:29: -> PERCENTEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_PERCENTEQ.nextToken())
+                        new Assignment(stream_PERCENTEQ.nextToken())
                         );
 
                     }
@@ -2399,7 +2399,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 154:28: -> AMPEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_AMPEQ.nextToken())
+                        new Assignment(stream_AMPEQ.nextToken())
                         );
 
                     }
@@ -2433,7 +2433,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 155:28: -> BAREQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_BAREQ.nextToken())
+                        new Assignment(stream_BAREQ.nextToken())
                         );
 
                     }
@@ -2467,7 +2467,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 156:28: -> CARETEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_CARETEQ.nextToken())
+                        new Assignment(stream_CARETEQ.nextToken())
                         );
 
                     }
@@ -2501,7 +2501,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 157:28: -> LTLTEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_LTLTEQ.nextToken())
+                        new Assignment(stream_LTLTEQ.nextToken())
                         );
 
                     }
@@ -2535,7 +2535,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 158:28: -> GTGTEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_GTGTEQ.nextToken())
+                        new Assignment(stream_GTGTEQ.nextToken())
                         );
 
                     }
@@ -2569,7 +2569,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 159:28: -> GTGTGTEQ
                     {
                         adaptor.addChild(root_0, 
-                        new AssignOperationNode(stream_GTGTGTEQ.nextToken())
+                        new Assignment(stream_GTGTGTEQ.nextToken())
                         );
 
                     }
@@ -2650,7 +2650,7 @@ public TreeAdaptor getTreeAdaptor() {
             FUNCTION50=(Token)match(input,FUNCTION,FOLLOW_FUNCTION_in_funcLit1445); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             FUNCTION50_tree = 
-            new FunctionNode(FUNCTION50) 
+            new Function(FUNCTION50) 
             ;
             root_0 = (Object)adaptor.becomeRoot(FUNCTION50_tree, root_0);
             }
@@ -5011,7 +5011,7 @@ public TreeAdaptor getTreeAdaptor() {
                     FOR109=(Token)match(input,FOR,FOLLOW_FOR_in_statementLast2260); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     FOR109_tree = 
-                    new ForNode(FOR109) 
+                    new For(FOR109) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(FOR109_tree, root_0);
                     }
@@ -5054,7 +5054,7 @@ public TreeAdaptor getTreeAdaptor() {
                     WHILE116=(Token)match(input,WHILE,FOLLOW_WHILE_in_statementLast2299); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     WHILE116_tree = 
-                    new WhileNode(WHILE116) 
+                    new While(WHILE116) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(WHILE116_tree, root_0);
                     }
@@ -5084,7 +5084,7 @@ public TreeAdaptor getTreeAdaptor() {
                     DO119=(Token)match(input,DO,FOLLOW_DO_in_statementLast2327); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     DO119_tree = 
-                    new DoWhileNode(DO119) 
+                    new DoWhile(DO119) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(DO119_tree, root_0);
                     }
@@ -5246,7 +5246,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RETURN134=(Token)match(input,RETURN,FOLLOW_RETURN_in_statementLast2431); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     RETURN134_tree = 
-                    new ReturnNode(RETURN134) 
+                    new Return(RETURN134) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(RETURN134_tree, root_0);
                     }
@@ -5690,7 +5690,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new BlockScopeNode(BLOCK_SCOPE, LBRACE147, RBRACE149)
+                new BlockScope(BLOCK_SCOPE, LBRACE147, RBRACE149)
                 , root_1);
 
                 // Haxe.g:252:97: ( blockStmt )*
@@ -6726,7 +6726,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    BARBAR180=(Token)match(input,BARBAR,FOLLOW_BARBAR_in_logicOrExpr3010); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    BARBAR180_tree = 
-            	    new BinaryExpressionNode(BARBAR180) 
+            	    new BinaryExpression(BARBAR180) 
             	    ;
             	    root_0 = (Object)adaptor.becomeRoot(BARBAR180_tree, root_0);
             	    }
@@ -6839,7 +6839,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    AMPAMP183=(Token)match(input,AMPAMP,FOLLOW_AMPAMP_in_logicAndExpr3052); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    AMPAMP183_tree = 
-            	    new BinaryExpressionNode(AMPAMP183) 
+            	    new BinaryExpression(AMPAMP183) 
             	    ;
             	    root_0 = (Object)adaptor.becomeRoot(AMPAMP183_tree, root_0);
             	    }
@@ -6946,7 +6946,7 @@ public TreeAdaptor getTreeAdaptor() {
                     ELLIPSIS186=(Token)match(input,ELLIPSIS,FOLLOW_ELLIPSIS_in_iterExpr3111); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     ELLIPSIS186_tree = 
-                    new BinaryExpressionNode(ELLIPSIS186) 
+                    new BinaryExpression(ELLIPSIS186) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(ELLIPSIS186_tree, root_0);
                     }
@@ -7169,7 +7169,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            EQEQ189=(Token)match(input,EQEQ,FOLLOW_EQEQ_in_cmpExpr3183); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            EQEQ189_tree = 
-            	            new BinaryExpressionNode(EQEQ189) 
+            	            new BinaryExpression(EQEQ189) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(EQEQ189_tree, root_0);
             	            }
@@ -7182,7 +7182,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            BANGEQ190=(Token)match(input,BANGEQ,FOLLOW_BANGEQ_in_cmpExpr3212); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            BANGEQ190_tree = 
-            	            new BinaryExpressionNode(BANGEQ190) 
+            	            new BinaryExpression(BANGEQ190) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(BANGEQ190_tree, root_0);
             	            }
@@ -7195,7 +7195,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GTEQ191=(Token)match(input,GTEQ,FOLLOW_GTEQ_in_cmpExpr3241); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTEQ191_tree = 
-            	            new BinaryExpressionNode(GTEQ191) 
+            	            new BinaryExpression(GTEQ191) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GTEQ191_tree, root_0);
             	            }
@@ -7208,7 +7208,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            LTEQ192=(Token)match(input,LTEQ,FOLLOW_LTEQ_in_cmpExpr3270); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LTEQ192_tree = 
-            	            new BinaryExpressionNode(LTEQ192) 
+            	            new BinaryExpression(LTEQ192) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(LTEQ192_tree, root_0);
             	            }
@@ -7221,7 +7221,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GT193=(Token)match(input,GT,FOLLOW_GT_in_cmpExpr3299); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GT193_tree = 
-            	            new BinaryExpressionNode(GT193) 
+            	            new BinaryExpression(GT193) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GT193_tree, root_0);
             	            }
@@ -7234,7 +7234,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            LT194=(Token)match(input,LT,FOLLOW_LT_in_cmpExpr3328); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LT194_tree = 
-            	            new BinaryExpressionNode(LT194) 
+            	            new BinaryExpression(LT194) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(LT194_tree, root_0);
             	            }
@@ -7412,7 +7412,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            BAR197=(Token)match(input,BAR,FOLLOW_BAR_in_bitExpr3401); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            BAR197_tree = 
-            	            new BinaryExpressionNode(BAR197) 
+            	            new BinaryExpression(BAR197) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(BAR197_tree, root_0);
             	            }
@@ -7425,7 +7425,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            AMP198=(Token)match(input,AMP,FOLLOW_AMP_in_bitExpr3430); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            AMP198_tree = 
-            	            new BinaryExpressionNode(AMP198) 
+            	            new BinaryExpression(AMP198) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(AMP198_tree, root_0);
             	            }
@@ -7438,7 +7438,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            CARET199=(Token)match(input,CARET,FOLLOW_CARET_in_bitExpr3459); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            CARET199_tree = 
-            	            new BinaryExpressionNode(CARET199) 
+            	            new BinaryExpression(CARET199) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(CARET199_tree, root_0);
             	            }
@@ -7616,7 +7616,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            LTLT202=(Token)match(input,LTLT,FOLLOW_LTLT_in_shiftExpr3526); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LTLT202_tree = 
-            	            new BinaryExpressionNode(LTLT202) 
+            	            new BinaryExpression(LTLT202) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(LTLT202_tree, root_0);
             	            }
@@ -7629,7 +7629,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GTGT203=(Token)match(input,GTGT,FOLLOW_GTGT_in_shiftExpr3555); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTGT203_tree = 
-            	            new BinaryExpressionNode(GTGT203) 
+            	            new BinaryExpression(GTGT203) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GTGT203_tree, root_0);
             	            }
@@ -7642,7 +7642,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GTGTGT204=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_shiftExpr3584); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTGTGT204_tree = 
-            	            new BinaryExpressionNode(GTGTGT204) 
+            	            new BinaryExpression(GTGTGT204) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GTGTGT204_tree, root_0);
             	            }
@@ -7794,7 +7794,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            PLUS207=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr3653); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PLUS207_tree = 
-            	            new BinaryExpressionNode(PLUS207) 
+            	            new BinaryExpression(PLUS207) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(PLUS207_tree, root_0);
             	            }
@@ -7807,7 +7807,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            SUB208=(Token)match(input,SUB,FOLLOW_SUB_in_addExpr3682); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            SUB208_tree = 
-            	            new BinaryExpressionNode(SUB208) 
+            	            new BinaryExpression(SUB208) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(SUB208_tree, root_0);
             	            }
@@ -7985,7 +7985,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            STAR211=(Token)match(input,STAR,FOLLOW_STAR_in_multExpr3755); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            STAR211_tree = 
-            	            new BinaryExpressionNode(STAR211) 
+            	            new BinaryExpression(STAR211) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(STAR211_tree, root_0);
             	            }
@@ -7998,7 +7998,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            SLASH212=(Token)match(input,SLASH,FOLLOW_SLASH_in_multExpr3784); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            SLASH212_tree = 
-            	            new BinaryExpressionNode(SLASH212) 
+            	            new BinaryExpression(SLASH212) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(SLASH212_tree, root_0);
             	            }
@@ -8011,7 +8011,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            PERCENT213=(Token)match(input,PERCENT,FOLLOW_PERCENT_in_multExpr3813); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PERCENT213_tree = 
-            	            new BinaryExpressionNode(PERCENT213) 
+            	            new BinaryExpression(PERCENT213) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(PERCENT213_tree, root_0);
             	            }
@@ -8174,7 +8174,7 @@ public TreeAdaptor getTreeAdaptor() {
                             SUB215=(Token)match(input,SUB,FOLLOW_SUB_in_unarExpr3868); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUB215_tree = 
-                            new UnarExpressionNode(SUB215) 
+                            new UnarExpression(SUB215) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(SUB215_tree, root_0);
                             }
@@ -8187,7 +8187,7 @@ public TreeAdaptor getTreeAdaptor() {
                             SUBSUB216=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_unarExpr3887); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUBSUB216_tree = 
-                            new UnarExpressionNode(SUBSUB216) 
+                            new UnarExpression(SUBSUB216) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(SUBSUB216_tree, root_0);
                             }
@@ -8200,7 +8200,7 @@ public TreeAdaptor getTreeAdaptor() {
                             PLUSPLUS217=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_unarExpr3906); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             PLUSPLUS217_tree = 
-                            new UnarExpressionNode(PLUSPLUS217) 
+                            new UnarExpression(PLUSPLUS217) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(PLUSPLUS217_tree, root_0);
                             }
@@ -8213,7 +8213,7 @@ public TreeAdaptor getTreeAdaptor() {
                             BANG218=(Token)match(input,BANG,FOLLOW_BANG_in_unarExpr3925); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             BANG218_tree = 
-                            new UnarExpressionNode(BANG218) 
+                            new UnarExpression(BANG218) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(BANG218_tree, root_0);
                             }
@@ -8226,7 +8226,7 @@ public TreeAdaptor getTreeAdaptor() {
                             TILDE219=(Token)match(input,TILDE,FOLLOW_TILDE_in_unarExpr3944); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             TILDE219_tree = 
-                            new UnarExpressionNode(TILDE219) 
+                            new UnarExpression(TILDE219) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(TILDE219_tree, root_0);
                             }
@@ -8284,7 +8284,7 @@ public TreeAdaptor getTreeAdaptor() {
                             PLUSPLUS222=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_unarExpr3974); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             PLUSPLUS222_tree = 
-                            new UnarExpressionNode(PLUSPLUS222) 
+                            new UnarExpression(PLUSPLUS222) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(PLUSPLUS222_tree, root_0);
                             }
@@ -8297,7 +8297,7 @@ public TreeAdaptor getTreeAdaptor() {
                             SUBSUB223=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_unarExpr3980); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUBSUB223_tree = 
-                            new UnarExpressionNode(SUBSUB223) 
+                            new UnarExpression(SUBSUB223) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(SUBSUB223_tree, root_0);
                             }
@@ -9071,7 +9071,7 @@ public TreeAdaptor getTreeAdaptor() {
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
-                        new MethodCallNode(CALL_OR_SLICE, LPAREN237, RPAREN239)
+                        new MethodCall(CALL_OR_SLICE, LPAREN237, RPAREN239)
                         , root_1);
 
                         adaptor.addChild(root_1, stream_value.nextTree());
@@ -10423,7 +10423,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new BlockScopeNode(BLOCK_SCOPE, LBRACE283, RBRACE285)
+                new BlockScope(BLOCK_SCOPE, LBRACE283, RBRACE285)
                 , root_1);
 
                 // Haxe.g:376:101: ( enumValueDecl )*
@@ -10545,7 +10545,7 @@ public TreeAdaptor getTreeAdaptor() {
                     IDENTIFIER286=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl4795); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER286_tree = 
-                    new DeclarationNode(IDENTIFIER286) 
+                    new Declaration(IDENTIFIER286) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(IDENTIFIER286_tree, root_0);
                     }
@@ -10591,7 +10591,7 @@ public TreeAdaptor getTreeAdaptor() {
                     IDENTIFIER291=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_enumValueDecl4833); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER291_tree = 
-                    new DeclarationNode(IDENTIFIER291) 
+                    new Declaration(IDENTIFIER291) 
                     ;
                     adaptor.addChild(root_0, IDENTIFIER291_tree);
                     }
@@ -10962,7 +10962,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new BlockScopeNode(BLOCK_SCOPE, LBRACE300, RBRACE302)
+                new BlockScope(BLOCK_SCOPE, LBRACE300, RBRACE302)
                 , root_1);
 
                 // Haxe.g:388:99: ( classMember )*
@@ -11250,7 +11250,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new DeclarationNode(stream_IDENTIFIER.nextToken())
+                new Declaration(stream_IDENTIFIER.nextToken())
                 , root_1);
 
                 // Haxe.g:396:116: ( declAttrList )?
@@ -11552,7 +11552,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new DeclarationNode(stream_IDENTIFIER.nextToken())
+                new Declaration(stream_IDENTIFIER.nextToken())
                 , root_1);
 
                 // Haxe.g:402:94: ( propDecl )?
@@ -12025,7 +12025,7 @@ public TreeAdaptor getTreeAdaptor() {
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
-                        new FunctionNode(stream_FUNCTION.nextToken())
+                        new Function(stream_FUNCTION.nextToken())
                         , root_1);
 
                         adaptor.addChild(root_1, 
@@ -12137,7 +12137,7 @@ public TreeAdaptor getTreeAdaptor() {
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
-                        new FunctionNode(stream_FUNCTION.nextToken())
+                        new Function(stream_FUNCTION.nextToken())
                         , root_1);
 
                         adaptor.addChild(root_1, 
@@ -14276,7 +14276,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 478:21: -> LONGLITERAL[$LONGLITERAL, \"Int\"]
                     {
                         adaptor.addChild(root_0, 
-                        new ConstantNode(LONGLITERAL, LONGLITERAL411, "Int")
+                        new Constant(LONGLITERAL, LONGLITERAL411, "Int")
                         );
 
                     }
@@ -14310,7 +14310,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 479:21: -> NULL[$NULL,\"Unknown<0>\"]
                     {
                         adaptor.addChild(root_0, 
-                        new ConstantNode(NULL, NULL412, "Unknown<0>")
+                        new Constant(NULL, NULL412, "Unknown<0>")
                         );
 
                     }
@@ -14344,7 +14344,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 480:21: -> INTLITERAL[$INTLITERAL, \"Int\"]
                     {
                         adaptor.addChild(root_0, 
-                        new ConstantNode(INTLITERAL, INTLITERAL413, "Int")
+                        new Constant(INTLITERAL, INTLITERAL413, "Int")
                         );
 
                     }
@@ -14378,7 +14378,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 481:21: -> STRINGLITERAL[$STRINGLITERAL,\"String\"]
                     {
                         adaptor.addChild(root_0, 
-                        new ConstantNode(STRINGLITERAL, STRINGLITERAL414, "String")
+                        new Constant(STRINGLITERAL, STRINGLITERAL414, "String")
                         );
 
                     }
@@ -14412,7 +14412,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 482:21: -> CHARLITERAL[$CHARLITERAL, \"String\"]
                     {
                         adaptor.addChild(root_0, 
-                        new ConstantNode(CHARLITERAL, CHARLITERAL415, "String")
+                        new Constant(CHARLITERAL, CHARLITERAL415, "String")
                         );
 
                     }
@@ -14446,7 +14446,7 @@ public TreeAdaptor getTreeAdaptor() {
                     // 483:21: -> FLOATNUM[$FLOATNUM, \"Float\"]
                     {
                         adaptor.addChild(root_0, 
-                        new ConstantNode(FLOATNUM, FLOATNUM416, "Float")
+                        new Constant(FLOATNUM, FLOATNUM416, "Float")
                         );
 
                     }

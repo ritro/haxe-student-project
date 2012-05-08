@@ -25,7 +25,7 @@ import tree.Modifiers;
  * 
  * @author Anatoly Kondratyev
  */
-public class FunctionNode extends NodeWithScopeAndModifier
+public class Function extends NodeWithScopeAndModifier
 {
     private static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST;
     private static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
@@ -40,11 +40,11 @@ public class FunctionNode extends NodeWithScopeAndModifier
 	 */
 	private void generateNameWithParameters()
 	{
-	    ArrayList<DeclarationNode> paramList = 
+	    ArrayList<Declaration> paramList = 
 	            getParametersAsDeclarations();
 		String parameters = "";
 		String comma = "";
-		for (DeclarationNode commonTree : paramList) 
+		for (Declaration commonTree : paramList) 
 		{
 			parameters += comma
 			        + commonTree.getHaxeType().getShortTypeName();
@@ -69,7 +69,7 @@ public class FunctionNode extends NodeWithScopeAndModifier
 		return fullNameWithParameters;
 	}
 
-	public FunctionNode(final Token t) {
+	public Function(final Token t) {
 		super(t);
 	}
 
@@ -92,8 +92,8 @@ public class FunctionNode extends NodeWithScopeAndModifier
 	 * FIXME
 	 * @return the parameters as var usage
 	 */ 
-	public ArrayList<DeclarationNode> getParametersAsDeclarations() {
-		ArrayList<DeclarationNode> list = new ArrayList<DeclarationNode>();
+	public ArrayList<Declaration> getParametersAsDeclarations() {
+		ArrayList<Declaration> list = new ArrayList<Declaration>();
 		HaxeTree parameters = getParamListNode();
 		if (parameters == null)
 		{
@@ -101,7 +101,7 @@ public class FunctionNode extends NodeWithScopeAndModifier
 		}
 		for (HaxeTree varDecl : parameters.getChildren()) 
 		{
-			list.add((DeclarationNode) varDecl);
+			list.add((Declaration) varDecl);
 		}
 		return list;
 	}

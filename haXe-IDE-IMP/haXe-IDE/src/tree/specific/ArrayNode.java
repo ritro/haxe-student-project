@@ -14,7 +14,7 @@ import tree.utils.HaxeTypeUtils;
  * 
  * @author Savenko Maria
  */
-public class ArrayNode extends ConstantNode
+public class ArrayNode extends Constant
 {   
     private CommonToken leftBracket = null;
     private CommonToken rightBracket = null;
@@ -83,7 +83,7 @@ public class ArrayNode extends ConstantNode
                 type = child.getHaxeType();
                 continue;
             }
-            if (child.ifUndefinedType())
+            if (child.isUndefinedType())
             {
                 // it will leave type of the array as Undefined
                 return;

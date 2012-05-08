@@ -12,6 +12,8 @@ public interface ICallHierarchyElement
     
     public void add(final ICallHierarchyElement child);
     
+    public void add(final ICallHierarchyElement[] children);
+    
     public boolean isClickable();
     
     public void clearAllChildren();

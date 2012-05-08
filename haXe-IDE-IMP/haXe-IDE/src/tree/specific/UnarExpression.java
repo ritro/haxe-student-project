@@ -7,7 +7,7 @@ import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 import tree.utils.HaxeTypeUtils;
 
-public class UnarExpressionNode extends HaxeTree
+public class UnarExpression extends HaxeTree
 {
     public enum UnarOperations {
         NUMERABLE, //++ --  and - with int and float only
@@ -88,7 +88,7 @@ public class UnarExpressionNode extends HaxeTree
         return getChild(0);
     }
     
-    public UnarExpressionNode(final Token token)
+    public UnarExpression(final Token token)
     {
         super(token);
     }

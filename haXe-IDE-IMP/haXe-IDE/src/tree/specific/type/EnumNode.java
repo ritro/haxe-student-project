@@ -8,8 +8,8 @@ import java.util.List;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.BlockScopeNode;
-import tree.specific.DeclarationNode;
+import tree.specific.BlockScope;
+import tree.specific.Declaration;
 
 public class EnumNode extends HaxeType 
 {	
@@ -50,13 +50,13 @@ public class EnumNode extends HaxeType
 	public List<HaxeTree> getAllMembers() {
 		List<HaxeTree> list = new ArrayList<HaxeTree>();
 
-		BlockScopeNode blockScope = getBlockScope();
+		BlockScope blockScope = getBlockScope();
 		if (blockScope == null) 
 		{
 		    return list;
 		}
 		for (HaxeTree x: blockScope.getChildren())
-			if (x instanceof DeclarationNode)
+			if (x instanceof Declaration)
 				list.add(x);
 		return list;
 	}

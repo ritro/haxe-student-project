@@ -59,28 +59,28 @@ import java.util.HashMap;
 package imp.parser.antlr;
 
 import tree.HaxeTree;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
 import tree.specific.type.ClassNode;
-import tree.specific.UnarExpressionNode;
+import tree.specific.UnarExpression;
 import tree.specific.type.EnumNode;
 import tree.specific.ErrorNode;
-import tree.specific.DoWhileNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.DoWhile;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
 import tree.specific.SliceNode;
 import tree.specific.SwitchNode;
 import tree.specific.TryNode;
-import tree.specific.ReturnNode;
-import tree.specific.VarDeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.ConstantNode;
+import tree.specific.Return;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.Constant;
 import tree.specific.ArrayNode;
-import tree.specific.WhileNode;
+import tree.specific.While;
 }
 
 module          : myPackage? imports* topLevelDecl* -> ^(MODULE<HaxeTree>["MODULE"] myPackage? imports* topLevelDecl*)
@@ -134,32 +134,32 @@ declAttrList    : declAttr+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST"] decl
 paramList       : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST"] param+)
                 ;
 
-param           : QUES? IDENTIFIER typeTag? varInit? -> ^(VAR<VarDeclarationNode>[$IDENTIFIER] typeTag? varInit? QUES?)
+param           : QUES? IDENTIFIER typeTag? varInit? -> ^(VAR<Declaration>[$IDENTIFIER] typeTag? varInit? QUES?)
                 ;
 
-identifier      : IDENTIFIER<VarUsageNode>
+identifier      : IDENTIFIER<Usage>
                 ;
                 
 id              : identifier
-                | THIS<VarUsageNode>
-                | SUPER<VarUsageNode>
+                | THIS<Usage>
+                | SUPER<Usage>
                 ;
 
-assignOp        : EQ       -> EQ<AssignOperationNode>
-                | PLUSEQ   -> PLUSEQ<AssignOperationNode>
-                | SUBEQ    -> SUBEQ<AssignOperationNode>
-                | STAREQ   -> STAREQ<AssignOperationNode>
-                | SLASHEQ  -> SLASHEQ<AssignOperationNode>
-                | PERCENTEQ -> PERCENTEQ<AssignOperationNode>
-                | AMPEQ    -> AMPEQ<AssignOperationNode>
-                | BAREQ    -> BAREQ<AssignOperationNode>
-                | CARETEQ  -> CARETEQ<AssignOperationNode>
-                | LTLTEQ   -> LTLTEQ<AssignOperationNode>
-                | GTGTEQ   -> GTGTEQ<AssignOperationNode>
-                | GTGTGTEQ -> GTGTGTEQ<AssignOperationNode>
+assignOp        : EQ       -> EQ<Assignment>
+                | PLUSEQ   -> PLUSEQ<Assignment>
+                | SUBEQ    -> SUBEQ<Assignment>
+                | STAREQ   -> STAREQ<Assignment>
+                | SLASHEQ  -> SLASHEQ<Assignment>
+                | PERCENTEQ -> PERCENTEQ<Assignment>
+                | AMPEQ    -> AMPEQ<Assignment>
+                | BAREQ    -> BAREQ<Assignment>
+                | CARETEQ  -> CARETEQ<Assignment>
+                | LTLTEQ   -> LTLTEQ<Assignment>
+                | GTGTEQ   -> GTGTEQ<Assignment>
+                | GTGTGTEQ -> GTGTGTEQ<Assignment>
                 ;
                 
-funcLit         : FUNCTION<FunctionNode>^ LPAREN! paramList? RPAREN! typeTag? block
+funcLit         : FUNCTION<Function>^ LPAREN! paramList? RPAREN! typeTag? block
                 ;
 /*
 ! -------------- Preprocessor----------------------------------
@@ -231,12 +231,12 @@ statement       : statementLast
     
 statementLast   : block
                 | IF<IfNode>^ parExpression (statementOrLast ELSE!)? statement
-                | FOR<ForNode>^ LPAREN! expr IN! iterExpr RPAREN! statement
-                | WHILE<WhileNode>^ parExpression statement
-                | DO<DoWhileNode>^ statement WHILE! parExpression SEMI!
+                | FOR<For>^ LPAREN! expr IN! iterExpr RPAREN! statement
+                | WHILE<While>^ parExpression statement
+                | DO<DoWhile>^ statement WHILE! parExpression SEMI!
                 | TRY<TryNode>^ block catchStmt+
                 | SWITCH<SwitchNode>^ LPAREN! expr RPAREN! LBRACE! caseStmt+ RBRACE!
-                | RETURN<ReturnNode>^ expr? SEMI!
+                | RETURN<Return>^ expr? SEMI!
                 | THROW^ expr SEMI!
                 | (BREAK | CONTINUE) SEMI!
     //| IDENTIFIER COLON statement                 -> ^(COLON IDENTIFIER? statement?)
@@ -249,7 +249,7 @@ statementOrLast : statementLast
 parExpression   : LPAREN! expr RPAREN!
                 ;
 
-block           : LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] blockStmt*)
+block           : LBRACE (blockStmt)* RBRACE -> ^(BLOCK_SCOPE<BlockScope>[$LBRACE, $RBRACE] blockStmt*)
                 ;
 
 blockStmt       : varDecl
@@ -278,54 +278,54 @@ assignExpr      : ternaryExpr (assignOp^ ternaryExpr)?
 ternaryExpr     : logicOrExpr (QUES^ expr COLON! ternaryExpr)?
                 ;
 
-logicOrExpr     : logicAndExpr (BARBAR<BinaryExpressionNode>^ logicAndExpr)*
+logicOrExpr     : logicAndExpr (BARBAR<BinaryExpression>^ logicAndExpr)*
                 ;
     
-logicAndExpr    : iterExpr(AMPAMP<BinaryExpressionNode>^ iterExpr)*
+logicAndExpr    : iterExpr(AMPAMP<BinaryExpression>^ iterExpr)*
                 ;
                 
-iterExpr        : cmpExpr (ELLIPSIS<BinaryExpressionNode>^ cmpExpr)?
+iterExpr        : cmpExpr (ELLIPSIS<BinaryExpression>^ cmpExpr)?
                 ;
     
 cmpExpr         : bitExpr ((
-                      EQEQ<BinaryExpressionNode>^ 
-                    | BANGEQ<BinaryExpressionNode>^ 
-                    | GTEQ<BinaryExpressionNode>^ 
-                    | LTEQ<BinaryExpressionNode>^ 
-                    | GT<BinaryExpressionNode>^ 
-                    | LT<BinaryExpressionNode>^) bitExpr)*
+                      EQEQ<BinaryExpression>^ 
+                    | BANGEQ<BinaryExpression>^ 
+                    | GTEQ<BinaryExpression>^ 
+                    | LTEQ<BinaryExpression>^ 
+                    | GT<BinaryExpression>^ 
+                    | LT<BinaryExpression>^) bitExpr)*
                 ;
     
 bitExpr         : shiftExpr ((
-                      BAR<BinaryExpressionNode>^ 
-                    | AMP<BinaryExpressionNode>^ 
-                    | CARET<BinaryExpressionNode>^) shiftExpr)*
+                      BAR<BinaryExpression>^ 
+                    | AMP<BinaryExpression>^ 
+                    | CARET<BinaryExpression>^) shiftExpr)*
                 ;
 
 shiftExpr       : addExpr ((
-                      LTLT<BinaryExpressionNode>^ 
-                    | GTGT<BinaryExpressionNode>^ 
-                    | GTGTGT<BinaryExpressionNode>^) addExpr)*
+                      LTLT<BinaryExpression>^ 
+                    | GTGT<BinaryExpression>^ 
+                    | GTGTGT<BinaryExpression>^) addExpr)*
                 ;
 
 addExpr         : multExpr ((
-                      PLUS<BinaryExpressionNode>^ 
-                    | SUB<BinaryExpressionNode>^) multExpr )*
+                      PLUS<BinaryExpression>^ 
+                    | SUB<BinaryExpression>^) multExpr )*
                 ;
     
 multExpr        : unarExpr ((
-                      STAR<BinaryExpressionNode>^ 
-                    | SLASH<BinaryExpressionNode>^ 
-                    | PERCENT<BinaryExpressionNode>^) unarExpr)*
+                      STAR<BinaryExpression>^ 
+                    | SLASH<BinaryExpression>^ 
+                    | PERCENT<BinaryExpression>^) unarExpr)*
                 ;
 
 unarExpr        : (
-            SUB<UnarExpressionNode>^|
-            SUBSUB<UnarExpressionNode>^|
-            PLUSPLUS<UnarExpressionNode>^|
-            BANG<UnarExpressionNode>^|
-            TILDE<UnarExpressionNode>^) prefixExpr
-                | prefixExpr (PLUSPLUS<UnarExpressionNode>^|SUBSUB<UnarExpressionNode>^)?
+            SUB<UnarExpression>^|
+            SUBSUB<UnarExpression>^|
+            PLUSPLUS<UnarExpression>^|
+            BANG<UnarExpression>^|
+            TILDE<UnarExpression>^) prefixExpr
+                | prefixExpr (PLUSPLUS<UnarExpression>^|SUBSUB<UnarExpression>^)?
                 ;  
     
 prefixExpr      : NEW<NewNode>^ type LPAREN! exprList? RPAREN!
@@ -335,7 +335,7 @@ prefixExpr      : NEW<NewNode>^ type LPAREN! exprList? RPAREN!
 
 methodCallOrSlice 
                 : value LPAREN exprList? RPAREN pureCallOrSlice?
-            -> ^(CALL_OR_SLICE<MethodCallNode>[$LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
+            -> ^(CALL_OR_SLICE<MethodCall>[$LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
                 | value LBRACKET expr RBRACKET pureCallOrSlice? 
             -> ^(CALL_OR_SLICE<SliceNode>[$LBRACKET, $RBRACKET, false] value expr pureCallOrSlice?)
                 | value^ pureCallOrSlice 
@@ -373,11 +373,11 @@ topLevelDecl    : classDecl
 enumDecl        : topLevelAccessAttr? ENUM IDENTIFIER typeParam? enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccessAttr? typeParam? enumBody)
                 ;
 
-enumBody        : LBRACE (enumValueDecl)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] enumValueDecl*)
+enumBody        : LBRACE (enumValueDecl)* RBRACE -> ^(BLOCK_SCOPE<BlockScope>[$LBRACE, $RBRACE] enumValueDecl*)
                 ;
 
-enumValueDecl   : IDENTIFIER<VarDeclarationNode>^ LPAREN! paramList? RPAREN! SEMI!  
-                | IDENTIFIER<VarDeclarationNode> SEMI!
+enumValueDecl   : IDENTIFIER<Declaration>^ LPAREN! paramList? RPAREN! SEMI!  
+                | IDENTIFIER<Declaration> SEMI!
             //  |   pp
                 ;
     
@@ -385,7 +385,7 @@ classDecl       : topLevelAccessAttr? CLASS IDENTIFIER typeParam?  extending? im
                     -> ^(IDENTIFIER<ClassNode> topLevelAccessAttr? typeParam?  extending? implementList? classBodyScope)
                 ;
 
-classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScopeNode>[$LBRACE, $RBRACE] classMember*)
+classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScope>[$LBRACE, $RBRACE] classMember*)
                 ;
     
 classMember     : varDeclClass
@@ -393,13 +393,13 @@ classMember     : varDeclClass
             //  | pp classBody
                 ;
 //several decl by one var???
-varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag varInit? SEMI -> ^(IDENTIFIER<VarDeclarationNode> declAttrList? propDecl? typeTag varInit?)
+varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag varInit? SEMI -> ^(IDENTIFIER<Declaration> declAttrList? propDecl? typeTag varInit?)
                 ;
                 
 varDecl         : VAR! varDeclPartList (COMMA! varDeclPartList)* SEMI!
                 ;
 
-varDeclPartList : IDENTIFIER propDecl? typeTag? varInit? -> ^(IDENTIFIER<VarDeclarationNode> propDecl? typeTag? varInit?)
+varDeclPartList : IDENTIFIER propDecl? typeTag? varInit? -> ^(IDENTIFIER<Declaration> propDecl? typeTag? varInit?)
                 ;
 
 propDecl        : LPAREN a1=propAccessor COMMA a2=propAccessor RPAREN -> ^(PROPERTY_DECL<HaxeTree>["PROPERTY_DECL"] $a1 $a2)
@@ -416,9 +416,9 @@ varInit         : EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT"] expr)
                 ;
 
 funcDecl        : declAttrList? FUNCTION NEW funcDeclPart 
-                    -> ^(FUNCTION<FunctionNode> NEW declAttrList? funcDeclPart )
+                    -> ^(FUNCTION<Function> NEW declAttrList? funcDeclPart )
                 | declAttrList? FUNCTION IDENTIFIER typeParam? funcDeclPart 
-                    -> ^(FUNCTION<FunctionNode> IDENTIFIER declAttrList? funcDeclPart typeParam?)
+                    -> ^(FUNCTION<Function> IDENTIFIER declAttrList? funcDeclPart typeParam?)
                 ;
                 
 funcDeclPart    : LPAREN! paramList? RPAREN! typeTag? (block | SEMI!)
@@ -475,14 +475,14 @@ objLitElem      : IDENTIFIER COLON! expr
     
 // TODO: REGEXPR
 elementarySymbol
-    : LONGLITERAL   -> LONGLITERAL<ConstantNode>[$LONGLITERAL, "Int"]
-    | NULL          -> NULL<ConstantNode>[$NULL,"Unknown<0>"]
-    | INTLITERAL    -> INTLITERAL<ConstantNode>[$INTLITERAL, "Int"]
-    | STRINGLITERAL -> STRINGLITERAL<ConstantNode>[$STRINGLITERAL,"String"]
-    | CHARLITERAL   -> CHARLITERAL<ConstantNode>[$CHARLITERAL, "String"]
-    | FLOATNUM      -> FLOATNUM<ConstantNode>[$FLOATNUM, "Float"]
-    //| TRUE          -> TRUE<ConstantNode>[$TRUE,"Bool"]
-    //| FALSE         -> FALSE<ConstantNode>[$FALSE,"Bool"]
+    : LONGLITERAL   -> LONGLITERAL<Constant>[$LONGLITERAL, "Int"]
+    | NULL          -> NULL<Constant>[$NULL,"Unknown<0>"]
+    | INTLITERAL    -> INTLITERAL<Constant>[$INTLITERAL, "Int"]
+    | STRINGLITERAL -> STRINGLITERAL<Constant>[$STRINGLITERAL,"String"]
+    | CHARLITERAL   -> CHARLITERAL<Constant>[$CHARLITERAL, "String"]
+    | FLOATNUM      -> FLOATNUM<Constant>[$FLOATNUM, "Float"]
+    //| TRUE          -> TRUE<Constant>[$TRUE,"Bool"]
+    //| FALSE         -> FALSE<Constant>[$FALSE,"Bool"]
     ;
 
 WS      : ( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;}

@@ -16,20 +16,20 @@ import org.eclipse.imp.services.IReferenceResolver;
 
 import tree.HaxeTree;
 import tree.specific.ArrayNode;
-import tree.specific.AssignOperationNode;
-import tree.specific.BinaryExpressionNode;
-import tree.specific.BlockScopeNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.BinaryExpression;
+import tree.specific.BlockScope;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.ForNode;
-import tree.specific.FunctionNode;
+import tree.specific.For;
+import tree.specific.Function;
 import tree.specific.IfNode;
-import tree.specific.MethodCallNode;
-import tree.specific.ReturnNode;
+import tree.specific.MethodCall;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
-import tree.specific.WhileNode;
+import tree.specific.Declaration;
+import tree.specific.Usage;
+import tree.specific.While;
 import tree.specific.type.ClassNode;
 
 /**
@@ -72,23 +72,23 @@ public class HaxeReferenceResolver implements IReferenceResolver {
 		// TODO Replace the following with an implementation suitable for your
 		// language and reference types
 
-	    if (node instanceof MethodCallNode)
+	    if (node instanceof MethodCall)
         {
-	        return visit((MethodCallNode)node);
+	        return visit((MethodCall)node);
         }
 	    else if (node instanceof SliceNode)
 	    {
 	        return visit((SliceNode)node);
 	    }
-	    else if (node instanceof VarUsageNode)
+	    else if (node instanceof Usage)
 	    {
-	        return visit((VarUsageNode)node);
+	        return visit((Usage)node);
 	    }
 	    
 		return null;
 	}
 	
-   private Object visit(final MethodCallNode node)
+   private Object visit(final MethodCall node)
    {
        return node.getDeclarationNode();
    }
@@ -98,7 +98,7 @@ public class HaxeReferenceResolver implements IReferenceResolver {
        return node.getDeclarationNode();
    }
    
-   private Object visit(final VarUsageNode node)
+   private Object visit(final Usage node)
    {
        return node.getDeclarationNode();
    }

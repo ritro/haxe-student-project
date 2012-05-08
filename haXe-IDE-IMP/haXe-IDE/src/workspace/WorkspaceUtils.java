@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -29,21 +30,22 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import tree.HaxeTree;
 import tree.HaxeTreeAdaptor;
-import tree.specific.AssignOperationNode;
-import tree.specific.ConstantNode;
+import tree.specific.Assignment;
+import tree.specific.Constant;
 import tree.specific.ErrorNode;
-import tree.specific.FunctionNode;
-import tree.specific.MethodCallNode;
+import tree.specific.Function;
+import tree.specific.MethodCall;
 import tree.specific.NewNode;
-import tree.specific.ReturnNode;
+import tree.specific.Return;
 import tree.specific.SliceNode;
-import tree.specific.UnarExpressionNode;
-import tree.specific.DeclarationNode;
-import tree.specific.VarUsageNode;
+import tree.specific.UnarExpression;
+import tree.specific.Declaration;
+import tree.specific.Usage;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
+import workspace.editor.HxFilesEditor;
 
-public class WorkspaceUtils
+public abstract class WorkspaceUtils
 {
     private static final int BOM_MAX_LENGTH = 3;
     private static final Map<Charset, int[]> BOM_CHARSET;
@@ -66,6 +68,55 @@ public class WorkspaceUtils
     //          {0x0E, 0xFE, 0xFF},
     //          {0xFB, 0xEE, 0x28},
 
+    public static IViewPart showViewPart(final String id)
+    {
+        IViewPart part = null;
+        try
+        {
+            part = PlatformUI.getWorkbench().
+                getActiveWorkbenchWindow().getActivePage().showView(id);
+        }
+        catch (PartInitException e)
+        {
+            System.out.println("Couldn't open the view, id: " + id);
+            Activator.logger.error(
+                    "WorkspaceUtils.showViewPart PartInitException for view with id ", 
+                    id);
+        }
+        return part;
+    }
+    
+    public static void jumpToLocation(final IFile file, final HaxeTree node)
+    {
+        if (node == null)
+        {
+            return;
+        }
+        jumpToLocation(file, node.getIdentifierOffset(), node.getIdentifierLength());
+    }
+    
+    public static void jumpToLocation(final IFile file, final int offset, final int length)
+    {
+        if (file == null)
+        {
+            return;
+        }
+        try
+        {
+            IEditorPart editor = WorkspaceUtils.openFileInEditor(file);
+            if (!(editor instanceof HxFilesEditor))
+            {
+                return;
+            }
+            HxFilesEditor hxEditor = (HxFilesEditor)editor;
+            hxEditor.selectAndReveal(offset, length);
+        }
+        catch (Exception e)
+        {
+            String message = "WorkspaceUtils.jumpToLocation: " + e.getLocalizedMessage();
+            Activator.logger.error(message);
+        }
+    }
     
     public static void createFolder(final IFolder folder) throws CoreException 
     {
@@ -222,7 +273,7 @@ public class WorkspaceUtils
     	if (isNodeValidForCallAnalysis(node)
     			|| node instanceof ClassNode
     			|| node instanceof EnumNode
-    			|| node instanceof DeclarationNode)
+    			|| node instanceof Declaration)
     	{
     		return true;
     	}
@@ -245,7 +296,7 @@ public class WorkspaceUtils
     public static HaxeTree getValidNodeForUsageAnalysis(final HaxeTree supposedNode, final int offset)
     {
     	if (supposedNode == null || supposedNode instanceof ErrorNode 
-    	        || supposedNode instanceof ConstantNode)
+    	        || supposedNode instanceof Constant)
     	{
     		return null;
     	}
@@ -253,15 +304,15 @@ public class WorkspaceUtils
     	{
     		return supposedNode;
     	}
-    	if (supposedNode instanceof VarUsageNode)
+    	if (supposedNode instanceof Usage)
     	{
-    		HaxeTree node = ((VarUsageNode)supposedNode).getDeclarationNode();
+    		HaxeTree node = ((Usage)supposedNode).getDeclarationNode();
     		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	// TODO getValidNodeForUsageAnalysis - what to do with DotIdents?
-    	if (supposedNode instanceof AssignOperationNode)
+    	if (supposedNode instanceof Assignment)
     	{
-    	    AssignOperationNode assign = (AssignOperationNode)supposedNode;
+    	    Assignment assign = (Assignment)supposedNode;
     	    HaxeTree node = null;
     	    if (offset == -1 || 
     	            assign.getToken().getStartIndex() + assign.getToken().getText().length() > offset)
@@ -279,9 +330,9 @@ public class WorkspaceUtils
     		HaxeTree node = ((SliceNode)supposedNode).getDeclarationNode();
     		return getValidNodeForUsageAnalysis(node, offset);
     	}
-    	if (supposedNode instanceof MethodCallNode)
+    	if (supposedNode instanceof MethodCall)
     	{
-    		HaxeTree node = ((MethodCallNode)supposedNode).getDeclarationNode();
+    		HaxeTree node = ((MethodCall)supposedNode).getDeclarationNode();
     		return getValidNodeForUsageAnalysis(node, offset);
     	}
     	if (supposedNode instanceof NewNode)
@@ -289,14 +340,14 @@ public class WorkspaceUtils
     		HaxeTree node = ((NewNode)supposedNode).getObjectWhichIsCreated();
     		return getValidNodeForUsageAnalysis(node, offset);
     	}
-    	if (supposedNode instanceof UnarExpressionNode)
+    	if (supposedNode instanceof UnarExpression)
     	{
-    		HaxeTree node = ((UnarExpressionNode)supposedNode).getExpression();
+    		HaxeTree node = ((UnarExpression)supposedNode).getExpression();
     		return getValidNodeForUsageAnalysis(node, offset);
     	}
-    	if (supposedNode instanceof ReturnNode)
+    	if (supposedNode instanceof Return)
     	{
-    		HaxeTree node = ((ReturnNode)supposedNode).getExpression();
+    		HaxeTree node = ((Return)supposedNode).getExpression();
     		if (node == null)
     		{
     			return getValidNodeForUsageAnalysis(node, offset);
@@ -311,7 +362,7 @@ public class WorkspaceUtils
      */
     public static boolean isNodeValidForCallAnalysis(final HaxeTree node)
     {
-        if (node == null || !(node instanceof FunctionNode))
+        if (node == null || !(node instanceof Function))
         {
             return false;
         }
@@ -344,9 +395,9 @@ public class WorkspaceUtils
     		HaxeTree node = ((NewNode)supposedNode).getObjectWhichIsCreated();
     		return getValidNodeForCallAnalysis(node);
     	}
-    	if (supposedNode instanceof MethodCallNode)
+    	if (supposedNode instanceof MethodCall)
     	{
-    		HaxeTree node = ((MethodCallNode)supposedNode).getDeclarationNode();
+    		HaxeTree node = ((MethodCall)supposedNode).getDeclarationNode();
     		return getValidNodeForCallAnalysis(node);
     	}
     	return getValidNodeForCallAnalysis(supposedNode.getParent());
@@ -373,7 +424,7 @@ public class WorkspaceUtils
         {
             HaxeTree parent = currentAST.getParent();
             if (parent != null 
-                    && ( parent instanceof MethodCallNode || parent instanceof SliceNode))
+                    && ( parent instanceof MethodCall || parent instanceof SliceNode))
             {
                 return parent;
             }

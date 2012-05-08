@@ -9,13 +9,13 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 
-public class ParametersContainerNode extends VarUsageNode
+public class ParametersContainer extends Usage
 {
     protected CommonToken leftParen = null;
     protected CommonToken rightParen = null;
     private List<HaxeTree> parameters = null;
 
-    public ParametersContainerNode(
+    public ParametersContainer(
             final int callOrSlice, final String name, 
             final Token lParen, final Token rParen) 
     {

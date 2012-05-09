@@ -59,6 +59,7 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             String buildFileName = pageOne.getBuildFileName();
             String srcFolder = pageOne.getSrcFolder();
             String outFolder = pageOne.getOutputFolder();
+            String mainFileFolder = pageOne.getMainFileName().substring(0, pageOne.getMainFileName().length() - ProjectCreationPage._mainFileName.length()+1);
             HaxeProject project = HaxeProjectCreator.createProject(name, location);
             
             // creating build file
@@ -72,7 +73,7 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             project.createFile(buildFile.getPathWithName().toString(), buildFile.getContent(), false);
             
             // here the initial structure for project should be
-            String[] struct = {srcFolder, outFolder};
+            String[] struct = {srcFolder, outFolder, mainFileFolder};
             project.createFolders(struct);
             
             // create main file and add it to the project

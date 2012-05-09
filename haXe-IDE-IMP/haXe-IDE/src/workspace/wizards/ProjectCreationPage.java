@@ -26,6 +26,27 @@ public class ProjectCreationPage extends WizardNewProjectCreationPage
             "Create a haXe project in the workspace or in an external location.";
     private static String _defaultProjectName = "TestingHaxeCreateProject";
     private static String[] _defaultTargets = {"JavaScript", "Flash9", "ActionScript3", "NekoVM", "C++", "PHP"};
+    public static String _mainFileName = "\\Main";
+    private String _oldSrcFolder = BuildFile._defaultSourceFolderName;
+
+    private final Listener validateOnModifySrc = new Listener()
+    {
+        public void handleEvent(Event e)
+        {
+        	if(mainFileFieldContainsSrc()){
+        		String folders = getMainFileName().substring(_oldSrcFolder.length(), getMainFileName().length() - _mainFileName.length())+ _mainFileName;
+        		_oldSrcFolder = ((Text)e.widget).getText();
+        		mainFileField.setText(_oldSrcFolder+folders);
+        	}
+        	else _oldSrcFolder = ((Text)e.widget).getText();
+        	setPageComplete(validatePage());
+
+        }
+    };
+
+    private boolean mainFileFieldContainsSrc(){
+    	return getMainFileName().substring(0, _oldSrcFolder.length()).equals(_oldSrcFolder);
+    }
     
     private final Listener validateOnModify = new Listener() 
     {
@@ -150,7 +171,7 @@ public class ProjectCreationPage extends WizardNewProjectCreationPage
         srcFolderField.setText(BuildFile._defaultSourceFolderName);
         srcFolderField.setFont(parent.getFont());
         srcFolderField.setLayoutData(dataFillHorizontal);
-        srcFolderField.addListener(SWT.Modify, validateOnModify);
+        srcFolderField.addListener(SWT.Modify, validateOnModifySrc);
 
         // Output folder label
         Label binFolderLabel = new Label(group, SWT.NONE);

@@ -1,4 +1,4 @@
-#summary the rules of naming of variables, methods and functions in this project
+#summary the rules for naming of variables, methods and functions in this project
 
 = Rules of naming variables=
 

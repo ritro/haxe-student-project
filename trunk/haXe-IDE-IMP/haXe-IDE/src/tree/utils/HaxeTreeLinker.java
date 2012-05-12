@@ -631,6 +631,10 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         BlockScope blockScope = node.getBlockScope();
 
         visit(blockScope, funEnv);
+        if (node.isUndefinedType())
+        {
+            node.setHaxeType(HaxeTypeUtils.getVoid());
+        }
         endVisit();
     }
 

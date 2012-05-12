@@ -134,7 +134,7 @@ declAttrList    : declAttr+ -> ^(DECL_ATTR_LIST<HaxeTree>["DECL_ATTR_LIST"] decl
 paramList       : param (COMMA param)* -> ^(PARAM_LIST<HaxeTree>["PARAM_LIST"] param+)
                 ;
 
-param           : QUES? IDENTIFIER typeTag? varInit? -> ^(VAR<Declaration>[$IDENTIFIER] typeTag? varInit? QUES?)
+param           : QUES? IDENTIFIER typeTag? varInit? -> ^(IDENTIFIER<Declaration> typeTag? varInit? QUES?)
                 ;
 
 identifier      : IDENTIFIER<Usage>

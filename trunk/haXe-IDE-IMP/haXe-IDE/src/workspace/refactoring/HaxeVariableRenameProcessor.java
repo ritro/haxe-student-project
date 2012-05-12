@@ -1,6 +1,5 @@
 package workspace.refactoring;
 
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -64,15 +63,19 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
     }
 
     @Override
+    public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
+            throws CoreException, OperationCanceledException
+    {
+        return new RefactoringStatus();
+    }
+
+    @Override
     public RefactoringStatus checkFinalConditions(
             IProgressMonitor pm,
             CheckConditionsContext context) 
                     throws CoreException, OperationCanceledException
     {
-        pm.beginTask("Checking final conditions...", 1);
-        // as long as nothing is here - it is a stub
-        pm.done();
-        return new RefactoringStatus();
+        return super.checkFinalConditions(pm, context);
     }
     
     @Override

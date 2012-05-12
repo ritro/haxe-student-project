@@ -1,11 +1,11 @@
 package workspace.views;
 
-import imp.utils.outline.OutlineLabelProvider;
+import imp.utils.outline.AbstractLabelProvider;
 
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-public class CallHierarchyLabelProvider extends OutlineLabelProvider
+public class CallHierarchyLabelProvider extends AbstractLabelProvider
 {
     @Override
     public Image getImage(final Object object)
@@ -31,7 +31,8 @@ public class CallHierarchyLabelProvider extends OutlineLabelProvider
         if (object instanceof CallHierarchyNodeElement)
         {
             CallHierarchyNodeElement element = (CallHierarchyNodeElement)object;
-            return  super.getText(element.getNode()) + 
+            String label = AbstractLabelProvider.getLabelForTreeNode(element.getNode());
+            return  label + 
                     " - " + 
                     element.getPackage();
         }

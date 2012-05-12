@@ -6,6 +6,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
+import tree.Modifiers;
 import tree.specific.Declaration;
 import tree.specific.Function;
 import tree.specific.type.ClassNode;
@@ -30,6 +31,11 @@ public class ImageProvider
     {
         if (node instanceof Function)
         {
+            Modifiers modifier = ((Function)node).getModifier();
+            if (modifier == Modifiers.PRIVATE)
+            {
+                return SharedImages.DESC_METHOD_PRIVATE.createImage();
+            }
             return SharedImages.DESC_METHOD_PUBLIC.createImage();
         }
         else if (node instanceof EnumNode)
@@ -42,7 +48,7 @@ public class ImageProvider
         }
         else if (node instanceof Declaration)
         {
-            return SharedImages.DESC_FIELD_PUBLIC.createImage();
+            return SharedImages.DESC_FIELD_PRIVATE.createImage();
         }
         return SharedImages.DESC_UNKNOWN.createImage();
     }

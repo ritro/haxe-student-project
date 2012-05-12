@@ -63,12 +63,17 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
     public abstract boolean isApplicable() throws CoreException;
 
     @Override
-    public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
+    public abstract RefactoringStatus checkInitialConditions(IProgressMonitor pm)
+            throws CoreException, OperationCanceledException;
+
+    @Override
+    public RefactoringStatus checkFinalConditions(
+            IProgressMonitor pm, CheckConditionsContext context) 
             throws CoreException, OperationCanceledException
     {
         try
         {
-            pm.beginTask("Checking initial conditions...", 1);
+            pm.beginTask("Checking final conditions...", 1);
             
             if ( newName == null || newName.isEmpty() || INVALID_NAMES.contains(newName))
             {
@@ -85,11 +90,6 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
             pm.done();
         }
     }
-
-    @Override
-    public abstract RefactoringStatus checkFinalConditions(IProgressMonitor pm,
-            CheckConditionsContext context) throws CoreException,
-            OperationCanceledException;
 
     @Override
     public abstract Change createChange(IProgressMonitor pm) throws CoreException,

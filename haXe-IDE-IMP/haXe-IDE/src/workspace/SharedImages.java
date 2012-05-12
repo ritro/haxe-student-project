@@ -28,6 +28,8 @@ public class SharedImages
     public static final String IMG_FIELD_PRIVATE    = "field_private_obj.png"; //$NON-NLS-1$
 
     public static final String IMG_METHOD_PUBLIC    = "methpub_obj.png"; //$NON-NLS-1$
+    public static final String IMG_METHOD_PRIVATE   = "methpri_obj.png"; //$NON-NLS-1$
+    public static final String IMG_METHOD_PROTECTED = "methpro_obj.png"; //$NON-NLS-1$
     
     // for filesystem elements
     public static final String IMG_UNKNOWN          = "unknown_item.gif"; //$NON-NLS-1$
@@ -39,9 +41,11 @@ public class SharedImages
     public static final ImageDescriptor DESC_ENUM           = createViewObjFromKey(BASE, IMG_ENUM);
     public static final ImageDescriptor DESC_INTERFACE      = createViewObjFromKey(BASE, IMG_INTERFACE);
     
-    public static final ImageDescriptor DESC_FIELD_PUBLIC   = createViewObjFromKey(BASE, IMG_FIELD_PUBLIC);
+    public static final ImageDescriptor DESC_FIELD_PRIVATE  = createViewObjFromKey(BASE, IMG_FIELD_PRIVATE);
 
     public static final ImageDescriptor DESC_METHOD_PUBLIC  = createViewObjFromKey(BASE, IMG_METHOD_PUBLIC);
+    public static final ImageDescriptor DESC_METHOD_PRIVATE = createViewObjFromKey(BASE, IMG_METHOD_PRIVATE);
+    public static final ImageDescriptor DESC_METHOD_PROTECTED = createViewObjFromKey(BASE, IMG_METHOD_PROTECTED);
     
     public static final ImageDescriptor DESC_UNKNOWN        = create(IMG_UNKNOWN);
     

@@ -64,11 +64,6 @@ public class Declaration extends NodeWithModifier {
 		return nameWithType;
 	}
 
-	public Declaration(final int ttype, final Token token)
-	{
-	    this(token);
-	}
-
 	public Declaration(final Token token) 
 	{
 	    super(token);
@@ -80,7 +75,8 @@ public class Declaration extends NodeWithModifier {
 	 * 
 	 * @return the var name
 	 */
-	public String getText() {
+	public String getText() 
+	{
 		return getToken().getText();
 	}
     

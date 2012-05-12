@@ -69,8 +69,11 @@ public class HxFilesEditor extends UniversalEditor
     @Override
     public void dispose()
     {
-        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-        window.getPartService().removePartListener(partListener);
+        if (partListener != null)
+        {
+            IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+            window.getPartService().removePartListener(partListener);
+        }
 
         currentNode = null;
         usagesList = null;

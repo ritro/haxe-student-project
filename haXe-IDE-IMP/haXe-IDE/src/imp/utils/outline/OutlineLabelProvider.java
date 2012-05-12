@@ -10,18 +10,11 @@
  *******************************************************************************/
 package imp.utils.outline;
 
-import imp.parser.antlr.HaxeLexer;
-
-import org.antlr.runtime.Token;
 import org.eclipse.imp.editor.ModelTreeNode;
 
 import tree.HaxeTree;
-import tree.specific.BlockScope;
 import tree.specific.Declaration;
-import tree.specific.Function;
 import tree.specific.Usage;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
 
 /**
  * This class allows to get images for such workspace elements as
@@ -33,7 +26,8 @@ import tree.specific.type.EnumNode;
  */
 public class OutlineLabelProvider extends AbstractLabelProvider
 {
-	public String getText(final Object element) {
+	public String getText(final Object element) 
+	{
 		HaxeTree n = (element instanceof ModelTreeNode) ? (HaxeTree) ((ModelTreeNode) element)
 				.getASTNode()
 				: (HaxeTree) element;
@@ -50,58 +44,17 @@ public class OutlineLabelProvider extends AbstractLabelProvider
 	 */
 	private static String getLabelForHaxeTreeNode(final HaxeTree n) 
 	{
-		// START_HERE
-	    if (n == null)
-	    {
-	        return "<??unknown??>";
-	    }
-	    Token token = n.token;
-	    if (token != null && token.getType() == HaxeLexer.MODULE) 
-	    {
-			return "Module";
-		} 
-	    else if (token != null && token.getType() == HaxeLexer.ENUM) 
-	    {
-			String enumReturn = "Enum ";
-			if (n.getChildCount() > 0 && !(n.getChild(0) instanceof Declaration))
-			{
-				enumReturn += n.getChild(0).getText();
-			}
-			return enumReturn;
-		} 
-	    else if (n instanceof BlockScope) 
-	    {
-			return "Block";
-		} 
-	    else if (n instanceof EnumNode) 
-	    {
-			return "Enum "+ n.getText();
-		} 
-	    else /*if (n instanceof AssignOperationNode) {
-			AssignOperationNode stmt = (AssignOperationNode) n;
-			return stmt.getText() + "=";//;+ stmt.getText() ??????????
-		} else*/ if (n instanceof ClassNode) {
-			return ((ClassNode) n).getClassName();
-		} 
-		else if (n instanceof Function) 
-		{
-			Function hdr = (Function) n;
-			return hdr.getFullNameWithParameters();
-		} 
-		else if (n instanceof Declaration) 
-		{
-			Declaration varDeclaration = (Declaration) n;
-			return varDeclaration.getNameWithType();
-		}
-		else if (n instanceof Usage)
+	    String label = AbstractLabelProvider.getLabelForTreeNode(n);
+		
+	    if (n instanceof Usage || n instanceof Declaration)
 		{
 		    // method calls and slices here too
 		    String type = n.getHaxeType() != null 
 		            ? n.getHaxeType().getShortTypeName()
                     : "null";
-		    return n.getText() + ": " + type;
+		    return label + ": " + type;
 		}
 		
-		return "<??unknown??>" + n.getText();
+		return label;
 	}
 }

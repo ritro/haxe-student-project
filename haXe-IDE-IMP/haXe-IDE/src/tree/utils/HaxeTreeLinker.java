@@ -469,9 +469,9 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             Environment declarations = (Environment)data;
             declaration = declarations.get(node.getText());
         }
-        else if (data instanceof ClassNode)
+        else if (data instanceof HaxeType)
         {
-            declaration = ((HaxeTree) data).getDeclarationNode(node.getChild(0));
+            declaration = ((HaxeType) data).getDeclaration(node.getChild(0).getText());
         }
         
         if ( declaration == null || !(declaration instanceof Function))
@@ -527,7 +527,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         if (declaration == null)
         {
             // imports
-            declaration = imports.get(node.getText());
+            declaration = getType(name, data);
         }
         
         node.setDeclarationNode(declaration);

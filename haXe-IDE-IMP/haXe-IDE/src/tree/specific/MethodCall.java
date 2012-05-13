@@ -19,13 +19,17 @@ public class MethodCall extends ParametersContainer
         mostLeftPosition = getChild(0).getMostLeftPosition();
     }
     
-    @Override
     public HaxeTree getDeclarationNode()
     {
-        return super.getDeclarationNode(getChild(0));
+        HaxeTree usage = getChild(0);
+        if (usage instanceof Usage)
+        {
+            return ((Usage)usage).getDeclarationNode();
+        }
+        return new HaxeTree(0);
     }
     
-    @Override    
+    @Override  
     public void setDeclarationNode(HaxeTree declaration)
     {
         ((Usage)getChild(0)).setDeclarationNode(declaration); 

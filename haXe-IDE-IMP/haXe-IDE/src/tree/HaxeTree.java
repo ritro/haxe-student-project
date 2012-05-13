@@ -306,22 +306,6 @@ public class HaxeTree extends CommonTreeReplacer
 		}
 		return this;
 	}
-
-	/**
-	 * Gets the declaration node. 
-	 * @param usageNode
-	 *            the usage node
-	 * @return the declaration node
-	 */
-	public HaxeTree getDeclarationNode(final HaxeTree usageNode) 
-	{
-		if (usageNode instanceof Usage)
-		{
-		    return ((Usage)usageNode).getDeclarationNode();
-		}		
-
-		return new HaxeTree(0);
-	}
 	
 	public boolean isUndefinedType()
 	{

@@ -34,8 +34,6 @@ public class Declaration extends NodeWithModifier {
         NEVER
     }
     
-    private static final int VAR_INIT_TYPE = HaxeParser.VAR_INIT;
-    private static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
     private static final int PROPERTY_DECL = HaxeParser.PROPERTY_DECL;
 	/** The name with type. */
 	private String nameWithType = "";
@@ -68,8 +66,9 @@ public class Declaration extends NodeWithModifier {
 	{
 	    super(token);
     }
+	
 
-	/**
+    /**
 	 * Returns node correspond for var name (in var tmp:Int = foo+bar; it will
 	 * return "tmp").
 	 * 
@@ -112,7 +111,7 @@ public class Declaration extends NodeWithModifier {
         {
             mostRightPosition = init.getMostRightPosition();
         }
-	    tryExtractType();
+	    updateInfoFromTags();
 	    updateModifier();
 	}
 
@@ -120,8 +119,7 @@ public class Declaration extends NodeWithModifier {
 	{
 		for (HaxeTree tree : getChildren()) 
 		{
-			Token token = (CommonToken) tree.getToken();
-			if (token.getType() == VAR_INIT_TYPE) 
+			if (tree.getToken().getType() == HaxeParser.EQ) 
 			{
 				return tree.getChild(0);
 			}
@@ -129,16 +127,15 @@ public class Declaration extends NodeWithModifier {
 		return null;
 	}
 	
-	private void tryExtractType()
+	private void updateInfoFromTags()
 	{
         declaredWithoutType = true;
 	    for (HaxeTree tree : getChildren()) 
 	    {
 	        int type = tree.getToken().getType();
-            if (type == TYPE_TAG_TYPE
-                    && tree.getChildCount() != 0) 
+            if (tree instanceof TypeTag) 
             {
-                mostRightPosition = tree.getChild(0).getMostRightPosition();
+                mostRightPosition = tree.getMostRightPosition();
                 declaredWithoutType = false;
             } else if (type == PROPERTY_DECL
                     && tree.getChildCount() != 0)
@@ -181,7 +178,7 @@ public class Declaration extends NodeWithModifier {
 	@Override
 	protected void calculateMostRightPosition()
 	{
-	    tryExtractType();
+	    updateInfoFromTags();
 	    if (mostRightPosition == -1)
 	    {
 	        mostRightPosition = ((CommonToken)token).getStopIndex();

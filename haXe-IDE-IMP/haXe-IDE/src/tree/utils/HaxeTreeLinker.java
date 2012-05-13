@@ -20,6 +20,7 @@ import tree.specific.MethodCall;
 import tree.specific.NewNode;
 import tree.specific.Return;
 import tree.specific.SliceNode;
+import tree.specific.TypeTag;
 import tree.specific.UnarExpression;
 import tree.specific.Declaration;
 import tree.specific.Usage;
@@ -235,7 +236,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // due to Antlr grammar the places there Return wasn't
         // expected already marked as Error nodes - so there
         // is no variant that function will be null
-        Function function = declarations.getLastFunction();
+        Function function = HaxeTreeUtils.getParentFunction(node);
         node.setFunction(function);
         
         HaxeTree expression = node.getExpression();
@@ -467,7 +468,8 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         if (data instanceof Environment)
         {
             Environment declarations = (Environment)data;
-            declaration = declarations.get(node.getText());
+            HaxeType currClass = (HaxeType)declarations.get("this");
+            declaration = currClass.getDeclaration(node.getText());
         }
         else if (data instanceof HaxeType)
         {
@@ -578,8 +580,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
             {
                 continue;
             }
-            if (tree.getToken().getType() == HaxeParser.TYPE_TAG
-                    && tree.getChildCount() != 0) 
+            if (tree instanceof TypeTag && tree.getChildCount() != 0) 
             {
                 String typeName = tree.getChild(0).getText();
                 HaxeType type = getType(typeName, declarations);
@@ -597,7 +598,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         HaxeType type = node.getHaxeType();
         if (type == null)
         {
-            node.setHaxeType(initialization.getHaxeType());
+            node.setHaxeType(initialization.getHaxeType(true));
         }
     }
 
@@ -664,7 +665,6 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
                         continue;
                     }
                     HaxeType type = getType(impl.getText(), data);
-                    node.setParentToExtend(type);
                     node.addToTypeHierarchy(type);
                 }
             }

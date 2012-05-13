@@ -70,9 +70,7 @@ public class ClassNode extends HaxeType
 	@Override
     public HaxeTree getDeclaration(final String name)
     {
-        // 1 - class member, inherit fields
-        // 2 - curr class static fields
-        // 3 - enums declared
+        // 1.1 - class member
         for (HaxeTree child : getBlockScope().getChildren())
         {
             if (child.getText().equals(name))
@@ -81,7 +79,17 @@ public class ClassNode extends HaxeType
             }
         }
         
-        return null;
+        // 1.2 - inherit fields
+        HaxeType type = getParentToExtend();
+        HaxeTree result = null;
+        if (type != null)
+        {
+            result = type.getDeclaration(name);
+        }
+        // 2 - curr class static fields
+        // 3 - enums declared
+        
+        return result;
     }
     
 	@Override

@@ -28,7 +28,6 @@ import tree.Modifiers;
 public class Function extends NodeWithScopeAndModifier
 {
     private static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST;
-    private static final int TYPE_TAG_TYPE = HaxeParser.TYPE_TAG;
 
 	/** The full name with parameters. */
 	private String fullNameWithParameters = "";

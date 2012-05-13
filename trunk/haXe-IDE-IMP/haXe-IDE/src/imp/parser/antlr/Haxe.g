@@ -19,7 +19,6 @@ tokens {
     TYPE_CONSTRAIN;
     IMPLEMENT_LIST;
     DECL_ATTR_LIST;
-    VAR_INIT;
     IDENT;
     ASSIGN_OPERATOR;
     PACKAGE;
@@ -78,6 +77,7 @@ import tree.specific.TryNode;
 import tree.specific.Return;
 import tree.specific.Declaration;
 import tree.specific.Usage;
+import tree.specific.TypeTag;
 import tree.specific.Constant;
 import tree.specific.ArrayNode;
 import tree.specific.While;
@@ -187,7 +187,7 @@ ppError           : PP_ERROR
     
 /* --------------- Types --------------------------------------*/
 
-typeTag         : COLON funcType -> ^(TYPE_TAG<HaxeTree>["TYPE_TAG"] funcType)
+typeTag         : COLON funcType -> ^(TYPE_TAG<TypeTag> funcType)
                 ;
 
 typeList        : funcType (COMMA! typeList)?
@@ -197,7 +197,7 @@ typeList        : funcType (COMMA! typeList)?
 funcType        : type (MINUS_BIGGER! type)*
                 ;
     
-anonType        : LBRACE anonTypePart? RBRACE -> ^(TYPE_TAG<HaxeTree>["AnonType"] anonTypePart?)
+anonType        : LBRACE anonTypePart? RBRACE -> ^(TYPE_TAG<TypeTag>["AnonType", LBRACE, RBRACE] anonTypePart?)
                 ;
 
 anonTypePart    : anonTypeFieldList
@@ -393,7 +393,7 @@ classMember     : varDeclClass
             //  | pp classBody
                 ;
 //several decl by one var???
-varDeclClass    : declAttrList? VAR IDENTIFIER propDecl? typeTag varInit? SEMI -> ^(IDENTIFIER<Declaration> declAttrList? propDecl? typeTag varInit?)
+varDeclClass    : declAttrList? VAR IDENTIFIER<Declaration>^ propDecl? typeTag varInit? SEMI!
                 ;
                 
 varDecl         : VAR! varDeclPartList (COMMA! varDeclPartList)* SEMI!
@@ -412,7 +412,7 @@ propAccessor    : IDENTIFIER
                 | NEVER
                 ;
 
-varInit         : EQ expr -> ^(VAR_INIT<HaxeTree>["VAR_INIT"] expr)
+varInit         : EQ<HaxeTree>^ expr
                 ;
 
 funcDecl        : declAttrList? FUNCTION NEW funcDeclPart 

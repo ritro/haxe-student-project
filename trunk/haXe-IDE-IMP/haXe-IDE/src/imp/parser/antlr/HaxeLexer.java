@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Haxe.g 2012-05-13 02:01:40
+// $ANTLR 3.4 Haxe.g 2012-05-13 23:49:12
 
 package imp.parser.antlr;
 
@@ -169,10 +169,9 @@ public class HaxeLexer extends Lexer {
     public static final int UNTYPED=156;
     public static final int USING=157;
     public static final int VAR=158;
-    public static final int VAR_INIT=159;
-    public static final int VOLATILE=160;
-    public static final int WHILE=161;
-    public static final int WS=162;
+    public static final int VOLATILE=159;
+    public static final int WHILE=160;
+    public static final int WS=161;
 
         List tokens = new ArrayList();
         // buffer fot emitting

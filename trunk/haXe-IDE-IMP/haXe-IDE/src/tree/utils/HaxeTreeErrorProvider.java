@@ -107,7 +107,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
         HaxeType type = node.getHaxeType();
-        HaxeType initType = initialization.getHaxeType();
+        HaxeType initType = initialization.getHaxeType(true);
         if (!HaxeTypeUtils.isAvailableAssignement(type, initType))
         {
             ErrorPublisher.commitCastError(node, initType);

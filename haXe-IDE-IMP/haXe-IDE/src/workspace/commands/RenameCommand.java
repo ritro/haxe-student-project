@@ -1,13 +1,15 @@
-package workspace.contextMenu;
+package workspace.commands;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ltk.core.refactoring.Change;
+import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 
 import tree.HaxeTree;
 import tree.specific.Declaration;
@@ -17,8 +19,8 @@ import workspace.elements.HaxeProject;
 import workspace.refactoring.HaxeRenameProcessor;
 import workspace.refactoring.HaxeVariableRenameProcessor;
 
-public class RenameAction extends HxEditorMenuAction
-{    
+public class RenameCommand extends AbstractCommand
+{
     private String showNewNameDialog()
     {
         JFrame frame = new JFrame();
@@ -31,18 +33,12 @@ public class RenameAction extends HxEditorMenuAction
                             null,
                             possibilities,
                             "newName");
-
+    
         
     }
-    
-    private HaxeRenameProcessor getAppropriateProcessor(final HaxeTree node)
+
+    public static HaxeRenameProcessor getAppropriateProcessor(final HaxeTree node, String newName)
     {
-        String newName = showNewNameDialog();
-        //If a string was returned, say so.
-        if (newName == null || newName.length() == 0) 
-        {
-            return null;
-        }
         HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
         
         if (node instanceof Declaration)
@@ -56,7 +52,7 @@ public class RenameAction extends HxEditorMenuAction
     }
 
     @Override
-    public void run(IAction action)
+    public Object execute(ExecutionEvent event) throws ExecutionException
     {
         try
         {
@@ -67,11 +63,21 @@ public class RenameAction extends HxEditorMenuAction
             }
             if (node == null)
             {
-                return;
+                return null;
             }
-            HaxeRenameProcessor processor = getAppropriateProcessor(node);
+            String newName = showNewNameDialog();
+            //If a string was returned, say so.
+            if (newName == null || newName.length() == 0) 
+            {
+                return null;
+            }
+            HaxeRenameProcessor processor = getAppropriateProcessor(node, newName);
             Change change = processor.createChange(null);
-            change.perform(new NullProgressMonitor());
+            IProgressMonitor monitor = new NullProgressMonitor();
+            if (processor.checkFinalConditions(monitor, null).isOK())
+            {
+                change.perform(monitor);                
+            }
         }
         catch (ClassCastException  e)
         {
@@ -83,11 +89,7 @@ public class RenameAction extends HxEditorMenuAction
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
     }
 
-    @Override
-    public void selectionChanged(IAction action, ISelection selection)
-    {
-        // Auto-generated method stub        
-    }
 }

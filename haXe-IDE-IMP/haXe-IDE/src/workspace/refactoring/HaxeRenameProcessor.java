@@ -1,9 +1,11 @@
 package workspace.refactoring;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -101,4 +103,17 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
     
     protected abstract String getOldName();
     protected abstract RefactoringStatus checkNameAvailability();
+    
+    protected boolean showConfirmDialog(String title, String message)
+    {
+        JFrame frame = new JFrame();
+        int result = JOptionPane.showConfirmDialog(
+                            frame,
+                            message,
+                            title,
+                            JOptionPane.OK_CANCEL_OPTION);
+        return result == JOptionPane.OK_OPTION;
+
+        
+    }
 }

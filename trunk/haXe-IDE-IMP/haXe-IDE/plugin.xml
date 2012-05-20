@@ -167,22 +167,6 @@
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
-      <viewerContribution
-            targetID="haXe-IDE.textEditor.EditorContext"
-            id="haXe_IDE.popupMenu.textEditor">
-         <action
-               label="Open Call Hierarchy (haXe)"
-               class="workspace.contextMenu.CallHierarchyAction"
-               menubarPath="additions"
-               id="haXe_IDE.actions.callHierarchy">
-         </action>
-         <action
-               label="Rename"
-               class="workspace.contextMenu.RenameAction"
-               menubarPath="refactoring"
-               id="haXe_IDE.actions.renameRefactoring">
-         </action>
-      </viewerContribution>
       <objectContribution
             objectClass="org.eclipse.core.resources.IProject"
             adaptable="true"
@@ -195,6 +179,16 @@
                id="haxe.imp.actions.enableNatureAction">
          </action>
       </objectContribution>
+      <viewerContribution
+            id="haXe_IDE.popupMenu.general"
+            targetID="haXe-IDE.textEditor.EditorContext">
+         <action
+               class="workspace.contextMenu.CallHierarchyAction"
+               id="haXe_IDE.popupMenu.actions.callHierarchy"
+               label="Open Call Hierarchy (haXe)"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
@@ -224,17 +218,56 @@
          point="org.eclipse.ui.preferencePages">
       <page
             name="Haxe"
-            class="imp.preferences.HaxePreferencePage"
-            id="haxe.imp.preferences.Haxe">
-      </page>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="Haxe"
             class="haxe.imp.preferences.HaxePreferencePage"
             id="imp.preferences.Haxe">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="workspace.contextMenu.MenuVisibilityTester"
+            id="haXe-IDE.menuVisibilityTester"
+            namespace="haXe-IDE.tree.properties"
+            properties="canRefactor"
+            type="org.eclipse.ui.IEditorPart">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:haXe-IDE.textEditor.EditorContext?before=additions">
+         <menu
+               label="Refactor">
+            <command
+                  commandId="haXe-IDE.commands.refactor.rename"
+                  label="Rename"
+                  style="push">
+            </command>
+            <visibleWhen
+                  checkEnabled="true">
+               <with
+                     variable="activeEditor">
+                  <test
+                        property="haXe-IDE.tree.properties.canRefactor">
+                  </test>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="workspace.commands.RenameCommand"
+            id="haXe-IDE.commands.refactor.rename"
+            name="Rename">
+      </command>
+      <command
+            defaultHandler="workspace.commands.CallHierarchyCommand"
+            id="haXe-IDE.commands.callHierarchy"
+            name="Show Call Hierarchy (haXe)">
+      </command>
    </extension>
 
 </plugin>

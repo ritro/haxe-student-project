@@ -19,6 +19,8 @@ import org.eclipse.text.edits.ReplaceEdit;
 import tree.HaxeTree;
 import tree.specific.Declaration;
 import tree.specific.Usage;
+import tree.specific.type.HaxeType;
+import tree.utils.HaxeTreeUtils;
 import tree.utils.ReferencesListBuilder;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
@@ -86,12 +88,16 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         {   //RefactoringCoreMessages.RenameTypeProcessor_creating_changes
             if (monitor != null)
             {
-                monitor.beginTask("Creating changes...", 1);
+                monitor.beginTask("Searching targets...", 1);
             }
             
             compositeChange = new CompositeChange(CHANGE_NAME);
         
             searchTargets();
+            if (monitor != null)
+            {
+                monitor.beginTask("Creating changes...", 70);
+            }
             createChangesForTargets();
             
             return compositeChange;
@@ -127,6 +133,19 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
      */
     protected RefactoringStatus checkNameAvailability()
     {
+        HaxeType type = HaxeTreeUtils.getParentType(targetNode);
+        HaxeTree decl = type.getDeclaration(newName);
+        if (decl != null)
+        {
+            boolean answer = showConfirmDialog(
+                    "Name collision", 
+                    "Some other variable have the same name, are you still want to rename?");
+            if (!answer)
+            {
+                RefactoringStatus status = new RefactoringStatus();
+                return status.createErrorStatus("Name collision.");
+            }
+        }
         // TODO do checkNameAvailability
         return new RefactoringStatus();
     }

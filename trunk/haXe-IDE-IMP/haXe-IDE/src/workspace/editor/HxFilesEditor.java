@@ -40,6 +40,8 @@ public class HxFilesEditor extends UniversalEditor
 		super();
 		usagesBuilder = new ReferencesListBuilder();
 		handleCursorPositionChanged();
+		
+		setPartProperty("readOnly", "false");
 	}
 	
 	public HashMapForLists<NodeLink> getUsagesList()
@@ -148,6 +150,16 @@ public class HxFilesEditor extends UniversalEditor
         return super.getDocumentProvider();
     }*/
     
+    private void updateCurrentFile(final HaxeFile file)
+    {
+        currentFile = file;
+        if (currentFile != null)
+        {
+            boolean readOnly = currentFile.getRealFile().isReadOnly();
+            setPartProperty("readOnly", Boolean.toString(readOnly));
+        }
+    }
+    
     private void analyzeCurrentNodeUsages()
     {
         usagesList = null;
@@ -218,7 +230,7 @@ public class HxFilesEditor extends UniversalEditor
         {
         	return;
         }
-        currentFile = Activator.getInstance().getCurrentFile();
+        updateCurrentFile(Activator.getInstance().getCurrentFile());
         if (currentFile == null)
         {
             return;

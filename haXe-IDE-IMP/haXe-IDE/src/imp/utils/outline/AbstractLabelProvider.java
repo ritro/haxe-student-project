@@ -25,7 +25,7 @@ import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import workspace.Activator;
 import workspace.ImageProvider;
-import workspace.elements.IHaxeResources;
+import workspace.SharedImages;
 
 public abstract class AbstractLabelProvider implements ILabelProvider 
 {
@@ -66,17 +66,16 @@ public abstract class AbstractLabelProvider implements ILabelProvider
         if (element instanceof IFile) 
         {
             IFile file = (IFile) element;
-            int sev = MarkerUtils.getMaxProblemMarkerSeverity(file,
-                    IResource.DEPTH_ONE);
+            int sev = MarkerUtils.getMaxProblemMarkerSeverity(file, IResource.DEPTH_ONE);
 
             switch (sev) 
-            {
-            case IMarker.SEVERITY_ERROR:
-                return sImageRegistry.get(IHaxeResources.HAXE_FILE_ERROR);
-            case IMarker.SEVERITY_WARNING:
-                return sImageRegistry.get(IHaxeResources.HAXE_FILE_WARNING);
-            default:
-                return sImageRegistry.get(IHaxeResources.HAXE_FILE);
+            {/*
+                case IMarker.SEVERITY_ERROR:
+                    return sImageRegistry.get(IHaxeResources.HAXE_FILE_ERROR);
+                case IMarker.SEVERITY_WARNING:
+                    return sImageRegistry.get(IHaxeResources.HAXE_FILE_WARNING);*/
+                default:
+                    return SharedImages.DESC_FILE.createImage();
             }
         }
         HaxeTree n = (element instanceof ModelTreeNode) 

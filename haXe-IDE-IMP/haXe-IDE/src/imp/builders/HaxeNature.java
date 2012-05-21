@@ -21,6 +21,10 @@ public class HaxeNature extends ProjectNatureBase {
 		return HaxeBuilder.BUILDER_ID;
 	}
 
+	/** 
+	 * Adding a project to nature should turn on the builder for
+	 * that project.
+	 */
 	public void addToProject(IProject project) {
 		super.addToProject(project);
 		new SmapiProjectNature("haxe").addToProject(project);

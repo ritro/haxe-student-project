@@ -74,15 +74,28 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	public int getEndOffset(final Object entity) {
 	    try
 	    {
-    		if (entity instanceof CommonToken) {
-    			return ((CommonToken) entity).getStartIndex()
-    					+ ((CommonToken) entity).getText().length() - 1;
-    		} else if (entity instanceof HaxeTree) {
-    			CommonToken commonToken = (CommonToken) ((HaxeTree) entity)
-    					.getToken();
-    			return commonToken.getStartIndex() + commonToken.getText().length()
-    					- 1;
-    		} else {
+    		if (entity instanceof CommonToken) 
+    		{
+    		    CommonToken token = (CommonToken) entity;
+    		    String text = token.getText();
+    		    if (text == null)
+    		    {
+    		        return token.getStartIndex();
+    		    }
+    			return token.getStartIndex() + token.getText().length() - 1;
+    		} 
+    		else if (entity instanceof HaxeTree) 
+    		{
+                CommonToken token = ((HaxeTree) entity).getToken();
+                String text = token.getText();
+                if (text == null)
+                {
+                    return token.getStartIndex();
+                }
+                return token.getStartIndex() + token.getText().length() - 1;
+    		} 
+    		else 
+    		{
     			throw new RuntimeException();
     		}
 	    }

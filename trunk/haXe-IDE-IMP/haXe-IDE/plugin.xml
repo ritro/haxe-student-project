@@ -139,7 +139,7 @@
       </category>
       <wizard
             name="haXe Project"
-            icon="icons/haxe_file.gif"
+            icon="icons/Workspace/base/haxe_file.gif"
             category="haxeplugin.category.wizards"
             class="workspace.wizards.HaxeProjectWizard"
             hasPages="true"
@@ -149,7 +149,7 @@
    <extension
          point="org.eclipse.ui.ide.projectNatureImages">
       <image
-            icon="icons/PackageExplorer/haxeNature.gif"
+            icon="icons/Workspace/overlay/nature.gif"
             natureId="haXe_IDE.imp.nature"
             id="haXe_IDE.natureImage">
       </image>
@@ -166,36 +166,11 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            objectClass="org.eclipse.core.resources.IProject"
-            adaptable="true"
-            nameFilter="*"
-            id="haxe.imp.projectContextMenu">
-         <action
-               label="Enable haxe Builder"
-               tooltip="Enable the haxe builder for this project"
-               class="workspace.EnableHaxeNature"
-               id="haxe.imp.actions.enableNatureAction">
-         </action>
-      </objectContribution>
-      <viewerContribution
-            id="haXe_IDE.popupMenu.general"
-            targetID="haXe-IDE.textEditor.EditorContext">
-         <action
-               class="workspace.contextMenu.CallHierarchyAction"
-               id="haXe_IDE.popupMenu.actions.callHierarchy"
-               label="Open Call Hierarchy (haXe)"
-               menubarPath="additions">
-         </action>
-      </viewerContribution>
-   </extension>
-   <extension
          point="org.eclipse.ui.editors">
       <editor
             name="haXe editor"
             default="true"
-            icon="icons/haxe_file.gif"
+            icon="icons/Workspace/base/haxe_file.gif"
             extensions="hx"
             class="workspace.editor.HxFilesEditor"
             id="haXe-IDE.textEditor">
@@ -254,6 +229,11 @@
                </with>
             </visibleWhen>
          </menu>
+         <command
+               commandId="haXe-IDE.commands.callHierarchy"
+               label="Open Call Hierarchy (haXe)"
+               style="push">
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -266,7 +246,7 @@
       <command
             defaultHandler="workspace.commands.CallHierarchyCommand"
             id="haXe-IDE.commands.callHierarchy"
-            name="Show Call Hierarchy (haXe)">
+            name="openCallHierarchy">
       </command>
    </extension>
 

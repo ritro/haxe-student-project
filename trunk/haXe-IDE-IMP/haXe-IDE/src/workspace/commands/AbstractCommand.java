@@ -33,5 +33,4 @@ public abstract class AbstractCommand extends AbstractHandler
         }
         return editor.getUsagesList();
     }
-
 }

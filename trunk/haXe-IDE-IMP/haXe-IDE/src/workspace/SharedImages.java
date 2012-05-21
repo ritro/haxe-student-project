@@ -9,8 +9,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.osgi.framework.Bundle;
 
-import workspace.elements.IHaxeResources;
-
 public class SharedImages
 {
     public static final IPath ICONS_PATH = new Path("icons");
@@ -18,6 +16,14 @@ public class SharedImages
     // folders
     public static final String BASE                 = "base";
     public static final String VIEW_OBJ             = "ViewObjects";
+    public static final String WORKSPACE_OBJ        = "Workspace";
+    
+    // files
+    public static final String IMG_HAXE_FILE        = "haxe_file.gif";
+    public static final String IMG_BUILD_FILE       = "build_file.gif";
+    
+    // workspace obj overlays
+    //public static final String IMG_WARNING          = "warning.gif";
     
     // for different node types
     public static final String IMG_CLASS            = "class_obj.png"; //$NON-NLS-1$
@@ -34,9 +40,11 @@ public class SharedImages
     // for filesystem elements
     public static final String IMG_UNKNOWN          = "unknown_item.gif"; //$NON-NLS-1$
 
-    /*
-     * Set of predefined Image Descriptors.
-     */
+    // Set of predefined Image Descriptors.
+    // workspace
+    public static final ImageDescriptor DESC_FILE           = createWorkspaceObjFromKey(BASE, IMG_HAXE_FILE);
+    public static final ImageDescriptor DESC_BUILD_FILE     = createWorkspaceObjFromKey(BASE, IMG_BUILD_FILE);
+    // view
     public static final ImageDescriptor DESC_CLASS          = createViewObjFromKey(BASE, IMG_CLASS);
     public static final ImageDescriptor DESC_ENUM           = createViewObjFromKey(BASE, IMG_ENUM);
     public static final ImageDescriptor DESC_INTERFACE      = createViewObjFromKey(BASE, IMG_INTERFACE);
@@ -51,9 +59,11 @@ public class SharedImages
     
     public static void initialize(Bundle bundle, ImageRegistry reg)
     {
+        // the example of how we should initialize images in registry
+        /*
         IPath path = ICONS_PATH.append("haxe_default_outline_item.gif");
         ImageDescriptor imageDescriptor = createImageDescriptor(bundle, path);
-        reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);
+        reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);*/
     }
 
     public static ImageDescriptor createImageDescriptor(
@@ -77,6 +87,12 @@ public class SharedImages
         }
         path = path.append(name);
         return createImageDescriptor(Activator.getInstance().getBundle(), path);
+    }
+
+    private static ImageDescriptor createWorkspaceObjFromKey(String prefix, String name) 
+    {
+        String[] prefixes = {WORKSPACE_OBJ, prefix};
+        return create(name, prefixes);
     }
 
     private static ImageDescriptor createViewObjFromKey(String prefix, String name) 

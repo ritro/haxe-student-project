@@ -20,7 +20,10 @@ import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
 import tree.utils.ReferencesListBuilder;
+import workspace.Activator;
 import workspace.HashMapForLists;
+import workspace.elements.HaxeFile;
+import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
 
 public abstract class HaxeRenameProcessor extends RenameProcessor
@@ -65,8 +68,27 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
     public abstract boolean isApplicable() throws CoreException;
 
     @Override
-    public abstract RefactoringStatus checkInitialConditions(IProgressMonitor pm)
-            throws CoreException, OperationCanceledException;
+    public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
+            throws CoreException, OperationCanceledException
+    {
+        String pack = getTargetPackage();
+        // check if file is from haxe lib
+        HaxeLibProject project = Activator.getInstance().getHaxeLib();
+        HaxeFile file = project.getFile(pack);
+        if (file != null)
+        {
+            return RefactoringStatus.createErrorStatus("Can't edit library file");
+        }        
+        // available for editing
+        HaxeProject proj = Activator.getInstance().getCurrentHaxeProject();
+        file = proj.getFile(pack);
+        if (file.getRealFile().getResourceAttributes().isReadOnly())
+        {
+            return RefactoringStatus.createErrorStatus("File isn't editable");
+        }
+        
+        return new RefactoringStatus();
+    }
 
     @Override
     public RefactoringStatus checkFinalConditions(
@@ -101,6 +123,7 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
     public abstract RefactoringParticipant[] loadParticipants(RefactoringStatus status,
             SharableParticipants sharedParticipants) throws CoreException;
     
+    protected abstract String getTargetPackage();
     protected abstract String getOldName();
     protected abstract RefactoringStatus checkNameAvailability();
     

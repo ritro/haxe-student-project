@@ -200,7 +200,7 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="workspace.contextMenu.MenuVisibilityTester"
+            class="workspace.contextMenu.VisibilityTester"
             id="haXe-IDE.menuVisibilityTester"
             namespace="haXe-IDE.tree.properties"
             properties="canRefactor"

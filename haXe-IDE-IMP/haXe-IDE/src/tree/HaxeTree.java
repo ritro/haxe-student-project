@@ -20,7 +20,6 @@ import org.eclipse.imp.parser.IMessageHandler;
 
 import tree.specific.MethodCall;
 import tree.specific.SliceNode;
-import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 
 public class HaxeTree extends CommonTreeReplacer 
@@ -95,12 +94,23 @@ public class HaxeTree extends CommonTreeReplacer
     
     public String getPackage()
     {
-        if (getChildCount()>0 && getChild(0).getText().equals("package"))
+        // if this is MODULE
+        if (getToken() != null && getToken().getType() == HaxeParser.MODULE &&
+                getChildCount()>0 && getChild(0).getText().equals("package"))
         {
             return getChild(0).getChild(0).getText();
         }
-        
-        return "";
+        else if (getToken() != null && getToken().getType() == HaxeParser.MODULE)
+        {
+            return "";
+        }
+        // else first get MODULE
+        HaxeTree parent = this;
+        while (getParent() != null)
+        {
+            parent = getParent();
+        }
+        return parent.getPackage();
     }
 
     /**
@@ -286,25 +296,6 @@ public class HaxeTree extends CommonTreeReplacer
 	            getMostLeftPosition(), 
 	            getMostRightPosition(),
 	            0, 0, 1, 1);
-	}
-
-	/**
-	 * Get most-inner node of AST tree by it's offset. 
-	 * @param offset
-	 *            the offset
-	 * @return the node by position
-	 */
-	public HaxeTree getNodeByPosition(final int offset) 
-	{
-	    //FIXME for suffix nodes maybe not that good to
-	    //take the most inner node?
-		for (HaxeTree child : this.getChildren()) {
-			if (child.getMostLeftPosition() <= offset
-					&& offset <= child.getMostRightPosition()) {
-				return child.getNodeByPosition(offset);
-			}
-		}
-		return this;
 	}
 	
 	public boolean isUndefinedType()

@@ -35,7 +35,7 @@ public class HaxeTreeAdaptor extends CommonTreeAdaptor {
 		if (t == null) {
 			return null;
 		}
-		return this.create(((HaxeTree) t).token);
+		return create(((HaxeTree) t).token);
 	}
 
 	@Override

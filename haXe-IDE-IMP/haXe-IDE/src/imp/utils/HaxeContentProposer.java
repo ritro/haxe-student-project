@@ -31,6 +31,7 @@ import tree.specific.Function;
 import tree.specific.Declaration;
 import tree.specific.type.ClassNode;
 import tree.utils.Environment;
+import tree.utils.HaxeTreeUtils;
 
 /**
  * The Class HaxeContentProposer.
@@ -48,9 +49,8 @@ public class HaxeContentProposer implements IContentProposer {
 
 		HaxeParseController haxeController = (HaxeParseController) controller;
 		try {
-			sourceNode = 
-			        ((HaxeTree) controller.getCurrentAst())
-					.getNodeByPosition(offset);
+			sourceNode = HaxeTreeUtils.getNodeByOffset(
+			        offset, 0, (HaxeTree) controller.getCurrentAst());
 			sourceString = "";
 			System.out.println(sourceNode);
 		} catch (NullPointerException nullPointerException) {
@@ -63,8 +63,8 @@ public class HaxeContentProposer implements IContentProposer {
 			int shiftedOffset = offset - 1;
 			while (sourceNode == null && shiftedOffset > 0) {
 				try {
-					sourceNode = ((HaxeTree) controller
-							.getCurrentAst()).getNodeByPosition(shiftedOffset);
+					sourceNode = HaxeTreeUtils.getNodeByOffset(
+					        shiftedOffset, 0, (HaxeTree) controller.getCurrentAst());
 				} catch (NullPointerException e) {
 					shiftedOffset--;
 				}

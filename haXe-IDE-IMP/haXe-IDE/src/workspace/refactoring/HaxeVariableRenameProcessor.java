@@ -18,6 +18,9 @@ import org.eclipse.text.edits.ReplaceEdit;
 
 import tree.HaxeTree;
 import tree.specific.Declaration;
+import tree.specific.Declaration.DeclarationType;
+import tree.specific.ErrorNode;
+import tree.specific.Function;
 import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 import tree.utils.HaxeTreeUtils;
@@ -68,6 +71,33 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
     public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
             throws CoreException, OperationCanceledException
     {
+        RefactoringStatus status = super.checkInitialConditions(pm);
+        
+        if (!status.isOK())
+        {
+            return status;
+        }
+        
+        DeclarationType type = targetNode.getDeclaratonType();
+        HaxeTree searchScope = null;
+        switch (type)
+        {
+            case FunctionParameter:
+                searchScope = HaxeTreeUtils.getParentFunction(targetNode);
+                break;
+            case VarDeclaration:
+                searchScope = HaxeTreeUtils.getParentFunction(targetNode);
+                searchScope = ((Function)searchScope).getBlockScope();
+                break;
+            default:
+                searchScope = HaxeTreeUtils.getParentType(targetNode);
+                break;
+        }
+        if (haveErrorNodes(searchScope))
+        {
+            return RefactoringStatus.createErrorStatus(
+                    "There are parsing errors. Rename couldn't be processed.");
+        }
         return new RefactoringStatus();
     }
 
@@ -148,6 +178,35 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         }
         // TODO do checkNameAvailability
         return new RefactoringStatus();
+    }
+    
+    protected String getTargetPackage()
+    {
+        // TODO: this is only part of the package
+        // we should add a ClassName at the end
+        return targetNode.getPackage() + ".";
+    }
+    
+    private boolean haveErrorNodes(final HaxeTree ast)
+    {
+        if (ast instanceof ErrorNode)
+        {
+            return true;
+        }
+        for (HaxeTree child: ast.getChildren())
+        {
+            if (child instanceof ErrorNode)
+            {
+                return true;
+            }
+            boolean result = haveErrorNodes(child);
+            if (result)
+            {
+                return result;
+            }
+        }
+        
+        return false;
     }
     
     /**

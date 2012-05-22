@@ -13,8 +13,8 @@ import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 
 import tree.HaxeTree;
 import tree.specific.Declaration;
+import tree.utils.HaxeTreeUtils;
 import workspace.Activator;
-import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
 import workspace.refactoring.HaxeRenameProcessor;
 import workspace.refactoring.HaxeVariableRenameProcessor;
@@ -57,9 +57,9 @@ public class RenameCommand extends AbstractCommand
         try
         {
             HaxeTree node = getCurrentNode();
-            if (!WorkspaceUtils.isNodeValidForUsageAnalysis(node))
+            if (!HaxeTreeUtils.isNodeValidForUsageAnalysis(node))
             {
-                node = WorkspaceUtils.getValidNodeForUsageAnalysis(node);
+                node = HaxeTreeUtils.getValidNodeForUsageAnalysis(node);
             }
             if (node == null)
             {

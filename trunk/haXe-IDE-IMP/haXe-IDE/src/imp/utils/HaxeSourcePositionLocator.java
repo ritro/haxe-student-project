@@ -22,6 +22,7 @@ import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
 import tree.HaxeTree;
+import tree.utils.HaxeTreeUtils;
 import workspace.Activator;
 
 /**
@@ -58,20 +59,25 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	}
 
 	@Override
-	public Object findNode(final Object astRoot, final int offset) {
-		return ((HaxeTree) astRoot).getNodeByPosition(offset);
+	public Object findNode(final Object astRoot, final int offset) 
+	{
+		return HaxeTreeUtils.getNodeByOffset(offset, 0, (HaxeTree)astRoot);
 	}
 
 	@Override
 	public Object findNode(
 	        final Object astRoot, final int startOffset,
-			final int endOffset) {
-		// TODO use endOffset
-		return ((HaxeTree) astRoot).getNodeByPosition(startOffset);
+			final int endOffset) 
+	{
+		return HaxeTreeUtils.getNodeByOffset(
+		        startOffset, 
+		        endOffset - startOffset, 
+		        (HaxeTree)astRoot);
 	}
 
 	@Override
-	public int getEndOffset(final Object entity) {
+	public int getEndOffset(final Object entity) 
+	{
 	    try
 	    {
     		if (entity instanceof CommonToken) 
@@ -136,9 +142,9 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 			return cu.getPath();
 		}
 		if (node instanceof HaxeTree) {
-			ISourceProject iSourceProject = this.fParseController.getProject();
+			ISourceProject iSourceProject = fParseController.getProject();
 			IPath result = this.fParseController.getPath();
-			Path tmp = new Path(this.fParseController.getProject().getName()
+			Path tmp = new Path(fParseController.getProject().getName()
 					+ "/" + result.toString());
 			return tmp;
 		}
@@ -161,7 +167,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 					.getToken();
 			return commonToken.getStartIndex();
 		} else if (entity instanceof ModelTreeNode) {
-			return this.getStartOffset(((ModelTreeNode) entity).getASTNode());
+			return getStartOffset(((ModelTreeNode) entity).getASTNode());
 		} else {
 			throw new RuntimeException();
 		}

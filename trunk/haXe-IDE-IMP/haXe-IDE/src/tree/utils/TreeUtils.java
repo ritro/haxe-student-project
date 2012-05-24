@@ -80,16 +80,15 @@ public abstract class TreeUtils
     	{
     		return supposedNode;
     	}
+    	HaxeTree node = null;
     	if (supposedNode instanceof Usage)
     	{
-    		HaxeTree node = ((Usage)supposedNode).getDeclarationNode();
-    		return getValidNodeForUsageAnalysis(node, offset);
+    		node = ((Usage)supposedNode).getDeclarationNode();
     	}
     	// TODO getValidNodeForUsageAnalysis - what to do with DotIdents?
-    	if (supposedNode instanceof Assignment)
+    	else if (supposedNode instanceof Assignment)
     	{
     	    Assignment assign = (Assignment)supposedNode;
-    	    HaxeTree node = null;
     	    if (offset == -1 || 
     	            assign.getToken().getStartIndex() + assign.getToken().getText().length() > offset)
     	    {
@@ -99,36 +98,35 @@ public abstract class TreeUtils
     	    {
     	        node = assign.getRightOperand();
     	    }
-    		return getValidNodeForUsageAnalysis(node, offset);
     	}
-    	if (supposedNode instanceof SliceNode)
+    	else if (supposedNode instanceof SliceNode)
     	{
-    		HaxeTree node = ((SliceNode)supposedNode).getDeclarationNode();
-    		return getValidNodeForUsageAnalysis(node, offset);
+    		node = ((SliceNode)supposedNode).getDeclarationNode();
     	}
-    	if (supposedNode instanceof MethodCall)
+    	else if (supposedNode instanceof MethodCall)
     	{
-    		HaxeTree node = ((MethodCall)supposedNode).getDeclarationNode();
-    		return getValidNodeForUsageAnalysis(node, offset);
+    		node = ((MethodCall)supposedNode).getDeclarationNode();
     	}
-    	if (supposedNode instanceof NewNode)
+    	else if (supposedNode instanceof NewNode)
     	{
-    		HaxeTree node = ((NewNode)supposedNode).getObjectWhichIsCreated();
-    		return getValidNodeForUsageAnalysis(node, offset);
+    		node = ((NewNode)supposedNode).getObjectWhichIsCreated();
     	}
-    	if (supposedNode instanceof UnarExpression)
+    	else if (supposedNode instanceof UnarExpression)
     	{
-    		HaxeTree node = ((UnarExpression)supposedNode).getExpression();
-    		return getValidNodeForUsageAnalysis(node, offset);
+    		node = ((UnarExpression)supposedNode).getExpression();
     	}
-    	if (supposedNode instanceof Return)
+    	else if (supposedNode instanceof Return)
     	{
-    		HaxeTree node = ((Return)supposedNode).getExpression();
+    		node = ((Return)supposedNode).getExpression();
     		if (node == null)
     		{
-    			return getValidNodeForUsageAnalysis(node, offset);
+    			return null;
     		}
     		// if not it will return the parent by default algorithm
+    	}
+    	if (node != null)
+    	{
+    	    return getValidNodeForUsageAnalysis(node, offset);
     	}
     	return getValidNodeForUsageAnalysis(supposedNode.getParent(), offset);
     }

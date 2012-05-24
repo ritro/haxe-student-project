@@ -14,6 +14,7 @@ import tree.specific.For;
 import tree.specific.Function;
 import tree.specific.IfNode;
 import tree.specific.MethodCall;
+import tree.specific.Module;
 import tree.specific.NewNode;
 import tree.specific.Return;
 import tree.specific.SliceNode;
@@ -396,7 +397,7 @@ public class ErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visitHighLevel(final HaxeTree node, Object data)
+    protected void visit(final Module node, Object data)
     {
         visitAllChildren(node, data);
     }

@@ -34,6 +34,7 @@ import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
 import tree.HaxeTree;
+import tree.specific.Module;
 import tree.utils.ErrorProvider;
 import tree.utils.Linker;
 import tree.utils.Printer;
@@ -275,7 +276,11 @@ public class HaxeParseController implements IParseController {
     {
         HaxeProject project = Activator.getInstance().getProject(fProject.getName());
         Linker linker = new Linker(project);
-        linker.visit(currentAST);        
+        linker.visit(currentAST);
+        if (currentAST instanceof Module)
+        {
+            ((Module)currentAST).setFullPackage(Activator.getInstance().getCurrentFile().getPackage());
+        }
     }
     
     private void updateProjectInfo()

@@ -58,6 +58,7 @@ import java.util.HashMap;
 package imp.parser.antlr;
 
 import tree.HaxeTree;
+import tree.specific.Module;
 import tree.specific.Assignment;
 import tree.specific.BinaryExpression;
 import tree.specific.BlockScope;
@@ -83,7 +84,7 @@ import tree.specific.ArrayNode;
 import tree.specific.While;
 }
 
-module          : myPackage? imports* topLevelDecl* -> ^(MODULE<HaxeTree>["MODULE"] myPackage? imports* topLevelDecl*)
+module          : myPackage? imports* topLevelDecl* -> ^(MODULE<Module> myPackage? imports* topLevelDecl*)
                 ;
 
 imports         : IMPORT^ filepath SEMI!

@@ -11,6 +11,7 @@ import tree.specific.For;
 import tree.specific.Function;
 import tree.specific.IfNode;
 import tree.specific.MethodCall;
+import tree.specific.Module;
 import tree.specific.NewNode;
 import tree.specific.Return;
 import tree.specific.SliceNode;
@@ -34,9 +35,9 @@ public abstract class AbstractHaxeTreeVisitor
            return;
        }
 
-       if (t.getText().equals("MODULE"))
+       if (t instanceof Module)
        {
-           visitHighLevel(t, data);
+           visit((Module)t, data);
        }
        else if (t instanceof Assignment)
        {
@@ -128,7 +129,7 @@ public abstract class AbstractHaxeTreeVisitor
        }
    }
    
-   protected abstract void visitHighLevel(final HaxeTree node, Object data);
+   protected abstract void visit(final Module node, Object data);
    protected abstract void visit(final ClassNode node, Object data);
    protected abstract void visit(final Function node, Object data);
    protected abstract void visit(final Declaration node, Object data);

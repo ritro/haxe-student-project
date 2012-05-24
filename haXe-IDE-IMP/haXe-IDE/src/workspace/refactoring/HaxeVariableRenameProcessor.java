@@ -181,9 +181,7 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
     
     protected String getTargetPackage()
     {
-        // TODO: this is only part of the package
-        // we should add a ClassName at the end
-        return targetNode.getPackage() + ".";
+        return targetNode.getModule().getFullPackage();
     }
     
     private boolean haveErrorNodes(final HaxeTree ast)

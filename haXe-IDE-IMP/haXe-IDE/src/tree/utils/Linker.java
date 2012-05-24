@@ -17,6 +17,7 @@ import tree.specific.For;
 import tree.specific.Function;
 import tree.specific.IfNode;
 import tree.specific.MethodCall;
+import tree.specific.Module;
 import tree.specific.NewNode;
 import tree.specific.Return;
 import tree.specific.SliceNode;
@@ -43,6 +44,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     private AbstractHaxeProject project;
     private HashMap<String, HaxeType> currentFileTypes = null;
     private boolean isLibProject = false;
+    private String currFileName = null;
     
     public Linker(AbstractHaxeProject abstractHaxeProject)
     {
@@ -70,7 +72,6 @@ public class Linker extends AbstractHaxeTreeVisitor
         catch (Exception e)
         {
             String message = "HaxeTreeLinker.visit: " + e.getMessage();
-            e.printStackTrace();
             Activator.logger.error(message);
         }
     }
@@ -746,7 +747,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visitHighLevel(HaxeTree node, Object data)
+    protected void visit(Module node, Object data)
     {
         for (HaxeTree child : node.getChildren())
         {

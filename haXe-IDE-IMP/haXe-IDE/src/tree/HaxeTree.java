@@ -19,6 +19,7 @@ import org.antlr.runtime.Token;
 import org.eclipse.imp.parser.IMessageHandler;
 
 import tree.specific.MethodCall;
+import tree.specific.Module;
 import tree.specific.SliceNode;
 import tree.specific.type.HaxeType;
 
@@ -92,20 +93,26 @@ public class HaxeTree extends CommonTreeReplacer
         return getHaxeType();
     }
     
+    public Module getModule()
+    {
+        if (this instanceof Module)
+        {
+            return (Module) this;
+        }
+        if (getParent() == null)
+        {
+            return null;
+        }
+        return getParent().getModule();
+    }
+    
     public String getPackage()
     {
-        // if this is MODULE
-        if (getToken() != null && getToken().getType() == HaxeParser.MODULE &&
-                getChildCount()>0 && getChild(0).getText().equals("package"))
-        {
-            return getChild(0).getChild(0).getText();
-        }
-        else if (getToken() != null && getToken().getType() == HaxeParser.MODULE 
-                || getParent() == null)
+        if (getParent() == null)
         {
             return "";
         }
-        // else first get MODULE
+        
         return getParent().getPackage();
     }
 

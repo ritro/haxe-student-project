@@ -1,9 +1,9 @@
 package workspace.elements;
 
-
 import java.util.HashMap;
 
 import tree.HaxeTree;
+import tree.specific.Module;
 import tree.utils.Linker;
 
 public abstract class AbstractHaxeProject
@@ -45,7 +45,9 @@ public abstract class AbstractHaxeProject
             {
                 continue;
             }
-            linker.visit(ast);                
+            linker.visit(ast);
+            // for libs packed into jars
+            ((Module)ast).setFullPackage(file.getPackage());
         }
     }
 }

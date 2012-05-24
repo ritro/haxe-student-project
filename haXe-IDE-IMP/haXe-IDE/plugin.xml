@@ -212,7 +212,7 @@
                   style="push">
             </command>
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
                <with
                      variable="activeEditor">
                   <test

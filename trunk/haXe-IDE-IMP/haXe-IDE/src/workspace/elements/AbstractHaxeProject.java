@@ -4,7 +4,7 @@ package workspace.elements;
 import java.util.HashMap;
 
 import tree.HaxeTree;
-import tree.utils.HaxeTreeLinker;
+import tree.utils.Linker;
 
 public abstract class AbstractHaxeProject
 {
@@ -37,7 +37,7 @@ public abstract class AbstractHaxeProject
     
     protected void linkAll()
     {
-        HaxeTreeLinker linker = new HaxeTreeLinker(this);
+        Linker linker = new Linker(this);
         for (HaxeFile file : fileList.values())
         {
             HaxeTree ast = file.getAst();

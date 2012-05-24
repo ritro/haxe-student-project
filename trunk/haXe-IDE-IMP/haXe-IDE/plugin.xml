@@ -190,21 +190,13 @@
       </content-type>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            name="Haxe"
-            class="haxe.imp.preferences.HaxePreferencePage"
-            id="imp.preferences.Haxe">
-      </page>
-   </extension>
-   <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="workspace.contextMenu.VisibilityTester"
-            id="haXe-IDE.menuVisibilityTester"
-            namespace="haXe-IDE.tree.properties"
             properties="canRefactor"
-            type="org.eclipse.ui.IEditorPart">
+            type="org.eclipse.ui.IEditorPart"
+            namespace="haXe-IDE.tree.properties"
+            class="workspace.contextMenu.VisibilityTester"
+            id="haXe-IDE.menuVisibilityTester">
       </propertyTester>
    </extension>
    <extension
@@ -239,15 +231,23 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
+            name="Rename"
             defaultHandler="workspace.commands.RenameCommand"
-            id="haXe-IDE.commands.refactor.rename"
-            name="Rename">
+            id="haXe-IDE.commands.refactor.rename">
       </command>
       <command
+            name="openCallHierarchy"
             defaultHandler="workspace.commands.CallHierarchyCommand"
-            id="haXe-IDE.commands.callHierarchy"
-            name="openCallHierarchy">
+            id="haXe-IDE.commands.callHierarchy">
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Haxe"
+            class="haxe.imp.preferences.HaxePreferencePage"
+            id="imp.preferences.Haxe">
+      </page>
    </extension>
 
 </plugin>

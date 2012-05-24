@@ -19,7 +19,7 @@ import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
 import tree.specific.Usage;
-import tree.utils.HaxeTreeUtils;
+import tree.utils.TreeUtils;
 import tree.utils.ReferencesListBuilder;
 import workspace.Activator;
 import workspace.HashMapForLists;
@@ -92,7 +92,7 @@ public class HxFilesEditor extends UniversalEditor
         updateCurrentNode();
         analyzeCurrentNodeUsages();
         
-        if (HaxeTreeUtils.isNodeValidForUsageAnalysis(currentNode)
+        if (TreeUtils.isNodeValidForUsageAnalysis(currentNode)
                 || currentNode instanceof Usage)
         {
             //highlightCurrentNodeUsagesInText();
@@ -172,9 +172,9 @@ public class HxFilesEditor extends UniversalEditor
         int offset = selection.getOffset();
         HaxeTree nodeForUsagesList = currentNode;
         
-        if (!HaxeTreeUtils.isNodeValidForUsageAnalysis(currentNode))
+        if (!TreeUtils.isNodeValidForUsageAnalysis(currentNode))
         {
-            nodeForUsagesList = HaxeTreeUtils.getValidNodeForUsageAnalysis(currentNode, offset);
+            nodeForUsagesList = TreeUtils.getValidNodeForUsageAnalysis(currentNode, offset);
         }        
         
         if (nodeForUsagesList != null)
@@ -243,6 +243,6 @@ public class HxFilesEditor extends UniversalEditor
         }
         int offset = selection.getOffset();
         int length = selection.getLength();
-        currentNode = HaxeTreeUtils.getNodeByOffset(offset, length, ast);
+        currentNode = TreeUtils.getNodeByOffset(offset, length, ast);
     }
 }

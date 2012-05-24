@@ -5,7 +5,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 /**
  * Constants in haXe are:
@@ -29,7 +29,7 @@ public class Constant extends HaxeTree {
 	        final int ttype, final Token token, final String varType) 
 	{
 	    this(token);
-		HaxeType constantType = HaxeTypeUtils.getStandartTypeByName(varType);
+		HaxeType constantType = TypeUtils.getStandartTypeByName(varType);
 		if (constantType == null)
 		{
 			setHaxeType(null);

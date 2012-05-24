@@ -16,7 +16,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 /**
  * Blocks can execute several expressions.
@@ -91,7 +91,7 @@ public class BlockScope extends HaxeTree {
 	    int childCount = getChildCount();
 	    if (childCount == 0)
 	    {
-	        setHaxeType(HaxeTypeUtils.getVoid());
+	        setHaxeType(TypeUtils.getVoid());
 	    }
 	    else
 	    {

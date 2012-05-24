@@ -10,8 +10,8 @@ import tree.HaxeTree;
 import tree.specific.BinaryExpression;
 import tree.specific.Constant;
 import tree.utils.Environment;
-import tree.utils.HaxeTreeLinker;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.Linker;
+import tree.utils.TypeUtils;
 
 public class BinaryOperationTests
 {
@@ -229,7 +229,7 @@ public class BinaryOperationTests
     //
     // Type interference tests
     //    
-    HaxeTreeLinker linker = new HaxeTreeLinker();
+    Linker linker = new Linker();
 
     @Test
     public void testIntAfterAdditionExpectiong() throws RecognitionException 
@@ -238,7 +238,7 @@ public class BinaryOperationTests
         linker.visit(tree, new Environment());
         BinaryExpression node = TestHelper.getBinaryExpression(tree);
         
-        assertTrue(node.getHaxeType() == HaxeTypeUtils.getInt());
+        assertTrue(node.getHaxeType() == TypeUtils.getInt());
     }
     
     @Test
@@ -248,7 +248,7 @@ public class BinaryOperationTests
         linker.visit(tree, new Environment());
         BinaryExpression node = TestHelper.getBinaryExpression(tree);
         
-        assertTrue(node.getHaxeType() == HaxeTypeUtils.getFloat());
+        assertTrue(node.getHaxeType() == TypeUtils.getFloat());
     }
     
     @Test
@@ -258,6 +258,6 @@ public class BinaryOperationTests
         linker.visit(tree, new Environment());
         BinaryExpression node = TestHelper.getBinaryExpression(tree);
         
-        assertTrue(node.getHaxeType() == HaxeTypeUtils.getString());
+        assertTrue(node.getHaxeType() == TypeUtils.getString());
     }
 }

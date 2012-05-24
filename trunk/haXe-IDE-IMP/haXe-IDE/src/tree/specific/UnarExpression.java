@@ -5,7 +5,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 public class UnarExpression extends HaxeTree
 {
@@ -49,21 +49,21 @@ public class UnarExpression extends HaxeTree
         switch(opType)
         {
             case NUMERABLE:
-                if (exprType == HaxeTypeUtils.getInt()
-                            || exprType == HaxeTypeUtils.getFloat())
+                if (exprType == TypeUtils.getInt()
+                            || exprType == TypeUtils.getFloat())
                 {
                     setHaxeType(exprType);
                 }
                 break;
             case NOT: 
-                if (exprType == HaxeTypeUtils.getBool())
+                if (exprType == TypeUtils.getBool())
                 {
                     setHaxeType(exprType);
                 }
                 break;
             case TILDE:
                 // TODO should think about INT 32 restriction (for Neko)
-                if (exprType == HaxeTypeUtils.getInt())
+                if (exprType == TypeUtils.getInt())
                 {
                     setHaxeType(exprType);
                 }

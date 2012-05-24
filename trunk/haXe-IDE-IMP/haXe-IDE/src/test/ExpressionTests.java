@@ -17,7 +17,7 @@ import tree.specific.MethodCall;
 import tree.specific.NewNode;
 import tree.specific.SliceNode;
 import tree.specific.Usage;
-import tree.utils.HaxeTreePrinter;
+import tree.utils.Printer;
 
 public class ExpressionTests
 {
@@ -25,7 +25,7 @@ public class ExpressionTests
     /// Parcer
     ///
     
-    HaxeTreePrinter printer = new HaxeTreePrinter();
+    Printer printer = new Printer();
     
     // Call and slices
     @Test

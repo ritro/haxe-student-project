@@ -23,7 +23,7 @@ import tree.specific.ErrorNode;
 import tree.specific.Function;
 import tree.specific.Usage;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTreeUtils;
+import tree.utils.TreeUtils;
 import tree.utils.ReferencesListBuilder;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
@@ -83,14 +83,14 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         switch (type)
         {
             case FunctionParameter:
-                searchScope = HaxeTreeUtils.getParentFunction(targetNode);
+                searchScope = TreeUtils.getParentFunction(targetNode);
                 break;
             case VarDeclaration:
-                searchScope = HaxeTreeUtils.getParentFunction(targetNode);
+                searchScope = TreeUtils.getParentFunction(targetNode);
                 searchScope = ((Function)searchScope).getBlockScope();
                 break;
             default:
-                searchScope = HaxeTreeUtils.getParentType(targetNode);
+                searchScope = TreeUtils.getParentType(targetNode);
                 break;
         }
         if (haveErrorNodes(searchScope))
@@ -163,7 +163,7 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
      */
     protected RefactoringStatus checkNameAvailability()
     {
-        HaxeType type = HaxeTreeUtils.getParentType(targetNode);
+        HaxeType type = TreeUtils.getParentType(targetNode);
         HaxeTree decl = type.getDeclaration(newName);
         if (decl != null)
         {
@@ -172,8 +172,7 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
                     "Some other variable have the same name, are you still want to rename?");
             if (!answer)
             {
-                RefactoringStatus status = new RefactoringStatus();
-                return status.createErrorStatus("Name collision.");
+                return RefactoringStatus.createErrorStatus("Name collision.");
             }
         }
         // TODO do checkNameAvailability

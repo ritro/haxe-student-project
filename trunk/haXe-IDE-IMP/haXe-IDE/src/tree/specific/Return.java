@@ -15,7 +15,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 /**
  * The Class VarUsage.
@@ -64,7 +64,7 @@ public class Return extends HaxeTree
 	    HaxeTree expression = getExpression(); 
 	    if (expression == null)
         {
-	        setHaxeType(HaxeTypeUtils.getVoid());
+	        setHaxeType(TypeUtils.getVoid());
         }
 	    else
 	    {

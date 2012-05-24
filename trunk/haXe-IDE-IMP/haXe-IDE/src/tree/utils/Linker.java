@@ -34,7 +34,7 @@ import workspace.elements.AbstractHaxeProject;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeLibProject;
 
-public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
+public class Linker extends AbstractHaxeTreeVisitor
 {
     private HashMap<String, HaxeTree> imports;
     private List<String> usings;
@@ -44,7 +44,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
     private HashMap<String, HaxeType> currentFileTypes = null;
     private boolean isLibProject = false;
     
-    public HaxeTreeLinker(AbstractHaxeProject abstractHaxeProject)
+    public Linker(AbstractHaxeProject abstractHaxeProject)
     {
         this();
         project = abstractHaxeProject;
@@ -54,7 +54,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
     }
     
-    public HaxeTreeLinker()
+    public Linker()
     {
         initialize();
     }
@@ -140,7 +140,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         if (!isLibProject)
         {
             // 2. search in Standart Types
-            result = HaxeTypeUtils.getStandartTypeByName(shortTypeName);
+            result = TypeUtils.getStandartTypeByName(shortTypeName);
             if (result != null)
             {
                 return result;
@@ -148,7 +148,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         }
         else
         {
-            result = HaxeTypeUtils.getStandartTypeByName(
+            result = TypeUtils.getStandartTypeByName(
                     shortTypeName, 
                     (HaxeLibProject)project);
             if (result != null)
@@ -236,7 +236,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         // due to Antlr grammar the places there Return wasn't
         // expected already marked as Error nodes - so there
         // is no variant that function will be null
-        Function function = HaxeTreeUtils.getParentFunction(node);
+        Function function = TreeUtils.getParentFunction(node);
         node.setFunction(function);
         
         HaxeTree expression = node.getExpression();
@@ -634,7 +634,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         visit(blockScope, funEnv);
         if (node.isUndefinedType())
         {
-            node.setHaxeType(HaxeTypeUtils.getVoid());
+            node.setHaxeType(TypeUtils.getVoid());
         }
         endVisit();
     }
@@ -706,7 +706,7 @@ public class HaxeTreeLinker extends AbstractHaxeTreeVisitor
         
         if (!node.isLastInScope())
         {
-            node.setHaxeType(HaxeTypeUtils.getVoid());
+            node.setHaxeType(TypeUtils.getVoid());
             return;
         }
         

@@ -11,8 +11,8 @@ import tree.specific.Function;
 import tree.specific.Return;
 import tree.specific.type.HaxeType;
 import tree.utils.Environment;
-import tree.utils.HaxeTreeLinker;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.Linker;
+import tree.utils.TypeUtils;
 
 public class ReturnNodeTests
 {
@@ -40,7 +40,7 @@ public class ReturnNodeTests
     ///
     /// Type Interference test.
     ///
-    HaxeTreeLinker linker = new HaxeTreeLinker();
+    Linker linker = new Linker();
     
     @Test
     public void testIntToFloatInReturnNode() throws RecognitionException 
@@ -53,7 +53,7 @@ public class ReturnNodeTests
         Function function = returnNode.getFunction();    
         HaxeType funType = function.getHaxeType();
         
-        assertTrue(!HaxeTypeUtils.isAvailableAssignement(funType, type));
+        assertTrue(!TypeUtils.isAvailableAssignement(funType, type));
     }
     
     @Test
@@ -67,7 +67,7 @@ public class ReturnNodeTests
         Function function = returnNode.getFunction();
         HaxeType funType = function.getHaxeType();
         
-        assertTrue(HaxeTypeUtils.isAvailableAssignement(funType, type));
+        assertTrue(TypeUtils.isAvailableAssignement(funType, type));
     }
 
 }

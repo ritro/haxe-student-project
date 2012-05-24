@@ -7,7 +7,7 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 import tree.specific.type.ClassNode;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 /**
  * This class represents arryas in that form: [el1, el2, ..]
@@ -34,7 +34,7 @@ public class ArrayNode extends Constant
     {
         if (haxeType == null)
         {
-            HaxeType arrayType = HaxeTypeUtils.getArray();
+            HaxeType arrayType = TypeUtils.getArray();
             if (arrayType == null || !(arrayType instanceof ClassNode))
             {
                 return null;
@@ -75,7 +75,7 @@ public class ArrayNode extends Constant
     private void tryDefineType()
     {
         // for empty arrays
-        HaxeType type = HaxeTypeUtils.getUnknown();
+        HaxeType type = TypeUtils.getUnknown();
         for (HaxeTree child : getChildren())
         {
             if (child.getChildIndex() == 0)
@@ -89,11 +89,11 @@ public class ArrayNode extends Constant
                 return;
             }
             HaxeType ctype = child.getHaxeType();
-            if (HaxeTypeUtils.isAvailableAssignement(type, ctype))
+            if (TypeUtils.isAvailableAssignement(type, ctype))
             {
                 continue;
             }
-            else if (HaxeTypeUtils.isAvailableAssignement(ctype, type))
+            else if (TypeUtils.isAvailableAssignement(ctype, type))
             {
                 type = ctype;
                 continue;

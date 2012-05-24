@@ -16,7 +16,7 @@ import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import tree.specific.type.HaxeType;
 
-public abstract class HaxeTreeUtils
+public abstract class TreeUtils
 {
     public static Function getParentFunction(final HaxeTree node)
     {
@@ -46,7 +46,7 @@ public abstract class HaxeTreeUtils
 
     public static boolean isNodeValidForUsageAnalysis(final HaxeTree node)
     {
-    	if (HaxeTreeUtils.isNodeValidForCallAnalysis(node)
+    	if (TreeUtils.isNodeValidForCallAnalysis(node)
     			|| node instanceof ClassNode
     			|| node instanceof EnumNode
     			|| node instanceof Declaration)
@@ -59,7 +59,7 @@ public abstract class HaxeTreeUtils
 
     public static HaxeTree getValidNodeForUsageAnalysis(final HaxeTree supposedNode)
     {
-        return HaxeTreeUtils.getValidNodeForUsageAnalysis(supposedNode, -1);
+        return TreeUtils.getValidNodeForUsageAnalysis(supposedNode, -1);
     }
 
     /**
@@ -163,6 +163,11 @@ public abstract class HaxeTreeUtils
     	if (isNodeValidForCallAnalysis(supposedNode))
     	{
     		return supposedNode;
+    	}
+    	if (supposedNode instanceof ClassNode)
+    	{
+    	    HaxeTree node = ((ClassNode)supposedNode).getConstructor();
+            return getValidNodeForCallAnalysis(node);
     	}
     	if (supposedNode instanceof NewNode)
     	{

@@ -34,9 +34,9 @@ import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
 import tree.HaxeTree;
-import tree.utils.HaxeTreeErrorProvider;
-import tree.utils.HaxeTreeLinker;
-import tree.utils.HaxeTreePrinter;
+import tree.utils.ErrorProvider;
+import tree.utils.Linker;
+import tree.utils.Printer;
 import workspace.Activator;
 import workspace.WorkspaceUtils;
 import workspace.elements.HaxeProject;
@@ -274,7 +274,7 @@ public class HaxeParseController implements IParseController {
     private void link()
     {
         HaxeProject project = Activator.getInstance().getProject(fProject.getName());
-        HaxeTreeLinker linker = new HaxeTreeLinker(project);
+        Linker linker = new Linker(project);
         linker.visit(currentAST);        
     }
     
@@ -285,13 +285,13 @@ public class HaxeParseController implements IParseController {
     
     private void showErrors()
     {
-        HaxeTreeErrorProvider eProvider = new HaxeTreeErrorProvider();
+        ErrorProvider eProvider = new ErrorProvider();
         eProvider.visit(currentAST);        
     }
     
     private void printAST()
     {
-        HaxeTreePrinter printer = new HaxeTreePrinter();
+        Printer printer = new Printer();
         printer.visit(currentAST);
     }
 }

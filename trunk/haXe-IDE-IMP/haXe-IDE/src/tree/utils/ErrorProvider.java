@@ -26,7 +26,7 @@ import tree.specific.type.ClassNode;
 import tree.specific.type.HaxeType;
 import workspace.Activator;
 
-public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
+public class ErrorProvider extends AbstractHaxeTreeVisitor
 {
     @Override
     public void visit(final HaxeTree t)
@@ -108,7 +108,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         }
         HaxeType type = node.getHaxeType();
         HaxeType initType = initialization.getHaxeType(true);
-        if (!HaxeTypeUtils.isAvailableAssignement(type, initType))
+        if (!TypeUtils.isAvailableAssignement(type, initType))
         {
             ErrorPublisher.commitCastError(node, initType);
         }
@@ -155,9 +155,9 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         {
             visit(child, data);
             HaxeType ctype = child.getHaxeType(true);
-            if (!ctype.equals(HaxeTypeUtils.getInt()))
+            if (!ctype.equals(TypeUtils.getInt()))
             {
-                ErrorPublisher.commitCastError(child, HaxeTypeUtils.getInt());
+                ErrorPublisher.commitCastError(child, TypeUtils.getInt());
             }
         }
         
@@ -206,7 +206,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         {
             visit(rightOperand, data);
         }
-        else if (!HaxeTypeUtils.isAvailableAssignement(
+        else if (!TypeUtils.isAvailableAssignement(
                 node.getHaxeType(),
                 rightOperand.getHaxeType(true)))
         {
@@ -234,7 +234,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         }
         // here we have...member's types are not from the same
         // hierarchy!
-        HaxeType type = HaxeTypeUtils.getUnknown();
+        HaxeType type = TypeUtils.getUnknown();
         for (HaxeTree child : node.getChildren())
         {
             HaxeType ctype = child.getHaxeType(true);
@@ -243,11 +243,11 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
                 type = ctype;
                 continue;
             }
-            if (HaxeTypeUtils.isAvailableAssignement(type, ctype))
+            if (TypeUtils.isAvailableAssignement(type, ctype))
             {
                 continue;
             }
-            else if (HaxeTypeUtils.isAvailableAssignement(ctype, type))
+            else if (TypeUtils.isAvailableAssignement(ctype, type))
             {
                 type = ctype;
                 continue;
@@ -269,8 +269,8 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
         Function function = node.getFunction();
         
         HaxeType funType = function == null 
-                ? HaxeTypeUtils.getVoid() : function.getHaxeType();
-        if (!HaxeTypeUtils.isAvailableAssignement(funType, type))
+                ? TypeUtils.getVoid() : function.getHaxeType();
+        if (!TypeUtils.isAvailableAssignement(funType, type))
         {
             ErrorPublisher.commitCastError(node, funType);
         }
@@ -388,7 +388,7 @@ public class HaxeTreeErrorProvider extends AbstractHaxeTreeVisitor
             return;
         }
 
-        HaxeType bool = HaxeTypeUtils.getBool();
+        HaxeType bool = TypeUtils.getBool();
         if (!condition.getHaxeType().equals(bool))
         {
             ErrorPublisher.commitCastError(condition, bool);

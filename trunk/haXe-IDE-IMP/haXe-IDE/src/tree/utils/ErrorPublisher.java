@@ -35,6 +35,11 @@ public class ErrorPublisher
     {
         commitDuplicateFieldError((HaxeTree)node);
     }
+    
+    public static void commitDuplicateStaticInstanceFieldError(final HaxeTree node)
+    {
+        node.commitError("Same field name can't be use for both static and instance: " + node.getText());
+    }
 
     public static void commitClassUndefinedTypeError(final Declaration node)
     {

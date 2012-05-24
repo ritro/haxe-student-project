@@ -10,15 +10,15 @@ import tree.HaxeTree;
 import tree.specific.Assignment;
 import tree.specific.type.HaxeType;
 import tree.utils.Environment;
-import tree.utils.HaxeTreeLinker;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.Linker;
+import tree.utils.TypeUtils;
 
 public class AssignOperationTests
 {    
     ///
     /// Type Interference test.
     ///
-    HaxeTreeLinker linker = new HaxeTreeLinker();
+    Linker linker = new Linker();
 
     @Test
     public void testIntToFloat() throws RecognitionException 
@@ -29,7 +29,7 @@ public class AssignOperationTests
         
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
-        assertTrue(!HaxeTypeUtils.isAvailableAssignement(firstType, secondType));
+        assertTrue(!TypeUtils.isAvailableAssignement(firstType, secondType));
     }
     
     @Test
@@ -41,7 +41,7 @@ public class AssignOperationTests
 
         HaxeType firstType = node.getLeftOperand().getHaxeType();
         HaxeType secondType = node.getRightOperand().getHaxeType(); 
-        assertTrue(HaxeTypeUtils.isAvailableAssignement(secondType, firstType));
+        assertTrue(TypeUtils.isAvailableAssignement(secondType, firstType));
     }
     
     @Test

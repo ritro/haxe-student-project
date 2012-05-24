@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import tree.HaxeTree;
 import tree.expression.Assignment;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import tree.utils.Environment;
 import tree.utils.Linker;
 import tree.utils.TypeUtils;

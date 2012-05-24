@@ -1,25 +1,25 @@
 package tree.utils;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
-import tree.expression.ArrayNode;
+import tree.Module;
+import tree.expression.Array;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
+import tree.expression.Binary;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
 import tree.expression.NewNode;
-import tree.expression.SliceNode;
-import tree.expression.UnarExpression;
+import tree.expression.Slice;
+import tree.expression.Unary;
 import tree.expression.Usage;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.Module;
-import tree.specific.type.ClassNode;
 import tree.statement.BlockScope;
 import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
+import tree.type.ClassNode;
 
 public abstract class AbstractHaxeTreeVisitor
 {
@@ -43,9 +43,9 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((Assignment)t, data);
        }
-       else if (t instanceof BinaryExpression)
+       else if (t instanceof Binary)
        {
-           visit((BinaryExpression)t, data);
+           visit((Binary)t, data);
        }
        else if (t instanceof BlockScope)
        {
@@ -55,9 +55,9 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((ClassNode)t, data);
        }
-       else if (t instanceof ArrayNode)
+       else if (t instanceof Array)
        {
-           visit((ArrayNode)t, data);
+           visit((Array)t, data);
        }
        else if (t instanceof Constant)
        {
@@ -99,17 +99,17 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((MethodCall)t, data);
        }
-       else if (t instanceof SliceNode)
+       else if (t instanceof Slice)
        {
-           visit((SliceNode)t, data);
+           visit((Slice)t, data);
        }
        else if (t instanceof Usage)
        {
            visit((Usage)t, data);
        }
-       else if (t instanceof UnarExpression)
+       else if (t instanceof Unary)
        {
-           visit((UnarExpression)t, data);
+           visit((Unary)t, data);
        }
        else
        {
@@ -135,14 +135,14 @@ public abstract class AbstractHaxeTreeVisitor
    protected abstract void visit(final Declaration node, Object data);
    protected abstract void visit(final NewNode node, Object data);
    protected abstract void visit(final MethodCall node, Object data);
-   protected abstract void visit(final SliceNode node, Object data);
+   protected abstract void visit(final Slice node, Object data);
    protected abstract void visit(final Usage node, Object data);
    protected abstract void visit(final Assignment node, Object data);
-   protected abstract void visit(final ArrayNode node, Object data);
+   protected abstract void visit(final Array node, Object data);
    protected abstract void visit(final Constant node, Object data);
    protected abstract void visit(final Return node, Object data);
-   protected abstract void visit(final BinaryExpression node, Object data);
-   protected abstract void visit(final UnarExpression node, Object data);
+   protected abstract void visit(final Binary node, Object data);
+   protected abstract void visit(final Unary node, Object data);
    protected abstract void visit(final BlockScope node, Object data);
    protected abstract void visit(final ErrorNode node, Object data);
    protected abstract void visit(final IfNode node, Object data);

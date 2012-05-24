@@ -3,7 +3,7 @@ package workspace.elements;
 import java.util.HashMap;
 
 import tree.HaxeTree;
-import tree.specific.Module;
+import tree.Module;
 import tree.utils.Linker;
 
 public abstract class AbstractHaxeProject

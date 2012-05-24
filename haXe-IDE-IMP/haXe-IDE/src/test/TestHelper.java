@@ -17,11 +17,11 @@ import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.HaxeTreeAdaptor;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
-import tree.specific.Function;
+import tree.expression.Binary;
 
 public final class TestHelper {
 	public final static String pathToTests = "./src/test/resources/";
@@ -170,17 +170,17 @@ public final class TestHelper {
      * @param tree to search in
      * @return binary expr node or null
      */
-    public static BinaryExpression getBinaryExpression(HaxeTree tree)
+    public static Binary getBinaryExpression(HaxeTree tree)
     {
         for (HaxeTree i : tree.getChildren())
         {
-            if (i instanceof BinaryExpression)
+            if (i instanceof Binary)
             {
-                return (BinaryExpression)i;
+                return (Binary)i;
             }
             else if (i.getChildCount() > 0)
             {
-                BinaryExpression result = getBinaryExpression(i);
+                Binary result = getBinaryExpression(i);
                 if (result != null)
                 {
                     return result;

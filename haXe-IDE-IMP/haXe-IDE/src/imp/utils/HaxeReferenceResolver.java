@@ -14,23 +14,23 @@ package imp.utils;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IReferenceResolver;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
-import tree.expression.ArrayNode;
+import tree.expression.Array;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
+import tree.expression.Binary;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
-import tree.expression.SliceNode;
+import tree.expression.Slice;
 import tree.expression.Usage;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.type.ClassNode;
 import tree.statement.BlockScope;
 import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
+import tree.type.ClassNode;
 
 /**
  * Class for resolving referances to other languages
@@ -76,9 +76,9 @@ public class HaxeReferenceResolver implements IReferenceResolver {
         {
 	        return visit((MethodCall)node);
         }
-	    else if (node instanceof SliceNode)
+	    else if (node instanceof Slice)
 	    {
-	        return visit((SliceNode)node);
+	        return visit((Slice)node);
 	    }
 	    else if (node instanceof Usage)
 	    {
@@ -93,7 +93,7 @@ public class HaxeReferenceResolver implements IReferenceResolver {
        return node.getDeclarationNode();
    }
    
-   private Object visit(final SliceNode node)
+   private Object visit(final Slice node)
    {
        return node.getDeclarationNode();
    }

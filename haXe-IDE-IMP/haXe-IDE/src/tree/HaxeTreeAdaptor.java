@@ -16,7 +16,6 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.CommonTreeAdaptor;
 
-import tree.specific.ErrorNode;
 
 /**
  * The Class ExtendedTreeAdaptor.

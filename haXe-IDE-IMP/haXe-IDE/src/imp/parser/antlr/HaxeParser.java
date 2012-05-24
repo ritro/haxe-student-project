@@ -2,23 +2,21 @@
 
 package imp.parser.antlr;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
-import tree.expression.ArrayNode;
+import tree.Module;
+import tree.TypeTag;
+import tree.expression.Array;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
+import tree.expression.Binary;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
 import tree.expression.NewNode;
-import tree.expression.SliceNode;
-import tree.expression.UnarExpression;
+import tree.expression.Slice;
+import tree.expression.Unary;
 import tree.expression.Usage;
-import tree.specific.Module;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.TypeTag;
 import tree.statement.BlockScope;
 import tree.statement.DoWhile;
 import tree.statement.For;
@@ -27,6 +25,8 @@ import tree.statement.Return;
 import tree.statement.SwitchNode;
 import tree.statement.TryNode;
 import tree.statement.While;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
 
 
 import org.antlr.runtime.*;
@@ -6727,7 +6727,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    BARBAR180=(Token)match(input,BARBAR,FOLLOW_BARBAR_in_logicOrExpr3000); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    BARBAR180_tree = 
-            	    new BinaryExpression(BARBAR180) 
+            	    new Binary(BARBAR180) 
             	    ;
             	    root_0 = (Object)adaptor.becomeRoot(BARBAR180_tree, root_0);
             	    }
@@ -6840,7 +6840,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    AMPAMP183=(Token)match(input,AMPAMP,FOLLOW_AMPAMP_in_logicAndExpr3042); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    AMPAMP183_tree = 
-            	    new BinaryExpression(AMPAMP183) 
+            	    new Binary(AMPAMP183) 
             	    ;
             	    root_0 = (Object)adaptor.becomeRoot(AMPAMP183_tree, root_0);
             	    }
@@ -6947,7 +6947,7 @@ public TreeAdaptor getTreeAdaptor() {
                     ELLIPSIS186=(Token)match(input,ELLIPSIS,FOLLOW_ELLIPSIS_in_iterExpr3101); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     ELLIPSIS186_tree = 
-                    new BinaryExpression(ELLIPSIS186) 
+                    new Binary(ELLIPSIS186) 
                     ;
                     root_0 = (Object)adaptor.becomeRoot(ELLIPSIS186_tree, root_0);
                     }
@@ -7170,7 +7170,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            EQEQ189=(Token)match(input,EQEQ,FOLLOW_EQEQ_in_cmpExpr3173); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            EQEQ189_tree = 
-            	            new BinaryExpression(EQEQ189) 
+            	            new Binary(EQEQ189) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(EQEQ189_tree, root_0);
             	            }
@@ -7183,7 +7183,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            BANGEQ190=(Token)match(input,BANGEQ,FOLLOW_BANGEQ_in_cmpExpr3202); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            BANGEQ190_tree = 
-            	            new BinaryExpression(BANGEQ190) 
+            	            new Binary(BANGEQ190) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(BANGEQ190_tree, root_0);
             	            }
@@ -7196,7 +7196,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GTEQ191=(Token)match(input,GTEQ,FOLLOW_GTEQ_in_cmpExpr3231); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTEQ191_tree = 
-            	            new BinaryExpression(GTEQ191) 
+            	            new Binary(GTEQ191) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GTEQ191_tree, root_0);
             	            }
@@ -7209,7 +7209,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            LTEQ192=(Token)match(input,LTEQ,FOLLOW_LTEQ_in_cmpExpr3260); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LTEQ192_tree = 
-            	            new BinaryExpression(LTEQ192) 
+            	            new Binary(LTEQ192) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(LTEQ192_tree, root_0);
             	            }
@@ -7222,7 +7222,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GT193=(Token)match(input,GT,FOLLOW_GT_in_cmpExpr3289); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GT193_tree = 
-            	            new BinaryExpression(GT193) 
+            	            new Binary(GT193) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GT193_tree, root_0);
             	            }
@@ -7235,7 +7235,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            LT194=(Token)match(input,LT,FOLLOW_LT_in_cmpExpr3318); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LT194_tree = 
-            	            new BinaryExpression(LT194) 
+            	            new Binary(LT194) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(LT194_tree, root_0);
             	            }
@@ -7413,7 +7413,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            BAR197=(Token)match(input,BAR,FOLLOW_BAR_in_bitExpr3391); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            BAR197_tree = 
-            	            new BinaryExpression(BAR197) 
+            	            new Binary(BAR197) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(BAR197_tree, root_0);
             	            }
@@ -7426,7 +7426,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            AMP198=(Token)match(input,AMP,FOLLOW_AMP_in_bitExpr3420); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            AMP198_tree = 
-            	            new BinaryExpression(AMP198) 
+            	            new Binary(AMP198) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(AMP198_tree, root_0);
             	            }
@@ -7439,7 +7439,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            CARET199=(Token)match(input,CARET,FOLLOW_CARET_in_bitExpr3449); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            CARET199_tree = 
-            	            new BinaryExpression(CARET199) 
+            	            new Binary(CARET199) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(CARET199_tree, root_0);
             	            }
@@ -7617,7 +7617,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            LTLT202=(Token)match(input,LTLT,FOLLOW_LTLT_in_shiftExpr3516); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            LTLT202_tree = 
-            	            new BinaryExpression(LTLT202) 
+            	            new Binary(LTLT202) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(LTLT202_tree, root_0);
             	            }
@@ -7630,7 +7630,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GTGT203=(Token)match(input,GTGT,FOLLOW_GTGT_in_shiftExpr3545); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTGT203_tree = 
-            	            new BinaryExpression(GTGT203) 
+            	            new Binary(GTGT203) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GTGT203_tree, root_0);
             	            }
@@ -7643,7 +7643,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            GTGTGT204=(Token)match(input,GTGTGT,FOLLOW_GTGTGT_in_shiftExpr3574); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            GTGTGT204_tree = 
-            	            new BinaryExpression(GTGTGT204) 
+            	            new Binary(GTGTGT204) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(GTGTGT204_tree, root_0);
             	            }
@@ -7795,7 +7795,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            PLUS207=(Token)match(input,PLUS,FOLLOW_PLUS_in_addExpr3643); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PLUS207_tree = 
-            	            new BinaryExpression(PLUS207) 
+            	            new Binary(PLUS207) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(PLUS207_tree, root_0);
             	            }
@@ -7808,7 +7808,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            SUB208=(Token)match(input,SUB,FOLLOW_SUB_in_addExpr3672); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            SUB208_tree = 
-            	            new BinaryExpression(SUB208) 
+            	            new Binary(SUB208) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(SUB208_tree, root_0);
             	            }
@@ -7986,7 +7986,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            STAR211=(Token)match(input,STAR,FOLLOW_STAR_in_multExpr3745); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            STAR211_tree = 
-            	            new BinaryExpression(STAR211) 
+            	            new Binary(STAR211) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(STAR211_tree, root_0);
             	            }
@@ -7999,7 +7999,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            SLASH212=(Token)match(input,SLASH,FOLLOW_SLASH_in_multExpr3774); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            SLASH212_tree = 
-            	            new BinaryExpression(SLASH212) 
+            	            new Binary(SLASH212) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(SLASH212_tree, root_0);
             	            }
@@ -8012,7 +8012,7 @@ public TreeAdaptor getTreeAdaptor() {
             	            PERCENT213=(Token)match(input,PERCENT,FOLLOW_PERCENT_in_multExpr3803); if (state.failed) return retval;
             	            if ( state.backtracking==0 ) {
             	            PERCENT213_tree = 
-            	            new BinaryExpression(PERCENT213) 
+            	            new Binary(PERCENT213) 
             	            ;
             	            root_0 = (Object)adaptor.becomeRoot(PERCENT213_tree, root_0);
             	            }
@@ -8175,7 +8175,7 @@ public TreeAdaptor getTreeAdaptor() {
                             SUB215=(Token)match(input,SUB,FOLLOW_SUB_in_unarExpr3858); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUB215_tree = 
-                            new UnarExpression(SUB215) 
+                            new Unary(SUB215) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(SUB215_tree, root_0);
                             }
@@ -8188,7 +8188,7 @@ public TreeAdaptor getTreeAdaptor() {
                             SUBSUB216=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_unarExpr3877); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUBSUB216_tree = 
-                            new UnarExpression(SUBSUB216) 
+                            new Unary(SUBSUB216) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(SUBSUB216_tree, root_0);
                             }
@@ -8201,7 +8201,7 @@ public TreeAdaptor getTreeAdaptor() {
                             PLUSPLUS217=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_unarExpr3896); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             PLUSPLUS217_tree = 
-                            new UnarExpression(PLUSPLUS217) 
+                            new Unary(PLUSPLUS217) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(PLUSPLUS217_tree, root_0);
                             }
@@ -8214,7 +8214,7 @@ public TreeAdaptor getTreeAdaptor() {
                             BANG218=(Token)match(input,BANG,FOLLOW_BANG_in_unarExpr3915); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             BANG218_tree = 
-                            new UnarExpression(BANG218) 
+                            new Unary(BANG218) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(BANG218_tree, root_0);
                             }
@@ -8227,7 +8227,7 @@ public TreeAdaptor getTreeAdaptor() {
                             TILDE219=(Token)match(input,TILDE,FOLLOW_TILDE_in_unarExpr3934); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             TILDE219_tree = 
-                            new UnarExpression(TILDE219) 
+                            new Unary(TILDE219) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(TILDE219_tree, root_0);
                             }
@@ -8285,7 +8285,7 @@ public TreeAdaptor getTreeAdaptor() {
                             PLUSPLUS222=(Token)match(input,PLUSPLUS,FOLLOW_PLUSPLUS_in_unarExpr3964); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             PLUSPLUS222_tree = 
-                            new UnarExpression(PLUSPLUS222) 
+                            new Unary(PLUSPLUS222) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(PLUSPLUS222_tree, root_0);
                             }
@@ -8298,7 +8298,7 @@ public TreeAdaptor getTreeAdaptor() {
                             SUBSUB223=(Token)match(input,SUBSUB,FOLLOW_SUBSUB_in_unarExpr3970); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             SUBSUB223_tree = 
-                            new UnarExpression(SUBSUB223) 
+                            new Unary(SUBSUB223) 
                             ;
                             root_0 = (Object)adaptor.becomeRoot(SUBSUB223_tree, root_0);
                             }
@@ -9181,7 +9181,7 @@ public TreeAdaptor getTreeAdaptor() {
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
-                        new SliceNode(CALL_OR_SLICE, LBRACKET242, RBRACKET244, false)
+                        new Slice(CALL_OR_SLICE, LBRACKET242, RBRACKET244, false)
                         , root_1);
 
                         adaptor.addChild(root_1, stream_value.nextTree());
@@ -9415,7 +9415,7 @@ public TreeAdaptor getTreeAdaptor() {
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
-                        new SliceNode(CALL_OR_SLICE, LBRACKET249, RBRACKET251, true)
+                        new Slice(CALL_OR_SLICE, LBRACKET249, RBRACKET251, true)
                         , root_1);
 
                         // Haxe.g:347:70: ( expr )?
@@ -9577,7 +9577,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
-                new ArrayNode(SUFFIX_EXPR, LBRACKET255, RBRACKET257)
+                new Array(SUFFIX_EXPR, LBRACKET255, RBRACKET257)
                 , root_1);
 
                 // Haxe.g:352:63: ( exprList )?

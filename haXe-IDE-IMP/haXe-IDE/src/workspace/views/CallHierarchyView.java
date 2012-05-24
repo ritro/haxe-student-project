@@ -21,8 +21,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 
+import tree.Function;
 import tree.HaxeTree;
-import tree.specific.Function;
 import tree.utils.TreeUtils;
 import workspace.Activator;
 import workspace.HashMapForLists;

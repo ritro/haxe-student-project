@@ -1,10 +1,9 @@
-package tree.specific;
+package tree;
 
 import imp.parser.antlr.HaxeParser;
 
 import org.antlr.runtime.Token;
 
-import tree.HaxeTree;
 import tree.statement.BlockScope;
 
 

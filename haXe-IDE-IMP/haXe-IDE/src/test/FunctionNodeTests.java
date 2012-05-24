@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
-import tree.specific.Function;
 
 public class FunctionNodeTests
 {

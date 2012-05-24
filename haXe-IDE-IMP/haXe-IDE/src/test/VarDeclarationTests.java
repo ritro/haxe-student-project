@@ -9,7 +9,7 @@ import org.junit.Test;
 import tree.HaxeTree;
 import tree.expression.Constant;
 import tree.expression.Declaration;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
 public class VarDeclarationTests

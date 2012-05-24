@@ -16,13 +16,13 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.expression.Usage;
-import tree.specific.Function;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
 import tree.statement.BlockScope;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
 import workspace.Activator;
 import workspace.ImageProvider;
 import workspace.SharedImages;

@@ -1,4 +1,4 @@
-package tree.specific;
+package tree;
 
 import org.antlr.runtime.CommonToken;
 

@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree;
 
 
 import org.antlr.runtime.RecognitionException;
@@ -18,7 +18,6 @@ import org.antlr.runtime.tree.CommonErrorNode;
 
 import org.antlr.runtime.CommonToken;
 
-import tree.HaxeTree;
 
 /**
  * The Class ExtendedErrorNode.

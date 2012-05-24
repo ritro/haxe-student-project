@@ -11,11 +11,11 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.expression.ArrayNode;
+import tree.expression.Array;
 import tree.expression.Constant;
 import tree.expression.MethodCall;
 import tree.expression.NewNode;
-import tree.expression.SliceNode;
+import tree.expression.Slice;
 import tree.expression.Usage;
 import tree.utils.Printer;
 
@@ -43,7 +43,7 @@ public class ExpressionTests
     @Test
     public void parseSliceExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("array[1]");
-        assertTrue(tree instanceof SliceNode);
+        assertTrue(tree instanceof Slice);
     }
     
     @Test
@@ -73,7 +73,7 @@ public class ExpressionTests
     @Test
     public void parseEmptyArrayExpression() throws RecognitionException {
         HaxeTree tree = parseExpression("[]");
-        assertTrue(tree instanceof ArrayNode);
+        assertTrue(tree instanceof Array);
     }
     
     @Test

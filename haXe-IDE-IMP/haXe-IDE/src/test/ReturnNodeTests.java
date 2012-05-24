@@ -6,10 +6,10 @@ import static test.TestHelper.parseModule;
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
+import tree.Function;
 import tree.HaxeTree;
-import tree.specific.Function;
-import tree.specific.type.HaxeType;
 import tree.statement.Return;
+import tree.type.HaxeType;
 import tree.utils.Environment;
 import tree.utils.Linker;
 import tree.utils.TypeUtils;

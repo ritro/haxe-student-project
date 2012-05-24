@@ -28,11 +28,11 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.expression.Usage;
-import tree.specific.Function;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import workspace.Activator;
 
 /**

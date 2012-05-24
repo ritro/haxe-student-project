@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree;
 
 import imp.parser.antlr.HaxeParser;
 
@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
-import tree.HaxeTree;
-import tree.Modifiers;
 import tree.expression.Declaration;
 
 /**

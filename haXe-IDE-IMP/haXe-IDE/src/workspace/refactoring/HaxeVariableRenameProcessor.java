@@ -16,13 +16,13 @@ import org.eclipse.text.edits.InsertEdit;
 import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.expression.Usage;
 import tree.expression.Declaration.DeclarationType;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import tree.utils.TreeUtils;
 import tree.utils.ReferencesListBuilder;
 import workspace.HashMapForLists;

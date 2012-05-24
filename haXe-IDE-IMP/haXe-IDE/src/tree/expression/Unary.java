@@ -4,10 +4,10 @@ package tree.expression;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
-public class UnarExpression extends Expression
+public class Unary extends Expression
 {
     public enum UnarOperations {
         NUMERABLE, //++ --  and - with int and float only
@@ -88,7 +88,7 @@ public class UnarExpression extends Expression
         return getChild(0);
     }
     
-    public UnarExpression(final Token token)
+    public Unary(final Token token)
     {
         super(token);
     }

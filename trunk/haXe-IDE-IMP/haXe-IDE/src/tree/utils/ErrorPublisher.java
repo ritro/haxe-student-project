@@ -1,13 +1,13 @@
 package tree.utils;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
+import tree.expression.Binary;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
 import tree.expression.Usage;
-import tree.specific.Function;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 
 /**
  * Contains only official haXe error messages.
@@ -70,7 +70,7 @@ public class ErrorPublisher
         node.commitError(typeIs.toString() + " should be " + typeShouldBe.toString());
     }
 
-    public static void commitInvalidBinaryOpError(final BinaryExpression node)
+    public static void commitInvalidBinaryOpError(final Binary node)
     {
         String binaryOp = node.getOperationType().toString();
         node.commitError("Cannot " + binaryOp + " " + 

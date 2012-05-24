@@ -14,7 +14,7 @@ package tree.expression;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 
 public class Usage extends Expression
 {

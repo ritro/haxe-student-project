@@ -4,7 +4,7 @@ package tree.utils;
 import java.util.List;
 
 import tree.HaxeTree;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import workspace.Activator;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeLibProject;

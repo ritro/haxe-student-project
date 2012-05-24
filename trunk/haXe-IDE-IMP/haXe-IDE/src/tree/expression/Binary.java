@@ -4,9 +4,9 @@ package tree.expression;
 import org.antlr.runtime.Token;
 
 import tree.expression.BinaryOperaionContainer.BoolOperations;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 
-public class BinaryExpression extends BinaryOperaionContainer
+public class Binary extends BinaryOperaionContainer
 {    
     /**
      * Defines operationType variable value according
@@ -35,7 +35,7 @@ public class BinaryExpression extends BinaryOperaionContainer
         return super.defineResultType(operationType, leftType, rightType);
     }
     
-    public BinaryExpression(Token token) 
+    public Binary(Token token) 
     {
         super(token);
     }

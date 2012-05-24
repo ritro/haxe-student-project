@@ -19,9 +19,8 @@ import org.antlr.runtime.Token;
 import org.eclipse.imp.parser.IMessageHandler;
 
 import tree.expression.MethodCall;
-import tree.expression.SliceNode;
-import tree.specific.Module;
-import tree.specific.type.HaxeType;
+import tree.expression.Slice;
+import tree.type.HaxeType;
 
 public class HaxeTree extends CommonTreeReplacer 
 {
@@ -86,9 +85,9 @@ public class HaxeTree extends CommonTreeReplacer
         {
             return ((MethodCall)this).getHaxeType(true);
         }
-        else if (this instanceof SliceNode)
+        else if (this instanceof Slice)
         {
-            return ((SliceNode)this).getHaxeType(true);
+            return ((Slice)this).getHaxeType(true);
         }
         return getHaxeType();
     }

@@ -13,9 +13,9 @@ package tree.statement;
 
 import org.antlr.runtime.Token;
 
+import tree.Function;
 import tree.HaxeTree;
-import tree.specific.Function;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
 /**

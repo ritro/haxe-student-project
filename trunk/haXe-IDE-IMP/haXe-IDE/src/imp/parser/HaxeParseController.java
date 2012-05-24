@@ -34,7 +34,7 @@ import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
 import tree.HaxeTree;
-import tree.specific.Module;
+import tree.Module;
 import tree.utils.ErrorProvider;
 import tree.utils.Linker;
 import tree.utils.Printer;

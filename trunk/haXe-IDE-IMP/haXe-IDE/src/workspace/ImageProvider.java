@@ -5,12 +5,12 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.Modifiers;
 import tree.expression.Declaration;
-import tree.specific.Function;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
 
 public class ImageProvider
 {    /*

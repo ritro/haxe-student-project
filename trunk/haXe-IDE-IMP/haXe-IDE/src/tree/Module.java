@@ -1,6 +1,5 @@
-package tree.specific;
+package tree;
 
-import tree.HaxeTree;
 
 public class Module extends HaxeTree
 {

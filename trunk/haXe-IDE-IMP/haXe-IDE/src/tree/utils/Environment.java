@@ -4,10 +4,10 @@ package tree.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.expression.Declaration.DeclarationType;
-import tree.specific.Function;
 
 /**
  * List of declarations valid in the current scope

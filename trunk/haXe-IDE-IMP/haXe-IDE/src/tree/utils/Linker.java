@@ -6,30 +6,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
-import tree.expression.ArrayNode;
+import tree.Module;
+import tree.TypeTag;
+import tree.expression.Array;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
+import tree.expression.Binary;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
 import tree.expression.NewNode;
-import tree.expression.SliceNode;
-import tree.expression.UnarExpression;
+import tree.expression.Slice;
+import tree.expression.Unary;
 import tree.expression.Usage;
 import tree.expression.Declaration.DeclarationType;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.Module;
-import tree.specific.TypeTag;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
-import tree.specific.type.HaxeType;
 import tree.statement.BlockScope;
 import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
+import tree.type.HaxeType;
 import workspace.Activator;
 import workspace.elements.AbstractHaxeProject;
 import workspace.elements.HaxeFile;
@@ -215,7 +215,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ArrayNode node, final Object data)
+    protected void visit(Array node, final Object data)
     {
         if (node.getChildCount() == 0)
         {
@@ -260,7 +260,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(BinaryExpression node, Object data)
+    protected void visit(Binary node, Object data)
     {
         Environment declarations = (Environment)data;
         HaxeTree leftNode = node.getLeftOperand();
@@ -276,7 +276,7 @@ public class Linker extends AbstractHaxeTreeVisitor
         }
     }
     
-    protected void visit(UnarExpression node, Object data)
+    protected void visit(Unary node, Object data)
     {
         visit(node.getExpression(), data);
     }
@@ -357,7 +357,7 @@ public class Linker extends AbstractHaxeTreeVisitor
         HaxeTree child = node.getChild(0).getChild(0);
         // slices and methcalls
         if (child instanceof MethodCall ||
-                child instanceof SliceNode)
+                child instanceof Slice)
         {
             visit(child, decl);
         }
@@ -504,7 +504,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(SliceNode node, final Object data)
+    protected void visit(Slice node, final Object data)
     {
         for (HaxeTree child : node.getParameters())
         {
@@ -547,7 +547,7 @@ public class Linker extends AbstractHaxeTreeVisitor
         // TODO: here we should send not the Declaration
         // but the HaxeTree found by type name
         if (child instanceof MethodCall ||
-                child instanceof SliceNode)
+                child instanceof Slice)
         {
             visit(child, declaration);
         }

@@ -4,7 +4,7 @@ package tree.expression;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
 public class BinaryOperaionContainer extends Expression

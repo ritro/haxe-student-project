@@ -26,10 +26,10 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
-import tree.specific.Function;
-import tree.specific.type.ClassNode;
+import tree.type.ClassNode;
 import tree.utils.Environment;
 import tree.utils.TreeUtils;
 

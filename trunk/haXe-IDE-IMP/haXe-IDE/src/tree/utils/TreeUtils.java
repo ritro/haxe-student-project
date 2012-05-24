@@ -1,20 +1,20 @@
 package tree.utils;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Assignment;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
 import tree.expression.NewNode;
-import tree.expression.SliceNode;
-import tree.expression.UnarExpression;
+import tree.expression.Slice;
+import tree.expression.Unary;
 import tree.expression.Usage;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
-import tree.specific.type.HaxeType;
 import tree.statement.Return;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
+import tree.type.HaxeType;
 
 public abstract class TreeUtils
 {
@@ -99,9 +99,9 @@ public abstract class TreeUtils
     	        node = assign.getRightOperand();
     	    }
     	}
-    	else if (supposedNode instanceof SliceNode)
+    	else if (supposedNode instanceof Slice)
     	{
-    		node = ((SliceNode)supposedNode).getDeclarationNode();
+    		node = ((Slice)supposedNode).getDeclarationNode();
     	}
     	else if (supposedNode instanceof MethodCall)
     	{
@@ -111,9 +111,9 @@ public abstract class TreeUtils
     	{
     		node = ((NewNode)supposedNode).getObjectWhichIsCreated();
     	}
-    	else if (supposedNode instanceof UnarExpression)
+    	else if (supposedNode instanceof Unary)
     	{
-    		node = ((UnarExpression)supposedNode).getExpression();
+    		node = ((Unary)supposedNode).getExpression();
     	}
     	else if (supposedNode instanceof Return)
     	{
@@ -203,7 +203,7 @@ public abstract class TreeUtils
         {
             HaxeTree parent = currentAST.getParent();
             if (parent != null 
-                    && ( parent instanceof MethodCall || parent instanceof SliceNode))
+                    && ( parent instanceof MethodCall || parent instanceof Slice))
             {
                 return parent;
             }

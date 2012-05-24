@@ -15,12 +15,12 @@ import imp.parser.antlr.HaxeParser;
 import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
-import tree.specific.Function;
-import tree.specific.type.ClassNode;
-import tree.specific.type.EnumNode;
 import tree.statement.BlockScope;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
 
 /**
  * The Class HaxeTreeModelBuilder.

@@ -4,13 +4,13 @@ package tree.expression;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.type.HaxeType;
+import tree.type.HaxeType;
 
-public class SliceNode extends ParametersContainer
+public class Slice extends ParametersContainer
 {
     private boolean haveNoName = false;
     
-    public SliceNode(
+    public Slice(
             final int callOrSlice, 
             final Token lBracket, 
             final Token rBracket,

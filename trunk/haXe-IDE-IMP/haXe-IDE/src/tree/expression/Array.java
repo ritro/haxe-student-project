@@ -5,8 +5,8 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.type.ClassNode;
-import tree.specific.type.HaxeType;
+import tree.type.ClassNode;
+import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
 /**
@@ -14,14 +14,14 @@ import tree.utils.TypeUtils;
  * 
  * @author Savenko Maria
  */
-public class ArrayNode extends Constant
+public class Array extends Constant
 {   
     private CommonToken leftBracket = null;
     private CommonToken rightBracket = null;
     
     private HaxeType memebersType = null;
     
-    public ArrayNode(
+    public Array(
             final int ttype, final Token lbToken, final Token rbToken) 
     {
         super(new CommonToken(ttype, "Array"));

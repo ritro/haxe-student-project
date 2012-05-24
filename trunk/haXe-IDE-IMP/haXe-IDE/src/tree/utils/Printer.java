@@ -2,26 +2,26 @@ package tree.utils;
 
 import java.util.List;
 
+import tree.ErrorNode;
+import tree.Function;
 import tree.HaxeTree;
-import tree.expression.ArrayNode;
+import tree.Module;
+import tree.expression.Array;
 import tree.expression.Assignment;
-import tree.expression.BinaryExpression;
+import tree.expression.Binary;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
 import tree.expression.NewNode;
-import tree.expression.SliceNode;
-import tree.expression.UnarExpression;
+import tree.expression.Slice;
+import tree.expression.Unary;
 import tree.expression.Usage;
-import tree.specific.ErrorNode;
-import tree.specific.Function;
-import tree.specific.Module;
-import tree.specific.type.ClassNode;
 import tree.statement.BlockScope;
 import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
+import tree.type.ClassNode;
 
 
 /**
@@ -121,7 +121,7 @@ public class Printer extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final SliceNode node, Object data)
+    protected void visit(final Slice node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
@@ -145,7 +145,7 @@ public class Printer extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ArrayNode node, Object data)
+    protected void visit(final Array node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println("Array ");
@@ -169,14 +169,14 @@ public class Printer extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final BinaryExpression node, Object data)
+    protected void visit(final Binary node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());
         visitAllChildren(node, (int)data + 1);
     }
     
-    protected void visit(final UnarExpression node, Object data)
+    protected void visit(final Unary node, Object data)
     {
         System.out.print(getIndent(data)); 
         System.out.println(node.toString());     

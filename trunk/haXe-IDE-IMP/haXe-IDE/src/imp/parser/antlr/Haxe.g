@@ -58,30 +58,33 @@ import java.util.HashMap;
 package imp.parser.antlr;
 
 import tree.HaxeTree;
-import tree.specific.Module;
-import tree.specific.Assignment;
-import tree.specific.BinaryExpression;
-import tree.specific.BlockScope;
-import tree.specific.type.ClassNode;
-import tree.specific.UnarExpression;
-import tree.specific.type.EnumNode;
-import tree.specific.ErrorNode;
-import tree.specific.DoWhile;
-import tree.specific.For;
-import tree.specific.Function;
-import tree.specific.IfNode;
-import tree.specific.MethodCall;
-import tree.specific.NewNode;
-import tree.specific.SliceNode;
-import tree.specific.SwitchNode;
-import tree.specific.TryNode;
-import tree.specific.Return;
-import tree.specific.Declaration;
-import tree.specific.Usage;
-import tree.specific.TypeTag;
-import tree.specific.Constant;
-import tree.specific.ArrayNode;
-import tree.specific.While;
+
+import tree.expression.Array;
+import tree.expression.Assignment;
+import tree.expression.Binary;
+import tree.expression.Constant;
+import tree.expression.Declaration;
+import tree.expression.MethodCall;
+import tree.expression.NewNode;
+import tree.expression.Slice;
+import tree.expression.Unary;
+import tree.expression.Usage;
+
+import tree.statement.BlockScope;
+import tree.statement.DoWhile;
+import tree.statement.For;
+import tree.statement.IfNode;
+import tree.statement.Return;
+import tree.statement.SwitchNode;
+import tree.statement.TryNode;
+import tree.statement.While;
+
+import tree.ErrorNode;
+import tree.Function;
+import tree.Module;
+import tree.TypeTag;
+import tree.type.ClassNode;
+import tree.type.EnumNode;
 }
 
 module          : myPackage? imports* topLevelDecl* -> ^(MODULE<Module> myPackage? imports* topLevelDecl*)
@@ -279,54 +282,54 @@ assignExpr      : ternaryExpr (assignOp^ ternaryExpr)?
 ternaryExpr     : logicOrExpr (QUES^ expr COLON! ternaryExpr)?
                 ;
 
-logicOrExpr     : logicAndExpr (BARBAR<BinaryExpression>^ logicAndExpr)*
+logicOrExpr     : logicAndExpr (BARBAR<Binary>^ logicAndExpr)*
                 ;
     
-logicAndExpr    : iterExpr(AMPAMP<BinaryExpression>^ iterExpr)*
+logicAndExpr    : iterExpr(AMPAMP<Binary>^ iterExpr)*
                 ;
                 
-iterExpr        : cmpExpr (ELLIPSIS<BinaryExpression>^ cmpExpr)?
+iterExpr        : cmpExpr (ELLIPSIS<Binary>^ cmpExpr)?
                 ;
     
 cmpExpr         : bitExpr ((
-                      EQEQ<BinaryExpression>^ 
-                    | BANGEQ<BinaryExpression>^ 
-                    | GTEQ<BinaryExpression>^ 
-                    | LTEQ<BinaryExpression>^ 
-                    | GT<BinaryExpression>^ 
-                    | LT<BinaryExpression>^) bitExpr)*
+                      EQEQ<Binary>^ 
+                    | BANGEQ<Binary>^ 
+                    | GTEQ<Binary>^ 
+                    | LTEQ<Binary>^ 
+                    | GT<Binary>^ 
+                    | LT<Binary>^) bitExpr)*
                 ;
     
 bitExpr         : shiftExpr ((
-                      BAR<BinaryExpression>^ 
-                    | AMP<BinaryExpression>^ 
-                    | CARET<BinaryExpression>^) shiftExpr)*
+                      BAR<Binary>^ 
+                    | AMP<Binary>^ 
+                    | CARET<Binary>^) shiftExpr)*
                 ;
 
 shiftExpr       : addExpr ((
-                      LTLT<BinaryExpression>^ 
-                    | GTGT<BinaryExpression>^ 
-                    | GTGTGT<BinaryExpression>^) addExpr)*
+                      LTLT<Binary>^ 
+                    | GTGT<Binary>^ 
+                    | GTGTGT<Binary>^) addExpr)*
                 ;
 
 addExpr         : multExpr ((
-                      PLUS<BinaryExpression>^ 
-                    | SUB<BinaryExpression>^) multExpr )*
+                      PLUS<Binary>^ 
+                    | SUB<Binary>^) multExpr )*
                 ;
     
 multExpr        : unarExpr ((
-                      STAR<BinaryExpression>^ 
-                    | SLASH<BinaryExpression>^ 
-                    | PERCENT<BinaryExpression>^) unarExpr)*
+                      STAR<Binary>^ 
+                    | SLASH<Binary>^ 
+                    | PERCENT<Binary>^) unarExpr)*
                 ;
 
 unarExpr        : (
-            SUB<UnarExpression>^|
-            SUBSUB<UnarExpression>^|
-            PLUSPLUS<UnarExpression>^|
-            BANG<UnarExpression>^|
-            TILDE<UnarExpression>^) prefixExpr
-                | prefixExpr (PLUSPLUS<UnarExpression>^|SUBSUB<UnarExpression>^)?
+            SUB<Unary>^|
+            SUBSUB<Unary>^|
+            PLUSPLUS<Unary>^|
+            BANG<Unary>^|
+            TILDE<Unary>^) prefixExpr
+                | prefixExpr (PLUSPLUS<Unary>^|SUBSUB<Unary>^)?
                 ;  
     
 prefixExpr      : NEW<NewNode>^ type LPAREN! exprList? RPAREN!
@@ -338,18 +341,18 @@ methodCallOrSlice
                 : value LPAREN exprList? RPAREN pureCallOrSlice?
             -> ^(CALL_OR_SLICE<MethodCall>[$LPAREN, $RPAREN] value exprList? pureCallOrSlice?)
                 | value LBRACKET expr RBRACKET pureCallOrSlice? 
-            -> ^(CALL_OR_SLICE<SliceNode>[$LBRACKET, $RBRACKET, false] value expr pureCallOrSlice?)
+            -> ^(CALL_OR_SLICE<Slice>[$LBRACKET, $RBRACKET, false] value expr pureCallOrSlice?)
                 | value^ pureCallOrSlice 
                 | value
                 ;
 
 pureCallOrSlice : LBRACKET expr? RBRACKET pureCallOrSlice? -> ^(
-                CALL_OR_SLICE<SliceNode>[$LBRACKET, $RBRACKET, true] expr? pureCallOrSlice?)
+                CALL_OR_SLICE<Slice>[$LBRACKET, $RBRACKET, true] expr? pureCallOrSlice?)
                 | DOT^ methodCallOrSlice
                 ;
 
 arrayObj        : LBRACKET exprList? RBRACKET
-            -> ^(SUFFIX_EXPR<ArrayNode>[$LBRACKET, $RBRACKET] exprList?)
+            -> ^(SUFFIX_EXPR<Array>[$LBRACKET, $RBRACKET] exprList?)
                 ;
                 
 value

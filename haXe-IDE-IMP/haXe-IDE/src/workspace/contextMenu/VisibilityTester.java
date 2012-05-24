@@ -7,7 +7,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import tree.HaxeTree;
-import tree.utils.HaxeTreeUtils;
+import tree.utils.TreeUtils;
 import workspace.commands.RenameCommand;
 import workspace.editor.HxFilesEditor;
 import workspace.refactoring.HaxeRenameProcessor;
@@ -28,9 +28,9 @@ public class VisibilityTester extends PropertyTester
     
     private boolean testCanRefactor(HaxeTree node)
     {
-        if (!HaxeTreeUtils.isNodeValidForUsageAnalysis(node))
+        if (!TreeUtils.isNodeValidForUsageAnalysis(node))
         {
-            node = HaxeTreeUtils.getValidNodeForUsageAnalysis(node);
+            node = TreeUtils.getValidNodeForUsageAnalysis(node);
         }
         if (node == null)
         {

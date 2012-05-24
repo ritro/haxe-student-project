@@ -10,7 +10,7 @@ import tree.HaxeTree;
 import tree.specific.Constant;
 import tree.specific.Declaration;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 public class VarDeclarationTests
 {
@@ -55,7 +55,7 @@ public class VarDeclarationTests
         firstDecl.updateInfo();
         secondDecl.updateInfo();
         
-        HaxeType intType = HaxeTypeUtils.getInt();
+        HaxeType intType = TypeUtils.getInt();
         assertTrue(!firstDecl.getHaxeType().equals(secondDecl.getHaxeType()));
         assertTrue(secondDecl.getHaxeType().equals(intType));
         assertTrue(!firstDecl.getHaxeType().equals(intType));

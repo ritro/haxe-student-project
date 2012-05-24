@@ -22,7 +22,7 @@ import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
 import tree.HaxeTree;
-import tree.utils.HaxeTreeUtils;
+import tree.utils.TreeUtils;
 import workspace.Activator;
 
 /**
@@ -61,7 +61,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	@Override
 	public Object findNode(final Object astRoot, final int offset) 
 	{
-		return HaxeTreeUtils.getNodeByOffset(offset, 0, (HaxeTree)astRoot);
+		return TreeUtils.getNodeByOffset(offset, 0, (HaxeTree)astRoot);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	        final Object astRoot, final int startOffset,
 			final int endOffset) 
 	{
-		return HaxeTreeUtils.getNodeByOffset(
+		return TreeUtils.getNodeByOffset(
 		        startOffset, 
 		        endOffset - startOffset, 
 		        (HaxeTree)astRoot);

@@ -100,17 +100,13 @@ public class HaxeTree extends CommonTreeReplacer
         {
             return getChild(0).getChild(0).getText();
         }
-        else if (getToken() != null && getToken().getType() == HaxeParser.MODULE)
+        else if (getToken() != null && getToken().getType() == HaxeParser.MODULE 
+                || getParent() == null)
         {
             return "";
         }
         // else first get MODULE
-        HaxeTree parent = this;
-        while (getParent() != null)
-        {
-            parent = getParent();
-        }
-        return parent.getPackage();
+        return getParent().getPackage();
     }
 
     /**

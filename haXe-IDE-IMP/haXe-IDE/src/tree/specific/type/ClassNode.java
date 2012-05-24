@@ -18,6 +18,7 @@ import java.util.List;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
+import tree.specific.Function;
 
 /**
  * The Class ClassNode.
@@ -65,6 +66,19 @@ public class ClassNode extends HaxeType
 	public void setParentToExtend(final HaxeType extend)
 	{
 	    extention = extend;
+	}
+	
+	public Function getConstructor()
+	{
+	    HaxeTree constr = getDeclaration("new");
+	    if (constr instanceof Function)
+	    {
+	        return (Function)constr;
+	    }
+	    else
+	    {
+	        return null;
+	    }
 	}
 	
 	@Override

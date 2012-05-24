@@ -9,7 +9,7 @@ import workspace.Activator;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeLibProject;
 
-public class HaxeTypeUtils
+public class TypeUtils
 {
     public static final String primaryTypesFileName = "StdTypes";
     

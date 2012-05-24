@@ -28,7 +28,7 @@ import tree.specific.type.ClassNode;
  * make easier to debug.
  * @author Savenko Maria
  */
-public class HaxeTreePrinter extends AbstractHaxeTreeVisitor
+public class Printer extends AbstractHaxeTreeVisitor
 {
     /**
      * Prints HaxeTree to console along with printing all

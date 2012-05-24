@@ -5,7 +5,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
-import tree.utils.HaxeTypeUtils;
+import tree.utils.TypeUtils;
 
 public class BinaryOperaionContainer extends HaxeTree
 {
@@ -107,7 +107,7 @@ public class BinaryOperaionContainer extends HaxeTree
         {
             return null;
         }
-        HaxeType intType = HaxeTypeUtils.getInt();
+        HaxeType intType = TypeUtils.getInt();
         switch (operationType) 
         {
             //If both expressions are Int then return Int, else if both 
@@ -117,26 +117,26 @@ public class BinaryOperaionContainer extends HaxeTree
                 {
                     return intType;
                 }
-                HaxeType floatType = HaxeTypeUtils.getFloat(); 
+                HaxeType floatType = TypeUtils.getFloat(); 
                 if ((leftType.equals(intType) || rightType.equals(intType)) &&
                         (leftType.equals(floatType) || rightType.equals(floatType)))
                 {
                     return floatType;
                 }
-                return HaxeTypeUtils.getString();
+                return TypeUtils.getString();
             //Divide two numbers, return Float.
             case DIVIDE:
-                if (HaxeTypeUtils.areBothNumbers(leftType, rightType)) 
+                if (TypeUtils.areBothNumbers(leftType, rightType)) 
                 {
-                    return HaxeTypeUtils.getFloat();
+                    return TypeUtils.getFloat();
                 }
                 break;
             // Return Int if both are Int and return Float 
             // if they are either both Float or mixed.
             case NUMERABLE:
-                if (HaxeTypeUtils.areBothNumbers(leftType, rightType)) 
+                if (TypeUtils.areBothNumbers(leftType, rightType)) 
                 {
-                    return HaxeTypeUtils.getCommonPrimaryType(leftType, rightType);
+                    return TypeUtils.getCommonPrimaryType(leftType, rightType);
                 }
                 break;
             // bitwise operations between two Int expressions. Returns Int.
@@ -150,14 +150,14 @@ public class BinaryOperaionContainer extends HaxeTree
             //expressions sharing a common type. Returns Bool.
             //TODO we can compare two strings ???????
             case COMPARISON:
-                if (HaxeTypeUtils.isComparable(leftType, rightType))
+                if (TypeUtils.isComparable(leftType, rightType))
                 {
-                    return HaxeTypeUtils.getBool();
+                    return TypeUtils.getBool();
                 }
                 break;
             //Both e1 and e2 must be Bool
             case BOOLEAN:
-                HaxeType bool = HaxeTypeUtils.getBool();
+                HaxeType bool = TypeUtils.getBool();
                 if (leftType.equals(bool) && rightType.equals(bool))
                 {
                     return leftType;

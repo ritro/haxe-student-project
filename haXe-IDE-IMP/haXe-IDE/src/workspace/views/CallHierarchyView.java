@@ -23,7 +23,7 @@ import org.eclipse.ui.IEditorPart;
 
 import tree.HaxeTree;
 import tree.specific.Function;
-import tree.utils.HaxeTreeUtils;
+import tree.utils.TreeUtils;
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
@@ -96,7 +96,7 @@ public class CallHierarchyView extends HierarchyView
             {
                 CallHierarchyElement element = 
                         new CallHierarchyNodeElement(info.getFile(), info.getNode(), pack);
-                Function function = HaxeTreeUtils.getParentFunction(info.getNode());
+                Function function = TreeUtils.getParentFunction(info.getNode());
                 if (function != null)
                 {
                 String key = pack+function.getText();

@@ -1,25 +1,25 @@
 package tree.utils;
 
 import tree.HaxeTree;
-import tree.specific.ArrayNode;
-import tree.specific.Assignment;
-import tree.specific.BinaryExpression;
-import tree.specific.BlockScope;
-import tree.specific.Constant;
+import tree.expression.ArrayNode;
+import tree.expression.Assignment;
+import tree.expression.BinaryExpression;
+import tree.expression.Constant;
+import tree.expression.Declaration;
+import tree.expression.MethodCall;
+import tree.expression.NewNode;
+import tree.expression.SliceNode;
+import tree.expression.UnarExpression;
+import tree.expression.Usage;
 import tree.specific.ErrorNode;
-import tree.specific.For;
 import tree.specific.Function;
-import tree.specific.IfNode;
-import tree.specific.MethodCall;
 import tree.specific.Module;
-import tree.specific.NewNode;
-import tree.specific.Return;
-import tree.specific.SliceNode;
-import tree.specific.UnarExpression;
-import tree.specific.Declaration;
-import tree.specific.Usage;
-import tree.specific.While;
 import tree.specific.type.ClassNode;
+import tree.statement.BlockScope;
+import tree.statement.For;
+import tree.statement.IfNode;
+import tree.statement.Return;
+import tree.statement.While;
 
 public abstract class AbstractHaxeTreeVisitor
 {

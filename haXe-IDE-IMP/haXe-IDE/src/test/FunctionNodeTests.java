@@ -11,8 +11,8 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
+import tree.expression.Declaration;
 import tree.specific.Function;
-import tree.specific.Declaration;
 
 public class FunctionNodeTests
 {

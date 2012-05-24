@@ -18,9 +18,9 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.eclipse.imp.parser.IMessageHandler;
 
-import tree.specific.MethodCall;
+import tree.expression.MethodCall;
+import tree.expression.SliceNode;
 import tree.specific.Module;
-import tree.specific.SliceNode;
 import tree.specific.type.HaxeType;
 
 public class HaxeTree extends CommonTreeReplacer 

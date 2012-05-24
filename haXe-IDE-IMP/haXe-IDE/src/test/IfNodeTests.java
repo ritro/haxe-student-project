@@ -7,9 +7,9 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.Assignment;
-import tree.specific.IfNode;
-import tree.specific.MethodCall;
+import tree.expression.Assignment;
+import tree.expression.MethodCall;
+import tree.statement.IfNode;
 
 public class IfNodeTests
 {

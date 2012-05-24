@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.statement;
 
 
 import org.antlr.runtime.Token;
@@ -21,7 +21,7 @@ import tree.HaxeTree;
  * 
  * @author Anatoly Kondratyev
  */
-public class For extends HaxeTree 
+public class For extends Statement 
 {	
     public For(final Token t) 
 	{

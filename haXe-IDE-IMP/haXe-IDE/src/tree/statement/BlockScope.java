@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.statement;
 
 
 import org.antlr.runtime.CommonToken;
@@ -23,7 +23,7 @@ import tree.utils.TypeUtils;
  * @author kondratyev
  *          Savenko Maria
  */
-public class BlockScope extends HaxeTree {
+public class BlockScope extends Statement {
 
 	private int leftBracketPosition = -1;
 	private int rightBracketPosition = -1;

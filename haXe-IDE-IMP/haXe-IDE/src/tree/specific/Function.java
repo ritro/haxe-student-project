@@ -19,6 +19,7 @@ import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
 import tree.Modifiers;
+import tree.expression.Declaration;
 
 /**
  * The Class FunctionNode.

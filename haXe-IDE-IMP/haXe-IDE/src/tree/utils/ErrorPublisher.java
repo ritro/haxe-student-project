@@ -1,12 +1,12 @@
 package tree.utils;
 
 import tree.HaxeTree;
-import tree.specific.Assignment;
-import tree.specific.BinaryExpression;
+import tree.expression.Assignment;
+import tree.expression.BinaryExpression;
+import tree.expression.Declaration;
+import tree.expression.MethodCall;
+import tree.expression.Usage;
 import tree.specific.Function;
-import tree.specific.MethodCall;
-import tree.specific.Declaration;
-import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 
 /**

@@ -11,12 +11,12 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.ArrayNode;
-import tree.specific.Constant;
-import tree.specific.MethodCall;
-import tree.specific.NewNode;
-import tree.specific.SliceNode;
-import tree.specific.Usage;
+import tree.expression.ArrayNode;
+import tree.expression.Constant;
+import tree.expression.MethodCall;
+import tree.expression.NewNode;
+import tree.expression.SliceNode;
+import tree.expression.Usage;
 import tree.utils.Printer;
 
 public class ExpressionTests

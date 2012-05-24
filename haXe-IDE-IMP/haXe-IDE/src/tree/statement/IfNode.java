@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.statement;
 
 
 import org.antlr.runtime.Token;
@@ -20,7 +20,7 @@ import tree.HaxeTree;
  * 
  * @author Anatoly Kondratyev
  */
-public class IfNode extends HaxeTree 
+public class IfNode extends Statement 
 {
     
     private boolean ifLastInTheScope = false;

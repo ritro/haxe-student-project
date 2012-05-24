@@ -8,12 +8,13 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.statement;
 
 
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
+import tree.specific.Function;
 import tree.specific.type.HaxeType;
 import tree.utils.TypeUtils;
 
@@ -22,7 +23,7 @@ import tree.utils.TypeUtils;
  * 
  * @author kondratyev
  */
-public class Return extends HaxeTree 
+public class Return extends Statement 
 {
     private Function function = null;
 

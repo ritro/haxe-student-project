@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.statement;
 
 
 import org.antlr.runtime.Token;
@@ -16,14 +16,28 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 
 /**
- * The Class DoWhileNode.
+ * The Class WhileNode.
+ * Tree : WHILE[WhileNode]^ parExpression statement
  * 
  * @author Anatoly Kondratyev
+ *         Maria Savenko
  */
-public class DoWhile extends HaxeTree 
+public class While extends Statement 
 {
-	public DoWhile(final Token t) 
+	public While(final Token token) 
 	{
-		super(t);
+		super(token);
 	}
+    
+    public HaxeTree getScope()
+    {
+        // the existence of block should be checked during
+        // syntax parsing
+        return getChild(1);
+    }
+    
+    public HaxeTree getCondition()
+    {
+        return getChild(0);
+    }
 }

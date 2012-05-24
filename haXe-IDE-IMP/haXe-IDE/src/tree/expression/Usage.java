@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.expression;
 
 
 import org.antlr.runtime.Token;
@@ -16,7 +16,7 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 
-public class Usage extends HaxeTree 
+public class Usage extends Expression
 {
     private HaxeTree declaration = null;
     

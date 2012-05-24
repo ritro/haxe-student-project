@@ -7,7 +7,7 @@ import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
 import tree.Modifiers;
-import tree.specific.Declaration;
+import tree.expression.Declaration;
 import tree.specific.Function;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;

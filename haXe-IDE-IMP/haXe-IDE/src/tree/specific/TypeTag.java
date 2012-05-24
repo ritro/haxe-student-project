@@ -2,6 +2,8 @@ package tree.specific;
 
 import org.antlr.runtime.CommonToken;
 
+import tree.expression.Usage;
+
 public class TypeTag extends Usage
 {
     public TypeTag(int typeTag) 

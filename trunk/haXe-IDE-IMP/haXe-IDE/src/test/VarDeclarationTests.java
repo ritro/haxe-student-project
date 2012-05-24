@@ -7,8 +7,8 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.Constant;
-import tree.specific.Declaration;
+import tree.expression.Constant;
+import tree.expression.Declaration;
 import tree.specific.type.HaxeType;
 import tree.utils.TypeUtils;
 

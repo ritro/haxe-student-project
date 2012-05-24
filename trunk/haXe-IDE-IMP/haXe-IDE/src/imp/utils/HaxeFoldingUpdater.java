@@ -25,8 +25,8 @@ import org.eclipse.jface.text.source.Annotation;
 
 import tree.HaxeTree;
 import tree.specific.BlockScopeContainer;
-import tree.specific.BlockScope;
 import tree.specific.type.ClassNode;
+import tree.statement.BlockScope;
 
 /**
  * This file provides a skeletal implementation of the language-dependent

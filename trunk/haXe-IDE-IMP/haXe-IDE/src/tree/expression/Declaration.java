@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.expression;
 
 import imp.parser.antlr.HaxeParser;
 
@@ -16,8 +16,11 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
+import tree.specific.NodeWithModifier;
+import tree.specific.TypeTag;
 
-public class Declaration extends NodeWithModifier {
+public class Declaration extends NodeWithModifier 
+{
 
     private enum PropertyAccessors
     {

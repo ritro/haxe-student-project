@@ -16,11 +16,11 @@ import org.eclipse.imp.preferences.PreferenceValueParser.AbstractVisitor;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
 import tree.HaxeTree;
-import tree.specific.BlockScope;
+import tree.expression.Declaration;
 import tree.specific.Function;
-import tree.specific.Declaration;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
+import tree.statement.BlockScope;
 
 /**
  * The Class HaxeTreeModelBuilder.

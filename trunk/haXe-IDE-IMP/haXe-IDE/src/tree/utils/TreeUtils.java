@@ -1,20 +1,20 @@
 package tree.utils;
 
 import tree.HaxeTree;
-import tree.specific.Assignment;
-import tree.specific.Constant;
-import tree.specific.Declaration;
+import tree.expression.Assignment;
+import tree.expression.Constant;
+import tree.expression.Declaration;
+import tree.expression.MethodCall;
+import tree.expression.NewNode;
+import tree.expression.SliceNode;
+import tree.expression.UnarExpression;
+import tree.expression.Usage;
 import tree.specific.ErrorNode;
 import tree.specific.Function;
-import tree.specific.MethodCall;
-import tree.specific.NewNode;
-import tree.specific.Return;
-import tree.specific.SliceNode;
-import tree.specific.UnarExpression;
-import tree.specific.Usage;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
 import tree.specific.type.HaxeType;
+import tree.statement.Return;
 
 public abstract class TreeUtils
 {

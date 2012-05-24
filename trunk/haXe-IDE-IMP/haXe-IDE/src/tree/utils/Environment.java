@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import tree.HaxeTree;
+import tree.expression.Declaration;
+import tree.expression.Declaration.DeclarationType;
 import tree.specific.Function;
-import tree.specific.Declaration;
-import tree.specific.Declaration.DeclarationType;
 
 /**
  * List of declarations valid in the current scope

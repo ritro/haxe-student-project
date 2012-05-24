@@ -7,7 +7,7 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.UnarExpression;
+import tree.expression.UnarExpression;
 
 public class UnarOpTests
 {

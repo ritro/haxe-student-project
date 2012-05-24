@@ -17,11 +17,11 @@ import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
 import tree.HaxeTree;
-import tree.specific.Declaration;
-import tree.specific.Declaration.DeclarationType;
+import tree.expression.Declaration;
+import tree.expression.Usage;
+import tree.expression.Declaration.DeclarationType;
 import tree.specific.ErrorNode;
 import tree.specific.Function;
-import tree.specific.Usage;
 import tree.specific.type.HaxeType;
 import tree.utils.TreeUtils;
 import tree.utils.ReferencesListBuilder;

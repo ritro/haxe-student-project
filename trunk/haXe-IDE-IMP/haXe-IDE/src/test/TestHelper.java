@@ -19,8 +19,8 @@ import org.antlr.runtime.RecognitionException;
 
 import tree.HaxeTree;
 import tree.HaxeTreeAdaptor;
-import tree.specific.Assignment;
-import tree.specific.BinaryExpression;
+import tree.expression.Assignment;
+import tree.expression.BinaryExpression;
 import tree.specific.Function;
 
 public final class TestHelper {

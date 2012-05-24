@@ -1,8 +1,9 @@
-package tree.specific;
+package tree.expression;
 
 
 import org.antlr.runtime.Token;
 
+import tree.expression.BinaryOperaionContainer.BoolOperations;
 import tree.specific.type.HaxeType;
 
 public class BinaryExpression extends BinaryOperaionContainer

@@ -1,4 +1,4 @@
-package tree.specific;
+package tree.expression;
 
 
 import org.antlr.runtime.Token;
@@ -7,7 +7,7 @@ import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 import tree.utils.TypeUtils;
 
-public class BinaryOperaionContainer extends HaxeTree
+public class BinaryOperaionContainer extends Expression
 {
     /**
      * Different types for Boolean Operations divided 

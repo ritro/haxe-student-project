@@ -8,8 +8,8 @@ import java.util.List;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.specific.BlockScope;
-import tree.specific.Declaration;
+import tree.expression.Declaration;
+import tree.statement.BlockScope;
 
 public class EnumNode extends HaxeType 
 {	

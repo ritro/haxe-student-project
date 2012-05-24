@@ -17,12 +17,12 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
 import tree.HaxeTree;
-import tree.specific.BlockScope;
-import tree.specific.Declaration;
+import tree.expression.Declaration;
+import tree.expression.Usage;
 import tree.specific.Function;
-import tree.specific.Usage;
 import tree.specific.type.ClassNode;
 import tree.specific.type.EnumNode;
+import tree.statement.BlockScope;
 import workspace.Activator;
 import workspace.ImageProvider;
 import workspace.SharedImages;

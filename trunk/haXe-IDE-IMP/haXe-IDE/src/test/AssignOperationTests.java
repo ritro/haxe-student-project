@@ -7,7 +7,7 @@ import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
 import tree.HaxeTree;
-import tree.specific.Assignment;
+import tree.expression.Assignment;
 import tree.specific.type.HaxeType;
 import tree.utils.Environment;
 import tree.utils.Linker;

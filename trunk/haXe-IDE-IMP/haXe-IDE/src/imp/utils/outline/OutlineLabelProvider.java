@@ -13,8 +13,8 @@ package imp.utils.outline;
 import org.eclipse.imp.editor.ModelTreeNode;
 
 import tree.HaxeTree;
-import tree.specific.Declaration;
-import tree.specific.Usage;
+import tree.expression.Declaration;
+import tree.expression.Usage;
 
 /**
  * This class allows to get images for such workspace elements as

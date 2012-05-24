@@ -8,7 +8,7 @@
  * Contributors:
  *    Anatoly Kondratyev (anatoly.kondratyev@googlemail.com)
  *******************************************************************************/
-package tree.specific;
+package tree.statement;
 
 
 import org.antlr.runtime.Token;
@@ -16,20 +16,14 @@ import org.antlr.runtime.Token;
 import tree.HaxeTree;
 
 /**
- * The Class TryNode.
+ * The Class SwitchNode.
  * 
  * @author Anatoly Kondratyev
  */
-public class TryNode extends HaxeTree 
+public class SwitchNode extends Statement 
 {
-	/**
-	 * Instantiates a new try node.
-	 * 
-	 * @param t
-	 *            the t
-	 */
-	public TryNode(final Token t) {
+	public SwitchNode(final Token t) 
+	{
 		super(t);
-		// TODO Auto-generated constructor stub
 	}
 }

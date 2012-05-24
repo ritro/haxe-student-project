@@ -18,7 +18,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import tree.HaxeTree;
-import tree.specific.Usage;
+import tree.expression.Usage;
 import tree.utils.TreeUtils;
 import tree.utils.ReferencesListBuilder;
 import workspace.Activator;

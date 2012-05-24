@@ -1,9 +1,8 @@
-package tree.specific;
+package tree.expression;
 
 
 import org.antlr.runtime.Token;
 
-import tree.HaxeTree;
 import tree.specific.type.HaxeType;
 import tree.utils.TypeUtils;
 
@@ -18,7 +17,8 @@ import tree.utils.TypeUtils;
  * EReg - regular expression : ~/[a-z]+/i
  * @author Savenko Maria
  */
-public class Constant extends HaxeTree {
+public class Constant extends Expression
+{
 
 	public Constant(final Token token) 
 	{

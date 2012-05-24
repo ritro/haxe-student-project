@@ -12,7 +12,7 @@ import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 
 import tree.HaxeTree;
-import tree.specific.Declaration;
+import tree.expression.Declaration;
 import tree.utils.TreeUtils;
 import workspace.Activator;
 import workspace.elements.HaxeProject;

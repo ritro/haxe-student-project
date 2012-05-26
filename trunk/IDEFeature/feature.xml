@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="haXeFeature"
+      label="haXeIDE"
+      version="0.0.2.qualifier">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.ui.ide" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ltk.core.refactoring" version="3.5.201" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.300" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui"/>
+      <import plugin="lpg.runtime.java" version="2.0.18" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.compare"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.help"/>
+      <import plugin="org.eclipse.ltk.ui.refactoring"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.ui.navigator"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jdt.debug"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+   </requires>
+
+   <plugin
+         id="haXe_IDE"
+         download-size="0"
+         install-size="0"
+         version="0.0.2.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.imp.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.1.108.v201008201835"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.imp.smapifier"
+         download-size="0"
+         install-size="0"
+         version="0.1.90.v201008201835"
+         unpack="false"/>
+
+   <plugin
+         id="lpg.runtime"
+         download-size="0"
+         install-size="0"
+         version="2.0.18"
+         unpack="false"/>
+
+   <plugin
+         id="lpg.runtime.java"
+         download-size="0"
+         install-size="0"
+         version="2.0.18"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.imp.java.hosted"
+         download-size="0"
+         install-size="0"
+         version="0.1.3.v201008201835"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.imp.smapi"
+         download-size="0"
+         install-size="0"
+         version="0.1.91.v201008201835"
+         unpack="false"/>
+
+   <plugin
+         id="com.ibm.wala.shrike"
+         download-size="0"
+         install-size="0"
+         version="1.1.3.v201008201835"
+         unpack="false"/>
+
+</feature>

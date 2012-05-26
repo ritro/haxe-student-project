@@ -77,7 +77,13 @@ public class TypeUtils
         }
         if (stdTypes == null)
         {
-           stdTypes = lib.getFile(primaryTypesFileName).getAst();
+            file = lib.getFile(primaryTypesFileName);
+            if (file == null)
+            {
+                Activator.logger.error("Could not find lib file");
+                return null;
+            }
+            stdTypes = file.getAst();
         }
         if (stdTypes == null)
         {

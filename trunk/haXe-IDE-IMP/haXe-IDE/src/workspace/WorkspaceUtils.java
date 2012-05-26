@@ -254,24 +254,4 @@ public abstract class WorkspaceUtils
         IEditorPart editor = page.openEditor(new FileEditorInput(file), desc.getId());
         return editor;
     }
-    
-    public static IFile getFile(final HaxeTree node)
-    {
-        return null;
-    }
-    
-    public static String getFullPackage(final HaxeTree node)
-    {
-        String pack = node.getPackage();
-        if (!pack.isEmpty())
-        {
-            pack += ".";
-        }
-        IFile file = getFile(node);
-        String nameWithExt = file.getName();
-        String name = nameWithExt.substring(0, nameWithExt.length() - 3);
-        
-        pack += name;
-        return pack;
-    }
 }

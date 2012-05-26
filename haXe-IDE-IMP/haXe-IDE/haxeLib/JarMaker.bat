@@ -1,0 +1,1 @@
+jar -cf LightHaxeLib.jar *.hx

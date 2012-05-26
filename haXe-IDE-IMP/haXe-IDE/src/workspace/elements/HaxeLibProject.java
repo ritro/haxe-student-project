@@ -1,7 +1,7 @@
 package workspace.elements;
 
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -11,6 +11,7 @@ import java.util.jar.JarFile;
 
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
@@ -22,13 +23,31 @@ import workspace.WorkspaceUtils;
 
 public class HaxeLibProject extends AbstractHaxeProject
 {
-    private String libPath = null;
+    private static final String _defaultPath = "haxeLib/";
+    private IPath libPath = null;
     
     public HaxeLibProject(final String libraryPath)
     {
         super();
         
-        libPath = libraryPath;        
+        libPath = new Path( libraryPath);
+        analyzeProjectStructure();
+    }
+    
+    public HaxeLibProject()
+    {
+        super();
+
+        URL url = Thread.currentThread().getContextClassLoader().getResource(_defaultPath);
+        try
+        {
+            url = FileLocator.toFileURL(url);
+            libPath = new Path(url.getPath());
+        }
+        catch (IOException e)
+        {
+            Activator.logger.error("HaxeLibProject lib path not found.");
+        }
         analyzeProjectStructure();
     }
     
@@ -42,6 +61,62 @@ public class HaxeLibProject extends AbstractHaxeProject
         fillFileList();
     }
     
+    protected void fillFileList()
+    {
+        Logger logger = Activator.logger;
+        
+        try
+        {
+            File folder = libPath.toFile();
+            
+            for (File file : folder.listFiles())
+            {
+                if (file.isDirectory())
+                {
+                    continue;
+                }
+                String filePath = file.getPath().toString();
+                InputStream in = new FileInputStream(file);
+                
+                HaxeTree ast = WorkspaceUtils.parseFileContents(in);
+                in.close();
+                
+                if (ast == null)
+                {
+                    logger.info("Activator.parseLibs Could not parse lib file: ", filePath);
+                    continue;
+                }
+                
+                String filename = WorkspaceUtils.getHaxeFileNameFromPath(file.getName());
+                if (filename == null)
+                {
+                    logger.info("Activator.parseLibs Something is not right with filename");
+                    continue;
+                }
+                // 1. Try get package from file itself
+                // for file File.hx it will look like a.b
+                String pack = ast.getPackage();
+                // 2. add to package a file name a.b.File
+                pack = pack == null || pack.isEmpty()
+                        ? filename
+                        : pack + "." + filename; 
+                // 3. add to libs
+                HaxeFile hFile = new HaxeFile(pack, ast);
+                addFile(pack, hFile);
+            }
+        }
+        catch (RecognitionException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    /*
     protected void fillFileList()
     {
         Bundle bundle = Platform.getBundle(Activator.kPluginID);
@@ -95,8 +170,10 @@ public class HaxeLibProject extends AbstractHaxeProject
         }
         catch (IOException | RecognitionException e)
         {
-            System.out.printf("Exception while parsing libs: {0}", e.toString());
+            String message = "Exception while parsing libs: " + e.toString();
+            System.out.printf(message);
             System.out.println();
+            Activator.logger.error(message);
         }
-    }
+    }*/
 }

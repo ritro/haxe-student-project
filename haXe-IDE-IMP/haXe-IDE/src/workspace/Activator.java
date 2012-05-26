@@ -169,8 +169,8 @@ public class Activator extends PluginBase{
 	}
 	
 	private void connectLibs() throws URISyntaxException, IOException
-	{        
-	    libraries = new HaxeLibProject(libsPath);
+	{
+	    libraries = new HaxeLibProject();
 	    libraries.linkLib();
 	}
 }

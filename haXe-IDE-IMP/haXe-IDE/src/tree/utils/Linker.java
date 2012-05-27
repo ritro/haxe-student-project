@@ -429,17 +429,13 @@ public class Linker extends AbstractHaxeTreeVisitor
         for (String pack : imports.keySet())
         {
             // imports like a.b.c
-            if (pack.endsWith("." + name))
+            if (pack.equals(name))
             {
             	HaxeTree pDeclaration = imports.get(pack);
             	if (!(pDeclaration instanceof ClassNode))
             	{
             		// TODO and what to do?
             		return;
-            	}
-            	//if (object.getChildCount() != pDeclaration.getc)
-            	{
-            		
             	}
             	declaration = pDeclaration;
             	break;

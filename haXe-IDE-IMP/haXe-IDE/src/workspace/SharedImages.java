@@ -7,11 +7,15 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.jface.viewers.DecorationOverlayIcon;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 public class SharedImages
 {
     public static final IPath ICONS_PATH = new Path("icons");
+    
+    public static final String HAXE_LOGO            = "haxe_logo.png";
     
     // folders
     public static final String BASE                 = "base";
@@ -41,6 +45,9 @@ public class SharedImages
     public static final String IMG_UNKNOWN          = "unknown_item.gif"; //$NON-NLS-1$
 
     // Set of predefined Image Descriptors.
+    public static final ImageDescriptor DESC_HAXE_LOGO      = createWorkspaceObjFromKey(BASE, HAXE_LOGO);
+    public static final ImageDescriptor DESC_PROJECT        = 
+            PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(org.eclipse.ui.ide.IDE.SharedImages.IMG_OBJ_PROJECT);
     // workspace
     public static final ImageDescriptor DESC_FILE           = createWorkspaceObjFromKey(BASE, IMG_HAXE_FILE);
     public static final ImageDescriptor DESC_BUILD_FILE     = createWorkspaceObjFromKey(BASE, IMG_BUILD_FILE);
@@ -55,6 +62,7 @@ public class SharedImages
     public static final ImageDescriptor DESC_METHOD_PRIVATE = createViewObjFromKey(BASE, IMG_METHOD_PRIVATE);
     public static final ImageDescriptor DESC_METHOD_PROTECTED = createViewObjFromKey(BASE, IMG_METHOD_PROTECTED);
     
+    
     public static final ImageDescriptor DESC_UNKNOWN        = create(IMG_UNKNOWN);
     
     public static void initialize(Bundle bundle, ImageRegistry reg)
@@ -63,8 +71,13 @@ public class SharedImages
         /*
         IPath path = ICONS_PATH.append("haxe_default_outline_item.gif");
         ImageDescriptor imageDescriptor = createImageDescriptor(bundle, path);
-        reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);*/
+        reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);
     }
+    
+    public static ImageDescriptor createImageDescriptorWithOverlay(ImageDescriptor desc)
+    {
+        DecorationOverlayIcon d = new DecorationOverlayIcon(desc.createImage(), org.eclipse.ui.ide.IDE.SharedImages.);
+    */}
 
     public static ImageDescriptor createImageDescriptor(
             final Bundle bundle,

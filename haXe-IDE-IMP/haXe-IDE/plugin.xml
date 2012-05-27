@@ -138,12 +138,13 @@
             id="haxeplugin.category.wizards">
       </category>
       <wizard
-            name="haXe Project"
-            icon="icons/Workspace/base/haxe_file.gif"
             category="haxeplugin.category.wizards"
             class="workspace.wizards.HaxeProjectWizard"
             hasPages="true"
-            id="haxeplugin.wizards.newproject">
+            icon="icons/Workspace/base/new_project.png"
+            id="haxeplugin.wizards.newproject"
+            name="haXe Project"
+            project="true">
       </wizard>
    </extension>
    <extension

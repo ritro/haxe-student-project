@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.antlr.runtime.ANTLRInputStream;
@@ -253,5 +255,37 @@ public abstract class WorkspaceUtils
                 getEditorRegistry().getDefaultEditor(file.getName());
         IEditorPart editor = page.openEditor(new FileEditorInput(file), desc.getId());
         return editor;
+    }
+    
+    /**
+     * Give this function a folder and it will give you a list
+     * of all files in it as well as all files in it's subfolders.
+     * If a simple file was given then there will be the list with
+     * only that file.
+     * @param folder - file to begin search with
+     * @return list of all files it can get from the argument
+     * startpoint
+     */
+    public static List<File> getAllFiles(final File folder)
+    {
+        List<File> list = new ArrayList<File>();
+        
+        if (folder.isFile())
+        {
+            list.add(folder);
+            return list;
+        }
+        
+        for (File file : folder.listFiles())
+        {
+            if (file.isDirectory())
+            {
+                list.addAll(getAllFiles(file));
+                continue;
+            }
+            list.add(file);
+        }
+        
+        return list;
     }
 }

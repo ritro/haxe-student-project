@@ -14,6 +14,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import workspace.Activator;
 import workspace.HaxeProjectCreator;
+import workspace.SharedImages;
 import workspace.WorkspaceUtils;
 import workspace.elements.BuildFile;
 import workspace.elements.HaxeProject;
@@ -27,6 +28,7 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
     public HaxeProjectWizard() 
     {
         setWindowTitle("Create a haXe project");
+        setDefaultPageImageDescriptor(SharedImages.DESC_HAXE_LOGO);
     }
     
     @Override

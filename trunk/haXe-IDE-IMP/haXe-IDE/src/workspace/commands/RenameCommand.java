@@ -39,7 +39,7 @@ public class RenameCommand extends AbstractCommand
 
     public static HaxeRenameProcessor getAppropriateProcessor(final HaxeTree node, String newName)
     {
-        HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
+        HaxeProject project = Activator.getProjectManager().getCurrentHaxeProject();
         
         if (node instanceof Declaration)
         {

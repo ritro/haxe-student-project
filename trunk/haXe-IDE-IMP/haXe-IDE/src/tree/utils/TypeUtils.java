@@ -58,7 +58,8 @@ public class TypeUtils
      */
     public static HaxeType getStandartTypeByName(final String shortName)
     {
-        HaxeLibProject lib = Activator.getInstance().getHaxeLib();
+        HaxeLibProject lib = 
+                Activator.getProjectManager().getHaxeLib();
         return getStandartTypeByName(shortName, lib);
     }
     
@@ -101,7 +102,8 @@ public class TypeUtils
     
     public static HaxeType getLibType(final String pack, final String shortName)
     {
-        HaxeLibProject lib = Activator.getInstance().getHaxeLib();
+        HaxeLibProject lib = 
+                Activator.getProjectManager().getHaxeLib();
         
         if (lib == null)
         {

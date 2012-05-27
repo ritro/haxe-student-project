@@ -256,7 +256,7 @@ public class HaxeParseController implements IParseController {
     @Override
     public Object parse(final String input, final IProgressMonitor monitor) 
     {
-        Activator.getInstance().setCurrentHaxeProject(fProject.getName());
+        Activator.getProjectManager().setCurrentHaxeProject(fProject.getName());
         currentAST = null;
         if (input.isEmpty())
         {
@@ -274,18 +274,18 @@ public class HaxeParseController implements IParseController {
     
     private void link()
     {
-        HaxeProject project = Activator.getInstance().getProject(fProject.getName());
+        HaxeProject project = Activator.getProjectManager().getProject(fProject.getName());
         Linker linker = new Linker(project);
         linker.visit(currentAST);
         if (currentAST instanceof Module)
         {
-            ((Module)currentAST).setFullPackage(Activator.getInstance().getCurrentFile().getPackage());
+            ((Module)currentAST).setFullPackage(Activator.getProjectManager().getCurrentFile().getPackage());
         }
     }
     
     private void updateProjectInfo()
     {
-        Activator.getInstance().getCurrentFile().setAst(currentAST);
+        Activator.getProjectManager().getCurrentFile().setAst(currentAST);
     }
     
     private void showErrors()

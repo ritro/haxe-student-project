@@ -33,7 +33,7 @@ public class ActiveEditorManager implements IPartListener2
             }
             file = ((IFileEditorInput)input).getFile();
         }
-        Activator.getInstance().setCurrentProject(file);
+        Activator.getProjectManager().setCurrentProject(file);
     }
 
     @Override

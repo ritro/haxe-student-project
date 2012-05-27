@@ -73,14 +73,14 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
     {
         String pack = getTargetPackage();
         // check if file is from haxe lib
-        HaxeLibProject project = Activator.getInstance().getHaxeLib();
+        HaxeLibProject project = Activator.getProjectManager().getHaxeLib();
         HaxeFile file = project.getFile(pack);
         if (file != null)
         {
             return RefactoringStatus.createErrorStatus("Can't edit library file");
         }        
         // available for editing
-        HaxeProject proj = Activator.getInstance().getCurrentHaxeProject();
+        HaxeProject proj = Activator.getProjectManager().getCurrentHaxeProject();
         file = proj.getFile(pack);
         if (file.getRealFile().getResourceAttributes().isReadOnly())
         {

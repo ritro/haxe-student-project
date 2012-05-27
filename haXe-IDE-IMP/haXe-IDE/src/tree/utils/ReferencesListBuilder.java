@@ -27,6 +27,7 @@ import tree.type.HaxeType;
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
+import workspace.ProjectManager;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeProject;
 
@@ -55,12 +56,14 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
      */
     public void visit(final HaxeTree searchFor)
     {
+        ProjectManager prManager = Activator.getProjectManager();
+        
         foundResult = new HashMapForLists<NodeLink>();
-        project = Activator.getInstance().getCurrentHaxeProject();
+        project = prManager.getCurrentHaxeProject();
         
         HashMap<String, HaxeFile> fullList = project.getFiles();
         
-        currFile = Activator.getInstance().getCurrentFile();
+        currFile = prManager.getCurrentFile();
         analyseSearchedObject(searchFor);
         
         for (HaxeFile file : fullList.values())

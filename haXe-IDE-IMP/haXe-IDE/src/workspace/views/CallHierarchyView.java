@@ -76,7 +76,7 @@ public class CallHierarchyView extends HierarchyView
     public void init(final HaxeTree root, final HashMapForLists<NodeLink> list)
     {
         invisibleRoot.clearAllChildren();
-        HaxeFile hFile = Activator.getInstance().getCurrentFile();
+        HaxeFile hFile = Activator.getProjectManager().getCurrentFile();
         
         CallHierarchyNodeElement visibleRoot = 
                 new CallHierarchyNodeElement(hFile.getRealFile(), root, hFile.getPackage());

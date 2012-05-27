@@ -84,7 +84,7 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             //TODO: find haxe compiler and attach it or inform user about not found
             
             // add new project to Activators' projects list
-            Activator.getInstance().addProject(project);
+            Activator.getProjectManager().addProject(project);
         } catch (NullPointerException e)
         {
             //either name is null or empty

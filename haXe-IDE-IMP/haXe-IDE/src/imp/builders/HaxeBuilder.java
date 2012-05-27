@@ -89,7 +89,7 @@ public class HaxeBuilder extends BuilderBase {
 	 */
 	protected boolean isNonRootSourceFile(IFile resource) {
 	    String projName = resource.getProject().getName();
-	    HaxeProject project = Activator.getInstance().getProject(projName);
+	    HaxeProject project = Activator.getProjectManager().getProject(projName);
 	    
 	    for (BuildFile f : project.getBuildFiles())
 	    {

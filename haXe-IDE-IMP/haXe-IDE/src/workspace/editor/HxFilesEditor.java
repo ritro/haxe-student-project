@@ -107,7 +107,7 @@ public class HxFilesEditor extends UniversalEditor
         if (input != null && input instanceof IFileEditorInput)
         {
             IFileEditorInput i = (IFileEditorInput)input;
-            Activator.getInstance().setCurrentProject(i.getFile());
+            Activator.getProjectManager().setCurrentProject(i.getFile());
         }
     }
     
@@ -190,7 +190,7 @@ public class HxFilesEditor extends UniversalEditor
         ISourceViewer view = getSourceViewer();
         HaxeFile hFile = currentFile;
         IFile activeFile = hFile.getRealFile();
-        HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
+        HaxeProject project = Activator.getProjectManager().getCurrentHaxeProject();
         HaxeFile currFile = project.getFile(activeFile);
         String currPack = currFile.getPackage();
         
@@ -225,12 +225,12 @@ public class HxFilesEditor extends UniversalEditor
     private void updateCurrentNode()
     {
         currentNode = null;
-        HaxeProject project = Activator.getInstance().getCurrentHaxeProject();
+        HaxeProject project = Activator.getProjectManager().getCurrentHaxeProject();
         if (project == null)
         {
         	return;
         }
-        updateCurrentFile(Activator.getInstance().getCurrentFile());
+        updateCurrentFile(Activator.getProjectManager().getCurrentFile());
         if (currentFile == null)
         {
             return;

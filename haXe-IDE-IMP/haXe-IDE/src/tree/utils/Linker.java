@@ -31,6 +31,7 @@ import tree.type.ClassNode;
 import tree.type.EnumNode;
 import tree.type.HaxeType;
 import workspace.Activator;
+import workspace.ProjectManager;
 import workspace.elements.AbstractHaxeProject;
 import workspace.elements.HaxeFile;
 import workspace.elements.HaxeLibProject;
@@ -45,6 +46,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     private HashMap<String, HaxeType> currentFileTypes = null;
     private boolean isLibProject = false;
     private String currFileName = null;
+    private ProjectManager projectManager = null;
     
     public Linker(AbstractHaxeProject abstractHaxeProject)
     {
@@ -82,6 +84,7 @@ public class Linker extends AbstractHaxeTreeVisitor
         usings = new ArrayList<String>();
         currentScope = ScopeTypes.Class;
         currentFileTypes = new HashMap<String, HaxeType>();
+        projectManager = Activator.getProjectManager();
     }
     
     /**
@@ -321,9 +324,9 @@ public class Linker extends AbstractHaxeTreeVisitor
         }
         HaxeFile file = project.getFile(longName);
         HaxeTree ast = null;
-        if (file == null && Activator.getInstance().getHaxeLib() != null)
+        if (file == null && projectManager.getHaxeLib() != null)
         {
-            file = Activator.getInstance().getHaxeLib().getFile(longName);
+            file = projectManager.getHaxeLib().getFile(longName);
         }
         if (file != null)
         {

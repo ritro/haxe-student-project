@@ -109,6 +109,10 @@ public class ErrorProvider extends AbstractHaxeTreeVisitor
         }
         HaxeType type = node.getHaxeType();
         HaxeType initType = initialization.getHaxeType(true);
+        if (type == null || initType == null)
+        {
+            return;
+        }
         if (!TypeUtils.isAvailableAssignement(type, initType))
         {
             ErrorPublisher.commitCastError(node, initType);
@@ -400,5 +404,15 @@ public class ErrorProvider extends AbstractHaxeTreeVisitor
     protected void visit(final Module node, Object data)
     {
         visitAllChildren(node, data);
+        
+        String fileName = node.getText();
+        for (HaxeTree child : node.getChildren())
+        {
+            if (child.getText().equals(fileName))
+            {
+                return;
+            }
+        }
+        ErrorPublisher.commitWrongNameError(node);
     }
 }

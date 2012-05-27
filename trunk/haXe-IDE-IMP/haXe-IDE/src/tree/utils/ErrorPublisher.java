@@ -2,6 +2,7 @@ package tree.utils;
 
 import tree.Function;
 import tree.HaxeTree;
+import tree.Module;
 import tree.expression.Assignment;
 import tree.expression.Binary;
 import tree.expression.Declaration;
@@ -111,5 +112,14 @@ public class ErrorPublisher
     public static void commitInvalidAssignError(final Assignment node)
     {
         node.commitError("Invalid assign.");
+    }
+    
+    public static void commitWrongNameError(final Module node)
+    {
+        String message = String.format(
+                "Module %s does not define type %s", 
+                node.getText(), 
+                node.getText());
+        node.commitError(message);
     }
 }

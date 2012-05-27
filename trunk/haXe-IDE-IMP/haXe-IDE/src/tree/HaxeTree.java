@@ -24,9 +24,9 @@ import tree.type.HaxeType;
 
 public class HaxeTree extends CommonTreeReplacer 
 {
-	private static IMessageHandler messageHandler = null;
-	private boolean isDuplicate = false;
+	protected static IMessageHandler messageHandler = null;
 	protected HaxeType haxeType = null;
+	private boolean isDuplicate = false;
 
 	/**
 	 * Contains most left position of tree/subtree

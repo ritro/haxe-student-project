@@ -5,16 +5,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
 
 import tree.HaxeTree;
@@ -69,9 +65,11 @@ public class HaxeLibProject extends AbstractHaxeProject
         {
             File folder = libPath.toFile();
             
-            for (File file : folder.listFiles())
+            List<File> list = WorkspaceUtils.getAllFiles(folder);
+            
+            for (File file : list)
             {
-                if (file.isDirectory())
+                if (!file.getName().endsWith(".hx"))
                 {
                     continue;
                 }
@@ -83,16 +81,11 @@ public class HaxeLibProject extends AbstractHaxeProject
                 
                 if (ast == null)
                 {
-                    logger.info("Activator.parseLibs Could not parse lib file: ", filePath);
+                    logger.info("HaxeLibProject.fillFileList Could not parse lib file: ", filePath);
                     continue;
                 }
                 
-                String filename = WorkspaceUtils.getHaxeFileNameFromPath(file.getName());
-                if (filename == null)
-                {
-                    logger.info("Activator.parseLibs Something is not right with filename");
-                    continue;
-                }
+                String filename = file.getName().substring(0, file.getName().lastIndexOf('.'));
                 // 1. Try get package from file itself
                 // for file File.hx it will look like a.b
                 String pack = ast.getPackage();

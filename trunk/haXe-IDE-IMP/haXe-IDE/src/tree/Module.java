@@ -24,6 +24,15 @@ public class Module extends HaxeTree
         return fullPackage;
     }
     
+    public String getText()
+    {
+        if (fullPackage == null)
+        {
+            return "";
+        }
+        return fullPackage.substring(getPackage().length() + 1);
+    }
+    
     public String getPackage()
     {
         if (packageName == null)
@@ -47,5 +56,18 @@ public class Module extends HaxeTree
             return;
         }
         packageName = supposedPackNode.getChild(0).getText();
+    }
+    
+    public void commitError(final String message) 
+    {
+        if (messageHandler == null)
+        {
+            return;
+        }
+        messageHandler.handleSimpleMessage( 
+                message, 
+                0, 
+                0,
+                0, 0, 1, 1);
     }
 }

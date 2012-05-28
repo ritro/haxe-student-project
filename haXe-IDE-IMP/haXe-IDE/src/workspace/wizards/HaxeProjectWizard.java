@@ -1,6 +1,5 @@
 package workspace.wizards;
 
-
 import java.net.URI;
 
 import org.eclipse.core.runtime.CoreException;
@@ -12,7 +11,6 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
-import workspace.Activator;
 import workspace.HaxeProjectCreator;
 import workspace.SharedImages;
 import workspace.WorkspaceUtils;
@@ -82,10 +80,8 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             project.createFile(pageOne.getMainFileName() + ".hx");
             
             //TODO: find haxe compiler and attach it or inform user about not found
-            
-            // add new project to Activators' projects list
-            Activator.getProjectManager().addProject(project);
-        } catch (NullPointerException e)
+        } 
+        catch (NullPointerException e)
         {
             //either name is null or empty
             return false;

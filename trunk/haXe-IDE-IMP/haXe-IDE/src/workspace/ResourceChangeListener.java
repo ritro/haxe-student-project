@@ -1,5 +1,6 @@
 package workspace;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -7,6 +8,8 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.runtime.CoreException;
+
+import workspace.elements.HaxeProject;
 
 public class ResourceChangeListener implements IResourceChangeListener
 {
@@ -23,6 +26,7 @@ public class ResourceChangeListener implements IResourceChangeListener
         /*
         IResource res = event.getResource();
         
+        // TODO: pre delete - close all files from project that is deleted or file that is deleted
         if (event.getType() == IResourceChangeEvent.PRE_DELETE
                 && res instanceof IProject)
         {
@@ -59,19 +63,54 @@ public class ResourceChangeListener implements IResourceChangeListener
             IResource resource = delta.getResource();
             if (delta.getKind() == IResourceDelta.ADDED)
             {
-                return true;
+                ProjectManager manager = Activator.getProjectManager();
+                HaxeProject project = null;
+                switch (resource.getType())
+                {
+                    case IResource.FOLDER: return true;
+                    case IResource.PROJECT:
+                        project = new HaxeProject((IProject)resource);
+                        manager.addProject(project);
+                        break;
+                    case IResource.FILE: 
+                        String extention = resource.getFileExtension();
+                        if ("hx".equalsIgnoreCase(extention))
+                        {
+                            project = 
+                                    manager.getProject(resource.getProject().getName());
+                            project.addFile((IFile)resource);
+                        }
+                        else if ("hxml".equalsIgnoreCase(extention))
+                        {
+                            project = 
+                                    manager.getProject(resource.getProject().getName());
+                            
+                            //project.addBuildFile((IFile)resource);
+                        }
+                        break;
+                    default: break;
+                }
+                return false;
             }
             
             if (delta.getKind() == IResourceDelta.REMOVED)
             {
+                ProjectManager manager = Activator.getProjectManager();
                 switch (resource.getType())
                 {
                     case IResource.FOLDER: return true;
                     case IResource.PROJECT: 
-                        Activator.getProjectManager().removeProject(resource.getName());
+                        manager.removeProject(resource.getName());
                         break;
                     case IResource.FILE: 
-                        if ("hx".equalsIgnoreCase(resource.getFileExtension()))
+                        String extention = resource.getFileExtension();
+                        if ("hx".equalsIgnoreCase(extention))
+                        {
+                            HaxeProject project = 
+                                    manager.getProject(resource.getProject().getName());
+                            project.removeFile((IFile)resource);
+                        }
+                        else if ("hxml".equalsIgnoreCase(extention))
                         {
                             
                         }
@@ -79,6 +118,14 @@ public class ResourceChangeListener implements IResourceChangeListener
                     default: break;
                 }
                 return false;
+            }
+            
+            // then folders/files added or removed from inner folders
+            // these folders will have Type 'changed' so we need to explore 
+            // them not to miss addings or removings
+            if (delta.getKind() == IResourceDelta.CHANGED)
+            {
+                return true;
             }
             
             return true;

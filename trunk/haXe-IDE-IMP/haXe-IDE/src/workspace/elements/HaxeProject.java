@@ -40,6 +40,45 @@ public class HaxeProject extends AbstractHaxeProject
         return baseProject.getName();
     }
     
+    public void removeFile(final IFile file)
+    {
+        if (fileList == null)
+        {
+            return;
+        }
+        String fName = file.getName().substring(
+                0, 
+                file.getName().length() - file.getFileExtension().length() - 1);
+        for (String name : fileList.keySet())
+        {
+            if (name.endsWith(fName))
+            {
+                HaxeFile hfile = fileList.get(name);
+                if (hfile != null && hfile.getPath().equals(file.getFullPath()))
+                {
+                    fileList.remove(name);
+                    return;
+                }
+            }
+        }
+    }
+    
+    public void addFile(final IFile file)
+    {
+        HaxeTree ast = null;
+        try
+        {
+            ast = WorkspaceUtils.parseFileContents(file.getContents());
+        }
+        catch (RecognitionException | IOException | CoreException e)
+        {
+            System.out.println("HaxeProject.addFile: Parsefile failed");
+            e.printStackTrace();
+        }
+        HaxeFile hFile = new HaxeFile(file, ast);
+        addFile(hFile);
+    }
+    
     public void addFile(final HaxeFile file)
     {
         String pack = file.getPackage();
@@ -196,16 +235,15 @@ public class HaxeProject extends AbstractHaxeProject
             List<IFile> ff = visitor.getBuildFileList();
             for (IFile f : ff)
             {
-                System.out.println("Parsing file begin: " + f.getLocation().toOSString());
-                HaxeTree ast = WorkspaceUtils.parseFileContents(f.getContents());                
-                HaxeFile file = new HaxeFile(f, ast);
-                
-                addFile(file);
+                System.out.println(
+                        "HaxeProject.fillFileList: Parsing file begin: " + 
+                        f.getLocation().toOSString());
+                addFile(f);
             }
         }
-        catch (RecognitionException | IOException | CoreException e)
+        catch (CoreException e)
         {
-            System.out.println("Parsefile failed");
+            System.out.println("HaxeProject.fillFileList: failed");
             e.printStackTrace();
         }
     }

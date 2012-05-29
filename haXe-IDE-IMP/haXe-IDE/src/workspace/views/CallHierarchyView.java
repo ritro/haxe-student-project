@@ -29,7 +29,7 @@ import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.WorkspaceUtils;
 import workspace.editor.HxFilesEditor;
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 
 public class CallHierarchyView extends HierarchyView
 {
@@ -76,7 +76,7 @@ public class CallHierarchyView extends HierarchyView
     public void init(final HaxeTree root, final HashMapForLists<NodeLink> list)
     {
         invisibleRoot.clearAllChildren();
-        HaxeFile hFile = Activator.getProjectManager().getCurrentFile();
+        CodeFile hFile = Activator.getProjectManager().getCurrentFile();
         
         CallHierarchyNodeElement visibleRoot = 
                 new CallHierarchyNodeElement(hFile.getRealFile(), root, hFile.getPackage());

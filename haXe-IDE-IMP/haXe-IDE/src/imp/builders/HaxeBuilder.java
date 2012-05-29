@@ -17,6 +17,7 @@ import org.eclipse.imp.runtime.PluginBase;
 
 import workspace.Activator;
 import workspace.elements.BuildFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
 
 /**
@@ -74,7 +75,7 @@ public class HaxeBuilder extends BuilderBase {
 	 * @return true iff an arbitrary file is a haxe source file.
 	 */
 	protected boolean isSourceFile(IFile file) {
-		return !file.isDerived() && !file.getFileExtension().equals("hx");
+		return !file.isDerived() && !file.getFileExtension().equals(CodeFile.EXTENTION);
 	}
 
 	/**

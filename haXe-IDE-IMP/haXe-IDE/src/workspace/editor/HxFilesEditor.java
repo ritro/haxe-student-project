@@ -24,12 +24,12 @@ import tree.utils.ReferencesListBuilder;
 import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
 
 public class HxFilesEditor extends UniversalEditor
 { 
-    private HaxeFile                   currentFile     = null;
+    private CodeFile                   currentFile     = null;
 	private HaxeTree                   currentNode     = null;
 	private ReferencesListBuilder      usagesBuilder   = null;
 	private HashMapForLists<NodeLink>  usagesList      = null;
@@ -54,7 +54,7 @@ public class HxFilesEditor extends UniversalEditor
 	    return currentNode;
 	}
 	
-	public HaxeFile getCurrentFile()
+	public CodeFile getCurrentFile()
 	{
 	    return currentFile;
 	}
@@ -150,7 +150,7 @@ public class HxFilesEditor extends UniversalEditor
         return super.getDocumentProvider();
     }*/
     
-    private void updateCurrentFile(final HaxeFile file)
+    private void updateCurrentFile(final CodeFile file)
     {
         currentFile = file;
         if (currentFile != null)
@@ -188,10 +188,10 @@ public class HxFilesEditor extends UniversalEditor
     private void highlightCurrentNodeUsagesInText()
     {        
         ISourceViewer view = getSourceViewer();
-        HaxeFile hFile = currentFile;
+        CodeFile hFile = currentFile;
         IFile activeFile = hFile.getRealFile();
         HaxeProject project = Activator.getProjectManager().getCurrentHaxeProject();
-        HaxeFile currFile = project.getFile(activeFile);
+        CodeFile currFile = project.getFile(activeFile);
         String currPack = currFile.getPackage();
         
         TextPresentation presentation = new TextPresentation();

@@ -6,13 +6,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
 
 public class ProjectManager
 {
-    private HaxeFile                       activeFile      = null;
+    private CodeFile                       activeFile      = null;
     private HashMap<String, HaxeProject>   projects        = null;
     private HaxeLibProject                 libraries       = null;
     private HaxeProject                    currentProject  = null;
@@ -39,7 +39,7 @@ public class ProjectManager
     }
 
     
-    public HaxeFile getCurrentFile()
+    public CodeFile getCurrentFile()
     {
         return activeFile;
     }

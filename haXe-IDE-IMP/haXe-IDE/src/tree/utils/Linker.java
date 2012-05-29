@@ -33,7 +33,7 @@ import tree.type.HaxeType;
 import workspace.Activator;
 import workspace.ProjectManager;
 import workspace.elements.AbstractHaxeProject;
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeLibProject;
 
 public class Linker extends AbstractHaxeTreeVisitor
@@ -322,7 +322,7 @@ public class Linker extends AbstractHaxeTreeVisitor
         {
             return;
         }
-        HaxeFile file = project.getFile(longName);
+        CodeFile file = project.getFile(longName);
         HaxeTree ast = null;
         if (file == null && projectManager.getHaxeLib() != null)
         {

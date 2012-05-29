@@ -11,6 +11,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
+import workspace.elements.BuildFile;
 import workspace.elements.HaxeProject;
 
 public class HaxeProjectCreator
@@ -84,9 +85,9 @@ public class HaxeProjectCreator
             throw new NullPointerException("Build file name is invalid");
         }
         
-        if (!fileName.endsWith(".hxml"))
+        if (!fileName.endsWith(BuildFile.EXTENTION_WITH_DOT))
         {
-            fileName = fileName + ".hxml";
+            fileName = fileName + BuildFile.EXTENTION_WITH_DOT;
         }
     
         return project.createFile(null, fileName, initialContent, false);

@@ -22,7 +22,7 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 import tree.utils.ReferencesListBuilder;
 import workspace.Activator;
 import workspace.HashMapForLists;
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeLibProject;
 import workspace.elements.HaxeProject;
 
@@ -74,7 +74,7 @@ public abstract class HaxeRenameProcessor extends RenameProcessor
         String pack = getTargetPackage();
         // check if file is from haxe lib
         HaxeLibProject project = Activator.getProjectManager().getHaxeLib();
-        HaxeFile file = project.getFile(pack);
+        CodeFile file = project.getFile(pack);
         if (file != null)
         {
             return RefactoringStatus.createErrorStatus("Can't edit library file");

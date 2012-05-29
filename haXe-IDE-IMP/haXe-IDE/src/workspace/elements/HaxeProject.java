@@ -21,8 +21,6 @@ import workspace.WorkspaceUtils;
 
 public class HaxeProject extends AbstractHaxeProject
 {    
-    public static String _defaultExtention = ".hx";
-    
     private IProject baseProject;
     private List<BuildFile> buildFiles = null;
 
@@ -53,7 +51,7 @@ public class HaxeProject extends AbstractHaxeProject
         {
             if (name.endsWith(fName))
             {
-                HaxeFile hfile = fileList.get(name);
+                CodeFile hfile = fileList.get(name);
                 if (hfile != null && hfile.getPath().equals(file.getFullPath()))
                 {
                     fileList.remove(name);
@@ -65,6 +63,10 @@ public class HaxeProject extends AbstractHaxeProject
     
     public void addFile(final IFile file)
     {
+        if (!file.getFileExtension().equals(CodeFile.EXTENTION))
+        {
+            return;
+        }
         HaxeTree ast = null;
         try
         {
@@ -75,18 +77,18 @@ public class HaxeProject extends AbstractHaxeProject
             System.out.println("HaxeProject.addFile: Parsefile failed");
             e.printStackTrace();
         }
-        HaxeFile hFile = new HaxeFile(file, ast);
+        CodeFile hFile = new CodeFile(file, ast);
         addFile(hFile);
     }
     
-    public void addFile(final HaxeFile file)
+    public void addFile(final CodeFile file)
     {
         String pack = file.getPackage();
 
         addFile(pack, file);
     }
     
-    public HaxeFile getFile(final IFile file)
+    public CodeFile getFile(final IFile file)
     {
         if (fileList == null)
         {
@@ -99,7 +101,7 @@ public class HaxeProject extends AbstractHaxeProject
         {
             if (name.endsWith(fName))
             {
-                HaxeFile hfile = fileList.get(name);
+                CodeFile hfile = fileList.get(name);
                 if (hfile != null && hfile.getPath().equals(file.getFullPath()))
                 {
                     return hfile;
@@ -111,7 +113,7 @@ public class HaxeProject extends AbstractHaxeProject
     
     public HaxeTree getFileAST(final IFile file)
     {
-        HaxeFile hfile = getFile(file);
+        CodeFile hfile = getFile(file);
         if (hfile != null)
         {
             return hfile.getAst();
@@ -123,6 +125,17 @@ public class HaxeProject extends AbstractHaxeProject
     public List<BuildFile> getBuildFiles()
     {
         return buildFiles;
+    }
+    
+    public void addBuildFile(final IFile file)
+    {
+        if (!file.getFileExtension().equals(BuildFile.EXTENTION))
+        {
+            return;
+        }
+        BuildFile bFile = new BuildFile(file);
+
+        addBuildFile(bFile);
     }
     
     public void addBuildFile(final BuildFile file)
@@ -177,10 +190,15 @@ public class HaxeProject extends AbstractHaxeProject
     
     public IFile createFile(final String pathWithName, String fileContents, final boolean ifOpen) 
             throws CoreException
-    {        
+    {
         if (fileContents == null)
         {
             fileContents = "";
+            if (pathWithName.endsWith(CodeFile.EXTENTION_WITH_DOT))
+            {
+                // TODO fix class name and maybe move this code to CodeFile
+                fileContents = "class A { \n\r}";
+            }
         }
         
         InputStream stream = new ByteArrayInputStream((fileContents).getBytes());
@@ -224,7 +242,7 @@ public class HaxeProject extends AbstractHaxeProject
             return;
         }
         
-        ProjectVisitor visitor = new ProjectVisitor("hx");
+        ProjectVisitor visitor = new ProjectVisitor(CodeFile.EXTENTION);
         try
         {
             for (IResource r : baseProject.members())
@@ -255,7 +273,7 @@ public class HaxeProject extends AbstractHaxeProject
             return;
         }
         
-        ProjectVisitor visitor = new ProjectVisitor(BuildFile._defaultBuildFileExtention);
+        ProjectVisitor visitor = new ProjectVisitor(BuildFile.EXTENTION);
         try
         {
             for (IResource r : baseProject.members())

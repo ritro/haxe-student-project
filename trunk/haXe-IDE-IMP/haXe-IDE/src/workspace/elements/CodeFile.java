@@ -6,13 +6,16 @@ import org.eclipse.core.runtime.IPath;
 
 import tree.HaxeTree;
 
-public class HaxeFile
+public class CodeFile
 {
+    public static final String EXTENTION = "hx";
+    public static final String EXTENTION_WITH_DOT = "." + EXTENTION;
+    
     private IFile rfile = null;
     private HaxeTree ast = null;
     private String fpackage = null;
     
-    public HaxeFile(final IFile file, final HaxeTree astForFile)
+    public CodeFile(final IFile file, final HaxeTree astForFile)
     {
         rfile = file;
         ast = astForFile;
@@ -29,7 +32,7 @@ public class HaxeFile
      * @param pack - package to file
      * @param astForFile - file ast
      */
-    public HaxeFile(final String pack, final HaxeTree astForFile)
+    public CodeFile(final String pack, final HaxeTree astForFile)
     {
         fpackage = pack;
         ast = astForFile;

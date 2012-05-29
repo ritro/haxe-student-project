@@ -28,7 +28,7 @@ import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.ProjectManager;
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
 
 /**
@@ -44,7 +44,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     // filepackage - list of found nodes in this' file ast
     private HashMapForLists<NodeLink> foundResult = null;
     private HaxeProject project = null;
-    private HaxeFile currFile = null;
+    private CodeFile currFile = null;
     
     /**
      * Starts the analysis of references to sertain object in the project.
@@ -61,12 +61,12 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         foundResult = new HashMapForLists<NodeLink>();
         project = prManager.getCurrentHaxeProject();
         
-        HashMap<String, HaxeFile> fullList = project.getFiles();
+        HashMap<String, CodeFile> fullList = project.getFiles();
         
         currFile = prManager.getCurrentFile();
         analyseSearchedObject(searchFor);
         
-        for (HaxeFile file : fullList.values())
+        for (CodeFile file : fullList.values())
         {
             currFile = file;
             visit(file.getAst(), null);
@@ -84,7 +84,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         searchObject = searchFor;
         foundResult = new HashMapForLists<NodeLink>();
         
-        currFile = new HaxeFile("some file", ast);
+        currFile = new CodeFile("some file", ast);
         visit(ast, null);
     }
     

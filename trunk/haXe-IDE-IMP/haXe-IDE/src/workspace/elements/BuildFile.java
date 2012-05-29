@@ -10,7 +10,10 @@ import java.nio.file.Path;
 import org.eclipse.core.resources.IFile;
 
 public class BuildFile
-{    
+{
+    public static final String EXTENTION = "hxml";
+    public static final String EXTENTION_WITH_DOT = "." + EXTENTION;
+    
     public enum Targets 
     {
         FLASH_9, 
@@ -21,10 +24,9 @@ public class BuildFile
         PHP
     };
     
-    public static String _defaultBuildFileExtention = "hxml";
     public static String _defaultSourceFolderName = "src";
     public static String _defaultOutputFolderName = "out";
-    public static String _defaultName = "build." + _defaultBuildFileExtention;
+    public static String _defaultName = "build" + EXTENTION_WITH_DOT;
     public static String _defaultMainFileName = "src\\Main";
     public static String _defaultResultFileName = "out\\Result";
     
@@ -41,18 +43,32 @@ public class BuildFile
     public BuildFile(
             String name, String srcFolder, String outFileName, Targets target, String mainFName)
     {
-        this.name = name;  
+        this.name = name;
         srcFolderName = srcFolder;
         outputFileNameWithPath = outFileName;
         this.target = target;
         mainFileNameWithPath = mainFName;
         
-        if (!name.endsWith(".hxml"))
+        if (!name.endsWith(EXTENTION_WITH_DOT))
         {
-            name += ".hxml";
+            name += EXTENTION_WITH_DOT;
         }
         
         pathToBuildFileWithName = (new File(name)).toPath();
+    }
+    
+    public BuildFile(final IFile file)
+    {
+        String fileName = file.getName();
+        name = fileName.substring(0, fileName.length() - EXTENTION_WITH_DOT.length());
+        
+        // TODO we should somewhat get this info from file
+        //srcFolderName = srcFolder;
+        //outputFileNameWithPath = outFileName;
+        //this.target = target;
+        //mainFileNameWithPath = mainFName;
+        
+        pathToBuildFileWithName = file.getFullPath().toFile().toPath();
     }
     
     public BuildFile()
@@ -160,7 +176,7 @@ public class BuildFile
     
     public IFile getMainFile()
     {
-        return (IFile) new File(mainFileNameWithPath + ".hx");
+        return (IFile) new File(mainFileNameWithPath + CodeFile.EXTENTION_WITH_DOT);
     }
     
     public String getContent()

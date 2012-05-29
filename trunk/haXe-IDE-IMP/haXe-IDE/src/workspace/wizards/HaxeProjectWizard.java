@@ -15,6 +15,7 @@ import workspace.HaxeProjectCreator;
 import workspace.SharedImages;
 import workspace.WorkspaceUtils;
 import workspace.elements.BuildFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
 
 public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutableExtension
@@ -77,7 +78,7 @@ public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutable
             project.createFolders(struct);
             
             // create main file and add it to the project
-            project.createFile(pageOne.getMainFileName() + ".hx");
+            project.createFile(pageOne.getMainFileName() + CodeFile.EXTENTION_WITH_DOT);
             
             //TODO: find haxe compiler and attach it or inform user about not found
         } 

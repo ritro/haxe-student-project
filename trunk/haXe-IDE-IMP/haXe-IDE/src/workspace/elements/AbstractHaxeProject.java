@@ -8,19 +8,19 @@ import tree.utils.Linker;
 
 public abstract class AbstractHaxeProject
 {
-    protected HashMap<String, HaxeFile> fileList = null;
+    protected HashMap<String, CodeFile> fileList = null;
 
     public AbstractHaxeProject()
     {
-        fileList = new HashMap<String, HaxeFile>();
+        fileList = new HashMap<String, CodeFile>();
     }
     
-    public void addFile(final String pack, final HaxeFile file)
+    public void addFile(final String pack, final CodeFile file)
     {
         fileList.put(pack, file);
     }
     
-    public HashMap<String, HaxeFile> getFiles()
+    public HashMap<String, CodeFile> getFiles()
     {
         return fileList;
     }
@@ -28,7 +28,7 @@ public abstract class AbstractHaxeProject
     /**
      * Use this notation: a.b.YouFileName
      */
-    public HaxeFile getFile(final String pack)
+    public CodeFile getFile(final String pack)
     {
         return fileList.get(pack);
     }
@@ -38,7 +38,7 @@ public abstract class AbstractHaxeProject
     protected void linkAll()
     {
         Linker linker = new Linker(this);
-        for (HaxeFile file : fileList.values())
+        for (CodeFile file : fileList.values())
         {
             HaxeTree ast = file.getAst();
             if (ast == null)

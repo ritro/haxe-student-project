@@ -69,7 +69,7 @@ public class HaxeLibProject extends AbstractHaxeProject
             
             for (File file : list)
             {
-                if (!file.getName().endsWith(".hx"))
+                if (!file.getName().endsWith(CodeFile.EXTENTION_WITH_DOT))
                 {
                     continue;
                 }
@@ -94,7 +94,7 @@ public class HaxeLibProject extends AbstractHaxeProject
                         ? filename
                         : pack + "." + filename; 
                 // 3. add to libs
-                HaxeFile hFile = new HaxeFile(pack, ast);
+                CodeFile hFile = new CodeFile(pack, ast);
                 addFile(pack, hFile);
             }
         }

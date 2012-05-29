@@ -6,7 +6,7 @@ import java.util.List;
 import tree.HaxeTree;
 import tree.type.HaxeType;
 import workspace.Activator;
-import workspace.elements.HaxeFile;
+import workspace.elements.CodeFile;
 import workspace.elements.HaxeLibProject;
 
 public class TypeUtils
@@ -70,7 +70,7 @@ public class TypeUtils
         {
             return null;
         }
-        HaxeFile file = lib.getFile(shortName);
+        CodeFile file = lib.getFile(shortName);
         HaxeTree stdTypes = null;
         if (file != null)
         {
@@ -109,7 +109,7 @@ public class TypeUtils
         {
             return null;
         }
-        HaxeFile file = lib.getFile(pack);
+        CodeFile file = lib.getFile(pack);
         if (file == null)
         {
             return null;

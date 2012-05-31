@@ -22,7 +22,7 @@ import tree.expression.MethodCall;
 import tree.expression.Slice;
 import tree.type.HaxeType;
 
-public class HaxeTree extends CommonTreeReplacer 
+public class HaxeTree extends GenericCommonTree<HaxeTree> 
 {
 	protected static IMessageHandler messageHandler = null;
 	protected HaxeType haxeType = null;

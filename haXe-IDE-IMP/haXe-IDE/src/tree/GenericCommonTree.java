@@ -8,19 +8,19 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
-public abstract class CommonTreeReplacer extends CommonTree 
+public abstract class GenericCommonTree<T extends CommonTree> extends CommonTree 
 {
-    public CommonTreeReplacer() {}
+    public GenericCommonTree() {}
     
-    public CommonTreeReplacer(final Token t) 
+    public GenericCommonTree(final Token t) 
     {
         super(t);
     }
     
     @Override
-    public HaxeTree getChild(final int i) 
+    public T getChild(final int i) 
     {
-        return (HaxeTree) super.getChild(i);
+        return (T) super.getChild(i);
     }
 
     @Override
@@ -47,23 +47,23 @@ public abstract class CommonTreeReplacer extends CommonTree
         return getToken().getStopIndex();
     }
     
-    public HaxeTree getParent()
+    public T getParent()
     {
         Tree parent = super.getParent();
         if (parent == null)
         {
             return null;
         }
-        return (HaxeTree) parent;
+        return (T) parent;
     }
     
     @Override
     @SuppressWarnings("unchecked")
-    public List<HaxeTree> getChildren() 
+    public List<T> getChildren() 
     {
-        List<HaxeTree> res = (List<HaxeTree>)super.getChildren();
+        List<T> res = (List<T>)super.getChildren();
         
-        if (res == null) return new ArrayList<HaxeTree>();
+        if (res == null) return new ArrayList<T>();
         
         return res;
     }

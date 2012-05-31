@@ -4,6 +4,8 @@ import tree.ErrorNode;
 import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Assignment;
+import tree.expression.Binary;
+import tree.expression.BinaryOperaionContainer;
 import tree.expression.Constant;
 import tree.expression.Declaration;
 import tree.expression.MethodCall;
@@ -83,12 +85,12 @@ public abstract class TreeUtils
     	HaxeTree node = null;
     	if (supposedNode instanceof Usage)
     	{
-    		node = ((Usage)supposedNode).getDeclarationNode();
+    	    return ((Usage)supposedNode).getDeclarationNode();
     	}
     	// TODO getValidNodeForUsageAnalysis - what to do with DotIdents?
-    	else if (supposedNode instanceof Assignment)
+    	else if (supposedNode instanceof BinaryOperaionContainer)
     	{
-    	    Assignment assign = (Assignment)supposedNode;
+    	    BinaryOperaionContainer assign = (BinaryOperaionContainer)supposedNode;
     	    if (offset == -1 || 
     	            assign.getToken().getStartIndex() + assign.getToken().getText().length() > offset)
     	    {
@@ -101,11 +103,11 @@ public abstract class TreeUtils
     	}
     	else if (supposedNode instanceof Slice)
     	{
-    		node = ((Slice)supposedNode).getDeclarationNode();
+    	    return ((Slice)supposedNode).getDeclarationNode();
     	}
     	else if (supposedNode instanceof MethodCall)
     	{
-    		node = ((MethodCall)supposedNode).getDeclarationNode();
+    	    return ((MethodCall)supposedNode).getDeclarationNode();
     	}
     	else if (supposedNode instanceof NewNode)
     	{

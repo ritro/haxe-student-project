@@ -141,10 +141,18 @@
             name="haXe Project"
             icon="icons/Workspace/base/new_project.png"
             category="haxeplugin.category.wizards"
-            class="workspace.wizards.HaxeProjectWizard"
+            class="workspace.wizards.NewProjectWizard"
             hasPages="true"
             project="true"
             id="haxeplugin.wizards.newproject">
+      </wizard>
+      <wizard
+            category="haxeplugin.category.wizards"
+            class="workspace.wizards.NewFileWizard"
+            icon="icons/Workspace/base/new_file.png"
+            id="haXe-IDE.wizard1"
+            name="name"
+            project="false">
       </wizard>
    </extension>
    <extension

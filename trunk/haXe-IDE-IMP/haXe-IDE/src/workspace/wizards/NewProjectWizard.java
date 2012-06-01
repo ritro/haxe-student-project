@@ -18,13 +18,13 @@ import workspace.elements.BuildFile;
 import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
 
-public class HaxeProjectWizard extends Wizard implements INewWizard, IExecutableExtension
+public class NewProjectWizard extends Wizard implements INewWizard, IExecutableExtension
 {
 
     private ProjectCreationPage pageOne;
     private IConfigurationElement _configurationElement;
 
-    public HaxeProjectWizard() 
+    public NewProjectWizard() 
     {
         setWindowTitle("Create a haXe project");
         setDefaultPageImageDescriptor(SharedImages.DESC_HAXE_LOGO);

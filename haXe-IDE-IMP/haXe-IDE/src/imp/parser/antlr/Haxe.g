@@ -485,8 +485,8 @@ elementarySymbol
     | STRINGLITERAL -> STRINGLITERAL<Constant>[$STRINGLITERAL,"String"]
     | CHARLITERAL   -> CHARLITERAL<Constant>[$CHARLITERAL, "String"]
     | FLOATNUM      -> FLOATNUM<Constant>[$FLOATNUM, "Float"]
-    //| TRUE          -> TRUE<Constant>[$TRUE,"Bool"]
-    //| FALSE         -> FALSE<Constant>[$FALSE,"Bool"]
+    | TRUE          -> TRUE<Constant>[$TRUE,"Bool"]
+    | FALSE         -> FALSE<Constant>[$FALSE,"Bool"]
     ;
 
 WS      : ( ' ' | '\t' | '\r' | '\n' ) {$channel=HIDDEN;}

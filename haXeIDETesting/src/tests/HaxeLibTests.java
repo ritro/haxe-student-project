@@ -1,9 +1,5 @@
-package test;
-
-import static test.TestHelper.parseFunction;
-import static test.TestHelper.parseExpression;
-import static test.TestHelper.parseStatement;
-import static test.TestHelper.parseModule;
+package tests;
+import static utils.TestHelper.*;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;

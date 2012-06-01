@@ -1,11 +1,8 @@
-package test;
-
+package tests;
 import static junit.framework.Assert.assertTrue;
-import static test.TestHelper.parseExpression;
-
+import static utils.TestHelper.parseExpression;
 
 import java.util.List;
-
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;

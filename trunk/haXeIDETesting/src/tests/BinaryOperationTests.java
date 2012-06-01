@@ -1,7 +1,8 @@
-package test;
+package tests;
+
 
 import static junit.framework.Assert.assertTrue;
-import static test.TestHelper.*;
+import static utils.TestHelper.*;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
@@ -12,13 +13,43 @@ import tree.expression.Constant;
 import tree.utils.Environment;
 import tree.utils.Linker;
 import tree.utils.TypeUtils;
+import utils.TestHelper;
 
 public class BinaryOperationTests
 {
     ///
     /// Parser Tests
     ///
-    
+    /*
+    private final Mockery context = new JUnit4Mockery();
+        
+    private MockInterface mockInterface;
+
+    private final static double DELTA = 0.001;        
+
+        @Before
+        public void setUp() {
+         mockInterface = context.mock(MockInterface.class);
+        }
+
+        @Test
+        public void testKineticEnergy() {
+         EinsteinFormulaImpl einsteinFormula = new EinsteinFormulaImpl() {
+          double energy(final double mass) {
+           return (Double) mockInterface.mockMethod(mass);
+          }
+         };
+         
+         final double restMass = 10.0;
+         final double velocity = 100000000.0;
+         final double expectedEnergy = 5.4601175017849928E16;
+         final double mockRestEnergy = 8.987551787368178E17;
+
+         context.checking(new Expectations() { {
+          one(mockInterface).mockMethod(restMass);
+          will(returnValue(mockRestEnergy));
+         } });*/
+         
     //PLUS
     @Test
     public void testBinOpPlus() throws RecognitionException {

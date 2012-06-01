@@ -1,7 +1,6 @@
-package test;
-
+package tests;
 import static junit.framework.Assert.assertTrue;
-import static test.TestHelper.parseModule;
+import static utils.TestHelper.parseModule;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;

@@ -1,11 +1,13 @@
-package test;
+package tests;
+
 
 import static junit.framework.Assert.assertTrue;
-import static test.TestHelper.parseFunction;
+import static utils.TestHelper.parseFunction;
 
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
+import utils.TestHelper;
 import tree.HaxeTree;
 import tree.expression.Assignment;
 import tree.type.HaxeType;

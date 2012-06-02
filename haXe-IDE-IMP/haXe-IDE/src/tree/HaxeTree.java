@@ -18,6 +18,8 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 import org.eclipse.imp.parser.IMessageHandler;
 
+import antlr.Parser;
+
 import tree.expression.MethodCall;
 import tree.expression.Slice;
 import tree.type.HaxeType;
@@ -160,7 +162,7 @@ public class HaxeTree extends GenericCommonTree<HaxeTree>
         assert (token != null);
 
         mostRightPosition = 
-                token.getStartIndex() + token.getText().length();
+                getTokenStartIndex() + token.getText().length();
 
         for (HaxeTree commonTree : getChildren())
         {
@@ -175,8 +177,24 @@ public class HaxeTree extends GenericCommonTree<HaxeTree>
 	 */
 	protected void calculateMostLeftPosition()
 	{
-	    mostLeftPosition = getToken().getStartIndex();
-		for (HaxeTree commonTree : getChildren()) 
+	    int type = token.getType();
+	    if (type == HaxeParser.PROPERTY_DECL ||
+	            type == HaxeParser.PARAM_LIST ||
+	            type == HaxeParser.TYPE_PARAM ||
+	            type == HaxeParser.TYPE_CONSTRAIN ||
+	            type == HaxeParser.IMPLEMENT_LIST ||
+	            type == HaxeParser.DECL_ATTR_LIST)
+	    {
+	        // for proper position counting while this types
+	        // will not have a separate class we will do this
+	        // TODO: make classes for this types
+	        mostLeftPosition = 100500;
+	    }
+	    else
+	    {
+	        mostLeftPosition = getTokenStartIndex();
+	    }
+	    for (HaxeTree commonTree : getChildren()) 
 		{
 			int possibleMLP = 
 					commonTree.getMostLeftPosition();

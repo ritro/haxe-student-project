@@ -18,6 +18,7 @@ import org.eclipse.text.edits.ReplaceEdit;
 import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
+import tree.expression.MethodCall;
 import tree.expression.Usage;
 import tree.expression.Declaration.DeclarationType;
 import tree.type.HaxeType;
@@ -111,11 +112,22 @@ public class FunctionRenameProcessor extends HaxeRenameProcessor
             {
                 HaxeTree node = info.getNode();
                 Pair pair = null;
-                if (node instanceof Usage || node instanceof Function)
+                if (node instanceof MethodCall)
+                {
+                    node = node.getChild(0);
+                }
+                if (node instanceof Function)
+                {
+                    node = node.getChild(0);
+                    pair = new Pair(
+                            node.getTokenStartIndex(),
+                            node.getTokenStopIndex() - node.getTokenStartIndex() + 1);
+                }
+                else if (node instanceof Usage)
                 {
                     pair = new Pair(
-                            node.getToken().getStartIndex(),
-                            node.getToken().getStopIndex() - node.getToken().getStartIndex() + 1);
+                            node.getTokenStartIndex(),
+                            node.getTokenStopIndex() - node.getTokenStartIndex() + 1);
                 }
                 targets.put(pack, pair);
             }

@@ -154,17 +154,12 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         }
         else if (searchFor instanceof Function)
         {
-            if (searchFor.getText().equals("new"))
-            {
-                // TODO actually we can only have one constructor in the class but we 
-                // can have regular Function named 'new' as well and thus I don't know 
-                // how to destinguish them
-                searchObject = searchFor.getParent().getParent();
-            }
-            else
-            {
-                searchObject = searchFor;
-            }
+            // if (searchFor.getText().equals("new"))
+            // TODO actually we can only have one constructor in the class but we 
+            // can have regular Function named 'new' as well and thus I don't know 
+            // how to destinguish them
+            searchObject = searchFor;
+            addToResults(searchObject);
         }
     }
     
@@ -271,10 +266,8 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     {
         HaxeTree parent = node.getParent();
         HaxeTree decl = node.getDeclarationNode();
-        String name = node.getText();
         if ((searchObject instanceof Function 
                 || parent instanceof NewNode) // for constructors
-                && name.equals(searchObject.getText())
                 && decl != null
                 && decl.equals(searchObject))
         {

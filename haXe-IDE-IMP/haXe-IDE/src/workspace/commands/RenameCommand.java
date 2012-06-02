@@ -9,13 +9,14 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
-import org.eclipse.ltk.core.refactoring.participants.RenameProcessor;
 
+import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.utils.TreeUtils;
 import workspace.Activator;
 import workspace.elements.HaxeProject;
+import workspace.refactoring.FunctionRenameProcessor;
 import workspace.refactoring.HaxeRenameProcessor;
 import workspace.refactoring.VariableRenameProcessor;
 
@@ -45,6 +46,13 @@ public class RenameCommand extends AbstractCommand
         {
             return new VariableRenameProcessor(
                     (Declaration)node,
+                    newName, 
+                    project);
+        }
+        if (node instanceof Function)
+        {
+            return new FunctionRenameProcessor(
+                    (Function)node, 
                     newName, 
                     project);
         }

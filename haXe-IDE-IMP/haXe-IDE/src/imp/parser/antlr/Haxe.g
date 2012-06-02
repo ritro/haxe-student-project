@@ -11,7 +11,6 @@ tokens {
     MODULE;
     SUFFIX_EXPR;
     CALL_OR_SLICE;
-    PREFIX_EXPR;
     BLOCK_SCOPE;
     PARAM_LIST;
     TYPE_TAG;
@@ -19,8 +18,6 @@ tokens {
     TYPE_CONSTRAIN;
     IMPLEMENT_LIST;
     DECL_ATTR_LIST;
-    IDENT;
-    ASSIGN_OPERATOR;
     PACKAGE;
 }
 

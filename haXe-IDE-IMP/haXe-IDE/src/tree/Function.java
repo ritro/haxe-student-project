@@ -145,6 +145,24 @@ public class Function extends NodeWithScopeAndModifier implements IPackageInfo
 	    return toString("function");
 	}
 	
+	@Override
+	public boolean equals(Object object)
+	{
+	    if (!(object instanceof Function))
+	    {
+	        return false;
+	    }
+	    Function fun = (Function)object;
+	    if (fun.getText().equals(getText()) &&
+	            fun.getPackage().equals(getPackage()) &&
+	            fun.getTokenStartIndex() == getTokenStartIndex() &&
+	            fun.getTokenStopIndex() == getTokenStopIndex())
+	    {
+	        return true;
+	    }
+	    return false;
+	}
+	
 	public void updateInfo()
 	{
 	    updateModifier();

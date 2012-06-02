@@ -31,7 +31,7 @@ public abstract class GenericCommonTree<T extends CommonTree> extends CommonTree
     
     public int getTokenStartIndex()
     {
-        if (token == null)
+        if (getToken() == null)
         {
             return -1;
         }
@@ -40,7 +40,7 @@ public abstract class GenericCommonTree<T extends CommonTree> extends CommonTree
     
     public int getTokenStopIndex()
     {
-        if (token == null)
+        if (getToken() == null)
         {
             return -1;
         }

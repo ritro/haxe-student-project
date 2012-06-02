@@ -213,4 +213,26 @@ public abstract class TreeUtils
         }
         return null;
     }
+    
+    public static boolean haveErrorNodes(final HaxeTree ast)
+    {
+        if (ast instanceof ErrorNode)
+        {
+            return true;
+        }
+        for (HaxeTree child: ast.getChildren())
+        {
+            if (child instanceof ErrorNode)
+            {
+                return true;
+            }
+            boolean result = haveErrorNodes(child);
+            if (result)
+            {
+                return result;
+            }
+        }
+        
+        return false;
+    }
 }

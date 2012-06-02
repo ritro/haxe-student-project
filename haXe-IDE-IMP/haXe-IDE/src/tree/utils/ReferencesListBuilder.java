@@ -5,6 +5,7 @@ import java.util.HashMap;
 import tree.ErrorNode;
 import tree.Function;
 import tree.HaxeTree;
+import tree.IPackageInfo;
 import tree.Module;
 import tree.expression.Array;
 import tree.expression.Assignment;
@@ -173,8 +174,22 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         {
             return;
         }
-        NodeLink info = new NodeLink(currFile.getRealFile(), foundNode);
-        foundResult.put(currFile.getPackage(), info);
+        if (foundNode instanceof IPackageInfo)
+        {
+            String pack = ((IPackageInfo)foundNode).getPackage();
+            CodeFile file = project.getFile(pack);
+            addToResults(foundNode, file);
+        }
+        else
+        {
+            addToResults(foundNode, currFile);
+        }
+    }
+    
+    private void addToResults(final HaxeTree foundNode, final CodeFile file)
+    {
+        NodeLink info = new NodeLink(file.getRealFile(), foundNode);
+        foundResult.put(file.getPackage(), info);
     }
 
     @Override

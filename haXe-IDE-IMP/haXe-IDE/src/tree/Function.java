@@ -24,12 +24,13 @@ import tree.expression.Declaration;
  * 
  * @author Anatoly Kondratyev
  */
-public class Function extends NodeWithScopeAndModifier
+public class Function extends NodeWithScopeAndModifier implements IPackageInfo
 {
     private static final int PARAM_LIST_TYPE = HaxeParser.PARAM_LIST;
 
 	/** The full name with parameters. */
 	private String fullNameWithParameters = "";
+    private String pack = null;
 	
 	/**
 	 * Generates the string containing function
@@ -117,6 +118,16 @@ public class Function extends NodeWithScopeAndModifier
 	    
 	    return false;
 	}
+    
+    public void setPackage(final String pack)
+    {
+        this.pack = pack;
+    }
+    
+    public String getPackage()
+    {
+        return pack;
+    }
 
 	/**
 	 * Gets the function name. 

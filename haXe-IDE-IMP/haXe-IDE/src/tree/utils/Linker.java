@@ -45,7 +45,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     private AbstractHaxeProject project;
     private HashMap<String, HaxeType> currentFileTypes = null;
     private boolean isLibProject = false;
-    private String currFileName = null;
+    private String currentPackage = null;
     private ProjectManager projectManager = null;
     
     public Linker(AbstractHaxeProject abstractHaxeProject)
@@ -566,6 +566,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(Declaration node, Object data)
     {
+        node.setPackage(currentPackage);
         if (currentScope == ScopeTypes.Class)
         {
             node.setDeclaratonType(DeclarationType.ClassVarDeclaration);
@@ -606,6 +607,8 @@ public class Linker extends AbstractHaxeTreeVisitor
     protected void visit(Function node, Object data)
     {
         Environment funEnv = new Environment((Environment)data);
+        
+        node.setPackage(currentPackage);
         for (HaxeTree child : node.getChildren())
         {
             if (child.getToken().getType() == HaxeParser.TYPE_TAG) 
@@ -748,6 +751,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     @Override
     protected void visit(Module node, Object data)
     {
+        currentPackage = node.getFullPackage();
         for (HaxeTree child : node.getChildren())
         {
             if (child instanceof HaxeType)

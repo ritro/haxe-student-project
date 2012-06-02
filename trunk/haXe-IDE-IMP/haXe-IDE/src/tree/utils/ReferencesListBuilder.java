@@ -300,6 +300,11 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         {
             addToResults(node);
         }
+        if (node.isFieldUse())
+        {
+            HaxeTree child = node.getChild(0).getChild(0);
+            visit(child, data);
+        }
     }
 
     @Override

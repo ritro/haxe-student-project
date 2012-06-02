@@ -4,56 +4,53 @@ package tests;
 import static junit.framework.Assert.assertTrue;
 import static utils.TestHelper.*;
 
+import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.RecognitionException;
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.integration.junit4.JMock;
+import org.jmock.integration.junit4.JUnit4Mockery;
+import org.jmock.lib.legacy.ClassImposteriser;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import antlr.debug.NewLineEvent;
 
 import tree.HaxeTree;
 import tree.expression.Binary;
 import tree.expression.Constant;
 import tree.expression.Usage;
+import tree.type.ClassNode;
 import tree.utils.Environment;
 import tree.utils.Linker;
 import tree.utils.TypeUtils;
 import utils.TestHelper;
 
+@RunWith(JMock.class)
 public class BinaryOperationTests
 {
     ///
     /// Parser Tests
     ///
-    /*
-    private final Mockery context = new JUnit4Mockery();
+    
+    private Mockery context = new JUnit4Mockery() {{
+        setImposteriser(ClassImposteriser.INSTANCE);
+    }};
         
-    private MockInterface mockInterface;
+    private TypeUtils mockClass;
+    private ClassNode intType = new ClassNode(new CommonToken(2, "Int"));
 
-    private final static double DELTA = 0.001;        
-
-        @Before
-        public void setUp() {
-         mockInterface = context.mock(MockInterface.class);
-        }
-
-        @Test
-        public void testKineticEnergy() {
-         EinsteinFormulaImpl einsteinFormula = new EinsteinFormulaImpl() {
-          double energy(final double mass) {
-           return (Double) mockInterface.mockMethod(mass);
-          }
-         };
-         
-         final double restMass = 10.0;
-         final double velocity = 100000000.0;
-         final double expectedEnergy = 5.4601175017849928E16;
-         final double mockRestEnergy = 8.987551787368178E17;
-
-         context.checking(new Expectations() { {
-          one(mockInterface).mockMethod(restMass);
-          will(returnValue(mockRestEnergy));
-         } });*/
+    @Before
+    public void setUp() 
+    {
+        mockClass = context.mock(TypeUtils.class);
+    }
          
     //PLUS
     @Test
-    public void testBinOpPlus() throws RecognitionException {
+    public void testBinOpPlus() throws RecognitionException 
+    {
         HaxeTree tree = parseExpression("x+y");
         assertTrue(tree instanceof Binary);
     }
@@ -266,6 +263,11 @@ public class BinaryOperationTests
     @Test
     public void testIntAfterAdditionExpectiong() throws RecognitionException 
     {
+        context.checking(new Expectations() 
+        { {
+            one(mockClass).getStandartTypeByName("Int");
+            will(returnValue(intType));
+        } });
         HaxeTree tree = parseFunction("function main() { var x; x=123 + 1; }");
         linker.visit(tree, new Environment());
         Binary node = TestHelper.getBinaryExpression(tree);

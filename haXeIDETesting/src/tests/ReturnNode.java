@@ -13,7 +13,7 @@ import tree.utils.Environment;
 import tree.utils.Linker;
 import tree.utils.TypeUtils;
 
-public class ReturnNodeTests
+public class ReturnNode
 {
     private Return getReturnNode(HaxeTree tree)
     {

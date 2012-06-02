@@ -27,7 +27,6 @@
       <import plugin="org.eclipse.ltk.core.refactoring" version="3.5.201" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.expressions" version="3.4.300" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.ui"/>
-      <import plugin="lpg.runtime.java" version="2.0.18" match="greaterOrEqual"/>
       <import plugin="org.eclipse.compare"/>
       <import plugin="org.eclipse.core.filesystem"/>
       <import plugin="org.eclipse.debug.ui"/>
@@ -40,6 +39,9 @@
       <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.jdt.debug"/>
       <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="lpg.runtime"/>
+      <import plugin="com.ibm.icu"/>
+      <import plugin="com.ibm.wala.shrike"/>
    </requires>
 
    <plugin

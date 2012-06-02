@@ -15,7 +15,7 @@ import tree.utils.Environment;
 import tree.utils.Linker;
 import tree.utils.TypeUtils;
 
-public class AssignOperationTests
+public class AssignOperation
 {    
     ///
     /// Type Interference test.

@@ -1,4 +1,5 @@
 package tests;
+
 import static org.junit.Assert.assertTrue;
 import static utils.TestHelper.parseStatement;
 
@@ -11,7 +12,7 @@ import tree.expression.Declaration;
 import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
-public class VarDeclarationTests
+public class VarDeclaration
 {
     // Parser tests (for local variable declarations)
     @Test

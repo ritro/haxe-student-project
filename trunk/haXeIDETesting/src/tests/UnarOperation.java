@@ -8,7 +8,7 @@ import org.junit.Test;
 import tree.HaxeTree;
 import tree.expression.Unary;
 
-public class UnarOpTests
+public class UnarOperation
 {
     ///
     /// Parcer

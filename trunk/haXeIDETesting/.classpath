@@ -5,5 +5,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="/haXe-IDE"/>
 	<classpathentry kind="lib" path="D:/Programming/Diplom/haXeIDETesting/lib/jmock-junit4-2.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Programming/Diplom/haXeIDETesting/lib/jmock-2.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Programming/Diplom/haXeIDETesting/lib/jmock-legacy-2.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Programming/Diplom/haXeIDETesting/lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="D:/Programming/Diplom/haXeIDETesting/lib/objenesis-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

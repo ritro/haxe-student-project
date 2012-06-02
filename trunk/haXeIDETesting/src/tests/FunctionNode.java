@@ -11,7 +11,7 @@ import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 
-public class FunctionNodeTests
+public class FunctionNode
 {
 
     @Test

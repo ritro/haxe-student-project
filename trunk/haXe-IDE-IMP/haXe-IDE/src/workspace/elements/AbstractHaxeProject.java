@@ -45,9 +45,9 @@ public abstract class AbstractHaxeProject
             {
                 continue;
             }
-            linker.visit(ast);
             // for libs packed into jars
             ((Module)ast).setFullPackage(file.getPackage());
+            linker.visit(ast);
         }
     }
 }

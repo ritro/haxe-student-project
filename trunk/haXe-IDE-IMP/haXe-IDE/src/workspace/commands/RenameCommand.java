@@ -17,7 +17,7 @@ import tree.utils.TreeUtils;
 import workspace.Activator;
 import workspace.elements.HaxeProject;
 import workspace.refactoring.HaxeRenameProcessor;
-import workspace.refactoring.HaxeVariableRenameProcessor;
+import workspace.refactoring.VariableRenameProcessor;
 
 public class RenameCommand extends AbstractCommand
 {
@@ -43,7 +43,7 @@ public class RenameCommand extends AbstractCommand
         
         if (node instanceof Declaration)
         {
-            return new HaxeVariableRenameProcessor(
+            return new VariableRenameProcessor(
                     (Declaration)node,
                     newName, 
                     project);

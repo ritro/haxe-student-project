@@ -16,10 +16,11 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
+import tree.IPackageInfo;
 import tree.NodeWithModifier;
 import tree.TypeTag;
 
-public class Declaration extends NodeWithModifier 
+public class Declaration extends NodeWithModifier implements IPackageInfo
 {
 
     private enum PropertyAccessors
@@ -43,6 +44,7 @@ public class Declaration extends NodeWithModifier
 	private PropertyAccessors setAccessor = null;
 	private PropertyAccessors getAccessor = null;
     private boolean declaredWithoutType = false;
+    private String pack = null;
     protected DeclarationType declType  = DeclarationType.VarDeclaration;
     
     public enum DeclarationType
@@ -105,6 +107,16 @@ public class Declaration extends NodeWithModifier
 	public DeclarationType getDeclaratonType()
 	{
 	    return declType;
+	}
+	
+	public void setPackage(final String pack)
+	{
+	    this.pack = pack;
+	}
+	
+	public String getPackage()
+	{
+	    return pack;
 	}
 	
 	public void updateInfo()

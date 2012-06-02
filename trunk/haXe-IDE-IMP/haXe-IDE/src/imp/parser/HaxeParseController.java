@@ -276,11 +276,11 @@ public class HaxeParseController implements IParseController {
     {
         HaxeProject project = Activator.getProjectManager().getProject(fProject.getName());
         Linker linker = new Linker(project);
-        linker.visit(currentAST);
         if (currentAST instanceof Module)
         {
             ((Module)currentAST).setFullPackage(Activator.getProjectManager().getCurrentFile().getPackage());
         }
+        linker.visit(currentAST);
     }
     
     private void updateProjectInfo()

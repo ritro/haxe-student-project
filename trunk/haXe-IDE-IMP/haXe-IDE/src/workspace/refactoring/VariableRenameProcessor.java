@@ -1,5 +1,9 @@
 package workspace.refactoring;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -29,16 +33,25 @@ import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.elements.HaxeProject;
 
-public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
+public class VariableRenameProcessor extends HaxeRenameProcessor
 { 
     // TODO something usually is added at the beginning e.g. - RuntimePlugin.IMP_RUNTIME for imp
     private static final String ID                      = "haxeVarRenamePreprocessor";
     private static final String NAME                    = "Haxe Variable Rename Preprocessor";
     private static final String CHANGE_NAME             = "Variable Usage rename";
     
+    private static final List<String> INVALID_NAMES     = new ArrayList<String>()
+            {
+                private static final long serialVersionUID = 1L;
+                {
+                    this.addAll(
+                            Arrays.asList(new String[]{"new"}));
+                }
+            };
+            
     private Declaration targetNode       = null;
 
-    public HaxeVariableRenameProcessor(
+    public VariableRenameProcessor(
             final Declaration node, 
             final String newTargetName, 
             final HaxeProject project)
@@ -93,60 +106,12 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
                 searchScope = TreeUtils.getParentType(targetNode);
                 break;
         }
-        if (haveErrorNodes(searchScope))
+        if (TreeUtils.haveErrorNodes(searchScope))
         {
             return RefactoringStatus.createErrorStatus(
                     "There are parsing errors. Rename couldn't be processed.");
         }
         return new RefactoringStatus();
-    }
-
-    @Override
-    public RefactoringStatus checkFinalConditions(
-            IProgressMonitor pm,
-            CheckConditionsContext context) 
-                    throws CoreException, OperationCanceledException
-    {
-        return super.checkFinalConditions(pm, context);
-    }
-    
-    @Override
-    public Change createChange(IProgressMonitor monitor) throws CoreException,
-            OperationCanceledException
-    {
-        try 
-        {   //RefactoringCoreMessages.RenameTypeProcessor_creating_changes
-            if (monitor != null)
-            {
-                monitor.beginTask("Searching targets...", 1);
-            }
-            
-            compositeChange = new CompositeChange(CHANGE_NAME);
-        
-            searchTargets();
-            if (monitor != null)
-            {
-                monitor.beginTask("Creating changes...", 70);
-            }
-            createChangesForTargets();
-            
-            return compositeChange;
-        }
-        finally 
-        {
-            if (monitor != null)
-            {
-                monitor.done();
-            }
-        }
-    }
-
-    @Override
-    public RefactoringParticipant[] loadParticipants(RefactoringStatus status,
-            SharableParticipants sharedParticipants) throws CoreException
-    {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
@@ -163,6 +128,12 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
      */
     protected RefactoringStatus checkNameAvailability()
     {
+        // special names, forbidden only for variables
+        if (INVALID_NAMES.contains(newName))
+        {
+            return RefactoringStatus.createFatalErrorStatus("New is invalid");
+        }
+        // Parent class name the same as new var name
         HaxeType type = TreeUtils.getParentType(targetNode);
         HaxeTree decl = type.getDeclaration(newName);
         if (decl != null)
@@ -184,33 +155,11 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
         return targetNode.getModule().getFullPackage();
     }
     
-    private boolean haveErrorNodes(final HaxeTree ast)
-    {
-        if (ast instanceof ErrorNode)
-        {
-            return true;
-        }
-        for (HaxeTree child: ast.getChildren())
-        {
-            if (child instanceof ErrorNode)
-            {
-                return true;
-            }
-            boolean result = haveErrorNodes(child);
-            if (result)
-            {
-                return result;
-            }
-        }
-        
-        return false;
-    }
-    
     /**
      * Searches targets for renaming between over variable usages.
      * The results of the search will be in the 'targets' hashmap
      */
-    private void searchTargets()
+    protected void searchTargets()
     {
         targets = new HashMapForLists<Pair>();
         usageBuilder = new ReferencesListBuilder();
@@ -234,34 +183,11 @@ public class HaxeVariableRenameProcessor extends HaxeRenameProcessor
             }
         }
     }
-    
-    private void createChangesForTargets()
+
+    @Override
+    protected void updateChangeName()
     {
-        for (String pack : targets.keySet())
-        {
-            // create a change object for the file that contains the property
-            // which the user has selected to rename
-            IFile file = currentProject.getFile(pack).getRealFile();
-            TextFileChange filechange = new TextFileChange( file.getName(), file );
-            // a file change contains a tree of edits, first add the root of them
-            MultiTextEdit fileChangeRootEdit = new MultiTextEdit();
-            filechange.setEdit( fileChangeRootEdit );
-            compositeChange.add(filechange);
-            
-            for (Pair pair : targets.get(pack))
-            {
-                // edit object for the text replacement in the file, this is the only child
-                ReplaceEdit rEdit = new ReplaceEdit( 
-                        (int) pair.first,
-                        (int) pair.second,
-                        "");
-                InsertEdit iEdit = new InsertEdit( 
-                        (int) pair.first,
-                        newName);
-                fileChangeRootEdit.addChild(rEdit);
-                fileChangeRootEdit.addChild(iEdit);
-            }
-        }
+        changeName = CHANGE_NAME;
     }
 
 }

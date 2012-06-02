@@ -548,12 +548,12 @@ public class Linker extends AbstractHaxeTreeVisitor
         if (child instanceof MethodCall ||
                 child instanceof Slice)
         {
-            visit(child, declaration);
+            visit(child, declaration.getHaxeType());
         }
         // dot ident
         else
         {
-            visitMemberUse((Usage)child,  declaration);
+            visitMemberUse((Usage)child,  declaration.getHaxeType());
         }
     }
 

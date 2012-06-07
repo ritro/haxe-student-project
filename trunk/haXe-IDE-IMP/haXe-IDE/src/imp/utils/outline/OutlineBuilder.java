@@ -19,8 +19,8 @@ import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.statement.BlockScope;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+import tree.type.Class;
+import tree.type.Enum;
 
 /**
  * The Class HaxeTreeModelBuilder.
@@ -49,17 +49,17 @@ public class OutlineBuilder extends TreeModelBuilderBase {
             {
                 accept((Function)node);
             } 
-            else if (node instanceof ClassNode) 
+            else if (node instanceof Class) 
             {
-                accept((ClassNode)node);
+                accept((Class)node);
             } 
             else if (node instanceof Declaration)
             {
                 accept((Declaration)node);
             } 
-            else if (node instanceof EnumNode)
+            else if (node instanceof Enum)
             {
-                accept((EnumNode)node);
+                accept((Enum)node);
             }
             else if (node.token != null && node.token.getType() == HaxeParser.MODULE) 
             {
@@ -81,7 +81,7 @@ public class OutlineBuilder extends TreeModelBuilderBase {
         visitor.endVisit(node);
     }
     
-    private void accept(ClassNode node)
+    private void accept(Class node)
     {
         visitor.visit(node);
         BlockScope blockScope = node.getBlockScope();
@@ -95,7 +95,7 @@ public class OutlineBuilder extends TreeModelBuilderBase {
         visitor.endVisit(node);
     }   
     
-    private void accept(EnumNode node)
+    private void accept(Enum node)
     {
         visitor.visit(node);
         BlockScope blockScope = node.getBlockScope();

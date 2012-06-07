@@ -1,4 +1,4 @@
-package workspace;
+package workspace.views;
 
 import org.eclipse.swt.graphics.Image;
 
@@ -6,8 +6,9 @@ import tree.Function;
 import tree.HaxeTree;
 import tree.Modifiers;
 import tree.expression.Declaration;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+import tree.type.Class;
+import tree.type.Enum;
+import workspace.SharedImages;
 
 public class ImageProvider
 {    /*
@@ -35,11 +36,11 @@ public class ImageProvider
             }
             return SharedImages.DESC_METHOD_PUBLIC.createImage();
         }
-        else if (node instanceof EnumNode)
+        else if (node instanceof Enum)
         {
             return SharedImages.DESC_ENUM.createImage();
         }
-        else if (node instanceof ClassNode)
+        else if (node instanceof Class)
         {
             return SharedImages.DESC_CLASS.createImage();
         }

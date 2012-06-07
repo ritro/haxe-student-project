@@ -21,7 +21,7 @@ import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
-public class HaxeTokenColorer extends TokenColorerBase implements
+public class TokenColorer extends TokenColorerBase implements
 		HaxeParsersym, ITokenColorer {
 
 	/** The default attribute. */
@@ -33,7 +33,7 @@ public class HaxeTokenColorer extends TokenColorerBase implements
 	 * Define text attributes for the various token types that will
 	 * have their text colored
 	 */
-	public HaxeTokenColorer() {
+	public TokenColorer() {
 		super();
 		
 		Display display = Display.getDefault();

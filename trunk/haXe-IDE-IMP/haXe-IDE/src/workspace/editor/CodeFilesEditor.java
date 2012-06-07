@@ -27,7 +27,7 @@ import workspace.NodeLink;
 import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
 
-public class HxFilesEditor extends UniversalEditor
+public class CodeFilesEditor extends UniversalEditor
 { 
     private CodeFile                   currentFile     = null;
 	private HaxeTree                   currentNode     = null;
@@ -35,7 +35,7 @@ public class HxFilesEditor extends UniversalEditor
 	private HashMapForLists<NodeLink>  usagesList      = null;
 	private IPartListener2             partListener    = null;
 	
-	public HxFilesEditor()
+	public CodeFilesEditor()
 	{
 		super();
 		usagesBuilder = new ReferencesListBuilder();

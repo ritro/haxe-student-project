@@ -7,16 +7,16 @@ import org.eclipse.ui.internal.Workbench;
 import tree.HaxeTree;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
-import workspace.editor.HxFilesEditor;
+import workspace.editor.CodeFilesEditor;
 
 public abstract class AbstractCommand extends AbstractHandler
 {
-    protected HxFilesEditor getEditorPart()
+    protected CodeFilesEditor getEditorPart()
     {
         IEditorPart  editorPart = 
                 Workbench.getInstance().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
-        return (HxFilesEditor)editorPart;
+        return (CodeFilesEditor)editorPart;
     }
     
     protected HaxeTree getCurrentNode()
@@ -26,7 +26,7 @@ public abstract class AbstractCommand extends AbstractHandler
 
     protected HashMapForLists<NodeLink> getUsagesList()
     {
-        HxFilesEditor editor = getEditorPart();
+        CodeFilesEditor editor = getEditorPart();
         if (editor == null)
         {
             return null;

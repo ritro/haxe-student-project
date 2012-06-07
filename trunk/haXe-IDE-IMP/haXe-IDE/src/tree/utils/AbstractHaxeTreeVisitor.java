@@ -19,7 +19,7 @@ import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
-import tree.type.ClassNode;
+import tree.type.Class;
 
 public abstract class AbstractHaxeTreeVisitor
 {
@@ -51,9 +51,9 @@ public abstract class AbstractHaxeTreeVisitor
        {
            visit((BlockScope)t, data);
        }
-       else if (t instanceof ClassNode)
+       else if (t instanceof Class)
        {
-           visit((ClassNode)t, data);
+           visit((Class)t, data);
        }
        else if (t instanceof Array)
        {
@@ -130,7 +130,7 @@ public abstract class AbstractHaxeTreeVisitor
    }
    
    protected abstract void visit(final Module node, Object data);
-   protected abstract void visit(final ClassNode node, Object data);
+   protected abstract void visit(final Class node, Object data);
    protected abstract void visit(final Function node, Object data);
    protected abstract void visit(final Declaration node, Object data);
    protected abstract void visit(final NewNode node, Object data);

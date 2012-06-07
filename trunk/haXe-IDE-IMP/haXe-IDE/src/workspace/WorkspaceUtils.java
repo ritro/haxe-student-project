@@ -32,7 +32,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import tree.HaxeTree;
 import tree.HaxeTreeAdaptor;
-import workspace.editor.HxFilesEditor;
+import workspace.editor.CodeFilesEditor;
 import workspace.elements.CodeFile;
 
 public abstract class WorkspaceUtils
@@ -94,11 +94,11 @@ public abstract class WorkspaceUtils
         try
         {
             IEditorPart editor = WorkspaceUtils.openFileInEditor(file);
-            if (!(editor instanceof HxFilesEditor))
+            if (!(editor instanceof CodeFilesEditor))
             {
                 return;
             }
-            HxFilesEditor hxEditor = (HxFilesEditor)editor;
+            CodeFilesEditor hxEditor = (CodeFilesEditor)editor;
             hxEditor.selectAndReveal(offset, length);
         }
         catch (Exception e)

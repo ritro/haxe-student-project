@@ -22,8 +22,8 @@ import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+import tree.type.Class;
+import tree.type.Enum;
 import tree.type.HaxeType;
 import workspace.Activator;
 import workspace.HashMapForLists;
@@ -113,7 +113,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
             addToResults(searchFor);
             searchObject = searchFor;
         }
-        else if (searchFor instanceof ClassNode)
+        else if (searchFor instanceof Class)
         {
             searchObject = searchFor;
             /*
@@ -148,7 +148,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
                 searchObject = constructors.get(0);
             }*/
         }
-        else if (searchFor instanceof EnumNode)
+        else if (searchFor instanceof Enum)
         {
             // not implemented yet
         }
@@ -194,7 +194,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ClassNode node, Object data)
+    protected void visit(final Class node, Object data)
     {
         BlockScope block = node.getBlockScope();        
         if (block == null)
@@ -224,7 +224,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     protected void visit(final Declaration node, Object data)
     {
         HaxeType nodeType = node.getHaxeType();
-        if ((searchObject instanceof ClassNode || searchObject instanceof EnumNode)
+        if ((searchObject instanceof Class || searchObject instanceof Enum)
                 && nodeType != null
                 && searchObject.getHaxeType().getShortTypeName().equals(nodeType.getShortTypeName()))
         {
@@ -243,7 +243,7 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
     {
         HaxeTree declaration = node.getDeclarationNode();
         if (declaration != null
-                && searchObject instanceof ClassNode
+                && searchObject instanceof Class
                 // TODO check parameter types and so
                 && declaration.getText().equals(searchObject.getText()))
         {
@@ -303,8 +303,8 @@ public class ReferencesListBuilder extends AbstractHaxeTreeVisitor
         if (nodeName.equals(searchName) 
                 && node.getDeclarationNode().equals(searchObject)
                 && (searchObject instanceof Declaration 
-                        || searchObject instanceof ClassNode // for static classes
-                        || searchObject instanceof EnumNode))
+                        || searchObject instanceof Class // for static classes
+                        || searchObject instanceof Enum))
         {
             addToResults(node);
         }

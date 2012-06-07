@@ -11,9 +11,9 @@ import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.statement.BlockScope;
 
-public class EnumNode extends HaxeType 
+public class Enum extends HaxeType 
 {	
-	public EnumNode(final Token t) {
+	public Enum(final Token t) {
 		super(t);
 	}
 

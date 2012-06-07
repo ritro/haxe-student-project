@@ -9,7 +9,7 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import tree.HaxeTree;
 import tree.utils.TreeUtils;
 import workspace.commands.RenameCommand;
-import workspace.editor.HxFilesEditor;
+import workspace.editor.CodeFilesEditor;
 import workspace.refactoring.HaxeRenameProcessor;
 
 public class VisibilityTester extends PropertyTester 
@@ -17,7 +17,7 @@ public class VisibilityTester extends PropertyTester
     
     public boolean test(Object receiver, String property, Object[] args, Object expectedValue) 
     {
-        HxFilesEditor fragment= (HxFilesEditor)receiver;
+        CodeFilesEditor fragment= (CodeFilesEditor)receiver;
         if ("canRefactor".equals(property)) 
         {
             HaxeTree node = fragment.getCurrentNode();

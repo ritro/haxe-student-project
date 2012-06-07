@@ -40,7 +40,7 @@ import workspace.Activator;
  * 
  * @author Anatoly Kondratyev
  */
-public class HaxeHoverHelper extends HoverHelperBase implements IHoverHelper {
+public class HoverHelper extends HoverHelperBase implements IHoverHelper {
 
 	/** The resolver. */
 	IReferenceResolver fResolver = null;

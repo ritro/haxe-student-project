@@ -21,7 +21,7 @@ import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
-import tree.type.ClassNode;
+import tree.type.Class;
 
 
 /**
@@ -77,7 +77,7 @@ public class Printer extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ClassNode node, Object data)
+    protected void visit(final Class node, Object data)
     {
         System.out.print(getIndent(data));
         System.out.println(node.toString());

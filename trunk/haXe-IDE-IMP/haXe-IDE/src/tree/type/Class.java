@@ -26,7 +26,7 @@ import tree.HaxeTree;
  * @author Anatoly Kondratyev
  *         Maria Savenko
  */
-public class ClassNode extends HaxeType 
+public class Class extends HaxeType 
 {
 	/** The class name. */
 	private String className = "";
@@ -42,7 +42,7 @@ public class ClassNode extends HaxeType
 		return className;
 	}
 
-	public ClassNode(final Token t) 
+	public Class(final Token t) 
 	{
 		super(t);
 		paramTypes = new ArrayList<HaxeType>();

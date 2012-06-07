@@ -28,7 +28,7 @@ import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.WorkspaceUtils;
-import workspace.editor.HxFilesEditor;
+import workspace.editor.CodeFilesEditor;
 import workspace.elements.CodeFile;
 
 public class CallHierarchyView extends HierarchyView

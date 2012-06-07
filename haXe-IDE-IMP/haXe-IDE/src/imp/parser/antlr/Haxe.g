@@ -80,8 +80,11 @@ import tree.ErrorNode;
 import tree.Function;
 import tree.Module;
 import tree.TypeTag;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+
+import tree.type.Class;
+import tree.type.Enum;
+import tree.type.Interface;
+import tree.type.TypeDef;
 }
 
 module          : myPackage? imports* topLevelDecl* -> ^(MODULE<Module> myPackage? imports* topLevelDecl*)
@@ -371,7 +374,7 @@ topLevelDecl    : classDecl
                 | typedefDecl
                 ;
     
-enumDecl        : topLevelAccessAttr? ENUM IDENTIFIER typeParam? enumBody -> ^(IDENTIFIER<EnumNode> topLevelAccessAttr? typeParam? enumBody)
+enumDecl        : topLevelAccessAttr? ENUM IDENTIFIER typeParam? enumBody -> ^(IDENTIFIER<Enum> topLevelAccessAttr? typeParam? enumBody)
                 ;
 
 enumBody        : LBRACE (enumValueDecl)* RBRACE -> ^(BLOCK_SCOPE<BlockScope>[$LBRACE, $RBRACE] enumValueDecl*)
@@ -383,7 +386,7 @@ enumValueDecl   : IDENTIFIER<Declaration>^ LPAREN! paramList? RPAREN! SEMI!
                 ;
     
 classDecl       : topLevelAccessAttr? CLASS IDENTIFIER typeParam?  ((extending (COMMA implementList)?)|implementList)?  classBodyScope 
-                    -> ^(IDENTIFIER<ClassNode> topLevelAccessAttr? typeParam? extending? implementList? classBodyScope)
+                    -> ^(IDENTIFIER<Class> topLevelAccessAttr? typeParam? extending? implementList? classBodyScope)
                 ;
 
 classBodyScope  : LBRACE (classMember)* RBRACE -> ^(BLOCK_SCOPE<BlockScope>[$LBRACE, $RBRACE] classMember*)

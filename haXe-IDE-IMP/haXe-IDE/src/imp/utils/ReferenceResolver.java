@@ -30,16 +30,16 @@ import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
-import tree.type.ClassNode;
+import tree.type.Class;
 
 /**
  * Class for resolving referances to other languages
  * 
  * @author Anatoly Kondratyev
  */
-public class HaxeReferenceResolver implements IReferenceResolver {
+public class ReferenceResolver implements IReferenceResolver {
 
-	public HaxeReferenceResolver() {
+	public ReferenceResolver() {
 	}
 
 	/**

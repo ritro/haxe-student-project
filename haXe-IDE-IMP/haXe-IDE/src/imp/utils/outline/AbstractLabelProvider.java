@@ -21,11 +21,11 @@ import tree.HaxeTree;
 import tree.expression.Declaration;
 import tree.expression.Usage;
 import tree.statement.BlockScope;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+import tree.type.Class;
+import tree.type.Enum;
 import workspace.Activator;
-import workspace.ImageProvider;
 import workspace.SharedImages;
+import workspace.views.ImageProvider;
 
 public abstract class AbstractLabelProvider implements ILabelProvider 
 {
@@ -107,13 +107,13 @@ public abstract class AbstractLabelProvider implements ILabelProvider
         {
             return "Block";
         } 
-        else if (n instanceof EnumNode) 
+        else if (n instanceof Enum) 
         {
             return n.getText();
         } 
-        else if (n instanceof ClassNode) 
+        else if (n instanceof Class) 
         {
-            return ((ClassNode) n).getClassName();
+            return ((Class) n).getClassName();
         } 
         else if (n instanceof Function) 
         {

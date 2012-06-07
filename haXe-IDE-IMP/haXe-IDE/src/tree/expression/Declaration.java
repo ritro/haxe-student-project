@@ -209,7 +209,9 @@ public class Declaration extends NodeWithModifier implements IPackageInfo
 	    }
 	    Declaration node = (Declaration)obj;
 	    if (getText().equals(node.getText()) &&
-	            token.equals(node.getToken()))
+	            getTokenStartIndex() == node.getTokenStartIndex() &&
+	            getTokenStopIndex() == node.getTokenStopIndex() &&
+	            getPackage().equals(node.getPackage()))
 	    {
 	        return true;
 	    }

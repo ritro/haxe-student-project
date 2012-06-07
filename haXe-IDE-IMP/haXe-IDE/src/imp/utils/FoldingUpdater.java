@@ -26,7 +26,7 @@ import org.eclipse.jface.text.source.Annotation;
 import tree.BlockScopeContainer;
 import tree.HaxeTree;
 import tree.statement.BlockScope;
-import tree.type.ClassNode;
+import tree.type.Class;
 
 /**
  * This file provides a skeletal implementation of the language-dependent
@@ -37,7 +37,7 @@ import tree.type.ClassNode;
  * 
  * @author Anatoly Kondratyev
  */
-public class HaxeFoldingUpdater extends FolderBase {
+public class FoldingUpdater extends FolderBase {
 	
     public static final int MODULE_TYPE = HaxeParser.MODULE;
 

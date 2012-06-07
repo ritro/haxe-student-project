@@ -11,7 +11,7 @@
 package imp.parser;
 
 import imp.parser.antlr.HaxeLexer;
-import imp.utils.HaxeSourcePositionLocator;
+import imp.utils.SourcePositionLocator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -129,7 +129,7 @@ public class HaxeParseController implements IParseController {
     @Override
     public ISourcePositionLocator getSourcePositionLocator() {
         if (fSourcePositionLocator == null) {
-            fSourcePositionLocator = new HaxeSourcePositionLocator(this);
+            fSourcePositionLocator = new SourcePositionLocator(this);
         }
         return fSourcePositionLocator;
     }

@@ -23,7 +23,7 @@ import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
-import tree.type.ClassNode;
+import tree.type.Class;
 import tree.type.HaxeType;
 import workspace.Activator;
 
@@ -62,7 +62,7 @@ public class ErrorProvider extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(final ClassNode node, Object data)
+    protected void visit(final Class node, Object data)
     {
         BlockScope blockScope = node.getBlockScope();
         

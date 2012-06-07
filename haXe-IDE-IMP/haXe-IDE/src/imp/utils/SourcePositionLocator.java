@@ -43,7 +43,7 @@ import workspace.Activator;
  * @author Stan Sutton (suttons@us.ibm.com)
  * @since May 15, 2007
  */
-public class HaxeSourcePositionLocator implements ISourcePositionLocator {
+public class SourcePositionLocator implements ISourcePositionLocator {
 
 	/** The parse controller. */
 	private final IParseController fParseController;
@@ -54,7 +54,7 @@ public class HaxeSourcePositionLocator implements ISourcePositionLocator {
 	 * @param parseController
 	 *            the parse controller
 	 */
-	public HaxeSourcePositionLocator(final IParseController parseController) {
+	public SourcePositionLocator(final IParseController parseController) {
 		this.fParseController = parseController;
 	}
 

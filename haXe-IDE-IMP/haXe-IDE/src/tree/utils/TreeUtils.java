@@ -14,8 +14,8 @@ import tree.expression.Slice;
 import tree.expression.Unary;
 import tree.expression.Usage;
 import tree.statement.Return;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+import tree.type.Class;
+import tree.type.Enum;
 import tree.type.HaxeType;
 
 public abstract class TreeUtils
@@ -49,8 +49,8 @@ public abstract class TreeUtils
     public static boolean isNodeValidForUsageAnalysis(final HaxeTree node)
     {
     	if (TreeUtils.isNodeValidForCallAnalysis(node)
-    			|| node instanceof ClassNode
-    			|| node instanceof EnumNode
+    			|| node instanceof Class
+    			|| node instanceof Enum
     			|| node instanceof Declaration)
     	{
     		return true;
@@ -164,9 +164,9 @@ public abstract class TreeUtils
     	{
     		return supposedNode;
     	}
-    	if (supposedNode instanceof ClassNode)
+    	if (supposedNode instanceof Class)
     	{
-    	    HaxeTree node = ((ClassNode)supposedNode).getConstructor();
+    	    HaxeTree node = ((Class)supposedNode).getConstructor();
             return getValidNodeForCallAnalysis(node);
     	}
     	if (supposedNode instanceof NewNode)

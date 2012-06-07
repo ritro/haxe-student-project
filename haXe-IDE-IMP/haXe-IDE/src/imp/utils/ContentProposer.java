@@ -29,7 +29,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import tree.Function;
 import tree.HaxeTree;
 import tree.expression.Declaration;
-import tree.type.ClassNode;
+import tree.type.Class;
 import tree.utils.Environment;
 import tree.utils.TreeUtils;
 
@@ -38,7 +38,7 @@ import tree.utils.TreeUtils;
  * 
  * @author Anatoly Kondratyev
  */
-public class HaxeContentProposer implements IContentProposer {
+public class ContentProposer implements IContentProposer {
 
 	@Override
 	public ICompletionProposal[] getContentProposals(
@@ -124,7 +124,7 @@ public class HaxeContentProposer implements IContentProposer {
 		{
 			if (commonTree.getText().startsWith(prefix)
 			        && (commonTree instanceof Declaration
-			        || commonTree instanceof ClassNode
+			        || commonTree instanceof Class
 			        || commonTree instanceof Function)) 
 			{
 				result.put(commonTree);

@@ -5,7 +5,7 @@ import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.Token;
 
 import tree.HaxeTree;
-import tree.type.ClassNode;
+import tree.type.Class;
 import tree.type.HaxeType;
 import tree.utils.TypeUtils;
 
@@ -35,11 +35,11 @@ public class Array extends Constant
         if (haxeType == null)
         {
             HaxeType arrayType = TypeUtils.getArray();
-            if (arrayType == null || !(arrayType instanceof ClassNode))
+            if (arrayType == null || !(arrayType instanceof Class))
             {
                 return null;
             }
-            ((ClassNode)arrayType).addToParamTypes(getMembersType());
+            ((Class)arrayType).addToParamTypes(getMembersType());
             haxeType = arrayType;
         }
         return super.getHaxeType();

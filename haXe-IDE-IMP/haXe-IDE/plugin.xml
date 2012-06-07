@@ -24,7 +24,7 @@
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
-            class="imp.utils.HaxeTokenColorer"
+            class="imp.utils.TokenColorer"
             language="haXe">
       </tokenColorer>
    </extension>
@@ -45,21 +45,21 @@
    <extension
          point="org.eclipse.imp.runtime.foldingUpdater">
       <foldingUpdater
-            class="imp.utils.HaxeFoldingUpdater"
+            class="imp.utils.FoldingUpdater"
             language="haXe">
       </foldingUpdater>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="imp.utils.HaxeReferenceResolver"
+            class="imp.utils.ReferenceResolver"
             language="haXe">
       </referenceResolver>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="imp.utils.HaxeContentProposer"
+            class="imp.utils.ContentProposer"
             language="haXe">
       </proposer>
    </extension>
@@ -68,7 +68,7 @@
          name="haxe Hover Helper"
          point="org.eclipse.imp.runtime.hoverHelper">
       <hoverHelper
-            class="imp.utils.HaxeHoverHelper"
+            class="imp.utils.HoverHelper"
             language="haXe">
       </hoverHelper>
    </extension>
@@ -77,7 +77,7 @@
          name="haxe Reference Resolver"
          point="org.eclipse.imp.runtime.referenceResolvers">
       <referenceResolver
-            class="imp.utils.HaxeHoverHelper"
+            class="imp.utils.HoverHelper"
             language="haXe">
       </referenceResolver>
    </extension>
@@ -141,14 +141,14 @@
             name="haXe Project"
             icon="icons/Workspace/base/new_project.png"
             category="haxeplugin.category.wizards"
-            class="workspace.wizards.NewProjectWizard"
+            class="workspace.wizards.NewProject"
             hasPages="true"
             project="true"
             id="haxeplugin.wizards.newproject">
       </wizard>
       <wizard
             category="haxeplugin.category.wizards"
-            class="workspace.wizards.NewFileWizard"
+            class="workspace.wizards.NewFile"
             icon="icons/Workspace/base/new_file.png"
             id="haXe-IDE.wizard1"
             name="name"
@@ -181,7 +181,7 @@
             default="true"
             icon="icons/Workspace/base/haxe_file.gif"
             extensions="hx"
-            class="workspace.editor.HxFilesEditor"
+            class="workspace.editor.CodeFilesEditor"
             id="haXe-IDE.textEditor">
          <contentTypeBinding
                contentTypeId="haXe-IDE.haxeFileContentType">

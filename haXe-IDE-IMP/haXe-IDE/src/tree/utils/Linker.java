@@ -27,8 +27,8 @@ import tree.statement.For;
 import tree.statement.IfNode;
 import tree.statement.Return;
 import tree.statement.While;
-import tree.type.ClassNode;
-import tree.type.EnumNode;
+import tree.type.Class;
+import tree.type.Enum;
 import tree.type.HaxeType;
 import workspace.Activator;
 import workspace.ProjectManager;
@@ -128,9 +128,9 @@ public class Linker extends AbstractHaxeTreeVisitor
         Environment env = (Environment)local;
         HaxeType thisType = (HaxeType)env.get("this");
         // only classes can have type params
-        if (thisType instanceof ClassNode)
+        if (thisType instanceof Class)
         {
-            ClassNode cclass = (ClassNode)thisType;
+            Class cclass = (Class)thisType;
             // 1. search in current class type params
             for (HaxeType type : cclass.getParameterTypes())
             {
@@ -343,16 +343,16 @@ public class Linker extends AbstractHaxeTreeVisitor
     protected void visitMemberUse(Usage node, Object data)
     {
         HaxeTree decl = null;
-        if (data instanceof ClassNode)
+        if (data instanceof Class)
         {
-            ClassNode parent = (ClassNode)data;
+            Class parent = (Class)data;
             decl = parent.getDeclaration(node.getText());
         }
         node.setDeclarationNode(decl);
 
         if (!node.isFieldUse() && !(
-                decl instanceof ClassNode ||
-                decl instanceof EnumNode)) //+ interface ??
+                decl instanceof Class ||
+                decl instanceof Enum)) //+ interface ??
         {
             return;
         }
@@ -435,7 +435,7 @@ public class Linker extends AbstractHaxeTreeVisitor
             if (pack.equals(name))
             {
             	HaxeTree pDeclaration = imports.get(pack);
-            	if (!(pDeclaration instanceof ClassNode))
+            	if (!(pDeclaration instanceof Class))
             	{
             		// TODO and what to do?
             		return;
@@ -536,8 +536,8 @@ public class Linker extends AbstractHaxeTreeVisitor
         
         // check if it is dotident and CAN have a member
         if (!node.isFieldUse() && !(
-                declaration instanceof ClassNode ||
-                declaration instanceof EnumNode)) //+ interface ??
+                declaration instanceof Class ||
+                declaration instanceof Enum)) //+ interface ??
         {
             return;
         }
@@ -643,7 +643,7 @@ public class Linker extends AbstractHaxeTreeVisitor
     }
 
     @Override
-    protected void visit(ClassNode node, Object data)
+    protected void visit(Class node, Object data)
     {
         // class D extends A, implements B, implements C
         for (HaxeTree child : node.getChildren())

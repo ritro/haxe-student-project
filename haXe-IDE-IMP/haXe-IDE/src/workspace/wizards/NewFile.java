@@ -7,9 +7,9 @@ import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 
 import workspace.elements.CodeFile;
 
-public class NewFileWizard extends BasicNewFileResourceWizard
+public class NewFile extends BasicNewFileResourceWizard
 {
-    public NewFileWizard() {}
+    public NewFile() {}
 
     @Override
     public void init(IWorkbench workbench, IStructuredSelection selection)

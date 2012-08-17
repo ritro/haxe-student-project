@@ -1,52 +1,67 @@
 package workspace.views;
 
+import java.util.ArrayList;
+
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 import tree.Function;
 import tree.HaxeTree;
+import tree.INodeWithModifier;
 import tree.Modifiers;
 import tree.expression.Declaration;
+import tree.expression.Usage;
 import tree.type.Class;
 import tree.type.Enum;
 import workspace.SharedImages;
+import workspace.SharedImages.Overlays;
 
 public class ImageProvider
-{    /*
-    public static ImageDescriptor getImageDescriptorFromShared(String desctiption)
-    {
-        ISharedImages shared = PlatformUI.getWorkbench().getSharedImages();
-        return shared.getImageDescriptor(desctiption);
-    }
-    
-    public static Image getImage(final Object element) 
-    {
-        ImageDescriptor descriptor = getImageDescriptorFromShared(ISharedImages.IMG_TOOL_UP);
-                //Activator.getInstance().getImageRegistry().getDescriptor(key);
-        return descriptor.createImage();
-    }*/
-    
+{    
     public static Image getImageForTreeNode(final HaxeTree node)
     {
+        Object stub = node;
+        ArrayList<Modifiers> modifiers = null;
+        if (stub instanceof INodeWithModifier)
+        {
+            modifiers = ((INodeWithModifier)stub).getModifiers();
+        }
         if (node instanceof Function)
         {
-            Modifiers modifier = ((Function)node).getModifier();
-            if (modifier == Modifiers.PRIVATE)
+            if (modifiers.contains(Modifiers.PRIVATE))
             {
                 return SharedImages.DESC_METHOD_PRIVATE.createImage();
             }
             return SharedImages.DESC_METHOD_PUBLIC.createImage();
         }
-        else if (node instanceof Enum)
+        if (node instanceof Enum)
         {
             return SharedImages.DESC_ENUM.createImage();
         }
-        else if (node instanceof Class)
+        if (node instanceof Class)
         {
             return SharedImages.DESC_CLASS.createImage();
         }
-        else if (node instanceof Declaration)
+        if (node instanceof Declaration)
         {
-            return SharedImages.DESC_FIELD_PRIVATE.createImage();
+            ImageDescriptor descriptor = SharedImages.DESC_FIELD_PRIVATE;
+            if (modifiers.contains(Modifiers.PUBLIC))
+            {
+                descriptor = SharedImages.DESC_FIELD_PUBLIC;
+            }
+            if (modifiers.contains(Modifiers.STATIC))
+            {
+                return SharedImages.createImageDescriptorWithOverlay(descriptor, Overlays.STATIC).createImage();
+            }
+            return descriptor.createImage();
+        }
+        if (node instanceof Usage)
+        {
+            HaxeTree decl = ((Usage)node).getDeclarationNode();
+            if (decl instanceof Class)
+            {
+                return getImageForTreeNode(decl);
+            }
         }
         return SharedImages.DESC_UNKNOWN.createImage();
     }

@@ -87,6 +87,6 @@ public class Usage extends Expression
 
     public int getIdentifierLength()
     {
-        return getTokenStopIndex() - getTokenStartIndex();
+        return getTokenStopIndex() - getTokenStartIndex() + 1;
     }
 }

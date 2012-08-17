@@ -53,7 +53,19 @@ public class Function extends NodeWithScopeAndModifier implements IPackageInfo
 				+ parameters + "): "
 				+ typeToString();
 	}
-
+	
+	@Override
+    public int getIdentifierOffset()
+	{
+	    return getChild(0).getIdentifierOffset();
+	}
+    
+    @Override
+    public int getIdentifierLength()
+    {
+        return getChild(0).getIdentifierLength();
+    }
+	
 	/**
 	 * Gets the full name with parameters.
 	 * 
@@ -111,7 +123,7 @@ public class Function extends NodeWithScopeAndModifier implements IPackageInfo
 	 */
 	public boolean isConstructor()
 	{
-	    if (getText().equals("new") && modifier != Modifiers.STATIC)
+	    if (getText().equals("new") && !modifiers.contains(Modifiers.STATIC))
 	    {
 	        return true;
 	    }

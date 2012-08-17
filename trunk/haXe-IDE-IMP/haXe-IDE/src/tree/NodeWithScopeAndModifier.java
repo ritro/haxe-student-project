@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.ArrayList;
+
 import org.antlr.runtime.Token;
 
 
@@ -7,28 +9,31 @@ public class NodeWithScopeAndModifier
     extends BlockScopeContainer 
     implements INodeWithModifier
 {
-    protected Modifiers modifier = Modifiers.PRIVATE;
+    protected ArrayList<Modifiers> modifiers = null;
 
     public NodeWithScopeAndModifier(Token t) 
     {
         super(t);
     }
-    
-    public Modifiers getModifier()
+
+    public ArrayList<Modifiers> getModifiers()
     {
-        return modifier;
+        return modifiers;
     }
     
     public void updateModifier()
     {
+        modifiers = new ArrayList<Modifiers>();
         for (HaxeTree tree : getChildren()) 
         {
             if (tree.getToken().getType() != DECL_ATTR_LIST) 
             {
                 continue;
             }
-            modifier = 
-                    NodeWithModifier.convertToModifier(tree.getText());
+            for (HaxeTree mdf : tree.getChildren())
+            {
+                modifiers.add(NodeWithModifier.convertToModifier(mdf.getText()));
+            }
             return;
         }
     }

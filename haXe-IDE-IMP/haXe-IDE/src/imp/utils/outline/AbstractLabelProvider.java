@@ -103,31 +103,39 @@ public abstract class AbstractLabelProvider implements ILabelProvider
         {
             return "Module";
         }  
-        else if (n instanceof BlockScope) 
+        if (n instanceof BlockScope) 
         {
             return "Block";
         } 
-        else if (n instanceof Enum) 
+        if (n instanceof Enum) 
         {
             return n.getText();
         } 
-        else if (n instanceof Class) 
+        if (n instanceof Class) 
         {
             return ((Class) n).getClassName();
         } 
-        else if (n instanceof Function) 
+        if (n instanceof Function) 
         {
             Function hdr = (Function) n;
             return hdr.getFullNameWithParameters();
         } 
-        else if (n instanceof Declaration) 
+        if (n instanceof Declaration) 
         {
             Declaration varDeclaration = (Declaration) n;
             return varDeclaration.getText();
-        }
-        else if (n instanceof Usage)
+        }        
+        if (n instanceof Usage)
         {
-            return n.getText();
+            HaxeTree decl = ((Usage)n).getDeclarationNode();
+            if (decl instanceof Declaration)
+            {
+                return n.getText();                
+            }
+            if (decl instanceof Class)
+            {
+                return getLabelForTreeNode(decl);
+            }
         }
         
         return "<??unknown??>" + n.getText();

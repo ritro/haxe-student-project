@@ -1,5 +1,9 @@
 package workspace.editor;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.jface.text.TextPresentation;
@@ -34,10 +38,14 @@ public class CodeFilesEditor extends UniversalEditor
 	private ReferencesListBuilder      usagesBuilder   = null;
 	private HashMapForLists<NodeLink>  usagesList      = null;
 	private IPartListener2             partListener    = null;
+	private TextSelection              currentSelection= null;
+
+    private ExecutorService            executor        = null;
+    private Future                     future          = null;
 	
 	public CodeFilesEditor()
 	{
-		super();
+		super();executor = Executors.newSingleThreadExecutor();
 		usagesBuilder = new ReferencesListBuilder();
 		handleCursorPositionChanged();
 		
@@ -46,6 +54,18 @@ public class CodeFilesEditor extends UniversalEditor
 	
 	public HashMapForLists<NodeLink> getUsagesList()
 	{
+	    // Unchecked done-wait procedure
+	    if (!future.isDone())
+	    {
+	        try
+            {
+                wait();
+            }
+            catch (InterruptedException e)
+            {
+                return null;
+            }
+	    }
 	    return usagesList;
 	}
 	
@@ -87,10 +107,22 @@ public class CodeFilesEditor extends UniversalEditor
     @Override
     protected void handleCursorPositionChanged() 
     {
+        if (future != null)
+        {
+            future.cancel(true);
+        }
         super.handleCursorPositionChanged();
         
         updateCurrentNode();
-        analyzeCurrentNodeUsages();
+        currentSelection = (TextSelection)getSelectionProvider().getSelection();
+        future = executor.submit(new Runnable() {
+            
+            @Override
+            public void run()
+            {
+                analyzeCurrentNodeUsages();
+            }
+        });
         
         if (TreeUtils.isNodeValidForUsageAnalysis(currentNode)
                 || currentNode instanceof Usage)
@@ -168,9 +200,8 @@ public class CodeFilesEditor extends UniversalEditor
             return;
         }
         
-        TextSelection selection = (TextSelection)getSelectionProvider().getSelection();
-        int offset = selection.getOffset();
         HaxeTree nodeForUsagesList = currentNode;
+        int offset = currentSelection.getOffset();
         
         if (!TreeUtils.isNodeValidForUsageAnalysis(currentNode))
         {
@@ -183,6 +214,7 @@ public class CodeFilesEditor extends UniversalEditor
             usagesBuilder.visit(nodeForUsagesList);
             usagesList = usagesBuilder.getResult();
         }
+        notify();
     }
     
     private void highlightCurrentNodeUsagesInText()

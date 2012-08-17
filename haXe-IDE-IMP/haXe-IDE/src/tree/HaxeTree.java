@@ -242,7 +242,7 @@ public class HaxeTree extends GenericCommonTree<HaxeTree>
      */
     public int getIdentifierLength()
     {
-        return getMostRightPosition() - getMostLeftPosition() + 1;
+        return getMostRightPosition() - getIdentifierOffset();
     }
 
 	/**

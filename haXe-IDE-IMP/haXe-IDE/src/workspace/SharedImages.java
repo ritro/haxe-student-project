@@ -5,14 +5,18 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.resource.CompositeImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;
+import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 public class SharedImages
 {
+    public enum Overlays {STATIC, FINAL, ABSTRACT, WARNING, ERROR}
+    
     public static final IPath ICONS_PATH = new Path("icons");
     
     public static final String HAXE_LOGO            = "haxe_logo.png";
@@ -21,13 +25,15 @@ public class SharedImages
     public static final String BASE                 = "base";
     public static final String VIEW_OBJ             = "ViewObjects";
     public static final String WORKSPACE_OBJ        = "Workspace";
+    public static final String OVERLAY              = "overlay";
     
     // files
     public static final String IMG_HAXE_FILE        = "haxe_file.gif";
     public static final String IMG_BUILD_FILE       = "build_file.gif";
     
     // workspace obj overlays
-    //public static final String IMG_WARNING          = "warning.gif";
+    public static final String IMG_WARNING          = "warning_upper.gif";
+    public static final String IMG_ATTR_STATIC      = "attr_static.gif";
     
     // for different node types
     public static final String IMG_CLASS            = "class_obj.png"; //$NON-NLS-1$
@@ -57,10 +63,14 @@ public class SharedImages
     public static final ImageDescriptor DESC_INTERFACE      = createViewObjFromKey(BASE, IMG_INTERFACE);
     
     public static final ImageDescriptor DESC_FIELD_PRIVATE  = createViewObjFromKey(BASE, IMG_FIELD_PRIVATE);
+    public static final ImageDescriptor DESC_FIELD_PUBLIC   = createViewObjFromKey(BASE, IMG_FIELD_PUBLIC);
 
     public static final ImageDescriptor DESC_METHOD_PUBLIC  = createViewObjFromKey(BASE, IMG_METHOD_PUBLIC);
     public static final ImageDescriptor DESC_METHOD_PRIVATE = createViewObjFromKey(BASE, IMG_METHOD_PRIVATE);
     public static final ImageDescriptor DESC_METHOD_PROTECTED = createViewObjFromKey(BASE, IMG_METHOD_PROTECTED);
+    //overlays
+    public static final ImageDescriptor DESC_OVERLAY_STATIC = createViewObjFromKey(OVERLAY, IMG_ATTR_STATIC);
+    public static final ImageDescriptor DESC_OVERLAY_WARNING= createViewObjFromKey(OVERLAY, IMG_WARNING);
     
     
     public static final ImageDescriptor DESC_UNKNOWN        = create(IMG_UNKNOWN);
@@ -72,12 +82,21 @@ public class SharedImages
         IPath path = ICONS_PATH.append("haxe_default_outline_item.gif");
         ImageDescriptor imageDescriptor = createImageDescriptor(bundle, path);
         reg.put(IHaxeResources.HAXE_DEFAULT_IMAGE, imageDescriptor);
-    }
-    
-    public static ImageDescriptor createImageDescriptorWithOverlay(ImageDescriptor desc)
-    {
-        DecorationOverlayIcon d = new DecorationOverlayIcon(desc.createImage(), org.eclipse.ui.ide.IDE.SharedImages.);
     */}
+    
+    public static DecorationOverlayIcon createImageDescriptorWithOverlay(
+            final ImageDescriptor descr,
+            final Overlays overlay)
+    {
+        ImageDescriptor overlayDescr = null;
+        int quadrant = IDecoration.BOTTOM_LEFT;
+        switch (overlay)
+        {
+            case STATIC: overlayDescr = DESC_OVERLAY_STATIC; quadrant = IDecoration.TOP_RIGHT; break;
+            case WARNING: overlayDescr = DESC_OVERLAY_WARNING; break;
+        }
+        return new DecorationOverlayIcon(descr.createImage(), overlayDescr, quadrant);
+    }
 
     public static ImageDescriptor createImageDescriptor(
             final Bundle bundle,

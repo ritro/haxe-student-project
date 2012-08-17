@@ -3,7 +3,6 @@ package workspace.views;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.jdt.ui.IContextMenuConstants;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IMenuListener;
@@ -19,7 +18,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorPart;
 
 import tree.Function;
 import tree.HaxeTree;
@@ -28,7 +26,6 @@ import workspace.Activator;
 import workspace.HashMapForLists;
 import workspace.NodeLink;
 import workspace.WorkspaceUtils;
-import workspace.editor.CodeFilesEditor;
 import workspace.elements.CodeFile;
 
 public class CallHierarchyView extends HierarchyView

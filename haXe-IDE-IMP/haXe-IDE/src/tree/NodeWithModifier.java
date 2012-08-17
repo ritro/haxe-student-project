@@ -1,11 +1,13 @@
 package tree;
 
+import java.util.ArrayList;
+
 import org.antlr.runtime.Token;
 
 
 public class NodeWithModifier extends HaxeTree implements INodeWithModifier
 {
-    protected Modifiers modifier = Modifiers.PRIVATE;    
+    protected ArrayList<Modifiers> modifiers = null;    
     
     protected NodeWithModifier()
     {
@@ -17,20 +19,24 @@ public class NodeWithModifier extends HaxeTree implements INodeWithModifier
         super(token);
     }
 
-    public Modifiers getModifier()
+    public ArrayList<Modifiers> getModifiers()
     {
-        return modifier;
+        return modifiers;
     }
     
     public void updateModifier()
     {
+        modifiers = new ArrayList<Modifiers>();
         for (HaxeTree tree : getChildren()) 
         {
             if (tree.getToken().getType() != DECL_ATTR_LIST) 
             {
                 continue;
             }
-            modifier = convertToModifier(tree.getText());
+            for (HaxeTree mdf : tree.getChildren())
+            {
+                modifiers.add(convertToModifier(mdf.getText()));
+            }
             return;
         }
     }

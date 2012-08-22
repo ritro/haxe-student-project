@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
+import java.net.URI;
 import java.nio.charset.Charset;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,7 +23,9 @@ import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
@@ -289,4 +293,96 @@ public abstract class WorkspaceUtils
         
         return list;
     }
+    
+    public static String getFileContents(IFile file)
+    {
+        try
+        {
+            String result = "";
+            InputStream stream = file.getContents();
+            byte[]buffer = new byte[stream.available()];
+            while(buffer.length != 0)
+            {
+                stream.read(buffer);
+                result += new String(buffer);
+            }
+            return result;
+        }
+        catch (IOException | CoreException e)
+        {
+            return null;
+        }
+    }
+    
+    // 'cause there is always some kind of confusion while extracting paths
+    // all functions will be here
+    
+    public static IFile getFileFromWorkspace(String filePath)
+    {
+        IPath path2 = new org.eclipse.core.runtime.Path(filePath);
+        File realFile = path2.toFile();
+        if (realFile == null)
+        {
+            return null;
+        }
+        URI uri = realFile.toURI();
+        IFile[] files = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(uri);
+        if (files.length == 0)
+        {
+            return null;
+        }
+        return files[0];
+    }
+    
+    public static IPath getPath(IFile file)
+    {
+        return file.getLocation();
+    }
+    
+    public static Path getPath(IPath path)
+    {
+        return getPath(path.toFile());
+    }
+    
+    public static Path getPath(File file)
+    {
+        return file.toPath();
+    }
+    
+    public static boolean equals(IFile file1, IFile file2)
+    {
+        IPath path1 = getPath(file1);
+        IPath path2 = getPath(file2);
+        return equals(path1, path2); 
+    }
+    
+    public static boolean equals(IPath path1, IPath path2)
+    {
+        return getAbsolutePath(path1).equals(getAbsolutePath(path2));
+    }
+    
+    public static String getAbsolutePath(IPath path)
+    {
+        return path.toOSString();
+    }
+    /*
+    public static String getAbsolutePath(File file)
+    {
+        return file.getAbsolutePath();
+    }
+    
+    public static String getAbsolutePath(Path path)
+    {
+        return path.toAbsolutePath().toString();
+    }
+    
+    public static Path getRelativePath(Path buildFilePath, String mainFileRelativePath)
+    {
+        return buildFilePath;
+    }
+    
+    public static Path getRelativePath(Path firstFile, Path secondFile)
+    {
+        return firstFile.resolveSibling(secondFile);
+    }*/
 }

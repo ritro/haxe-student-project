@@ -44,15 +44,18 @@ public class Module extends HaxeTree
     
     private void findPackage()
     {
+        packageName = "";
         if (getChildCount() == 0)
         {
-            packageName = "";
             return;
         }
         HaxeTree supposedPackNode = getChild(0);
         if (!supposedPackNode.getText().equals("package"))
         {
-            packageName = "";
+            return;
+        }
+        if (supposedPackNode.getChildCount() == 0)
+        {
             return;
         }
         packageName = supposedPackNode.getChild(0).getText();

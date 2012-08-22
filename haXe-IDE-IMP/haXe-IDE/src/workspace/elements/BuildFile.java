@@ -9,6 +9,8 @@ import java.nio.file.Path;
 
 import org.eclipse.core.resources.IFile;
 
+import workspace.WorkspaceUtils;
+
 public class BuildFile
 {
     public static final String EXTENTION = "hxml";
@@ -24,37 +26,30 @@ public class BuildFile
         PHP
     };
     
-    public static String _defaultSourceFolderName = "src";
-    public static String _defaultOutputFolderName = "out";
-    public static String _defaultName = "build" + EXTENTION_WITH_DOT;
-    public static String _defaultMainFileName = "src\\Main";
-    public static String _defaultResultFileName = "out\\Result";
+    public static String DEFAULT_SRC_FOLDER_NAME = "src";
+    public static String DEFAULT_OUT_FOLDER_NAME = "out";
+    public static String DEFAULT_NAME = "build" + EXTENTION_WITH_DOT;
+    public static String DEFAULT_MAIN_CLASS_PACK = "src.Main";
+    public static String DEFAULT_OUT_FILE_PATH = "out\\Result";
     
     //relative paths
     private String srcFolderName = "";
     private String outputFileNameWithPath = "";
-    private Targets target = null;
-    private String mainFileNameWithPath = "";
+    private Targets target = Targets.FLASH_9;
+    private String mainClassWithPackage = "";
     
     private boolean isValid = true;
     private String name = "";
-    private Path pathToBuildFileWithName = null;
+    private Path pathToBuildFile = null;
 
     public BuildFile(
             String name, String srcFolder, String outFileName, Targets target, String mainFName)
     {
-        this.name = name;
-        srcFolderName = srcFolder;
-        outputFileNameWithPath = outFileName;
-        this.target = target;
-        mainFileNameWithPath = mainFName;
-        
-        if (!name.endsWith(EXTENTION_WITH_DOT))
-        {
-            name += EXTENTION_WITH_DOT;
-        }
-        
-        pathToBuildFileWithName = (new File(name)).toPath();
+        setTarget(target);
+        setSourceFolder(srcFolder);
+        setOutputFileWithPath(outFileName);
+        setMainClassWithPackage(mainFName);
+        setNameWithPath(name);
     }
     
     public BuildFile(final IFile file)
@@ -62,23 +57,21 @@ public class BuildFile
         String fileName = file.getName();
         name = fileName.substring(0, fileName.length() - EXTENTION_WITH_DOT.length());
         
-        // TODO we should somewhat get this info from file
-        //srcFolderName = srcFolder;
-        //outputFileNameWithPath = outFileName;
-        //this.target = target;
-        //mainFileNameWithPath = mainFName;
-        
-        pathToBuildFileWithName = file.getFullPath().toFile().toPath();
+
+        BuildFile pattern = Utils.convertTextToBuildFile(
+                WorkspaceUtils.getFileContents(file));
+        copyInfo(pattern);        
+        //pathToBuildFile = WorkspaceUtils.getPath(WorkspaceUtils.getPath(file));
     }
     
     public BuildFile()
     {
         this(
-                _defaultName,
-                _defaultSourceFolderName,
-                _defaultResultFileName,
+                DEFAULT_NAME,
+                DEFAULT_SRC_FOLDER_NAME,
+                DEFAULT_OUT_FILE_PATH,
                 Targets.FLASH_9,
-                _defaultMainFileName);      
+                DEFAULT_MAIN_CLASS_PACK);      
     }
     
     public BuildFile(File path)
@@ -95,7 +88,7 @@ public class BuildFile
             return;
         }
         name = path.getName();
-        pathToBuildFileWithName = path.toPath();
+        pathToBuildFile = WorkspaceUtils.getPath(path);
 
         BufferedReader br = new BufferedReader(st);
         String fileContents = "";
@@ -119,34 +112,8 @@ public class BuildFile
             return;
         }
         
-        parseContent(fileContents);
-    }
-    
-    /**
-     * Checks if prefix is a valid pointer to a build target.
-     * @param str
-     * @return Target, which prefix corresponds to or Null if 
-     * prefix is invalid.
-     */
-    public static Targets getTarget(String prefix)
-    {
-        switch(prefix)
-        {
-            case "-js":
-                return Targets.JAVA_SCRIPT;
-            case "-swf9":
-                return Targets.FLASH_9;
-            case "-as3":
-                return Targets.ACTION_SCRIPT;
-            case "-neko":
-                return Targets.NEKO_VM;
-            case "-cpp":
-                return Targets.C_PLUS_PLUS;
-            case "-php":
-                return Targets.PHP;
-            default:
-                return null;
-        }
+        BuildFile file = Utils.convertTextToBuildFile(fileContents);
+        copyInfo(file);
     }
     
     public boolean isValid()
@@ -159,9 +126,14 @@ public class BuildFile
         return name;
     }
     
-    public Path getPathWithName()
+    public Targets getTarget()
     {
-        return pathToBuildFileWithName;
+        return target;
+    }
+    
+    public Path getPath()
+    {
+        return pathToBuildFile;
     }
     
     public String getSourceFolder()
@@ -174,9 +146,50 @@ public class BuildFile
         return outputFileNameWithPath;
     }
     
-    public IFile getMainFile()
+    public String getMainClass()
     {
-        return (IFile) new File(mainFileNameWithPath + CodeFile.EXTENTION_WITH_DOT);
+        return mainClassWithPackage;
+    }
+    
+    public void setNameWithPath(String newName)
+    {
+        if (!newName.endsWith(EXTENTION_WITH_DOT))
+        {
+            newName += EXTENTION_WITH_DOT;
+            //name = newName.substring(0, newName.length() - EXTENTION_WITH_DOT.length());
+        }
+        File file = new File(newName);
+        name = file.getName();
+        pathToBuildFile = file.toPath();
+    }
+    
+    public void setSourceFolder(String newName)
+    {
+        srcFolderName = newName;
+    }
+    
+    public void setOutputFileWithPath(String newName)
+    {
+        outputFileNameWithPath = newName;
+        updateOutputFileSuffix();
+    }
+    
+    public void setTarget(Targets newTarget)
+    {
+        String suffix = Utils.getTargetsOutputFilesSuffix(target);
+        if (outputFileNameWithPath.endsWith(suffix))
+        {
+            outputFileNameWithPath = outputFileNameWithPath.substring(
+                    0, 
+                    outputFileNameWithPath.length() - suffix.length());
+        }
+        target = newTarget;
+        updateOutputFileSuffix();
+    }
+    
+    public void setMainClassWithPackage(String newMainClass)
+    {
+        mainClassWithPackage = newMainClass;
     }
     
     public String getContent()
@@ -194,14 +207,13 @@ public class BuildFile
             case JAVA_SCRIPT:
                 builder.append("# JavaScript target\n");
                 builder.append(String.format(
-                        "-js %s\n", outputFileNameWithPath + ".js"));
+                        "-js %s\n", outputFileNameWithPath));
                 builder.append("\n");
                 break;
             case FLASH_9:
                 builder.append("# SWF 9 target\n");
                 builder.append(String.format(
-                        "-swf9 %s\n", outputFileNameWithPath + ".swf"));
-                //WorkspaceUtils.getConcatenatedPath(outFolderName, resultName + ".swf")
+                        "-swf9 %s\n", outputFileNameWithPath));
                 builder.append("\n");
                 break;
             case ACTION_SCRIPT:
@@ -213,7 +225,7 @@ public class BuildFile
             case NEKO_VM:
                 builder.append("# Neko target\n");
                 builder.append(String.format(
-                        "-neko %s\n", outputFileNameWithPath + ".n"));
+                        "-neko %s\n", outputFileNameWithPath));
                 builder.append("\n");
                 break;
             case C_PLUS_PLUS:
@@ -230,44 +242,33 @@ public class BuildFile
                 break;
         }
 
-        builder.append("-main " + mainFileNameWithPath + "\n");//package.subpackage.ClassName
+        builder.append("-main " + mainClassWithPackage + "\n");//package.subpackage.ClassName
 
         return builder.toString();
     }
     
-    private void parseContent(String content)
-    {        
-        String[] entry = content.split("[\\s]+");
-        
-        try
-        {
-            for (int i=0; i<entry.length; i++)
-            {            
-                if (entry[i].equals("-cp"))
-                {
-                    i++;
-                    srcFolderName = entry[i];
-                    continue;
-                }
-                Targets foundTarget = getTarget(entry[i]);
-                if (foundTarget != null)
-                {
-                    target = foundTarget;
-                    i++;
-                    outputFileNameWithPath = entry[i];
-                    continue;
-                }
-                if (entry[i].equals("-main"))
-                {
-                    i++;
-                    mainFileNameWithPath = entry[i];
-                    continue;
-                }
-            }
-        }
-        catch (Exception e)
+    private void copyInfo(BuildFile pattern)
+    {
+        if (pattern == null)
         {
             isValid = false;
         }
+        else
+        {
+            srcFolderName = pattern.getSourceFolder();
+            outputFileNameWithPath = pattern.getOutputFileWithPath();
+            target = pattern.getTarget();
+            mainClassWithPackage = pattern.getMainClass();
+        }
     }
+    
+    private void updateOutputFileSuffix()
+    {
+        String suffix = Utils.getTargetsOutputFilesSuffix(target);
+        if (!outputFileNameWithPath.endsWith(suffix))
+        {
+            outputFileNameWithPath += suffix;
+        }
+    }
+    
 }

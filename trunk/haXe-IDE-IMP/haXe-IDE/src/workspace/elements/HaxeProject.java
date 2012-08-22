@@ -102,7 +102,7 @@ public class HaxeProject extends AbstractHaxeProject
             if (name.endsWith(fName))
             {
                 CodeFile hfile = fileList.get(name);
-                if (hfile != null && hfile.getPath().equals(file.getFullPath()))
+                if (hfile != null && WorkspaceUtils.equals(hfile.getRealFile(), file))
                 {
                     return hfile;
                 }
@@ -119,6 +119,25 @@ public class HaxeProject extends AbstractHaxeProject
             return hfile.getAst();
         }
         
+        return null;
+    }
+    
+    /**
+     * Searches all build file for the one that is at the specific
+     * place in the file system.
+     * @param path - absolute path fore the Build file you want
+     * to get
+     * @return null or found build file
+     */
+    public BuildFile findBuildFile(String path)
+    {
+        for (BuildFile file : buildFiles)
+        {
+            if (file.getPath().toAbsolutePath().toString().equals(path))
+            {
+                return file;
+            }
+        }
         return null;
     }
     
@@ -146,11 +165,6 @@ public class HaxeProject extends AbstractHaxeProject
     public void setBuildFiles(final List<BuildFile> files)
     {
         buildFiles = files;
-    }
- 
-    public IFile getRealFile(final String name)
-    {
-        return baseProject.getFile(name);
     }
     
     public IPath getFullPath()

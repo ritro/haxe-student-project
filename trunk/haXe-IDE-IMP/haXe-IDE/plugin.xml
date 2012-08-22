@@ -187,6 +187,13 @@
                contentTypeId="haXe-IDE.haxeFileContentType">
          </contentTypeBinding>
       </editor>
+      <editor
+            class="workspace.editor.BuildFileEditor"
+            default="true"
+            extensions="hxml"
+            id="haXe-IDE.buildEditor"
+            name="Sample Multi-page Editor">
+      </editor>
    </extension>
    <extension
          point="org.eclipse.core.contenttype.contentTypes">

@@ -13,7 +13,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import workspace.HaxeProjectCreator;
 import workspace.SharedImages;
-import workspace.WorkspaceUtils;
+import workspace.editor.BuildFileDesignerPage;
 import workspace.elements.BuildFile;
 import workspace.elements.CodeFile;
 import workspace.elements.HaxeProject;
@@ -56,22 +56,19 @@ public class NewProject extends Wizard implements INewWizard, IExecutableExtensi
         } // else location == null
 
         try
-        {            
-            String buildFileName = pageOne.getBuildFileName();
+        {
             String srcFolder = pageOne.getSrcFolder();
             String outFolder = pageOne.getOutputFolder();
-            String mainFileFolder = pageOne.getMainFileName().substring(0, pageOne.getMainFileName().length() - ProjectCreationPage._mainFileName.length()+1);
+            String mainFilePath = pageOne.getMainFileName();
+            String mainFileFolder = mainFilePath.substring(
+                    0, 
+                    mainFilePath.lastIndexOf("."));
             HaxeProject project = HaxeProjectCreator.createProject(name, location);
             
             // creating build file
-            BuildFile buildFile = new BuildFile(
-                    buildFileName, 
-                    srcFolder, 
-                    WorkspaceUtils.getConcatenatedPath(outFolder,project.getName()), 
-                    pageOne.getSelectedTarget(), 
-                    pageOne.getMainFileName());
+            BuildFile buildFile = pageOne.getBuildFile();
             project.addBuildFile(buildFile);
-            project.createFile(buildFile.getPathWithName().toString(), buildFile.getContent(), false);
+            project.createFile(buildFile.getPath().toString(), buildFile.getContent(), false);
             
             // here the initial structure for project should be
             String[] struct = {srcFolder, outFolder, mainFileFolder};

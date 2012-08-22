@@ -94,7 +94,7 @@ imports         : IMPORT^ filepath SEMI!
                 | USING^ filepath SEMI!
                 ;
 
-myPackage       : PACKAGE^ filepath SEMI!
+myPackage       : PACKAGE^ (filepath | )? SEMI!
                 ;                
     
 filepath        : a=IDENTIFIER (b=DOT d=IDENTIFIER{$a.setText($a.text+$b.text + $d.text);})* -> $a

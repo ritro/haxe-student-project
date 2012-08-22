@@ -94,7 +94,7 @@ public class HaxeBuilder extends BuilderBase {
 	    
 	    for (BuildFile f : project.getBuildFiles())
 	    {
-	        if (f.getMainFile().equals(resource))
+	        if (f.getMainClass().equals(resource))
 	        {
 	            return !resource.isDerived() && false;
 	        }
